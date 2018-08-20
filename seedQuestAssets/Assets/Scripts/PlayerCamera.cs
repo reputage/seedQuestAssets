@@ -4,23 +4,30 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour {
 
+    // Sensitivity Properties
     public float moveSpeed = 4;
     public float mouseXSpeed = 200f;
     public float mouseYSpeed = 1f;
-    public float cameraRotateOffset = -15;
 
+    // Camera Position and LookAt Properties
     public float distanceToPlayer = 2f;
+    public float cameraRotateXOffset = -15;
+    public Vector2 cameraRotateYBounds = new Vector2(-25f, 15f);
     public Vector3 cameraPositionOffset = new Vector3(0.0f, 1.0f, 0.0f);
     public Vector3 cameraTargetOffset = new Vector3(0.0f, 0.0f, 0.0f);
 
+    // Accumulators for MousePosition
     private float currX = 0f;
     private float currY = 0f;
-	
-	// Update is called once per frame
-	void LateUpdate () {
+
+    private void Start() {
+        Cursor.visible = false;
+    }
+
+    void LateUpdate () {
         MovePlayer();
         MoveCamera();
-        //MoveCameraWithMouse();
+        MoveCameraWithMouse();
         CameraLookAt();
         PlayerLookAt();
     }
@@ -34,8 +41,16 @@ public class PlayerCamera : MonoBehaviour {
     }
 
     void CameraLookAt() {
+        // Look at Player
         Camera.main.transform.LookAt(transform.position + cameraTargetOffset);
-        Camera.main.transform.Rotate(new Vector3(0, cameraRotateOffset, 0));
+
+        // Rotate Camera in Horizontal Plane 
+        Camera.main.transform.Rotate(new Vector3(0, cameraRotateXOffset, 0));
+
+        // Roate Camera in Vertical Plane
+        currY += Input.GetAxis("Mouse Y") * mouseYSpeed;
+        currY = Mathf.Clamp(currY, cameraRotateYBounds[0], cameraRotateYBounds[1]);
+        Camera.main.transform.Rotate(new Vector3(-currY, 0, 0));
     }
 
     void MoveCamera() {
@@ -43,18 +58,14 @@ public class PlayerCamera : MonoBehaviour {
         Camera.main.transform.position = transform.position + (transform.forward * -distanceToPlayer) + cameraPositionOffset;
     }
 
-    void MoveCameraWithMouse() { 
-        currX += Input.GetAxis("Mouse X") * mouseXSpeed * Time.deltaTime;
-        currY += Input.GetAxis("Mouse Y") * mouseYSpeed * Time.deltaTime;
-
-        float y = distanceToPlayer * Mathf.Cos( currX );
-        float x = distanceToPlayer * Mathf.Sin( currX );
-        Camera.main.transform.position += new Vector3(x, 0, y) ;
+    void MoveCameraWithMouse() {
+        currY += Input.GetAxis("Mouse Y") * mouseYSpeed;
+        Camera.main.transform.position += new Vector3(0, -currY * 0.01f, 0);
     }
 
     void PlayerLookAt() {
-        float rotate = Input.GetAxis("Mouse X") * mouseXSpeed * Time.deltaTime;
-        transform.Rotate(0, rotate, 0);
+        float rotateX = Input.GetAxis("Mouse X") * mouseXSpeed * Time.deltaTime;
+        transform.Rotate(0, rotateX, 0);
 
         //transform.LookAt(Camera.main.transform.forward * distanceToPlayer + transform.position);
     }
