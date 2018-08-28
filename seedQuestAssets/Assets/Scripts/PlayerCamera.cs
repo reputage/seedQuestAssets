@@ -22,6 +22,7 @@ public class PlayerCamera : MonoBehaviour {
 
     private void Start() {
         //Cursor.visible = false;
+        PlayerManager.instance.player = transform;
     }
 
     void LateUpdate () {
