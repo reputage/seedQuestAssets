@@ -19,6 +19,7 @@ public class Interactable : MonoBehaviour {
         Vector3 playerPosition = PlayerManager.GetPlayer().position;
         Vector3 interactablePosition = actionSpot.transform.position;
         Vector3 lookAtDir = playerPosition - interactablePosition;
+        lookAtDir.y = 0;
 
         Quaternion rotate = Quaternion.LookRotation(lookAtDir);
         actionSpot.transform.rotation = rotate;

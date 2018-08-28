@@ -22,7 +22,6 @@ public class UIEffect : MonoBehaviour {
         p = c.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, c.nearClipPlane));
 
         Button button = GetComponent<Button>();
-      
 
     }
 }
