@@ -5,13 +5,13 @@ Shader "Custom/Outline + Rim" {
 		_Glossiness("Smoothness", Range(0,1)) = 0.5
 		_Metallic("Metallic", Range(0,1)) = 0.0
 
-		_OutlineColor("Outline Color", Color) = (1.0, 0.0, 0.0, 1.0)
-		_OutlineWidth("Outline Width", Range(0, 2.0)) = 0.1
+		_OutlineColor("Outline Color", Color) = (1.0, 1.0, 1.0, 1.0)
+		_OutlineWidth("Outline Width", Range(0, 2.0)) = 0
 
-		_RimColor("Rim Color", Color) = (0.26,0.19,0.16,0.0)
-		_RimPower("Rim Power", Range(0.5,8.0)) = 3.0
+		_RimColor("Rim Color", Color) = (1.0, 1.0, 1.0, 1.0)
+		_RimPower("Rim Power", Range(0.5, 8.0)) = 2.0
 	}
-	SubShader{
+	SubShader {
 		Tags{ "Queue" = "Transparent" "RenderType" = "Opaque" }
 		LOD 200
 

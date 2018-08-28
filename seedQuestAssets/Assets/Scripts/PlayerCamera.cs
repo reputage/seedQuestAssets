@@ -17,7 +17,6 @@ public class PlayerCamera : MonoBehaviour {
     public Vector3 cameraTargetOffset = new Vector3(0.0f, 0.0f, 0.0f);
 
     // Accumulators for MousePosition
-    private float currX = 0f;
     private float currY = 0f;
 
     private void Start() {
