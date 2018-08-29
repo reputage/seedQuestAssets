@@ -7,7 +7,10 @@ using TMPro;
 [RequireComponent(typeof(BoxCollider))]
 public class Interactable : MonoBehaviour {
 
+    [HideInInspector]
     public GameObject actionSpot = null;
+
+    public GameObject transformTarget = null;
     public Vector3 positionOffset = new Vector3(0, 0.0f, 0);
 
     private bool isOnHover = false;
@@ -77,7 +80,7 @@ public class Interactable : MonoBehaviour {
                 bool hitThisInteractable = hit.transform.GetInstanceID() == transform.GetInstanceID();
                 if (hitThisInteractable) {
                     Debug.Log("Hit: " + transform.name);
-                    InteractableManager.showInteractableActions(transform.name);
+                    InteractableManager.showInteractableActions(this);
                 }
             }
         }
@@ -92,6 +95,14 @@ public class Interactable : MonoBehaviour {
             rend.material.shader = shader;
         else
             rend.material.shader = shaderDefault;
+    }
+
+    public void doAction() {
+        if (transformTarget == null)
+            return;
+        
+        transform.GetComponent<MeshRenderer>().enabled = false;
+        Instantiate(transformTarget, transform);
     }
 
     private void OnDrawGizmos() { 

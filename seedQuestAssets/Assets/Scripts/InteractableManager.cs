@@ -6,9 +6,12 @@ using TMPro;
 public class InteractableManager : MonoBehaviour {
 
     static public InteractableManager __instance = null;
+
     public float interactDistance = 2.0f;
     public GameObject actionSpotIcon;
     public GameObject toolTip;
+
+    private Interactable activeItem = null;
 
     static public InteractableManager instance {
 
@@ -42,14 +45,16 @@ public class InteractableManager : MonoBehaviour {
     }
 
     private void doNearInteractable(bool isNear) {
-
+        
     }
 
-    static public void showInteractableActions(string _label) {
+    static public void showInteractableActions(Interactable item) {
+        instance.activeItem = item;
         instance.toolTip.SetActive(true);
-        var label = instance.toolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-        label.text = _label;
         PauseManager.isPaused = true;
+
+        var label = instance.toolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+        label.text = item.transform.name;
     }
 
     static public void hideInteractableActions() {
@@ -57,9 +62,16 @@ public class InteractableManager : MonoBehaviour {
     }
 
     static public void doInteractableAction(int actionIndex) {
-        instance.toolTip.SetActive(false);
         Debug.Log("Action " + actionIndex);
+
+        ParticleSystem effect = EffectsManager.createEffect(instance.activeItem.transform);
+        effect.Play();
+
+        instance.activeItem.doAction();
+
         PauseManager.isPaused = false;
+        instance.toolTip.SetActive(false);
+        instance.activeItem = null;
     } 
 
     public void doInteractableActionButton(int actionIndex) {
