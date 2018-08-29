@@ -19,8 +19,8 @@ public class PlayerCamera : MonoBehaviour {
     // Accumulators for MousePosition
     private float currY = 0f;
 
-    private void Start() {
-        //Cursor.visible = false;
+    private void Start() { 
+        Cursor.visible = false;
         PlayerManager.instance.player = transform;
     }
 

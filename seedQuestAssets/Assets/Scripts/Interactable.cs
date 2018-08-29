@@ -4,33 +4,83 @@ using UnityEngine;
 using TMPro;
 
 //[ExecuteInEditMode] 
+[RequireComponent(typeof(BoxCollider))]
 public class Interactable : MonoBehaviour {
 
     public GameObject actionSpot = null;
     public Vector3 positionOffset = new Vector3(0, 0.0f, 0);
 
+    private bool isOnHover = false;
+
     // Use this for initialization
     void Start () {
+        InitInteractable();
+	}
+	
+	void Update () {
+        BillboardInteractable();
+        HoverOnInteractable();
+        clickOnInteractable();
+	} 
+      
+    public void InitInteractable() {
         Vector3 position = transform.position;
         position += positionOffset;
         Quaternion rotate = Quaternion.identity;
         actionSpot = Instantiate(InteractableManager.instance.actionSpotIcon, position, rotate, InteractableManager.instance.transform);
         var text = actionSpot.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-        text.text = this.name;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        Vector3 targetPosition = Camera.main.transform.position; 
+        text.text = this.name;  
+    }
+
+    public void BillboardInteractable() {
+        Vector3 targetPosition = Camera.main.transform.position;
         Vector3 interactablePosition = actionSpot.transform.position;
         Vector3 lookAtDir = targetPosition - interactablePosition;
         lookAtDir.y = 0;
 
-        Quaternion rotate =  Quaternion.LookRotation(lookAtDir);
+        Quaternion rotate = Quaternion.LookRotation(lookAtDir);
         actionSpot.transform.rotation = rotate;
-        //actionSpot.transform.Rotate(new Vector3(90.0f, 0, 0));
-	} 
-      
+    }
+
+    public void HoverOnInteractable() {
+        Camera c = Camera.main;
+        RaycastHit hit;
+        Ray ray = new Ray(c.transform.position, c.transform.forward);
+
+        if (Physics.Raycast(ray, out hit, 100.0f))
+        {
+            bool hitThisInteractable = hit.transform.GetInstanceID() == transform.GetInstanceID();
+            if (hitThisInteractable) {
+                Debug.Log("Hover: " + transform.name);
+                if (!isOnHover)
+                    toggleHighlight(true);
+                isOnHover = true;
+            }
+            else {
+                if (isOnHover)
+                    toggleHighlight(false);
+                isOnHover = false;
+            }
+        }
+    }
+
+    public void clickOnInteractable() {
+        Camera c = Camera.main;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            Ray ray = new Ray(c.transform.position, c.transform.forward);
+
+            if (Physics.Raycast(ray, out hit, 100.0f))
+            {
+                bool hitThisInteractable = hit.transform.GetInstanceID() == transform.GetInstanceID();
+                if (hitThisInteractable)
+                    Debug.Log("Hit: " + transform.name );
+            }
+        }
+    }
+
     public void toggleHighlight(bool highlight) {
         Renderer rend = transform.GetComponent<Renderer>();
         Shader shaderDefault = Shader.Find("Standard");

@@ -17,22 +17,22 @@ public class InteractableManager : MonoBehaviour {
         }
     }
 
-	// Use this for initialization
-	void Awake () {
-        
-	}
-
     private void Update() {
+
+    }
+
+    private void findNearInteractables() {
         Interactable[] list = FindObjectsOfType<Interactable>();
 
-        foreach(Interactable item in list) {
+        foreach (Interactable item in list)
+        {
             Vector3 playerPosition = PlayerManager.GetPlayer().position;
             float dist = (item.transform.position - playerPosition).magnitude;
             if (dist < interactDistance)
                 item.toggleHighlight(true);
             else
                 item.toggleHighlight(false);
-        }
+        }  
     }
 
 }
