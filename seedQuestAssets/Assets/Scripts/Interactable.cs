@@ -1,17 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
+//[ExecuteInEditMode] 
 public class Interactable : MonoBehaviour {
 
-    public GameObject actionSpot;
+    public GameObject actionSpot = null;
+    public Vector3 positionOffset = new Vector3(0, 0.0f, 0);
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         Vector3 position = transform.position;
-        position += new Vector3(0, 3.0f, 0);
+        position += positionOffset;
         Quaternion rotate = Quaternion.identity;
         actionSpot = Instantiate(InteractableManager.instance.actionSpotIcon, position, rotate, InteractableManager.instance.transform);
+        var text = actionSpot.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+        text.text = this.name;
 	}
 	
 	// Update is called once per frame
@@ -23,7 +28,7 @@ public class Interactable : MonoBehaviour {
 
         Quaternion rotate =  Quaternion.LookRotation(lookAtDir);
         actionSpot.transform.rotation = rotate;
-        actionSpot.transform.Rotate(new Vector3(90.0f, 0, 0));
+        //actionSpot.transform.Rotate(new Vector3(90.0f, 0, 0));
 	} 
       
     public void toggleHighlight(bool highlight) {
@@ -35,5 +40,11 @@ public class Interactable : MonoBehaviour {
             rend.material.shader = shader;
         else
             rend.material.shader = shaderDefault;
-    } 
+    }
+
+    private void OnDrawGizmos() { 
+        if(actionSpot != null)
+            Gizmos.DrawWireSphere(actionSpot.transform.position, 0.1f);
+    }
+
 } 

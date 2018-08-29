@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class InteractableManager : MonoBehaviour {
 
-    static public InteractableManager instance = null;
+    static public InteractableManager __instance = null;
     public float interactDistance = 2.0f;
     public GameObject actionSpotIcon;
 
+    static public InteractableManager instance {
+
+        get {
+            if (__instance == null)
+                __instance = GameObject.FindObjectOfType<InteractableManager>();
+            return __instance;
+        }
+    }
+
 	// Use this for initialization
 	void Awake () {
-        instance = this;
+        
 	}
 
     private void Update() {

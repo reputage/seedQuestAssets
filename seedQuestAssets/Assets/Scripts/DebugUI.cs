@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DebugUI : MonoBehaviour {
 
+    public Transform target = null;
+
     private void OnGUI()
     {
         Vector3 p = new Vector3();
@@ -23,5 +25,12 @@ public class DebugUI : MonoBehaviour {
         GUILayout.Label("Mouse position: " + mousePos);
         GUILayout.Label("World position: " + p.ToString("F3"));
         GUILayout.EndArea();
+
+        if(target != null)
+        {
+            Vector3 screenPos = c.WorldToScreenPoint(target.position);
+            Debug.Log("X: " + screenPos.x + " Y: " + screenPos.y);
+        }
+
     }
 }
