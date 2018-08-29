@@ -22,7 +22,7 @@ public class Interactable : MonoBehaviour {
         HoverOnInteractable();
         clickOnInteractable();
 	} 
-      
+
     public void InitInteractable() {
         Vector3 position = transform.position;
         position += positionOffset;
@@ -75,8 +75,10 @@ public class Interactable : MonoBehaviour {
             if (Physics.Raycast(ray, out hit, 100.0f))
             {
                 bool hitThisInteractable = hit.transform.GetInstanceID() == transform.GetInstanceID();
-                if (hitThisInteractable)
-                    Debug.Log("Hit: " + transform.name );
+                if (hitThisInteractable) {
+                    Debug.Log("Hit: " + transform.name);
+                    InteractableManager.showInteractableActions(transform.name);
+                }
             }
         }
     }
