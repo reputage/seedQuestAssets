@@ -18,7 +18,7 @@ public class InteractableManager : MonoBehaviour {
     }
 
     private void Update() {
-
+        findNearInteractables();
     }
 
     private void findNearInteractables() {
@@ -29,10 +29,14 @@ public class InteractableManager : MonoBehaviour {
             Vector3 playerPosition = PlayerManager.GetPlayer().position;
             float dist = (item.transform.position - playerPosition).magnitude;
             if (dist < interactDistance)
-                item.toggleHighlight(true);
+                doNearInteractable(true);
             else
-                item.toggleHighlight(false);
+                doNearInteractable(false);
         }  
+    }
+
+    private void doNearInteractable(bool isNear) {
+
     }
 
 }
