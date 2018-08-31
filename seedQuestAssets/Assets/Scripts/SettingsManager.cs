@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SettingsManager : MonoBehaviour {
 
+    static bool useDebug = false;
+
 	// Use this for initialization
 	void Start () {
 		

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+[ExecuteInEditMode]
 public class InteractableManager : MonoBehaviour {
 
     static public InteractableManager __instance = null;
@@ -10,6 +11,7 @@ public class InteractableManager : MonoBehaviour {
     public float interactDistance = 2.0f;
     public GameObject actionSpotIcon;
     public GameObject toolTip;
+    public Interactable[] debugInteractables = null;
 
     private Interactable activeItem = null;
 
@@ -27,24 +29,28 @@ public class InteractableManager : MonoBehaviour {
     }
 
     private void Update() {
-        findNearInteractables();
+        debugInteractables = findAllInteractables();
     }
 
-    private void findNearInteractables() {
+    static Interactable[] findAllInteractables() {
+        return GameObject.FindObjectsOfType<Interactable>();
+    }
+
+    static void findNearInteractables() {
         Interactable[] list = FindObjectsOfType<Interactable>();
 
         foreach (Interactable item in list)
         {
             Vector3 playerPosition = PlayerManager.GetPlayer().position;
             float dist = (item.transform.position - playerPosition).magnitude;
-            if (dist < interactDistance)
+            if (dist < instance.interactDistance)
                 doNearInteractable(true);
             else
                 doNearInteractable(false);
         }  
     }
 
-    private void doNearInteractable(bool isNear) {
+    static void doNearInteractable(bool isNear) {
         
     }
 
@@ -53,9 +59,11 @@ public class InteractableManager : MonoBehaviour {
         instance.toolTip.SetActive(true);
         PauseManager.isPaused = true;
 
-        var label = instance.toolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-        label.text = item.transform.name;
-    }
+        var labels = instance.toolTip.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
+        labels[0].text = item.transform.name;
+        labels[1].text = item.getStateName(0);
+        labels[2].text = item.getStateName(1);
+    } 
 
     static public void hideInteractableActions() {
         instance.toolTip.SetActive(false);
@@ -67,7 +75,7 @@ public class InteractableManager : MonoBehaviour {
         ParticleSystem effect = EffectsManager.createEffect(instance.activeItem.transform);
         effect.Play();
 
-        instance.activeItem.doAction();
+        instance.activeItem.doAction(actionIndex);
 
         PauseManager.isPaused = false;
         instance.toolTip.SetActive(false);
