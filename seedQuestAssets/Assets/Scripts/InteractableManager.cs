@@ -60,9 +60,12 @@ public class InteractableManager : MonoBehaviour {
         PauseManager.isPaused = true;
 
         var labels = instance.toolTip.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
-        labels[0].text = item.transform.name;
+        labels[0].text = item.transform.name; 
         labels[1].text = item.getStateName(0);
         labels[2].text = item.getStateName(1);
+        labels[3].text = item.getStateName(2);
+        labels[4].text = item.getStateName(3);
+
     } 
 
     static public void hideInteractableActions() {

@@ -8,6 +8,7 @@ public class InteractableState {
 
     public Mesh mesh = null;
     public Material material = null;
+    public int materialIndex = 0;
     public Vector2 uvOffset = Vector2.zero;
 
     public void enterState(Interactable item) {
@@ -15,8 +16,7 @@ public class InteractableState {
             item.GetComponent<MeshFilter>().sharedMesh = mesh;
 
         if (material != null)
-
-            item.GetComponent<Renderer>().material = material;
+            item.GetComponent<Renderer>().materials[materialIndex] = material;
 
         item.GetComponent<Renderer>().material.SetTextureOffset("_MainTex", uvOffset);
     }

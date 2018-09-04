@@ -8,7 +8,6 @@ using TMPro;
 public class Interactable : MonoBehaviour {
 
     public GameObject transformTarget = null;
-    public Vector3 positionOffset = new Vector3(0, 0.0f, 0);
     public InteractableStateData stateData = null;
 
     private bool isOnHover = false;
@@ -32,13 +31,19 @@ public class Interactable : MonoBehaviour {
     }
 
     public void InitInteractable() {
-        Vector3 position = transform.position;
-        position += positionOffset;
+        Vector3 positionOffset = Vector3.zero;
+        if (stateData != null)
+            positionOffset = stateData.labelPosOffset;
+        Vector3 position = transform.position + positionOffset;
         Quaternion rotate = Quaternion.identity;
         actionSpot = Instantiate(InteractableManager.instance.actionSpotIcon, position, rotate, InteractableManager.instance.transform);
         var text = actionSpot.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-        text.text = this.name;  
-    }
+
+        if (stateData != null)
+            text.text = stateData.interactableName;
+        else
+            text.text = "Error: Require StateData";
+    } 
 
     public void BillboardInteractable() {
         Vector3 targetPosition = Camera.main.transform.position;
