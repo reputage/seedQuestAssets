@@ -20,16 +20,23 @@ public class PlayerCamera : MonoBehaviour {
     private float currY = 0f;
 
     private void Start() { 
-        Cursor.visible = false;
         PlayerManager.instance.player = transform;
     }
 
     void LateUpdate () {
-        MovePlayer();
-        MoveCamera();
-        MoveCameraWithMouse();
-        CameraLookAt();
-        PlayerLookAt();
+        
+        if(!PauseManager.isPaused) {
+            Cursor.visible = false;
+            MovePlayer();
+            MoveCamera();
+            MoveCameraWithMouse();
+            CameraLookAt();
+            PlayerLookAt();            
+        }
+        else {
+            Cursor.visible = true;
+        }
+
     }
 
     void MovePlayer() {
