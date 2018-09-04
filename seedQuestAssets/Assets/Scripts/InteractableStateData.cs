@@ -35,6 +35,7 @@ public class InteractableStateData : ScriptableObject {
     public string interactableName;
     public Vector3 labelPosOffset;
     public List<InteractableState> states;
+    public GameObject effect;
 
     public string getStateName(int index) {
         return states[index].actionName;

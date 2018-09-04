@@ -72,10 +72,24 @@ public class InteractableManager : MonoBehaviour {
         instance.toolTip.SetActive(false);
     }
 
+    static ParticleSystem getEffect() {
+        ParticleSystem effect;
+
+        InteractableStateData data = instance.activeItem.stateData;
+        if(data == null)
+            effect = EffectsManager.createEffect(instance.activeItem.transform);
+        else if(data.effect == null)
+            effect = EffectsManager.createEffect(instance.activeItem.transform);
+        else 
+            effect = EffectsManager.createEffect(instance.activeItem.transform, data.effect);
+
+        return effect;
+    }
+
     static public void doInteractableAction(int actionIndex) {
         Debug.Log("Action " + actionIndex);
 
-        ParticleSystem effect = EffectsManager.createEffect(instance.activeItem.transform);
+        ParticleSystem effect = getEffect();
         effect.Play();
 
         instance.activeItem.doAction(actionIndex);

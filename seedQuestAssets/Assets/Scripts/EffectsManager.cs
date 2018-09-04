@@ -31,4 +31,17 @@ public class EffectsManager : MonoBehaviour {
         else
             return effect;
     }
+
+    static public ParticleSystem createEffect(Transform parent, GameObject effectPrefab)
+    {
+
+        ParticleSystem effect = parent.GetComponentInChildren<ParticleSystem>();
+        if (effect == null)
+        {
+            GameObject obj = Instantiate(effectPrefab, parent);
+            return obj.GetComponent<ParticleSystem>();
+        }
+        else
+            return effect;
+    }
 } 
