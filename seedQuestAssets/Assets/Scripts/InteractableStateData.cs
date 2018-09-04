@@ -10,15 +10,19 @@ public class InteractableState {
     public Material material = null;
     public int materialIndex = 0;
     public Vector2 uvOffset = Vector2.zero;
+    public RuntimeAnimatorController animatorController;
 
     public void enterState(Interactable item) {
         if (mesh != null)
             item.GetComponent<MeshFilter>().sharedMesh = mesh;
-
+        
         if (material != null)
             item.GetComponent<Renderer>().materials[materialIndex] = material;
 
         item.GetComponent<Renderer>().material.SetTextureOffset("_MainTex", uvOffset);
+
+        if (animatorController != null)
+            item.GetComponentInChildren<Animator>().runtimeAnimatorController = animatorController;
     }
 
     public void doAction(Interactable item) {
@@ -36,7 +40,7 @@ public class InteractableStateData : ScriptableObject {
     public Vector3 labelPosOffset;
     public List<InteractableState> states;
     public GameObject effect;
-
+    
     public string getStateName(int index) {
         return states[index].actionName;
     }
