@@ -124,13 +124,12 @@ public class Interactable : MonoBehaviour {
             state.enterState(this);
         }
 
-        /*
+
         if (transformTarget == null)
             return;
         
         transform.GetComponent<MeshRenderer>().enabled = false;
         Instantiate(transformTarget, transform);
-        */
     }
 
     public string getInteractableName()
