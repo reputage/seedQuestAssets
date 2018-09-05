@@ -98,6 +98,9 @@ public class Interactable : MonoBehaviour {
 
     public void toggleHighlight(bool highlight) {
         Renderer rend = transform.GetComponent<Renderer>();
+        if (rend == null)
+            return;
+
         Shader shaderDefault = Shader.Find("Standard");
         Shader shader = Shader.Find("Custom/Outline + Rim");
 
@@ -110,6 +113,10 @@ public class Interactable : MonoBehaviour {
     public void doAction(int actionIndex) {
         if(stateData == null) {
             Debug.Log(this.name + " Error: StateData is null");
+            return;
+        }
+        else if(stateData.states.Count == 0) {
+            Debug.Log(this.name + " Error: States is empty");
             return;
         }
         else {
@@ -126,12 +133,28 @@ public class Interactable : MonoBehaviour {
         */
     }
 
+    public string getInteractableName()
+    {
+        if (stateData == null)
+            return "Interactable Name";
+        else
+            return this.stateData.interactableName;
+    }
+
     public string getStateName(int index)
     {
         if (stateData == null)
             return "Action #" + index;
         else
             return this.stateData.getStateName(index);
+    }
+
+    public int getStateCount()
+    {
+        if (stateData == null)
+            return 0;
+        else
+            return this.stateData.states.Count;
     }
 
 } 
