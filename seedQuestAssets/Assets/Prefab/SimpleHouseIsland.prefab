@@ -404,7 +404,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4016343474929202}
-  - component: {fileID: 95728540470303534}
+  - component: {fileID: 65672146553842406}
+  - component: {fileID: 114952902408145552}
   m_Layer: 0
   m_Name: garden_planter
   m_TagString: Untagged
@@ -1168,8 +1169,6 @@ GameObject:
   - component: {fileID: 4566659339188570}
   - component: {fileID: 33967024140403052}
   - component: {fileID: 23149435884868606}
-  - component: {fileID: 65254517789788628}
-  - component: {fileID: 114018204784439110}
   m_Layer: 0
   m_Name: Carrot
   m_TagString: Untagged
@@ -5343,18 +5342,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.94200003, y: 2.0000005, z: 1.0000002}
   m_Center: {x: -0.307791, y: -0.15219405, z: 0.4981981}
---- !u!65 &65254517789788628
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1858203980018046}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.576442, y: 0.7211402, z: 2.2572265}
-  m_Center: {x: -0.034904182, y: 0.014430005, z: -0.45218214}
 --- !u!65 &65293650204037154
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -5379,6 +5366,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.567168, y: 2.0000024, z: 1.1294773}
   m_Center: {x: -0.0020959973, y: 0, z: 0.6201266}
+--- !u!65 &65672146553842406
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1271054605492984}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6, y: 0.85466063, z: 6}
+  m_Center: {x: 0, y: 0.28296974, z: 0}
 --- !u!65 &65762041906809708
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -5745,24 +5744,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!95 &95728540470303534
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1271054605492984}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: a2a54c8cce1cc954e8e87f7661328be0, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!95 &95752773041498242
 Animator:
   serializedVersion: 3
@@ -5993,19 +5974,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transformTarget: {fileID: 0}
   stateData: {fileID: 11400000, guid: 59597eca4ccec42329597ce8fcf77396, type: 2}
---- !u!114 &114018204784439110
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1858203980018046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa6ac8e802a76454cb5268e0901c5ecf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transformTarget: {fileID: 0}
-  stateData: {fileID: 0}
 --- !u!114 &114359288799702128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6116,6 +6084,19 @@ MonoBehaviour:
   worldSize: {x: 5, y: 10}
   grassObject: {fileID: 1136047979224394, guid: 12d67e6941bc00e40bab7c0b6a477c3d,
     type: 2}
+--- !u!114 &114952902408145552
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1271054605492984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa6ac8e802a76454cb5268e0901c5ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transformTarget: {fileID: 0}
+  stateData: {fileID: 11400000, guid: 54ace036e7584e0459c35e5da4240004, type: 2}
 --- !u!114 &114962725242276018
 MonoBehaviour:
   m_ObjectHideFlags: 1

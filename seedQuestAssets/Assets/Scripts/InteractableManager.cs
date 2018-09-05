@@ -62,6 +62,12 @@ public class InteractableManager : MonoBehaviour {
         var labels = instance.toolTip.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
         labels[0].text = item.getInteractableName();
 
+        // Default ActionButton Text
+        labels[1].text = "Action One";
+        labels[2].text = "Action Two";
+        labels[3].text = "Action Three";
+        labels[4].text = "Action Four";
+
         if (item.getStateCount() > 0)
             labels[1].text = item.getStateName(0);
         if (item.getStateCount() > 1)
