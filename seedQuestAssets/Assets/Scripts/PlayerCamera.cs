@@ -19,31 +19,66 @@ public class PlayerCamera : MonoBehaviour {
     public Vector3 cameraPositionOffset = new Vector3(0.0f, 1.0f, 0.0f);
     public Vector3 cameraFarPositionOffset = new Vector3(0.0f, 8.0f, 0.0f);
     public Vector3 cameraTargetOffset = new Vector3(0.0f, 0.0f, 0.0f);
+    public Vector3 cameraFarTargetOffset = new Vector3(0.0f, 4.0f, 0.0f);
 
     // Accumulators for MousePosition
     private float cameraRotateYOffset = 0f;
 
     // Camera Position Interpolation 
+    private CameraPos cameraPosState = CameraPos.Near;
+    private bool goCameraMove = false;
     public float lerpStopTime = 1.0f;
     private float lerpTime = 1.0f;
-    private bool goCameraMove = false;
-    private CameraPos cameraPosState = CameraPos.Near;
+    float Percentage { get { return lerpTime / lerpStopTime; } }
 
-    private void Start() { 
+    // Camera Position and LookAt
+    Vector3 NearCameraPosition {  get { return transform.position + (transform.forward * -cameraDistance) + cameraPositionOffset; } }
+    Vector3 FarCameraPosition { get { return transform.position + (transform.forward * -cameraFarDistance) + cameraFarPositionOffset; } }
+    Vector3 NearCameraLookAt { get { return transform.position + cameraTargetOffset; } }
+    Vector3 FarCameraLookAt { get { return transform.position + cameraFarTargetOffset; } }
+
+    private void Start() {
         PlayerManager.instance.player = transform;
+        lerpTime = lerpStopTime;
     }
-    
+
     void LateUpdate () {
         
         if(!PauseManager.isPaused) {
             Cursor.visible = false;
+            GoLerp();
             MovePlayer();
             MoveCamera();
             CameraLookAt();
+            CameraRotate();
             PlayerLookAt();            
         }
         else {
             Cursor.visible = true;
+        }
+    }
+
+    void GoLerp() {
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Move Camera: " + cameraPosState);
+
+            lerpTime = 0.0f;
+            goCameraMove = true;
+            if (cameraPosState == CameraPos.Near)
+                cameraPosState = CameraPos.Far;
+            else
+                cameraPosState = CameraPos.Near;
+        }
+
+        if (goCameraMove)
+        {
+            lerpTime += Time.deltaTime;
+            if (lerpTime > lerpStopTime)
+            {
+                lerpTime = lerpStopTime;
+            }
         }
     }
 
@@ -55,35 +90,24 @@ public class PlayerCamera : MonoBehaviour {
         transform.Translate(0, 0, moveVertical);
     }
 
-    void MoveCamera() { 
-        if (Input.GetKeyDown(KeyCode.Space)) { 
-            Debug.Log("Move Camera: " + cameraPosState);
-
-            lerpTime = 0.0f;
-            goCameraMove = true;
-            if (cameraPosState == CameraPos.Near)
-                cameraPosState = CameraPos.Far;
-            else
-                cameraPosState = CameraPos.Near;
-        }
-        
-        if (goCameraMove) {
-            lerpTime += Time.deltaTime;
-            if (lerpTime > lerpStopTime) {
-                lerpTime = lerpStopTime;
-            }
-        }
-                
-        if(cameraPosState == CameraPos.Far)
-            Camera.main.transform.position = MoveCameraFar(lerpTime / lerpStopTime);
+    void MoveCamera() {
+        if (cameraPosState == CameraPos.Far)
+            Camera.main.transform.position = Vector3.Lerp(NearCameraPosition, FarCameraPosition, Percentage);
         else
-            Camera.main.transform.position = MoveCameraNear(lerpTime / lerpStopTime);
+            Camera.main.transform.position = Vector3.Lerp(FarCameraPosition, NearCameraPosition, Percentage);
     }
 
     void CameraLookAt() {
-        // Look at Player
-        Camera.main.transform.LookAt(transform.position + cameraTargetOffset);
-
+        // Look at Player 
+        Vector3 lookAt;
+        if (cameraPosState == CameraPos.Far)
+            lookAt = Vector3.Lerp(NearCameraLookAt, FarCameraLookAt, Percentage);
+        else
+            lookAt = Vector3.Lerp(FarCameraLookAt, NearCameraLookAt, Percentage);
+        Camera.main.transform.LookAt(lookAt);
+    }
+        
+    void CameraRotate() {
         // Rotate Camera in Horizontal Plane 
         Camera.main.transform.Rotate(new Vector3(0, cameraRotateXOffset, 0));
 
@@ -92,25 +116,9 @@ public class PlayerCamera : MonoBehaviour {
         cameraRotateYOffset = Mathf.Clamp(cameraRotateYOffset, cameraRotateYBounds[0], cameraRotateYBounds[1]);
         Camera.main.transform.Rotate(new Vector3(-cameraRotateYOffset, 0, 0));
     }
-        
+
     void PlayerLookAt() {
         float rotateX = Input.GetAxis("Mouse X") * mouseXSpeed * Time.deltaTime;
         transform.Rotate(0, rotateX, 0);
-    }
-    
-    Vector3 NearCameraPosition {
-        get { return transform.position + (transform.forward * -cameraDistance) + cameraPositionOffset; }
-    }
-
-    Vector3 FarCamearPosition {
-        get { return transform.position + (transform.forward * -cameraFarDistance) + cameraFarPositionOffset;  }
-    }
-
-    Vector3 MoveCameraFar(float _percentage) {
-        return Vector3.Lerp(NearCameraPosition, FarCamearPosition, _percentage);
-    }
-
-    Vector3 MoveCameraNear(float _percentage) {
-        return Vector3.Lerp(FarCamearPosition, NearCameraPosition, _percentage);
     }
 }
