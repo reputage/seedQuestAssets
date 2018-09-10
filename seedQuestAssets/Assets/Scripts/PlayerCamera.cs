@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CameraPos { Near, Far }
+
 public class PlayerCamera : MonoBehaviour {
 
     // Sensitivity Properties
@@ -10,33 +12,74 @@ public class PlayerCamera : MonoBehaviour {
     public float mouseYSpeed = 1f;
 
     // Camera Position and LookAt Properties
-    public float distanceToPlayer = 2f;
+    public float cameraDistance = 2f;
+    public float cameraFarDistance = 8f;
     public float cameraRotateXOffset = -15;
     public Vector2 cameraRotateYBounds = new Vector2(-25f, 15f);
     public Vector3 cameraPositionOffset = new Vector3(0.0f, 1.0f, 0.0f);
+    public Vector3 cameraFarPositionOffset = new Vector3(0.0f, 8.0f, 0.0f);
     public Vector3 cameraTargetOffset = new Vector3(0.0f, 0.0f, 0.0f);
+    public Vector3 cameraFarTargetOffset = new Vector3(0.0f, 4.0f, 0.0f);
 
     // Accumulators for MousePosition
-    private float currY = 0f;
+    private float cameraRotateYOffset = 0f;
 
-    private void Start() { 
+    // Camera Position Interpolation 
+    private CameraPos cameraPosState = CameraPos.Near;
+    private bool goCameraMove = false;
+    public float lerpStopTime = 1.0f;
+    private float lerpTime = 1.0f;
+    float Percentage { get { return lerpTime / lerpStopTime; } }
+
+    // Camera Position and LookAt
+    Vector3 NearCameraPosition {  get { return transform.position + (transform.forward * -cameraDistance) + cameraPositionOffset; } }
+    Vector3 FarCameraPosition { get { return transform.position + (transform.forward * -cameraFarDistance) + cameraFarPositionOffset; } }
+    Vector3 NearCameraLookAt { get { return transform.position + cameraTargetOffset; } }
+    Vector3 FarCameraLookAt { get { return transform.position + cameraFarTargetOffset; } }
+
+    private void Start() {
         PlayerManager.instance.player = transform;
+        lerpTime = lerpStopTime;
     }
 
     void LateUpdate () {
         
         if(!PauseManager.isPaused) {
             Cursor.visible = false;
+            GoLerp();
             MovePlayer();
             MoveCamera();
-            MoveCameraWithMouse();
             CameraLookAt();
+            CameraRotate();
             PlayerLookAt();            
         }
         else {
             Cursor.visible = true;
         }
+    }
 
+    void GoLerp() {
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Move Camera: " + cameraPosState);
+
+            lerpTime = 0.0f;
+            goCameraMove = true;
+            if (cameraPosState == CameraPos.Near)
+                cameraPosState = CameraPos.Far;
+            else
+                cameraPosState = CameraPos.Near;
+        }
+
+        if (goCameraMove)
+        {
+            lerpTime += Time.deltaTime;
+            if (lerpTime > lerpStopTime)
+            {
+                lerpTime = lerpStopTime;
+            }
+        }
     }
 
     void MovePlayer() {
@@ -47,33 +90,35 @@ public class PlayerCamera : MonoBehaviour {
         transform.Translate(0, 0, moveVertical);
     }
 
-    void CameraLookAt() {
-        // Look at Player
-        Camera.main.transform.LookAt(transform.position + cameraTargetOffset);
+    void MoveCamera() {
+        if (cameraPosState == CameraPos.Far)
+            Camera.main.transform.position = Vector3.Lerp(NearCameraPosition, FarCameraPosition, Percentage);
+        else
+            Camera.main.transform.position = Vector3.Lerp(FarCameraPosition, NearCameraPosition, Percentage);
+    }
 
+    void CameraLookAt() {
+        // Look at Player 
+        Vector3 lookAt;
+        if (cameraPosState == CameraPos.Far)
+            lookAt = Vector3.Lerp(NearCameraLookAt, FarCameraLookAt, Percentage);
+        else
+            lookAt = Vector3.Lerp(FarCameraLookAt, NearCameraLookAt, Percentage);
+        Camera.main.transform.LookAt(lookAt);
+    }
+        
+    void CameraRotate() {
         // Rotate Camera in Horizontal Plane 
         Camera.main.transform.Rotate(new Vector3(0, cameraRotateXOffset, 0));
 
         // Roate Camera in Vertical Plane
-        currY += Input.GetAxis("Mouse Y") * mouseYSpeed;
-        currY = Mathf.Clamp(currY, cameraRotateYBounds[0], cameraRotateYBounds[1]);
-        Camera.main.transform.Rotate(new Vector3(-currY, 0, 0));
-    }
-
-    void MoveCamera() {
-        //Camera.main.transform.position = transform.position + cameraPositionOffset;
-        Camera.main.transform.position = transform.position + (transform.forward * -distanceToPlayer) + cameraPositionOffset;
-    }
-
-    void MoveCameraWithMouse() {
-        currY += Input.GetAxis("Mouse Y") * mouseYSpeed;
-        Camera.main.transform.position += new Vector3(0, -currY * 0.01f, 0);
+        cameraRotateYOffset += Input.GetAxis("Mouse Y") * mouseYSpeed;
+        cameraRotateYOffset = Mathf.Clamp(cameraRotateYOffset, cameraRotateYBounds[0], cameraRotateYBounds[1]);
+        Camera.main.transform.Rotate(new Vector3(-cameraRotateYOffset, 0, 0));
     }
 
     void PlayerLookAt() {
         float rotateX = Input.GetAxis("Mouse X") * mouseXSpeed * Time.deltaTime;
         transform.Rotate(0, rotateX, 0);
-
-        //transform.LookAt(Camera.main.transform.forward * distanceToPlayer + transform.position);
     }
 }
