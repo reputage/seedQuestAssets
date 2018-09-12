@@ -21,9 +21,11 @@ public class UIManager : MonoBehaviour {
 
     void Load() {
 
-        //GameObject.FindObjectsOfType<GameUI>();
-        //InteractableUI[] test = Resources.FindObjectsOfTypeAll<InteractableUI>();
-        //Debug.Log(test.Length);
+        if(gameUI == null)
+        {
+            Debug.Log("Warning: GameUI prefab missing.");
+            return;
+        }
 
         if (GameUI.instance == null)
             Instantiate(gameUI);

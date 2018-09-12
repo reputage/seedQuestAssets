@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EffectsManager : MonoBehaviour {
 
-    static EffectsManager __instance = null;
-
     public GameObject effectPrefab;
+
+    static EffectsManager __instance = null;
 
     static public EffectsManager instance {
 
