@@ -125,7 +125,6 @@ public class Interactable : MonoBehaviour {
             state.enterState(this);
         }
 
-
         if (transformTarget == null)
             return;
         
@@ -156,5 +155,4 @@ public class Interactable : MonoBehaviour {
         else
             return this.stateData.states.Count;
     }
-
 } 
