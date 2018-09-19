@@ -3,14 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class DoorAnimator : MonoBehaviour {
+public class CastleDoorAnimator : MonoBehaviour {
 
-    private void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update () {
         clickOn();
     }
