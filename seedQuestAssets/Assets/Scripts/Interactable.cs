@@ -90,7 +90,8 @@ public class Interactable : MonoBehaviour {
                 bool hitThisInteractable = hit.transform.GetInstanceID() == transform.GetInstanceID();
                 if (hitThisInteractable) {
                     Debug.Log("Hit: " + transform.name);
-                    InteractableManager.showInteractableActions(this);
+                    InteractableUI.show(this);
+                    //InteractableManager.showInteractableActions(this);
                 }
             }
         }
