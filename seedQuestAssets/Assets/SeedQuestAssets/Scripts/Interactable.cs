@@ -9,7 +9,9 @@ public class Interactable : MonoBehaviour {
 
     public GameObject transformTarget = null;
     public InteractableStateData stateData = null;
+    public InteractableID ID;
 
+    private float interactDistance = 2.0f;
     private bool isOnHover = false;
     private GameObject actionSpot = null;
 
@@ -19,15 +21,17 @@ public class Interactable : MonoBehaviour {
 	}
 	
 	void Update () {
-        BillboardInteractable();
-        HoverOnInteractable();
-        clickOnInteractable();
+        if(!PauseManager.isPaused && Camera.main != null) {
+            BillboardInteractable();
+            HoverOnInteractable();
+            clickOnInteractable();
+        }
 	} 
 
     private void OnDrawGizmos()
     {
         if (actionSpot != null)
-            Gizmos.DrawWireSphere(actionSpot.transform.position, 0.1f);
+            Gizmos.DrawWireSphere(actionSpot.transform.position, interactDistance);
     }
 
     public void InitInteractable() {
@@ -36,7 +40,7 @@ public class Interactable : MonoBehaviour {
             positionOffset = stateData.labelPosOffset;
         Vector3 position = transform.position + positionOffset;
         Quaternion rotate = Quaternion.identity;
-        actionSpot = Instantiate(InteractableManager.instance.actionSpotIcon, position, rotate, InteractableManager.instance.transform);
+        actionSpot = Instantiate(InteractableManager.Instance.actionSpotIcon, position, rotate, InteractableManager.Instance.transform);
         var text = actionSpot.GetComponentInChildren<TMPro.TextMeshProUGUI>();
 
         if (stateData != null)
@@ -55,6 +59,15 @@ public class Interactable : MonoBehaviour {
         actionSpot.transform.rotation = rotate;
     }
 
+    private bool PlayerIsNear() {
+        Vector3 playerPosition = PlayerManager.Position;
+        float dist = (transform.position - playerPosition).magnitude;
+        if (dist < interactDistance)
+            return true;
+        else
+            return false;
+    }
+
     public void HoverOnInteractable() {
         Camera c = Camera.main;
         RaycastHit hit;
@@ -64,7 +77,7 @@ public class Interactable : MonoBehaviour {
         {
             bool hitThisInteractable = hit.transform.GetInstanceID() == transform.GetInstanceID();
             if (hitThisInteractable) {
-                Debug.Log("Hover: " + transform.name);
+              
                 if (!isOnHover)
                     toggleHighlight(true);
                 isOnHover = true;
@@ -89,9 +102,7 @@ public class Interactable : MonoBehaviour {
             {
                 bool hitThisInteractable = hit.transform.GetInstanceID() == transform.GetInstanceID();
                 if (hitThisInteractable) {
-                    Debug.Log("Hit: " + transform.name);
-                    InteractableUI.show(this);
-                    //InteractableManager.showInteractableActions(this);
+                    InteractableManager.showActions(this);
                 }
             }
         }
@@ -140,12 +151,22 @@ public class Interactable : MonoBehaviour {
             return this.stateData.interactableName;
     }
 
+    public string Name
+    {
+        get { return getInteractableName(); }
+    }
+
     public string getStateName(int index)
     {
         if (stateData == null)
             return "Action #" + index;
         else
             return this.stateData.getStateName(index);
+    }
+
+    public string RehersalActionName
+    {
+        get { return getStateName(ID.actionID); }
     }
 
     public int getStateCount()
@@ -155,4 +176,5 @@ public class Interactable : MonoBehaviour {
         else
             return this.stateData.states.Count;
     }
+
 } 

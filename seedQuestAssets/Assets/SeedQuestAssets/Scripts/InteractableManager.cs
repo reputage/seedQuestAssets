@@ -14,16 +14,16 @@ public class InteractableManager : MonoBehaviour
 
     static public Interactable ActiveItem
     {
-        get { return instance.activeItem; }
-        set { instance.activeItem = value; }
+        get { return Instance.activeItem; }
+        set { Instance.activeItem = value; }
     }
 
-    static public InteractableManager __instance = null;
-    static public InteractableManager instance {
+    static public InteractableManager instance = null;
+    static public InteractableManager Instance {
         get {
-            if (__instance == null)
-                __instance = GameObject.FindObjectOfType<InteractableManager>();
-            return __instance;
+            if (instance == null)
+                instance = GameObject.FindObjectOfType<InteractableManager>();
+            return instance;
         }
     }
 
@@ -40,9 +40,9 @@ public class InteractableManager : MonoBehaviour
 
         foreach (Interactable item in list)
         {
-            Vector3 playerPosition = PlayerManager.GetPlayer().position;
+            Vector3 playerPosition = PlayerManager.Position;
             float dist = (item.transform.position - playerPosition).magnitude;
-            if (dist < instance.interactDistance)
+            if (dist < Instance.interactDistance)
                 doNearInteractable(true);
             else
                 doNearInteractable(false);
@@ -56,15 +56,21 @@ public class InteractableManager : MonoBehaviour
     static ParticleSystem getEffect() {
         ParticleSystem effect;
 
-        InteractableStateData data = instance.activeItem.stateData;
+        InteractableStateData data = Instance.activeItem.stateData;
         if(data == null)
-            effect = EffectsManager.createEffect(instance.activeItem.transform);
+            effect = EffectsManager.createEffect(Instance.activeItem.transform);
         else if(data.effect == null)
-            effect = EffectsManager.createEffect(instance.activeItem.transform);
+            effect = EffectsManager.createEffect(Instance.activeItem.transform);
         else 
-            effect = EffectsManager.createEffect(instance.activeItem.transform, data.effect);
+            effect = EffectsManager.createEffect(Instance.activeItem.transform, data.effect);
 
         return effect;
+    }
+
+    static public void showActions(Interactable interactable)
+    {
+        InteractableManager.Instance.activeItem = interactable;
+        InteractableUI.show(interactable);
     }
 
     static public void doInteractableAction(int actionIndex) {
@@ -73,8 +79,8 @@ public class InteractableManager : MonoBehaviour
         ParticleSystem effect = getEffect();
         effect.Play();
 
-        instance.activeItem.doAction(actionIndex);
-        instance.activeItem = null;
+        Instance.activeItem.doAction(actionIndex);
+        Instance.activeItem = null;
         
         PauseManager.isPaused = false;
         InteractableUI.hide();

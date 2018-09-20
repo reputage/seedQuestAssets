@@ -20,7 +20,6 @@ public class InteractableUI : MonoBehaviour {
     }
 
     static public void show(Interactable item) {
-        InteractableManager.ActiveItem = item;
         instance.gameObject.SetActive(true);
         PauseManager.isPaused = true;
 
