@@ -81,12 +81,19 @@ public class Interactable : MonoBehaviour {
                 if (!isOnHover)
                     toggleHighlight(true);
                 isOnHover = true;
+            
+                if (Input.GetKey(KeyCode.Return))
+                {
+                    InteractableManager.showActions(this);
+                }
+                
             }
             else {
                 if (isOnHover)
                     toggleHighlight(false);
                 isOnHover = false;
             }
+
         }
     }
 
@@ -139,8 +146,9 @@ public class Interactable : MonoBehaviour {
         if (transformTarget == null)
             return;
         
-        transform.GetComponent<MeshRenderer>().enabled = false;
-        Instantiate(transformTarget, transform);
+        //transform.GetComponent<MeshRenderer>().enabled = false;
+        //Instantiate(transformTarget, transform);
+        //Instantiate(transformTarget, transform.position, Quaternion.identity, transform.parent);
     }
 
     public string getInteractableName()
