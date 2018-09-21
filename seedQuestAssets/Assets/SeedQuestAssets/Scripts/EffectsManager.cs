@@ -25,7 +25,7 @@ public class EffectsManager : MonoBehaviour {
 
         ParticleSystem effect = parent.GetComponentInChildren<ParticleSystem>();
         if (effect == null) {
-            GameObject obj = Instantiate(instance.effectPrefab, parent);
+            GameObject obj = Instantiate(instance.effectPrefab, parent.position, instance.effectPrefab.transform.localRotation, instance.transform);
             return obj.GetComponent<ParticleSystem>();
         }
         else
@@ -38,7 +38,7 @@ public class EffectsManager : MonoBehaviour {
         ParticleSystem effect = parent.GetComponentInChildren<ParticleSystem>();
         if (effect == null)
         {
-            GameObject obj = Instantiate(effectPrefab, parent);
+            GameObject obj = Instantiate(effectPrefab, parent.position, instance.effectPrefab.transform.localRotation, instance.transform);
             return obj.GetComponent<ParticleSystem>();
         }
         else
