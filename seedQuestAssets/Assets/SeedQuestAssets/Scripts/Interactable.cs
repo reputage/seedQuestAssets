@@ -81,6 +81,10 @@ public class Interactable : MonoBehaviour {
                 if (!isOnHover)
                     toggleHighlight(true);
                 isOnHover = true;
+
+                if (Input.GetKeyDown(KeyCode.Return))
+                    InteractableManager.showActions(this);
+
             }
             else {
                 if (isOnHover)
