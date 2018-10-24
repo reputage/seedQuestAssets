@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Tree
   m_EditorClassIdentifier: 
   interactableName: Tree
-  labelPosOffset: {x: 0, y: 2.2, z: 0}
+  labelPosOffset: {x: 0, y: 3.5, z: 0}
   states:
   - actionName: Do Nothing
     mesh: {fileID: 0}
@@ -20,22 +20,26 @@ MonoBehaviour:
     materialIndex: 0
     uvOffset: {x: 0, y: 0}
     animatorController: {fileID: 0}
+    soundEffectName: Birds
   - actionName: Cut Down Tree
-    mesh: {fileID: 0}
-    material: {fileID: 0}
+    mesh: {fileID: 4300000, guid: 30d8cebdf12ff8d40b2f8a5fd83c43a4, type: 3}
+    material: {fileID: 2100000, guid: 1ad21e360110abc44af39cd01e2552a9, type: 2}
     materialIndex: 0
     uvOffset: {x: 0, y: 0}
     animatorController: {fileID: 0}
+    soundEffectName: TreeFall
   - actionName: HugTree
     mesh: {fileID: 0}
     material: {fileID: 0}
     materialIndex: 0
     uvOffset: {x: 0, y: 0}
     animatorController: {fileID: 0}
+    soundEffectName: Birds
   - actionName: Trim Leaves
     mesh: {fileID: 0}
     material: {fileID: 0}
     materialIndex: 0
     uvOffset: {x: 0, y: 0}
     animatorController: {fileID: 0}
+    soundEffectName: 
   effect: {fileID: 0}

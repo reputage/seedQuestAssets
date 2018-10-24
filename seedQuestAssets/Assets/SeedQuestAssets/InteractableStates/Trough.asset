@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Trough
   m_EditorClassIdentifier: 
   interactableName: Trough
-  labelPosOffset: {x: 0, y: 0.5, z: 0}
+  labelPosOffset: {x: 0, y: 1, z: 0}
   states:
   - actionName: Empty
     mesh: {fileID: 4300000, guid: 79423711314b54e47a1c04ce2ad32401, type: 3}
@@ -21,22 +21,22 @@ MonoBehaviour:
     uvOffset: {x: 0, y: 0}
     animatorController: {fileID: 0}
     soundEffectName: Splash
-  - actionName: Poison
-    mesh: {fileID: 0}
-    material: {fileID: 0}
-    materialIndex: 1
-    uvOffset: {x: 0, y: 0.0625}
-    animatorController: {fileID: 0}
-    soundEffectName: Boil
   - actionName: Drink
-    mesh: {fileID: 0}
+    mesh: {fileID: 4300000, guid: 79423711314b54e47a1c04ce2ad32401, type: 3}
     material: {fileID: 0}
     materialIndex: 0
     uvOffset: {x: 0, y: 0}
     animatorController: {fileID: 0}
     soundEffectName: Slurp
+  - actionName: Poison
+    mesh: {fileID: 4300000, guid: 15f3ed600b3f64bc48ba8c165eb0c89e, type: 3}
+    material: {fileID: 0}
+    materialIndex: 0
+    uvOffset: {x: 0, y: 0}
+    animatorController: {fileID: 0}
+    soundEffectName: Boil
   - actionName: Do Nothing
-    mesh: {fileID: 0}
+    mesh: {fileID: 4300000, guid: 15f3ed600b3f64bc48ba8c165eb0c89e, type: 3}
     material: {fileID: 0}
     materialIndex: 0
     uvOffset: {x: 0, y: 0}
