@@ -3,12 +3,13 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a3bdb2cd68f901469e7cc149151eb49, type: 3}
-  m_Name: Lab
+  m_Name: CliffSide
   m_EditorClassIdentifier: 
   debugViews:
     m_Enabled: 1
@@ -41,7 +42,7 @@ MonoBehaviour:
   ambientOcclusion:
     m_Enabled: 1
     m_Settings:
-      intensity: 1
+      intensity: 0.5
       radius: 0.2
       sampleCount: 10
       downsampling: 1
@@ -99,7 +100,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.5
+        intensity: 0.15
         threshold: 1.1
         softKnee: 0.82
         radius: 4
@@ -112,19 +113,19 @@ MonoBehaviour:
     m_Settings:
       tonemapping:
         tonemapper: 2
-        neutralBlackIn: 0.056
-        neutralWhiteIn: 10.2
-        neutralBlackOut: 0.008
-        neutralWhiteOut: 7.5
-        neutralWhiteLevel: 3.8
+        neutralBlackIn: 0.048
+        neutralWhiteIn: 15.8
+        neutralBlackOut: 0.004
+        neutralWhiteOut: 11
+        neutralWhiteLevel: 7.4
         neutralWhiteClip: 10
       basic:
         postExposure: 0
         temperature: 0
         tint: 0
         hueShift: 0
-        saturation: 2
-        contrast: 1
+        saturation: 1.48
+        contrast: 1.18
       channelMixer:
         red: {x: 1, y: 0, z: 0}
         green: {x: 0, y: 1, z: 0}
