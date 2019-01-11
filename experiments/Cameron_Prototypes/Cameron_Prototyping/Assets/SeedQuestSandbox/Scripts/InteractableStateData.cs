@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -32,7 +31,7 @@ public class InteractableState {
         }
         else {
             item.transform.position += positionOffset;
-        }
+        } 
 
         // Update Mesh
         if (mesh != null)
