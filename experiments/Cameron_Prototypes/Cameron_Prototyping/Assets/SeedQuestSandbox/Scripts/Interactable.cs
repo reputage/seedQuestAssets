@@ -39,18 +39,20 @@ public class Interactable : MonoBehaviour {
         currentStateID = Mod(currentStateID + 1, 4);
         InteractableState state = stateData.states[currentStateID];
         state.enterState(this);
+        interactableUI.SetText(state.actionName);
     }
 
     public void PrevAction() {
         currentStateID = Mod(currentStateID - 1, 4);
         InteractableState state = stateData.states[currentStateID];
         state.enterState(this);
+        interactableUI.SetText(state.actionName);
     } 
 
     public void DoAction(int actionIndex) {
         InteractableState state = stateData.states[actionIndex];
         state.enterState(this);
-
+        interactableUI.SetText(state.actionName);
     }
 
     private bool PlayerIsNear() {
@@ -107,7 +109,7 @@ public class Interactable : MonoBehaviour {
 
             if (Physics.Raycast(ray, out hit, 100.0f))
             {
-                Debug.Log("Ray Interactable " + hit.transform.name + " " + transform.name);
+                //Debug.Log("Ray Interactable " + hit.transform.name + " " + transform.name);
 
                 bool hitThisInteractable = hit.transform.GetInstanceID() == transform.GetInstanceID();
                 if (hitThisInteractable) {
