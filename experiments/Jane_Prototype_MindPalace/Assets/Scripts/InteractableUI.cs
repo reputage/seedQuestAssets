@@ -57,7 +57,10 @@ public class InteractableUI {
             textList[0].text = "Error: Missing StateData";
 
         Button[] buttons = actionUI.GetComponentsInChildren<Button>();
-        buttons[0].onClick.AddListener(showActions);
+        buttons[0].onClick.AddListener(toggleActions);
+
+        BoxCollider collider = buttons[0].gameObject.AddComponent<BoxCollider>();
+        collider.size = new Vector3(200, 40, 10);
     }
 
     public void SetupActionButtons()
@@ -96,6 +99,12 @@ public class InteractableUI {
         {
             setButtonHoverEvents(button);
         }
+
+        foreach(Button button in actionButtons) {
+            BoxCollider collider = button.gameObject.AddComponent<BoxCollider>();
+            collider.size = new Vector3(40, 40, 10);
+        }
+
     }
 
     // Create TriggerEntry and add callback
@@ -124,6 +133,14 @@ public class InteractableUI {
         foreach (Button button in actionButtons) {
             button.transform.gameObject.SetActive(true);
         }
+    }
+
+    public void toggleActions() {
+        bool isShown = actionButtons[0].gameObject.activeSelf;
+        if (isShown)
+            hideActions();
+        else
+            showActions();
     }
 
     public void SetScale() {
@@ -160,4 +177,5 @@ public class InteractableUI {
         var textMesh = actionUI.GetComponentInChildren<TMPro.TextMeshProUGUI>();
         textMesh.text = text;
     }
+
 }

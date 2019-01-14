@@ -100,16 +100,13 @@ public class Interactable : MonoBehaviour {
         if (PauseManager.isPaused == true)
             return; 
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("BtnDown Interactable"); 
-
+        if (Input.GetMouseButtonDown(0)) { 
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out hit, 100.0f))
             {
-                Debug.Log("Ray Interactable " + hit.transform.name + " " + transform.name);
+                //Debug.Log("Ray Interactable " + hit.transform.name + " " + transform.name);
 
                 bool hitThisInteractable = hit.transform.GetInstanceID() == transform.GetInstanceID();
                 if (hitThisInteractable) {
