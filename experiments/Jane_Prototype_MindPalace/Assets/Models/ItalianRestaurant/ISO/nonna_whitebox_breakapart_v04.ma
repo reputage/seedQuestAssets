@@ -1,6 +1,6 @@
 //Maya ASCII 2018 scene
 //Name: nonna_whitebox_breakapart_v04.ma
-//Last modified: Thu, Jan 17, 2019 09:05:10 AM
+//Last modified: Mon, Jan 21, 2019 06:19:46 AM
 //Codeset: 1252
 file -rdi 1 -ns "NonnaTable_Red" -rfn "NonnaTable_RedRN" -op "mo=1;lo=0" -typ
 		 "FBX export" "C:/Users/mercu/Documents/maya/projects/NonnaRistorante//scenes/NonnaTable_Red.fbx";
@@ -40,8 +40,8 @@ fileInfo "osv" "Microsoft Windows 8 Home Premium Edition, 64-bit  (Build 9200)\n
 createNode transform -s -n "persp";
 	rename -uid "EE6BA985-4C3F-8920-F508-6E8820C635F4";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -774.50846739965573 589.36313756715197 -20.129032293295005 ;
-	setAttr ".r" -type "double3" -53.07188035076161 -442.59999999980596 -2.4694591786491726e-14 ;
+	setAttr ".t" -type "double3" 389.11722850598017 289.34841362249892 26.535995803845683 ;
+	setAttr ".r" -type "double3" -17.071880350912224 -1383.8000000000195 -1.4293455641392503e-15 ;
 	setAttr ".rp" -type "double3" -5.6843418860808015e-14 0 5.6843418860808015e-14 ;
 	setAttr ".rpt" -type "double3" 6.0081711978416478e-14 2.9515007697280301e-15 3.1818454513417888e-14 ;
 createNode camera -s -n "perspShape" -p "persp";
@@ -50,11 +50,11 @@ createNode camera -s -n "perspShape" -p "persp";
 	setAttr ".pze" yes;
 	setAttr ".fl" 34.999999999999979;
 	setAttr ".fcp" 900000;
-	setAttr ".coi" 529.63635694421851;
+	setAttr ".coi" 437.99511647896099;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
-	setAttr ".tp" -type "double3" -707.22134399414063 210 300 ;
+	setAttr ".tp" -type "double3" 359.99998474121094 210.00000190734863 560 ;
 	setAttr ".hc" -type "string" "viewSet -p %camera";
 	setAttr ".ai_translator" -type "string" "perspective";
 createNode transform -s -n "top";
@@ -2207,11 +2207,8 @@ createNode mesh -n "pSphere2Shape" -p "pSphere2";
 	setAttr ".ai_translator" -type "string" "polymesh";
 createNode transform -n "NonnaPaintingLG01";
 	rename -uid "93010AD9-4572-F253-9452-BBB9D214D154";
-	setAttr ".t" -type "double3" -4.5474735088646414e-14 -2.2737367544323207e-14 0 ;
-	setAttr ".s" -type "double3" 0.96 0.96 0.96 ;
-	setAttr ".rp" -type "double3" -379.43654838821305 172.79999999999978 -417.4182421874998 ;
-	setAttr ".sp" -type "double3" -395.24640457105528 179.99999999999977 -434.81066894531256 ;
-	setAttr ".spt" -type "double3" 15.80985618284225 -7.1999999999999993 17.392426757812554 ;
+	setAttr ".rp" -type "double3" -379.43654838821311 172.79999999999976 -417.4182421874998 ;
+	setAttr ".sp" -type "double3" -379.43654838821311 172.79999999999976 -417.41824218750003 ;
 createNode mesh -n "NonnaPaintingLG01Shape" -p "NonnaPaintingLG01";
 	rename -uid "1AE57FF8-435C-0E9F-CFF9-BFB03A310C20";
 	setAttr -k off ".v";
@@ -2219,40 +2216,22 @@ createNode mesh -n "NonnaPaintingLG01Shape" -p "NonnaPaintingLG01";
 	setAttr ".vif" yes;
 	setAttr ".pv" -type "double2" 0.5 0.5 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 5 ".pt";
-	setAttr ".pt[8]" -type "float3" -4.8782263 13.159669 11.373624 ;
-	setAttr ".pt[9]" -type "float3" -4.8782263 13.159669 -11.373624 ;
-	setAttr ".pt[10]" -type "float3" -4.8782263 -13.159678 11.373624 ;
-	setAttr ".pt[11]" -type "float3" -4.8782263 -13.159678 -11.373624 ;
-	setAttr ".ai_translator" -type "string" "polymesh";
-createNode mesh -n "polySurfaceShape23" -p "NonnaPaintingLG01";
-	rename -uid "A3743707-4A4A-268A-3A4B-868567880ECD";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.75 0.125 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.375 0 0.625 0 0.375
+	setAttr -s 18 ".uvst[0].uvsp[0:17]" -type "float2" 0.375 0 0.625 0 0.375
 		 0.25 0.625 0.25 0.375 0.5 0.625 0.5 0.375 0.75 0.625 0.75 0.375 1 0.625 1 0.875 0
-		 0.875 0.25 0.125 0 0.125 0.25;
+		 0.875 0.25 0.125 0 0.125 0.25 0.625 0 0.875 0 0.875 0.25 0.625 0.25;
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 8 ".pt[0:7]" -type "float3"  -353.27563 230 -375.18933 
-		-437.21716 230 -375.18933 -353.27563 310 -375.18933 -437.21716 310 -375.18933 -353.27563 
-		310 -384.81067 -437.21716 310 -384.81067 -353.27563 230 -384.81067 -437.21716 230 
-		-384.81067;
-	setAttr -s 8 ".vt[0:7]"  -50 -50 50 50 -50 50 -50 50 50 50 50 50 -50 50 -50
-		 50 50 -50 -50 -50 -50 50 -50 -50;
-	setAttr -s 12 ".ed[0:11]"  0 1 0 2 3 0 4 5 0 6 7 0 0 2 0 1 3 0 2 4 0
-		 3 5 0 4 6 0 5 7 0 6 0 0 7 1 0;
-	setAttr -s 6 -ch 24 ".fc[0:5]" -type "polyFaces" 
+	setAttr -s 12 ".vt[0:11]"  -387.14459229 172.80001831 -312.1817627 -371.72845459 172.80001831 -312.1817627
+		 -387.14459229 345.60003662 -312.1817627 -371.72845459 345.60003662 -312.1817627 -387.14459229 345.60003662 -417.41824341
+		 -371.72845459 345.60003662 -417.41824341 -387.14459229 172.80001831 -417.41824341
+		 -371.72845459 172.80001831 -417.41824341 -376.41156006 185.43328857 -406.49954224
+		 -376.41156006 185.43328857 -323.10043335 -376.41156006 332.96673584 -406.49954224
+		 -376.41156006 332.96673584 -323.10043335;
+	setAttr -s 20 ".ed[0:19]"  0 1 0 2 3 0 4 5 0 6 7 0 0 2 0 1 3 0 2 4 0
+		 3 5 0 4 6 0 5 7 0 6 0 0 7 1 0 7 8 0 1 9 0 8 9 0 5 10 0 10 8 0 3 11 0 11 10 0 9 11 0;
+	setAttr -s 10 -ch 40 ".fc[0:9]" -type "polyFaces" 
 		f 4 0 5 -2 -5
 		mu 0 4 0 1 3 2
 		f 4 1 7 -3 -7
@@ -2261,10 +2240,18 @@ createNode mesh -n "polySurfaceShape23" -p "NonnaPaintingLG01";
 		mu 0 4 4 5 7 6
 		f 4 3 11 -1 -11
 		mu 0 4 6 7 9 8
-		f 4 -12 -10 -8 -6
-		mu 0 4 1 10 11 3
+		f 4 -15 -17 -19 -20
+		mu 0 4 14 15 16 17
 		f 4 10 4 6 8
-		mu 0 4 12 0 2 13;
+		mu 0 4 12 0 2 13
+		f 4 -12 12 14 -14
+		mu 0 4 1 10 15 14
+		f 4 -10 15 16 -13
+		mu 0 4 10 11 16 15
+		f 4 -8 17 18 -16
+		mu 0 4 11 3 17 16
+		f 4 -6 13 19 -18
+		mu 0 4 3 1 14 17;
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
@@ -3629,25 +3616,17 @@ createNode mesh -n "NonnaGround01Shape" -p "NonnaGround01";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 24 ".pt[0:23]" -type "float3"  -38.176582 0 -60 38.176582 
-		0 -60 -38.176582 0 -60 38.176582 0 -60 -38.17659 0 0 37.838287 0 0 37.838287 0 0 
-		-38.17659 0 0 0 0 67.681557 37.838287 0 67.681587 0 0 67.681557 38.514893 0 67.681557 
-		-38.17659 0 0 38.514893 0 0 -38.17659 0 0 37.838287 0 0 -38.17659 0 -20.833345 38.514893 
-		0 0 37.838287 0 0 -38.17659 0 -20.833345 -49.999939 0 -20.833345 -49.999939 0 -20.833345 
-		-49.999939 0 67.681557 -49.999939 0 67.681557;
-	setAttr -s 24 ".vt[0:23]"  -399.32342529 -0.8126421 -1200 399.32339478 -0.8126421 -1200
-		 -399.32342529 -31.39201355 -1200 399.32339478 -31.39201355 -1200 -399.32339478 0.81263226 -600
-		 399.32339478 0.27086851 -601.46478271 399.32339478 -31.39201355 -601.46478271 -399.32342529 -31.39201355 -600
-		 -399.32342529 -31.39202118 598.98510742 399.32339478 -31.39202118 598.98510742 -399.32342529 -0.54174399 598.98510742
-		 399.32339478 -1.083507538 598.98510742 -399.32342529 -1.4076199e-05 -600 399.32339478 -1.4076199e-05 -600
-		 -399.32342529 -31.39202118 -600 399.32339478 -31.39202118 -600 -399.32339478 1.62526035 -1.2122721e-05
-		 399.32339478 1.083496571 -1.46481276 399.32339478 -31.39202118 -1.46477032 -399.32342529 -31.39202118 3.0306803e-05
-		 -700.00012207031 -31.39202118 3.0306803e-05 -700 -1.62526035 -1.2122721e-05 -700.00012207031 -31.39202118 598.98510742
-		 -700.00012207031 -1.62526035 598.98510742;
-	setAttr -s 40 ".ed[0:39]"  0 1 0 2 3 0 0 2 0 1 3 0 2 7 0 3 6 0 4 0 0
-		 5 1 0 4 5 0 5 6 0 6 7 0 7 4 0 8 9 0 10 11 0 12 13 0 14 15 0 8 10 0 9 11 0 10 16 0
-		 11 17 0 12 14 0 13 15 0 14 19 0 15 18 0 16 12 0 17 13 0 18 9 0 19 8 0 16 17 1 17 18 1
-		 18 19 1 19 16 0 19 20 0 16 21 0 20 21 0 8 22 0 20 22 0 10 23 0 22 23 0 23 21 0;
+	setAttr -s 20 ".vt[0:19]"  -437.5 -0.8126421 -1260 437.49996948 -0.8126421 -1260
+		 -437.5 -31.39201355 -1260 437.49996948 -31.39201355 -1260 -437.5 0.4063091 -600 437.5 0.13542722 -600.73242188
+		 437.16168213 -31.39201736 -600.73242188 -437.5 -31.39201736 -600 -399.32342529 -31.39202118 666.66668701
+		 437.16168213 -31.39202118 666.66668701 -399.32342529 -0.54174399 666.66668701 437.83828735 -1.083507538 666.66668701
+		 -437.5 1.62526035 -20.83335686 437.83828735 1.083496571 -1.46481276 437.16168213 -31.39202118 -1.46477032
+		 -437.5 -31.39202118 -20.8333149 -750.000061035156 -31.39202118 -20.8333149 -749.99993896 -1.62526035 -20.83335686
+		 -750.000061035156 -31.39202118 666.66668701 -750.000061035156 -1.62526035 666.66668701;
+	setAttr -s 36 ".ed[0:35]"  0 1 0 2 3 0 0 2 0 1 3 0 2 7 0 3 6 0 4 0 0
+		 5 1 0 4 5 0 5 6 0 6 7 0 7 4 0 8 9 0 10 11 0 8 10 0 9 11 0 10 12 0 11 13 0 7 15 0
+		 6 14 0 12 4 0 13 5 0 14 9 0 15 8 0 12 13 1 13 14 1 14 15 1 15 12 0 15 16 0 12 17 0
+		 16 17 0 8 18 0 16 18 0 10 19 0 18 19 0 19 17 0;
 	setAttr -s 19 -ch 76 ".fc[0:18]" -type "polyFaces" 
 		f 4 8 7 -1 -7
 		mu 0 4 9 10 1 0
@@ -3659,33 +3638,33 @@ createNode mesh -n "NonnaGround01Shape" -p "NonnaGround01";
 		mu 0 4 11 13 4 5
 		f 4 4 11 6 2
 		mu 0 4 6 14 8 7
-		f 4 12 17 -14 -17
+		f 4 12 15 -14 -15
 		mu 0 4 16 17 18 19
-		f 4 28 25 -15 -25
+		f 4 24 21 -9 -21
 		mu 0 4 20 21 22 23
-		f 4 14 21 -16 -21
+		f 4 8 9 10 11
 		mu 0 4 23 22 24 25
-		f 4 15 23 30 -23
+		f 4 -11 19 26 -19
 		mu 0 4 25 24 26 27
-		f 4 29 -24 -22 -26
+		f 4 25 -20 -10 -22
 		mu 0 4 28 29 30 31
-		f 4 22 31 24 20
+		f 4 18 27 20 -12
 		mu 0 4 32 33 34 35
-		f 4 13 19 -29 -19
+		f 4 13 17 -25 -17
 		mu 0 4 19 18 21 20
-		f 4 -27 -30 -20 -18
+		f 4 -23 -26 -18 -16
 		mu 0 4 17 29 28 18
-		f 4 -31 26 -13 -28
+		f 4 -27 22 -13 -24
 		mu 0 4 27 26 36 37
-		f 4 -35 36 38 39
+		f 4 -31 32 34 35
 		mu 0 4 38 39 40 41
-		f 4 -32 32 34 -34
+		f 4 -28 28 30 -30
 		mu 0 4 34 33 39 38
-		f 4 27 35 -37 -33
+		f 4 23 31 -33 -29
 		mu 0 4 33 16 40 39
-		f 4 16 37 -39 -36
+		f 4 14 33 -35 -32
 		mu 0 4 16 19 41 40
-		f 4 18 33 -40 -38
+		f 4 16 29 -36 -34
 		mu 0 4 19 34 38 41;
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
@@ -4198,11 +4177,8 @@ createNode mesh -n "TestCube_OBJShape" -p "TestCube_OBJ";
 	setAttr ".ai_translator" -type "string" "polymesh";
 createNode transform -n "NonnaPaintingRect01";
 	rename -uid "8FC1E5CC-42CA-167E-4E19-8997274332B2";
-	setAttr ".t" -type "double3" -4.5474735088646414e-14 -2.2737367544323207e-14 0 ;
-	setAttr ".s" -type "double3" 0.96 0.96 0.96 ;
-	setAttr ".rp" -type "double3" -379.43654838821317 192 -268.80000000000007 ;
-	setAttr ".sp" -type "double3" -395.24640457105528 199.99999999999983 -280.00000000000006 ;
-	setAttr ".spt" -type "double3" 15.80985618284225 -8.0000000000000089 11.200000000000017 ;
+	setAttr ".rp" -type "double3" -379.43654838821323 191.99999999999997 -268.80000000000007 ;
+	setAttr ".sp" -type "double3" -379.43654838821311 191.9999999999998 -268.80000000000007 ;
 createNode mesh -n "NonnaPaintingRect01Shape" -p "NonnaPaintingRect01";
 	rename -uid "45FBE090-4DFE-0455-B3C5-9DBC3D84F5EE";
 	setAttr -k off ".v";
@@ -4210,40 +4186,23 @@ createNode mesh -n "NonnaPaintingRect01Shape" -p "NonnaPaintingRect01";
 	setAttr ".vif" yes;
 	setAttr ".pv" -type "double2" 0.5 0.5 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 5 ".pt";
-	setAttr ".pt[8]" -type "float3" -3.4492393 8.4888544 10.064116 ;
-	setAttr ".pt[9]" -type "float3" -3.4492393 8.4888544 -10.064112 ;
-	setAttr ".pt[10]" -type "float3" -3.4492393 -8.4888554 10.064116 ;
-	setAttr ".pt[11]" -type "float3" -3.4492393 -8.4888554 -10.064112 ;
-	setAttr ".ai_translator" -type "string" "polymesh";
-createNode mesh -n "polySurfaceShape22" -p "NonnaPaintingRect01";
-	rename -uid "B7C24729-4628-7843-2606-2388795D62E9";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.75 0.125 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.375 0 0.625 0 0.375
+	setAttr -s 18 ".uvst[0].uvsp[0:17]" -type "float2" 0.375 0 0.625 0 0.375
 		 0.25 0.625 0.25 0.375 0.5 0.625 0.5 0.375 0.75 0.625 0.75 0.375 1 0.625 1 0.875 0
-		 0.875 0.25 0.125 0 0.125 0.25;
+		 0.875 0.25 0.125 0 0.125 0.25 0.625 0 0.875 0 0.875 0.25 0.625 0.25;
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 8 ".pt[0:7]" -type "float3"  -353.27563 250 -220.37866 
-		-437.21716 250 -220.37866 -353.27563 210 -220.37866 -437.21716 210 -220.37866 -353.27563 
-		210 -229.99998 -437.21716 210 -229.99998 -353.27563 250 -229.99998 -437.21716 250 
-		-229.99998;
-	setAttr -s 8 ".vt[0:7]"  -50 -50 50 50 -50 50 -50 50 50 50 50 50 -50 50 -50
-		 50 50 -50 -50 -50 -50 50 -50 -50;
-	setAttr -s 12 ".ed[0:11]"  0 1 0 2 3 0 4 5 0 6 7 0 0 2 0 1 3 0 2 4 0
-		 3 5 0 4 6 0 5 7 0 6 0 0 7 1 0;
-	setAttr -s 6 -ch 24 ".fc[0:5]" -type "polyFaces" 
+	setAttr -s 12 ".vt[0:11]"  -387.14459229 192.000015258789 -163.56350708
+		 -371.72845459 192.000015258789 -163.56350708 -387.14459229 249.59999084 -163.56350708
+		 -371.72845459 249.59999084 -163.56350708 -387.14459229 249.59999084 -268.79998779
+		 -371.72845459 249.59999084 -268.79998779 -387.14459229 192.000015258789 -268.79998779
+		 -371.72845459 192.000015258789 -268.79998779 -375.039733887 200.14932251 -259.13842773
+		 -375.039733887 200.14932251 -173.22506714 -375.039733887 241.45068359 -259.13842773
+		 -375.039733887 241.45068359 -173.22506714;
+	setAttr -s 20 ".ed[0:19]"  0 1 0 2 3 0 4 5 0 6 7 0 0 2 0 1 3 0 2 4 0
+		 3 5 0 4 6 0 5 7 0 6 0 0 7 1 0 7 8 0 1 9 0 8 9 0 5 10 0 10 8 0 3 11 0 11 10 0 9 11 0;
+	setAttr -s 10 -ch 40 ".fc[0:9]" -type "polyFaces" 
 		f 4 0 5 -2 -5
 		mu 0 4 0 1 3 2
 		f 4 1 7 -3 -7
@@ -4252,10 +4211,18 @@ createNode mesh -n "polySurfaceShape22" -p "NonnaPaintingRect01";
 		mu 0 4 4 5 7 6
 		f 4 3 11 -1 -11
 		mu 0 4 6 7 9 8
-		f 4 -12 -10 -8 -6
-		mu 0 4 1 10 11 3
+		f 4 -15 -17 -19 -20
+		mu 0 4 14 15 16 17
 		f 4 10 4 6 8
-		mu 0 4 12 0 2 13;
+		mu 0 4 12 0 2 13
+		f 4 -12 12 14 -14
+		mu 0 4 1 10 15 14
+		f 4 -10 15 16 -13
+		mu 0 4 10 11 16 15
+		f 4 -8 17 18 -16
+		mu 0 4 11 3 17 16
+		f 4 -6 13 19 -18
+		mu 0 4 3 1 14 17;
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
@@ -4776,63 +4743,49 @@ createNode mesh -n "NonnaLadder01Shape" -p "NonnaLadder01";
 	setAttr ".ai_translator" -type "string" "polymesh";
 createNode transform -n "NonnaPaintingOval01";
 	rename -uid "0D395211-4E4F-D392-C6E6-28A53D729878";
-	setAttr ".s" -type "double3" 0.96 0.96 0.96 ;
-	setAttr ".rp" -type "double3" -382.34701171874991 219.02592773437496 -117.00604248046815 ;
-	setAttr ".sp" -type "double3" -398.27813720703119 228.15200805664105 -121.88129425048857 ;
-	setAttr ".spt" -type "double3" 15.931125488281285 -9.1260803222656612 4.8752517700195446 ;
+	setAttr ".rp" -type "double3" -382.34701171874991 219.02592773437493 -117.00604248046815 ;
+	setAttr ".sp" -type "double3" -382.34701171874991 219.02592773437539 -117.00604248046902 ;
 createNode mesh -n "NonnaPaintingOval0Shape1" -p "NonnaPaintingOval01";
 	rename -uid "A452A6A9-46AC-2E6E-6EA0-918C12C985C7";
 	setAttr -k off ".v";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.5 0.1562500074505806 ;
+	setAttr ".pv" -type "double2" 0.5 0.5000000074505806 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 9 ".pt[17:25]" -type "float3"  -3.3178148 -8.3405323 5.9563198 
-		-3.3178148 0 8.4235086 -3.3178148 0 1.2071002e-06 -3.3178148 8.3405313 5.9563198 
-		-3.3178148 11.795291 1.2071002e-06 -3.3178148 8.3405313 -5.9563231 -3.3178148 0 -8.4235086 
-		-3.3178148 -8.3405323 -5.9563241 -3.3178148 -11.795293 1.2071002e-06;
-	setAttr ".ai_translator" -type "string" "polymesh";
-createNode mesh -n "polySurfaceShape24" -p "NonnaPaintingOval01";
-	rename -uid "E0BCAECE-4BC5-D14F-9FE4-86A4FA39C050";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.5 0.1562500074505806 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 36 ".uvst[0].uvsp[0:35]" -type "float2" 0.61048543 0.04576458
+	setAttr -s 44 ".uvst[0].uvsp[0:43]" -type "float2" 0.61048543 0.04576458
 		 0.5 1.4901161e-08 0.38951457 0.04576458 0.34375 0.15625 0.38951457 0.26673543 0.5
 		 0.3125 0.61048543 0.26673543 0.65625 0.15625 0.375 0.3125 0.40625 0.3125 0.4375 0.3125
 		 0.46875 0.3125 0.5 0.3125 0.53125 0.3125 0.5625 0.3125 0.59375 0.3125 0.625 0.3125
 		 0.375 0.68843985 0.40625 0.68843985 0.4375 0.68843985 0.46875 0.68843985 0.5 0.68843985
 		 0.53125 0.68843985 0.5625 0.68843985 0.59375 0.68843985 0.625 0.68843985 0.61048543
 		 0.73326457 0.5 0.6875 0.38951457 0.73326457 0.34375 0.84375 0.38951457 0.95423543
-		 0.5 1 0.61048543 0.95423543 0.65625 0.84375 0.5 0.15000001 0.5 0.83749998;
+		 0.5 1 0.61048543 0.95423543 0.65625 0.84375 0.5 0.15000001 0.5 0.83749998 0.5 1.4901161e-08
+		 0.61048543 0.04576458 0.38951457 0.04576458 0.34375 0.15625 0.38951457 0.26673543
+		 0.5 0.3125 0.61048543 0.26673543 0.65625 0.15625;
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 18 ".pt[0:17]" -type "float3"  -459.95041 402.12347 -51.170624 
-		-389.23975 371.48349 -30.944836 -318.52905 340.84351 -51.170624 -289.23975 328.15201 
-		-100 -318.52905 340.84351 -148.82938 -389.23975 371.48349 -169.05518 -459.95041 402.12347 
-		-148.82938 -489.23975 414.81497 -100 -478.02722 202.12347 -51.170624 -407.31653 171.48349 
-		-30.944836 -336.60587 140.84351 -51.170624 -307.31656 128.15201 -100 -336.60587 140.84351 
-		-148.82938 -407.31653 171.48349 -169.05518 -478.02722 202.12349 -148.82938 -507.31653 
-		214.81499 -100 -389.23975 371.48349 -100 -407.31653 171.48349 -100;
-	setAttr -s 18 ".vt[0:17]"  70.71067047 -100 -70.71067047 0 -100 -99.99998474
-		 -70.71067047 -100 -70.71067047 -99.99998474 -100 0 -70.71067047 -100 70.71067047
-		 0 -100 99.99999237 70.7106781 -100 70.7106781 100 -100 0 70.71067047 100 -70.71067047
-		 0 100 -99.99998474 -70.71067047 100 -70.71067047 -99.99998474 100 0 -70.71067047 100 70.71067047
-		 0 100 99.99999237 70.7106781 100 70.7106781 100 100 0 0 -100 0 0 100 0;
-	setAttr -s 40 ".ed[0:39]"  0 1 0 1 2 0 2 3 0 3 4 0 4 5 0 5 6 0 6 7 0
+	setAttr -s 26 ".vt[0:25]"  -373.6701355 290.038543701 -117.0060424805
+		 -373.6701355 260.62414551 -125.70703125 -373.67010498 231.20976257 -117.0060424805
+		 -373.6701355 219.025924683 -96.000007629395 -373.67010498 231.20976257 -74.99395752
+		 -373.6701355 260.62414551 -66.29297638 -373.6701355 290.038543701 -74.99394989 -373.6701355 302.22235107 -96.000007629395
+		 -391.023895264 290.038543701 -117.0060424805 -391.023864746 260.62414551 -125.70703125
+		 -391.023864746 231.20976257 -117.0060424805 -391.023864746 219.025924683 -96.000007629395
+		 -391.023864746 231.20976257 -74.99395752 -391.023864746 260.62414551 -66.29297638
+		 -391.023864746 290.038543701 -74.99394989 -391.023864746 302.22238159 -96.000007629395
+		 -391.023864746 260.62414551 -96.000007629395 -376.85525513 282.031616211 -111.2879715
+		 -376.85525513 260.62414551 -117.62046051 -376.85525513 260.62414551 -96.000007629395
+		 -376.85522461 239.2166748 -111.2879715 -376.85525513 230.34939575 -96.000007629395
+		 -376.85522461 239.2166748 -80.71202087 -376.85525513 260.62414551 -74.37953949 -376.85525513 282.031616211 -80.71202087
+		 -376.85525513 290.89889526 -96.000007629395;
+	setAttr -s 56 ".ed[0:55]"  0 1 0 1 2 0 2 3 0 3 4 0 4 5 0 5 6 0 6 7 0
 		 7 0 0 8 9 0 9 10 0 10 11 0 11 12 0 12 13 0 13 14 0 14 15 0 15 8 0 0 8 0 1 9 0 2 10 0
-		 3 11 0 4 12 0 5 13 0 6 14 0 7 15 0 16 0 1 16 1 1 16 2 1 16 3 1 16 4 1 16 5 1 16 6 1
-		 16 7 1 8 17 1 9 17 1 10 17 1 11 17 1 12 17 1 13 17 1 14 17 1 15 17 1;
-	setAttr -s 24 -ch 80 ".fc[0:23]" -type "polyFaces" 
+		 3 11 0 4 12 0 5 13 0 6 14 0 7 15 0 8 16 1 9 16 1 10 16 1 11 16 1 12 16 1 13 16 1
+		 14 16 1 15 16 1 0 17 0 1 18 0 17 18 0 19 17 1 19 18 1 2 20 0 18 20 0 19 20 1 3 21 0
+		 20 21 0 19 21 1 4 22 0 21 22 0 19 22 1 5 23 0 22 23 0 19 23 1 6 24 0 23 24 0 19 24 1
+		 7 25 0 24 25 0 19 25 1 25 17 0;
+	setAttr -s 32 -ch 112 ".fc[0:31]" -type "polyFaces" 
 		f 4 0 17 -9 -17
 		mu 0 4 8 9 18 17
 		f 4 1 18 -10 -18
@@ -4849,38 +4802,54 @@ createNode mesh -n "polySurfaceShape24" -p "NonnaPaintingOval01";
 		mu 0 4 14 15 24 23
 		f 4 7 16 -16 -24
 		mu 0 4 15 16 25 24
-		f 3 -1 -25 25
-		mu 0 3 1 0 34
-		f 3 -2 -26 26
-		mu 0 3 2 1 34
-		f 3 -3 -27 27
-		mu 0 3 3 2 34
-		f 3 -4 -28 28
-		mu 0 3 4 3 34
-		f 3 -5 -29 29
-		mu 0 3 5 4 34
-		f 3 -6 -30 30
-		mu 0 3 6 5 34
-		f 3 -7 -31 31
-		mu 0 3 7 6 34
-		f 3 -8 -32 24
-		mu 0 3 0 7 34
-		f 3 8 33 -33
+		f 3 -35 -36 36
+		mu 0 3 36 37 34
+		f 3 -39 -37 39
+		mu 0 3 38 36 34
+		f 3 -42 -40 42
+		mu 0 3 39 38 34
+		f 3 -45 -43 45
+		mu 0 3 40 39 34
+		f 3 -48 -46 48
+		mu 0 3 41 40 34
+		f 3 -51 -49 51
+		mu 0 3 42 41 34
+		f 3 -54 -52 54
+		mu 0 3 43 42 34
+		f 3 -56 -55 35
+		mu 0 3 37 43 34
+		f 3 8 25 -25
 		mu 0 3 32 31 35
-		f 3 9 34 -34
+		f 3 9 26 -26
 		mu 0 3 31 30 35
-		f 3 10 35 -35
+		f 3 10 27 -27
 		mu 0 3 30 29 35
-		f 3 11 36 -36
+		f 3 11 28 -28
 		mu 0 3 29 28 35
-		f 3 12 37 -37
+		f 3 12 29 -29
 		mu 0 3 28 27 35
-		f 3 13 38 -38
+		f 3 13 30 -30
 		mu 0 3 27 26 35
-		f 3 14 39 -39
+		f 3 14 31 -31
 		mu 0 3 26 33 35
-		f 3 15 32 -40
-		mu 0 3 33 32 35;
+		f 3 15 24 -32
+		mu 0 3 33 32 35
+		f 4 -1 32 34 -34
+		mu 0 4 1 0 37 36
+		f 4 -2 33 38 -38
+		mu 0 4 2 1 36 38
+		f 4 -3 37 41 -41
+		mu 0 4 3 2 38 39
+		f 4 -4 40 44 -44
+		mu 0 4 4 3 39 40
+		f 4 -5 43 47 -47
+		mu 0 4 5 4 40 41
+		f 4 -6 46 50 -50
+		mu 0 4 6 5 41 42
+		f 4 -7 49 53 -53
+		mu 0 4 7 6 42 43
+		f 4 -8 52 55 -33
+		mu 0 4 0 7 43 37;
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
@@ -9667,7 +9636,7 @@ createNode mesh -n "polySurfaceShape20" -p "|NonnaWallDoor03|NonnaDoor01";
 	setAttr ".ai_translator" -type "string" "polymesh";
 createNode transform -n "NonnaWallS02";
 	rename -uid "EACC51DE-42AB-B4FF-1640-348DACA07484";
-	setAttr ".t" -type "double3" -20.000076293945313 0 -3.0517578125e-05 ;
+	setAttr ".t" -type "double3" -20.000076293945313 0 -5.9859547028901829 ;
 	setAttr ".rp" -type "double3" 420.00007629394531 3.814697265625e-06 500.00003051757813 ;
 	setAttr ".sp" -type "double3" 420.00007629394531 3.814697265625e-06 500.00003051757813 ;
 createNode mesh -n "NonnaWallS02Shape" -p "NonnaWallS02";
@@ -9754,10 +9723,8 @@ createNode mesh -n "NonnaWallCornerS_Out1Shape" -p "NonnaWallCornerS_Out1";
 	setAttr ".ai_translator" -type "string" "polymesh";
 createNode transform -n "NonnaWallCornerS_Out3";
 	rename -uid "1F63828E-41DF-77C4-C929-F3A33EAE7289";
-	setAttr ".t" -type "double3" -1120 0 -620 ;
-	setAttr ".r" -type "double3" 0 -180.0134879025764 0 ;
-	setAttr ".rp" -type "double3" 420 0 620 ;
-	setAttr ".sp" -type "double3" 420 -1.7053025658242546e-15 620 ;
+	setAttr ".rp" -type "double3" -700 0 0 ;
+	setAttr ".sp" -type "double3" -700 -1.7053025658242546e-15 0 ;
 createNode mesh -n "NonnaWallCornerS_Out3Shape" -p "NonnaWallCornerS_Out3";
 	rename -uid "8AEA5074-4AD4-A94B-F1C9-51876DA0684C";
 	setAttr -k off ".v";
@@ -9772,9 +9739,9 @@ createNode mesh -n "NonnaWallCornerS_Out3Shape" -p "NonnaWallCornerS_Out3";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 6 ".pt[0:5]" -type "float3"  466.5687 -2119.012 620 466.5687 
-		-50.000027 620 466.56876 -2119.012 527.93866 466.56873 -50.000027 527.93872 378.21082 
-		-50.000027 619.99994 378.21088 -2119.012 619.99994;
+	setAttr -s 6 ".pt[0:5]" -type "float3"  -653.43127 -2119.012 0 -653.43127 
+		-50.000027 0 -653.45496 -2119.012 107.93866 -653.45483 -50.000027 107.9386 -541.78906 
+		-50.000027 0.023620605 -541.78912 -2119.012 0.023620605;
 	setAttr -s 6 ".vt[0:5]"  -46.56868744 2539.011962891 -3.8146973e-06
 		 -46.56869125 50.000030517578 -3.8146973e-06 -46.56868744 2539.011962891 -7.93868256
 		 -46.56869125 50.000030517578 -7.93867874 -58.21086884 50.000030517578 -3.8146973e-06
@@ -9970,64 +9937,65 @@ createNode mesh -n "polySurfaceShape31" -p "NonnaSPC_WallCornerS_Out";
 	setAttr ".ai_translator" -type "string" "polymesh";
 createNode transform -n "NonnaWall_Ceiling";
 	rename -uid "B417455E-4583-447A-66CD-CB8AA0319DD4";
+	setAttr ".t" -type "double3" 0 -822.02028076015415 0 ;
 	setAttr ".rp" -type "double3" -700 420 0 ;
 	setAttr ".sp" -type "double3" -700 420 0 ;
 createNode mesh -n "NonnaWall_CeilingShape" -p "NonnaWall_Ceiling";
 	rename -uid "C74C28BD-47E2-9B94-0A73-DBBD143B70BD";
 	setAttr -k off ".v";
-	setAttr -s 2 ".iog[0].og";
+	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:13]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
 	setAttr ".pv" -type "double2" 0.44805411994457245 0.375 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr ".lev" 0;
-	setAttr -s 9 ".pt";
-	setAttr ".pt[8]" -type "float3" 0 19.554121 0 ;
-	setAttr ".pt[9]" -type "float3" 0 19.554121 0 ;
-	setAttr ".pt[10]" -type "float3" 0 19.554121 0 ;
-	setAttr ".pt[11]" -type "float3" 0 19.554121 0 ;
-	setAttr ".pt[12]" -type "float3" 0 19.554121 0 ;
-	setAttr ".pt[13]" -type "float3" 0 19.554121 0 ;
-	setAttr ".pt[14]" -type "float3" 0 19.554121 0 ;
-	setAttr ".pt[15]" -type "float3" 0 19.554121 0 ;
-	setAttr ".ai_translator" -type "string" "polymesh";
-createNode mesh -n "polySurfaceShape34" -p "NonnaWall_Ceiling";
-	rename -uid "70368B49-4698-40C2-7A39-B590826AC600";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:2]";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.44805411994457245 0.375 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 9 ".uvst[0].uvsp[0:8]" -type "float2" 0.625 0.25 0.375
+	setAttr -s 27 ".uvst[0].uvsp[0:26]" -type "float2" 0.625 0.25 0.375
 		 0.25 0.375 0.35389173 0.625 0.35389173 0.625 0.5 0.375 0.5 0.27110824 0.25 0.27110824
-		 0.25 0.375 0.25;
+		 0.25 0.375 0.25 0.375 0.35389173 0.625 0.35389173 0.625 0.5 0.375 0.5 0.375 0.25
+		 0.625 0.25 0.27110824 0.25 0.27110824 0.25 0.375 0.25 0.625 0.35389173 0.625 0.5
+		 0.375 0.5 0.375 0.35389173 0.375 0.25 0.625 0.25 0.27110824 0.25 0.27110824 0.25
+		 0.375 0.25;
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
 	setAttr ".lev" 0;
-	setAttr -s 8 ".pt[0:7]" -type "float3"  -5.6843419e-14 420 0 -0.32476807 
-		420 0 -5.6843419e-14 420 -23.999878 -0.32476807 420 -23.999878 -5.6843419e-14 420 
-		0.70323944 -0.32476807 420 0.70323944 0 420 0.70323944 0 420 0;
-	setAttr -s 8 ".vt[0:7]"  -383.35049438 -0.52007425 600 420.32476807 -1.040167212 600
-		 -400 -1.3513154e-05 -576.00012207031 420.32476807 -1.3513154e-05 -576.00012207031
-		 -400 1.56024992 -0.00013370812 420.32476807 1.040156722 -1.40634227 -699.99993896 -1.56024992 -0.00013370812
-		 -700.000061035156 -1.56024992 600;
-	setAttr -s 10 ".ed[0:9]"  0 1 0 2 3 0 0 4 0 1 5 0 4 2 0 5 3 0 4 5 1
-		 4 6 0 0 7 0 7 6 0;
-	setAttr -s 3 -ch 12 ".fc[0:2]" -type "polyFaces" 
+	setAttr -s 16 ".vt[0:15]"  -383.35049438 419.47991943 600 420 418.95983887 600
+		 -400 420 -600 420 420 -600 -400 421.5602417 0.70310575 420 421.040161133 -0.70310283
+		 -699.99993896 418.4397583 0.70310575 -700.000061035156 418.4397583 600 -400 441.11434937 0.70310575
+		 420 440.5942688 -0.70310283 420 439.55410767 -600 -400 439.55410767 -600 -383.35049438 439.0340271 600
+		 420 438.51394653 600 -699.99993896 437.99386597 0.70310575 -700.000061035156 437.99386597 600;
+	setAttr -s 28 ".ed[0:27]"  0 1 0 2 3 0 0 4 0 1 5 0 4 2 0 5 3 0 4 5 1
+		 4 6 0 0 7 0 7 6 0 4 8 0 5 9 0 8 9 1 3 10 0 9 10 0 2 11 0 11 10 0 8 11 0 0 12 0 1 13 0
+		 12 13 0 13 9 0 12 8 0 6 14 0 8 14 0 7 15 0 15 14 0 12 15 0;
+	setAttr -s 14 -ch 56 ".fc[0:13]" -type "polyFaces" 
+		f 4 12 14 -17 -18
+		mu 0 4 21 18 19 20
+		f 4 20 21 -13 -23
+		mu 0 4 22 23 18 21
+		f 4 22 24 -27 -28
+		mu 0 4 22 24 25 26
 		f 4 6 5 -2 -5
-		mu 0 4 2 3 4 5
+		mu 0 4 9 10 11 12
 		f 4 0 3 -7 -3
-		mu 0 4 1 0 3 2
+		mu 0 4 13 14 10 9
 		f 4 2 7 -10 -9
-		mu 0 4 1 6 7 8;
+		mu 0 4 13 15 16 17
+		f 4 5 13 -15 -12
+		mu 0 4 3 4 19 18
+		f 4 -2 15 16 -14
+		mu 0 4 4 5 20 19
+		f 4 -5 10 17 -16
+		mu 0 4 5 2 21 20
+		f 4 0 19 -21 -19
+		mu 0 4 1 0 23 22
+		f 4 3 11 -22 -20
+		mu 0 4 0 3 18 23
+		f 4 7 23 -25 -11
+		mu 0 4 6 7 25 24
+		f 4 -10 25 26 -24
+		mu 0 4 7 8 26 25
+		f 4 -9 18 27 -26
+		mu 0 4 8 1 22 26;
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
@@ -10383,7 +10351,7 @@ createNode mesh -n "NonnaISO_WallLG_WindowShape" -p "NonnaISO_WallLG_Window";
 	setAttr -k off ".v";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.5 0.10737811028957367 ;
+	setAttr ".pv" -type "double2" 0.11958250403404236 0.21475622057914734 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
 	setAttr -s 24 ".uvst[0].uvsp[0:23]" -type "float2" 0 0 0 0.21475622
 		 0.23916501 0.21475622 0.23916501 0 0.56580663 0.21475622 0.56580663 0 0.61246032
@@ -11513,6 +11481,72 @@ createNode mesh -n "NonnaIso_WindowLG_GlassShape" -p "|NonnaIso_WindowLG1|NonnaI
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 	setAttr ".ai_translator" -type "string" "polymesh";
+createNode transform -n "Nonna_Ceiling";
+	rename -uid "1E5678A7-4A22-B6EA-EED1-759A842BD91A";
+	setAttr ".rp" -type "double3" -700 420 600 ;
+	setAttr ".sp" -type "double3" -700 420 600 ;
+createNode mesh -n "Nonna_CeilingShape" -p "Nonna_Ceiling";
+	rename -uid "72D4512D-4552-5C1D-7F50-889E77C409C3";
+	setAttr -k off ".v";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.56419600546360016 0.5 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 25 ".uvst[0].uvsp[0:24]" -type "float2" 0.375 0 0.625 0 0.375
+		 0.25 0.625 0.25 0.625 0.5 0.625 0.75 0.375 1 0.625 1 0.875 0 0.875 0.25 0.43750703
+		 0 0.43750703 1 0.43750703 0.75 0.43750703 0.5 0.43750703 0.25 0.25339201 0.25 0.375
+		 0.37160802 0.43750703 0.37160802 0.625 0.37160802 0.74660802 0.25 0.625 0.87839198
+		 0.74660802 0 0.43750703 0.87839204 0.25339201 0 0.375 0.87839198;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 16 ".pt[0:15]" -type "float3"  -514.28345 449.12549 355.06607 
+		-514.28345 449.12549 355.06607 -514.28345 449.12549 355.06607 -514.28345 449.12549 
+		355.06607 -514.28345 449.12549 355.06607 -514.28345 449.12549 355.06607 -494.28345 
+		449.12549 355.06607 -494.28345 449.12549 355.06607 -494.28345 449.12549 355.06607 
+		-494.28345 449.12549 355.06607 -514.28345 449.12549 355.06607 -494.28345 449.12549 
+		355.06607 -514.28345 449.12549 355.06607 -514.28345 449.12549 355.06607 -494.28345 
+		449.12549 355.06607 -514.28345 449.12549 355.06607;
+	setAttr -s 16 ".vt[0:15]"  -185.71650696 -29.12549973 244.93391418 914.28344727 -29.1254921 244.93389893
+		 -185.71650696 29.12549973 244.93391418 914.28344727 29.12550735 244.93389893 914.28344727 29.12550735 -935.066101074
+		 914.28344727 -29.1254921 -935.066101074 74.2834549 -29.12549782 244.93391418 74.2834549 -29.12549782 -935.066040039
+		 74.2834549 29.12550163 -935.066040039 74.2834549 29.12550163 244.93391418 -185.71650696 29.12549973 -375.066040039
+		 74.2834549 29.12550163 -375.066040039 914.28344727 29.12550735 -375.066040039 914.28344727 -29.1254921 -375.066101074
+		 74.28346252 -29.12549973 -375.066040039 -185.71650696 -29.12549973 -375.066040039;
+	setAttr -s 27 ".ed[0:26]"  0 6 0 2 9 0 0 2 0 1 3 0 2 10 0 3 12 0 4 5 0
+		 5 13 0 6 1 0 7 5 0 8 4 0 9 3 0 6 14 1 7 8 0 8 11 0 9 6 1 11 9 1 12 4 0 13 1 0 14 7 0
+		 15 0 0 10 11 0 11 12 1 12 13 1 13 14 1 14 15 0 15 10 0;
+	setAttr -s 12 -ch 48 ".fc[0:11]" -type "polyFaces" 
+		f 4 15 8 3 -12
+		mu 0 4 14 10 1 3
+		f 4 14 22 17 -11
+		mu 0 4 13 17 18 4
+		f 4 13 10 6 -10
+		mu 0 4 12 13 4 5
+		f 4 24 19 9 7
+		mu 0 4 20 22 12 5
+		f 4 23 -8 -7 -18
+		mu 0 4 19 21 8 9
+		f 4 0 -16 -2 -3
+		mu 0 4 0 10 14 2
+		f 4 1 -17 -22 -5
+		mu 0 4 2 14 17 16
+		f 4 -23 16 11 5
+		mu 0 4 18 17 14 3
+		f 4 -19 -24 -6 -4
+		mu 0 4 1 21 19 3
+		f 4 12 -25 18 -9
+		mu 0 4 11 22 20 7
+		f 4 -26 -13 -1 -21
+		mu 0 4 24 22 11 6
+		f 4 -27 20 2 4
+		mu 0 4 15 23 0 2;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+	setAttr ".ai_translator" -type "string" "polymesh";
 createNode lightLinker -s -n "lightLinker1";
 	rename -uid "980A5002-4EAC-DEEA-09CA-42963FE7CD25";
 	setAttr -s 13 ".lnk";
@@ -12570,9 +12604,6 @@ createNode groupId -n "groupId112";
 createNode groupId -n "groupId131";
 	rename -uid "BDACDB8E-4392-46BB-79B8-38BF27756DE3";
 	setAttr ".ihi" 0;
-createNode groupId -n "groupId132";
-	rename -uid "242D78B2-484D-FA59-160F-6582EC317C65";
-	setAttr ".ihi" 0;
 createNode groupId -n "groupId133";
 	rename -uid "FD854DF5-4C92-CC4F-5320-828906A071FA";
 	setAttr ".ihi" 0;
@@ -12585,42 +12616,6 @@ createNode groupId -n "groupId71";
 createNode groupId -n "groupId6";
 	rename -uid "D6C15EFC-4469-3133-A07C-6D8C4086A080";
 	setAttr ".ihi" 0;
-createNode polyExtrudeFace -n "polyExtrudeFace25";
-	rename -uid "87DDDB1F-4AB4-122D-C091-31A0C6FBEB2E";
-	setAttr ".ics" -type "componentList" 1 "f[4]";
-	setAttr ".ix" -type "matrix" 0.59999999999999998 0 0 0 0 0.59999999999999998 0 0
-		 0 0 0.59999999999999998 0 -2.8421709430404007e-14 -1.4210854715202004e-14 0 1;
-	setAttr ".ws" yes;
-	setAttr ".pvt" -type "float3" -232.33029 138 -135.1136 ;
-	setAttr ".rs" 39172;
-	setAttr ".c[0]"  0 1 1;
-	setAttr ".cbn" -type "double3" -232.33029785156251 119.99999999999999 -168 ;
-	setAttr ".cbx" -type "double3" -232.33029785156251 156 -102.22719726562499 ;
-	setAttr ".raf" no;
-createNode polyExtrudeFace -n "polyExtrudeFace26";
-	rename -uid "45DB2674-4715-183A-BFA3-77B1278EFC50";
-	setAttr ".ics" -type "componentList" 1 "f[4]";
-	setAttr ".ix" -type "matrix" 0.59999999999999998 0 0 0 0 0.59999999999999998 0 0
-		 0 0 0.59999999999999998 0 -2.8421709430404007e-14 -1.4210854715202004e-14 0 1;
-	setAttr ".ws" yes;
-	setAttr ".pvt" -type "float3" -232.33029 162 -228 ;
-	setAttr ".rs" 39031;
-	setAttr ".c[0]"  0 1 1;
-	setAttr ".cbn" -type "double3" -232.33029785156251 107.99999999999999 -260.88640136718749 ;
-	setAttr ".cbx" -type "double3" -232.33029785156251 216 -195.11359863281248 ;
-	setAttr ".raf" no;
-createNode polyExtrudeFace -n "polyExtrudeFace27";
-	rename -uid "51D7C1AD-4DE7-C188-5136-C5A16372D0F3";
-	setAttr ".ics" -type "componentList" 1 "f[8:15]";
-	setAttr ".ix" -type "matrix" 0.59999999999999998 0 0 0 0 0.59999999999999998 0 0
-		 0 0 0.59999999999999998 0 0 0 0 1;
-	setAttr ".ws" yes;
-	setAttr ".pvt" -type "float3" -233.54384 162.89009 -60.000004 ;
-	setAttr ".rs" 41928;
-	setAttr ".c[0]"  0 1 1;
-	setAttr ".cbn" -type "double3" -233.54384765624999 136.89120483398438 -78.56689453125 ;
-	setAttr ".cbx" -type "double3" -233.5438293457031 188.88898315429688 -41.433110046386716 ;
-	setAttr ".raf" no;
 createNode polyCylinder -n "polyCylinder4";
 	rename -uid "B1A6A84E-4621-A8DE-A2FE-5E96BB741284";
 	setAttr ".r" 21.124367751647203;
@@ -13030,24 +13025,41 @@ createNode groupId -n "groupId163";
 createNode groupId -n "groupId164";
 	rename -uid "3E3728DA-47B4-C7DF-623D-0BBF97250DC0";
 	setAttr ".ihi" 0;
+createNode groupId -n "groupId166";
+	rename -uid "581E5454-4CC5-BA5D-CFE2-FAA29C56185C";
+	setAttr ".ihi" 0;
+createNode groupId -n "groupId167";
+	rename -uid "50BDA564-4EF7-A87B-E914-C4AD6D7FA7C0";
+	setAttr ".ihi" 0;
 createNode polyExtrudeFace -n "polyExtrudeFace31";
-	rename -uid "0DC87968-4142-0DE2-6028-E1A8CA807698";
-	setAttr ".ics" -type "componentList" 1 "f[0:2]";
-	setAttr ".ix" -type "matrix" 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1;
+	rename -uid "1A6E7996-4ABC-E5A2-EAB6-EA85906FA74F";
+	setAttr ".ics" -type "componentList" 1 "f[0:1]";
+	setAttr ".ix" -type "matrix" 1 0 0 0 0 1 0 0 0 0 1 0 -20 0 -20 1;
 	setAttr ".ws" yes;
-	setAttr ".pvt" -type "float3" -140.00003 420 0 ;
-	setAttr ".rs" 38249;
+	setAttr ".pvt" -type "float3" 350 210 550 ;
+	setAttr ".rs" 54962;
+	setAttr ".off" 0.45210000872612;
 	setAttr ".c[0]"  0 1 1;
-	setAttr ".cbn" -type "double3" -700.00006103515625 418.43975830078125 -600 ;
-	setAttr ".cbx" -type "double3" 420 421.56024169921875 600 ;
-	setAttr ".raf" no;
-createNode groupId -n "groupId165";
-	rename -uid "B7EEFDE7-4DD8-410C-D65C-488EBB30C61F";
-	setAttr ".ihi" 0;
-createNode groupParts -n "groupParts25";
-	rename -uid "878C1350-4607-FE9F-9EE6-DB8BB380AD26";
-	setAttr ".ihi" 0;
-	setAttr ".ic" -type "componentList" 1 "f[0:2]";
+	setAttr ".cbn" -type "double3" 299.99993896484375 3.814697265625e-06 500 ;
+	setAttr ".cbx" -type "double3" 400.00006103515625 420 600 ;
+createNode polyNormal -n "polyNormal2";
+	rename -uid "12ABEB64-432F-FBEB-6845-AF8E5868AC5E";
+	setAttr ".ics" -type "componentList" 3 "f[0:1]" "f[5]" "f[9]";
+	setAttr ".unm" no;
+createNode polyTweak -n "polyTweak58";
+	rename -uid "6B34B9CA-48A7-7B5A-F1DC-E187ABEE7D52";
+	setAttr ".uopa" yes;
+	setAttr -s 7 ".tk";
+	setAttr ".tk[6]" -type "float3" 19.999969 0 0 ;
+	setAttr ".tk[7]" -type "float3" 19.999969 0 20.000031 ;
+	setAttr ".tk[8]" -type "float3" 19.999969 0 20.000031 ;
+	setAttr ".tk[9]" -type "float3" 19.999969 0 0 ;
+	setAttr ".tk[10]" -type "float3" 0 0 20.000031 ;
+	setAttr ".tk[11]" -type "float3" 0 0 20.000031 ;
+createNode polyNormal -n "polyNormal3";
+	rename -uid "5C52C5C5-4683-5653-05B2-2B92C879F32A";
+	setAttr ".ics" -type "componentList" 1 "f[2:3]";
+	setAttr ".unm" no;
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
@@ -13071,7 +13083,7 @@ select -ne :defaultRenderingList1;
 select -ne :defaultTextureList1;
 	setAttr -s 10 ".tx";
 select -ne :initialShadingGroup;
-	setAttr -s 68 ".dsm";
+	setAttr -s 69 ".dsm";
 	setAttr ".ro" yes;
 	setAttr -s 59 ".gn";
 select -ne :initialParticleSE;
@@ -13083,6 +13095,8 @@ select -ne :defaultResolution;
 select -ne :hardwareRenderGlobals;
 	setAttr ".ctrs" 256;
 	setAttr ".btrs" 512;
+select -ne :ikSystem;
+	setAttr -s 4 ".sol";
 connectAttr "NonnaTable_RedRN.phl[1]" "NonnaTable_RedRN.phl[2]";
 connectAttr "NonnaChair_RushRN.phl[1]" "NonnaChair_RushRN.phl[2]";
 connectAttr "NonnaChair_RushRN1.phl[1]" "NonnaChair_RushRN1.phl[2]";
@@ -13114,7 +13128,7 @@ connectAttr ":initialShadingGroup.mwc" "NonnaNPC01Shape.iog.og[0].gco";
 connectAttr ":initialShadingGroup.mwc" "NonnaWallCornerS_OutShape.iog.og[0].gco"
 		;
 connectAttr "groupId148.id" "NonnaWallCornerS_OutShape.iog.og[0].gid";
-connectAttr "deleteComponent13.og" "NonnaWallCornerS_OutShape.i";
+connectAttr "polyNormal3.out" "NonnaWallCornerS_OutShape.i";
 connectAttr "groupId61.id" "NonnaWallCornerLG_Out01Shape.iog.og[0].gid";
 connectAttr ":initialShadingGroup.mwc" "NonnaWallCornerLG_Out01Shape.iog.og[0].gco"
 		;
@@ -13122,7 +13136,6 @@ connectAttr "polyCylinder3.out" "pCylinderShape4.i";
 connectAttr "groupParts3.og" "pSphere2Shape.i";
 connectAttr "groupId5.id" "pSphere2Shape.iog.og[0].gid";
 connectAttr ":initialShadingGroup.mwc" "pSphere2Shape.iog.og[0].gco";
-connectAttr "polyExtrudeFace26.out" "NonnaPaintingLG01Shape.i";
 connectAttr "groupId67.id" "NonnaWallS0Shape1.iog.og[0].gid";
 connectAttr ":initialShadingGroup.mwc" "NonnaWallS0Shape1.iog.og[0].gco";
 connectAttr "groupId150.id" "NonnaWallDoor01Shape.iog.og[0].gid";
@@ -13139,14 +13152,12 @@ connectAttr ":initialShadingGroup.mwc" "NonnaWallCornerS_In0Shape1.iog.og[0].gco
 		;
 connectAttr "groupId112.id" "NonnaTableBooth01Shape.iog.og[0].gid";
 connectAttr ":initialShadingGroup.mwc" "NonnaTableBooth01Shape.iog.og[0].gco";
-connectAttr "groupId132.id" "NonnaGround01Shape.iog.og[0].gid";
+connectAttr "groupId166.id" "NonnaGround01Shape.iog.og[0].gid";
 connectAttr ":initialShadingGroup.mwc" "NonnaGround01Shape.iog.og[0].gco";
 connectAttr "groupId131.id" "NonnaGazebo01Shape.iog.og[0].gid";
 connectAttr ":initialShadingGroup.mwc" "NonnaGazebo01Shape.iog.og[0].gco";
-connectAttr "polyExtrudeFace25.out" "NonnaPaintingRect01Shape.i";
 connectAttr "groupId109.id" "NonnaLadder01Shape.iog.og[0].gid";
 connectAttr ":initialShadingGroup.mwc" "NonnaLadder01Shape.iog.og[0].gco";
-connectAttr "polyExtrudeFace27.out" "NonnaPaintingOval0Shape1.i";
 connectAttr "layer1.di" "NonnaWallExtTop01.do";
 connectAttr "transformGeometry4.og" "NonnaWallExtTop0Shape1.i";
 connectAttr "groupId133.id" "NonnaShelfLG01Shape.iog.og[0].gid";
@@ -13186,9 +13197,8 @@ connectAttr ":initialShadingGroup.mwc" "NonnaSPC_WallCornerS_OutShape.iog.og[0].
 connectAttr "groupId154.id" "NonnaSPC_WallCornerS_OutShape.iog.og[0].gid";
 connectAttr "polyExtrudeEdge6.out" "NonnaSPC_WallCornerS_OutShape.i";
 connectAttr "layer1.di" "NonnaWall_Ceiling.do";
-connectAttr "groupId165.id" "NonnaWall_CeilingShape.iog.og[0].gid";
+connectAttr "groupId167.id" "NonnaWall_CeilingShape.iog.og[0].gid";
 connectAttr ":initialShadingGroup.mwc" "NonnaWall_CeilingShape.iog.og[0].gco";
-connectAttr "polyExtrudeFace31.out" "NonnaWall_CeilingShape.i";
 connectAttr "groupId163.id" "NonnaWindow_FrameShape.iog.og[0].gid";
 connectAttr "NonnaIso_WindowLG_FrameSG.mwc" "NonnaWindow_FrameShape.iog.og[0].gco"
 		;
@@ -13316,12 +13326,6 @@ connectAttr "polyExtrudeFace22.out" "polyTweak46.ip";
 connectAttr "polyTweak46.out" "polyExtrudeFace23.ip";
 connectAttr "polyExtrudeFace23.out" "polyTweak48.ip";
 connectAttr "polyTweak48.out" "deleteComponent11.ig";
-connectAttr "polySurfaceShape22.o" "polyExtrudeFace25.ip";
-connectAttr "NonnaPaintingRect01Shape.wm" "polyExtrudeFace25.mp";
-connectAttr "polySurfaceShape23.o" "polyExtrudeFace26.ip";
-connectAttr "NonnaPaintingLG01Shape.wm" "polyExtrudeFace26.mp";
-connectAttr "polySurfaceShape24.o" "polyExtrudeFace27.ip";
-connectAttr "NonnaPaintingOval0Shape1.wm" "polyExtrudeFace27.mp";
 connectAttr "polyCylinder4.out" "polyExtrudeFace28.ip";
 connectAttr "polyTweak49.out" "polyExtrudeFace29.ip";
 connectAttr "polyExtrudeFace28.out" "polyTweak49.ip";
@@ -13404,10 +13408,11 @@ connectAttr "polyTweak56.out" "transformGeometry4.ig";
 connectAttr "deleteComponent12.og" "polyTweak57.ip";
 connectAttr "polyTweak57.out" "transformGeometry5.ig";
 connectAttr "transformGeometry3.og" "transformGeometry6.ig";
-connectAttr "groupParts25.og" "polyExtrudeFace31.ip";
-connectAttr "NonnaWall_CeilingShape.wm" "polyExtrudeFace31.mp";
-connectAttr "polySurfaceShape34.o" "groupParts25.ig";
-connectAttr "groupId165.id" "groupParts25.gi";
+connectAttr "deleteComponent13.og" "polyExtrudeFace31.ip";
+connectAttr "NonnaWallCornerS_OutShape.wm" "polyExtrudeFace31.mp";
+connectAttr "polyTweak58.out" "polyNormal2.ip";
+connectAttr "polyExtrudeFace31.out" "polyTweak58.ip";
+connectAttr "polyNormal2.out" "polyNormal3.ip";
 connectAttr "NonnaWallDoor01SG.pa" ":renderPartition.st" -na;
 connectAttr "NonnaWallDoor01SG1.pa" ":renderPartition.st" -na;
 connectAttr "NonnaIso_WindowLG_FrameSG.pa" ":renderPartition.st" -na;
@@ -13458,7 +13463,6 @@ connectAttr "NonnaTestOBJ0Shape2.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "NonnaTestOBJ0Shape4.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "NonnaTestOBJ0Shape1.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "NonnaGazebo01Shape.iog.og[0]" ":initialShadingGroup.dsm" -na;
-connectAttr "NonnaGround01Shape.iog.og[0]" ":initialShadingGroup.dsm" -na;
 connectAttr "NonnaShelfLG01Shape.iog.og[0]" ":initialShadingGroup.dsm" -na;
 connectAttr "pSphereShape2.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "pSphereShape4.iog" ":initialShadingGroup.dsm" -na;
@@ -13494,7 +13498,9 @@ connectAttr "NonnaWallDoor04Shape.iog.og[0]" ":initialShadingGroup.dsm" -na;
 connectAttr "|NonnaWallDoor04|NonnaDoor01|NonnaDoor01Shape.iog.og[0]" ":initialShadingGroup.dsm"
 		 -na;
 connectAttr "NonnaWallLG02Shape.iog.og[0]" ":initialShadingGroup.dsm" -na;
+connectAttr "NonnaGround01Shape.iog.og[0]" ":initialShadingGroup.dsm" -na;
 connectAttr "NonnaWall_CeilingShape.iog.og[0]" ":initialShadingGroup.dsm" -na;
+connectAttr "Nonna_CeilingShape.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "groupId1.msg" ":initialShadingGroup.gn" -na;
 connectAttr "groupId2.msg" ":initialShadingGroup.gn" -na;
 connectAttr "groupId3.msg" ":initialShadingGroup.gn" -na;
@@ -13534,7 +13540,6 @@ connectAttr "groupId98.msg" ":initialShadingGroup.gn" -na;
 connectAttr "groupId109.msg" ":initialShadingGroup.gn" -na;
 connectAttr "groupId112.msg" ":initialShadingGroup.gn" -na;
 connectAttr "groupId131.msg" ":initialShadingGroup.gn" -na;
-connectAttr "groupId132.msg" ":initialShadingGroup.gn" -na;
 connectAttr "groupId133.msg" ":initialShadingGroup.gn" -na;
 connectAttr "groupId134.msg" ":initialShadingGroup.gn" -na;
 connectAttr "groupId136.msg" ":initialShadingGroup.gn" -na;
@@ -13553,5 +13558,6 @@ connectAttr "groupId154.msg" ":initialShadingGroup.gn" -na;
 connectAttr "groupId156.msg" ":initialShadingGroup.gn" -na;
 connectAttr "groupId157.msg" ":initialShadingGroup.gn" -na;
 connectAttr "groupId158.msg" ":initialShadingGroup.gn" -na;
-connectAttr "groupId165.msg" ":initialShadingGroup.gn" -na;
+connectAttr "groupId166.msg" ":initialShadingGroup.gn" -na;
+connectAttr "groupId167.msg" ":initialShadingGroup.gn" -na;
 // End of nonna_whitebox_breakapart_v04.ma
