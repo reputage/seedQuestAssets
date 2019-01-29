@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class HUDController : MonoBehaviour {
+    public bool useCursor = false;
+    public bool useLevelSelect = false;
+    public bool usePreview = false;
 
     public string sceneName = "SceneSelect";
     static GameObject cursor;
@@ -16,12 +19,11 @@ public class HUDController : MonoBehaviour {
 
     private void Start() {
         cursor = GameObject.FindGameObjectWithTag("Cursor");
-        cursor.SetActive(showCursor);
+        if(cursor != null)
+            cursor.SetActive(showCursor);
     }
 
     public void GoToSceneSelect() {
         SceneManager.LoadScene(sceneName);
     }
-
-
 }
