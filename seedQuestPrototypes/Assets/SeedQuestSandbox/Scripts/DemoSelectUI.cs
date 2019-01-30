@@ -27,8 +27,7 @@ public class DemoSelectUI : MonoBehaviour {
     public int buttonPadding = 60;
 
     private void Start() {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        GameManager.ResetGameState();
 
         GameObject sideNav = GameObject.FindGameObjectWithTag("SideNav");
 
@@ -39,6 +38,7 @@ public class DemoSelectUI : MonoBehaviour {
 
         demoList[0].select.onClick.Invoke();
     }
+
     private void selectDemo(DemoInfo info) {
 
         TextMeshProUGUI infoTitle = GameObject.FindGameObjectWithTag("InfoTitle").GetComponentInChildren<TextMeshProUGUI>();
