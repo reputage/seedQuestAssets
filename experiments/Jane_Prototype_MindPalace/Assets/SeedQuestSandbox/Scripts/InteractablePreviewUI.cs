@@ -5,7 +5,7 @@ using UnityEngine;
 namespace SeedQuest.Interactables
 {
     [System.Serializable]
-    public class InteractablePreview
+    public class InteractablePreviewInfo
     {
         public Vector3 scale = Vector3.one;
         public Vector3 position = Vector3.zero;
@@ -40,7 +40,7 @@ namespace SeedQuest.Interactables
 
         private void Update()
         {
-            InteractablePreview preview = Instance.previewInteractable.interactablePreview; 
+            InteractablePreviewInfo preview = Instance.previewInteractable.interactablePreview; 
             if(preview != null)
             {
                 previewChild.transform.localPosition = preview.position;
