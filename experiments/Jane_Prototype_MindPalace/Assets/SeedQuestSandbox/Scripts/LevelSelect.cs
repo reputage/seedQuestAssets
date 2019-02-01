@@ -21,14 +21,15 @@ public class LevelSelect : MonoBehaviour {
     private GameObject levelsCanvas;
     private int currentLevel = 0;
 
-    private void Start() { 
+    private void Start() {
+        GameManager.ResetGameState();
 
         // Get LevelListCanvas
         levelsCanvas = GameObject.FindGameObjectWithTag("LevelListCanvas");
 
         // Destroy unnecessary gameobjects
         foreach (Transform child in levelsCanvas.transform)
-           GameObject.Destroy(child.gameObject);
+            GameObject.Destroy(child.gameObject);
         RemoveInteractables(); 
 
         // Create LevelButtons
