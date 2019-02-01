@@ -1,6 +1,8 @@
 # SeedQuest Assets
 
-Contains Assets and Experiments/Prototypes for SeedQuest visual mnemonic game
+Contains Experiments/Prototypes/Assets for SeedQuest visual mnemonic game
+
+![alt text](https://github.com/reputage/seedQuestAssets/blob/master/images/seedQuestPrototype30sec.gif "SeedQuest Prototype GIF")
 
 ## Directory Structure
 
