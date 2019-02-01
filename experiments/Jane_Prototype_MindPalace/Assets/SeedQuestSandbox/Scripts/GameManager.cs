@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public enum GameState { Sandbox, Pause, Interact }
 
@@ -16,6 +17,10 @@ public class GameManager : MonoBehaviour {
             }
             return instance;
         }
+    }
+
+    private void OnApplicationQuit() {
+        instance = null;
     }
 
     public GameState state = GameState.Sandbox;
@@ -41,9 +46,16 @@ public class GameManager : MonoBehaviour {
 
     }
 
+    static public void ResetGameState()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        SeedQuest.Interactables.InteractableManager.destroyInteractables();
+    }
+
     public void ListenForKeyDown() {
         if (Input.GetKeyDown("escape")) {
-
+            SceneManager.LoadScene("PrototypeSelect");
         }
     }
 

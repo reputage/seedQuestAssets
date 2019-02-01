@@ -8,7 +8,7 @@ public class ThirdPersonCamera : MonoBehaviour {
     public bool lockCursor = true;
 
     private void LateUpdate() {
-        if(!PauseManager.isPaused) {
+        if(!PauseManager.isPaused) { 
             CameraRotate();
             UpdateCursorLock();
         }
@@ -26,11 +26,11 @@ public class ThirdPersonCamera : MonoBehaviour {
         if(lockCursor){
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            HUDController.ShowCursor = true;
+            CursorUI.ShowCursor = true;
         } else
         {
             Cursor.lockState = CursorLockMode.Confined;
-            HUDController.ShowCursor = false;
+            CursorUI.ShowCursor = false;
         }
     }
 }
