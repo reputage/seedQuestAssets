@@ -66,7 +66,7 @@ Shader "Amplify/Grass"
 }
 /*ASEBEGIN
 Version=16200
-7;-1193;1906;1124;1411.947;519.9054;1.3;True;True
+7;-1199;1906;1130;1411.947;523.8054;1.3;True;True
 Node;AmplifyShaderEditor.RangedFloatNode;12;-940.0464,551.2941;Float;False;Property;_Freq_Power;Freq_Power;4;0;Create;True;0;0;False;0;0;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;7;-949.1457,455.0941;Float;False;Property;_WindPower;WindPower;3;0;Create;True;0;0;False;0;0;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;13;-937.4462,652.694;Float;False;Property;_Ampl_Power;Ampl_Power;5;0;Create;True;0;0;False;0;0;0;0;0;0;1;FLOAT;0
@@ -89,4 +89,4 @@ WireConnection;11;2;3;0
 WireConnection;11;10;2;4
 WireConnection;11;11;6;0
 ASEEND*/
-//CHKSM=1F972987D6FACB29C1C0D02B3CF544954A1EA9AE
+//CHKSM=5986898C548054E0607E8C513185F159C814B66F
