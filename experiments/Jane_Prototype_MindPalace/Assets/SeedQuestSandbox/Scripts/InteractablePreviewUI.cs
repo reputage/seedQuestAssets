@@ -2,98 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using SeedQuest.Utils;
+
 namespace SeedQuest.Interactables
 {
     public enum InteractablePreviewLocation { topright, bottomright }
-
-    public abstract class ObserverCopy
-    {
-        public ObserverCopy Clone()
-        {
-            return (ObserverCopy)this.MemberwiseClone();
-        }
-    }
-
-    public class Observer
-    {
-        public ObserverCopy instance;
-        public ObserverCopy last;
-
-        public void Watch(ObserverCopy instance)
-        {
-            this.instance = instance;
-            this.last = instance.Clone();
-
-            var fields = instance.GetType().GetFields();
-            for (int i = 0; i < fields.Length; i++) {
-                Debug.Log(fields[i]); 
-            }
-        }
-
-        public bool CheckChange()
-        {
-            var fields = instance.GetType().GetFields();
-            var lastFields = last.GetType().GetFields();
-            for(int i = 0; i < fields.Length; i++)
-            {
-                if (fields[i] != lastFields[i])
-                    return false;
-            }
-
-            return true;
-        }
-
-        public void Change()
-        {
-            this.last = instance.Clone();
-        }
-
-        public void onChange(System.Action action)
-        {
-            if (CheckChange())
-            {
-                action();
-                Change();
-            }
-        }
-    }
-
-    public class Observable<T>
-    {
-        public T Value
-        {
-            get { return getter(); }
-            set { setter(value); }
-        }
-
-        private System.Func<T> getter;
-        private System.Action<T> setter;
-        private T lastValue;
-
-        public Observable(System.Func<T> getter, System.Action<T> setter)
-        {
-            this.getter = getter;
-            this.setter = setter;
-        }
-
-        public void Change()
-        {
-            lastValue = Value;
-        }
-
-        public bool CheckChange()
-        {
-            return (!EqualityComparer<T>.Default.Equals(Value, lastValue));
-        }
-        
-        public void onChange(System.Action action)
-        {
-            if (CheckChange())  {
-                action();
-                Change();
-            }
-        }
-    }
 
     [System.Serializable]
     public class InteractablePreviewInfo : ObserverCopy
@@ -105,13 +18,16 @@ namespace SeedQuest.Interactables
         public bool useOrthographic = true;
         public float fieldOfView = 60;
         public float orthographicSize = 1;
+        public GameObject previewPrefab;
+        public bool useRotate = true;
+        public float rotateSpeed = 25;
     }
 
     public class InteractablePreviewUI : MonoBehaviour
     {
         private static InteractablePreviewUI instance = null;
 
-        public static InteractablePreviewUI Instance
+        public static InteractablePreviewUI Instance 
         {
             get
             {
@@ -125,13 +41,14 @@ namespace SeedQuest.Interactables
         public InteractablePreviewLocation location = InteractablePreviewLocation.bottomright;
         private Observable<InteractablePreviewLocation> locationObservable;
         private Observable<float> scaleObservable;
+        private InteractablePreviewInfo preview = null; 
+        //private Observer previewObserver = new Observer();
 
         private int depthMax = 10;
         private Camera previewCamera;
         private GameObject previewObject;
         private GameObject previewChild;
         private TMPro.TextMeshProUGUI previewText;
-        private Interactable previewInteractable;
         private List<RectTransform> canvasTransforms;
         private RectTransform imageTransform;
 
@@ -146,9 +63,13 @@ namespace SeedQuest.Interactables
         private void Update()  {
             locationObservable.onChange(SetLocationTransform);
             scaleObservable.onChange(SetLocationTransform);
-
+            //previewObserver.onChange(SetPreviewProperties);
             SetPreviewProperties();
         } 
+
+        public static bool IsActive {
+            get { return Instance.preview != null; }
+        }
 
         private void SetReferencesFromTags() {
             previewObject = GameObject.FindGameObjectWithTag("PreviewObject");
@@ -162,13 +83,8 @@ namespace SeedQuest.Interactables
             imageTransform = GameObject.FindGameObjectWithTag("PreviewImage").GetComponent<RectTransform>();
         }
 
-        public void SetPreviewProperties() {
-            InteractablePreviewInfo preview;
-            if (Instance.previewInteractable == null)
-                return;
-            else
-                preview = Instance.previewInteractable.interactablePreview;
-                
+        private float rotateAccumlator = 0;
+        public void SetPreviewProperties() {                
             if (preview != null)
             {
                 previewChild.transform.localPosition = preview.position;
@@ -180,6 +96,11 @@ namespace SeedQuest.Interactables
                 Instance.previewCamera.orthographic = preview.useOrthographic;
                 Instance.previewCamera.fieldOfView = preview.fieldOfView;
                 Instance.previewCamera.orthographicSize = preview.orthographicSize;
+
+                if(preview.useRotate) {
+                    rotateAccumlator += preview.rotateSpeed * Time.deltaTime;
+                    previewChild.transform.localRotation = Quaternion.Euler(preview.rotation) * Quaternion.Euler(Vector3.up * rotateAccumlator);
+                }
             }
         }
 
@@ -213,23 +134,38 @@ namespace SeedQuest.Interactables
             }
         }
 
+        /// <summary>  Sets Interactable Preview from Interactable </summary>
+        /// <param name="interactable"> Interactable to set Preview with </param>
         static public void SetPreviewObject(Interactable interactable)  {
 
-            if (Instance == null)
+            // Set Preview if interactablePreview has changed
+            if (Instance == null || interactable.interactablePreview == Instance.preview)
                 return;
+            else
+                Instance.preview = interactable.interactablePreview;
+            
+            // Set Preview Watcher
+            //Instance.previewObserver.Watch(Instance.preview);
 
-            if (interactable == Instance.previewInteractable)
-                return;
-
-            Instance.previewInteractable = interactable;
-
+            // Remove old preview object
             foreach (Transform child in Instance.previewObject.transform)
-                GameObject.Destroy(child.gameObject);
+                    GameObject.Destroy(child.gameObject);
 
-            Instance.previewChild = Instantiate(interactable.gameObject, Instance.previewObject.transform);
+            // Create Preview Gameobject
+            if(interactable.interactablePreview.previewPrefab != null)
+                Instance.previewChild = Instantiate(interactable.interactablePreview.previewPrefab, Instance.previewObject.transform);
+            else 
+                Instance.previewChild = Instantiate(interactable.gameObject, Instance.previewObject.transform);
+
+            // Destroy InteractableUI
+            Instance.previewChild.GetComponent<Interactable>().DeleteUI();
+
+            // Set Layer to "InteractablePreview"
             SetLayerRecursively(Instance.previewChild, 0);
+
+            // Set Label Text
             Instance.previewText.text = interactable.Name;
-        }
+        } 
 
         /// <summary>  Recursively set the layer for all children to "InteractablePreview" until max depth is reached or there is no more children </summary>
         static public void SetLayerRecursively(GameObject gameObject, int depth) {

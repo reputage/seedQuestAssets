@@ -12,6 +12,7 @@ namespace SeedQuest.Interactables
     [System.Serializable]
     public class InteractableUI
     {
+        public string name = "";
         public int fontSize = 36;
         public float scaleSize = 1;
         public InteractableUIMode mode;
@@ -21,13 +22,18 @@ namespace SeedQuest.Interactables
 
         private Interactable parent;
         private GameObject actionUI = null;
+        private Button labelButton;
         private Button[] actionButtons;
+        private Image checkmark;
 
         /// <summary> Initialize Interactable UI with Prompt Text and Buttons </summary>
         /// <param name="interactable">Parent Interactable Object</param>
         public void Initialize(Interactable interactable)
         {
             parent = interactable;
+
+            if (interactable.flagDeleteUI)
+                return;
 
             int modeIndex = 0;
             modeIndex = mode == InteractableUIMode.GridSelect ? 1 : modeIndex;
@@ -54,19 +60,27 @@ namespace SeedQuest.Interactables
             return actionUI != null;
         }
 
-        public void SetupLabelButton()
-        {
+        public void DeleteUI() {
+            GameObject.Destroy(actionUI);
+        }
+
+        public void SetupLabelButton() {
+
             var textList = actionUI.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
-            if (parent.stateData != null)
-                textList[0].text = parent.stateData.interactableName;
-            else
-                textList[0].text = "Error: Missing StateData";
+            textList[0].text = parent.Name;
 
             Button[] buttons = actionUI.GetComponentsInChildren<Button>();
-            buttons[0].onClick.AddListener(onClickLabel);
+            labelButton = buttons[0];
+            labelButton.onClick.AddListener(onClickLabel);
 
-            BoxCollider collider = buttons[0].gameObject.AddComponent<BoxCollider>();
+            BoxCollider collider = labelButton.gameObject.AddComponent<BoxCollider>();
             collider.size = new Vector3(200, 40, 10);
+
+            checkmark = labelButton.gameObject.GetComponentsInChildren<Image>()[1];
+            if(checkmark != null)
+                checkmark.gameObject.SetActive(false);
+
+            setLabelHoverEvents();
         }
 
         public void SetupActionButtons()
@@ -79,15 +93,12 @@ namespace SeedQuest.Interactables
             actionButtons = new Button[buttons.Length - 1];
             System.Array.Copy(buttons, 1, actionButtons, 0, actionButtons.Length);
 
-            if (mode == InteractableUIMode.NextPrevSelect)
-            {
+            if (mode == InteractableUIMode.NextPrevSelect) {
                 actionButtons[0].onClick.AddListener(parent.NextAction);
                 actionButtons[1].onClick.AddListener(parent.PrevAction);
             }
-            else if (mode == InteractableUIMode.GridSelect || mode == InteractableUIMode.ListSelect)
-            {
-                for (int i = 0; i < 4; i++)
-                {
+            else if (mode == InteractableUIMode.GridSelect || mode == InteractableUIMode.ListSelect) {
+                for (int i = 0; i < 4; i++) {
                     var actionText = actionButtons[i].GetComponentInChildren<TMPro.TextMeshProUGUI>();
                     actionText.text = parent.stateData.getStateName(i);
                 }
@@ -101,45 +112,68 @@ namespace SeedQuest.Interactables
             hideActions();
 
             // Create Triggers for HoverEvents
-            foreach (Button button in actionButtons)
-            {
+            foreach (Button button in actionButtons) {
                 setButtonHoverEvents(button);
             }
 
-            foreach (Button button in actionButtons)
-            {
+            foreach (Button button in actionButtons) {
                 BoxCollider collider = button.gameObject.AddComponent<BoxCollider>();
                 collider.size = new Vector3(40, 40, 10);
             }
-
         }
 
-        // Create TriggerEntry and add callback
-        public void setButtonHoverEvents(Button button)
-        {
+        public void setButtonHoverEvents(Button button) {
             EventTrigger trigger = button.GetComponent<EventTrigger>();
 
             EventTrigger.Entry entry = new EventTrigger.Entry();
             entry.eventID = EventTriggerType.PointerEnter;
-            entry.callback.AddListener((data) => { GameManager.State = GameState.Interact; });
+            entry.callback.AddListener((data) => {
+                GameManager.State = GameState.Interact;
+            });
             trigger.triggers.Add(entry);
 
             EventTrigger.Entry exit = new EventTrigger.Entry();
             exit.eventID = EventTriggerType.PointerExit;
-            exit.callback.AddListener((data) => { GameManager.State = GameState.Sandbox; });
+            exit.callback.AddListener((data) => {
+                GameManager.State = GameState.Play;
+            });
             trigger.triggers.Add(exit);
         }
 
-        public void hideActions()
-        {
+        public void setLabelHoverEvents() {
+            EventTrigger trigger = labelButton.GetComponent<EventTrigger>();
+
+            EventTrigger.Entry entry = new EventTrigger.Entry();
+            entry.eventID = EventTriggerType.PointerEnter;
+            entry.callback.AddListener((data) => {
+                GameManager.State = GameState.Interact;
+                if (checkmark != null && InteractablePath.isNextInteractable(parent))
+                    checkmark.gameObject.SetActive(true);
+            });
+            trigger.triggers.Add(entry);
+
+            EventTrigger.Entry exit = new EventTrigger.Entry();
+            exit.eventID = EventTriggerType.PointerExit;
+            exit.callback.AddListener((data) => {
+                GameManager.State = GameState.Play;
+                if (checkmark != null && InteractablePath.isNextInteractable(parent))
+                    checkmark.gameObject.SetActive(false);
+            });
+            trigger.triggers.Add(exit);
+        }
+
+        public void hideActions() {
+            if (actionButtons == null) return;
+
             foreach (Button button in actionButtons)
             {
                 button.transform.gameObject.SetActive(false);
             }
         }
 
-        public void showActions()
-        {            
+        public void showActions() {
+            if (actionButtons == null) return;
+
             foreach (Button button in actionButtons)
             {
                 button.transform.gameObject.SetActive(true);
@@ -154,8 +188,7 @@ namespace SeedQuest.Interactables
 
         public void onClickLabel()
         {
-            showCurrentActions();
-            InteractableManager.SetActiveInteractable(parent);
+            InteractablePath.GoToNextInteractable();
         }
 
         public void onHoverUI()
@@ -167,7 +200,7 @@ namespace SeedQuest.Interactables
 
         public void offHoverUI()
         {
-            GameManager.State = GameState.Sandbox;
+            GameManager.State = GameState.Play;
         }
 
         public void toggleActions()
@@ -207,7 +240,7 @@ namespace SeedQuest.Interactables
 
         public void BillboardInteractable()
         {
-            Vector3 targetPosition = Camera.main.transform.position;
+            Vector3 targetPosition = Camera.main.transform.position - (100 * Camera.main.transform.forward ) ;
             Vector3 interactablePosition = actionUI.transform.position;
             Vector3 lookAtDir = targetPosition - interactablePosition;
 

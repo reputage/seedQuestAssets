@@ -23,22 +23,29 @@ namespace SeedQuest.Interactables {
 
         public List<Interactable> path;
         public Interactable next;
+        private bool isNextHighlighted = false;
 
         private void Awake() {
-            //InteractablePath.GeneratePathFromSeed("9876543210");
-            //path = InteractablePath.Path;
-            
+            InteractablePath.GeneratePathFromSeed("9876543210");
+            path = InteractablePath.Path;
         }
 
-        private void Update()
-        {
-            //next = InteractablePath.NextInteractable;
-            //if (GameManager.Mode == GameState.Rehearsal)
-            //    InteractablePreviewUI.SetPreviewObject(next); 
+        private void Update() {
+            if (GameManager.Mode == GameMode.Rehearsal) {
+
+                if (!isNextHighlighted) {  
+                    InteractablePath.InitializeNextInteractable();
+                    isNextHighlighted = true;
+                }
+
+                next = InteractablePath.NextInteractable;
+                if(next == null) {
+                    GameManager.State = GameState.End;
+                }
+            }
         } 
 
-        private List<InteractableID> getRandomPathIDs()
-        {
+        private List<InteractableID> getRandomPathIDs() {
             List<InteractableID> ids = new List<InteractableID>();
 
             for(int i = 0; i < InteractableConfig.SiteCount; i++)  {
