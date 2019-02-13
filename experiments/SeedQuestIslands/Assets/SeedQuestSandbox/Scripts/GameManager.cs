@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public enum GameState { Sandbox, Pause, Interact }
+public enum GameMode { Sandbox, Rehearsal, Recall } 
+public enum GameState { Play, Pause, Interact, Menu, End }
 
 public class GameManager : MonoBehaviour {
 
@@ -23,8 +24,11 @@ public class GameManager : MonoBehaviour {
         instance = null;
     }
 
-    public GameState state = GameState.Sandbox;
-    public GameState prevState = GameState.Sandbox;
+    public GameMode mode = GameMode.Sandbox;
+    public static GameMode Mode { get { return Instance.mode; } }
+
+    public GameState state = GameState.Play;
+    public GameState prevState = GameState.Play;
     public static GameState State {
         get { return Instance.state; }
         set { if (value == Instance.state) return; Instance.prevState = Instance.state; Instance.state = value; }

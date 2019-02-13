@@ -20,19 +20,10 @@ namespace SeedQuest.Interactables
 
         public GameObject[] actionSpotIcons; // InteractableUI Prefab Templates
 
-        private Interactable activeInteractable = null;
+        public Interactable activeInteractable = null;
 
-        static public void SetActiveInteractable(Interactable interactable)
-        {
-            Instance.activeInteractable = interactable;
-            InteractablePreviewUI.SetPreviewObject(interactable);
-        }
-        
-        private Interactable[,] interactableLUT;
-
-        static public Interactable[] InteractableList
-        {
-            get { return findAllInteractables(); }
+        static public Interactable ActiveInteractable {
+            get { return Instance.activeInteractable; }
         }
 
         private void Awake()
@@ -40,9 +31,33 @@ namespace SeedQuest.Interactables
             InitalizeLookUp();
         }
 
-        static Interactable[] findAllInteractables()
+        static public void SetActiveInteractable(Interactable interactable)
+        {
+            Instance.activeInteractable = interactable;
+            if(GameManager.Mode == GameMode.Sandbox && interactable != null)
+                InteractablePreviewUI.SetPreviewObject(interactable); 
+           
+        }
+
+        private Interactable[,] interactableLUT;
+
+        static public Interactable[] InteractableList
+        {
+            get { return FindAllInteractables(); }
+        }
+
+        static Interactable[] FindAllInteractables()
         {
             return GameObject.FindObjectsOfType<Interactable>();
+        }
+
+        static public void destroyInteractables()
+        {
+            foreach (Interactable interactable in FindAllInteractables())
+                GameObject.Destroy(interactable.gameObject);
+
+            foreach (GameObject interactableUI in GameObject.FindGameObjectsWithTag("InteractableUI"))
+                GameObject.Destroy(interactableUI);
         }
 
         static void findNearInteractables()
@@ -60,18 +75,27 @@ namespace SeedQuest.Interactables
             }
         }
 
-        /// <summary>
-        /// Hides all UI Canvas for Interactables 
-        /// </summary>
+        /// <summary> Hides all UI Canvas for Interactables </summary>
         static public void hideAllInteractableUI()
         {
-            foreach(Interactable interactable in findAllInteractables())
+            foreach(Interactable interactable in FindAllInteractables())
                 interactable.interactableUI.hideActions();
         }
 
         static void doNearInteractable(bool isNear)
         {
 
+        }
+
+        static public void HighlightAllInteractables() {
+            foreach(Interactable interactable in FindAllInteractables()) 
+                interactable.HighlightInteractable(true);
+        }
+
+        static public void UnHighlightAllInteractables()
+        {
+            foreach (Interactable interactable in FindAllInteractables())
+                interactable.HighlightInteractable(false);
         }
 
         static public ParticleSystem getEffect()
@@ -104,14 +128,12 @@ namespace SeedQuest.Interactables
             */
         }
 
-        /// <summary>
-        /// Initalize LookUp Table for querying interactable based on siteID and spotID
-        /// </summary>
+        /// <summary> Initalize LookUp Table for querying interactable based on siteID and spotID  </summary>
         static public void InitalizeLookUp()
         {
             Interactable[] interactables = InteractableManager.InteractableList;
 
-            Instance.interactableLUT = new Interactable[InteractableConfig.LevelCount, InteractableConfig.InteractableCount];
+            Instance.interactableLUT = new Interactable[InteractableConfig.SiteCount, InteractableConfig.InteractableCount];
             for (int i = 0; i < interactables.Length; i++)
             {
                 int row = interactables[i].ID.siteID;

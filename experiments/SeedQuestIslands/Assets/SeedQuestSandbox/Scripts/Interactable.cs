@@ -20,8 +20,9 @@ namespace SeedQuest.Interactables
         [HideInInspector]
         public float interactDistance = 2.0f;
         private bool isOnHover = false;
+        [HideInInspector]
+        public bool flagDeleteUI = false;
 
-        // Use this for initialization
         void Start()
         {
             interactableUI.Initialize(this);
@@ -37,9 +38,32 @@ namespace SeedQuest.Interactables
             }
         }
 
+        public string Name {
+            get {
+                if (interactableUI.name != "")
+                    return interactableUI.name;
+                else if (stateData != null)
+                    return stateData.interactableName;
+                else
+                    return "Error: Missing StateData/Name";
+            }
+        }
+
+        public string RehearsalActionName  {
+            get {
+                return (stateData == null) ? "Action #" + ID.actionID : this.stateData.getStateName(ID.actionID);
+            }
+        }
+
         int Mod(int x, int m)
         {
             return (x % m + m) % m;
+        }
+
+        public void DeleteUI()
+        {
+            flagDeleteUI = true;
+            interactableUI.DeleteUI();
         }
 
         public void NextAction()
@@ -97,23 +121,16 @@ namespace SeedQuest.Interactables
                     if (!isOnHover)  {
                         GameManager.State = GameState.Interact;
                         InteractableManager.SetActiveInteractable(this);
-
-                        //toggleHighlight(true);
                     } 
-                    isOnHover = true;
 
-                    /*
-                    if (Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0))
-                        InteractableManager.showActions(this);
-                        */
+                    isOnHover = true;
                 }
                 else {
                     if (isOnHover) {
-                        GameManager.State = GameState.Sandbox;
-                        //toggleHighlight(false);
+                        GameManager.State = GameState.Play;
                     }
-                    isOnHover = false;
 
+                    isOnHover = false;
                 }
             }
         }
@@ -147,70 +164,39 @@ namespace SeedQuest.Interactables
             effect.Play();
         }
 
-        public void toggleHighlight(bool highlight)
+        public void HighlightInteractableDynamically(bool useHighlight)
         {
+            Shader defultShader = Shader.Find("Standard");
+            Shader highlightShader = Shader.Find("SeedQuest/RimOutline");
+            
             Renderer rend = transform.GetComponent<Renderer>();
-            if (rend == null)
-                return;
-
-            Shader shaderDefault = Shader.Find("Standard");
-            Shader shader = Shader.Find("Custom/Outline + Rim");
-
-            Material[] materials = rend.materials;
-            for (int i = 0; i < materials.Length; i++)
+            foreach(Material material in rend.materials)
             {
-
-                if (highlight)
-                    rend.materials[i].shader = shader;
+                if (useHighlight)
+                    material.shader = highlightShader;
                 else
-                    rend.materials[i].shader = shaderDefault;
+                    material.shader = defultShader;
             }
+
+            EffectsManager.PlayEffect("highlight", this.transform);
         }
 
-        /*
-        public void HighlightPathTarget() {
-            if (GameManager.State != GameState.Rehearsal)
-                return;
-
-            if (PathManager.PathTarget == this)
-                toggleHighlight(true);
-            else if(!isOnHover)
-                toggleHighlight(false);
-        }
-        */
-
-        public string getInteractableName()
+        public void HighlightInteractable(bool useHighlight)
         {
-            if (stateData == null)
-                return "Interactable Name";
-            else
-                return this.stateData.interactableName;
-        }
+            Shader defultShader = Shader.Find("Standard");
+            Shader highlightShader = Shader.Find("SeedQuest/RimOutline");
 
-        public string Name
-        {
-            get { return getInteractableName(); }
-        }
-
-        public string getStateName(int index)
-        {
-            if (stateData == null)
-                return "Action #" + index;
-            else
-                return this.stateData.getStateName(index);
-        }
-
-        public string RehersalActionName
-        {
-            get { return getStateName(ID.actionID); }
-        }
-
-        public int getStateCount()
-        {
-            if (stateData == null)
-                return 0;
-            else
-                return this.stateData.states.Count;
+            Renderer rend = transform.GetComponent<Renderer>();
+            foreach (Material material in rend.materials)
+            {
+                if (useHighlight)
+                {
+                    material.shader = highlightShader;
+                    material.SetFloat("_UseDynamicRim", 0.0f);
+                }
+                else
+                    material.shader = defultShader;
+            }
         }
 
     }
