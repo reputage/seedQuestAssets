@@ -792,6 +792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateData: {fileID: 11400000, guid: bf02f1ac4a551c840934e00738fc3676, type: 2}
   interactableUI:
+    name: 
     fontSize: 20
     scaleSize: 0.5
     mode: 1
@@ -806,12 +807,16 @@ MonoBehaviour:
     useOrthographic: 1
     fieldOfView: 60
     orthographicSize: 1
+    previewPrefab: {fileID: 0}
+    useRotate: 1
+    rotateSpeed: 25
   ID:
     siteID: 0
     spotID: 0
     actionID: 0
   currentStateID: 0
   interactDistance: 2
+  flagDeleteUI: 0
 --- !u!65 &18487058
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2381,6 +2386,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1661196618}
     m_Modifications:
+    - target: {fileID: 100000, guid: ba69988fec039eb4cbf50403b1d0f1a4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ba69988fec039eb4cbf50403b1d0f1a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2429,10 +2438,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.7987019
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: ba69988fec039eb4cbf50403b1d0f1a4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: ba69988fec039eb4cbf50403b1d0f1a4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2451,18 +2456,6 @@ PrefabInstance:
       value: Windmill_01
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 104c0ab1d95277243ad68d5b732d6683, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 104c0ab1d95277243ad68d5b732d6683, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 104c0ab1d95277243ad68d5b732d6683, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100006, guid: 104c0ab1d95277243ad68d5b732d6683, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -2490,11 +2483,23 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 100020, guid: 104c0ab1d95277243ad68d5b732d6683, type: 3}
+    - target: {fileID: 100002, guid: 104c0ab1d95277243ad68d5b732d6683, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 104c0ab1d95277243ad68d5b732d6683, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 104c0ab1d95277243ad68d5b732d6683, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100022, guid: 104c0ab1d95277243ad68d5b732d6683, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: 104c0ab1d95277243ad68d5b732d6683, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -4125,6 +4130,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1661196618}
     m_Modifications:
+    - target: {fileID: 100000, guid: 0d06d01a537ee5540bbb2e9d8275e911, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 0d06d01a537ee5540bbb2e9d8275e911, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 0d06d01a537ee5540bbb2e9d8275e911, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0d06d01a537ee5540bbb2e9d8275e911, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.22
@@ -4172,18 +4189,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 0d06d01a537ee5540bbb2e9d8275e911, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.8545786
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 0d06d01a537ee5540bbb2e9d8275e911, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 0d06d01a537ee5540bbb2e9d8275e911, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 0d06d01a537ee5540bbb2e9d8275e911, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300002, guid: 0d06d01a537ee5540bbb2e9d8275e911, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -19086,7 +19091,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1719685689}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &418881172
 PrefabInstance:
@@ -27629,6 +27634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateData: {fileID: 11400000, guid: 558613cfa7cf6d640b07e0129692f8af, type: 2}
   interactableUI:
+    name: 
     fontSize: 36
     scaleSize: 0.5
     mode: 0
@@ -27643,12 +27649,16 @@ MonoBehaviour:
     useOrthographic: 0
     fieldOfView: 60
     orthographicSize: 1
+    previewPrefab: {fileID: 0}
+    useRotate: 1
+    rotateSpeed: 25
   ID:
     siteID: 0
     spotID: 0
     actionID: 0
   currentStateID: 0
   interactDistance: 2
+  flagDeleteUI: 0
 --- !u!65 &546618337
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33257,7 +33267,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4914961e081db734eac9b88a5e1bf057, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4914961e081db734eac9b88a5e1bf057, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -36425,7 +36435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 646eca6feb363a74183e9bfe98a0bdc7, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 646eca6feb363a74183e9bfe98a0bdc7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -38044,6 +38054,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateData: {fileID: 11400000, guid: 22f9368102d1082438cebd21a9c73512, type: 2}
   interactableUI:
+    name: 
     fontSize: 36
     scaleSize: 0.5
     mode: 0
@@ -38058,12 +38069,16 @@ MonoBehaviour:
     useOrthographic: 0
     fieldOfView: 60
     orthographicSize: 1
+    previewPrefab: {fileID: 0}
+    useRotate: 1
+    rotateSpeed: 25
   ID:
     siteID: 0
     spotID: 0
     actionID: 0
   currentStateID: 3
   interactDistance: 2
+  flagDeleteUI: 0
 --- !u!65 &760422463
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48027,7 +48042,7 @@ Transform:
   - {fileID: 1959054516}
   - {fileID: 634106151}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &955541988
 GameObject:
@@ -48680,6 +48695,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 760422461}
     m_Modifications:
+    - target: {fileID: 100000, guid: 4b3a0deb5047f84419dadff4e4ad6cb8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4b3a0deb5047f84419dadff4e4ad6cb8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.7800026
@@ -48735,10 +48754,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 4b3a0deb5047f84419dadff4e4ad6cb8, type: 3}
       propertyPath: m_LocalScale.z
       value: 6.3764653
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 4b3a0deb5047f84419dadff4e4ad6cb8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 4b3a0deb5047f84419dadff4e4ad6cb8, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -50004,7 +50019,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1251165202896490, guid: a9b610df019f61445852afe648fc12ec, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224190312244752146, guid: a9b610df019f61445852afe648fc12ec,
         type: 3}
@@ -56863,7 +56878,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.08185, z: 1}
   m_Children: []
   m_Father: {fileID: 1719685689}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1110338387
 PrefabInstance:
@@ -58385,7 +58400,7 @@ Transform:
   - {fileID: 2133933592}
   - {fileID: 1178494553}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1197178966
 PrefabInstance:
@@ -63499,6 +63514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateData: {fileID: 11400000, guid: 57a3a98d21ef1ee4aa766f0d8308ac44, type: 2}
   interactableUI:
+    name: 
     fontSize: 36
     scaleSize: 0.2
     mode: 0
@@ -63513,12 +63529,16 @@ MonoBehaviour:
     useOrthographic: 1
     fieldOfView: 60
     orthographicSize: 1
+    previewPrefab: {fileID: 0}
+    useRotate: 1
+    rotateSpeed: 25
   ID:
     siteID: 0
     spotID: 0
     actionID: 0
   currentStateID: 0
   interactDistance: 2
+  flagDeleteUI: 0
 --- !u!65 &1219285183
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -63583,7 +63603,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -64445,8 +64465,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1719685689}
     m_Modifications:
+    - target: {fileID: 1860178976387674, guid: a93254a9ad48b9b4eaef71164a0e4b98, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1224828827552376, guid: a93254a9ad48b9b4eaef71164a0e4b98, type: 3}
       propertyPath: m_Name
       value: HUD Preview
@@ -67009,6 +67033,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1365037980}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &1366870563 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224208419225187348, guid: a93254a9ad48b9b4eaef71164a0e4b98,
+    type: 3}
+  m_PrefabInstance: {fileID: 1252191355}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1370295066
 GameObject:
   m_ObjectHideFlags: 0
@@ -67080,6 +67110,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 760422461}
     m_Modifications:
+    - target: {fileID: 100000, guid: 103e9171b7724324b8d431b2bcebea63, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 103e9171b7724324b8d431b2bcebea63, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 103e9171b7724324b8d431b2bcebea63, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.723003
@@ -67135,14 +67173,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 103e9171b7724324b8d431b2bcebea63, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -28.880001
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 103e9171b7724324b8d431b2bcebea63, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 103e9171b7724324b8d431b2bcebea63, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 103e9171b7724324b8d431b2bcebea63, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -83350,6 +83380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateData: {fileID: 11400000, guid: 43ea78bbe6038944f8a3fd385b0d6827, type: 2}
   interactableUI:
+    name: 
     fontSize: 36
     scaleSize: 0.5
     mode: 1
@@ -83364,12 +83395,16 @@ MonoBehaviour:
     useOrthographic: 0
     fieldOfView: 60
     orthographicSize: 1
+    previewPrefab: {fileID: 0}
+    useRotate: 1
+    rotateSpeed: 25
   ID:
     siteID: 0
     spotID: 0
     actionID: 0
   currentStateID: 0
   interactDistance: 2
+  flagDeleteUI: 0
 --- !u!65 &1661196620
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -89165,14 +89200,15 @@ Transform:
   m_Children:
   - {fileID: 1940762339}
   - {fileID: 747302711}
+  - {fileID: 417357774}
   - {fileID: 161936025}
   - {fileID: 75927595}
-  - {fileID: 417357774}
   - {fileID: 495776159}
+  - {fileID: 1366870563}
   - {fileID: 1106974729}
   - {fileID: 703960245}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1722559296
 PrefabInstance:
@@ -93146,6 +93182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateData: {fileID: 11400000, guid: 3b3cd5df12bccdf4c84e30a3dc2b3ae8, type: 2}
   interactableUI:
+    name: 
     fontSize: 36
     scaleSize: 0.3
     mode: 0
@@ -93160,12 +93197,16 @@ MonoBehaviour:
     useOrthographic: 1
     fieldOfView: 60
     orthographicSize: 1
+    previewPrefab: {fileID: 0}
+    useRotate: 1
+    rotateSpeed: 25
   ID:
     siteID: 0
     spotID: 0
     actionID: 0
   currentStateID: 0
   interactDistance: 2
+  flagDeleteUI: 0
 --- !u!65 &1868652369
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -93636,6 +93677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateData: {fileID: 11400000, guid: 3aa897501000edf4487cbaebbf89d1c7, type: 2}
   interactableUI:
+    name: 
     fontSize: 36
     scaleSize: 0.4
     mode: 0
@@ -93650,12 +93692,16 @@ MonoBehaviour:
     useOrthographic: 0
     fieldOfView: 60
     orthographicSize: 1
+    previewPrefab: {fileID: 0}
+    useRotate: 1
+    rotateSpeed: 25
   ID:
     siteID: 0
     spotID: 0
     actionID: 0
   currentStateID: 3
   interactDistance: 2
+  flagDeleteUI: 0
 --- !u!65 &1890567390
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -93923,7 +93969,7 @@ Transform:
   - {fileID: 960984220}
   - {fileID: 72537052}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1906190618
 PrefabInstance:
@@ -94041,6 +94087,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateData: {fileID: 11400000, guid: bf02f1ac4a551c840934e00738fc3676, type: 2}
   interactableUI:
+    name: 
     fontSize: 20
     scaleSize: 0.5
     mode: 1
@@ -94055,12 +94102,16 @@ MonoBehaviour:
     useOrthographic: 1
     fieldOfView: 60
     orthographicSize: 1
+    previewPrefab: {fileID: 0}
+    useRotate: 1
+    rotateSpeed: 25
   ID:
     siteID: 0
     spotID: 0
     actionID: 0
   currentStateID: 0
   interactDistance: 2
+  flagDeleteUI: 0
 --- !u!65 &1908694911
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -102571,6 +102622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateData: {fileID: 11400000, guid: 1a23048c964fa7e4183d25e0295092a9, type: 2}
   interactableUI:
+    name: 
     fontSize: 36
     scaleSize: 0.5
     mode: 1
@@ -102585,12 +102637,16 @@ MonoBehaviour:
     useOrthographic: 1
     fieldOfView: 60
     orthographicSize: 1
+    previewPrefab: {fileID: 0}
+    useRotate: 1
+    rotateSpeed: 25
   ID:
     siteID: 0
     spotID: 0
     actionID: 0
   currentStateID: 0
   interactDistance: 2
+  flagDeleteUI: 0
 --- !u!65 &2106286995
 BoxCollider:
   m_ObjectHideFlags: 0
