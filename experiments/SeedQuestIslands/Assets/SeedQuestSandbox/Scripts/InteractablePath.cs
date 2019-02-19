@@ -44,6 +44,7 @@ namespace SeedQuest.Interactables
 
         static public void GeneratePathFromSeed(string seed)
         {
+            Instance.nextIndex = 0;
             SeedConverter converter = new SeedConverter();
             Instance.path = new List<Interactable>(converter.encodeSeed(seed));
         }
@@ -57,11 +58,17 @@ namespace SeedQuest.Interactables
             Instance.path.Clear();
         }
 
+        static public void ResetPath() {
+            Instance.nextIndex = 0;
+        }
+
         static public void GoToNextInteractable()
         {
             if (GameManager.Mode == GameMode.Rehearsal && NextInteractable == InteractableManager.ActiveInteractable) {
                 Instance.nextIndex++;
-                InitializeNextInteractable();
+
+                if(NextInteractable != null)
+                    InitializeNextInteractable();
             }
         } 
 
