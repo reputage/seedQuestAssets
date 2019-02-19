@@ -2,11 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using SeedQuest.SeedEncoder;
+using SeedQuest.Utils;
+
 namespace SeedQuest.Interactables {
+
+    [System.Serializable]
+    public class InteractableSiteBounds {
+        public Vector3 center;
+        public Vector3 size;
+        public bool debugShow = false;
+    }
 
     public class InteractablePathManager : MonoBehaviour
     {
-        private static InteractablePathManager instance = null;
+        static InteractablePathManager instance = null;
+
         public static InteractablePathManager Instance
         {
             get
@@ -22,12 +33,26 @@ namespace SeedQuest.Interactables {
         }
 
         public List<Interactable> path;
+
         public Interactable next;
+
+        public List<InteractableLogItem> log;
+
+        public string seedString;
+
+        public static string SeedString { 
+            get { return Instance.seedString; }
+        }
+
         private bool isNextHighlighted = false;
 
+        public List<InteractableSiteBounds> siteBounds; 
+
         private void Awake() {
-            InteractablePath.GeneratePathFromSeed("9876543210");
-            path = InteractablePath.Path;
+            seedString = "EB204654C9";
+            //seedString = RandomString.GetRandomHexNumber(10);
+
+            InitalizePathAndLog();
         }
 
         private void Update() {
@@ -41,9 +66,28 @@ namespace SeedQuest.Interactables {
                 next = InteractablePath.NextInteractable;
                 if(next == null) {
                     GameManager.State = GameState.End;
+                    EndGameUI.ToggleOn();
                 }
             }
-        } 
+            else if(GameManager.Mode == GameMode.Recall) {
+                if(InteractableLog.Log.Count == InteractableConfig.SitesPerGame * InteractableConfig.ActionsPerSite) {
+                    SeedConverter converter = new SeedConverter();
+                    seedString = converter.DecodeSeed();
+                    GameManager.State = GameState.End;
+                    EndGameUI.ToggleOn();
+                }
+            }
+        }
+
+        static public void InitalizePathAndLog() {
+            Instance.isNextHighlighted = false;
+
+            InteractablePath.GeneratePathFromSeed(Instance.seedString);
+            Instance.path = InteractablePath.Path;
+
+            InteractableLog.Clear();
+            Instance.log = InteractableLog.Log;
+        }
 
         private List<InteractableID> getRandomPathIDs() {
             List<InteractableID> ids = new List<InteractableID>();
@@ -60,6 +104,16 @@ namespace SeedQuest.Interactables {
             }
 
             return ids;
+        }
+
+        static public void SetupInteractableIDs() {
+            
+        }
+
+        private void OnDrawGizmos() {
+            Gizmos.color = Color.red;
+            foreach (InteractableSiteBounds bounds in siteBounds)
+                Gizmos.DrawCube(bounds.center, bounds.size);
         }
     }
 }
