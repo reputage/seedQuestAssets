@@ -17,12 +17,17 @@ namespace SeedQuest.Interactables
         public Vector2 uvOffset = Vector2.zero;
         public RuntimeAnimatorController animatorController;
         public string soundEffectName = "";
+        public Sound soundEffect;
+        public string particleEffectName = "";
+        public GameObject particleEffect;
 
         public void enterState(Interactable item) {
             // Remove Children GameObjects to Remove Assocaited Prefabs
             foreach (Transform child in item.transform)
-                if (child.tag != "Static")
+                if (child.tag != "Static") {
+                    child.gameObject.SetActive(false);
                     GameObject.Destroy(child.gameObject);
+                }
 
             // Update with Prefab
             if (prefab != null) {
@@ -59,16 +64,13 @@ namespace SeedQuest.Interactables
             if (soundEffectName != "")
                 AudioManager.Play(soundEffectName);
 
-        }
-
-        public void doAction(Interactable item)
-        {
-
-        }
-
-        public void exitState(Interactable item)
-        {
-
+            // Create and Play Particle Effects
+            if (particleEffectName != "")
+                EffectsManager.PlayEffect(particleEffectName, item.transform);
+            else if (particleEffect != null)
+                EffectsManager.PlayEffect(particleEffect, item.transform);
+            else if(item.stateData.effect != null)
+                EffectsManager.PlayEffect(item.stateData.effect, item.transform);
         }
     }
 

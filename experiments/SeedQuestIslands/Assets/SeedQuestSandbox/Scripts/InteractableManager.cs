@@ -75,11 +75,17 @@ namespace SeedQuest.Interactables
             }
         }
 
+        static public void resetInteractableUIText() {
+            foreach (Interactable interactable in FindAllInteractables())
+                interactable.interactableUI.SetText(interactable.Name);
+        }
+
         /// <summary> Hides all UI Canvas for Interactables </summary>
         static public void hideAllInteractableUI()
         {
-            foreach(Interactable interactable in FindAllInteractables())
+            foreach(Interactable interactable in FindAllInteractables()) {
                 interactable.interactableUI.hideActions();
+            }
         }
 
         static void doNearInteractable(bool isNear)
@@ -98,6 +104,7 @@ namespace SeedQuest.Interactables
                 interactable.HighlightInteractable(false);
         }
 
+        /*
         static public ParticleSystem getEffect()
         {
             ParticleSystem effect;
@@ -112,6 +119,7 @@ namespace SeedQuest.Interactables
 
             return effect;
         }
+        */
 
         /// <summary> Do Interaction - Does Action, actives effect, logs action, updates path (for rehersal) and exits interactable ui dialog </summary>
         static public void doInteractableAction(int actionIndex)
