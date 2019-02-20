@@ -11,8 +11,12 @@ public class FirstPersonCamera : MonoBehaviour {
     private Transform cameraTransform;
 
     public void Update() {
-        UpdatePosition();
-        UpdateRotation();
+        if(PauseManager.isPaused) {
+            UpdatePosition();
+            UpdateRotation();            
+        }
+
+        //UpdateCursorLock();
     }
 
     public void UpdatePosition() {
@@ -36,4 +40,17 @@ public class FirstPersonCamera : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     } 
+
+    public void UpdateCursorLock() {
+        if (!PauseManager.isPaused) {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            CursorUI.ShowCursor = true;
+        }
+        else {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            CursorUI.ShowCursor = false;
+        }
+    }
 }
