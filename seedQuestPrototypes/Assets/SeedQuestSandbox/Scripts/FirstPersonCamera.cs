@@ -10,21 +10,26 @@ public class FirstPersonCamera : MonoBehaviour {
     private Transform characterTransform;
     private Transform cameraTransform;
 
-    public void Update() {
-        if(PauseManager.isPaused) {
-            UpdatePosition();
-            UpdateRotation();            
-        }
+    static bool freeze = false;
 
-        UpdateCursorLock();
+    public void Update() {
+        if(!PauseManager.isPaused) {
+            UpdatePosition();
+            UpdateRotation();
+            SetCursorLock();
+        }
+        else {
+            SetFreeCursor();
+        }
     }
 
     public void UpdatePosition() {
-
-        float moveHorizontal = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-        float moveVertical = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
-        transform.Translate(moveHorizontal, 0, 0);
-        transform.Translate(0, 0, moveVertical);
+        if (!freeze) {
+            float moveHorizontal = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
+            float moveVertical = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+            transform.Translate(moveHorizontal, 0, 0);
+            transform.Translate(0, 0, moveVertical);
+        }
     }
 
     public void UpdateRotation() {
@@ -37,20 +42,24 @@ public class FirstPersonCamera : MonoBehaviour {
         characterTransform.localRotation *= Quaternion.Euler(0f, horizontal, 0f);
         cameraTransform.localRotation *= Quaternion.Euler(-vertical, 0f, 0f);
 
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     } 
 
-    public void UpdateCursorLock() {
-        if (!PauseManager.isPaused) {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            CursorUI.ShowCursor = true;
-        }
-        else {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            CursorUI.ShowCursor = false;
-        }
+    public void SetCursorLock() {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        CursorUI.ShowCursor = true;
     }
+
+    public void SetFreeCursor() {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        CursorUI.ShowCursor = false;
+    }
+
+    static public bool SetFreeze {
+        set { freeze = value; }
+    }
+
 }
