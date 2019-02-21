@@ -145,6 +145,7 @@ namespace SeedQuest.Interactables
             EventTrigger.Entry entry = new EventTrigger.Entry();
             entry.eventID = EventTriggerType.PointerEnter;
             entry.callback.AddListener((data) => {
+                if (PauseManager.isPaused == true) return;
                 GameManager.State = GameState.Interact;
             });
             trigger.triggers.Add(entry);
@@ -152,6 +153,7 @@ namespace SeedQuest.Interactables
             EventTrigger.Entry exit = new EventTrigger.Entry();
             exit.eventID = EventTriggerType.PointerExit;
             exit.callback.AddListener((data) => {
+                if (PauseManager.isPaused == true) return;
                 GameManager.State = GameState.Play;
             });
             trigger.triggers.Add(exit);
@@ -163,6 +165,7 @@ namespace SeedQuest.Interactables
             EventTrigger.Entry entry = new EventTrigger.Entry();
             entry.eventID = EventTriggerType.PointerEnter;
             entry.callback.AddListener((data) => {
+                if (PauseManager.isPaused == true) return;
                 GameManager.State = GameState.Interact;
             });
             trigger.triggers.Add(entry);
@@ -170,6 +173,7 @@ namespace SeedQuest.Interactables
             EventTrigger.Entry exit = new EventTrigger.Entry();
             exit.eventID = EventTriggerType.PointerExit;
             exit.callback.AddListener((data) => {
+                if (PauseManager.isPaused == true) return;
                 GameManager.State = GameState.Play;
             });
             trigger.triggers.Add(exit);
@@ -197,6 +201,7 @@ namespace SeedQuest.Interactables
         {
             InteractableManager.hideAllInteractableUI();
             showActions();
+            SetCheckImageActive();
 
             string label = GetText();
             InteractableManager.resetInteractableUIText();
@@ -212,15 +217,22 @@ namespace SeedQuest.Interactables
         {
             parent.DoAction(actionIndex);
 
+            if (mode == InteractableUIMode.GridSelect || mode == InteractableUIMode.ListSelect) {
+                hideActions();
+            }
+
             if (GameManager.Mode == GameMode.Rehearsal) {
-                if(actionIndex == InteractablePath.NextInteractable.ID.actionID)
+                if(actionIndex == InteractablePath.NextInteractable.ID.actionID) {
                     InteractablePath.GoToNextInteractable();
+                }
             }
             else if (GameManager.Mode == GameMode.Recall)
                 InteractableLog.Add(parent, parent.currentStateID);
         }
 
         public void onClickCheck() {
+            SetCheckButtonActive(false);
+
             if(GameManager.Mode == GameMode.Rehearsal)
                 InteractablePath.GoToNextInteractable();
             else if(GameManager.Mode == GameMode.Recall)
@@ -302,14 +314,20 @@ namespace SeedQuest.Interactables
 
         private void SetCheckImageActive() {
             if (mode == InteractableUIMode.GridSelect || mode == InteractableUIMode.ListSelect) {
-                checkImages[InteractablePath.NextInteractable.ID.actionID].gameObject.SetActive(true);
+                if (InteractablePath.isNextInteractable(parent))
+                    checkImages[InteractablePath.NextInteractable.ID.actionID].gameObject.SetActive(true);
+                else {
+                    checkImages[0].gameObject.SetActive(false);
+                    checkImages[1].gameObject.SetActive(false);
+                    checkImages[2].gameObject.SetActive(false);
+                    checkImages[3].gameObject.SetActive(false);
+                }
             }
         }
 
         public void SetCheckmark(int actionIndex) {
             if (GameManager.Mode == GameMode.Rehearsal) {
-                if (InteractablePath.isNextInteractable(parent))
-                    SetCheckImageActive();
+                SetCheckImageActive();
                 
                 if (InteractablePath.isNextInteractable(parent) && actionIndex == InteractablePath.NextInteractable.ID.actionID) 
                     SetCheckButtonActive(true);
