@@ -5,10 +5,15 @@ using UnityEngine;
 [System.Serializable]
 public class TutorialDataItem
 {
+    public int popupHeight;
     public string headerText;
     public string bodyText;
     public int bodyTextHeight;
-    public int popupHeight;
+    public int bodyTextYOffset;
+    public bool useSecondBodyText;
+    public string secondBodyText;
+    public int secondBodyTextHeight;
+    public int secondBodyTextYOffset;
     public bool useArrow;
     public Vector3 arrowPosition;
     public Vector3 arrowRotation;
