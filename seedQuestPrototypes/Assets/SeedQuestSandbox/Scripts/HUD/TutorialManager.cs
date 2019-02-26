@@ -10,6 +10,7 @@ public class TutorialManager : MonoBehaviour {
     public Image image;
     public Image arrow;
     public Button button;
+    public Button skip;
     public TMP_Text headerText;
     public TMP_Text bodyText;
     public TMP_Text bodyText2;
@@ -19,10 +20,11 @@ public class TutorialManager : MonoBehaviour {
 
     void Start ()
     {
-        if (GameManager.Mode == GameMode.Rehearsal)
+        if (GameManager.Mode == GameMode.Rehearsal && TutorialState.Skip == false)
         {
             GameManager.State = GameState.Menu;
             button.onClick.AddListener(onButtonClick);
+            skip.onClick.AddListener(onSkipClick);
             setCard();
         }
 
@@ -86,6 +88,13 @@ public class TutorialManager : MonoBehaviour {
         {
             button.transform.GetChild(0).GetComponent<TMP_Text>().text = "Finish";
         }
+    }
+
+    private void onSkipClick()
+    {
+        gameObject.SetActive(false);
+        GameManager.State = GameState.Play;
+        TutorialState.Skip = true;
     }
 
     private void onButtonClick()
