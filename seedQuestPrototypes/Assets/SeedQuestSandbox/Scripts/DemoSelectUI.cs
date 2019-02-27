@@ -32,8 +32,16 @@ public class DemoSelectUI : MonoBehaviour {
         GameObject sideNav = GameObject.FindGameObjectWithTag("SideNav");
 
         for (int i = 0; i < demoList.Length; i++) {
-            Vector3 position = buttonOffset + new Vector3(0, -i * buttonPadding, 0);
-            demoList[i].select = createLevelButton(demoList[i], sideNav.transform, position);
+            if (demoList[i].name == "Survey")
+            {
+                Vector3 position = buttonOffset + new Vector3(0, -i * buttonPadding * (float)1.5, 0);
+                demoList[i].select = createLevelButton(demoList[i], sideNav.transform, position);
+            }
+            else
+            {
+                Vector3 position = buttonOffset + new Vector3(0, -i * buttonPadding, 0);
+                demoList[i].select = createLevelButton(demoList[i], sideNav.transform, position);
+            }
         }
 
         demoList[0].select.onClick.Invoke();
@@ -45,6 +53,19 @@ public class DemoSelectUI : MonoBehaviour {
         TextMeshProUGUI infoText = GameObject.FindGameObjectWithTag("InfoText").GetComponentInChildren<TextMeshProUGUI>();
         Image infoImage = GameObject.FindGameObjectWithTag("InfoImage").GetComponent<Image>();
         PopupUI popup = PopupUI.Instance;
+
+        GameObject sideNav = GameObject.FindGameObjectWithTag("SideNav");
+        if (info.name == "Survey")
+        {
+            sideNav.transform.parent.GetChild(2).GetChild(6).gameObject.SetActive(false);
+            sideNav.transform.parent.GetChild(2).GetChild(5).GetChild(0).GetComponent<TMP_Text>().text = "Start";
+        }
+
+        else
+        {
+            sideNav.transform.parent.GetChild(2).GetChild(6).gameObject.SetActive(true);
+            sideNav.transform.parent.GetChild(2).GetChild(5).GetChild(0).GetComponent<TMP_Text>().text = "Learn";
+        }
 
         // Set demo title, info text, and image
         selectedDemo = info;
