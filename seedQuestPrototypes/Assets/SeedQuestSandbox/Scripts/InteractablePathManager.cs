@@ -1,27 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 using SeedQuest.SeedEncoder;
 using SeedQuest.Utils;
+using SeedQuest.Level;
 
 namespace SeedQuest.Interactables {
-
-    [System.Serializable]
-    public class InteractableSiteBounds {
-        public Vector3 center;
-        public Vector3 size;
-        public bool debugShow = false;
-    }
-
+    
     public class InteractablePathManager : MonoBehaviour
     {
         static InteractablePathManager instance = null;
 
-        public static InteractablePathManager Instance
-        {
-            get
-            {
+        public static InteractablePathManager Instance {
+            get {
                 if (instance == null)
                     instance = GameObject.FindObjectOfType<InteractablePathManager>();
 
@@ -32,32 +23,29 @@ namespace SeedQuest.Interactables {
             }
         }
 
-        public List<Interactable> path;
+        /// <summary> Reference to Interactable Path </summary>
+        public InteractablePath path;
 
-        public Interactable next;
+        /// <summary> Reference to Interactable Log </summary>
+        public InteractableLog log;
 
-        public List<InteractableLogItem> log;
+        /// <summary> Seed String </summary>
+        public static string SeedString; 
 
-        public string seedString;
+        /// <summary> Has the Interactabled Path been initialized before important for MultiLevel Games </summary>
+        static public bool IsPathInitialized = false;
 
-        public static string SeedString { 
-            get { return Instance.seedString; }
-        }
+        /// <summary> Has a Level been compleleted for MultiLevel Game </summary>
+        static public bool ShowLevelComplete = false;
 
+        /// <summary> Flag for Interactabled Initlized first time </summary>
         private bool isNextHighlighted = false;
 
-        public int siteIDOffset = 0;
-        public List<InteractableSiteBounds> siteBounds; 
-
         private void Awake() {
-            seedString = "EB204654C9";
-            //seedString = RandomUtils.GetRandomHexNumber(10);
+            path = InteractablePath.Instance;
+            log = InteractableLog.Instance;
 
-            if (InteractableManager.InteractableList.Length == 0)
-                return;
-
-            SetupInteractableIDs();
-            InitalizePathAndLog();
+            InitializeSeed();
         }
 
         private void Update() {
@@ -71,44 +59,74 @@ namespace SeedQuest.Interactables {
                     isNextHighlighted = true;
                 }
 
-                next = InteractablePath.NextInteractable;
-                if(next == null) {
+                if(InteractablePath.PathComplete) {
                     GameManager.State = GameState.End;
                     EndGameUI.ToggleOn();
+                }
+                else if(LevelManager.IsMultiLevelGame && ShowLevelComplete) {
+                    GameManager.State = GameState.Menu;
+                    LevelClearUI.ToggleOn();
                 }
             }
             else if(GameManager.Mode == GameMode.Recall) {
-                if(InteractableLog.Log.Count == InteractableConfig.SitesPerGame * InteractableConfig.ActionsPerSite) {
+                if(InteractableLog.PathComplete) {
                     SeedConverter converter = new SeedConverter();
-                    seedString = converter.DecodeSeed();
+                    SeedString = converter.DecodeSeed();
                     GameManager.State = GameState.End;
                     EndGameUI.ToggleOn();
+                }
+                else if(LevelManager.IsMultiLevelGame &&  ShowLevelComplete) {
+                    GameManager.State = GameState.Menu;
+                    LevelClearUI.ToggleOn();
                 }
             }
         }
 
-        static public void InitalizePathAndLog() {
-            Instance.isNextHighlighted = false;
-
-            InteractablePath.GeneratePathFromSeed(Instance.seedString);
-            Instance.path = InteractablePath.Path;
-
-            InteractableLog.Clear();
-            Instance.log = InteractableLog.Log;
+        static public void InitializeSeed() {
+            SeedString = "EB204654C9";
+            //seedString = RandomUtils.GetRandomHexNumber(10);
         }
 
-        static public void SetupInteractableIDs() {
+
+        static public void Reset() {
+            IsPathInitialized = false;
+            ShowLevelComplete = false;
+        }
+
+        /// <summary> Reset Interactable Path and Log </summary>
+        static public void InitalizePathAndLog() {
+            InteractablePath.ResetPath();
+            InteractablePath.GeneratePathFromSeed(SeedString);
+            InteractableLog.Clear();
+
+            Instance.isNextHighlighted = false;
+            IsPathInitialized = true;
+            ShowLevelComplete = false;
+        }
+
+        /// <summary> Intialize Interactable Path and Log for MultiLevel Game </summary>
+        static public void InitalizePathAndLogForMultiLevelGame() {
+            InteractablePath.GeneratePathFromSeed(SeedString);
+            InteractablePath.InitializeNextInteractable();
+
+            Instance.isNextHighlighted = false;
+            ShowLevelComplete = false;
+        }
+
+        /// <summary> Initializes Interactable Path Site and Interactable IDs </summary>
+        static public void SetupInteractablePathIDs() {
             Interactable[] list = InteractableManager.InteractableList;
 
             int[] indices = RandomUtils.GetRandomIndexArray(InteractableConfig.InteractableCount);
 
-            int siteCount = Instance.siteIDOffset;
-            foreach (InteractableSiteBounds bounds in Instance.siteBounds) {
-
+            // Set InteractablePath IDs based on BoundingBoxes in Scene 
+            int siteCount = LevelManager.LevelIndex;
+            foreach (BoundingBox bounds in LevelManager.Bounds) {
+                
                 // Create a subset of interactables in bounds
                 List<Interactable> subset = new List<Interactable>();
                 foreach(Interactable item in list) {
-                    if(InteractableInBounds(item, bounds)) {
+                    if(BoundingBox.InBounds(item.transform, bounds)) {
                         subset.Add(item);
                     }
                 }
@@ -122,36 +140,11 @@ namespace SeedQuest.Interactables {
                         subset[i].ID.spotID = -1;
                 }
 
-                if (subset.Count < InteractableConfig.InteractableCount)
+                // Throw Error for not enough interactables in a Site
+                if (GameManager.Mode != GameMode.Sandbox && subset.Count < InteractableConfig.InteractableCount)
                     Debug.Log("WARNING: SiteBounds does not contain sufficent interactables.");
 
                 siteCount++;
-            }
-        }
-
-        static bool InteractableInBounds(Interactable item, InteractableSiteBounds bounds) {
-            Vector3 pos = item.transform.position;
-            float x0 = bounds.center.x - (bounds.size.x / 2.0f);
-            float x1 = bounds.center.x + (bounds.size.x / 2.0f);
-            float z0 = bounds.center.z - (bounds.size.z / 2.0f);
-            float z1 = bounds.center.z + (bounds.size.z / 2.0f);
-            return x0 <= pos.x && pos.x <= x1 && z0 <= pos.z && pos.z <= z1;
-        }
-
-        private void OnDrawGizmos() {
-            Color[] colors = new Color[6];
-            colors[0] = Color.red;
-            colors[1] = Color.cyan;
-            colors[2] = Color.green;
-            colors[3] = new Color(255, 165, 0);
-            colors[4] = Color.yellow;
-            colors[5] = Color.magenta;
-
-            int count = 0; 
-            foreach (InteractableSiteBounds bounds in siteBounds) {
-                Gizmos.color = colors[count];
-                Gizmos.DrawWireCube(bounds.center, bounds.size);
-                count++;
             }
         }
     }

@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SingletonBehavior {
+namespace SeedQuest.Utils
+{
 
-    private static SingletonBehavior instance = null;
-    public static SingletonBehavior Instance
-    {
-        get {
-            if (instance == null)
-                instance = new SingletonBehavior();
+    public class SingletonBehavior {
 
-            return instance;
+        private static SingletonBehavior instance = null;
+        public static SingletonBehavior Instance {
+            get {
+                if (instance == null)
+                    instance = new SingletonBehavior();
+
+                return instance;
+            }
         }
     }
 }
