@@ -75,7 +75,7 @@ namespace SeedQuest.Interactables
         {
             foreach(Transform child in item.transform)
             {
-                if (child.GetChildCount() > 0)
+                if (child.childCount > 0)
                 {
                     foreach (Transform entry in child)
                     {
