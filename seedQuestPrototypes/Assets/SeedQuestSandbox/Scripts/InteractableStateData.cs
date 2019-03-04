@@ -25,8 +25,10 @@ namespace SeedQuest.Interactables
             // Remove Children GameObjects to Remove Assocaited Prefabs
             foreach (Transform child in item.transform)
                 if (child.tag != "Static") {
-                    DestroyChildren(child.gameObject);
+                    child.gameObject.SetActive(false);
+                    GameObject.Destroy(child.gameObject);
                 }
+
             // Update with Prefab
             if (prefab != null) {
                 GameObject _prefab = GameObject.Instantiate(prefab, item.transform);
@@ -69,22 +71,6 @@ namespace SeedQuest.Interactables
                 EffectsManager.PlayEffect(particleEffect, item.transform);
             else if(item.stateData.effect != null)
                 EffectsManager.PlayEffect(item.stateData.effect, item.transform);
-        }
-
-        private void DestroyChildren(GameObject item)
-        {
-            foreach(Transform child in item.transform)
-            {
-                if (child.childCount > 0)
-                {
-                    foreach (Transform entry in child)
-                    {
-                        DestroyChildren(entry.gameObject);
-                    }
-                }
-            }
-            item.SetActive(false);
-            GameObject.DestroyImmediate(item);
         }
     }
 
