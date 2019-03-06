@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657856, g: 0.49641234, b: 0.57481724, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028353, g: 0.2257137, b: 0.30692255, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -885,6 +885,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634023978}
   m_CullTransparentMesh: 0
+--- !u!1 &681393562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1684680440329266, guid: d49709cb2a76b483fbb194a97af432d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1608886824}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &718819112
 GameObject:
   m_ObjectHideFlags: 0
@@ -1799,13 +1805,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3523c0e31fcd461ebc4b77a9c9cc8cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 3ccfa8ea8af944ed0b2505116611be9f, type: 2}
+  data: {fileID: 11400000, guid: 2bd33d3967e0b482ead5baeb7f77efc4, type: 2}
   cardContainer: {fileID: 481784701}
   dotContainer: {fileID: 1430674240}
   cardTemplateOpen: {fileID: 1240343838425864, guid: 888ab08501f1d4aecb9b37792aaad56a,
     type: 3}
-  cardTemplateScale: {fileID: 1792511466062614, guid: d49709cb2a76b483fbb194a97af432d4,
-    type: 3}
+  cardTemplateScale: {fileID: 681393562}
   cardTemplateSubmit: {fileID: 1007623272136610, guid: c2df256fedfac4b6dbdade2d7cb1a22e,
     type: 3}
   PreviousButton: {fileID: 1097109818}
@@ -2147,6 +2152,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 481784702}
     m_Modifications:
+    - target: {fileID: 1684680440329266, guid: d49709cb2a76b483fbb194a97af432d4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224726215370724404, guid: d49709cb2a76b483fbb194a97af432d4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2293,14 +2302,76 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 224910954138325432, guid: d49709cb2a76b483fbb194a97af432d4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224335397957472392, guid: d49709cb2a76b483fbb194a97af432d4,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 224335397957472392, guid: d49709cb2a76b483fbb194a97af432d4,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 224461168169952386, guid: d49709cb2a76b483fbb194a97af432d4,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 220
+      objectReference: {fileID: 0}
+    - target: {fileID: 224461168169952386, guid: d49709cb2a76b483fbb194a97af432d4,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 224312857546987540, guid: d49709cb2a76b483fbb194a97af432d4,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 224312857546987540, guid: d49709cb2a76b483fbb194a97af432d4,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d49709cb2a76b483fbb194a97af432d4, type: 3}
 --- !u!224 &1608886825 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 224905330233573384, guid: d49709cb2a76b483fbb194a97af432d4,
+  m_CorrespondingSourceObject: {fileID: 224910954138325432, guid: d49709cb2a76b483fbb194a97af432d4,
     type: 3}
   m_PrefabInstance: {fileID: 1608886824}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1664747698 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1786537648920226, guid: d49709cb2a76b483fbb194a97af432d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1608886824}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &1664747701
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664747698}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &1679548675
 GameObject:
   m_ObjectHideFlags: 0
