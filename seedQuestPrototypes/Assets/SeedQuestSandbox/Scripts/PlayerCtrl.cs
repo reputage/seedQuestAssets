@@ -12,6 +12,8 @@ public class PlayerCtrl : MonoBehaviour {
     public float moveKeySpeed = 10f;
     public float moveTouchSpeed = 1f;
     public PlayerControlMode mode = PlayerControlMode.Click;
+    public Texture2D cursorTextureWalking;
+    public Texture2D cursorTextureDefault;
 
     public void Awake() {
         PlayerCtrl.PlayerTransform = transform;
@@ -19,6 +21,7 @@ public class PlayerCtrl : MonoBehaviour {
 
     public void Update() {
         MovePlayer();
+        CheckIfWalkable();
     }
 
     public void MovePlayer() {
@@ -39,12 +42,46 @@ public class PlayerCtrl : MonoBehaviour {
 
             RaycastHit hit;
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-
             if(Physics.Raycast(ray, out hit, 100.0f)) {
-                NavMeshAgent agent = GetComponent<NavMeshAgent>();
-                agent.SetDestination(hit.point);
+
+                //NavMeshAgent agent = GetComponent<NavMeshAgent>();
+                //agent.SetDestination(hit.point);
+
+                NavMeshHit navHit;
+                int walkableMask = 1 << NavMesh.GetAreaFromName("Walkable");
+                if (NavMesh.SamplePosition(hit.point, out navHit, 1.0f, walkableMask))
+                {
+                    NavMeshAgent agent = GetComponent<NavMeshAgent>();
+                    agent.SetDestination(hit.point);
+                }
             }
+            
         } 
+    }
+
+    public void CheckIfWalkable()
+    {
+        if (mode != PlayerControlMode.Click)
+            return;
+
+        Camera c = Camera.main;
+        RaycastHit hit;
+        Ray ray = c.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit, 100.0f)) {
+            NavMeshHit navHit;
+            int walkableMask = 1 << NavMesh.GetAreaFromName("Walkable");
+            if (NavMesh.SamplePosition(hit.point, out navHit, 1.0f, walkableMask)) {
+                Debug.Log("Walkable: ");
+                Cursor.SetCursor(cursorTextureWalking, Vector2.zero, CursorMode.Auto);
+            }
+            else {
+                Cursor.SetCursor(cursorTextureDefault, Vector2.zero, CursorMode.Auto);
+            }
+        }
+        else {
+            Cursor.SetCursor(cursorTextureDefault, Vector2.zero, CursorMode.Auto);
+        }
     }
 
     public void MoveWithKeys() {

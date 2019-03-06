@@ -209,6 +209,7 @@ public class InteractableTrackerUI : MonoBehaviour
         return x0 <= pos.x && pos.x <= x1 && y0 <= pos.y && pos.y <= y1;
     }
 
+    /// <summary> Set Near Opacity </summary>
     public void SetOpacity() {
         Vector3 mag = player.position - InteractablePath.NextInteractable.transform.position;
         if (mag.magnitude < nearDistance) {
