@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.45
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.042809196, g: 0.14619093, b: 0.3119936, a: 0.45}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0.45}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -800,6 +800,9 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
   interactableTracker:
     positionOffset: {x: 0, y: 0, z: 0}
+    screenPositionOffset: {x: 0, y: 0}
+    screenWobbleDirection: {x: 0, y: 1}
+    screenRotation: 0
   interactablePreview:
     scale: {x: 1, y: 1, z: 1}
     position: {x: 0, y: 0, z: 0}
@@ -937,7 +940,7 @@ Transform:
   m_LocalScale: {x: 0.9999999, y: 1.0000001, z: 1}
   m_Children: []
   m_Father: {fileID: 1719685689}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0.15400001, y: -222.61699, z: 183.06699}
 --- !u!108 &37563148
 Light:
@@ -24423,7 +24426,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1719685689}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &418881172
 PrefabInstance:
@@ -25673,7 +25676,7 @@ Transform:
   m_Children:
   - {fileID: 1487940732}
   m_Father: {fileID: 773997870}
-  m_RootOrder: 26
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &463655439
 PrefabInstance:
@@ -26816,7 +26819,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.08185, z: 1}
   m_Children: []
   m_Father: {fileID: 1719685689}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &496056292
 PrefabInstance:
@@ -27911,6 +27914,9 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 1.28, z: 0}
   interactableTracker:
     positionOffset: {x: 0, y: 0, z: 0}
+    screenPositionOffset: {x: 0, y: 0}
+    screenWobbleDirection: {x: 0, y: 1}
+    screenRotation: 0
   interactablePreview:
     scale: {x: 1, y: 1, z: 1}
     position: {x: 0.3, y: -0.71, z: -0.78}
@@ -28352,6 +28358,9 @@ MonoBehaviour:
     positionOffset: {x: 0.19, y: 0, z: 0.92}
   interactableTracker:
     positionOffset: {x: 0, y: 0, z: 0}
+    screenPositionOffset: {x: 0, y: 0}
+    screenWobbleDirection: {x: 0, y: 1}
+    screenRotation: 0
   interactablePreview:
     scale: {x: 1, y: 1, z: 1}
     position: {x: 0, y: -0.94, z: 0}
@@ -28634,6 +28643,9 @@ MonoBehaviour:
     positionOffset: {x: -0.8, y: 0.75, z: -0.09}
   interactableTracker:
     positionOffset: {x: 0, y: 0, z: 0}
+    screenPositionOffset: {x: 0, y: 0}
+    screenWobbleDirection: {x: 0, y: 1}
+    screenRotation: 0
   interactablePreview:
     scale: {x: 1, y: 1, z: 1}
     position: {x: 0.43, y: -0.93, z: -0.91}
@@ -29445,7 +29457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4914961e081db734eac9b88a5e1bf057, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4914961e081db734eac9b88a5e1bf057, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -30434,7 +30446,7 @@ Transform:
   m_Children:
   - {fileID: 602720056}
   m_Father: {fileID: 960984220}
-  m_RootOrder: 6
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 40.329002, z: 0}
 --- !u!1001 &635871910
 PrefabInstance:
@@ -32053,6 +32065,137 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 674487585}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &676338252
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1719685689}
+    m_Modifications:
+    - target: {fileID: 6274164448505257901, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: m_Name
+      value: HUD Tutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274164448505257872, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274164448505257872, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274164448505257872, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274164448505257872, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274164448505257872, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274164448505257872, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274164448505257872, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274164448505257872, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274164448505257872, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274164448505257872, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274164448505257872, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274164448505257872, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274164448505257872, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274164448505257872, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274164448505257872, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274164448505257872, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274164448505257872, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274164448505257872, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274164448505257872, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274164448505257872, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274164448505257872, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3449109697578498218, guid: 7eb9e99520d0348efb9e16e510818aa5,
+        type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 143e365a7ea204d0189aad0fb414c4b0,
+        type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7eb9e99520d0348efb9e16e510818aa5, type: 3}
+--- !u!224 &676338253 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6274164448505257872, guid: 7eb9e99520d0348efb9e16e510818aa5,
+    type: 3}
+  m_PrefabInstance: {fileID: 676338252}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &677217718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32651,7 +32794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 646eca6feb363a74183e9bfe98a0bdc7, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 646eca6feb363a74183e9bfe98a0bdc7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -33172,6 +33315,9 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
   interactableTracker:
     positionOffset: {x: 0, y: 0, z: 0}
+    screenPositionOffset: {x: 0, y: 0}
+    screenWobbleDirection: {x: 0, y: 1}
+    screenRotation: 0
   interactablePreview:
     scale: {x: 1, y: 1, z: 1}
     position: {x: 0, y: 0, z: 0}
@@ -33884,7 +34030,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1719685689}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 26.641, y: -145.621, z: 220.997}
 --- !u!1 &748334812
 GameObject:
@@ -34299,6 +34445,9 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 1.6, z: 0}
   interactableTracker:
     positionOffset: {x: 0, y: 0, z: 0}
+    screenPositionOffset: {x: 0, y: 0}
+    screenWobbleDirection: {x: 0, y: 1}
+    screenRotation: 0
   interactablePreview:
     scale: {x: 0.1, y: 0.1, z: 0.1}
     position: {x: -0.12, y: -0.24, z: -3.24}
@@ -34460,6 +34609,7 @@ Transform:
   - {fileID: 1080967184}
   - {fileID: 807509962}
   - {fileID: 401442413}
+  - {fileID: 462230000}
   - {fileID: 429134494}
   - {fileID: 620703095}
   - {fileID: 1481762715}
@@ -34483,7 +34633,6 @@ Transform:
   - {fileID: 2078875613}
   - {fileID: 433500757}
   - {fileID: 1734049165}
-  - {fileID: 462230000}
   - {fileID: 1682358677}
   - {fileID: 38710571}
   m_Father: {fileID: 1906046610}
@@ -43935,12 +44084,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 506857776}
+  - {fileID: 634190212}
   - {fileID: 1463150103}
   - {fileID: 330574479}
   - {fileID: 840841244}
   - {fileID: 969961706}
   - {fileID: 903754614}
-  - {fileID: 634190212}
+  - {fileID: 1800825785}
   - {fileID: 147585266}
   - {fileID: 1725934707}
   - {fileID: 1511275576}
@@ -43954,7 +44104,6 @@ Transform:
   - {fileID: 562276449}
   - {fileID: 917849669}
   - {fileID: 388054291}
-  - {fileID: 1800825785}
   - {fileID: 521406366}
   - {fileID: 2007761324}
   - {fileID: 1515871482}
@@ -56021,6 +56170,9 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 1.4, z: 0.21}
   interactableTracker:
     positionOffset: {x: 0, y: 0, z: 0}
+    screenPositionOffset: {x: 0, y: 0}
+    screenWobbleDirection: {x: 0, y: 1}
+    screenRotation: 0
   interactablePreview:
     scale: {x: 1, y: 1, z: 1}
     position: {x: 0, y: -2.47, z: 4.25}
@@ -57651,7 +57803,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.08185, z: 1}
   m_Children: []
   m_Father: {fileID: 1719685689}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1110338387
 PrefabInstance:
@@ -69007,6 +69159,9 @@ MonoBehaviour:
     positionOffset: {x: 0.14, y: 0.1, z: -0.25}
   interactableTracker:
     positionOffset: {x: 0, y: 0, z: 0}
+    screenPositionOffset: {x: 0, y: 0}
+    screenWobbleDirection: {x: 0, y: 1}
+    screenRotation: 0
   interactablePreview:
     scale: {x: 1, y: 1, z: 1}
     position: {x: 0, y: 0, z: -2.25}
@@ -78995,7 +79150,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1.0000002, z: 1}
   m_Children: []
   m_Father: {fileID: 1719685689}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: -20.739, y: -329.879, z: 194.26999}
 --- !u!108 &1463053924
 Light:
@@ -90912,6 +91067,9 @@ MonoBehaviour:
     positionOffset: {x: 1.69, y: 1.34, z: 0.69}
   interactableTracker:
     positionOffset: {x: 0, y: 0, z: 0}
+    screenPositionOffset: {x: 0, y: 0}
+    screenWobbleDirection: {x: 0, y: 1}
+    screenRotation: 0
   interactablePreview:
     scale: {x: 0.01, y: 0.01, z: 0.01}
     position: {x: 0.74, y: -0.53, z: 0}
@@ -98793,6 +98951,9 @@ MonoBehaviour:
     positionOffset: {x: -0.37, y: 0.73, z: 1.29}
   interactableTracker:
     positionOffset: {x: 0, y: 0, z: 0}
+    screenPositionOffset: {x: 0, y: 0}
+    screenWobbleDirection: {x: 0, y: 1}
+    screenRotation: 0
   interactablePreview:
     scale: {x: 1, y: 1, z: 1}
     position: {x: 0.64, y: -1.7, z: 2.68}
@@ -104489,6 +104650,7 @@ Transform:
   - {fileID: 1630580614}
   - {fileID: 210201984}
   - {fileID: 1472230261}
+  - {fileID: 676338253}
   - {fileID: 161936025}
   - {fileID: 417357774}
   - {fileID: 495776159}
@@ -106795,6 +106957,9 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 1.81, z: -0.09}
   interactableTracker:
     positionOffset: {x: 0, y: 0, z: 0}
+    screenPositionOffset: {x: 0, y: 0}
+    screenWobbleDirection: {x: 0, y: 1}
+    screenRotation: 0
   interactablePreview:
     scale: {x: 1, y: 1, z: 1}
     position: {x: 0, y: -0.89, z: -1.77}
@@ -107098,7 +107263,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 960984220}
-  m_RootOrder: 20
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &1800825786
 Light:
@@ -108661,6 +108826,9 @@ MonoBehaviour:
     positionOffset: {x: 0.99, y: -0.45, z: -0.61}
   interactableTracker:
     positionOffset: {x: 0, y: 0, z: 0}
+    screenPositionOffset: {x: 0, y: 0}
+    screenWobbleDirection: {x: 0, y: 1}
+    screenRotation: 0
   interactablePreview:
     scale: {x: 0.007, y: 0.007, z: 0.007}
     position: {x: 0, y: 0, z: 0}
@@ -109046,6 +109214,9 @@ MonoBehaviour:
     positionOffset: {x: 0.54, y: -0.13, z: 0.57}
   interactableTracker:
     positionOffset: {x: 0, y: 0, z: 0}
+    screenPositionOffset: {x: 0, y: 0}
+    screenWobbleDirection: {x: 0, y: 1}
+    screenRotation: 0
   interactablePreview:
     scale: {x: 1, y: 1, z: 1}
     position: {x: 0.48, y: 0.3, z: 0}
@@ -111029,6 +111200,9 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
   interactableTracker:
     positionOffset: {x: 0, y: 0, z: 0}
+    screenPositionOffset: {x: 0, y: 0}
+    screenWobbleDirection: {x: 0, y: 1}
+    screenRotation: 0
   interactablePreview:
     scale: {x: 1, y: 1, z: 1}
     position: {x: 0, y: 0, z: -3.57}
@@ -111473,6 +111647,9 @@ MonoBehaviour:
     positionOffset: {x: -0.19, y: 0.66, z: -0.03}
   interactableTracker:
     positionOffset: {x: 0, y: 0, z: 0}
+    screenPositionOffset: {x: 0, y: 0}
+    screenWobbleDirection: {x: 0, y: 1}
+    screenRotation: 0
   interactablePreview:
     scale: {x: 1, y: 1, z: 1}
     position: {x: -0.47, y: 0, z: 1.2}
@@ -122865,6 +123042,9 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0.4, z: 0}
   interactableTracker:
     positionOffset: {x: 0, y: 0, z: 0}
+    screenPositionOffset: {x: 0, y: 0}
+    screenWobbleDirection: {x: 0, y: 1}
+    screenRotation: 0
   interactablePreview:
     scale: {x: 1, y: 1, z: 1}
     position: {x: 0, y: 0, z: 0}
@@ -134036,6 +134216,9 @@ MonoBehaviour:
     positionOffset: {x: 0.54, y: -2.1, z: 0.89}
   interactableTracker:
     positionOffset: {x: 0, y: 0, z: 0}
+    screenPositionOffset: {x: 0, y: 0}
+    screenWobbleDirection: {x: 0, y: 1}
+    screenRotation: 0
   interactablePreview:
     scale: {x: 1, y: 1, z: 1}
     position: {x: 0.4, y: -0.91, z: 0}
@@ -134338,7 +134521,7 @@ PrefabInstance:
     - target: {fileID: 7041822371399296747, guid: 7c0ca3f27bb99eb448aa5f432f216a78,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 7041822371399296747, guid: 7c0ca3f27bb99eb448aa5f432f216a78,
         type: 3}
@@ -134650,6 +134833,9 @@ MonoBehaviour:
     positionOffset: {x: 0, y: -1.1, z: 0.6}
   interactableTracker:
     positionOffset: {x: 0, y: 0, z: 0}
+    screenPositionOffset: {x: 0, y: 0}
+    screenWobbleDirection: {x: 0, y: 1}
+    screenRotation: 0
   interactablePreview:
     scale: {x: 1, y: 1, z: 1}
     position: {x: 1.51, y: -1.73, z: 2.43}
