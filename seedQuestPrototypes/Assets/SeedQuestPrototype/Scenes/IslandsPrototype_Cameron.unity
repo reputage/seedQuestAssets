@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.39028198, g: 0.307179, b: 0.08763089, a: 1}
+  m_IndirectSpecularColor: {r: 0.58577895, g: 0.3960725, b: 0.15657859, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -52,11 +52,11 @@ LightmapSettings:
     m_AlbedoBoost: 1
     m_EnvironmentLightingMode: 1
     m_EnableBakedLightmaps: 1
-    m_EnableRealtimeLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 10
     m_Resolution: 2
-    m_BakeResolution: 40
+    m_BakeResolution: 20
     m_AtlasSize: 1024
     m_AO: 0
     m_AOMaxDistance: 1
@@ -4607,7 +4607,7 @@ Transform:
   - {fileID: 4706540951857198}
   - {fileID: 4798309946814046}
   m_Father: {fileID: 4857117532719972}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &389204340 stripped
 GameObject:
@@ -18793,7 +18793,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -19930,7 +19930,7 @@ Transform:
   - {fileID: 898485986}
   - {fileID: 704336189}
   m_Father: {fileID: 4857117532719972}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1180258982
 GameObject:
@@ -20346,7 +20346,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -21640,7 +21640,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1316102223
 Transform:
   m_ObjectHideFlags: 0
@@ -22198,7 +22198,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -29566,7 +29566,7 @@ Transform:
   - {fileID: 4556022587866434}
   - {fileID: 4468171699711040}
   m_Father: {fileID: 4857117532719972}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1966528825
 PrefabInstance:
@@ -33509,10 +33509,10 @@ Transform:
   m_LocalPosition: {x: 10.1, y: 2.71, z: 38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 509540145}
   - {fileID: 387229479}
   - {fileID: 1965554384}
   - {fileID: 1172475408}
+  - {fileID: 509540145}
   m_Father: {fileID: 4556592779252174}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -64.69601, z: 0}
@@ -36344,8 +36344,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.04, y: 0.05, z: 0.03}
-  m_Center: {x: 0, y: 0, z: 0.005}
+  m_Size: {x: 0.01, y: 0.04, z: 0.03}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65063707962634064
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38137,6 +38137,7 @@ GameObject:
   - component: {fileID: 5136002484001007696}
   - component: {fileID: 1235941129835392208}
   - component: {fileID: 1235941129835392207}
+  - component: {fileID: 1235941129835392209}
   m_Layer: 0
   m_Name: SaloonNPC_PokerPlayers_Dandy 1
   m_TagString: Untagged
@@ -38199,8 +38200,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.31, y: 1, z: 1.08}
+  m_Size: {x: 3.31, y: 3.23, z: 0.31}
   m_Center: {x: 0.58, y: 0, z: 0.79}
+--- !u!65 &1235941129835392209
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235941129835392206}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.29, y: 3.19, z: 2.89}
+  m_Center: {x: 2, y: 0, z: 0}
 --- !u!4 &1243963508861256489
 Transform:
   m_ObjectHideFlags: 0
