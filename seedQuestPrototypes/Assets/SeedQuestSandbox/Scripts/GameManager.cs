@@ -100,11 +100,4 @@ public class GameManager : MonoBehaviour {
             }
         }
     }
-
-    public void CheckButtonClick() {
-        if (Cursor.lockState == CursorLockMode.Locked) {
-            ClickButtons();
-        }
-    }
-
 } 
