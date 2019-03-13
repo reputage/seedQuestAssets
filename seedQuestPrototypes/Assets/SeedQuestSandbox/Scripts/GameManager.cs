@@ -86,9 +86,24 @@ public class GameManager : MonoBehaviour {
     public void ListenForKeyDown() {
         if (Input.GetKeyDown("escape") && Mode != GameMode.Sandbox) {
             if (menu)
-                menu.SetActive(true);
-            //else
-            //    menu.SetActive(false);
+            {
+                if (menu.activeSelf)
+                {
+                    state = MenuUI.PrevState;
+                    MenuUI.StateSaved = false;
+                    menu.SetActive(false);
+                }
+                else
+                {
+                    menu.SetActive(true);
+                }
+            }
+        }
+    }
+
+    public void CheckButtonClick() {
+        if (Cursor.lockState == CursorLockMode.Locked) {
+            ClickButtons();
         }
     }
 
