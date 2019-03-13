@@ -89,9 +89,19 @@ public class GameManager : MonoBehaviour {
     public void ListenForKeyDown() {
         if (Input.GetKeyDown("escape") && Mode != GameMode.Sandbox) {
             //SceneManager.LoadScene("PrototypeSelect");
+            Debug.Log(state);
             if (menu)
             {
-                menu.SetActive(true);
+                if (menu.activeSelf)
+                {
+                    state = MenuUI.PrevState;
+                    MenuUI.StateSaved = false;
+                    menu.SetActive(false);
+                }
+                else
+                {
+                    menu.SetActive(true);
+                }
             }
         }
     }

@@ -5,14 +5,28 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class menuUI : MonoBehaviour
+public class MenuUI : MonoBehaviour
 {
     private Button close;
     private Button cancel;
     private Button quit;
     private Button levelSelect;
 
-    private GameState previousState;
+    private GameState prevState;
+    private bool stateSaved = false;
+    private static MenuUI instance = null;
+
+    public static MenuUI Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = GameObject.FindObjectOfType<MenuUI>();
+            }
+            return instance;
+        }
+    }
 
     void Start()
     {
@@ -37,22 +51,37 @@ public class menuUI : MonoBehaviour
             quit.transform.localPosition = new Vector3(225, cancel.transform.localPosition.y, 0);
         }
 
+        stateSaved = false;
         gameObject.SetActive(false);
+    }
+
+    public static GameState PrevState
+    {
+        get { return Instance.prevState; }
+        set { Instance.prevState = value; }
+    }
+
+    public static bool StateSaved
+    {
+        get { return Instance.stateSaved; }
+        set { Instance.stateSaved = value; }
     }
 
     public void Update()
     {
-        if (gameObject.activeSelf)
+        if (gameObject.activeSelf && !stateSaved)
         {
-            previousState = GameManager.State;
+            stateSaved = true;
+            prevState = GameManager.State;
             GameManager.State = GameState.Menu;
         }
     }
 
     public void onCancelClick()
     {
+        GameManager.State = prevState;
+        stateSaved = false;
         gameObject.SetActive(false);
-        GameManager.State = previousState;
     }
 
     public void onQuitClick()
@@ -67,6 +96,8 @@ public class menuUI : MonoBehaviour
             return;
         }
 
+        stateSaved = false;
+        gameObject.SetActive(false);
         SceneManager.LoadScene("PrototypeSelect");
     }
 }
