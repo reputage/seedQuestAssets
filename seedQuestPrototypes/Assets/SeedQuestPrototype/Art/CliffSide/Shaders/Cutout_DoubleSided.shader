@@ -48,9 +48,9 @@ Shader "Amplify/CutoutDoubleSided"
 }
 /*ASEBEGIN
 Version=16200
--421;-1320;1906;1124;1230;353.5;1;True;True
+-779;-1433;1818;1054;1376.5;455;1;True;True
 Node;AmplifyShaderEditor.SamplerNode;1;-736,-105.5;Float;True;Property;_TextureSample0;Texture Sample 0;2;0;Create;True;0;0;False;0;None;6be51ee8804b2f941b9431372e5297b0;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.ColorNode;3;-684,-312.5;Float;False;Property;_Color;Color;1;0;Create;True;0;0;False;0;0,0,0,0;0.05740476,0.263899,0.2830189,1;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.ColorNode;3;-684,-312.5;Float;False;Property;_Color;Color;1;0;Create;True;0;0;False;0;0,0,0,0;0.1917497,0.2849933,0.2924528,1;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.RangedFloatNode;7;-742,190.5;Float;False;Property;_EmissionPower;EmissionPower;3;0;Create;True;0;0;False;0;0;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;10;-347,-23.5;Float;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;4;-323,-200.5;Float;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
@@ -66,4 +66,4 @@ WireConnection;0;0;4;0
 WireConnection;0;2;11;0
 WireConnection;0;10;1;4
 ASEEND*/
-//CHKSM=3EB1F9E48442FB2A220F02FC03CAB956F475CF4F
+//CHKSM=8AAC4972D0AE48045BACF71BBB6D172FA16D7624
