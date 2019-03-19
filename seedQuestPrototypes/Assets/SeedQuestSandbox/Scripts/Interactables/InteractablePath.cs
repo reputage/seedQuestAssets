@@ -30,6 +30,9 @@ namespace SeedQuest.Interactables
             get { return Instance.path; }
         }
 
+        /// <summary> Gets number of path elements </summary>
+        static public int Count { get => Instance.path.Count; }
+
         /// <summary> Path Percent Complete based on ActionsPerGame </summary>
         static public float PercentComplete {
             get { return 100.0f * Instance.nextIndex / InteractableConfig.ActionsPerGame; }
@@ -88,6 +91,20 @@ namespace SeedQuest.Interactables
         /// <summary> Reset Path Index for NextInteractable to First Interactable in Path </summary>
         static public void ResetPath() {
             Instance.nextIndex = 0;
+        }
+
+        static public void UndoLastAction() {
+            if (GameManager.Mode == GameMode.Rehearsal) {
+                InteractableLog.UndoLastAction();
+
+                if (Instance.nextIndex > 0)
+                    Instance.nextIndex--;
+
+                // TODO: fix Danger to break for muli-level
+
+                if (NextInteractable != null)
+                    InitializeNextInteractable();
+            }
         }
 
         /// <summary> Increament NextIndex and Initialize NextInteractable in Path </summary>

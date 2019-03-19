@@ -50,6 +50,9 @@ namespace SeedQuest.Interactables
             get { return Instance.log; }
         }
 
+        /// <summary> Gets number of log elements </summary>
+        static public int Count { get => Instance.log.Count; }
+
         /// <summary> Path Percent Complete based on ActionsPerGame </summary>
         static public float PercentComplete {
             get { return 100.0f * Instance.log.Count / InteractableConfig.ActionsPerGame; }
@@ -71,6 +74,16 @@ namespace SeedQuest.Interactables
 
             if (GameManager.Mode == GameMode.Recall && PathLevelComplete)
                 InteractablePathManager.ShowLevelComplete = true;
+        }
+
+        /// <summary> Removes the last action from log </summary>
+        static public void UndoLastAction()
+        {
+            int count = Instance.log.Count;
+            if (count == 0)
+                return;
+
+            Instance.log.RemoveAt(count - 1);
         }
 
         /// <summary> Clear all Interactables from Log </summary>
