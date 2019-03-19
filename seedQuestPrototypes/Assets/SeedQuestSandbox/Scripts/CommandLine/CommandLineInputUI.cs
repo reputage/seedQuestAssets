@@ -46,7 +46,6 @@ public class CommandLineInputUI : MonoBehaviour
         {
             if (previousCommandIndex > 0)
                 previousCommandIndex -= 1;
-            Debug.Log("Index: " + previousCommandIndex + " command: " + previousCommands[previousCommandIndex]);
             inputField.text = previousCommands[previousCommandIndex];
         }
 
@@ -59,7 +58,6 @@ public class CommandLineInputUI : MonoBehaviour
                 inputField.text = "";
             else
             {
-                Debug.Log("Index: " + previousCommandIndex + " command: " + previousCommands[previousCommandIndex]);
                 inputField.text = previousCommands[previousCommandIndex];
             }
         }
@@ -139,22 +137,24 @@ public class CommandLineInputUI : MonoBehaviour
         if (!ready)
         {
             // Deactivate the UI
+            GameManager.State = GameManager.PrevState;
             clearInputField();
             stopFade();
             ready = true;
             setActiveUi(false);
-            CommandLineManager.isInUse = true;
+            CommandLineManager.isInUse = false;
         }
         else
         {
             // Activate the UI
+            GameManager.State = GameState.Menu;
             stopFade();
             ready = false;
             setActiveUi(true);
             clearInputField();
             inputField.ActivateInputField();
             inputField.Select();
-            CommandLineManager.isInUse = false;
+            CommandLineManager.isInUse = true;
         }
     }
 
