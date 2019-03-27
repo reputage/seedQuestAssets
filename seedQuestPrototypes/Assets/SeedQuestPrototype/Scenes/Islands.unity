@@ -6607,7 +6607,7 @@ PrefabInstance:
     - target: {fileID: 6925616654543359111, guid: c7e17dee644d68e41b3a34f350897f25,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6925616654543359111, guid: c7e17dee644d68e41b3a34f350897f25,
         type: 3}
@@ -11215,7 +11215,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Recall
+  m_text: Recover
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 749b9069dc4742c5bfa5c74644049926, type: 2}
@@ -24207,6 +24207,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ThirdPersonCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 20980062005793202, guid: eb8b5c531e4bff74eb285c4b4d480dfe,
+        type: 3}
+      propertyPath: m_ForceIntoRT
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4355465149204088, guid: eb8b5c531e4bff74eb285c4b4d480dfe, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.55
@@ -24257,11 +24262,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4355465149204088, guid: eb8b5c531e4bff74eb285c4b4d480dfe, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 20980062005793202, guid: eb8b5c531e4bff74eb285c4b4d480dfe,
-        type: 3}
-      propertyPath: m_ForceIntoRT
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 23138441768784448, guid: eb8b5c531e4bff74eb285c4b4d480dfe,
@@ -33662,6 +33662,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d228b7fed6559458aaa09302b8feb94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PrototypeSelectScene: PrototypeSelect
+  RehearsalScene: Islands
+  RecallScene: Islands
 --- !u!114 &1702477151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37625,9 +37628,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'Rehearsal
-
-'
+  m_text: Learn
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 749b9069dc4742c5bfa5c74644049926, type: 2}
@@ -38509,11 +38510,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 886424043}
-  - {fileID: 57518734}
+  - {fileID: 4556022587866434}
   - {fileID: 9201202466096711066}
   - {fileID: 8309100082378171622}
   - {fileID: 5136002484001007696}
-  - {fileID: 4556022587866434}
+  - {fileID: 57518734}
   - {fileID: 4468171699711040}
   m_Father: {fileID: 4857117532719972}
   m_RootOrder: 1
@@ -41104,6 +41105,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1114428110661150, guid: ebba1f71b28acad4e8c44439dac62f18,
         type: 3}
+    - target: {fileID: 6973026263860940960, guid: 60efb4839362f4a89a682dcacc4ed593,
+        type: 3}
+      propertyPath: GameSounds
+      value: 
+      objectReference: {fileID: 11400000, guid: fd5428d4e6c1867408a794d77d546701,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60efb4839362f4a89a682dcacc4ed593, type: 3}
 --- !u!1 &2115913076
@@ -43288,7 +43295,7 @@ Transform:
   m_LocalScale: {x: 63.992867, y: 102.44008, z: 102.44006}
   m_Children: []
   m_Father: {fileID: 1965554384}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: -59.461002}
 --- !u!4 &4556592779252174
 Transform:
@@ -47563,7 +47570,7 @@ MonoBehaviour:
     useRotate: 0
     rotateSpeed: 25
   interactableHighlights:
-    useHighlightsShader: 1
+    useHighlightsShader: 0
   ID:
     siteID: 1
     spotID: 6
