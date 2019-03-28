@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -29,8 +30,7 @@ public class DemoSelectUI : MonoBehaviour {
     private Button[] buttons;
     private TMP_InputField seedInputField;
 
-    private void Start()
-    {
+    private void Start() {
         GameManager.ResetCursor();
         InteractableManager.Reset();
         InteractablePathManager.Reset();
@@ -53,8 +53,7 @@ public class DemoSelectUI : MonoBehaviour {
         demoList[0].select.onClick.Invoke();
     }
 
-    private void selectDemo(DemoInfo info)
-    {
+    private void selectDemo(DemoInfo info) {
         TextMeshProUGUI infoName = GetComponentsInChildren<Canvas>()[3].GetComponentInChildren<TextMeshProUGUI>();
         TextMeshProUGUI infoTitle = GameObject.FindGameObjectWithTag("InfoTitle").GetComponentInChildren<TextMeshProUGUI>();
         TextMeshProUGUI infoText = GameObject.FindGameObjectWithTag("InfoText").GetComponentInChildren<TextMeshProUGUI>();
@@ -83,8 +82,7 @@ public class DemoSelectUI : MonoBehaviour {
         SetupSurveySelect(info);
     }
 
-    public void SetupSurveySelect(DemoInfo info)
-    {
+    public void SetupSurveySelect(DemoInfo info) {
         if (info.name == "Survey")
         {
             buttons[0].gameObject.SetActive(false);
@@ -101,14 +99,12 @@ public class DemoSelectUI : MonoBehaviour {
         }
     }
 
-    public void startDemo()
-    {
+    public void startDemo() {
         string sceneName = selectedDemo.sceneName;
         SceneManager.LoadScene(sceneName);
     }
 
-    public bool CheckValidSeed()
-    {
+    public bool CheckValidSeed() {
         bool valid = seedInputField.text.Length == 10 && SeedQuest.Utils.StringUtils.CheckIfValidHex(seedInputField.text);
         if (!valid)
             GetComponentInChildren<CardPopupUI>(true).toggleShow();
@@ -116,32 +112,23 @@ public class DemoSelectUI : MonoBehaviour {
         return valid;
     }
 
-    public void StartDemoWithRehearsalMode()
-    {
+    public void StartDemoWithRehearsalMode() {
         if (!CheckValidSeed())
             return;
-
         InteractablePathManager.SeedString = seedInputField.text;
-
-        GameManager.Mode = GameMode.Rehearsal;
         string sceneName = selectedDemo.sceneName;
-        SceneManager.LoadScene(sceneName);
+        LoadingScreenUI.LoadRehearsal(sceneName);
     }
 
-    public void StartDemoWithRecallMode()
-    {
+    public void StartDemoWithRecallMode() {
         if (!CheckValidSeed())
             return;
-
         InteractablePathManager.SeedString = seedInputField.text;
-
-        GameManager.Mode = GameMode.Recall;
         string sceneName = selectedDemo.sceneName;
-        SceneManager.LoadScene(sceneName);
-    }
+        LoadingScreenUI.LoadRecall(sceneName);
+    } 
 
-    private Button createLevelButton(DemoInfo info, Transform parent, Vector3 position)
-    {
+    private Button createLevelButton(DemoInfo info, Transform parent, Vector3 position) {
         GameObject buttonObj = Instantiate(selectButtonPrefab);
         buttonObj.transform.SetParent(parent);
         buttonObj.GetComponent<RectTransform>().anchoredPosition3D = position;
