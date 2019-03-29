@@ -30,7 +30,7 @@ namespace SeedQuest.Interactables {
         public InteractableLog log;
 
         /// <summary> Seed String </summary>
-        public static string SeedString = "EB204654C9";
+        public static string SeedString = "EB20465C"; //"EB204654C9";
 
         /// <summary> Has the Interactabled Path been initialized before important for MultiLevel Games </summary>
         static public bool IsPathInitialized = false;
