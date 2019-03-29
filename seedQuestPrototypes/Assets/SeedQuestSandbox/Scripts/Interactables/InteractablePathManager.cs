@@ -30,7 +30,7 @@ namespace SeedQuest.Interactables {
         public InteractableLog log;
 
         /// <summary> Seed String </summary>
-        public static string SeedString = "EB20465C"; //"EB204654C9";
+        public static string SeedString = "EBE0AC8C"; //"EB204654C9";
 
         /// <summary> Has the Interactabled Path been initialized before important for MultiLevel Games </summary>
         static public bool IsPathInitialized = false;
@@ -92,12 +92,11 @@ namespace SeedQuest.Interactables {
         }
 
         static public void InitializeSeed() {
-            SeedString = "EB204654C9";
-            //seedString = RandomUtils.GetRandomHexNumber(10);
+            SeedString = "EBE0AC8C";
         }
 
         static public void SetRandomSeed() {
-            SeedString = RandomUtils.GetRandomHexNumber(10);
+            SeedString = RandomUtils.GetRandomHexNumber(InteractableConfig.SeedHexLength);
         }
 
         static public void Reset() {
