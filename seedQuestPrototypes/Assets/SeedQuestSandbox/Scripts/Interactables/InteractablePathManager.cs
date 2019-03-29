@@ -70,8 +70,6 @@ namespace SeedQuest.Interactables {
             }
             else if(GameManager.Mode == GameMode.Recall) {
                 if(InteractableLog.PathComplete) {
-                    SeedConverter converter = new SeedConverter();
-                    SeedString = converter.DecodeSeed();
                     GameManager.State = GameState.End;
                     EndGameUI.ToggleOn();
                 }
