@@ -2682,6 +2682,15 @@ MonoBehaviour:
     rotateSpeed: 25
   interactableHighlights:
     useHighlightsShader: 0
+    highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    highlightPower: 0.2
+    rimColor: {r: 1, g: 1, b: 1, a: 1}
+    rimExponent: 3
+    rimPower: 0.6
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineWidth: 0.02
+    outlinePower: 0.1
+    dynamicFlashSpeed: 0.5
   ID:
     siteID: 0
     spotID: 4
@@ -2970,12 +2979,17 @@ PrefabInstance:
     - target: {fileID: 6562989881010450876, guid: 1cd9f1ac11800a54b919b27773e57a0b,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6562989881010450876, guid: 1cd9f1ac11800a54b919b27773e57a0b,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6562989881010450876, guid: 1cd9f1ac11800a54b919b27773e57a0b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4341204893479405939, guid: 1cd9f1ac11800a54b919b27773e57a0b,
         type: 3}
@@ -7851,6 +7865,14 @@ PrefabInstance:
       propertyPath: ID.actionID
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1126905830, guid: c7e17dee644d68e41b3a34f350897f25, type: 3}
+      propertyPath: interactableHighlights.rimExponent
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1126905830, guid: c7e17dee644d68e41b3a34f350897f25, type: 3}
+      propertyPath: interactableHighlights.rimPower
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1126905831, guid: c7e17dee644d68e41b3a34f350897f25, type: 3}
       propertyPath: m_Size.x
       value: 0.66
@@ -11757,13 +11779,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 586554127}
-  m_LocalRotation: {x: -0, y: -0.5396701, z: -0, w: 0.84187657}
-  m_LocalPosition: {x: -56.06, y: -2.259, z: -0.68}
-  m_LocalScale: {x: 1.5702928, y: 1.5702928, z: 1.5702928}
+  m_LocalRotation: {x: -0, y: -0.7178585, z: -0, w: -0.69618905}
+  m_LocalPosition: {x: 7.8426294, y: 0.5910001, z: -2.9539676}
+  m_LocalScale: {x: 1.5702938, y: 1.5702928, z: 1.5702938}
   m_Children:
   - {fileID: 586254125}
   - {fileID: 586254123}
-  m_Father: {fileID: 2085737151}
+  m_Father: {fileID: 4751930165056918}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -65.32201, z: 0}
 --- !u!1 &586554123
@@ -17660,6 +17682,15 @@ MonoBehaviour:
     rotateSpeed: 25
   interactableHighlights:
     useHighlightsShader: 1
+    highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    highlightPower: 0.2
+    rimColor: {r: 1, g: 1, b: 1, a: 1}
+    rimExponent: 3
+    rimPower: 0.6
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineWidth: 0.02
+    outlinePower: 0.1
+    dynamicFlashSpeed: 0.5
   ID:
     siteID: 0
     spotID: 3
@@ -19311,6 +19342,15 @@ MonoBehaviour:
     rotateSpeed: 25
   interactableHighlights:
     useHighlightsShader: 1
+    highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    highlightPower: 0.2
+    rimColor: {r: 1, g: 1, b: 1, a: 1}
+    rimExponent: 3
+    rimPower: 0.6
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineWidth: 0.02
+    outlinePower: 0.8
+    dynamicFlashSpeed: 0.5
   ID:
     siteID: 1
     spotID: 5
@@ -19874,7 +19914,7 @@ PrefabInstance:
     - target: {fileID: 6103598997049001751, guid: 54e1f0f989440f44b81a3857eb97d09d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6103598997049001751, guid: 54e1f0f989440f44b81a3857eb97d09d,
         type: 3}
@@ -21765,7 +21805,7 @@ MonoBehaviour:
     mode: 0
     useRotateToCamera: 0
     rotationOffset: {x: 0, y: -37.37, z: 0}
-    positionOffset: {x: 0.19, y: 0.36, z: -0.26}
+    positionOffset: {x: 0.19, y: 1.13, z: 0.38}
     debugActionUI: {fileID: 0}
   interactableTracker:
     positionOffset: {x: 0, y: 2.22, z: 0}
@@ -21785,10 +21825,19 @@ MonoBehaviour:
     rotateSpeed: 25
   interactableHighlights:
     useHighlightsShader: 1
+    highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    highlightPower: 0.2
+    rimColor: {r: 1, g: 1, b: 1, a: 1}
+    rimExponent: 3
+    rimPower: 0.6
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineWidth: 0.02
+    outlinePower: 0.1
+    dynamicFlashSpeed: 0.5
   ID:
     siteID: 0
     spotID: 2
-    actionID: 2
+    actionID: 1
   interactDistance: 2
   flagDeleteUI: 0
 --- !u!65 &976947939
@@ -27925,6 +27974,15 @@ MonoBehaviour:
     rotateSpeed: 25
   interactableHighlights:
     useHighlightsShader: 1
+    highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    highlightPower: 0.2
+    rimColor: {r: 1, g: 1, b: 1, a: 1}
+    rimExponent: 3
+    rimPower: 0.6
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineWidth: 0.02
+    outlinePower: 0.1
+    dynamicFlashSpeed: 0.5
   ID:
     siteID: 0
     spotID: 4
@@ -39777,6 +39835,15 @@ MonoBehaviour:
     rotateSpeed: 25
   interactableHighlights:
     useHighlightsShader: 1
+    highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    highlightPower: 0.2
+    rimColor: {r: 1, g: 1, b: 1, a: 1}
+    rimExponent: 3
+    rimPower: 0.6
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineWidth: 0.02
+    outlinePower: 0.1
+    dynamicFlashSpeed: 0.5
   ID:
     siteID: 0
     spotID: 7
@@ -42018,6 +42085,15 @@ MonoBehaviour:
     rotateSpeed: 25
   interactableHighlights:
     useHighlightsShader: 1
+    highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    highlightPower: 0.2
+    rimColor: {r: 1, g: 1, b: 1, a: 1}
+    rimExponent: 2
+    rimPower: 0.8
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineWidth: 0.02
+    outlinePower: 0.8
+    dynamicFlashSpeed: 0.5
   ID:
     siteID: 1
     spotID: 5
@@ -42159,9 +42235,8 @@ Transform:
   - {fileID: 1306214537}
   - {fileID: 4753302413347522}
   - {fileID: 976947937}
-  - {fileID: 586254127}
-  - {fileID: 805575059}
   - {fileID: 4476810747526628}
+  - {fileID: 805575059}
   m_Father: {fileID: 4751930165056918}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -44721,11 +44796,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1712884240363466}
   m_LocalRotation: {x: 0.5754901, y: 0.320007, z: 0.4108662, w: -0.6305519}
-  m_LocalPosition: {x: -50.50351, y: -1.5000001, z: -0.05577469}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -50.506, y: -0.845, z: -0.059}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 2085737151}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -81.383, y: 184.646, z: -90.00001}
 --- !u!4 &4484025281364444
 Transform:
@@ -45179,6 +45254,7 @@ Transform:
   - {fileID: 2085737151}
   - {fileID: 101294092}
   - {fileID: 1923120420}
+  - {fileID: 586254127}
   - {fileID: 1500460705804703095}
   - {fileID: 1052572800152864395}
   - {fileID: 4856654771779649139}
@@ -45196,7 +45272,7 @@ Transform:
   m_GameObject: {fileID: 1853914768888446}
   m_LocalRotation: {x: -0, y: 0.19869849, z: -0, w: 0.9800607}
   m_LocalPosition: {x: -49.90399, y: -1.2690002, z: -6.4957905}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 2085737151}
   m_RootOrder: 2
@@ -48039,7 +48115,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.01, y: 0.04, z: 0.03}
+  m_Size: {x: 0.04, y: 0.04, z: 0.03}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65063707962634064
 BoxCollider:
@@ -49224,7 +49300,16 @@ MonoBehaviour:
     useRotate: 0
     rotateSpeed: 25
   interactableHighlights:
-    useHighlightsShader: 0
+    useHighlightsShader: 1
+    highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    highlightPower: 0.2
+    rimColor: {r: 1, g: 1, b: 1, a: 1}
+    rimExponent: 3
+    rimPower: 0.6
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineWidth: 0.02
+    outlinePower: 0
+    dynamicFlashSpeed: 0.5
   ID:
     siteID: 1
     spotID: 6
@@ -49271,6 +49356,15 @@ MonoBehaviour:
     rotateSpeed: 25
   interactableHighlights:
     useHighlightsShader: 1
+    highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    highlightPower: 0.2
+    rimColor: {r: 1, g: 1, b: 1, a: 1}
+    rimExponent: 3
+    rimPower: 0.6
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineWidth: 0.02
+    outlinePower: 0.8
+    dynamicFlashSpeed: 0.5
   ID:
     siteID: 1
     spotID: 5
@@ -49297,7 +49391,7 @@ MonoBehaviour:
     mode: 0
     useRotateToCamera: 0
     rotationOffset: {x: 0, y: -43.6, z: 0}
-    positionOffset: {x: 0, y: 0, z: 0.04}
+    positionOffset: {x: 0, y: 0.85, z: 0.04}
     debugActionUI: {fileID: 0}
   interactableTracker:
     positionOffset: {x: 0, y: 1.08, z: 0}
@@ -49317,6 +49411,15 @@ MonoBehaviour:
     rotateSpeed: 25
   interactableHighlights:
     useHighlightsShader: 1
+    highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    highlightPower: 0.2
+    rimColor: {r: 1, g: 1, b: 1, a: 1}
+    rimExponent: 3
+    rimPower: 0.6
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineWidth: 0.001
+    outlinePower: 0.1
+    dynamicFlashSpeed: 0.5
   ID:
     siteID: 0
     spotID: 2
@@ -49359,7 +49462,7 @@ MonoBehaviour:
     mode: 0
     useRotateToCamera: 0
     rotationOffset: {x: 0, y: 144.43, z: 0}
-    positionOffset: {x: -0.05, y: 0.78, z: 0.49}
+    positionOffset: {x: 0.13, y: 1.65, z: 0.31}
     debugActionUI: {fileID: 0}
   interactableTracker:
     positionOffset: {x: 0, y: 1.41, z: 0}
@@ -49379,9 +49482,18 @@ MonoBehaviour:
     rotateSpeed: 25
   interactableHighlights:
     useHighlightsShader: 1
+    highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    highlightPower: 0.2
+    rimColor: {r: 1, g: 1, b: 1, a: 1}
+    rimExponent: 3
+    rimPower: 0.6
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineWidth: 0.005
+    outlinePower: 0.2
+    dynamicFlashSpeed: 0.5
   ID:
     siteID: 0
-    spotID: 4
+    spotID: 6
     actionID: 2
   interactDistance: 2
   flagDeleteUI: 0
@@ -49441,6 +49553,15 @@ MonoBehaviour:
     rotateSpeed: 25
   interactableHighlights:
     useHighlightsShader: 1
+    highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    highlightPower: 0.2
+    rimColor: {r: 1, g: 1, b: 1, a: 1}
+    rimExponent: 3
+    rimPower: 0.6
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineWidth: 0.02
+    outlinePower: 0.1
+    dynamicFlashSpeed: 0.5
   ID:
     siteID: 0
     spotID: 6
@@ -49516,7 +49637,7 @@ PrefabInstance:
     - target: {fileID: 4856654771779649139, guid: 0181d272dc3ea504b81b797e18df55fe,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4856654771779649139, guid: 0181d272dc3ea504b81b797e18df55fe,
         type: 3}
@@ -49792,7 +49913,7 @@ PrefabInstance:
     - target: {fileID: 2007746387346252219, guid: c89aa810f69b70d48aca4862e8a1d5d3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2007746387346252219, guid: c89aa810f69b70d48aca4862e8a1d5d3,
         type: 3}
@@ -49870,6 +49991,15 @@ MonoBehaviour:
     rotateSpeed: 25
   interactableHighlights:
     useHighlightsShader: 1
+    highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    highlightPower: 0.2
+    rimColor: {r: 1, g: 1, b: 1, a: 1}
+    rimExponent: 3
+    rimPower: 0.6
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineWidth: 0.02
+    outlinePower: 0.8
+    dynamicFlashSpeed: 0.5
   ID:
     siteID: 1
     spotID: 5
@@ -53476,7 +53606,7 @@ PrefabInstance:
     - target: {fileID: 1500460705804703095, guid: 87b0d8291fa7ff34285483f761878c81,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1500460705804703095, guid: 87b0d8291fa7ff34285483f761878c81,
         type: 3}
@@ -54021,6 +54151,15 @@ MonoBehaviour:
     rotateSpeed: 25
   interactableHighlights:
     useHighlightsShader: 1
+    highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    highlightPower: 0.2
+    rimColor: {r: 1, g: 1, b: 1, a: 1}
+    rimExponent: 3
+    rimPower: 0.6
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineWidth: 0.02
+    outlinePower: 0.8
+    dynamicFlashSpeed: 0.5
   ID:
     siteID: 1
     spotID: 3
@@ -54211,7 +54350,7 @@ PrefabInstance:
     - target: {fileID: 1052572800152864395, guid: 3b36de5da3ced254fb023f804ab473aa,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1052572800152864395, guid: 3b36de5da3ced254fb023f804ab473aa,
         type: 3}
@@ -59055,6 +59194,15 @@ MonoBehaviour:
     rotateSpeed: 25
   interactableHighlights:
     useHighlightsShader: 1
+    highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    highlightPower: 0.2
+    rimColor: {r: 1, g: 1, b: 1, a: 1}
+    rimExponent: 3
+    rimPower: 0.6
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineWidth: 0.02
+    outlinePower: 0.8
+    dynamicFlashSpeed: 0.5
   ID:
     siteID: 1
     spotID: 3
