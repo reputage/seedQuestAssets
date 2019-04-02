@@ -130,6 +130,7 @@ public class ProgressButton : MonoBehaviour
         GameManager.State = GameState.Interact;
 
         progressTime += Time.deltaTime;
+        animators[0].Play("ProgressHoverAnimation");
     }
 
     private void updateProgress() {
