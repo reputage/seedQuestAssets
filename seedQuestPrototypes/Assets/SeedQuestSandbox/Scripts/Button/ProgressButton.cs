@@ -155,6 +155,7 @@ public class ProgressButton : MonoBehaviour
             if(!progressComplete) {
                 checkmarkAnimate();
                 progressComplete = true;
+                progressTime = 0;
                 progressCompleteAction?.Invoke();
             }
         }
