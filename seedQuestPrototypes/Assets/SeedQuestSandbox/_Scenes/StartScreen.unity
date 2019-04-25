@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657856, g: 0.49641234, b: 0.57481724, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028353, g: 0.2257137, b: 0.30692255, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
-    serializedVersion: 10
+    serializedVersion: 12
     m_Resolution: 2
     m_BakeResolution: 40
     m_AtlasSize: 1024
@@ -62,6 +62,7 @@ LightmapSettings:
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
     m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
     m_Padding: 2
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
@@ -76,10 +77,16 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 500
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 2
+    m_PVRDenoiserTypeDirect: 0
+    m_PVRDenoiserTypeIndirect: 0
+    m_PVRDenoiserTypeAO: 0
     m_PVRFilterTypeDirect: 0
     m_PVRFilterTypeIndirect: 0
     m_PVRFilterTypeAO: 0
-    m_PVRFilteringMode: 1
+    m_PVREnvironmentMIS: 0
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
@@ -88,6 +95,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
+    m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -279,7 +287,6 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
-  m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -306,6 +313,7 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -320,12 +328,9 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
-  m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -439,7 +444,6 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
-  m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -466,6 +470,7 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -480,12 +485,9 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
-  m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -747,7 +749,6 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 32
   m_textAlignment: 514
-  m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -788,12 +789,9 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
-  m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -981,7 +979,6 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
-  m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -1022,12 +1019,9 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
-  m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -1141,7 +1135,6 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
-  m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -1168,6 +1161,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -1182,12 +1179,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -1340,6 +1343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cee8eb2e6c48349a26a31638185181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iconIndex: 9
   name: 
   scenename: 
   backgroundColor: {r: 0.18175, g: 0.727, b: 0.32374236, a: 1}
@@ -1367,17 +1371,24 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
@@ -1498,7 +1509,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -1525,6 +1539,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -1539,12 +1557,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -1660,7 +1684,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -1687,6 +1714,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -1701,12 +1732,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -1894,7 +1931,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -1921,6 +1961,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -1935,12 +1979,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -2054,7 +2104,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -2081,6 +2134,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -2095,12 +2152,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -2326,7 +2389,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -2353,6 +2419,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -2367,12 +2437,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -2635,7 +2711,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -2662,6 +2741,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -2676,12 +2759,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -3020,7 +3109,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -3047,6 +3139,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -3061,12 +3157,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -3180,7 +3282,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -3207,6 +3312,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -3221,12 +3330,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -3529,6 +3644,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cee8eb2e6c48349a26a31638185181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+  iconIndex: 14
+>>>>>>> dev
   name: 
   scenename: 
   backgroundColor: {r: 0.8490566, g: 0.83554703, b: 0.244304, a: 1}
@@ -3556,17 +3675,29 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+<<<<<<< HEAD
+=======
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+>>>>>>> dev
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+<<<<<<< HEAD
+=======
+    m_SelectedSprite: {fileID: 0}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
@@ -3658,17 +3789,29 @@ MonoBehaviour:
     m_NormalColor: {r: 0.9764706, g: 0.9019608, b: 0, a: 1}
     m_HighlightedColor: {r: 1, g: 0.94552356, b: 0.2688679, a: 1}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
+<<<<<<< HEAD
+=======
+    m_SelectedColor: {r: 1, g: 0.94552356, b: 0.2688679, a: 1}
+>>>>>>> dev
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+<<<<<<< HEAD
+=======
+    m_SelectedSprite: {fileID: 0}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1767875310}
@@ -3818,7 +3961,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 2
   m_textAlignment: 257
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -3845,6 +3991,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -3859,12 +4009,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -3978,7 +4134,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 513
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -4005,6 +4164,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -4019,12 +4182,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -4138,7 +4307,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -4165,6 +4337,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -4179,12 +4355,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -4243,9 +4425,16 @@ Camera:
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
+<<<<<<< HEAD
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
   m_GateFitMode: 2
+=======
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+>>>>>>> dev
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -4285,7 +4474,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 0
+=======
+  m_RootOrder: 1
+>>>>>>> dev
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &340666834
 GameObject:
@@ -4602,7 +4795,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -4629,6 +4825,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -4643,12 +4843,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -4836,7 +5042,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -4863,6 +5072,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -4877,12 +5090,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -5118,17 +5337,29 @@ MonoBehaviour:
     m_NormalColor: {r: 0.35266, g: 0.77156615, b: 0.916, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+<<<<<<< HEAD
+=======
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+>>>>>>> dev
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+<<<<<<< HEAD
+=======
+    m_SelectedSprite: {fileID: 0}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 414221411}
@@ -5459,7 +5690,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -5486,6 +5720,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -5500,12 +5738,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -5694,7 +5938,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -5721,6 +5968,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -5735,12 +5986,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -5854,7 +6111,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -5881,6 +6141,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -5895,12 +6159,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -6237,7 +6507,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -6264,6 +6537,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -6278,12 +6555,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -6471,7 +6754,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -6498,6 +6784,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -6512,12 +6802,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -6742,7 +7038,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -6769,6 +7068,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -6783,12 +7086,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -6902,7 +7211,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -6929,6 +7241,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -6943,12 +7259,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -7064,7 +7386,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -7091,6 +7416,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -7105,12 +7434,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -7299,7 +7634,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -7326,6 +7664,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -7340,12 +7682,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -7466,6 +7814,10 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 0.96085954, b: 0.34300005, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+<<<<<<< HEAD
+=======
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+>>>>>>> dev
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -7473,11 +7825,19 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: fe899fd449cc9034facb2e1c93b8c7c0,
       type: 3}
     m_PressedSprite: {fileID: 0}
+<<<<<<< HEAD
+=======
+    m_SelectedSprite: {fileID: 21300000, guid: fe899fd449cc9034facb2e1c93b8c7c0, type: 3}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 502765815}
@@ -7592,6 +7952,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cee8eb2e6c48349a26a31638185181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+  iconIndex: 2
+>>>>>>> dev
   name: 
   scenename: 
   backgroundColor: {r: 0.24382038, g: 0.8679245, b: 0.24154504, a: 1}
@@ -7619,17 +7983,29 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+<<<<<<< HEAD
+=======
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+>>>>>>> dev
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+<<<<<<< HEAD
+=======
+    m_SelectedSprite: {fileID: 0}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
@@ -7881,6 +8257,83 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 518400446}
   m_CullTransparentMesh: 0
+<<<<<<< HEAD
+=======
+--- !u!1001 &521785478
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5756832798645624810, guid: 60efb4839362f4a89a682dcacc4ed593,
+        type: 3}
+      propertyPath: m_Name
+      value: GameSystems
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159523895226436397, guid: 60efb4839362f4a89a682dcacc4ed593,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159523895226436397, guid: 60efb4839362f4a89a682dcacc4ed593,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159523895226436397, guid: 60efb4839362f4a89a682dcacc4ed593,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159523895226436397, guid: 60efb4839362f4a89a682dcacc4ed593,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159523895226436397, guid: 60efb4839362f4a89a682dcacc4ed593,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159523895226436397, guid: 60efb4839362f4a89a682dcacc4ed593,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159523895226436397, guid: 60efb4839362f4a89a682dcacc4ed593,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159523895226436397, guid: 60efb4839362f4a89a682dcacc4ed593,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159523895226436397, guid: 60efb4839362f4a89a682dcacc4ed593,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159523895226436397, guid: 60efb4839362f4a89a682dcacc4ed593,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159523895226436397, guid: 60efb4839362f4a89a682dcacc4ed593,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6066751126877689135, guid: 60efb4839362f4a89a682dcacc4ed593,
+        type: 3}
+      propertyPath: allLevels.Array.size
+      value: 16
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 60efb4839362f4a89a682dcacc4ed593, type: 3}
+>>>>>>> dev
 --- !u!1 &523720298
 GameObject:
   m_ObjectHideFlags: 0
@@ -8125,7 +8578,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -8152,6 +8608,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -8166,12 +8626,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -8508,7 +8974,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -8535,6 +9004,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -8549,12 +9022,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -8633,6 +9112,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cee8eb2e6c48349a26a31638185181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+  iconIndex: 11
+>>>>>>> dev
   name: 
   scenename: 
   backgroundColor: {r: 0.2269491, g: 0.33208302, b: 0.6415094, a: 1}
@@ -8660,17 +9143,29 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+<<<<<<< HEAD
+=======
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+>>>>>>> dev
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+<<<<<<< HEAD
+=======
+    m_SelectedSprite: {fileID: 0}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
@@ -9679,7 +10174,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 32
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -9706,6 +10204,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -9720,12 +10222,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -9850,13 +10358,20 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+<<<<<<< HEAD
   - {fileID: 1241061251}
+=======
+>>>>>>> dev
   - {fileID: 1082645272}
   - {fileID: 1347102417}
   - {fileID: 800658249}
   - {fileID: 1217962834}
   m_Father: {fileID: 1625184647}
+<<<<<<< HEAD
   m_RootOrder: 3
+=======
+  m_RootOrder: 2
+>>>>>>> dev
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -10060,17 +10575,29 @@ MonoBehaviour:
     m_NormalColor: {r: 0.35266, g: 0.77156615, b: 0.916, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+<<<<<<< HEAD
+=======
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+>>>>>>> dev
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+<<<<<<< HEAD
+=======
+    m_SelectedSprite: {fileID: 0}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 637400117}
@@ -10358,7 +10885,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -10385,6 +10915,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -10399,12 +10933,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -10518,7 +11058,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -10545,6 +11088,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -10559,12 +11106,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -10678,7 +11231,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -10705,6 +11261,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -10719,12 +11279,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -10913,7 +11479,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -10940,6 +11509,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -10954,12 +11527,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -11038,6 +11617,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cee8eb2e6c48349a26a31638185181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+  iconIndex: 4
+>>>>>>> dev
   name: 
   scenename: 
   backgroundColor: {r: 0.29585776, g: 0.8018868, b: 0.2004717, a: 1}
@@ -11065,17 +11648,29 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+<<<<<<< HEAD
+=======
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+>>>>>>> dev
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+<<<<<<< HEAD
+=======
+    m_SelectedSprite: {fileID: 0}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
@@ -11196,7 +11791,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -11223,6 +11821,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -11237,12 +11839,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -11356,7 +11964,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 516
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -11383,6 +11994,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -11397,12 +12012,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -11531,7 +12152,11 @@ RectTransform:
   - {fileID: 1861506403}
   - {fileID: 1362247688}
   m_Father: {fileID: 1625184647}
+<<<<<<< HEAD
   m_RootOrder: 2
+=======
+  m_RootOrder: 1
+>>>>>>> dev
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -11839,7 +12464,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -11866,6 +12494,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -11880,12 +12512,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -11999,7 +12637,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 32
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -12026,6 +12667,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -12040,12 +12685,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -12161,7 +12812,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -12188,6 +12842,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -12202,12 +12860,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -12361,6 +13025,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cee8eb2e6c48349a26a31638185181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+  iconIndex: 10
+>>>>>>> dev
   name: 
   scenename: 
   backgroundColor: {r: 0.13594696, g: 0.6132076, b: 0.5939283, a: 1}
@@ -12388,17 +13056,29 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+<<<<<<< HEAD
+=======
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+>>>>>>> dev
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+<<<<<<< HEAD
+=======
+    m_SelectedSprite: {fileID: 0}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
@@ -12519,7 +13199,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -12546,6 +13229,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -12560,12 +13247,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -12679,7 +13372,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -12706,6 +13402,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -12720,12 +13420,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -12867,6 +13573,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 800658249}
+<<<<<<< HEAD
+=======
+  - component: {fileID: 800658250}
+>>>>>>> dev
   m_Layer: 5
   m_Name: Image (2)
   m_TagString: Untagged
@@ -12891,13 +13601,32 @@ RectTransform:
   - {fileID: 792658929}
   - {fileID: 1631093005}
   m_Father: {fileID: 624396136}
+<<<<<<< HEAD
   m_RootOrder: 3
+=======
+  m_RootOrder: 2
+>>>>>>> dev
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -150, y: -80}
   m_SizeDelta: {x: 400, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
+=======
+--- !u!114 &800658250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800658248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 866660405e7e44c4899f35faf4eb46a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+>>>>>>> dev
 --- !u!1 &803209045
 GameObject:
   m_ObjectHideFlags: 0
@@ -13179,6 +13908,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cee8eb2e6c48349a26a31638185181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+  iconIndex: 6
+>>>>>>> dev
   name: 
   scenename: 
   backgroundColor: {r: 0.16602883, g: 0.8584906, b: 0.7117426, a: 1}
@@ -13206,17 +13939,29 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+<<<<<<< HEAD
+=======
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+>>>>>>> dev
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+<<<<<<< HEAD
+=======
+    m_SelectedSprite: {fileID: 0}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
@@ -13448,7 +14193,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -13475,6 +14223,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -13489,12 +14241,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -13682,7 +14440,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -13709,6 +14470,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -13723,12 +14488,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -13990,7 +14761,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -14017,6 +14791,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -14031,12 +14809,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -14152,7 +14936,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -14179,6 +14966,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -14193,12 +14984,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -14314,7 +15111,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -14341,6 +15141,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -14355,12 +15159,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -14622,7 +15432,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 257
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -14649,6 +15462,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -14663,12 +15480,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -14782,7 +15605,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 513
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -14809,6 +15635,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -14823,12 +15653,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -14944,7 +15780,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -14971,6 +15810,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -14985,12 +15828,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -15320,7 +16169,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -15347,6 +16199,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -15361,12 +16217,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -15555,7 +16417,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -15582,6 +16447,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -15596,12 +16465,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -15684,17 +16559,29 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+<<<<<<< HEAD
+=======
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+>>>>>>> dev
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+<<<<<<< HEAD
+=======
+    m_SelectedSprite: {fileID: 0}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1063086886}
@@ -15710,6 +16597,10 @@ MonoBehaviour:
   m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
+<<<<<<< HEAD
+=======
+  m_HideSoftKeyboard: 0
+>>>>>>> dev
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 32
@@ -15749,6 +16640,14 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: TMPro.TMP_InputField+OnChangeEvent, Unity.TextMeshPro, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+<<<<<<< HEAD
+=======
+  m_OnTouchScreenKeyboardStatusChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: TMPro.TMP_InputField+TouchScreenKeyboardEvent, Unity.TextMeshPro,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+>>>>>>> dev
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
@@ -15762,6 +16661,10 @@ MonoBehaviour:
   m_ResetOnDeActivation: 1
   m_RestoreOriginalTextOnEscape: 1
   m_isRichTextEditingAllowed: 1
+<<<<<<< HEAD
+=======
+  m_LineLimit: 0
+>>>>>>> dev
   m_InputValidator: {fileID: 0}
 --- !u!114 &1063086886
 MonoBehaviour:
@@ -15959,6 +16862,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1082645272}
+<<<<<<< HEAD
+=======
+  - component: {fileID: 1082645273}
+>>>>>>> dev
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -15983,13 +16890,32 @@ RectTransform:
   - {fileID: 20916335}
   - {fileID: 696669601}
   m_Father: {fileID: 624396136}
+<<<<<<< HEAD
   m_RootOrder: 1
+=======
+  m_RootOrder: 0
+>>>>>>> dev
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -150, y: 280}
   m_SizeDelta: {x: 400, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
+=======
+--- !u!114 &1082645273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082645271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 866660405e7e44c4899f35faf4eb46a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+>>>>>>> dev
 --- !u!1 &1084832192
 GameObject:
   m_ObjectHideFlags: 0
@@ -16231,7 +17157,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -16258,6 +17187,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -16272,12 +17205,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -16542,7 +17481,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -16569,6 +17511,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -16583,12 +17529,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -17397,7 +18349,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -17424,6 +18379,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -17438,12 +18397,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -17795,6 +18760,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1217962834}
+<<<<<<< HEAD
+=======
+  - component: {fileID: 1217962835}
+>>>>>>> dev
   m_Layer: 5
   m_Name: Image (3)
   m_TagString: Untagged
@@ -17819,13 +18788,32 @@ RectTransform:
   - {fileID: 693918697}
   - {fileID: 310225710}
   m_Father: {fileID: 624396136}
+<<<<<<< HEAD
   m_RootOrder: 4
+=======
+  m_RootOrder: 3
+>>>>>>> dev
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -260}
   m_SizeDelta: {x: 400, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
+=======
+--- !u!114 &1217962835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217962833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 866660405e7e44c4899f35faf4eb46a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+>>>>>>> dev
 --- !u!1 &1218074861
 GameObject:
   m_ObjectHideFlags: 0
@@ -17996,6 +18984,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cee8eb2e6c48349a26a31638185181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+  iconIndex: 7
+>>>>>>> dev
   name: 
   scenename: 
   backgroundColor: {r: 0.8962264, g: 0.17332679, b: 0.17332679, a: 1}
@@ -18023,17 +19015,29 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+<<<<<<< HEAD
+=======
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+>>>>>>> dev
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+<<<<<<< HEAD
+=======
+    m_SelectedSprite: {fileID: 0}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
@@ -18156,7 +19160,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -18183,6 +19190,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -18197,12 +19208,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -18318,7 +19335,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -18345,6 +19365,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -18359,12 +19383,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -18385,6 +19415,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239874386}
   m_CullTransparentMesh: 0
+<<<<<<< HEAD
 --- !u!1 &1241061250
 GameObject:
   m_ObjectHideFlags: 0
@@ -18459,6 +19490,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1241061250}
   m_CullTransparentMesh: 0
+=======
+>>>>>>> dev
 --- !u!1 &1244620224
 GameObject:
   m_ObjectHideFlags: 0
@@ -18517,6 +19550,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cee8eb2e6c48349a26a31638185181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+  iconIndex: 15
+>>>>>>> dev
   name: 
   scenename: 
   backgroundColor: {r: 0.8962264, g: 0.30860624, b: 0.6319056, a: 1}
@@ -18544,17 +19581,29 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+<<<<<<< HEAD
+=======
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+>>>>>>> dev
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+<<<<<<< HEAD
+=======
+    m_SelectedSprite: {fileID: 0}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
@@ -18775,7 +19824,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -18802,6 +19854,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -18816,12 +19872,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -18871,7 +19933,11 @@ RectTransform:
   m_Children:
   - {fileID: 37337422}
   m_Father: {fileID: 1625184647}
+<<<<<<< HEAD
   m_RootOrder: 1
+=======
+  m_RootOrder: 0
+>>>>>>> dev
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -19201,7 +20267,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -19228,6 +20297,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -19242,12 +20315,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -19293,12 +20372,20 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1290015466}
   m_Enabled: 1
+<<<<<<< HEAD
   serializedVersion: 8
+=======
+  serializedVersion: 9
+>>>>>>> dev
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
+<<<<<<< HEAD
+=======
+  m_InnerSpotAngle: 21.802082
+>>>>>>> dev
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -19308,6 +20395,27 @@ Light:
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
+<<<<<<< HEAD
+=======
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+>>>>>>> dev
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
@@ -19315,12 +20423,21 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+<<<<<<< HEAD
+=======
+  m_RenderingLayerMask: 1
+>>>>>>> dev
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
+<<<<<<< HEAD
+=======
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+>>>>>>> dev
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &1290015468
@@ -19335,7 +20452,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 1
+=======
+  m_RootOrder: 2
+>>>>>>> dev
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1291890175
 GameObject:
@@ -19505,7 +20626,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -19532,6 +20656,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -19546,12 +20674,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -19839,7 +20973,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -19866,6 +21003,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -19880,12 +21021,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -20287,6 +21434,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1347102417}
+<<<<<<< HEAD
+=======
+  - component: {fileID: 1347102418}
+>>>>>>> dev
   m_Layer: 5
   m_Name: Image (1)
   m_TagString: Untagged
@@ -20311,13 +21462,32 @@ RectTransform:
   - {fileID: 542973788}
   - {fileID: 1967846734}
   m_Father: {fileID: 624396136}
+<<<<<<< HEAD
   m_RootOrder: 2
+=======
+  m_RootOrder: 1
+>>>>>>> dev
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0, y: 100}
   m_SizeDelta: {x: 400, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
+=======
+--- !u!114 &1347102418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347102416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 866660405e7e44c4899f35faf4eb46a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+>>>>>>> dev
 --- !u!1 &1359787277
 GameObject:
   m_ObjectHideFlags: 0
@@ -20417,7 +21587,11 @@ RectTransform:
   - {fileID: 1195136691}
   - {fileID: 1669890553}
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 2
+=======
+  m_RootOrder: 3
+>>>>>>> dev
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -20569,7 +21743,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 32
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -20596,6 +21773,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -20610,12 +21791,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -20645,11 +21832,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1362247688}
+<<<<<<< HEAD
   - component: {fileID: 1362247691}
   - component: {fileID: 1362247690}
   - component: {fileID: 1362247689}
   m_Layer: 5
   m_Name: Canvas
+=======
+  m_Layer: 5
+  m_Name: LevelIcons
+>>>>>>> dev
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20691,6 +21883,7 @@ RectTransform:
   m_AnchoredPosition: {x: 5, y: -80}
   m_SizeDelta: {x: 800, y: 650}
   m_Pivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
 --- !u!114 &1362247689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20751,6 +21944,8 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+=======
+>>>>>>> dev
 --- !u!1 &1362650904
 GameObject:
   m_ObjectHideFlags: 0
@@ -20958,6 +22153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cee8eb2e6c48349a26a31638185181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+  iconIndex: 13
+>>>>>>> dev
   name: 
   scenename: 
   backgroundColor: {r: 0.8773585, g: 0.24417053, b: 0.24417053, a: 1}
@@ -20985,17 +22184,29 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+<<<<<<< HEAD
+=======
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+>>>>>>> dev
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+<<<<<<< HEAD
+=======
+    m_SelectedSprite: {fileID: 0}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
@@ -21191,7 +22402,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -21218,6 +22432,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -21232,12 +22450,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -21316,6 +22540,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cee8eb2e6c48349a26a31638185181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+  iconIndex: 5
+>>>>>>> dev
   name: 
   scenename: 
   backgroundColor: {r: 0.602441, g: 0.2242791, b: 0.754717, a: 1}
@@ -21343,17 +22571,29 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+<<<<<<< HEAD
+=======
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+>>>>>>> dev
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+<<<<<<< HEAD
+=======
+    m_SelectedSprite: {fileID: 0}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
@@ -21474,7 +22714,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -21501,6 +22744,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -21515,12 +22762,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -21782,7 +23035,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -21809,6 +23065,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -21823,12 +23083,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -22053,7 +23319,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -22080,6 +23349,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -22094,12 +23367,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -22287,7 +23566,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -22314,6 +23596,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -22328,12 +23614,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -22595,7 +23887,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -22622,6 +23917,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -22636,12 +23935,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -22662,6 +23967,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478987528}
   m_CullTransparentMesh: 0
+<<<<<<< HEAD
 --- !u!1 &1486511117
 GameObject:
   m_ObjectHideFlags: 0
@@ -22736,6 +24042,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486511117}
   m_CullTransparentMesh: 0
+=======
+>>>>>>> dev
 --- !u!1 &1498394125
 GameObject:
   m_ObjectHideFlags: 0
@@ -22829,7 +24137,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -22856,6 +24167,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -22870,12 +24185,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -23063,7 +24384,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -23090,6 +24414,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -23104,12 +24432,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -23371,7 +24705,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -23398,6 +24735,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -23412,12 +24753,18 @@ MonoBehaviour:
     lineCount: 2
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -23507,17 +24854,29 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+<<<<<<< HEAD
+=======
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+>>>>>>> dev
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+<<<<<<< HEAD
+=======
+    m_SelectedSprite: {fileID: 0}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
@@ -23557,6 +24916,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cee8eb2e6c48349a26a31638185181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+  iconIndex: 0
+>>>>>>> dev
   name: 
   scenename: 
   backgroundColor: {r: 0.19842473, g: 0.25597864, b: 0.8584906, a: 1}
@@ -24250,7 +25613,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -24277,6 +25643,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -24291,12 +25661,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -24410,7 +25786,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -24437,6 +25816,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -24451,12 +25834,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -24572,7 +25961,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -24599,6 +25991,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -24613,12 +26009,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -24732,7 +26134,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -24759,6 +26164,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -24773,12 +26182,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -24799,6 +26214,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582316461}
   m_CullTransparentMesh: 0
+<<<<<<< HEAD
+=======
+--- !u!1 &1583582269 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5756832798645624810, guid: 60efb4839362f4a89a682dcacc4ed593,
+    type: 3}
+  m_PrefabInstance: {fileID: 521785478}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1583582270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583582269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95cadfe5240c14e2e8b0c51e0f4243c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allLevels: []
+  levels: []
+>>>>>>> dev
 --- !u!1 &1593421618
 GameObject:
   m_ObjectHideFlags: 0
@@ -24892,7 +26330,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -24919,6 +26360,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -24933,12 +26378,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -25165,6 +26616,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cee8eb2e6c48349a26a31638185181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+  iconIndex: 8
+>>>>>>> dev
   name: 
   scenename: 
   backgroundColor: {r: 0.8584906, g: 0.22402692, b: 0.17412782, a: 1}
@@ -25192,17 +26647,29 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+<<<<<<< HEAD
+=======
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+>>>>>>> dev
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+<<<<<<< HEAD
+=======
+    m_SelectedSprite: {fileID: 0}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
@@ -25396,7 +26863,11 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+<<<<<<< HEAD
   m_IsActive: 0
+=======
+  m_IsActive: 1
+>>>>>>> dev
 --- !u!224 &1625184647
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25408,7 +26879,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+<<<<<<< HEAD
   - {fileID: 1486511118}
+=======
+>>>>>>> dev
   - {fileID: 1269258576}
   - {fileID: 706257323}
   - {fileID: 624396136}
@@ -25610,7 +27084,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 260
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -25637,6 +27114,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -25651,12 +27132,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -25919,7 +27406,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -25946,6 +27436,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -25960,12 +27454,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -26079,7 +27579,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 32
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -26106,6 +27609,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -26120,12 +27627,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -26238,7 +27751,11 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+<<<<<<< HEAD
   m_IsActive: 1
+=======
+  m_IsActive: 0
+>>>>>>> dev
 --- !u!224 &1669890553
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26412,7 +27929,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -26439,6 +27959,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -26453,12 +27977,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -26572,7 +28102,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -26599,6 +28132,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -26613,12 +28150,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -26734,7 +28277,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -26761,6 +28307,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -26775,12 +28325,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -26933,6 +28489,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cee8eb2e6c48349a26a31638185181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+  iconIndex: 1
+>>>>>>> dev
   name: 
   scenename: 
   backgroundColor: {r: 0.9056604, g: 0.8486466, b: 0.07262372, a: 1}
@@ -26960,17 +28520,29 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+<<<<<<< HEAD
+=======
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+>>>>>>> dev
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+<<<<<<< HEAD
+=======
+    m_SelectedSprite: {fileID: 0}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
@@ -27359,17 +28931,29 @@ MonoBehaviour:
     m_NormalColor: {r: 0.35266, g: 0.77156615, b: 0.916, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+<<<<<<< HEAD
+=======
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+>>>>>>> dev
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+<<<<<<< HEAD
+=======
+    m_SelectedSprite: {fileID: 0}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1740164531}
@@ -27731,7 +29315,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 32
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -27758,6 +29345,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -27772,12 +29363,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -28379,6 +29976,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cee8eb2e6c48349a26a31638185181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+  iconIndex: 3
+>>>>>>> dev
   name: 
   scenename: 
   backgroundColor: {r: 0.9150943, g: 0.4846547, b: 0.13381095, a: 1}
@@ -28406,17 +30007,29 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+<<<<<<< HEAD
+=======
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+>>>>>>> dev
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+<<<<<<< HEAD
+=======
+    m_SelectedSprite: {fileID: 0}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
@@ -28800,7 +30413,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -28827,6 +30443,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -28841,12 +30461,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -28960,7 +30586,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -28987,6 +30616,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -29001,12 +30634,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -29342,7 +30981,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -29369,6 +31011,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -29383,12 +31029,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -29614,7 +31266,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -29641,6 +31296,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -29655,12 +31314,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -29774,7 +31439,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -29801,6 +31469,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -29815,12 +31487,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -30008,7 +31686,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 32
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -30035,6 +31716,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -30049,12 +31734,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -30517,7 +32208,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -30544,6 +32238,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -30558,12 +32256,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -30716,6 +32420,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cee8eb2e6c48349a26a31638185181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+  iconIndex: 12
+>>>>>>> dev
   name: 
   scenename: 
   backgroundColor: {r: 0.93, g: 0.54931146, b: 0.18863209, a: 1}
@@ -30743,17 +32451,29 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+<<<<<<< HEAD
+=======
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+>>>>>>> dev
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+<<<<<<< HEAD
+=======
+    m_SelectedSprite: {fileID: 0}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
@@ -30874,7 +32594,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 257
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -30901,6 +32624,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -30915,12 +32642,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -31525,6 +33258,10 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 0.96085954, b: 0.34300005, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+<<<<<<< HEAD
+=======
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+>>>>>>> dev
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -31532,11 +33269,19 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: fe899fd449cc9034facb2e1c93b8c7c0,
       type: 3}
     m_PressedSprite: {fileID: 0}
+<<<<<<< HEAD
+=======
+    m_SelectedSprite: {fileID: 21300000, guid: fe899fd449cc9034facb2e1c93b8c7c0, type: 3}
+>>>>>>> dev
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+<<<<<<< HEAD
+=======
+    m_SelectedTrigger: Highlighted
+>>>>>>> dev
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 2011222658}
@@ -31909,7 +33654,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -31936,6 +33684,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -31950,12 +33702,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -32219,7 +33977,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -32246,6 +34007,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -32260,12 +34025,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -32530,7 +34301,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -32557,6 +34331,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -32571,12 +34349,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -32989,7 +34773,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -33016,6 +34803,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -33030,12 +34821,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -33194,7 +34991,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 3
+=======
+  m_RootOrder: 4
+>>>>>>> dev
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2113203011
 GameObject:
@@ -33289,7 +35090,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -33316,6 +35120,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -33330,12 +35138,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -33674,7 +35488,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 513
+<<<<<<< HEAD
   m_isAlignmentEnumConverted: 1
+=======
+>>>>>>> dev
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -33701,6 +35518,10 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+<<<<<<< HEAD
+=======
+  m_VertexBufferAutoSizeReduction: 1
+>>>>>>> dev
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -33715,12 +35536,18 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
+<<<<<<< HEAD
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
+=======
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+>>>>>>> dev
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}

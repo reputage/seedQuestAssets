@@ -7,7 +7,11 @@ public class LevelIconButton : MonoBehaviour {
     static public int activeIndex = -1;
     static public LevelIconButton[] activeButtons = new LevelIconButton[4];
 
+<<<<<<< HEAD
 
+=======
+    public int iconIndex;
+>>>>>>> dev
     public string name;
     public string scenename;
     public Color backgroundColor;
@@ -49,10 +53,17 @@ public class LevelIconButton : MonoBehaviour {
     }
 
     public void onClickButton() {
+<<<<<<< HEAD
         ActivateNumberIcon(this, true);
     }
 
     static void ActivateNumberIcon(LevelIconButton iconButton, bool isActive) {
+=======
+        ActivateNumberIcon(this, iconIndex, true);
+    }
+
+    static void ActivateNumberIcon(LevelIconButton iconButton, int iconIndex, bool isActive) {
+>>>>>>> dev
         if (activeIndex >= activeButtons.Length)
             return;
 
@@ -62,6 +73,11 @@ public class LevelIconButton : MonoBehaviour {
             activeButtons[activeIndex].numberIcons[activeIndex].gameObject.SetActive(true);
             Color color = activeButtons[activeIndex].numberIcons[activeIndex].color;
             activeButtons[activeIndex].border.color = color;
+<<<<<<< HEAD
+=======
+
+            StartScreenManager.SetLevelPanel(activeIndex, iconIndex);
+>>>>>>> dev
         }
         else {
             activeButtons[activeIndex].numberIcons[activeIndex].gameObject.SetActive(false);

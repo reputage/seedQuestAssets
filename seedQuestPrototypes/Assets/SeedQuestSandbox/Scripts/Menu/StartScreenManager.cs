@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public enum StartScreenStates { Start, ModeSelect, SeedSetup, EncodeSeed }
 
 public class StartScreenManager : MonoBehaviour
 {
+    static private StartScreenManager instance = null;
+    static private StartScreenManager setInstance() { instance = GameObject.FindObjectOfType<StartScreenManager>(); return instance; }
+    static public StartScreenManager Instance { get { return instance == null ? setInstance() : instance; } }
+
     private StartScreenStates state = StartScreenStates.Start;
     private Canvas[] canvas;
     private Canvas motionBackgroundCanvas;
+    private Canvas encodeSeedCanvas;
 
     public void Awake()
     {
@@ -17,6 +23,7 @@ public class StartScreenManager : MonoBehaviour
         canvas[1].gameObject.SetActive(true);
         canvas[2].gameObject.SetActive(true);
         motionBackgroundCanvas = canvas[1];
+        encodeSeedCanvas = canvas[5];
     }
 
     public void Start()
@@ -62,8 +69,15 @@ public class StartScreenManager : MonoBehaviour
     public void GoToEncodeSeed() {
         state = StartScreenStates.EncodeSeed;
         ResetCanvas();
-        canvas[5].gameObject.SetActive(true);
+        encodeSeedCanvas.gameObject.SetActive(true);
         SetupRotateBackground(330);
+    }
+
+    static public void SetLevelPanel(int panelIndex, int levelIndex) {
+        Canvas levelPanels = Instance.encodeSeedCanvas.GetComponentsInChildren<Canvas>()[2];
+        LevelPanel selectedPanel = levelPanels.GetComponentsInChildren<LevelPanel>()[panelIndex]; 
+        TextMeshProUGUI text = selectedPanel.GetComponentsInChildren<TextMeshProUGUI>()[1];
+        text.text = LevelSetManager.AllLevels[levelIndex].name;
     }
 
     private Vector3 rotate = new Vector3(0, 0, 0);
