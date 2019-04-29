@@ -63,7 +63,7 @@ public class LevelIconButton : MonoBehaviour {
             Color color = activeButtons[activeIndex].numberIcons[activeIndex].color;
             activeButtons[activeIndex].border.color = color;
 
-            StartScreenManager.SetLevelPanel(activeIndex, iconIndex);
+            MenuScreenManager.SetLevelPanel(activeIndex, iconIndex);
         }
         else {
             activeButtons[activeIndex].numberIcons[activeIndex].gameObject.SetActive(false);
