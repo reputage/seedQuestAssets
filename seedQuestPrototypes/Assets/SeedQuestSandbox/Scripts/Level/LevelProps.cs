@@ -7,4 +7,5 @@ public class LevelProps {
     public string name;
     public string scenename;
     public Sprite preview;
+    public Sprite icon;
 }
