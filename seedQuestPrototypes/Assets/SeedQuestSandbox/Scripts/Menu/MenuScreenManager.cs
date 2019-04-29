@@ -110,10 +110,16 @@ public class MenuScreenManager : MonoBehaviour
     }
 
     public void GoToActionLineUp() {
-        state = MenuScreenStates.ActionLineUp;
-        ResetCanvas();
-        actionLineUpCanvas.gameObject.SetActive(true);
-        SetupActionLineUp();
+        if(GameManager.Mode == GameMode.Rehearsal) {
+            state = MenuScreenStates.ActionLineUp;
+            ResetCanvas();
+            actionLineUpCanvas.gameObject.SetActive(true);
+            SetupActionLineUp();            
+        }
+        else {
+            CloseActionLineUp();
+        }
+            
     }
 
     public void CloseActionLineUp() {
@@ -128,8 +134,13 @@ public class MenuScreenManager : MonoBehaviour
     }
 
     public void SetupEncodeSeed() {
-        TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>(true);
-        InteractablePathManager.SeedString = seedInputField.text;
+        if(GameManager.Mode == GameMode.Rehearsal) {
+            TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>(true);
+            InteractablePathManager.SeedString = seedInputField.text;
+            
+        }
+
+
     }
 
     public void SetupSceneLineUp() {
@@ -153,7 +164,16 @@ public class MenuScreenManager : MonoBehaviour
         Image icon = actionLineUpCanvas.GetComponentsInChildren<Image>()[3];
         icon.sprite = LevelSetManager.CurrentLevel.icon;
         TextMeshProUGUI text = actionLineUpCanvas.GetComponentsInChildren<TextMeshProUGUI>()[0];
-        text.text = LevelSetManager.CurrentLevel.name;               
+        text.text = LevelSetManager.CurrentLevel.name;
+
+        Image[] images = actionLineUpCanvas.GetComponentsInChildren<Image>();
+        images[5].gameObject.SetActive(false);
+        images[6].gameObject.SetActive(false);
+        images[7].gameObject.SetActive(false);
+        images[8].gameObject.SetActive(false);
+
+        TextMeshProUGUI[] texts = actionLineUpCanvas.GetComponentsInChildren<TextMeshProUGUI>();
+        //texts[2].text = 
     }
 
     AsyncOperation operation = null;
