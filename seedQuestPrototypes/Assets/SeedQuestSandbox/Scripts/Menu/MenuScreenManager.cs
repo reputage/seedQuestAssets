@@ -7,7 +7,7 @@ using TMPro;
 
 using SeedQuest.Interactables;
 
-public enum MenuScreenStates { Start, ModeSelect, SeedSetup, EncodeSeed, SceneLineUp, ActionLineUp }
+public enum MenuScreenStates { Start, ModeSelect, SeedSetup, EncodeSeed, SceneLineUp, ActionLineUp, Debug }
 
 public class MenuScreenManager : MonoBehaviour
 {
@@ -15,7 +15,7 @@ public class MenuScreenManager : MonoBehaviour
     static private MenuScreenManager setInstance() { instance = GameObject.FindObjectOfType<MenuScreenManager>(); return instance; }
     static public MenuScreenManager Instance { get { return instance == null ? setInstance() : instance; } }
 
-    private MenuScreenStates state = MenuScreenStates.Start;
+    public MenuScreenStates state = MenuScreenStates.Start;
     private Canvas[] canvas;
     private Canvas startCanvas;
     private Canvas motionBackgroundCanvas;
@@ -36,6 +36,9 @@ public class MenuScreenManager : MonoBehaviour
     }
 
     public void Start() {
+        if (MenuScreenManager.Instance.state == MenuScreenStates.Debug)
+            return;
+        
         motionBackgroundCanvas.gameObject.SetActive(true);
         GoToStart();
     }
