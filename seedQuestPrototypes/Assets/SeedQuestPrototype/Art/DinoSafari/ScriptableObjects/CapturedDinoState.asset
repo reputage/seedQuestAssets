@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d1c21d9ece6c4e229a7c25408d3063a, type: 3}
-  m_Name: CarState_Dino
+  m_Name: CapturedDinoState
   m_EditorClassIdentifier: 
-  interactableName: Car
+  interactableName: Captured Dino
   prompt: 
-  labelPosOffset: {x: 2, y: 1, z: -0.4}
+  labelPosOffset: {x: 0, y: 0, z: 0}
   states:
-  - actionName: Station Wagon
-    prefab: {fileID: 8741625735846432610, guid: 467341a17588a724082d97c10ee7f2c6,
+  - actionName: Capture Raptor
+    prefab: {fileID: 3876551110572106151, guid: 6106cb524ccd8644b99d34537c2b4a24,
       type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
@@ -29,14 +29,13 @@ MonoBehaviour:
     soundEffect:
       name: 
       clip: {fileID: 0}
-      volume: 1
+      volume: 0
       loop: 0
       source: {fileID: 0}
     particleEffectName: 
-    particleEffect: {fileID: 3589441540930374132, guid: 00ccde9367669a7428dae10bb63cdfcc,
-      type: 3}
-  - actionName: Pickup
-    prefab: {fileID: 2095372128640004600, guid: 327cee818775e39469a9cd9a8bda78a2,
+    particleEffect: {fileID: 0}
+  - actionName: Pet Raptor
+    prefab: {fileID: 3876551110572106151, guid: 6106cb524ccd8644b99d34537c2b4a24,
       type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
@@ -48,14 +47,30 @@ MonoBehaviour:
     soundEffect:
       name: 
       clip: {fileID: 0}
-      volume: 1
+      volume: 0
       loop: 0
       source: {fileID: 0}
     particleEffectName: 
-    particleEffect: {fileID: 3589441540930374132, guid: 00ccde9367669a7428dae10bb63cdfcc,
-      type: 3}
-  - actionName: Jeep
-    prefab: {fileID: 1186674468376289016, guid: 91a5618b73debd64b99742880c0ea7a9,
+    particleEffect: {fileID: 0}
+  - actionName: Free Raptor
+    prefab: {fileID: 0}
+    positionOffset: {x: 0, y: 0, z: 0}
+    mesh: {fileID: 0}
+    material: {fileID: 0}
+    materialIndex: 0
+    uvOffset: {x: 0, y: 0}
+    animatorController: {fileID: 0}
+    soundEffectName: 
+    soundEffect:
+      name: 
+      clip: {fileID: 0}
+      volume: 0
+      loop: 0
+      source: {fileID: 0}
+    particleEffectName: 
+    particleEffect: {fileID: 0}
+  - actionName: Feed Raptor
+    prefab: {fileID: 3876551110572106151, guid: 6106cb524ccd8644b99d34537c2b4a24,
       type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
@@ -67,28 +82,9 @@ MonoBehaviour:
     soundEffect:
       name: 
       clip: {fileID: 0}
-      volume: 1
+      volume: 0
       loop: 0
       source: {fileID: 0}
     particleEffectName: 
-    particleEffect: {fileID: 3589441540930374132, guid: 00ccde9367669a7428dae10bb63cdfcc,
-      type: 3}
-  - actionName: Camper
-    prefab: {fileID: 644832693201521086, guid: 6037600166dabc846b3e1fbf59513e54, type: 3}
-    positionOffset: {x: 0, y: 0, z: 0}
-    mesh: {fileID: 0}
-    material: {fileID: 0}
-    materialIndex: 0
-    uvOffset: {x: 0, y: 0}
-    animatorController: {fileID: 0}
-    soundEffectName: 
-    soundEffect:
-      name: 
-      clip: {fileID: 0}
-      volume: 1
-      loop: 0
-      source: {fileID: 0}
-    particleEffectName: 
-    particleEffect: {fileID: 3589441540930374132, guid: 00ccde9367669a7428dae10bb63cdfcc,
-      type: 3}
+    particleEffect: {fileID: 0}
   effect: {fileID: 0}
