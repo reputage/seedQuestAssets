@@ -168,7 +168,7 @@ public class IsometricCamera : MonoBehaviour
     }
 
     public float CameraDistanceFraction() {
-        Debug.Log("Time: " + Time.time + " Start: " + startTime + " Stop:" + stopTime + " ZoomInTime:" + zoomInTime);
+        //Debug.Log("Time: " + Time.time + " Start: " + startTime + " Stop:" + stopTime + " ZoomInTime:" + zoomInTime);
         return Mathf.Clamp01( (Time.time - zoomInTime - startTime) / stopTime);
     }
 
@@ -181,7 +181,7 @@ public class IsometricCamera : MonoBehaviour
 
         if (useLevelZoomIn) {
             float fraction = CameraDistanceFraction();
-            Debug.Log(fraction);
+            //Debug.Log(fraction);
             currentOffset = Vector3.Lerp(startingOffset, targetOffset, fraction);
         }
         else
