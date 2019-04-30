@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Linq;
 
 namespace SeedQuest.Interactables
 {
@@ -57,7 +58,8 @@ namespace SeedQuest.Interactables
 
         static Interactable[] FindAllInteractables()
         {
-            return GameObject.FindObjectsOfType<Interactable>();
+            Interactable[] items = GameObject.FindObjectsOfType<Interactable>();
+            return items;
         }
 
         static public void Reset() {
