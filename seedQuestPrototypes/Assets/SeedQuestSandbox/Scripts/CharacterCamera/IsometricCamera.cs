@@ -31,9 +31,9 @@ public class IsometricCamera : MonoBehaviour
     private Transform playerTransform;
     private Vector3 currentOffset;
     private float time = 0f;
-    private float startTime = 1.0f;
-    private float stopTime = 3.0f;
-    [SerializeField]
+    private float startTime = 0.5f;
+    private float stopTime = 2.0f;
+    [SerializeField] 
     private bool useCameraMove = true;
 
     private void Awake()
@@ -168,7 +168,8 @@ public class IsometricCamera : MonoBehaviour
     }
 
     public float CameraDistanceFraction() {
-        return Mathf.Clamp01((Time.time - (startTime + zoomInTime)) / (stopTime + zoomInTime));
+        Debug.Log("Time: " + Time.time + " Start: " + startTime + " Stop:" + stopTime + " ZoomInTime:" + zoomInTime);
+        return Mathf.Clamp01( (Time.time - zoomInTime - startTime) / stopTime);
     }
 
     public void SetOffset()
