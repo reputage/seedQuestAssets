@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class LevelSetManager : MonoBehaviour
     static private LevelSetManager instance = null;
     static private LevelSetManager setInstance() { instance = GameManager.Instance.GetComponentInChildren<LevelSetManager>(true); return instance; }
     static public LevelSetManager Instance { get { return instance == null ? setInstance() : instance; } }
+    static public bool isActive = true;
 
     public List<LevelProps> allLevels;
     static public List<LevelProps> AllLevels { get => Instance.allLevels; }
@@ -21,6 +23,9 @@ public class LevelSetManager : MonoBehaviour
 
     void Start() {
         levels = new List<LevelProps>();
+
+        foreach (LevelProps prop in allLevels)
+            prop.index = allLevels.IndexOf(prop);
     } 
 
     static public void AddLevel(int levelIndex) {
