@@ -39,7 +39,7 @@ public class LevelIconButton : MonoBehaviour {
     private void Start() {
         
         if (Application.isEditor) {
-            print("We are running this from inside of the editor!");
+            //print("We are running this from inside of the editor!");
         }
     }
 

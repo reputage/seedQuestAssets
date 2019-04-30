@@ -9,6 +9,18 @@ public class IsometricCamera : MonoBehaviour
     public enum ScreenSpaceDirection { left, right, up, down };
 
     static public Camera Camera = null;              // Static reference to Camera 
+    static private bool useLevelZoomIn = true;
+    static private float zoomInTime = 0;
+    static public void StartLevelZoomIn() {
+        useLevelZoomIn = true;
+        zoomInTime = Time.time;
+        Debug.Log("StartLevelZoomIn");
+    }
+    static public void ResetLevelZoomIn() {
+        useLevelZoomIn = false;
+        zoomInTime = 0;
+        Debug.Log("ResetLevelZoomIn");
+    }
 
     public float smoothSpeed = 2f;                  // Camera lerp smoothing speed parameter
     public Vector3 offset = new Vector3(1, 1, -1);  // Camera position offset
@@ -40,8 +52,7 @@ public class IsometricCamera : MonoBehaviour
         //targetPosition = playerTransform.position + currentOffset;
     }
 
-    private void Update()
-    {
+    private void Update() {
         //CheckIfMouseOnEdge();
         //CheckForClickMove();
     }
@@ -152,13 +163,28 @@ public class IsometricCamera : MonoBehaviour
         */
     }
 
+    public bool CameraReady() {
+        return CameraDistanceFraction() >= 1.0 ? true : false;
+    }
+
+    public float CameraDistanceFraction() {
+        return Mathf.Clamp01((Time.time - (startTime + zoomInTime)) / (stopTime + zoomInTime));
+    }
+
     public void SetOffset()
     {
         //currentOffset = Quaternion.Euler(rotateAngles) * Vector3.right * distance;
 
         Vector3 targetOffset = cameraDirection.normalized * distance;
         Vector3 startingOffset = cameraDirection.normalized * startingDistance;
-        currentOffset = Vector3.Lerp(startingOffset, targetOffset, Mathf.Clamp01((Time.time - startTime) / stopTime));
+
+        if (useLevelZoomIn) {
+            float fraction = CameraDistanceFraction();
+            Debug.Log(fraction);
+            currentOffset = Vector3.Lerp(startingOffset, targetOffset, fraction);
+        }
+        else
+            currentOffset = startingOffset;
     }
 
     /* A simple follow camera */

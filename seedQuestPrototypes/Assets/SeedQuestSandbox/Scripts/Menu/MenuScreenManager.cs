@@ -25,6 +25,10 @@ public class MenuScreenManager : MonoBehaviour
     private Canvas sceneLineUpCanvas;
     private Canvas actionLineUpCanvas;
 
+    private float sceneLoadProgressValue;
+    private Slider sceneLoadProgress;
+    private Button sceneContinueButton;
+
     public void Awake() {
         canvas = GetComponentsInChildren<Canvas>(true);
         motionBackgroundCanvas = canvas[1];
@@ -33,6 +37,9 @@ public class MenuScreenManager : MonoBehaviour
         encodeSeedContinueCanvas = canvas[6];
         sceneLineUpCanvas = canvas[7];
         actionLineUpCanvas = canvas[8];
+
+        sceneLoadProgress = GetComponentInChildren<Slider>(true);
+        sceneContinueButton = sceneLineUpCanvas.GetComponentInChildren<Button>(true);
     }
 
     public void Start() {
@@ -45,6 +52,8 @@ public class MenuScreenManager : MonoBehaviour
 
     private void Update() {
         RotateBackground();
+
+        sceneLoadProgress.value = sceneLoadProgressValue;
     }
 
     private void SetBackground(bool active) {
@@ -72,7 +81,6 @@ public class MenuScreenManager : MonoBehaviour
         state = MenuScreenStates.ModeSelect;
         ResetCanvas();
         canvas[3].gameObject.SetActive(true);
-        Debug.Log(state);
         SetupRotateBackground(150);
     }
 
@@ -117,14 +125,8 @@ public class MenuScreenManager : MonoBehaviour
             SetupActionLineUp();            
         }
         else {
-            CloseActionLineUp();
+            CloseMenuScreen();
         }
-            
-    }
-
-    public void CloseActionLineUp() {
-        actionLineUpCanvas.gameObject.SetActive(false);
-        SetBackground(false);
     }
 
     public void SetupSeedSetup() {
@@ -137,10 +139,7 @@ public class MenuScreenManager : MonoBehaviour
         if(GameManager.Mode == GameMode.Rehearsal) {
             TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>(true);
             InteractablePathManager.SeedString = seedInputField.text;
-            
         }
-
-
     }
 
     public void SetupSceneLineUp() {
@@ -155,6 +154,8 @@ public class MenuScreenManager : MonoBehaviour
         TextMeshProUGUI text = sceneLineUpCanvas.GetComponentsInChildren<TextMeshProUGUI>()[2];
         text.text = LevelSetManager.CurrentLevel.name;
 
+        sceneLoadProgress.gameObject.SetActive(true);
+        sceneContinueButton.gameObject.SetActive(false);
         StartScene();
     }
 
@@ -173,27 +174,33 @@ public class MenuScreenManager : MonoBehaviour
         images[8].gameObject.SetActive(false);
 
         TextMeshProUGUI[] texts = actionLineUpCanvas.GetComponentsInChildren<TextMeshProUGUI>();
-        //texts[2].text = 
     }
 
-    AsyncOperation operation = null;
-    IEnumerator LoadAsync(string sceneName)
-    {
+    public void CloseSceneLineUp() {
+        IsometricCamera.StartLevelZoomIn();
+        CloseMenuScreen();
+    }
+
+    public void CloseMenuScreen() {
+        ResetCanvas();
+        SetBackground(false);
+    }
+
+    IEnumerator LoadAsync(string sceneName) {
         yield return new WaitForSeconds(0.5f);
 
-        operation = SceneManager.LoadSceneAsync(sceneName);
+        AsyncOperation operation  = SceneManager.LoadSceneAsync(sceneName);
         operation.allowSceneActivation = false;
 
-        while (!operation.isDone)
-        {
+        while (!operation.isDone) {
 
-            float progress = Mathf.Clamp01(operation.progress / 0.9f);
-            //if (LoadingScreenUI.Instance != null)
-            //    LoadingScreenUI.LoadProgress = progress;
+            sceneLoadProgressValue  = Mathf.Clamp01(operation.progress / 0.9f);
 
-            if (operation.progress >= 0.9f)
-            {
+            if (operation.progress >= 0.9f) {
                 operation.allowSceneActivation = true;
+
+                sceneLoadProgress.gameObject.SetActive(false);
+                sceneContinueButton.gameObject.SetActive(true);
             }
 
             yield return null;
@@ -201,7 +208,8 @@ public class MenuScreenManager : MonoBehaviour
     }
 
     public void StartScene() {
-        GameManager.State = GameState.Play;
+        GameManager.State = GameState.Menu;
+        IsometricCamera.ResetLevelZoomIn();
         Instance.StartCoroutine(Instance.LoadAsync(LevelSetManager.CurrentLevel.scenename));
     }
 
@@ -232,14 +240,14 @@ public class MenuScreenManager : MonoBehaviour
         targetRotate.z = angle;
         time = Time.time;
 
-        Debug.Log(targetRotate);
+        //Debug.Log(targetRotate);
     }
 
     public void RotateBackground() {
         float timeDuration = 1.0f;
         float t = Mathf.Clamp01((Time.time - time) / timeDuration);
         Vector3 newRotate = Vector3.Lerp(rotate, targetRotate, t);
-        Debug.Log(newRotate);
+        //Debug.Log(newRotate);
         motionBackgroundCanvas.GetComponentInChildren<RectTransform>().localRotation = Quaternion.Euler(newRotate);
     }
 
