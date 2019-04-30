@@ -116,18 +116,21 @@ public class MenuScreenManager : MonoBehaviour
 
     public void GoToEncodeSeed()
     {
+        state = MenuScreenStates.EncodeSeed;
+        ResetCanvas();
+        encodeSeedCanvas.gameObject.SetActive(true);
+        SetupRotateBackground(330);
+        SetupEncodeSeed();
+    }
+
+    public void GoToEncodeSeedFromSeedSetup() {
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
         bool validSeed = validSeedString(seedInputField.text);
         if (validSeed)
         {
             Debug.Log("Seed: " + seedInputField.text);
-            state = MenuScreenStates.EncodeSeed;
-            ResetCanvas();
-            encodeSeedCanvas.gameObject.SetActive(true);
-            SetupRotateBackground(330);
-            SetupEncodeSeed();
+            GoToEncodeSeed();
         }
-
     }
 
     public void GoToSceneLineUp()
@@ -162,10 +165,15 @@ public class MenuScreenManager : MonoBehaviour
 
     public void SetupEncodeSeed()
     {
+        SetLevelPanelDefault();
+
         if (GameManager.Mode == GameMode.Rehearsal)
         {
             TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>(true);
             InteractablePathManager.SeedString = seedInputField.text;
+
+            int[] siteIDs = InteractablePathManager.GetPathSiteIDs();
+            SetIconAndPanelForRehearsal(siteIDs); 
         }
     }
 
@@ -249,14 +257,33 @@ public class MenuScreenManager : MonoBehaviour
         Instance.StartCoroutine(Instance.LoadAsync(LevelSetManager.CurrentLevel.scenename));
     }
 
+    static public void SetIconAndPanelForRehearsal(int[] siteIDs) {
+        int orderIndex = 0;
+        foreach (int siteID in siteIDs) {
+            LevelIconButton.ActivateIconForRehersal(siteID, orderIndex);
+            orderIndex++;
+        }
+    }
+
+    public void SetLevelPanelDefault() {
+        LevelPanel[] levelPanels = encodeSeedCanvas.GetComponentsInChildren<LevelPanel>();
+        foreach(LevelPanel panel in levelPanels) {
+            panel.GetComponentsInChildren<Image>(true)[2].gameObject.SetActive(false);
+            panel.GetComponentsInChildren<TextMeshProUGUI>(true)[0].gameObject.SetActive(false);
+            panel.GetComponentsInChildren<TextMeshProUGUI>(true)[1].gameObject.SetActive(false);
+        }
+    }
+
     static public void SetLevelPanel(int panelIndex, int levelIndex)
     {
-
-        LevelPanel selectedPanel = Instance.encodeSeedCanvas.GetComponentsInChildren<LevelPanel>()[panelIndex];
-        TextMeshProUGUI text = selectedPanel.GetComponentsInChildren<TextMeshProUGUI>()[1];
         LevelSetManager.AddLevel(levelIndex);
 
-        text.text = LevelSetManager.AllLevels[levelIndex].name;
+        LevelPanel selectedPanel = Instance.encodeSeedCanvas.GetComponentsInChildren<LevelPanel>()[panelIndex];
+        selectedPanel.GetComponentsInChildren<Image>(true)[2].gameObject.SetActive(true);
+        selectedPanel.GetComponentsInChildren<TextMeshProUGUI>(true)[0].gameObject.SetActive(true);
+        selectedPanel.GetComponentsInChildren<TextMeshProUGUI>(true)[1].gameObject.SetActive(true);
+
+        selectedPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = LevelSetManager.AllLevels[levelIndex].name;
         selectedPanel.GetComponentsInChildren<Image>()[2].sprite = LevelSetManager.AllLevels[levelIndex].preview;
 
         if (panelIndex == 3)
@@ -278,8 +305,6 @@ public class MenuScreenManager : MonoBehaviour
         rotate.z = targetRotate.z;
         targetRotate.z = angle;
         time = Time.time;
-
-        //Debug.Log(targetRotate);
     }
 
     public void RotateBackground()
@@ -287,7 +312,6 @@ public class MenuScreenManager : MonoBehaviour
         float timeDuration = 1.0f;
         float t = Mathf.Clamp01((Time.time - time) / timeDuration);
         Vector3 newRotate = Vector3.Lerp(rotate, targetRotate, t);
-        //Debug.Log(newRotate);
         motionBackgroundCanvas.GetComponentInChildren<RectTransform>().localRotation = Quaternion.Euler(newRotate);
     }
 

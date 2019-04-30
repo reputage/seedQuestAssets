@@ -116,6 +116,15 @@ namespace SeedQuest.Interactables {
             return InteractablePath.GetPathIDsFromSeed(SeedString);
         }
 
+        static public int[] GetPathSiteIDs() {
+            InteractableID[] iDs = GetPathIDs();
+            List<int> siteIDs = new List<int>();
+            for (int i = 0; i < InteractableConfig.SitesPerGame; i++) {
+                siteIDs.Add(iDs[InteractableConfig.ActionsPerSite * i].siteID);
+            }
+            return siteIDs.ToArray();
+        } 
+
         static public int NextInteractableSiteID() {
             return GetPathIDs()[InteractablePath.Instance.nextIndex].siteID;
         }

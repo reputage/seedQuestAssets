@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class LevelIconButton : MonoBehaviour {
     static public int activeIndex = -1;
     static public LevelIconButton[] activeButtons = new LevelIconButton[4];
+    static public LevelIconButton[] allIconButtons = new LevelIconButton[16];
 
     public int iconIndex;
     public string name;
@@ -34,6 +35,8 @@ public class LevelIconButton : MonoBehaviour {
         border.color = new Color(0, 0, 0, 0);
         foreach (Image icon in numberIcons)
             icon.gameObject.SetActive(false);
+
+        allIconButtons[iconIndex] = this;
     }
 
     private void Start() {
@@ -52,21 +55,29 @@ public class LevelIconButton : MonoBehaviour {
         ActivateNumberIcon(this, iconIndex, true);
     }
 
-    static void ActivateNumberIcon(LevelIconButton iconButton, int iconIndex, bool isActive) {
+    public void ActivateIconForRehersal(int iconOrderIndex) {
+        numberIcons[iconOrderIndex].gameObject.SetActive(true);
+        border.color = numberIcons[iconOrderIndex].color;
+    }
+
+    public static void ActivateIconForRehersal(int siteID, int iconOrderIndex) {
+        allIconButtons[siteID].ActivateIconForRehersal(iconOrderIndex);
+    }
+
+    public static void ActivateNumberIcon(LevelIconButton iconButton, int iconIndex, bool isActive) {
         if (activeIndex >= activeButtons.Length)
             return;
 
         if (isActive) {
             activeIndex++;
             activeButtons[activeIndex] = iconButton;
-            activeButtons[activeIndex].numberIcons[activeIndex].gameObject.SetActive(true);
-            Color color = activeButtons[activeIndex].numberIcons[activeIndex].color;
-            activeButtons[activeIndex].border.color = color;
+            iconButton.numberIcons[activeIndex].gameObject.SetActive(true);
+            iconButton.border.color = iconButton.numberIcons[activeIndex].color;
 
             MenuScreenManager.SetLevelPanel(activeIndex, iconIndex);
         }
         else {
-            activeButtons[activeIndex].numberIcons[activeIndex].gameObject.SetActive(false);
+            iconButton.numberIcons[activeIndex].gameObject.SetActive(false);
             activeIndex--;
         }
     }
