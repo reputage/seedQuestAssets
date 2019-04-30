@@ -39,7 +39,7 @@ public class LevelIconButton : MonoBehaviour {
     private void Start() {
         
         if (Application.isEditor) {
-            print("We are running this from inside of the editor!");
+            //print("We are running this from inside of the editor!");
         }
     }
 
@@ -63,7 +63,7 @@ public class LevelIconButton : MonoBehaviour {
             Color color = activeButtons[activeIndex].numberIcons[activeIndex].color;
             activeButtons[activeIndex].border.color = color;
 
-            StartScreenManager.SetLevelPanel(activeIndex, iconIndex);
+            MenuScreenManager.SetLevelPanel(activeIndex, iconIndex);
         }
         else {
             activeButtons[activeIndex].numberIcons[activeIndex].gameObject.SetActive(false);
