@@ -138,7 +138,7 @@ namespace SeedQuest.Interactables {
 
             // Set InteractablePath IDs based on BoundingBoxes in Scene 
             int siteCount = LevelManager.LevelIndex;
-            if (LevelSetManager.isActive)
+            if (LevelSetManager.isActive && MenuScreenManager.Instance.state != MenuScreenStates.Debug )
                 siteCount = LevelSetManager.CurrentLevel.index;
             
             foreach (BoundingBox bounds in LevelManager.Bounds) {
