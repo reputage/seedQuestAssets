@@ -47,6 +47,7 @@ public class EndGameUI : MonoBehaviour {
 
     public void GoToStartScreen() {
         MenuScreenManager.ActivateStart();
+        gameObject.SetActive(false);
     }
 
 }

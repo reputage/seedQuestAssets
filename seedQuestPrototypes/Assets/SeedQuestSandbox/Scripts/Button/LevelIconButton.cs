@@ -85,5 +85,13 @@ public class LevelIconButton : MonoBehaviour {
     public static void ResetButtonIcons() {
         activeIndex = -1;
         activeButtons = new LevelIconButton[4];
+
+        foreach(LevelIconButton icon in allIconButtons) {
+            icon.border.color = new Color(0, 0, 0, 0);
+            icon.numberIcons[0].gameObject.SetActive(false);
+            icon.numberIcons[1].gameObject.SetActive(false);
+            icon.numberIcons[2].gameObject.SetActive(false);
+            icon.numberIcons[3].gameObject.SetActive(false);
+        }
     }
 }
