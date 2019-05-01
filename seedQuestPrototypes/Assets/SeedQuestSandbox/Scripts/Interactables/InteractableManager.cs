@@ -56,9 +56,15 @@ namespace SeedQuest.Interactables
             get { return FindAllInteractables(); }
         }
 
+        static int CompareInteractableName(Interactable inter1, Interactable inter2)
+        {
+            return inter1.gameObject.name.CompareTo(inter1.gameObject.name);
+        }
+
         static Interactable[] FindAllInteractables()
         {
             Interactable[] items = GameObject.FindObjectsOfType<Interactable>();
+            System.Array.Sort(items, CompareInteractableName);
             return items;
         }
 
