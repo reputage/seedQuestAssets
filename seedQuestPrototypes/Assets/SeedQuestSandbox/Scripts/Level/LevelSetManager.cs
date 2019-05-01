@@ -31,4 +31,10 @@ public class LevelSetManager : MonoBehaviour
     static public void AddLevel(int levelIndex) {
         CurrentLevels.Add(AllLevels[levelIndex]);
     }
+
+    /// <summary>  Gets the index of the current level based on log count </summary>
+    static public int CurrentLevelIndex
+    {
+        get { return (int)Mathf.Floor(InteractableLog.Count / InteractableConfig.ActionsPerSite); }
+    }
 }

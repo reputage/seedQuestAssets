@@ -10,14 +10,19 @@ public class IsometricCamera : MonoBehaviour
 
     static public Camera Camera = null;              // Static reference to Camera 
     static private bool useLevelZoomIn = true;
+    static private bool usePlayMode = false;
     static private float zoomInTime = 0;
     static public void StartLevelZoomIn() {
         useLevelZoomIn = true;
+        usePlayMode = false;
+
         zoomInTime = Time.time;
         Debug.Log("StartLevelZoomIn");
     }
     static public void ResetLevelZoomIn() {
         useLevelZoomIn = false;
+        usePlayMode = false;
+
         zoomInTime = 0;
         Debug.Log("ResetLevelZoomIn");
     }
@@ -181,6 +186,11 @@ public class IsometricCamera : MonoBehaviour
 
         if (useLevelZoomIn) {
             float fraction = CameraDistanceFraction();
+            if(CameraReady() && !usePlayMode) {
+                usePlayMode = true;
+                GameManager.State = GameState.Play;
+            }
+
             //Debug.Log(fraction);
             currentOffset = Vector3.Lerp(startingOffset, targetOffset, fraction);
         }

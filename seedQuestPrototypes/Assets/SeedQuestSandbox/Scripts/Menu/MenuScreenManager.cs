@@ -141,6 +141,11 @@ public class MenuScreenManager : MonoBehaviour
         SetupSceneLineUp();
     }
 
+    static public void ActivateSceneLineUp() {
+        Instance.SetBackground(true);
+        Instance.GoToSceneLineUp();
+    }
+
     public void GoToActionLineUp()
     {
         if (GameManager.Mode == GameMode.Rehearsal)
@@ -179,6 +184,9 @@ public class MenuScreenManager : MonoBehaviour
 
     public void SetupSceneLineUp()
     {
+        Image lineUp = sceneLineUpCanvas.GetComponentsInChildren<Image>(true)[5];
+        lineUp.transform.localPosition = new Vector3(-600 * InteractableLog.CurrentLevelIndex, 35, 0);
+
         LevelPanel[] panels = sceneLineUpCanvas.GetComponentsInChildren<LevelPanel>();
         int index = 0;
         foreach (LevelPanel panel in panels)

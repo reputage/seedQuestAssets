@@ -18,6 +18,7 @@ public class LevelClearUI : MonoBehaviour {
     }
 
     public void GoToSceneSelect() {
-        LevelManager.GoToSceneSelect();
+        //LevelManager.GoToSceneSelect();
+        MenuScreenManager.ActivateSceneLineUp();
     }
 }

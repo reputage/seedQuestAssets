@@ -70,7 +70,7 @@ namespace SeedQuest.Interactables {
                     GameManager.State = GameState.End;
                     EndGameUI.ToggleOn();
                 }
-                else if(LevelManager.IsMultiLevelGame &&  ShowLevelComplete) {
+                else if(LevelManager.IsMultiLevelGame && ShowLevelComplete) {
                     GameManager.State = GameState.Menu;
                     LevelClearUI.ToggleOn();
                 }
