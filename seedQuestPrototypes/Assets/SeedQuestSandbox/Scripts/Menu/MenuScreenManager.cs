@@ -86,6 +86,11 @@ public class MenuScreenManager : MonoBehaviour
     }
 
     static public void ActivateStart() {
+        InteractablePathManager.Reset();
+        LevelSetManager.ResetCurrentLevels();
+        LevelIconButton.ResetButtonIcons();
+
+        Instance.SetBackground(true);
         Instance.GoToStart();
     }
 

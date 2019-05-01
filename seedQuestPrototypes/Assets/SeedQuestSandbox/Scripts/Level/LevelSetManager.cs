@@ -37,4 +37,9 @@ public class LevelSetManager : MonoBehaviour
     {
         get { return (int)Mathf.Floor(InteractableLog.Count / InteractableConfig.ActionsPerSite); }
     }
+
+    static public void ResetCurrentLevels() {
+        Instance.currentLevels.Clear();
+    }
+
 }

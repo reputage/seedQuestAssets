@@ -81,4 +81,9 @@ public class LevelIconButton : MonoBehaviour {
             activeIndex--;
         }
     }
+
+    public static void ResetButtonIcons() {
+        activeIndex = -1;
+        activeButtons = new LevelIconButton[4];
+    }
 }
