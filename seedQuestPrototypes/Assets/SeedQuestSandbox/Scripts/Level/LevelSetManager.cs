@@ -16,7 +16,7 @@ public class LevelSetManager : MonoBehaviour
     static public List<LevelProps> AllLevels { get => Instance.allLevels; }
     public List<LevelProps> currentLevels;
     static public List<LevelProps> CurrentLevels { get => Instance.currentLevels; }
-    static public LevelProps CurrentLevel { get => Instance.currentLevels[InteractableLog.CurrentLevelIndex]; }
+    static public LevelProps CurrentLevel { get => Instance.currentLevels.Count > 0 ? Instance.currentLevels[InteractableLog.CurrentLevelIndex] : null; }
 
     [SerializeField]
     private List<LevelProps> levels;
