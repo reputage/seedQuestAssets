@@ -45,4 +45,8 @@ public class EndGameUI : MonoBehaviour {
         LoadingScreenUI.LoadRecall(RecallScene, true);
     }
 
+    public void GoToStartScreen() {
+        MenuScreenManager.ActivateStart();
+    }
+
 }

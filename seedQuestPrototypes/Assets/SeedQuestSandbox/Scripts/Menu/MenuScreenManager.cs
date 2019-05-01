@@ -85,6 +85,10 @@ public class MenuScreenManager : MonoBehaviour
         SetupRotateBackground(0);
     }
 
+    static public void ActivateStart() {
+        Instance.GoToStart();
+    }
+
     public void GoToModeSelect()
     {
         state = MenuScreenStates.ModeSelect;
