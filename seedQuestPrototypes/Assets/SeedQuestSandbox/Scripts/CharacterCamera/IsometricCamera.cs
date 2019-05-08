@@ -31,7 +31,14 @@ public class IsometricCamera : MonoBehaviour
     public Vector3 offset = new Vector3(1, 1, -1);  // Camera position offset
     public Vector3 cameraDirection = new Vector3(1, 1, -1);
     public float distance = 14;
+    static private float staticDistance = 14;
     public float startingDistance = 28;
+
+    public static float StaticDistance 
+    {
+        get { return staticDistance; }
+        set { staticDistance = value; }
+    }
 
     private Transform playerTransform;
     private Vector3 currentOffset;
@@ -45,6 +52,7 @@ public class IsometricCamera : MonoBehaviour
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         IsometricCamera.Camera = gameObject.GetComponent<Camera>();
+        IsometricCamera.StaticDistance = distance;
 
     }
 
@@ -181,7 +189,7 @@ public class IsometricCamera : MonoBehaviour
     {
         //currentOffset = Quaternion.Euler(rotateAngles) * Vector3.right * distance;
 
-        Vector3 targetOffset = cameraDirection.normalized * distance;
+        Vector3 targetOffset = cameraDirection.normalized * IsometricCamera.StaticDistance;
         Vector3 startingOffset = cameraDirection.normalized * startingDistance;
 
         if (useLevelZoomIn) {
