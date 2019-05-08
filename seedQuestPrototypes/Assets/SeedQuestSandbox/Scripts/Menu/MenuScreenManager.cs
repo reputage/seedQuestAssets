@@ -303,8 +303,7 @@ public class MenuScreenManager : MonoBehaviour
         selectedPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = LevelSetManager.AllLevels[levelIndex].name;
         selectedPanel.GetComponentsInChildren<Image>()[2].sprite = LevelSetManager.AllLevels[levelIndex].preview;
 
-        if (panelIndex == 3)
-        {
+        if (panelIndex == InteractableConfig.SitesPerGame - 1) {
             Instance.encodeSeedContinueCanvas.gameObject.SetActive(true);
         }
     }

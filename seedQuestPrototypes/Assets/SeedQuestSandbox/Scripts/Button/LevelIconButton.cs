@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class LevelIconButton : MonoBehaviour {
     static public int activeIndex = -1;
-    static public LevelIconButton[] activeButtons = new LevelIconButton[4];
+    static public LevelIconButton[] activeButtons = new LevelIconButton[6];
     static public LevelIconButton[] allIconButtons = new LevelIconButton[16];
 
     public int iconIndex;
@@ -18,7 +18,7 @@ public class LevelIconButton : MonoBehaviour {
     private Image[] images;
     private Image icon;
     private Image border;
-    private Image[] numberIcons = new Image[4];
+    private Image[] numberIcons = new Image[6];
 
     private void Awake()
     {
@@ -30,6 +30,8 @@ public class LevelIconButton : MonoBehaviour {
         numberIcons[1] = images[5];
         numberIcons[2] = images[6];
         numberIcons[3] = images[7];
+        numberIcons[4] = images[8];
+        numberIcons[5] = images[9];
 
         icon.sprite = iconImage;
         border.color = new Color(0, 0, 0, 0);
