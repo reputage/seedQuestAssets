@@ -35,8 +35,10 @@ public class LevelIconButton : MonoBehaviour {
 
         icon.sprite = iconImage;
         border.color = new Color(0, 0, 0, 0);
-        foreach (Image icon in numberIcons)
+        foreach (Image icon in numberIcons) {
             icon.gameObject.SetActive(false);
+            icon.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        }
 
         allIconButtons[iconIndex] = this;
     }
