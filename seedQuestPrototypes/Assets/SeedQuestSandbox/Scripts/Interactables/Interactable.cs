@@ -139,7 +139,7 @@ namespace SeedQuest.Interactables
 
                     if (!isOnHover)  {
                         GameManager.State = GameState.Interact;
-                        InteractableManager.SetActiveInteractable(this);
+                        InteractableManager.SetActiveInteractable(this, this.ActionIndex);
                     } 
 
                     isOnHover = true;

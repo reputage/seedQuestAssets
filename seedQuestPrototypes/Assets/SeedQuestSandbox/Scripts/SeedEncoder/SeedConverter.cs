@@ -95,12 +95,12 @@ namespace SeedQuest.SeedEncoder
                     interactablePath[i].ID.actionID = pathIDs[i].actionID;
                 else
                     Debug.Log("Warning: Interactable path element is null.");
-                Debug.Log("Interactable ID: " + interactablePath[i].ID.siteID + interactablePath[i].ID.spotID + interactablePath[i].ID.actionID);
+                Debug.Log("Interactable ID: " + interactablePath[i].ID.siteID + " " + interactablePath[i].ID.spotID + " " + interactablePath[i].ID.actionID);
             }
 
             for (int i = 0; i < interactablePath.Length; i++)
             {
-                Debug.Log("Interactable ID: " + interactablePath[i].ID.siteID + interactablePath[i].ID.spotID + interactablePath[i].ID.actionID);
+                Debug.Log("Interactable ID: " + interactablePath[i].ID.siteID + " " + interactablePath[i].ID.spotID + " " + interactablePath[i].ID.actionID);
             }
 
             foreach (Interactable i in interactablePath)

@@ -282,7 +282,7 @@ namespace SeedQuest.Interactables
         public void onHoverUI() {
             GameManager.State = GameState.Interact;
             showCurrentActions();
-            InteractableManager.SetActiveInteractable(parent);
+            InteractableManager.SetActiveInteractable(parent, parent.ActionIndex);
         }
 
         /// <summary> Handles exiting hovering UI </summary>
