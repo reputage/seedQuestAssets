@@ -28,9 +28,9 @@ public class ProgressTrackerUI : MonoBehaviour
         progressBar = GameObject.FindGameObjectWithTag("ProgressBar").GetComponent<Image>();
         if (GameObject.FindGameObjectWithTag("ProgressTicks") != null)
             progressTicks = GameObject.FindGameObjectWithTag("ProgressTicks").GetComponentsInChildren<Image>();
-        progressText = progressCanvas.GetComponentInChildren<TextMeshProUGUI>();
+        progressText = progressCanvas.GetComponentInChildren<TextMeshProUGUI>(true);
         progressPartialIcon = GameObject.FindGameObjectWithTag("ProgressText").GetComponentsInChildren<Image>()[1];
-        progressMessageText = GetComponentsInChildren<TextMeshProUGUI>()[1];
+        progressMessageText = GetComponentsInChildren<TextMeshProUGUI>(true)[1];
 
         animator = GetComponentInChildren<Animator>();
 
@@ -46,7 +46,7 @@ public class ProgressTrackerUI : MonoBehaviour
         setProgress();
         SetProgressBar();
         SetProgressTicks();
-        SetProgressText();
+        //SetProgressText();
         SetLocation();
         SetProgressMessage();
     }
