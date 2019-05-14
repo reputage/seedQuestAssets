@@ -27,6 +27,7 @@ public class HUDManager : MonoBehaviour {
     public HUDItemProps useTutorial;
     public HUDItemProps useInteractableTracker;
     public HUDItemProps useUndo;
+    public HUDItemProps useZoomSlider;
 
     static private HUDManager instance = null;
     static private HUDManager setInstance() { instance = GameObject.FindObjectOfType<HUDManager>(); return instance; }
@@ -72,6 +73,7 @@ public class HUDManager : MonoBehaviour {
         InstantiateHUDElement<ProgressTrackerUI>(useProgressTracker);
         InstantiateHUDElement<TutorialManager>(useTutorial);
         InstantiateHUDElement<UndoUI>(useUndo);
+        InstantiateHUDElement<CameraSlider>(useZoomSlider);
     }
 
     public void DestroyImmediateHUD() {
@@ -88,6 +90,7 @@ public class HUDManager : MonoBehaviour {
         DestroyHUDElement<ProgressTrackerUI>(useProgressTracker);
         DestroyHUDElement<TutorialManager>(useTutorial);
         DestroyHUDElement<UndoUI>(useUndo);
+        DestroyHUDElement<CameraSlider>(useZoomSlider);
     }
 
     public HUDItemProps GetProps<T>() {
@@ -105,6 +108,7 @@ public class HUDManager : MonoBehaviour {
         else if (listType == typeof(ProgressTrackerUI)) { return useProgressTracker; }
         else if (listType == typeof(TutorialManager)) { return useTutorial; }
         else if (listType == typeof(UndoUI)) { return useUndo; }
+        else if (listType == typeof(CameraSlider)) { return useZoomSlider; }
         return null;
     }
 }
