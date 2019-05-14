@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 using SeedQuest.Interactables;
 using SeedQuest.HUD;
@@ -40,7 +41,8 @@ public class HUDManager : MonoBehaviour {
 
     public void InstantiateHUDElement<T>(HUDItemProps props) {
         if(props.use && props.prefab != null && GetComponentInChildren<T>(true) == null) {
-            var gameobj = Instantiate(props.prefab, transform);
+            var gameobj = PrefabUtility.InstantiatePrefab(props.prefab, transform);
+            //var gameobj = Instantiate(props.prefab, transform);
         }
     }
 
@@ -50,7 +52,8 @@ public class HUDManager : MonoBehaviour {
 
         HUDItemProps props = Instance.GetProps<T>();
         if (props.prefab != null && Instance.GetComponentInChildren<T>(true) == null) {
-            var gameobj = Instantiate(props.prefab, Instance.transform);
+            var gameobj = PrefabUtility.InstantiatePrefab(props.prefab, Instance.transform);
+            //var gameobj = Instantiate(props.prefab, Instance.transform);
         }
     }
 
