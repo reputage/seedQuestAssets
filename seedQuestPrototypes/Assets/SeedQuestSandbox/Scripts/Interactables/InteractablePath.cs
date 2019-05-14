@@ -25,6 +25,8 @@ namespace SeedQuest.Interactables
         /// <summary> List of Interactables which represent the Path of Interactables to Complete </summary>
         public List<Interactable> path = null;
 
+        public List<int> actionIds = null;
+
         /// <summary> List of Interactables which represent the Path </summary>
         static public List<Interactable> Path {
             get { return Instance.path; }
@@ -73,6 +75,7 @@ namespace SeedQuest.Interactables
         static public void GeneratePathFromSeed(string seed) {
             SeedConverter converter = new SeedConverter();
             Instance.path = new List<Interactable>(converter.encodeSeed(seed));
+            Instance.actionIds = new List<int>(converter.encodeActionIDs(seed));
         }
 
         static public InteractableID[] GetPathIDsFromSeed(string seed) {
@@ -133,7 +136,8 @@ namespace SeedQuest.Interactables
                 InteractableManager.UnHighlightAllInteractables();
                 NextInteractable.HighlightInteractableWithEffect(true);
                 InteractablePreviewUI.SetPreviewObject(NextInteractable);
-                InteractablePreviewUI.SetPreviewAction(NextInteractable.ID.actionID);
+                InteractablePreviewUI.SetPreviewAction(Instance.actionIds[Instance.nextIndex]);
+                Debug.Log("Next action ID: " + Instance.actionIds[Instance.nextIndex]);
             }
         }
     }

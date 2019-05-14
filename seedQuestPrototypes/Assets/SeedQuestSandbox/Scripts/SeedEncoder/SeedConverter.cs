@@ -18,6 +18,22 @@ namespace SeedQuest.SeedEncoder
             return getInteractablePath(ids); 
         }
 
+        public List<int> encodeActionIDs(string seedString)
+        {
+            InteractableID[] ids = getPathIDs(seedString);
+            return getActionIds(ids);
+        }
+
+        public List<int> getActionIds(InteractableID[] pathIDs)
+        {
+            List<int> tempIDs = new List<int>();
+            for (int i = 0; i < pathIDs.Length; i++)
+            {
+                tempIDs.Add(pathIDs[i].actionID);
+            }
+            return tempIDs;
+        }
+
         /// <summary> 
         /// Returns recovered seed which as been decodes from a list of interactions
         /// </summary>
@@ -71,11 +87,25 @@ namespace SeedQuest.SeedEncoder
             Interactable[] interactablePath = new Interactable[pathIDs.Length];
             for (int i = 0; i < pathIDs.Length; i++)
             {
+                Debug.Log("Action IDs from seed: " + pathIDs[i].actionID);
                 int row = pathIDs[i].siteID;
                 int col = pathIDs[i].spotID;
                 interactablePath[i] = LUT[row, col];
                 if (interactablePath[i] != null)
                     interactablePath[i].ID.actionID = pathIDs[i].actionID;
+                else
+                    Debug.Log("Warning: Interactable path element is null.");
+                Debug.Log("Interactable ID: " + interactablePath[i].ID.siteID + interactablePath[i].ID.spotID + interactablePath[i].ID.actionID);
+            }
+
+            for (int i = 0; i < interactablePath.Length; i++)
+            {
+                Debug.Log("Interactable ID: " + interactablePath[i].ID.siteID + interactablePath[i].ID.spotID + interactablePath[i].ID.actionID);
+            }
+
+            foreach (Interactable i in interactablePath)
+            {
+                //Debug.Log("Action IDs from path: " + i.ID.actionID);
             }
 
             return interactablePath;
