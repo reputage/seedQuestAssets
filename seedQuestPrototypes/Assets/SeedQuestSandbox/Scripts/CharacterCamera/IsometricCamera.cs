@@ -159,7 +159,7 @@ public class IsometricCamera : MonoBehaviour
         SetOffset();
         //if(useCameraMove)
         SmoothFollowCamera();
-        CameraLookAt();
+        //CameraLookAt();
 
         /*
         if(useCameraMove) {

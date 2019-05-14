@@ -142,6 +142,11 @@ public class MenuScreenManager : MonoBehaviour
         }
     }
 
+    public void UndoLastSceneEncodeStep() {
+        HideLevelPanel(LevelIconButton.activeIndex);
+        LevelIconButton.Undo();
+    }
+
     public void GoToSceneLineUp()
     {
         state = MenuScreenStates.SceneLineUp;
@@ -187,8 +192,16 @@ public class MenuScreenManager : MonoBehaviour
             InteractablePathManager.SeedString = seedInputField.text;
 
             int[] siteIDs = InteractablePathManager.GetPathSiteIDs();
-            SetIconAndPanelForRehearsal(siteIDs); 
+            SetIconAndPanelForRehearsal(siteIDs);
         }
+    }
+
+    static public void EnableUndoButton() {
+        Instance.encodeSeedCanvas.GetComponentsInChildren<Button>(true)[16].gameObject.SetActive(true);
+    }
+
+    static public void DisableUndoButton() {
+        Instance.encodeSeedCanvas.GetComponentsInChildren<Button>(true)[16].gameObject.SetActive(false);
     }
 
     public void SetupSceneLineUp()
@@ -275,6 +288,8 @@ public class MenuScreenManager : MonoBehaviour
     }
 
     static public void SetIconAndPanelForRehearsal(int[] siteIDs) {
+        LevelIconButton.EnableNextIconButton();
+
         int orderIndex = 0;
         foreach (int siteID in siteIDs) {
             LevelIconButton.ActivateIconForRehersal(siteID, orderIndex);
@@ -291,10 +306,12 @@ public class MenuScreenManager : MonoBehaviour
         }
     }
 
+    static public void SetEncodeSeedContinueCanvas() {
+        Instance.encodeSeedContinueCanvas.gameObject.SetActive(true);
+    }
+
     static public void SetLevelPanel(int panelIndex, int levelIndex)
     {
-        LevelSetManager.AddLevel(levelIndex);
-
         LevelPanel selectedPanel = Instance.encodeSeedCanvas.GetComponentsInChildren<LevelPanel>()[panelIndex];
         selectedPanel.GetComponentsInChildren<Image>(true)[2].gameObject.SetActive(true);
         selectedPanel.GetComponentsInChildren<TextMeshProUGUI>(true)[0].gameObject.SetActive(true);
@@ -302,11 +319,18 @@ public class MenuScreenManager : MonoBehaviour
 
         selectedPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = LevelSetManager.AllLevels[levelIndex].name;
         selectedPanel.GetComponentsInChildren<Image>()[2].sprite = LevelSetManager.AllLevels[levelIndex].preview;
-
-        if (panelIndex == InteractableConfig.SitesPerGame - 1) {
-            Instance.encodeSeedContinueCanvas.gameObject.SetActive(true);
-        }
     }
+
+    static public void HideLevelPanel(int panelIndex) {
+        if (panelIndex >= 6)
+            return;
+        
+        LevelPanel selectedPanel = Instance.encodeSeedCanvas.GetComponentsInChildren<LevelPanel>()[panelIndex];
+        selectedPanel.GetComponentsInChildren<Image>(true)[2].gameObject.SetActive(false);
+        selectedPanel.GetComponentsInChildren<TextMeshProUGUI>(true)[0].gameObject.SetActive(false);
+        selectedPanel.GetComponentsInChildren<TextMeshProUGUI>(true)[1].gameObject.SetActive(false);
+    }
+
 
     private Vector3 rotate = new Vector3(0, 0, 0);
     private Vector3 targetRotate = new Vector3(0, 0, 0);
