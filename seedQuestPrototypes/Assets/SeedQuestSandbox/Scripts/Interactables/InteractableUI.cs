@@ -165,7 +165,10 @@ namespace SeedQuest.Interactables
 
             if(GameManager.Mode == GameMode.Rehearsal) {
                 if (actionIndex == InteractablePath.NextInteractable.ID.actionID)
+                {
+                    InteractableLog.Add(parent, parent.ActionIndex);
                     InteractablePath.GoToNextInteractable();
+                }
             }
             else if (GameManager.Mode == GameMode.Recall)
                 InteractableLog.Add(parent, parent.ActionIndex);
@@ -176,6 +179,7 @@ namespace SeedQuest.Interactables
             SetCheckButtonActive(false);
 
             if (GameManager.Mode == GameMode.Rehearsal) {
+                InteractableLog.Add(parent, parent.ActionIndex);
                 InteractablePath.GoToNextInteractable();
 
                 if (mode == InteractableUIMode.NextPrevSelect) {

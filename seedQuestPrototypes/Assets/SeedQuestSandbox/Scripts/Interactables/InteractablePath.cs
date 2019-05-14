@@ -114,7 +114,6 @@ namespace SeedQuest.Interactables
         static public void GoToNextInteractable()
         {
             if (GameManager.Mode == GameMode.Rehearsal && NextInteractable == InteractableManager.ActiveInteractable) {
-                InteractableLog.Add(NextInteractable, NextInteractable.ID.actionID);
 
                 Instance.nextIndex++;
 
