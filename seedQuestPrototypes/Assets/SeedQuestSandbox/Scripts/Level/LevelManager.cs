@@ -34,6 +34,8 @@ namespace SeedQuest.Level
 
         static public string LevelSelectScene { get => Instance.levelSelectScene; }
 
+        public string levelMusicName = "";
+
         /// <summary> MultiLevelGame Flag important for InteractablePath calculations </summary>
         public bool isMultiLevelGame = false;
 
@@ -68,6 +70,9 @@ namespace SeedQuest.Level
             
             InteractablePathManager.SetupInteractablePathIDs();
             InteractablePathManager.Initalize();
+
+            if(levelMusicName != "")
+                AudioManager.Play(levelMusicName);
         }
 
         private void Update() {

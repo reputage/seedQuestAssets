@@ -96,6 +96,8 @@ public class MenuScreenManager : MonoBehaviour
 
     public void GoToModeSelect()
     {
+        AudioManager.Play("UI_StartButton");
+
         state = MenuScreenStates.ModeSelect;
         ResetCanvas();
         canvas[3].gameObject.SetActive(true);
