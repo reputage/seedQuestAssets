@@ -160,8 +160,7 @@ public class MenuScreenManager : MonoBehaviour
         Instance.GoToSceneLineUp();
     }
 
-    public void GoToActionLineUp()
-    {
+    public void GoToActionLineUp() {
         if (GameManager.Mode == GameMode.Rehearsal)
         {
             state = MenuScreenStates.ActionLineUp;
@@ -242,6 +241,18 @@ public class MenuScreenManager : MonoBehaviour
         images[8].gameObject.SetActive(false);
 
         TextMeshProUGUI[] texts = actionLineUpCanvas.GetComponentsInChildren<TextMeshProUGUI>();
+
+        /*
+        Interactable[] interactables = InteractablePath.Path.ToArray(); 
+        int sceneIndex = InteractableLog.CurrentLevelIndex;
+        int baseIndex = sceneIndex * InteractableConfig.ActionsPerSite;
+
+        for (int i = 0; i < InteractableConfig.ActionsPerSite; i++) {
+            Interactable interactable = interactables[baseIndex + i];
+            texts[2 * i + 2].text = interactable.Name;
+            texts[2 * i + 2].text = interactable.RehearsalActionName;
+        }
+        */
     }
 
     public void CloseSceneLineUp()
