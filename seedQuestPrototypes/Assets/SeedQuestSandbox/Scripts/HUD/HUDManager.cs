@@ -23,12 +23,14 @@ public class HUDManager : MonoBehaviour {
     public HUDItemProps useLevelClear;
     public HUDItemProps useLevelName;
     public HUDItemProps useLoadingScreen;
+    public HUDItemProps usePauseMenu;
     public HUDItemProps useProgressTracker;
     public HUDItemProps useCLI;
     public HUDItemProps useTutorial;
     public HUDItemProps useInteractableTracker;
     public HUDItemProps useUndo;
     public HUDItemProps useZoomSlider;
+
 
     static private HUDManager instance = null;
     static private HUDManager setInstance() { instance = GameObject.FindObjectOfType<HUDManager>(); return instance; }
@@ -73,6 +75,7 @@ public class HUDManager : MonoBehaviour {
         InstantiateHUDElement<LevelClearUI>(useLevelClear);
         InstantiateHUDElement<LevelNameUI>(useLevelName);
         InstantiateHUDElement<LoadingScreenUI>(useLoadingScreen);
+        InstantiateHUDElement<ScenePauseMenu>(usePauseMenu);
         InstantiateHUDElement<ProgressTrackerUI>(useProgressTracker);
         InstantiateHUDElement<TutorialManager>(useTutorial);
         InstantiateHUDElement<UndoUI>(useUndo);
@@ -90,6 +93,7 @@ public class HUDManager : MonoBehaviour {
         DestroyHUDElement<LevelClearUI>(useLevelClear);
         DestroyHUDElement<LevelNameUI>(useLevelName);
         DestroyHUDElement<LoadingScreenUI>(useLoadingScreen);
+        DestroyHUDElement<ScenePauseMenu>(usePauseMenu);
         DestroyHUDElement<ProgressTrackerUI>(useProgressTracker);
         DestroyHUDElement<TutorialManager>(useTutorial);
         DestroyHUDElement<UndoUI>(useUndo);
@@ -108,6 +112,7 @@ public class HUDManager : MonoBehaviour {
         else if (listType == typeof(LevelClearUI)) { return useLevelClear; }
         else if (listType == typeof(LevelNameUI)) { return useLevelName; }
         else if (listType == typeof(LoadingScreenUI)) { return useLoadingScreen; }
+        else if (listType == typeof(ScenePauseMenu)) { return usePauseMenu; }
         else if (listType == typeof(ProgressTrackerUI)) { return useProgressTracker; }
         else if (listType == typeof(TutorialManager)) { return useTutorial; }
         else if (listType == typeof(UndoUI)) { return useUndo; }

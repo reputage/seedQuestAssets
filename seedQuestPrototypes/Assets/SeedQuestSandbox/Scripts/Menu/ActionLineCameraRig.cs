@@ -14,7 +14,7 @@ public class ActionLineCameraRig : MonoBehaviour
     }
 
     public void Initialize() {
-        Interactable[] interactables = InteractableManager.InteractableList;
+        Interactable[] interactables = InteractablePath.Path.ToArray(); 
 
         int sceneIndex = InteractableLog.CurrentLevelIndex;
         int baseIndex = sceneIndex * InteractableConfig.ActionsPerSite;
