@@ -161,16 +161,14 @@ public class MenuScreenManager : MonoBehaviour
     }
 
     public void GoToActionLineUp() {
-        if (GameManager.Mode == GameMode.Rehearsal)
-        {
+        if (GameManager.Mode == GameMode.Rehearsal) {
             state = MenuScreenStates.ActionLineUp;
             ResetCanvas();
             actionLineUpCanvas.gameObject.SetActive(true);
             SetupActionLineUp();
         }
-        else
-        {
-            CloseMenuScreen();
+        else {
+            CloseSceneLineUp();
         }
     }
 
