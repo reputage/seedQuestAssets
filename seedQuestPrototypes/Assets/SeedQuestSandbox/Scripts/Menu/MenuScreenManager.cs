@@ -231,28 +231,23 @@ public class MenuScreenManager : MonoBehaviour
         preview.sprite = LevelSetManager.CurrentLevel.preview;
         Image icon = actionLineUpCanvas.GetComponentsInChildren<Image>()[3];
         icon.sprite = LevelSetManager.CurrentLevel.icon;
-        TextMeshProUGUI text = actionLineUpCanvas.GetComponentsInChildren<TextMeshProUGUI>()[0];
-        text.text = LevelSetManager.CurrentLevel.name;
 
-        Image[] images = actionLineUpCanvas.GetComponentsInChildren<Image>();
-        images[5].gameObject.SetActive(false);
-        images[6].gameObject.SetActive(false);
-        images[7].gameObject.SetActive(false);
-        images[8].gameObject.SetActive(false);
+        TextMeshProUGUI text = actionLineUpCanvas.GetComponentsInChildren<TextMeshProUGUI>()[1];
+        text.text = LevelSetManager.CurrentLevel.name;
 
         TextMeshProUGUI[] texts = actionLineUpCanvas.GetComponentsInChildren<TextMeshProUGUI>();
 
-        /*
         Interactable[] interactables = InteractablePath.Path.ToArray(); 
         int sceneIndex = InteractableLog.CurrentLevelIndex;
         int baseIndex = sceneIndex * InteractableConfig.ActionsPerSite;
 
         for (int i = 0; i < InteractableConfig.ActionsPerSite; i++) {
             Interactable interactable = interactables[baseIndex + i];
-            texts[2 * i + 2].text = interactable.Name;
-            texts[2 * i + 2].text = interactable.RehearsalActionName;
+            texts[2 * i + 3].text = interactable.Name;
+            texts[2 * i + 4].text = interactable.RehearsalActionName;
         }
-        */
+
+        GameManager.Instance.GetComponentInChildren<ActionLineCameraRig>().Initialize();
     }
 
     public void CloseSceneLineUp()
