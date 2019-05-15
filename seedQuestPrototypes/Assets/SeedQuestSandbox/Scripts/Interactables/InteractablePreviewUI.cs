@@ -147,7 +147,6 @@ namespace SeedQuest.Interactables
         /// <param name="interactable"> Interactable to set Preview with </param>
         static public void SetPreviewObject(Interactable interactable, int actionID)  {
 
-            Debug.Log("Setting preview object....");
             // Set Preview if interactablePreview has changed
             if (Instance == null || interactable.interactablePreview == Instance.preview)
                 Debug.Log("Trying to exit setpreview function");
@@ -182,7 +181,6 @@ namespace SeedQuest.Interactables
             Instance.previewTitle.text = interactable.Name;
             if (GameManager.Mode == GameMode.Rehearsal)
             {
-                Debug.Log("PreviewUI - actionID: " + actionID + " stateName: " + interactable.stateData.getStateName(actionID));
                 Instance.previewText.text = interactable.stateData.getStateName(actionID);// RehearsalActionName;
             }
             else

@@ -87,14 +87,11 @@ namespace SeedQuest.SeedEncoder
             Interactable[] interactablePath = new Interactable[pathIDs.Length];
             for (int i = 0; i < pathIDs.Length; i++)
             {
-                Debug.Log("Action IDs from seed: " + pathIDs[i].actionID);
                 int row = pathIDs[i].siteID;
                 int col = pathIDs[i].spotID;
                 interactablePath[i] = LUT[row, col];
                 if (interactablePath[i] != null)
                     interactablePath[i].ID.actionID = pathIDs[i].actionID;
-                else
-                    Debug.Log("Warning: Interactable path element is null.");
             }
 
             return interactablePath;
