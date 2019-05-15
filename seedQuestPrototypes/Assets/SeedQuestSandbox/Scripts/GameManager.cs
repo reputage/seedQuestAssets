@@ -48,8 +48,9 @@ public class GameManager : MonoBehaviour {
     }
 
     public void ListenForKeyDown() {
-        if (Input.GetKeyDown("escape") && Mode != GameMode.Sandbox) {
-            ESCMenuUI.ToggleOn();
+        if (Input.GetKeyDown("escape")) {
+            //ESCMenuUI.ToggleOn();
+            ScenePauseMenu.ToggleOn();
         }
     }
 } 
