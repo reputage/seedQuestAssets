@@ -119,5 +119,11 @@ namespace SeedQuest.Level
                 count++;
             }
         }
+
+        private void OnDestroy()
+        {
+            if (levelMusicName != "")
+                AudioManager.Stop(levelMusicName);
+        }
     }
 }
