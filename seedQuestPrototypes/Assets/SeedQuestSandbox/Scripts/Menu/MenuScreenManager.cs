@@ -118,6 +118,7 @@ public class MenuScreenManager : MonoBehaviour
 
     public void GoToSeedSetup()
     {
+        AudioManager.Play("UI_HoverA");
         state = MenuScreenStates.SeedSetup;
         ResetCanvas();
         canvas[4].gameObject.SetActive(true);
