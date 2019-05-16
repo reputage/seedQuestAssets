@@ -7,8 +7,9 @@ using UnityEngine.EventSystems;
 using SeedQuest.Interactables;
 
 public class LevelIconButton : MonoBehaviour {
+    static private int activeLevelCount = 6;
     static public int activeIndex = -1;
-    static public LevelIconButton[] activeButtons = new LevelIconButton[6];
+    static public LevelIconButton[] activeButtons = new LevelIconButton[activeLevelCount];
     static public LevelIconButton[] allIconButtons = new LevelIconButton[16];
 
     public int iconIndex;
@@ -180,7 +181,7 @@ public class LevelIconButton : MonoBehaviour {
 
     public static void ResetButtonIcons() {
         activeIndex = -1;
-        activeButtons = new LevelIconButton[4];
+        activeButtons = new LevelIconButton[activeLevelCount];
 
         foreach(LevelIconButton icon in allIconButtons) {
             icon.border.color = new Color(0, 0, 0, 0);

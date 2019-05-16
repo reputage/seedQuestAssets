@@ -151,6 +151,7 @@ public class MenuScreenManager : MonoBehaviour
 
     public void GoToSceneLineUp()
     {
+        DisableUndoButton();
         state = MenuScreenStates.SceneLineUp;
         ResetCanvas();
         sceneLineUpCanvas.gameObject.SetActive(true);
@@ -178,7 +179,11 @@ public class MenuScreenManager : MonoBehaviour
     {
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
         seedInputField.text = InteractablePathManager.SeedString;
-        seedInputField.characterLimit = InteractableConfig.SeedHexLength;
+        int charLimit = InteractableConfig.SeedHexLength;
+        if (charLimit %2 == 1)
+            charLimit++;
+        
+        seedInputField.characterLimit = charLimit;
     }
 
     public void SetupEncodeSeed()
@@ -330,7 +335,7 @@ public class MenuScreenManager : MonoBehaviour
     static public void HideLevelPanel(int panelIndex) {
         if (panelIndex >= 6)
             return;
-        
+
         LevelPanel selectedPanel = Instance.encodeSeedCanvas.GetComponentsInChildren<LevelPanel>()[panelIndex];
         selectedPanel.GetComponentsInChildren<Image>(true)[2].gameObject.SetActive(false);
         selectedPanel.GetComponentsInChildren<TextMeshProUGUI>(true)[0].gameObject.SetActive(false);
