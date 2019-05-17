@@ -52,6 +52,7 @@ public class InteractableCameraRig : MonoBehaviour
             Interactable previewInteractable = previewChild.GetComponent<Interactable>();
             previewInteractable.DeleteUI();
             previewInteractable.HighlightInteractableWithEffect(false);
+            Destroy(previewInteractable);
         }
 
         // Set Layer to "InteractablePreview"

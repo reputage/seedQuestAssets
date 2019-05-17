@@ -155,6 +155,8 @@ public class MenuScreenManager : MonoBehaviour
 
     public void GoToSceneLineUp()
     {
+        Debug.Log("GoToSceneLineUp");
+        DisableUndoButton();
         AudioManager.Play(buttonClickSound);
         state = MenuScreenStates.SceneLineUp;
         ResetCanvas();

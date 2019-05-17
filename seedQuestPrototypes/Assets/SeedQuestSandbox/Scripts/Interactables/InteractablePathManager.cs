@@ -145,9 +145,14 @@ namespace SeedQuest.Interactables {
                 
                 // Create a subset of interactables in bounds
                 List<Interactable> subset = new List<Interactable>();
+
+                int counter = 0;
+
                 foreach(Interactable item in list) {
                     if(BoundingBox.InBounds(item.transform, bounds)) {
                         subset.Add(item);
+                        //Debug.Log("Item name: " + item.name + " item number: " + counter);
+                        counter++;
                     }
                 }
 
@@ -157,8 +162,14 @@ namespace SeedQuest.Interactables {
                     if (i < indices.Length)
                         subset[i].ID.spotID = indices[i];
                     else
+                    {
                         subset[i].ID.spotID = -1;
+                        Debug.Log("Interactable setup error: setting " + subset[i].name + " spot ID to -1");
+                    }
                 }
+
+                Debug.Log("Subset count: " + subset.Count + " Indices length: " + indices.Length);
+
 
                 // Throw Error for not enough interactables in a Site
                 if (GameManager.Mode != GameMode.Sandbox && subset.Count < InteractableConfig.InteractableCount)
@@ -166,6 +177,7 @@ namespace SeedQuest.Interactables {
 
                 siteCount++;
             }
+
         }
     }
 }
