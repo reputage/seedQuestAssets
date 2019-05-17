@@ -164,12 +164,11 @@ namespace SeedQuest.Interactables {
                     else
                     {
                         subset[i].ID.spotID = -1;
-                        Debug.Log("Interactable setup error: setting " + subset[i].name + " spot ID to -1");
+                        //Debug.Log("Interactable setup error: setting " + subset[i].name + " spot ID to -1");
                     }
                 }
 
-                Debug.Log("Subset count: " + subset.Count + " Indices length: " + indices.Length);
-
+                //Debug.Log("Subset count: " + subset.Count + " Indices length: " + indices.Length);
 
                 // Throw Error for not enough interactables in a Site
                 if (GameManager.Mode != GameMode.Sandbox && subset.Count < InteractableConfig.InteractableCount)

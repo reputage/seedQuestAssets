@@ -46,7 +46,7 @@ public class ProgressTrackerUI : MonoBehaviour
         setProgress();
         SetProgressBar();
         SetProgressTicks();
-        SetProgressText();
+        //SetProgressText();
         SetLocation();
         SetProgressMessage();
     }

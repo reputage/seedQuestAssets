@@ -195,7 +195,7 @@ namespace SeedQuest.Interactables
             {
                 values += item.siteIndex.ToString() + " " + item.interactableIndex.ToString() + " " + item.actionIndex.ToString() + " ";
             }
-            Debug.Log("Current Log values: " + values);
+            //Debug.Log("Current Log values: " + values);
 
         }
 

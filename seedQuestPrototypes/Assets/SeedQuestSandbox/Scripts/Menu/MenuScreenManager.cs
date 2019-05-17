@@ -408,7 +408,11 @@ public class MenuScreenManager : MonoBehaviour
         {
             // send warning message that the length is too short
             validHex = false;
-            warningText.GetComponent<TextMeshProUGUI>().text = "Warning: seed must be 28 characters long";
+            int charLimit = InteractableConfig.SeedHexLength;
+            if (charLimit % 2 == 1)
+                charLimit++;
+            
+            warningText.GetComponent<TextMeshProUGUI>().text = "Warning: seed must be " + charLimit + " characters long";
         }
 
         return validHex;
