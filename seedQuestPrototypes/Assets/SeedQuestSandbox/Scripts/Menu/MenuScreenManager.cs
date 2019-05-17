@@ -30,6 +30,7 @@ public class MenuScreenManager : MonoBehaviour
     private float sceneLoadProgressValue;
     private Slider sceneLoadProgress;
     private Button sceneContinueButton;
+    static private readonly string buttonClickSound = "UI_HoverA";
 
     public void Awake()
     {
@@ -96,7 +97,7 @@ public class MenuScreenManager : MonoBehaviour
 
     public void GoToModeSelect()
     {
-        AudioManager.Play("UI_HoverA");
+        AudioManager.Play(buttonClickSound);
 
         state = MenuScreenStates.ModeSelect;
         ResetCanvas();
@@ -112,14 +113,14 @@ public class MenuScreenManager : MonoBehaviour
 
     public void SetModeRecoverSeed()
     {
-        AudioManager.Play("UI_HoverA");
+        AudioManager.Play(buttonClickSound);
         GameManager.Mode = GameMode.Recall;
         GoToEncodeSeed();
     }
 
     public void GoToSeedSetup()
     {
-        AudioManager.Play("UI_HoverA");
+        AudioManager.Play(buttonClickSound);
         state = MenuScreenStates.SeedSetup;
         ResetCanvas();
         canvas[4].gameObject.SetActive(true);
@@ -137,7 +138,7 @@ public class MenuScreenManager : MonoBehaviour
     }
 
     public void GoToEncodeSeedFromSeedSetup() {
-        AudioManager.Play("UI_HoverA");
+        AudioManager.Play(buttonClickSound);
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
         bool validSeed = validSeedString(seedInputField.text);
         if (validSeed)
@@ -154,7 +155,7 @@ public class MenuScreenManager : MonoBehaviour
 
     public void GoToSceneLineUp()
     {
-        AudioManager.Play("UI_HoverA");
+        AudioManager.Play(buttonClickSound);
         state = MenuScreenStates.SceneLineUp;
         ResetCanvas();
         sceneLineUpCanvas.gameObject.SetActive(true);
@@ -167,7 +168,7 @@ public class MenuScreenManager : MonoBehaviour
     }
 
     public void GoToActionLineUp() {
-        AudioManager.Play("UI_HoverA");
+        AudioManager.Play(buttonClickSound);
         if (GameManager.Mode == GameMode.Rehearsal) {
             state = MenuScreenStates.ActionLineUp;
             ResetCanvas();
@@ -257,7 +258,7 @@ public class MenuScreenManager : MonoBehaviour
 
     public void CloseSceneLineUp()
     {
-        AudioManager.Play("UI_HoverA");
+        AudioManager.Play(buttonClickSound);
         IsometricCamera.StartLevelZoomIn();
         CloseMenuScreen();
     }
