@@ -193,7 +193,17 @@ public class MenuScreenManager : MonoBehaviour
         if (GameManager.Mode == GameMode.Rehearsal)
         {
             TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>(true);
-            InteractablePathManager.SeedString = seedInputField.text;
+
+            string seedFromInput = seedInputField.text;
+            if (InteractableConfig.SeedHexLength % 2 == 1)
+            {
+                char[] array = seedFromInput.ToCharArray();
+                array[array.Length - 2] = '0';
+                seedFromInput = new string(array);
+                Debug.Log("Enforcing a fix to an incorrect seed. New seed: " + seedFromInput);
+            }
+
+            InteractablePathManager.SeedString = seedFromInput;
 
             int[] siteIDs = InteractablePathManager.GetPathSiteIDs();
             SetIconAndPanelForRehearsal(siteIDs);

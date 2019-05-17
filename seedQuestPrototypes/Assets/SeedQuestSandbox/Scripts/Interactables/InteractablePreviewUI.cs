@@ -147,9 +147,11 @@ namespace SeedQuest.Interactables
         /// <param name="interactable"> Interactable to set Preview with </param>
         static public void SetPreviewObject(Interactable interactable, int actionID)  {
 
+            int hello = 0;
             // Set Preview if interactablePreview has changed
             if (Instance == null || interactable.interactablePreview == Instance.preview)
-                Debug.Log("Trying to exit setpreview function");
+                hello = 1;
+                //Debug.Log("Trying to exit setpreview function");
                 //return;
             else
                 Instance.preview = interactable.interactablePreview;
