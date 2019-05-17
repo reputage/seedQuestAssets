@@ -96,7 +96,7 @@ public class MenuScreenManager : MonoBehaviour
 
     public void GoToModeSelect()
     {
-        AudioManager.Play("UI_StartButton");
+        AudioManager.Play("UI_HoverA");
 
         state = MenuScreenStates.ModeSelect;
         ResetCanvas();
@@ -112,6 +112,7 @@ public class MenuScreenManager : MonoBehaviour
 
     public void SetModeRecoverSeed()
     {
+        AudioManager.Play("UI_HoverA");
         GameManager.Mode = GameMode.Recall;
         GoToEncodeSeed();
     }
@@ -136,6 +137,7 @@ public class MenuScreenManager : MonoBehaviour
     }
 
     public void GoToEncodeSeedFromSeedSetup() {
+        AudioManager.Play("UI_HoverA");
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
         bool validSeed = validSeedString(seedInputField.text);
         if (validSeed)
@@ -152,6 +154,7 @@ public class MenuScreenManager : MonoBehaviour
 
     public void GoToSceneLineUp()
     {
+        AudioManager.Play("UI_HoverA");
         state = MenuScreenStates.SceneLineUp;
         ResetCanvas();
         sceneLineUpCanvas.gameObject.SetActive(true);
@@ -164,6 +167,7 @@ public class MenuScreenManager : MonoBehaviour
     }
 
     public void GoToActionLineUp() {
+        AudioManager.Play("UI_HoverA");
         if (GameManager.Mode == GameMode.Rehearsal) {
             state = MenuScreenStates.ActionLineUp;
             ResetCanvas();
@@ -253,6 +257,7 @@ public class MenuScreenManager : MonoBehaviour
 
     public void CloseSceneLineUp()
     {
+        AudioManager.Play("UI_HoverA");
         IsometricCamera.StartLevelZoomIn();
         CloseMenuScreen();
     }

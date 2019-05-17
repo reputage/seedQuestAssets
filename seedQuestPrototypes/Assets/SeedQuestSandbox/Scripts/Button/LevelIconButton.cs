@@ -158,6 +158,7 @@ public class LevelIconButton : MonoBehaviour {
 
         if (isActive) {
             activeIndex++;
+            AudioManager.Play("UI_SceneSelect" + (activeIndex + 1));
             activeButtons[activeIndex] = iconButton;
             iconButton.numberIcons[activeIndex].gameObject.SetActive(true);
             iconButton.border.color = iconButton.numberIcons[activeIndex].color;
