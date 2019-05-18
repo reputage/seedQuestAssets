@@ -207,7 +207,7 @@ public class MenuScreenManager : MonoBehaviour
                 char[] array = seedFromInput.ToCharArray();
                 array[array.Length - 2] = '0';
                 seedFromInput = new string(array);
-                Debug.Log("Enforcing a fix to an incorrect seed. New seed: " + seedFromInput);
+                Debug.Log("Enforcing a fix to the seed. New seed: " + seedFromInput);
             }
 
             InteractablePathManager.SeedString = seedFromInput;
