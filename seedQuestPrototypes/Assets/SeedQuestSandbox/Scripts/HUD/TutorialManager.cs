@@ -85,6 +85,7 @@ public class TutorialManager : MonoBehaviour {
         if (card >= data.tutorialData.Count) {
             gameObject.SetActive(false);
             GameManager.State = GameState.Play;
+            TutorialState.Skip = true;
             return;
         }
 

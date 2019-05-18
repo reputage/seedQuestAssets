@@ -40,13 +40,13 @@ namespace SeedQuest.Interactables
             }
         }
 
-        static public void SetActiveInteractable(Interactable interactable)
+        static public void SetActiveInteractable(Interactable interactable, int actionId)
         {
             Instance.activeInteractable = interactable;
             interactable.HighlightInteractable(true);
 
             if ((GameManager.Mode == GameMode.Sandbox || GameManager.Mode == GameMode.Recall) && interactable != null)
-                InteractablePreviewUI.SetPreviewObject(interactable); 
+                InteractablePreviewUI.SetPreviewObject(interactable, InteractablePath.Instance.actionIds[InteractablePath.Instance.nextIndex]); 
         }
 
         private Interactable[,] interactableLUT;
@@ -56,9 +56,15 @@ namespace SeedQuest.Interactables
             get { return FindAllInteractables(); }
         }
 
+        static int CompareInteractableName(Interactable inter1, Interactable inter2)
+        {
+            return inter1.gameObject.name.CompareTo(inter1.gameObject.name);
+        }
+
         static Interactable[] FindAllInteractables()
         {
             Interactable[] items = GameObject.FindObjectsOfType<Interactable>();
+            System.Array.Sort(items, CompareInteractableName);
             return items;
         }
 

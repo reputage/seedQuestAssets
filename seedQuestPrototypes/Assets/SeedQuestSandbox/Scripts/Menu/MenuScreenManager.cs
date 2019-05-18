@@ -30,6 +30,7 @@ public class MenuScreenManager : MonoBehaviour
     private float sceneLoadProgressValue;
     private Slider sceneLoadProgress;
     private Button sceneContinueButton;
+    static private readonly string buttonClickSound = "UI_HoverA";
 
     public void Awake()
     {
@@ -85,8 +86,19 @@ public class MenuScreenManager : MonoBehaviour
         SetupRotateBackground(0);
     }
 
+    static public void ActivateStart() {
+        InteractablePathManager.Reset();
+        LevelSetManager.ResetCurrentLevels();
+        LevelIconButton.ResetButtonIcons();
+
+        Instance.SetBackground(true);
+        Instance.GoToStart();
+    }
+
     public void GoToModeSelect()
     {
+        AudioManager.Play(buttonClickSound);
+
         state = MenuScreenStates.ModeSelect;
         ResetCanvas();
         canvas[3].gameObject.SetActive(true);
@@ -101,12 +113,14 @@ public class MenuScreenManager : MonoBehaviour
 
     public void SetModeRecoverSeed()
     {
+        AudioManager.Play(buttonClickSound);
         GameManager.Mode = GameMode.Recall;
         GoToEncodeSeed();
     }
 
     public void GoToSeedSetup()
     {
+        AudioManager.Play(buttonClickSound);
         state = MenuScreenStates.SeedSetup;
         ResetCanvas();
         canvas[4].gameObject.SetActive(true);
@@ -124,6 +138,7 @@ public class MenuScreenManager : MonoBehaviour
     }
 
     public void GoToEncodeSeedFromSeedSetup() {
+        AudioManager.Play(buttonClickSound);
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
         bool validSeed = validSeedString(seedInputField.text);
         if (validSeed)
@@ -133,26 +148,35 @@ public class MenuScreenManager : MonoBehaviour
         }
     }
 
+    public void UndoLastSceneEncodeStep() {
+        HideLevelPanel(LevelIconButton.activeIndex);
+        LevelIconButton.Undo();
+    }
+
     public void GoToSceneLineUp()
     {
+        AudioManager.Play(buttonClickSound);
         state = MenuScreenStates.SceneLineUp;
         ResetCanvas();
         sceneLineUpCanvas.gameObject.SetActive(true);
         SetupSceneLineUp();
     }
 
-    public void GoToActionLineUp()
-    {
-        if (GameManager.Mode == GameMode.Rehearsal)
-        {
+    static public void ActivateSceneLineUp() {
+        Instance.SetBackground(true);
+        Instance.GoToSceneLineUp();
+    }
+
+    public void GoToActionLineUp() {
+        AudioManager.Play(buttonClickSound);
+        if (GameManager.Mode == GameMode.Rehearsal) {
             state = MenuScreenStates.ActionLineUp;
             ResetCanvas();
             actionLineUpCanvas.gameObject.SetActive(true);
             SetupActionLineUp();
         }
-        else
-        {
-            CloseMenuScreen();
+        else {
+            CloseSceneLineUp();
         }
     }
 
@@ -173,12 +197,23 @@ public class MenuScreenManager : MonoBehaviour
             InteractablePathManager.SeedString = seedInputField.text;
 
             int[] siteIDs = InteractablePathManager.GetPathSiteIDs();
-            SetIconAndPanelForRehearsal(siteIDs); 
+            SetIconAndPanelForRehearsal(siteIDs);
         }
+    }
+
+    static public void EnableUndoButton() {
+        Instance.encodeSeedCanvas.GetComponentsInChildren<Button>(true)[16].gameObject.SetActive(true);
+    }
+
+    static public void DisableUndoButton() {
+        Instance.encodeSeedCanvas.GetComponentsInChildren<Button>(true)[16].gameObject.SetActive(false);
     }
 
     public void SetupSceneLineUp()
     {
+        Image lineUp = sceneLineUpCanvas.GetComponentsInChildren<Image>(true)[5];
+        lineUp.transform.localPosition = new Vector3(-600 * InteractableLog.CurrentLevelIndex, 35, 0);
+
         LevelPanel[] panels = sceneLineUpCanvas.GetComponentsInChildren<LevelPanel>();
         int index = 0;
         foreach (LevelPanel panel in panels)
@@ -202,20 +237,28 @@ public class MenuScreenManager : MonoBehaviour
         preview.sprite = LevelSetManager.CurrentLevel.preview;
         Image icon = actionLineUpCanvas.GetComponentsInChildren<Image>()[3];
         icon.sprite = LevelSetManager.CurrentLevel.icon;
-        TextMeshProUGUI text = actionLineUpCanvas.GetComponentsInChildren<TextMeshProUGUI>()[0];
+
+        TextMeshProUGUI text = actionLineUpCanvas.GetComponentsInChildren<TextMeshProUGUI>()[1];
         text.text = LevelSetManager.CurrentLevel.name;
 
-        Image[] images = actionLineUpCanvas.GetComponentsInChildren<Image>();
-        images[5].gameObject.SetActive(false);
-        images[6].gameObject.SetActive(false);
-        images[7].gameObject.SetActive(false);
-        images[8].gameObject.SetActive(false);
-
         TextMeshProUGUI[] texts = actionLineUpCanvas.GetComponentsInChildren<TextMeshProUGUI>();
+
+        Interactable[] interactables = InteractablePath.Path.ToArray(); 
+        int sceneIndex = InteractableLog.CurrentLevelIndex;
+        int baseIndex = sceneIndex * InteractableConfig.ActionsPerSite;
+
+        for (int i = 0; i < InteractableConfig.ActionsPerSite; i++) {
+            Interactable interactable = interactables[baseIndex + i];
+            texts[2 * i + 3].text = interactable.Name;
+            texts[2 * i + 4].text = interactable.RehearsalActionName;
+        }
+
+        GameManager.Instance.GetComponentInChildren<ActionLineCameraRig>().Initialize();
     }
 
     public void CloseSceneLineUp()
     {
+        AudioManager.Play(buttonClickSound);
         IsometricCamera.StartLevelZoomIn();
         CloseMenuScreen();
     }
@@ -258,6 +301,8 @@ public class MenuScreenManager : MonoBehaviour
     }
 
     static public void SetIconAndPanelForRehearsal(int[] siteIDs) {
+        LevelIconButton.EnableNextIconButton();
+
         int orderIndex = 0;
         foreach (int siteID in siteIDs) {
             LevelIconButton.ActivateIconForRehersal(siteID, orderIndex);
@@ -274,10 +319,12 @@ public class MenuScreenManager : MonoBehaviour
         }
     }
 
+    static public void SetEncodeSeedContinueCanvas() {
+        Instance.encodeSeedContinueCanvas.gameObject.SetActive(true);
+    }
+
     static public void SetLevelPanel(int panelIndex, int levelIndex)
     {
-        LevelSetManager.AddLevel(levelIndex);
-
         LevelPanel selectedPanel = Instance.encodeSeedCanvas.GetComponentsInChildren<LevelPanel>()[panelIndex];
         selectedPanel.GetComponentsInChildren<Image>(true)[2].gameObject.SetActive(true);
         selectedPanel.GetComponentsInChildren<TextMeshProUGUI>(true)[0].gameObject.SetActive(true);
@@ -285,12 +332,18 @@ public class MenuScreenManager : MonoBehaviour
 
         selectedPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = LevelSetManager.AllLevels[levelIndex].name;
         selectedPanel.GetComponentsInChildren<Image>()[2].sprite = LevelSetManager.AllLevels[levelIndex].preview;
-
-        if (panelIndex == 3)
-        {
-            Instance.encodeSeedContinueCanvas.gameObject.SetActive(true);
-        }
     }
+
+    static public void HideLevelPanel(int panelIndex) {
+        if (panelIndex >= 6)
+            return;
+        
+        LevelPanel selectedPanel = Instance.encodeSeedCanvas.GetComponentsInChildren<LevelPanel>()[panelIndex];
+        selectedPanel.GetComponentsInChildren<Image>(true)[2].gameObject.SetActive(false);
+        selectedPanel.GetComponentsInChildren<TextMeshProUGUI>(true)[0].gameObject.SetActive(false);
+        selectedPanel.GetComponentsInChildren<TextMeshProUGUI>(true)[1].gameObject.SetActive(false);
+    }
+
 
     private Vector3 rotate = new Vector3(0, 0, 0);
     private Vector3 targetRotate = new Vector3(0, 0, 0);

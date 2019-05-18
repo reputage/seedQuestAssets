@@ -145,14 +145,15 @@ namespace SeedQuest.Interactables
 
         /// <summary>  Sets Interactable Preview from Interactable </summary>
         /// <param name="interactable"> Interactable to set Preview with </param>
-        static public void SetPreviewObject(Interactable interactable)  {
+        static public void SetPreviewObject(Interactable interactable, int actionID)  {
 
             // Set Preview if interactablePreview has changed
             if (Instance == null || interactable.interactablePreview == Instance.preview)
-                return;
+                Debug.Log("Trying to exit setpreview function");
+                //return;
             else
                 Instance.preview = interactable.interactablePreview;
-            
+
             // Set Preview Watcher
             //Instance.previewObserver.Watch(Instance.preview);
 
@@ -172,14 +173,16 @@ namespace SeedQuest.Interactables
                 previewInteractable.DeleteUI();
                 previewInteractable.HighlightInteractableWithEffect(false);
             }
-            
+
             // Set Layer to "InteractablePreview"
             SetLayerRecursively(Instance.previewChild, 0);
 
             // Set Label Text
             Instance.previewTitle.text = interactable.Name;
             if (GameManager.Mode == GameMode.Rehearsal)
-                Instance.previewText.text = interactable.RehearsalActionName;
+            {
+                Instance.previewText.text = interactable.stateData.getStateName(actionID);// RehearsalActionName;
+            }
             else
                 Instance.previewText.text = "";
         } 

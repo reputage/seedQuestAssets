@@ -28,15 +28,17 @@ public class ProgressTrackerUI : MonoBehaviour
         progressBar = GameObject.FindGameObjectWithTag("ProgressBar").GetComponent<Image>();
         if (GameObject.FindGameObjectWithTag("ProgressTicks") != null)
             progressTicks = GameObject.FindGameObjectWithTag("ProgressTicks").GetComponentsInChildren<Image>();
-        progressText = progressCanvas.GetComponentInChildren<TextMeshProUGUI>();
+        progressText = progressCanvas.GetComponentInChildren<TextMeshProUGUI>(true);
         progressPartialIcon = GameObject.FindGameObjectWithTag("ProgressText").GetComponentsInChildren<Image>()[1];
-        progressMessageText = GetComponentsInChildren<TextMeshProUGUI>()[1];
+        progressMessageText = GetComponentsInChildren<TextMeshProUGUI>(true)[1];
 
         animator = GetComponentInChildren<Animator>();
 
         SetProgressBar();
         SetProgressTicks();
         SetLocation();
+
+        progressPartialIcon.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -44,7 +46,7 @@ public class ProgressTrackerUI : MonoBehaviour
         setProgress();
         SetProgressBar();
         SetProgressTicks();
-        SetProgressText();
+        //SetProgressText();
         SetLocation();
         SetProgressMessage();
     }
@@ -91,7 +93,7 @@ public class ProgressTrackerUI : MonoBehaviour
         string SeedString = converter.DecodeSeed();
         int length = Mathf.RoundToInt(InteractableConfig.SeedHexSize / (float)InteractableConfig.ActionsPerGame * (float)InteractableLog.Log.Count);
         progressText.text = SeedString.Substring(0, length);
-        progressPartialIcon.GetComponent<RectTransform>().localPosition = new Vector3(length * 22 - 80, 0, 0);
+        //progressPartialIcon.GetComponent<RectTransform>().localPosition = new Vector3(length * 22 - 80, 0, 0);
     }
 
     private void SetLocation()

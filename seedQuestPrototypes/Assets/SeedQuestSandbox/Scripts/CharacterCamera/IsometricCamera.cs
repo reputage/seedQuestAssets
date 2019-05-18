@@ -10,23 +10,37 @@ public class IsometricCamera : MonoBehaviour
 
     static public Camera Camera = null;              // Static reference to Camera 
     static private bool useLevelZoomIn = true;
+    static private bool usePlayMode = false;
     static private float zoomInTime = 0;
     static public void StartLevelZoomIn() {
         useLevelZoomIn = true;
+        usePlayMode = false;
+
         zoomInTime = Time.time;
         Debug.Log("StartLevelZoomIn");
     }
     static public void ResetLevelZoomIn() {
         useLevelZoomIn = false;
+        usePlayMode = false;
+
         zoomInTime = 0;
         Debug.Log("ResetLevelZoomIn");
     }
 
     public float smoothSpeed = 2f;                  // Camera lerp smoothing speed parameter
+
     public Vector3 offset = new Vector3(1, 1, -1);  // Camera position offset
     public Vector3 cameraDirection = new Vector3(1, 1, -1);
     public float distance = 14;
+    static private float staticDistance = 14;
     public float startingDistance = 28;
+
+    public float lookAtPeek = 4f;
+    public static float StaticDistance 
+    {
+        get { return staticDistance; }
+        set { staticDistance = value; }
+    }
 
     private Transform playerTransform;
     private Vector3 currentOffset;
@@ -40,6 +54,7 @@ public class IsometricCamera : MonoBehaviour
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         IsometricCamera.Camera = gameObject.GetComponent<Camera>();
+        IsometricCamera.StaticDistance = distance;
 
     }
 
@@ -144,7 +159,7 @@ public class IsometricCamera : MonoBehaviour
         SetOffset();
         //if(useCameraMove)
         SmoothFollowCamera();
-
+        //CameraLookAt();
 
         /*
         if(useCameraMove) {
@@ -168,7 +183,7 @@ public class IsometricCamera : MonoBehaviour
     }
 
     public float CameraDistanceFraction() {
-        Debug.Log("Time: " + Time.time + " Start: " + startTime + " Stop:" + stopTime + " ZoomInTime:" + zoomInTime);
+        //Debug.Log("Time: " + Time.time + " Start: " + startTime + " Stop:" + stopTime + " ZoomInTime:" + zoomInTime);
         return Mathf.Clamp01( (Time.time - zoomInTime - startTime) / stopTime);
     }
 
@@ -176,12 +191,17 @@ public class IsometricCamera : MonoBehaviour
     {
         //currentOffset = Quaternion.Euler(rotateAngles) * Vector3.right * distance;
 
-        Vector3 targetOffset = cameraDirection.normalized * distance;
+        Vector3 targetOffset = cameraDirection.normalized * IsometricCamera.StaticDistance;
         Vector3 startingOffset = cameraDirection.normalized * startingDistance;
 
         if (useLevelZoomIn) {
             float fraction = CameraDistanceFraction();
-            Debug.Log(fraction);
+            if(CameraReady() && !usePlayMode) {
+                usePlayMode = true;
+                GameManager.State = GameState.Play;
+            }
+
+            //Debug.Log(fraction);
             currentOffset = Vector3.Lerp(startingOffset, targetOffset, fraction);
         }
         else
@@ -203,7 +223,7 @@ public class IsometricCamera : MonoBehaviour
         if (playerTransform.position == Vector3.zero)
             return;
 
-        Vector3 desiredPosition = playerTransform.position + currentOffset;// + moveOffset;
+        Vector3 desiredPosition = playerTransform.position + playerTransform.forward * lookAtPeek + currentOffset;// + moveOffset;
         Vector3 currentPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
         transform.position = currentPosition;
 
@@ -222,5 +242,10 @@ public class IsometricCamera : MonoBehaviour
         float lerp_fraction = Mathf.Clamp01((Time.time - lerp_time) / move_time);
         transform.position = Vector3.Lerp(target, target, lerp_fraction);
         lerp_time += Time.deltaTime;
+    }
+
+    public void CameraLookAt() {
+        Vector3 lookAt = playerTransform.position + playerTransform.forward * lookAtPeek;
+        transform.LookAt(lookAt);
     }
 }

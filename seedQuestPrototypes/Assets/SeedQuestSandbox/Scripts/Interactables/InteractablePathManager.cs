@@ -30,7 +30,7 @@ namespace SeedQuest.Interactables {
         public InteractableLog log;
 
         /// <summary> Seed String </summary>
-        public static string SeedString = "0123456789ABCDEF0123456789ABCDEF"; //"EBE0AC8C"; //"EB204654C9";
+        public static string SeedString = "772283D9D40BAC27C6D6D60537D7B35205"; //"76101B07DC633F955696D7664C2B"; //"EBE0AC8C"; //"EB204654C9";
 
         /// <summary> Has a Level been compleleted for MultiLevel Game </summary>
         static public bool ShowLevelComplete = false;
@@ -70,7 +70,7 @@ namespace SeedQuest.Interactables {
                     GameManager.State = GameState.End;
                     EndGameUI.ToggleOn();
                 }
-                else if(LevelManager.IsMultiLevelGame &&  ShowLevelComplete) {
+                else if(LevelManager.IsMultiLevelGame && ShowLevelComplete) {
                     GameManager.State = GameState.Menu;
                     LevelClearUI.ToggleOn();
                 }
@@ -138,6 +138,9 @@ namespace SeedQuest.Interactables {
 
             // Set InteractablePath IDs based on BoundingBoxes in Scene 
             int siteCount = LevelManager.LevelIndex;
+            if (LevelSetManager.isActive && MenuScreenManager.Instance.state != MenuScreenStates.Debug )
+                siteCount = LevelSetManager.CurrentLevel.index;
+            
             foreach (BoundingBox bounds in LevelManager.Bounds) {
                 
                 // Create a subset of interactables in bounds

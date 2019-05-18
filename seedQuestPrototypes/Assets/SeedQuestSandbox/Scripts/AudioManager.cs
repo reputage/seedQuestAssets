@@ -72,4 +72,19 @@ public class AudioManager : MonoBehaviour {
         else
             s.source.Play();
     }
+
+    static public void Stop (string name)
+    {
+        if (instance == null)
+        {
+            Debug.LogWarning("Warning: Can't find AudioManager instance.");
+            return;
+        }
+
+        Sound s = Array.Find(instance.sounds.ToArray(), Sound => Sound.name == name);
+        if (s == null)
+            Debug.LogWarning("Sounds : " + name + " was not found.");
+        else
+            s.source.Stop();
+    }
 }

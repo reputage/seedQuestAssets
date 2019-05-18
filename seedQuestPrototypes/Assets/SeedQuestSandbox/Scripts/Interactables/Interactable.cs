@@ -28,7 +28,7 @@ namespace SeedQuest.Interactables
         public InteractableID ID;
         
         private int actionIndex = -1;
-        public int ActionIndex { get => actionIndex; set => actionIndex = value; }
+        public int ActionIndex { get => actionIndex; set => actionIndex = value; } // Current Action State 
 
         [HideInInspector]
         public float interactDistance = 2.0f;
@@ -139,7 +139,7 @@ namespace SeedQuest.Interactables
 
                     if (!isOnHover)  {
                         GameManager.State = GameState.Interact;
-                        InteractableManager.SetActiveInteractable(this);
+                        InteractableManager.SetActiveInteractable(this, this.ActionIndex);
                     } 
 
                     isOnHover = true;

@@ -34,6 +34,8 @@ namespace SeedQuest.Level
 
         static public string LevelSelectScene { get => Instance.levelSelectScene; }
 
+        public string levelMusicName = "";
+
         /// <summary> MultiLevelGame Flag important for InteractablePath calculations </summary>
         public bool isMultiLevelGame = false;
 
@@ -50,7 +52,7 @@ namespace SeedQuest.Level
         private Transform player;
 
         public void Awake() {
-            GameManager.State = GameState.Play;
+            //GameManager.State = GameState.Play;
 
             var playerObject = GameObject.FindGameObjectWithTag("Player");
             if (playerObject != null)
@@ -68,6 +70,9 @@ namespace SeedQuest.Level
             
             InteractablePathManager.SetupInteractablePathIDs();
             InteractablePathManager.Initalize();
+
+            if(levelMusicName != "")
+                AudioManager.Play(levelMusicName);
         }
 
         private void Update() {
@@ -113,6 +118,12 @@ namespace SeedQuest.Level
                 Gizmos.DrawWireCube(bound.center, bound.size);
                 count++;
             }
+        }
+
+        private void OnDestroy()
+        {
+            if (levelMusicName != "")
+                AudioManager.Stop(levelMusicName);
         }
     }
 }
