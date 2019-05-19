@@ -57,10 +57,13 @@ namespace SeedQuest.Interactables
 
         private void Update() {
             gameObject.SetActive(Show);
-            locationObservable.onChange(SetLocationTransform);
-            scaleObservable.onChange(SetLocationTransform);
-            //previewObserver.onChange(SetPreviewProperties);
-            SetPreviewProperties();
+            if (Show)
+            {
+                locationObservable.onChange(SetLocationTransform);
+                scaleObservable.onChange(SetLocationTransform);
+                //previewObserver.onChange(SetPreviewProperties);
+                SetPreviewProperties();
+            }
         }
 
         static public void ToggleShow() {

@@ -28,6 +28,13 @@ public class GameManager : MonoBehaviour {
         set { Instance.mode = value; }
     }
 
+    private static bool graduatedMode = false;
+    public static bool GraduatedMode
+    {
+        get { return graduatedMode; }
+        set { graduatedMode = value; }
+    }
+
     public GameState state = GameState.Play;
     public GameState prevState = GameState.Play;
     public static GameState State {
