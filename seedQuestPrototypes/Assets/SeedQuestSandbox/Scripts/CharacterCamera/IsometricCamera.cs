@@ -42,6 +42,13 @@ public class IsometricCamera : MonoBehaviour
         set { staticDistance = value; }
     }
 
+    private static bool playerIsNearInteractable = true;
+    public static void setZoomNear(bool isNear) {
+        if(playerIsNearInteractable) {
+            
+        }
+    }
+
     private Transform playerTransform;
     private Vector3 currentOffset;
     private float time = 0f;

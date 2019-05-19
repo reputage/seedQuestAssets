@@ -35,6 +35,7 @@ public class IsometricCharacter : MonoBehaviour {
         return (v1 - v2).magnitude;
     }
 
+    // Basically tank controls
     public void MoveAndRotateCharacterWithKeys()
     {
         bool isRunning = false;
