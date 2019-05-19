@@ -23,6 +23,7 @@ public class LevelIconButton : MonoBehaviour {
     private Image border;
     private Image enableCover;
     private Image[] numberIcons = new Image[6];
+    private Animator animator;
 
     private void Awake()
     {
@@ -58,6 +59,7 @@ public class LevelIconButton : MonoBehaviour {
 
     private void Start() {
         SetupHoverEvents();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -68,7 +70,6 @@ public class LevelIconButton : MonoBehaviour {
     public void onClickButton() {
         ActivateNumberIcon(this, iconIndex, true);
         EnableNextIconButton();
-        GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
         if (GameManager.Mode == GameMode.Recall)
             MenuScreenManager.EnableUndoButton();
@@ -101,24 +102,24 @@ public class LevelIconButton : MonoBehaviour {
         trigger.triggers.Add(exit);
     }
 
-    private void OnHoverEnter()
-    {
+    private void OnHoverEnter() {
+        if(GameManager.Mode == GameMode.Recall)
+            animator.Play("UIButtonHover");
+
         MenuScreenManager.SetLevelPanel(activeIndex + 1, iconIndex);
 
         if (GetComponent<Button>().interactable == false)
             return;
-
-        GetComponent<RectTransform>().localScale = new Vector3(1.2f, 1.2f, 1.2f);
     }
 
-    private void OnHoverExit()
-    {
+    private void OnHoverExit() {
+        if (GameManager.Mode == GameMode.Recall)
+            animator.Play("UIButtonIdle");
+
         MenuScreenManager.HideLevelPanel(activeIndex + 1);
 
         if (GetComponent<Button>().interactable == false)
-            return;
-        
-        GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            return;        
     }
 
     public void ActivateIconForRehersal(int iconOrderIndex) {
@@ -137,13 +138,20 @@ public class LevelIconButton : MonoBehaviour {
             int lastSiteID = siteIDs[activeIndex];
             allIconButtons[lastSiteID].GetComponent<Button>().interactable = false;
             allIconButtons[lastSiteID].enableCover.gameObject.SetActive(true);
+
+            Animator prevAnimator = allIconButtons[lastSiteID].GetComponent<Animator>();
+            prevAnimator.Play("UIButtonIdle");
         }
 
         // Enable next scene button
         if(activeIndex + 1 < siteIDs.Length) {
             int nextSiteID = siteIDs[activeIndex + 1];
             allIconButtons[nextSiteID].GetComponent<Button>().interactable = true;
-            allIconButtons[nextSiteID].enableCover.gameObject.SetActive(false);            
+            allIconButtons[nextSiteID].enableCover.gameObject.SetActive(false);       
+            LevelIconButton.ActivateIconForRehersal(nextSiteID, activeIndex + 1);
+
+            Animator nextAnimator = allIconButtons[nextSiteID].GetComponent<Animator>();
+            nextAnimator.Play("UIButtonHighlight");
         }
 
     }

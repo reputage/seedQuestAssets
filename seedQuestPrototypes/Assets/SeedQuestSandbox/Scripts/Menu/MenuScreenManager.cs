@@ -295,12 +295,6 @@ public class MenuScreenManager : MonoBehaviour
 
     static public void SetIconAndPanelForRehearsal(int[] siteIDs) {
         LevelIconButton.EnableNextIconButton();
-
-        int orderIndex = 0;
-        foreach (int siteID in siteIDs) {
-            LevelIconButton.ActivateIconForRehersal(siteID, orderIndex);
-            orderIndex++;
-        }
     }
 
     public void SetLevelPanelDefault() {
