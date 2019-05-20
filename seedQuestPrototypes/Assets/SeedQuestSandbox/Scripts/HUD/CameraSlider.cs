@@ -6,74 +6,59 @@ using UnityEngine.UI;
 public class CameraSlider : MonoBehaviour
 {
     private Slider slider;
-    public void Start()
-    {
+    public void Start() {
         slider = gameObject.GetComponent<Slider>();
         slider.onValueChanged.AddListener(delegate {ValueChangeCheck(); });
     }
 
-    public void Update()
-    {
+    public void Update() {
         ListenForKeyDown();
     }
 
-    public void ListenForKeyDown()
-    {
-        var d = Input.GetAxis("Mouse ScrollWheel");
-        if (d > 0f)
-        {
-            if (IsometricCamera.StaticDistance < 40)
-            {
-                if (IsometricCamera.StaticDistance + d > 40)
-                {
-                    IsometricCamera.StaticDistance = 40;
-                    slider.value = 40;
+    public void ListenForKeyDown() {
+        var input = Input.GetAxis("Mouse ScrollWheel");
+
+        if (input > 0.0f) {
+            if (IsometricCamera.StaticDistance < CameraZoom.farDistance) {
+                if (IsometricCamera.StaticDistance + input > CameraZoom.farDistance) {
+                    IsometricCamera.StaticDistance = CameraZoom.farDistance;
+                    slider.value = CameraZoom.farDistance;
                 }
-                else
-                {
-                    IsometricCamera.StaticDistance += d;
-                    slider.value += d;
+                else {
+                    IsometricCamera.StaticDistance += input;
+                    slider.value += input;
                 }
             }
         }
-        else if (d < 0f)
-        {
-            if (IsometricCamera.StaticDistance > 5)
-            {
-                if (IsometricCamera.StaticDistance + d < 5)
-                {
-                    IsometricCamera.StaticDistance = 5;
-                    slider.value = 5;
+        else if (input < 0.0f) {
+            if (IsometricCamera.StaticDistance > CameraZoom.nearDistance) {
+                if (IsometricCamera.StaticDistance + input < CameraZoom.nearDistance) {
+                    IsometricCamera.StaticDistance = CameraZoom.nearDistance;
+                    slider.value = CameraZoom.nearDistance;
                 }
-                else
-                {
-                    IsometricCamera.StaticDistance += d;
-                    slider.value += d;
+                else {
+                    IsometricCamera.StaticDistance += input;
+                    slider.value += input;
                 }
             }
         }
     }
 
-   public void ZoomOut()
-    {
-        if (IsometricCamera.StaticDistance < 40)
-        {
+   public void ZoomOut() {
+        if (IsometricCamera.StaticDistance < CameraZoom.farDistance) {
             IsometricCamera.StaticDistance += 1;
             slider.value += 1;
         }
     }
 
-    public void ZoomIn()
-    {
-        if (IsometricCamera.StaticDistance > 5)
-        {
+    public void ZoomIn() {
+        if (IsometricCamera.StaticDistance > CameraZoom.nearDistance) {
             IsometricCamera.StaticDistance -= 1;
             slider.value -= 1;
         }
     }
 
-    public void ValueChangeCheck()
-    {
+    public void ValueChangeCheck() {
         IsometricCamera.StaticDistance = slider.value;
     }
 }

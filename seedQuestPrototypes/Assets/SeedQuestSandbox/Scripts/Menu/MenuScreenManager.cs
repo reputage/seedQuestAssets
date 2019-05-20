@@ -250,9 +250,9 @@ public class MenuScreenManager : MonoBehaviour
         GameManager.Instance.GetComponentInChildren<ActionLineCameraRig>().Initialize();
     }
 
-    public void CloseSceneLineUp()
-    {
-        IsometricCamera.StartLevelZoomIn();
+    public void CloseSceneLineUp() {
+        CameraZoom.StartZoomIn();
+        //IsometricCamera.StartLevelZoomIn();
         CloseMenuScreen();
     }
 
@@ -289,7 +289,8 @@ public class MenuScreenManager : MonoBehaviour
     public void StartScene()
     {
         GameManager.State = GameState.Menu;
-        IsometricCamera.ResetLevelZoomIn();
+        CameraZoom.ResetZoom();
+        //IsometricCamera.ResetLevelZoomIn();
         Instance.StartCoroutine(Instance.LoadAsync(LevelSetManager.CurrentLevel.scenename));
     }
 

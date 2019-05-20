@@ -52,8 +52,9 @@ public class MarkerManager : MonoBehaviour
             MarkerManager.instance.GenerateMaker(position, rotation);
     }
 
-    static public void DeleteMarker() {
-        MarkerManager.instance.destroyOldestMarker = true;
+    static public void DeleteMarker() { 
+        if(MarkerManager.instance.activeMarkers.Count > 0)
+            MarkerManager.instance.destroyOldestMarker = true;
     }
 
 }
