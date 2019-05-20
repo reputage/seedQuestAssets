@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour {
     public GameSoundData UISounds;
     public GameSoundData DefaultSounds;
     public GameSoundData GameSounds;
+    public GameSoundData SceneBackgroundSounds;
 
     private void Awake() {
 
@@ -33,6 +34,8 @@ public class AudioManager : MonoBehaviour {
             sounds.AddRange(DefaultSounds.Sounds);
         if(GameSounds != null) 
             sounds.AddRange(GameSounds.Sounds);
+        if (GameSounds != null)
+            sounds.AddRange(SceneBackgroundSounds.Sounds);
 
         foreach (Sound s in sounds)
         {

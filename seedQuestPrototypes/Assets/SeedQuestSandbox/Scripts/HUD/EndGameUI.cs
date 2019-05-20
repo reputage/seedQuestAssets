@@ -64,6 +64,7 @@ public class EndGameUI : MonoBehaviour
     {
         MenuScreenManager.ActivateStart();
         gameObject.SetActive(false);
+        GameManager.GraduatedMode = false;
     }
 
     public void ResetPlaythrough()
@@ -71,6 +72,7 @@ public class EndGameUI : MonoBehaviour
         InteractablePathManager.Reset();
         MenuScreenManager.ActivateSceneLineUp();
         gameObject.SetActive(false);
+        GameManager.GraduatedMode = true;
     }
 
     public void copySeed(Button button)

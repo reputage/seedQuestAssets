@@ -30,7 +30,6 @@ public class MenuScreenManager : MonoBehaviour
     private float sceneLoadProgressValue;
     private Slider sceneLoadProgress;
     private Button sceneContinueButton;
-    static private readonly string buttonClickSound = "UI_HoverA";
 
     public void Awake()
     {
@@ -97,7 +96,7 @@ public class MenuScreenManager : MonoBehaviour
 
     public void GoToModeSelect()
     {
-        AudioManager.Play(buttonClickSound);
+        AudioManager.Play("UI_StartButton");
 
         state = MenuScreenStates.ModeSelect;
         ResetCanvas();
@@ -113,14 +112,12 @@ public class MenuScreenManager : MonoBehaviour
 
     public void SetModeRecoverSeed()
     {
-        AudioManager.Play(buttonClickSound);
         GameManager.Mode = GameMode.Recall;
         GoToEncodeSeed();
     }
 
     public void GoToSeedSetup()
     {
-        AudioManager.Play(buttonClickSound);
         state = MenuScreenStates.SeedSetup;
         ResetCanvas();
         canvas[4].gameObject.SetActive(true);
@@ -138,7 +135,6 @@ public class MenuScreenManager : MonoBehaviour
     }
 
     public void GoToEncodeSeedFromSeedSetup() {
-        AudioManager.Play(buttonClickSound);
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
         bool validSeed = validSeedString(seedInputField.text);
         if (validSeed)
@@ -155,9 +151,6 @@ public class MenuScreenManager : MonoBehaviour
 
     public void GoToSceneLineUp()
     {
-        Debug.Log("GoToSceneLineUp");
-        DisableUndoButton();
-        AudioManager.Play(buttonClickSound);
         state = MenuScreenStates.SceneLineUp;
         ResetCanvas();
         sceneLineUpCanvas.gameObject.SetActive(true);
@@ -170,7 +163,6 @@ public class MenuScreenManager : MonoBehaviour
     }
 
     public void GoToActionLineUp() {
-        AudioManager.Play(buttonClickSound);
         if (GameManager.Mode == GameMode.Rehearsal) {
             state = MenuScreenStates.ActionLineUp;
             ResetCanvas();
@@ -272,10 +264,9 @@ public class MenuScreenManager : MonoBehaviour
         GameManager.Instance.GetComponentInChildren<ActionLineCameraRig>().Initialize();
     }
 
-    public void CloseSceneLineUp()
-    {
-        AudioManager.Play(buttonClickSound);
-        IsometricCamera.StartLevelZoomIn();
+    public void CloseSceneLineUp() {
+        CameraZoom.StartZoomIn();
+        //IsometricCamera.StartLevelZoomIn();
         CloseMenuScreen();
     }
 
@@ -312,18 +303,13 @@ public class MenuScreenManager : MonoBehaviour
     public void StartScene()
     {
         GameManager.State = GameState.Menu;
-        IsometricCamera.ResetLevelZoomIn();
+        CameraZoom.ResetZoom();
+        //IsometricCamera.ResetLevelZoomIn();
         Instance.StartCoroutine(Instance.LoadAsync(LevelSetManager.CurrentLevel.scenename));
     }
 
     static public void SetIconAndPanelForRehearsal(int[] siteIDs) {
         LevelIconButton.EnableNextIconButton();
-
-        int orderIndex = 0;
-        foreach (int siteID in siteIDs) {
-            LevelIconButton.ActivateIconForRehersal(siteID, orderIndex);
-            orderIndex++;
-        }
     }
 
     public void SetLevelPanelDefault() {

@@ -30,6 +30,7 @@ public class HUDManager : MonoBehaviour {
     public HUDItemProps useInteractableTracker;
     public HUDItemProps useUndo;
     public HUDItemProps useZoomSlider;
+    public HUDItemProps useHint;
 
 
     static private HUDManager instance = null;
@@ -80,6 +81,7 @@ public class HUDManager : MonoBehaviour {
         InstantiateHUDElement<TutorialManager>(useTutorial);
         InstantiateHUDElement<UndoUI>(useUndo);
         InstantiateHUDElement<CameraSlider>(useZoomSlider);
+        InstantiateHUDElement<GraduatedRehearsal>(useHint);
     }
 
     public void DestroyImmediateHUD() {
@@ -98,6 +100,7 @@ public class HUDManager : MonoBehaviour {
         DestroyHUDElement<TutorialManager>(useTutorial);
         DestroyHUDElement<UndoUI>(useUndo);
         DestroyHUDElement<CameraSlider>(useZoomSlider);
+        DestroyHUDElement<GraduatedRehearsal>(useHint);
     }
 
     public HUDItemProps GetProps<T>() {
@@ -117,6 +120,7 @@ public class HUDManager : MonoBehaviour {
         else if (listType == typeof(TutorialManager)) { return useTutorial; }
         else if (listType == typeof(UndoUI)) { return useUndo; }
         else if (listType == typeof(CameraSlider)) { return useZoomSlider; }
+        else if (listType == typeof(GraduatedRehearsal)) { return useHint; }
         return null;
     }
 }

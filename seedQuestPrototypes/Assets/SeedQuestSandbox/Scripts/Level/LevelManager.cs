@@ -36,6 +36,8 @@ namespace SeedQuest.Level
 
         public string levelMusicName = "";
 
+        public string levelAmbientSoundName = "";
+
         /// <summary> MultiLevelGame Flag important for InteractablePath calculations </summary>
         public bool isMultiLevelGame = false;
 
@@ -73,6 +75,9 @@ namespace SeedQuest.Level
 
             if(levelMusicName != "")
                 AudioManager.Play(levelMusicName);
+            
+            if (levelAmbientSoundName != "")
+                AudioManager.Play(levelAmbientSoundName);
         }
 
         private void Update() {
@@ -124,6 +129,9 @@ namespace SeedQuest.Level
         {
             if (levelMusicName != "")
                 AudioManager.Stop(levelMusicName);
+
+            if (levelAmbientSoundName != "")
+                AudioManager.Stop(levelAmbientSoundName);
         }
     }
 }
