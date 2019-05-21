@@ -199,6 +199,8 @@ public class LevelIconButton : MonoBehaviour {
             icon.numberIcons[1].gameObject.SetActive(false);
             icon.numberIcons[2].gameObject.SetActive(false);
             icon.numberIcons[3].gameObject.SetActive(false);
+            icon.numberIcons[4].gameObject.SetActive(false);
+            icon.numberIcons[5].gameObject.SetActive(false);
         }
     }
 }
