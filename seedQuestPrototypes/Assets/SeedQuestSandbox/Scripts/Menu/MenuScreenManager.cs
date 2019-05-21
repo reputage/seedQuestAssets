@@ -286,18 +286,21 @@ public class MenuScreenManager : MonoBehaviour
         while (!operation.isDone)
         {
 
-            sceneLoadProgressValue = Mathf.Clamp01(operation.progress / 0.9f);
+            //sceneLoadProgressValue = Mathf.Clamp01(operation.progress / 0.9f);
 
             if (operation.progress >= 0.9f)
             {
                 operation.allowSceneActivation = true;
 
-                sceneLoadProgress.gameObject.SetActive(false);
-                sceneContinueButton.gameObject.SetActive(true);
+                //sceneLoadProgress.gameObject.SetActive(false);
+                //sceneContinueButton.gameObject.SetActive(true);
             }
 
             yield return null;
         }
+
+        sceneLoadProgress.gameObject.SetActive(false);
+        sceneContinueButton.gameObject.SetActive(true);
     }
 
     public void StartScene()
