@@ -178,7 +178,11 @@ public class MenuScreenManager : MonoBehaviour
     {
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
         seedInputField.text = InteractablePathManager.SeedString;
-        seedInputField.characterLimit = InteractableConfig.SeedHexLength;
+        int charLimit = InteractableConfig.SeedHexLength;
+        if (charLimit %2 == 1)
+            charLimit++;
+        
+        seedInputField.characterLimit = charLimit;
     }
 
     public void SetupEncodeSeed()
@@ -188,7 +192,17 @@ public class MenuScreenManager : MonoBehaviour
         if (GameManager.Mode == GameMode.Rehearsal)
         {
             TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>(true);
-            InteractablePathManager.SeedString = seedInputField.text;
+
+            string seedFromInput = seedInputField.text;
+            if (InteractableConfig.SeedHexLength % 2 == 1)
+            {
+                char[] array = seedFromInput.ToCharArray();
+                array[array.Length - 2] = '0';
+                seedFromInput = new string(array);
+                Debug.Log("Enforcing a fix to the seed. New seed: " + seedFromInput);
+            }
+
+            InteractablePathManager.SeedString = seedFromInput;
 
             int[] siteIDs = InteractablePathManager.GetPathSiteIDs();
             SetIconAndPanelForRehearsal(siteIDs);
@@ -272,18 +286,21 @@ public class MenuScreenManager : MonoBehaviour
         while (!operation.isDone)
         {
 
-            sceneLoadProgressValue = Mathf.Clamp01(operation.progress / 0.9f);
+            //sceneLoadProgressValue = Mathf.Clamp01(operation.progress / 0.9f);
 
             if (operation.progress >= 0.9f)
             {
                 operation.allowSceneActivation = true;
 
-                sceneLoadProgress.gameObject.SetActive(false);
-                sceneContinueButton.gameObject.SetActive(true);
+                //sceneLoadProgress.gameObject.SetActive(false);
+                //sceneContinueButton.gameObject.SetActive(true);
             }
 
             yield return null;
         }
+
+        sceneLoadProgress.gameObject.SetActive(false);
+        sceneContinueButton.gameObject.SetActive(true);
     }
 
     public void StartScene()
@@ -325,7 +342,7 @@ public class MenuScreenManager : MonoBehaviour
     static public void HideLevelPanel(int panelIndex) {
         if (panelIndex >= 6)
             return;
-        
+
         LevelPanel selectedPanel = Instance.encodeSeedCanvas.GetComponentsInChildren<LevelPanel>()[panelIndex];
         selectedPanel.GetComponentsInChildren<Image>(true)[2].gameObject.SetActive(false);
         selectedPanel.GetComponentsInChildren<TextMeshProUGUI>(true)[0].gameObject.SetActive(false);
@@ -380,7 +397,11 @@ public class MenuScreenManager : MonoBehaviour
         {
             // send warning message that the length is too short
             validHex = false;
-            warningText.GetComponent<TextMeshProUGUI>().text = "Warning: seed must be 28 characters long";
+            int charLimit = InteractableConfig.SeedHexLength;
+            if (charLimit % 2 == 1)
+                charLimit++;
+            
+            warningText.GetComponent<TextMeshProUGUI>().text = "Warning: seed must be " + charLimit + " characters long";
         }
 
         return validHex;

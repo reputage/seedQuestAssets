@@ -188,6 +188,15 @@ namespace SeedQuest.Interactables
             }
             else if (GameManager.Mode == GameMode.Recall)
                 InteractableLog.Add(parent, parent.ActionIndex);
+
+
+            string values = "";
+            foreach (InteractableLogItem item in InteractableLog.Log)
+            {
+                values += item.siteIndex.ToString() + " " + item.interactableIndex.ToString() + " " + item.actionIndex.ToString() + " ";
+            }
+            //Debug.Log("Current Log values: " + values);
+
         }
 
         /// <summary> Sets Label Text to Current Action and Activates Checkmark if necessary </summary>
