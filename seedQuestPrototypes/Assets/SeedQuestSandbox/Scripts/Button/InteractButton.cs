@@ -9,7 +9,8 @@ using UnityEngine.EventSystems;
 public class InteractButton : MonoBehaviour
 {
     private bool isOnHover = false;
-    public bool IsOnHover { get => isOnHover; }
+    private bool isOnHoverFlag = false;
+    public bool IsOnHover { get => isOnHoverFlag; }
 
     void Awake() {
         SetButtonClickEvents();
@@ -26,6 +27,7 @@ public class InteractButton : MonoBehaviour
         if (PauseManager.isPaused == true) return;
         GameManager.State = GameState.Interact;
         AudioManager.Play("UI_Hover");
+        isOnHoverFlag = true;
 
         if (Cursor.lockState == CursorLockMode.Locked)
             GetComponent<Button>().targetGraphic.color = GetComponent<Button>().colors.highlightedColor;
@@ -34,6 +36,7 @@ public class InteractButton : MonoBehaviour
     private void OnHoverExit()  {
         if (PauseManager.isPaused == true) return;
         GameManager.State = GameState.Play;
+        isOnHoverFlag = false;
 
         if (Cursor.lockState == CursorLockMode.Locked)
             GetComponent<Button>().targetGraphic.color = GetComponent<Button>().colors.normalColor;

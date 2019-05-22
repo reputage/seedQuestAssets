@@ -280,6 +280,13 @@ public class InteractableTrackerUI : MonoBehaviour
             return;
         }
 
+        if (GameManager.Mode == GameMode.Rehearsal && target.interactableUI.IsOnHover())
+        {
+            canvasGroup.alpha = 0.0f;
+            return;
+        }
+
+
         Vector3 mag = player.position - target.transform.position;
         if (mag.magnitude < nearDistance) {
             canvasGroup.alpha = nearOpacity;
