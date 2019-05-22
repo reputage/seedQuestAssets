@@ -66,7 +66,7 @@ public class ProgressTrackerUI : MonoBehaviour
     private float oldProgress;
     private void SetProgressBar()
     {
-        float width = 400.0f;
+        float width = 600.0f;
         float value = width * (progress - 1);
         progressBar.GetComponent<RectTransform>().offsetMax = new Vector2(value, 0);
 

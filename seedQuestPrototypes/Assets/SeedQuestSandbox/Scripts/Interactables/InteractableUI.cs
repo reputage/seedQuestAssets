@@ -450,8 +450,20 @@ namespace SeedQuest.Interactables
             tracker.gameObject.SetActive(active);
         }
 
-        public void IsOnHover() {
-            // TODO
+        public bool IsOnHover() {
+            bool hover = false;
+
+            foreach(Button button in actionButtons) {
+                if(button.GetComponentInChildren<InteractButton>() != null)
+                    if (button.GetComponentInChildren<InteractButton>().IsOnHover)
+                        hover = true;
+            }
+
+            if(labelButton.GetComponentInChildren<ProgressButton>() != null)
+                if (labelButton.GetComponentInChildren<ProgressButton>().IsOnHover)
+                    hover = true;
+
+            return hover;
         }
 
     }
