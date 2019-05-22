@@ -28,7 +28,21 @@ public class EndGameUI : MonoBehaviour
         Instance.gameObject.SetActive(true);
         var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
         SeedConverter converter = new SeedConverter();
-        textList[0].text = converter.DecodeSeed();
+        //textList[0].text = converter.DecodeSeed();
+
+        if (InteractableConfig.SeedHexLength % 2 == 1)
+        {
+            string alteredSeedText = converter.DecodeSeed();
+            char[] array = alteredSeedText.ToCharArray();
+            array[array.Length - 2] = array[array.Length - 1];
+            alteredSeedText = new string(array);
+            if (alteredSeedText.Length > 1)
+                alteredSeedText = alteredSeedText.Substring(0, (alteredSeedText.Length - 1));
+
+            textList[0].text = alteredSeedText;
+        }
+        else
+            textList[0].text = converter.DecodeSeed();
 
         if (GameManager.Mode == GameMode.Rehearsal)
         {

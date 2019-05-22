@@ -179,8 +179,8 @@ public class MenuScreenManager : MonoBehaviour
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
         seedInputField.text = InteractablePathManager.SeedString;
         int charLimit = InteractableConfig.SeedHexLength;
-        if (charLimit %2 == 1)
-            charLimit++;
+//        if (charLimit %2 == 1)
+//            charLimit++;
         
         seedInputField.characterLimit = charLimit;
     }
@@ -196,10 +196,26 @@ public class MenuScreenManager : MonoBehaviour
             string seedFromInput = seedInputField.text;
             if (InteractableConfig.SeedHexLength % 2 == 1)
             {
-                char[] array = seedFromInput.ToCharArray();
-                array[array.Length - 2] = '0';
-                seedFromInput = new string(array);
-                Debug.Log("Enforcing a fix to the seed. New seed: " + seedFromInput);
+                if (seedFromInput.Length == InteractableConfig.SeedHexLength)
+                {
+                    string seedText = seedFromInput + "0";
+                    char[] array = seedText.ToCharArray();
+                    array[array.Length - 1] = array[array.Length - 2];
+                    array[array.Length - 2] = '0';
+                    seedFromInput = new string(array);
+                    Debug.Log("Enforcing a fix to the seed. New seed: " + seedFromInput);
+
+                }
+                else if (seedFromInput.Length == InteractableConfig.SeedHexLength + 1)
+                {
+                    char[] array = seedFromInput.ToCharArray();
+                    array[array.Length - 2] = '0';
+                    seedFromInput = new string(array);
+                    Debug.Log("Enforcing a fix to the seed. New seed: " + seedFromInput);
+
+                }
+                else
+                    Debug.Log("Seed: " + seedFromInput);
             }
 
             InteractablePathManager.SeedString = seedFromInput;
