@@ -139,6 +139,7 @@ namespace SeedQuest.Interactables
 
                     if (!isOnHover)  {
                         GameManager.State = GameState.Interact;
+                        AudioManager.Play("UI_Hover");
                         InteractableManager.SetActiveInteractable(this, this.ActionIndex);
                     } 
 
@@ -173,6 +174,7 @@ namespace SeedQuest.Interactables
 
                     if (hitThisInteractable) {
                         interactableUI.StartProgress();
+                        AudioManager.Play("UI_Click");
                         mouseDownICount = InteractableLog.Count;
                     }
                 }
