@@ -32,9 +32,13 @@ namespace SeedQuest.Interactables
 
         [HideInInspector]
         public float interactDistance = 2.0f;
+
         private bool isOnHover = false;
+        public bool IsOnHover { get => isOnHover; } 
+
         [HideInInspector]
         public bool flagDeleteUI = false;
+
 
         void Start() {
             interactableUI.Initialize(this);

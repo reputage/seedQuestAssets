@@ -67,6 +67,9 @@ namespace SeedQuest.Interactables
             SetupLabel();
             SetupActionButtons();
             SetupCheckButton();
+
+            if (parent == InteractablePath.NextInteractable)
+                ToggleTracker(true);
         }
 
         /// <summary> Ready Status of InteractableUI </summary>
@@ -427,6 +430,17 @@ namespace SeedQuest.Interactables
             Debug.Log("Action UI is null or has some other issue");
             Bounds returnBounds = new Bounds(new Vector3(-997, -997, -997), new Vector3(0,0,0));
             return returnBounds;
+        }
+
+        public void ToggleTracker(bool active) {
+            if (actionUI == null) return;
+
+            Canvas tracker = actionUI.gameObject.GetComponentsInChildren<Canvas>(true)[2];
+            tracker.gameObject.SetActive(active);
+        }
+
+        public void IsOnHover() {
+            // TODO
         }
 
     }

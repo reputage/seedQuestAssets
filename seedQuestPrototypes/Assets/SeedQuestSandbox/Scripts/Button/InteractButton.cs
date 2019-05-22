@@ -9,6 +9,7 @@ using UnityEngine.EventSystems;
 public class InteractButton : MonoBehaviour
 {
     private bool isOnHover = false;
+    public bool IsOnHover { get => isOnHover; }
 
     void Awake() {
         SetButtonClickEvents();

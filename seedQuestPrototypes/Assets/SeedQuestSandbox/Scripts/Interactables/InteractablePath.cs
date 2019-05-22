@@ -133,6 +133,8 @@ namespace SeedQuest.Interactables
             if (NextInteractable == null) return;
 
             if (GameManager.Mode == GameMode.Rehearsal) {
+                NextInteractable.interactableUI.ToggleTracker(true);
+
                 InteractableManager.UnHighlightAllInteractables();
                 NextInteractable.HighlightInteractableWithEffect(true);
                 InteractablePreviewUI.SetPreviewObject(NextInteractable, Instance.actionIds[Instance.nextIndex]);
