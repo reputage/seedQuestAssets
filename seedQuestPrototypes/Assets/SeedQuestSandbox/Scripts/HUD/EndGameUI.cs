@@ -32,13 +32,13 @@ public class EndGameUI : MonoBehaviour
 
         if (GameManager.Mode == GameMode.Rehearsal)
         {
-            textList[1].text = "Key Learned!";
-            textList[2].text = "Practice Again";
+            textList[2].text = "Key Learned!";
+            textList[3].text = "Practice Again";
         }
         else
         {
-            textList[1].text = "Key Recovered!";
-            textList[2].text = "Try Again";
+            textList[2].text = "Key Recovered!";
+            textList[3].text = "Try Again";
         }
     }
 
@@ -77,15 +77,17 @@ public class EndGameUI : MonoBehaviour
 
     public void copySeed(Button button)
     {
-        string seed = button.transform.parent.GetChild(4).GetComponent<TMP_Text>().text;
+        var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
+        string seed = textList[0].text;
         GUIUtility.systemCopyBuffer = seed;
-        button.transform.parent.GetChild(5).GetComponent<TMP_Text>().text = "Seed Copied";
-        button.transform.parent.GetChild(5).gameObject.SetActive(true);
+        textList[1].text = "Seed Copied";
+        textList[1].gameObject.SetActive(true);
     }
 
     public void downloadSeed(Button button)
     {
-        string seed = button.transform.parent.GetChild(4).GetComponent<TMP_Text>().text;
+        var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
+        string seed = textList[0].text;
         string downloads = "";
         if (System.Environment.OSVersion.Platform == System.PlatformID.Unix)
         {
@@ -106,7 +108,7 @@ public class EndGameUI : MonoBehaviour
             outputFile.WriteLine(seed);
         }
 
-        button.transform.parent.GetChild(5).GetComponent<TMP_Text>().text = "Seed Downloaded";
-        button.transform.parent.GetChild(5).gameObject.SetActive(true);
+        textList[1].text = "Seed Downloaded";
+        textList[1].gameObject.SetActive(true);
     }
 }
