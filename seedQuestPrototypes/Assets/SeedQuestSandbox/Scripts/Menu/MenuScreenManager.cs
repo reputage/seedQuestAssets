@@ -245,6 +245,9 @@ public class MenuScreenManager : MonoBehaviour
         preview.sprite = LevelSetManager.CurrentLevel.preview;
         Image icon = actionLineUpCanvas.GetComponentsInChildren<Image>()[3];
         icon.sprite = LevelSetManager.CurrentLevel.icon;
+        Image background = actionLineUpCanvas.GetComponentsInChildren<Image>(true)[5];
+        Image currentBackground = sceneLineUpCanvas.GetComponentsInChildren<LevelPanel>()[0].GetComponentInChildren<Image>();
+        background.color = currentBackground.color;
 
         TextMeshProUGUI text = actionLineUpCanvas.GetComponentsInChildren<TextMeshProUGUI>()[1];
         text.text = LevelSetManager.CurrentLevel.name;
@@ -262,6 +265,8 @@ public class MenuScreenManager : MonoBehaviour
         }
 
         GameManager.Instance.GetComponentInChildren<ActionLineCameraRig>().Initialize();
+
+
     }
 
     public void CloseSceneLineUp() {
