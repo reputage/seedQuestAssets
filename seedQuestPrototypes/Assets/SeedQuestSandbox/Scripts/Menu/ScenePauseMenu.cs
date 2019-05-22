@@ -158,23 +158,28 @@ public class ScenePauseMenu : MonoBehaviour
         // remove any actions performed in the current scene from the interactable log
         // calculate # of actions to undo
         int actionsThisScene = InteractableLog.Count % InteractableConfig.ActionsPerSite;
+        Debug.Log("Found " + actionsThisScene + " actions to undo");
+
         if (actionsThisScene > 0)
         {
-            // undo actions in interactable log
-            // undo actions in interactable path
-            // if actionsThisScene == 0, then no actions have been performed in this scene
-            // should prevent this menu from appearing if the scene has been completed
+            for (int i = 0; i < actionsThisScene; i++)
+            {
+                InteractablePathManager.UndoLastAction();
+                Debug.Log("Undo number " + (i + 1));
+            }
+
+            InteractablePathManager.ShowLevelComplete = false;
         }
-        // reload the current scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        GameManager.State = GameManager.PrevState;
+        gameObject.SetActive(false);
     }
 
     public void exitToMenu()
     {
-        // remove all progress from the interactable log
-
-        // go to start scene
-        SceneManager.LoadScene("_StartMenu");
+        MenuScreenManager.ActivateStart();
+        gameObject.SetActive(false);
+        GameManager.GraduatedMode = false;
     }
 
     public void quitGame()
