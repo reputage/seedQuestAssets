@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SettingsManager : MonoBehaviour {
-
+    
     static public bool useDebug = false;
-    public float masterVolume = 0.8f;
+    public float masterVolume = 1.0f;
     public float musicVolume = 1.0f;
     public float soundEffectVolume = 1.0f;
     public float cameraSensitivity = 1.0f;

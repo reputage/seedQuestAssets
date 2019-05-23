@@ -20,8 +20,7 @@ public class EndGameUI : MonoBehaviour
     public string RecallScene = "PrototypeSelect";
 
     /// <summary> Toggles On the EndGameUI </summary>
-    static public void ToggleOn()
-    {
+    static public void ToggleOn() {
         if (Instance.gameObject.activeSelf)
             return;
 
@@ -74,8 +73,8 @@ public class EndGameUI : MonoBehaviour
         LoadingScreenUI.LoadRecall(RecallScene, true);
     }
 
-    public void GoToStartScreen()
-    {
+    public void GoToStartScreen() {
+        SeedQuest.Level.LevelManager.Instance.StopLevelMusic();
         MenuScreenManager.ActivateStart();
         gameObject.SetActive(false);
         GameManager.GraduatedMode = false;

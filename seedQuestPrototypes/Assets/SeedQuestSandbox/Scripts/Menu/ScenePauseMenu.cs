@@ -175,8 +175,8 @@ public class ScenePauseMenu : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void exitToMenu()
-    {
+    public void exitToMenu() {
+        SeedQuest.Level.LevelManager.Instance.StopLevelMusic();
         MenuScreenManager.ActivateStart();
         gameObject.SetActive(false);
         GameManager.GraduatedMode = false;

@@ -125,13 +125,16 @@ namespace SeedQuest.Level
             }
         }
 
-        private void OnDestroy()
-        {
+        public void StopLevelMusic() {
             if (levelMusicName != "")
                 AudioManager.Stop(levelMusicName);
 
             if (levelAmbientSoundName != "")
                 AudioManager.Stop(levelAmbientSoundName);
+        }
+
+        private void OnDestroy() {
+            StopLevelMusic();
         }
     }
 }
