@@ -21,13 +21,13 @@ public class TutorialManager : MonoBehaviour {
     private int card = 0;
 
     void Start () {
-        if (GameManager.Mode == GameMode.Rehearsal && TutorialState.Skip == false && InteractablePathManager.LevelsComplete == 0) {
-            GameManager.State = GameState.Menu;
-            button.onClick.AddListener(onButtonClick);
-            skip.onClick.AddListener(onSkipClick);
-            setCard();
-        }
-        else {
+        GameManager.State = GameState.Menu;
+        button.onClick.AddListener(onButtonClick);
+        skip.onClick.AddListener(onSkipClick);
+        setCard();
+        if (GameManager.Mode == GameMode.Recall || TutorialState.Skip == true)
+        {
+            GameManager.State = GameState.Play;
             gameObject.SetActive(false);
         }
     }
