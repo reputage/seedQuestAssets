@@ -117,7 +117,9 @@ public class MenuScreenManager : MonoBehaviour
     public void SetModeRecoverSeed()
     {
         GameManager.Mode = GameMode.Recall;
+        Debug.Log("Setting game mode to recall");
         GoToEncodeSeed();
+        LevelIconButton.ResetButtonStatus();
     }
 
     public void GoToSeedSetup()
