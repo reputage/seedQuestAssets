@@ -30,7 +30,7 @@ namespace SeedQuest.Interactables {
         public InteractableLog log;
 
         /// <summary> Seed String </summary>
-        public static string SeedString = "772283D9D40BAC27C6D6D60537D7B3525"; //"76101B07DC633F955696D7664C2B"; //"EBE0AC8C"; //"EB204654C9";
+        public static string SeedString = "3720B091810D8127C55630F55DD2275C5"; //"772283D9D40BAC27C6D6D60537D7B3525"; //"76101B07DC633F955696D7664C2B"; //"EBE0AC8C"; //"EB204654C9";
 
         /// <summary> Has a Level been compleleted for MultiLevel Game </summary>
         static public bool ShowLevelComplete = false;
