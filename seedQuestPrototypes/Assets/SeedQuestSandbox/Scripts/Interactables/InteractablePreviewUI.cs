@@ -14,7 +14,7 @@ namespace SeedQuest.Interactables
         public Vector3 scale = Vector3.one;
         public Vector3 position = Vector3.zero;
         public Vector3 rotation = Vector3.zero;
-        public int fontSize = 36;
+        //public int fontSize = 36;
         public bool useOrthographic = true;
         public float fieldOfView = 60;
         public float orthographicSize = 1;
@@ -102,8 +102,8 @@ namespace SeedQuest.Interactables
                 previewChild.transform.localRotation = Quaternion.Euler(preview.rotation);
                 previewChild.transform.localScale = preview.scale;
 
-                previewTitle.fontSize = preview.fontSize;
-                previewText.fontSize = 0.8f * preview.fontSize;
+                //previewTitle.fontSize = preview.fontSize;
+                //previewText.fontSize = 0.8f * preview.fontSize;
 
                 Instance.previewCamera.orthographic = preview.useOrthographic;
                 Instance.previewCamera.fieldOfView = preview.fieldOfView;
