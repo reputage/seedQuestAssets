@@ -7,12 +7,11 @@ public class VolumeControlsUI : MonoBehaviour
 {
     private Slider volSlider;
 
-    // Start is called before the first frame update
     void Start() {
         volSlider = GetComponentInChildren<Slider>();
+        volSlider.value = SettingsManager.MasterVolume;
     }
 
-    // Update is called once per frame
     void Update() {
         SettingsManager.MasterVolume = volSlider.value;
     }

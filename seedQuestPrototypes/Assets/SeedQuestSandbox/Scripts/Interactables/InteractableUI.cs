@@ -448,20 +448,29 @@ namespace SeedQuest.Interactables
 
             Canvas tracker = actionUI.gameObject.GetComponentsInChildren<Canvas>(true)[2];
             tracker.gameObject.SetActive(active);
+
+            RectTransform rect = actionUI.GetComponentsInChildren<Button>(true)[2].GetComponentInChildren<RectTransform>();
+            rect.localPosition = new Vector3(-169, 0, 0);
         }
 
         public bool IsOnHover() {
             bool hover = false;
 
-            foreach(Button button in actionButtons) {
-                if(button.GetComponentInChildren<InteractButton>() != null)
-                    if (button.GetComponentInChildren<InteractButton>().IsOnHover)
-                        hover = true;
+            if(actionButtons != null) {
+                foreach (Button button in actionButtons) {
+                    if (button.GetComponentInChildren<InteractButton>() != null) {
+                        if (button.GetComponentInChildren<InteractButton>().IsOnHover)
+                            hover = true;
+                    }
+                }                
             }
 
-            if(labelButton.GetComponentInChildren<ProgressButton>() != null)
-                if (labelButton.GetComponentInChildren<ProgressButton>().IsOnHover)
-                    hover = true;
+            if(labelButton != null) {
+                if (labelButton.GetComponentInChildren<ProgressButton>() != null) {
+                    if (labelButton.GetComponentInChildren<ProgressButton>().IsOnHover)
+                        hover = true;
+                }                
+            }
 
             return hover;
         }
