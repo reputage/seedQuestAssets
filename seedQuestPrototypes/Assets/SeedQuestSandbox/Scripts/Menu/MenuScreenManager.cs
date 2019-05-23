@@ -47,8 +47,12 @@ public class MenuScreenManager : MonoBehaviour
 
     public void Start()
     {
-        if (MenuScreenManager.Instance.state == MenuScreenStates.Debug)
+        if (MenuScreenManager.Instance.state == MenuScreenStates.Debug) {
             return;
+        }
+        else {
+            GameManager.State = GameState.Menu;
+        }
 
         motionBackgroundCanvas.gameObject.SetActive(true);
         GoToStart();
@@ -151,6 +155,7 @@ public class MenuScreenManager : MonoBehaviour
 
     public void GoToSceneLineUp()
     {
+        GameManager.State = GameState.Menu;
         state = MenuScreenStates.SceneLineUp;
         ResetCanvas();
         sceneLineUpCanvas.gameObject.SetActive(true);
@@ -163,6 +168,7 @@ public class MenuScreenManager : MonoBehaviour
     }
 
     public void GoToActionLineUp() {
+        GameManager.State = GameState.Menu;
         if (GameManager.Mode == GameMode.Rehearsal) {
             state = MenuScreenStates.ActionLineUp;
             ResetCanvas();
@@ -289,6 +295,7 @@ public class MenuScreenManager : MonoBehaviour
         CameraZoom.StartZoomIn();
         //IsometricCamera.StartLevelZoomIn();
         CloseMenuScreen();
+        GameManager.State = GameState.Play;
     }
 
     public void CloseMenuScreen()
