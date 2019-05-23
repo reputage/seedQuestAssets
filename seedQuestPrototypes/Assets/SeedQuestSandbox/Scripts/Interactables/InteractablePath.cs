@@ -32,6 +32,11 @@ namespace SeedQuest.Interactables
             get { return Instance.path; }
         }
 
+        static public List<int> ActionIds
+        {
+            get { return Instance.actionIds; }
+        }
+
         /// <summary> Gets number of path elements </summary>
         static public int Count { get => Instance.path.Count; }
 
