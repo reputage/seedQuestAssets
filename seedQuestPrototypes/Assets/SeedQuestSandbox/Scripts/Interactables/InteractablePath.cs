@@ -70,6 +70,20 @@ namespace SeedQuest.Interactables
             }
         }
 
+        static public int NextAction
+        {
+            get
+            {
+                if (Instance.actionIds == null)
+                    return -1;
+
+                if (Instance.nextIndex < Instance.actionIds.Count)
+                    return Instance.actionIds[Instance.nextIndex];
+                else
+                    return -1;
+            }
+        }
+
         /// <summary> Checks if interactable is the NextInteractable to be completed for the Path </summary>
         static public bool isNextInteractable(Interactable interactable)
         {
@@ -130,6 +144,10 @@ namespace SeedQuest.Interactables
 
                 if(NextInteractable != null)
                     InitializeNextInteractable();
+            }
+            else if (GameManager.Mode == GameMode.Rehearsal && NextInteractable != InteractableManager.ActiveInteractable)
+            {
+                Debug.Log("Next interactable is not the current active interactable.");
             }
         }
 
