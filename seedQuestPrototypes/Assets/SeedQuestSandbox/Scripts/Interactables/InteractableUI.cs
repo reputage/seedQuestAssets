@@ -181,6 +181,7 @@ namespace SeedQuest.Interactables
             if(GameManager.Mode == GameMode.Rehearsal) {
                 if (actionIndex == InteractablePath.NextInteractable.ID.actionID)
                 {
+                    InteractableManager.SetActiveInteractable(parent, parent.ActionIndex);
                     InteractableLog.Add(parent, parent.ActionIndex);
                     InteractablePath.GoToNextInteractable();
                 }
@@ -197,6 +198,7 @@ namespace SeedQuest.Interactables
                 parent == InteractablePath.NextInteractable && 
                 parent.ActionIndex == InteractablePath.NextAction) 
             {
+                InteractableManager.SetActiveInteractable(parent, parent.ActionIndex);
                 InteractableLog.Add(parent, parent.ActionIndex);
                 InteractablePath.GoToNextInteractable();
 
@@ -280,7 +282,9 @@ namespace SeedQuest.Interactables
 
             else {
                 foreach (Button button in actionButtons)
+                {
                     button.transform.gameObject.SetActive(false);
+                }
             }
         }
 
