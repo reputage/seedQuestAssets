@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class IsometricCharacter : MonoBehaviour {
@@ -71,6 +72,8 @@ public class IsometricCharacter : MonoBehaviour {
             return;
 
         if (Input.GetMouseButtonDown(0)) {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
             Camera camera = IsometricCamera.Camera;
 
             RaycastHit hit;
