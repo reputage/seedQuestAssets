@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEditor;
 using SeedQuest.Interactables;
 using SeedQuest.SeedEncoder;
 using UnityEngine.UI;
@@ -88,7 +88,7 @@ public class EndGameUI : MonoBehaviour
         GameManager.GraduatedMode = true;
     }
 
-    public void copySeed(Button button)
+    public void copySeed()
     {
         var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
         string seed = textList[0].text;
@@ -97,9 +97,9 @@ public class EndGameUI : MonoBehaviour
         textList[1].gameObject.SetActive(true);
     }
 
-    public void downloadSeed(Button button)
+    public void downloadSeed()
     {
-        var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
+        /*var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
         string seed = textList[0].text;
         string downloads = "";
         if (System.Environment.OSVersion.Platform == System.PlatformID.Unix)
@@ -122,6 +122,18 @@ public class EndGameUI : MonoBehaviour
         }
 
         textList[1].text = "Seed Downloaded";
-        textList[1].gameObject.SetActive(true);
+        textList[1].gameObject.SetActive(true);*/
+        string path = EditorUtility.SaveFilePanel("Save As", "Downloads", "seed", "txt");
+        if (path.Length != 0)
+        {
+            var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
+            string seed = textList[0].text;
+            using (StreamWriter outputFile = new StreamWriter(path))
+            {
+                outputFile.WriteLine(seed);
+            }
+            textList[1].text = "Seed Downloaded";
+            textList[1].gameObject.SetActive(true);
+        }
     }
 }

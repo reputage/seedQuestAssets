@@ -160,7 +160,6 @@ public class ProgressButton : MonoBehaviour
 
         if (progressTime == maxTime ) {
             if(!progressComplete) {
-                checkmarkAnimate();
                 progressComplete = true;
                 progressTime = 0;
                 progressCompleteAction?.Invoke();
@@ -172,9 +171,17 @@ public class ProgressButton : MonoBehaviour
         }
     }
     
-    private void checkmarkAnimate() {
+    public void checkmarkAnimate() {
         animators[0].Play("ProgressCompleteAnimation");
         animators[1].Play("CompleteCheckAnimation");
+        AudioManager.Play("UI_CheckmarkComplete");
+    }
+
+    public void exAnimate()
+    {
+        Debug.Log(animators.Length);
+        animators[0].Play("ProgressCompleteAnimation");
+        animators[2].Play("CompleteExAnimation");
         AudioManager.Play("UI_CheckmarkComplete");
     }
 
