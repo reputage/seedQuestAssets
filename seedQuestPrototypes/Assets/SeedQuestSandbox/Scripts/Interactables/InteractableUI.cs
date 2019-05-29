@@ -193,22 +193,28 @@ namespace SeedQuest.Interactables
         public void onClickCheck() {
             SetCheckButtonActive(false);
 
-            if (GameManager.Mode == GameMode.Rehearsal && 
-                parent == InteractablePath.NextInteractable && 
-                parent.ActionIndex == InteractablePath.NextAction) 
+            if (GameManager.Mode == GameMode.Rehearsal &&
+                parent == InteractablePath.NextInteractable &&
+                parent.ActionIndex == InteractablePath.NextAction)
             {
+                progressButton.checkmarkAnimate();
                 InteractableLog.Add(parent, parent.ActionIndex);
                 InteractablePath.GoToNextInteractable();
 
-                if (mode == InteractableUIMode.NextPrevSelect) {
+                if (mode == InteractableUIMode.NextPrevSelect)
+                {
                     progressButton.SetActive(false);
-                } 
+                }
             }
-            else if (GameManager.Mode == GameMode.Rehearsal){
-                // put 'incorrect interactable' code here
+            else if (GameManager.Mode == GameMode.Rehearsal)
+            {
+                progressButton.exAnimate();
             }
             else if (GameManager.Mode == GameMode.Recall)
+            {
+                progressButton.checkmarkAnimate();
                 InteractableLog.Add(parent, parent.ActionIndex);
+            }
 
             /*
             string values = "";
