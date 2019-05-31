@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 namespace SeedQuest.Interactables
 {
@@ -24,7 +25,10 @@ namespace SeedQuest.Interactables
         private Button[] actionButtons;
         private Button checkButton;
         private Image[] checkImages;
+        private Image[] actionButtonImages;
         private TMPro.TextMeshProUGUI actionUITextMesh;
+        private RectTransform actionUIRect;
+
 
         private ProgressButton progressButton;
 
@@ -89,7 +93,7 @@ namespace SeedQuest.Interactables
             progressButton = actionUI.GetComponentInChildren<ProgressButton>();
             labelButton = actionUI.GetComponentInChildren<Button>();
             actionUITextMesh = actionUI.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-
+            actionUIRect = actionUI.GetComponent<RectTransform>();
         }
 
         /// <summary> Intialize and Setupt Label Button </summary>
@@ -109,6 +113,7 @@ namespace SeedQuest.Interactables
 
             if (mode == InteractableUIMode.NextPrevSelect)  {
                 actionButtons = new Button[buttons.Length - 2];
+
             }
             else if (mode == InteractableUIMode.GridSelect || mode == InteractableUIMode.ListSelect || mode == InteractableUIMode.Dialogue) {
                 actionButtons = new Button[buttons.Length - 1];
@@ -331,7 +336,7 @@ namespace SeedQuest.Interactables
 
         /// <summary> Sets UI Size Scale </summary>
         public void SetScale() {
-            actionUI.GetComponent<RectTransform>().localScale = new Vector3(-0.01f * scaleSize, 0.01f * scaleSize, 0.01f * scaleSize);
+            actionUIRect.localScale = new Vector3(-0.01f * scaleSize, 0.01f * scaleSize, 0.01f * scaleSize);
         }
 
 
@@ -346,17 +351,17 @@ namespace SeedQuest.Interactables
             Vector3 labelPositionOffset = Vector3.zero;
             if (parent.stateData != null) labelPositionOffset = parent.stateData.labelPosOffset;
             Vector3 position = parent.transform.position + labelPositionOffset + positionOffset;
-            actionUI.GetComponent<RectTransform>().position = position;
+            actionUIRect.position = position;
         }
 
         /// <summary> Sets UI Rotation </summary>
         public void SetRotation()  {
             if (useRotateToCamera) {
                 BillboardInteractable();
-                actionUI.GetComponent<RectTransform>().Rotate(rotationOffset);
+                actionUIRect.Rotate(rotationOffset);
             }
             else {
-                actionUI.GetComponent<RectTransform>().rotation = Quaternion.Euler(rotationOffset);
+                actionUIRect.rotation = Quaternion.Euler(rotationOffset);
             }
         }
 
@@ -472,20 +477,22 @@ namespace SeedQuest.Interactables
         public bool IsOnHover() {
             bool hover = false;
 
-            if(actionButtons != null) {
-                foreach (Button button in actionButtons) {
-                    if (button.GetComponentInChildren<InteractButton>() != null) {
-                        if (button.GetComponentInChildren<InteractButton>().IsOnHover)
+            if (actionButtons != null)
+            {
+                foreach (Button button in actionButtons)
+                {
+                    InteractButton interactButton = button.GetComponentInChildren<InteractButton>();
+                    if (interactButton != null)
+                    {
+                        if (interactButton.IsOnHover)
                             hover = true;
                     }
-                }                
+                }
             }
 
-            if(labelButton != null) {
-                if (labelButton.GetComponentInChildren<ProgressButton>() != null) {
-                    if (labelButton.GetComponentInChildren<ProgressButton>().IsOnHover)
-                        hover = true;
-                }                
+            if(progressButton != null) {
+                if (progressButton.IsOnHover)
+                    hover = true;
             }
 
             return hover;
