@@ -26,6 +26,9 @@ namespace SeedQuest.Interactables
         public InteractablePreviewInfo interactablePreview;
         public InteractableHighlightsProps interactableHighlights;
         public InteractableID ID;
+
+        public Shader defaultShader;
+        public Shader highlightShader;
         
         private int actionIndex = -1;
         public int ActionIndex { get => actionIndex; set => actionIndex = value; } // Current Action State 
@@ -42,6 +45,7 @@ namespace SeedQuest.Interactables
 
         void Start() {
             interactableUI.Initialize(this);
+            getShaderRefs();
         }
 
         void Update()  {
@@ -101,6 +105,12 @@ namespace SeedQuest.Interactables
         public void PrevAction() {
             actionIndex = (actionIndex == -1) ? (4-1) : Mod(actionIndex - 1, 4);
             DoAction(actionIndex);
+        }
+
+        public void getShaderRefs()
+        {
+            defaultShader = Shader.Find("Standard");
+            highlightShader = Shader.Find("SeedQuest/RimOutline");
         }
 
         public void DoAction(int actionIndex)  {
@@ -212,10 +222,8 @@ namespace SeedQuest.Interactables
             if (!interactableHighlights.useHighlightsShader)
                 return;
 
-            Shader defaultShader = Shader.Find("Standard");
-            Shader highlightShader = Shader.Find("SeedQuest/RimOutline");
-
             Renderer[] rendererList = transform.GetComponentsInChildren<Renderer>();
+
             foreach (Renderer renderer in rendererList) {
 
                 if (renderer.GetComponent<ParticleSystem>() != null)
