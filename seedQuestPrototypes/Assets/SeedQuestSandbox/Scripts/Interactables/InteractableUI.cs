@@ -29,6 +29,7 @@ namespace SeedQuest.Interactables
         private TMPro.TextMeshProUGUI actionUITextMesh;
         private RectTransform actionUIRect;
 
+        Camera c;
 
         private ProgressButton progressButton;
 
@@ -94,6 +95,7 @@ namespace SeedQuest.Interactables
             labelButton = actionUI.GetComponentInChildren<Button>();
             actionUITextMesh = actionUI.GetComponentInChildren<TMPro.TextMeshProUGUI>();
             actionUIRect = actionUI.GetComponent<RectTransform>();
+            c = Camera.main;
         }
 
         /// <summary> Intialize and Setupt Label Button </summary>
@@ -367,7 +369,7 @@ namespace SeedQuest.Interactables
 
         /// <summary> Sets Billboarding for UI i.e. so UI follows camera </summary>
         public void BillboardInteractable() {
-            Vector3 targetPosition = Camera.main.transform.position - (100 * Camera.main.transform.forward ) ;
+            Vector3 targetPosition = c.transform.position - (100 * c.transform.forward ) ;
             Vector3 interactablePosition = actionUI.transform.position;
             Vector3 lookAtDir = targetPosition - interactablePosition;
 

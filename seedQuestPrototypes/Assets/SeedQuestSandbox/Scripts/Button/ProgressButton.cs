@@ -27,7 +27,10 @@ public class ProgressButton : MonoBehaviour
     public Action ProgressCompleteAction { set => progressCompleteAction = value; }
     public bool IsActive { get => isActive; }
 
+    Camera c;
+
     void Start() {
+        c = Camera.main;
         progressComplete = false;
         isActive = false;
         progressCompleteAction = null;
@@ -192,7 +195,7 @@ public class ProgressButton : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0)) {
             RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = c.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out hit, 100.0f)) {
                 bool hitThis = hit.transform.GetInstanceID() == transform.GetInstanceID();
@@ -205,7 +208,7 @@ public class ProgressButton : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0)) {
             RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = c.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out hit, 100.0f)) {
                 bool hitThis = hit.transform.GetInstanceID() == transform.GetInstanceID();
@@ -222,7 +225,6 @@ public class ProgressButton : MonoBehaviour
         if (PauseManager.isPaused == true)
             return;
 
-        Camera c = Camera.main;
         RaycastHit hit;
         Ray ray = c.ScreenPointToRay(Input.mousePosition);
 
