@@ -20,36 +20,18 @@ public class dicewareConverter
         byte[] bytes = HexStringToByteArray(testingHex);
         BitArray bits = byteToBits(bytes);
 
-        int[] wordIndicies = seeds.bitToActions(bits, wordListSizes);
+        int[] wordIndeces = seeds.bitToActions(bits, wordListSizes);
 
-        List<int> wordIndiciesList = new List<int>();
+        List<int> wordIndecesList = new List<int>();
 
-        for (int i = 0; i < wordIndicies.Length; i++)
+        for (int i = 0; i < wordIndeces.Length; i++)
         {
-            wordIndiciesList.Add(wordIndicies[i]);
+            wordIndecesList.Add(wordIndeces[i]);
         }
 
-        string words = getMnemonicSentence(wordIndiciesList);
+        string words = getMnemonicSentence(wordIndecesList);
 
         Debug.Log("Words from hex: " + words);
-    }
-
-    private List<int> getWordIndeces(BitArray bits)
-    {
-        List<int> wordIndexList = new List<int>();
-
-        for (int i = 0; i < bits.Length; i = i + bitGroupSize)
-        {
-            BitArray toInt = new BitArray(bitGroupSize);
-            for (int i2 = 0; i2 < bitGroupSize && i < bits.Length; i2++)
-            {
-                toInt.Set(i2, bits.Get(i + i2));
-            }
-
-            wordIndexList.Add(processBitsToInt(toInt)); 
-        }
-
-        return wordIndexList;
     }
 
     private int processBitsToInt(BitArray bits)
