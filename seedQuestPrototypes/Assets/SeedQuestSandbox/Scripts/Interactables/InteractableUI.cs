@@ -113,6 +113,7 @@ namespace SeedQuest.Interactables
             progressButton = actionUI.GetComponentInChildren<ProgressButton>();
             labelButton = actionUI.GetComponentInChildren<Button>();
             c = Camera.main;
+            actionUIRect = actionUI.GetComponent<RectTransform>();
             var textList = actionUI.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
             actionUITextMesh = textList[0];
             persistentLabel = textList[1];
