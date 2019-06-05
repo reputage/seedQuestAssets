@@ -26,6 +26,7 @@ public class MenuScreenManager : MonoBehaviour
     public Canvas encodeSeedContinueCanvas;
     private Canvas sceneLineUpCanvas;
     private Canvas actionLineUpCanvas;
+    private Canvas backButtonCanvas;
 
     private float sceneLoadProgressValue;
     private Slider sceneLoadProgress;
@@ -40,6 +41,7 @@ public class MenuScreenManager : MonoBehaviour
         encodeSeedContinueCanvas = canvas[6];
         sceneLineUpCanvas = canvas[7];
         actionLineUpCanvas = canvas[8];
+        backButtonCanvas = canvas[9];
 
         sceneLoadProgress = GetComponentInChildren<Slider>(true);
         sceneContinueButton = sceneLineUpCanvas.GetComponentInChildren<Button>(true);
@@ -79,6 +81,7 @@ public class MenuScreenManager : MonoBehaviour
         canvas[6].gameObject.SetActive(false);
         canvas[7].gameObject.SetActive(false);
         canvas[8].gameObject.SetActive(false);
+        canvas[9].gameObject.SetActive(false);
     }
 
     public void GoToStart()
@@ -87,6 +90,19 @@ public class MenuScreenManager : MonoBehaviour
         ResetCanvas();
         startCanvas.gameObject.SetActive(true);
         SetupRotateBackground(0);
+    }
+
+    public void GoBack()
+    {
+        GameManager.Mode = GameMode.Rehearsal;
+
+        if (state == MenuScreenStates.EncodeSeed)
+        {
+            LevelIconButton.ResetButtonIcons();
+            LevelIconButton.ResetButtonStatus();
+        }
+
+        GoToModeSelect();
     }
 
     static public void ActivateStart() {
@@ -129,6 +145,12 @@ public class MenuScreenManager : MonoBehaviour
         canvas[4].gameObject.SetActive(true);
         SetupRotateBackground(270);
         SetupSeedSetup();
+
+        
+        canvas[9].gameObject.SetActive(true);
+        var buttonGroup = canvas[9].transform.GetChild(0);
+        buttonGroup.localPosition = new Vector3(200, -100, 0);
+   
     }
 
     public void GoToEncodeSeed()
@@ -138,6 +160,10 @@ public class MenuScreenManager : MonoBehaviour
         encodeSeedCanvas.gameObject.SetActive(true);
         SetupRotateBackground(330);
         SetupEncodeSeed();
+
+        canvas[9].gameObject.SetActive(true);
+        var buttonGroup = canvas[9].transform.GetChild(0);
+        buttonGroup.localPosition = new Vector3(40, -60, 0);
     }
 
     public void GoToEncodeSeedFromSeedSetup() {

@@ -21,6 +21,7 @@ namespace SeedQuest.Interactables
 
         private Interactable parent;
         private GameObject actionUI = null;
+        private TMPro.TextMeshProUGUI persistentLabel;
         private Button labelButton;
         private Button[] actionButtons;
         private Button checkButton;
@@ -40,6 +41,24 @@ namespace SeedQuest.Interactables
                 SetScale();
                 SetPosition();
                 SetRotation();
+            }
+
+            if (InteractableManager.Instance.useInteractableNames)
+            {
+                if (persistentLabel.text != actionUITextMesh.text)
+                {
+                    persistentLabel.gameObject.SetActive(true);
+                }
+                else
+                {
+                    if (persistentLabel.gameObject.activeSelf)
+                    {
+                        persistentLabel.gameObject.SetActive(false);
+                        Color temp = actionUI.GetComponentInChildren<Image>().color;
+                        temp.a = 0.0f;
+                        actionUI.GetComponentInChildren<Image>().color = temp;
+                    }
+                }
             }
         }
 
@@ -93,18 +112,21 @@ namespace SeedQuest.Interactables
         {
             progressButton = actionUI.GetComponentInChildren<ProgressButton>();
             labelButton = actionUI.GetComponentInChildren<Button>();
-            actionUITextMesh = actionUI.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-            actionUIRect = actionUI.GetComponent<RectTransform>();
-            c = Camera.main;
+            var textList = actionUI.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
+            actionUITextMesh = textList[0];
+            persistentLabel = textList[1];
+
         }
 
         /// <summary> Intialize and Setupt Label Button </summary>
         public void SetupLabel() {
-            var textList = actionUI.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
-            textList[0].text = parent.Name;
+            actionUITextMesh.text = parent.Name;
+            if (InteractableManager.Instance.useInteractableNames) persistentLabel.text = parent.Name;
+            persistentLabel.gameObject.SetActive(false);
 
             labelButton.onClick.AddListener(delegate { onClickLabel(); });
 
+            var textList = actionUI.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
             foreach (TMPro.TextMeshProUGUI text in textList)
                 text.fontSize = fontSize;
         }
