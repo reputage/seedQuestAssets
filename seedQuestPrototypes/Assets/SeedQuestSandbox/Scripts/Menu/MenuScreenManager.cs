@@ -237,16 +237,12 @@ public class MenuScreenManager : MonoBehaviour
                     array[array.Length - 1] = array[array.Length - 2];
                     array[array.Length - 2] = '0';
                     seedFromInput = new string(array);
-                    Debug.Log("Enforcing a fix to the seed. New seed: " + seedFromInput);
-
                 }
                 else if (seedFromInput.Length == InteractableConfig.SeedHexLength + 1)
                 {
                     char[] array = seedFromInput.ToCharArray();
                     array[array.Length - 2] = '0';
                     seedFromInput = new string(array);
-                    Debug.Log("Enforcing a fix to the seed. New seed: " + seedFromInput);
-
                 }
                 else
                     Debug.Log("Seed: " + seedFromInput);

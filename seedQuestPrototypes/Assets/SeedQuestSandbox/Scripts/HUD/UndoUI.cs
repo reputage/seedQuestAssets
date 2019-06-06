@@ -34,6 +34,15 @@ public class UndoUI : MonoBehaviour
     }
 
     public void Undo() {
-        InteractablePathManager.UndoLastAction();
+
+        int actionsThisScene = InteractableLog.Count % InteractableConfig.ActionsPerSite;
+        if (actionsThisScene > 0)
+        {
+            InteractablePathManager.UndoLastAction();
+        }
+        else
+        {
+            Debug.Log("Unable to undo actions from a previous scene.");    
+        }
     }
 }
