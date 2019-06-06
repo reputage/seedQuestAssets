@@ -9,6 +9,7 @@ public class dicewareTest : MonoBehaviour
     {
         dicewareConverter dwc = new dicewareConverter();
         dwc.testGetSentence();
+        dwc.testGetActions();
     }
 
 }
