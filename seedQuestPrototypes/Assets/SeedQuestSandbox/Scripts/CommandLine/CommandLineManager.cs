@@ -27,6 +27,7 @@ public static class CommandLineManager
         {"showcolliders", showBoxColliders},
         {"nextaction", doNextAction},
         {"selectaction", selectAction},
+        {"skip", skipScene},
         {"finduierrors", findUiErrors},
         {"resetitem", resetInteractable}
         // make a function for 'select action' in recall mode that takes parameters for site id, interactable id, action id, in that order
@@ -47,6 +48,7 @@ public static class CommandLineManager
         {"gamemode", "Sets the gamemode in GameManager.\nParameters:\n Learn, recall, sandbox"},
         {"showcolliders", "Shows box colliders for interactables.\nUse 'showcolliders b' to show colliders for non-interctable objects"},
         {"nextaction", "Performs the next action in the interactable path list, only works in learn mode."},
+        {"skip", "Skip the current scene."},
         {"selectaction", "Performs an action using the specified interactable.\nParameters:\nint siteID, int spotID, int action"},
         {"finduierrors", "Finds collisions between interactable objects and their interactableUIs"},
         {"resetitem", "Finds and resets an item at the given site ID and spot ID.\nParameters:\n int siteID, int spotID"}
@@ -104,6 +106,36 @@ public static class CommandLineManager
 
         SceneManager.LoadScene(input);
         return "Loading scene: " + input;
+    }
+
+    // Skip the current scene. Only works in Learn/reheasal mode.
+    public static string skipScene(string input)
+    {
+        if (GameManager.Mode == GameMode.Rehearsal)
+        {
+            int actionsThisScene = InteractableLog.Count % InteractableConfig.ActionsPerSite;
+            for (int i = 0 + actionsThisScene; i < InteractableConfig.ActionsPerSite; i++)
+            {
+                Debug.Log("Auto-performing action " + (i + 1));
+                InteractableManager.SetActiveInteractable(InteractablePath.NextInteractable, InteractablePath.NextAction);
+                InteractableLog.Add(InteractablePath.NextInteractable, InteractablePath.NextAction);
+                InteractablePath.GoToNextInteractable();
+            }
+            return "Skiping scene";
+        }
+        else if (GameManager.Mode == GameMode.Recall)
+        {
+            int actionsThisScene = InteractableLog.Count % InteractableConfig.ActionsPerSite;
+            for (int i = 0 + actionsThisScene; i < InteractableConfig.ActionsPerSite; i++)
+            {
+                Debug.Log("Auto-performing action " + (i + 1));
+                InteractableLog.Add(InteractableManager.InteractableList[0], 0);
+            }
+
+            return "Skiping scene";
+        }
+
+        return "Skip scene only supports Learn and Recal modes.";
     }
 
     // Returns a list of all the available scenes in the build by name
