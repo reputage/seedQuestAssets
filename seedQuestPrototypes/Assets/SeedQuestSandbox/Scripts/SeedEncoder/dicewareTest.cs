@@ -8,8 +8,9 @@ public class dicewareTest : MonoBehaviour
     void Start()
     {
         dicewareConverter dwc = new dicewareConverter();
-        dwc.testGetSentence();
-        dwc.testGetActions();
+        //dwc.testGetSentence();
+        //dwc.testGetActions();
+        dwc.testFullConversion();
     }
 
 }
