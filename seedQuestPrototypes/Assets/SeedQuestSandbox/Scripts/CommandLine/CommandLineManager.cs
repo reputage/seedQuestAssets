@@ -54,6 +54,27 @@ public static class CommandLineManager
         {"resetitem", "Finds and resets an item at the given site ID and spot ID.\nParameters:\n int siteID, int spotID"}
     };
 
+    // Initialize fuzzy scene name dictionary.
+    public static Dictionary<string, string> fuzzySceneNames = new Dictionary<string, string>
+    {
+        {"arabian", "arabianday"}, {"arab", "arabianday"},
+        {"café", "cafe"},
+        {"campground", "campground iso"}, {"camping", "campground iso"}, {"camp", "campground iso"},
+        {"castle", "castlebeach"}, {"beach", "castlebeach"},
+        {"cliff", "cliffsideiso"}, {"cliffs", "cliffsideiso"}, {"cliffside", "cliffsideiso"},
+        {"dino", "dinosafari"}, {"dinosaur", "dinosafari"}, {"safari", "dinosafari"},
+        {"farms", "farm"},
+        {"haunted", "hauntedhouse"},
+        {"lab", "lab_iso"}, {"science", "lab_iso"},
+        {"restaurant", "nonnabig_iso"}, {"nonna", "nonnabig_iso"},
+        {"pirate", "pirateship_wreck"}, {"pirates", "pirateship_wreck"}, {"pirateship", "pirateship_wreck"},
+        {"saloon", "saloonbiggeriso"}, {"sallon", "saloonbiggeriso"}, {"western", "saloonbiggeriso"},
+        {"snow", "snowland"},
+        {"sorcerer", "sorcerertower"}, {"wizard", "sorcerertower"}, {"wizardtower", "sorcerertower"},
+        {"moon", "space"},
+        {"gym", "sports"}, {"workout", "sports"}
+    };
+
     // Here's a template for an example of a command. 
     //  For a command to work, it needs to be added to the above dictionary,
     //  and the dictionary key for the function needs to be all lowercase
@@ -103,6 +124,12 @@ public static class CommandLineManager
     {
         if (input == "")
             return "No scene specified";
+
+        if(fuzzySceneNames.ContainsKey(input))
+        {
+            SceneManager.LoadScene(fuzzySceneNames[input]);
+            return "Loading fuzzy scene: " + fuzzySceneNames[input];
+        }
 
         SceneManager.LoadScene(input);
         return "Loading scene: " + input;
