@@ -29,7 +29,8 @@ public static class CommandLineManager
         {"selectaction", selectAction},
         {"skip", skipScene},
         {"finduierrors", findUiErrors},
-        {"resetitem", resetInteractable}
+        {"resetitem", resetInteractable},
+        {"customlearn", learnCustom}
         // make a function for 'select action' in recall mode that takes parameters for site id, interactable id, action id, in that order
         // make a function for sandbox mode that shows the preview for an interactabel. takes parameters for site id, interactable id, and action id
     };
@@ -73,6 +74,27 @@ public static class CommandLineManager
         {"sorcerer", "sorcerertower"}, {"wizard", "sorcerertower"}, {"wizardtower", "sorcerertower"},
         {"moon", "space"},
         {"gym", "sports"}, {"workout", "sports"}
+    };
+
+    // Initialize fuzzy scene name dictionary.
+    public static Dictionary<string, int> sceneIndeces = new Dictionary<string, int>
+    {
+        {"farm", 0},
+        {"campground iso", 1}, 
+        {"castlebeach", 2},
+        {"cliffsideiso", 3},
+        {"dinosafari", 4},
+        {"hauntedhouse", 5},
+        {"sports", 6}, 
+        {"lab_iso", 7},
+        {"arabianday", 8},
+        {"nonnabig_iso", 9},
+        {"pirateship_wreck", 10}, 
+        {"saloonbiggeriso", 11},  
+        {"snowland", 12},
+        {"space", 13},
+        {"sorcerertower", 14}, 
+        {"cafe", 15}
     };
 
     // Here's a template for an example of a command. 
@@ -128,7 +150,7 @@ public static class CommandLineManager
         if(fuzzySceneNames.ContainsKey(input))
         {
             SceneManager.LoadScene(fuzzySceneNames[input]);
-            return "Loading fuzzy scene: " + fuzzySceneNames[input];
+            return "Loading scene: " + fuzzySceneNames[input];
         }
 
         SceneManager.LoadScene(input);
@@ -163,6 +185,77 @@ public static class CommandLineManager
         }
 
         return "Skip scene only supports Learn and Recal modes.";
+    }
+
+    // Creates a custom learn mode path with scenes dtermined by the user.
+    public static string learnCustom(string input)
+    {
+        string[] stringInputs = input.Split(null);
+        int[] scenes = new int[InteractableConfig.SitesPerGame];
+        int[] actions = new int[InteractableConfig.SitesPerGame + (InteractableConfig.SitesPerGame * InteractableConfig.ActionsPerSite * 2)];
+        if (stringInputs.Length <= 1)
+        {
+            return "Please enter at least one scene name for the custom learn path.";
+        }
+
+        for (int i = 0; i < InteractableConfig.SitesPerGame; i++)
+        {
+            // queue up the scenes entered by user into a seed
+
+            if (i < stringInputs.Length)
+            {
+                if (sceneIndeces.ContainsKey(stringInputs[i + 1]))
+                {
+                    scenes[i] = sceneIndeces[stringInputs[i + 1]];
+                }
+                else if (fuzzySceneNames.ContainsKey(stringInputs[i + 1]))
+                {
+                    scenes[i] = sceneIndeces[fuzzySceneNames[stringInputs[i + 1]]];
+                }
+                else
+                {
+                    return "Do not recognize scene name: " + stringInputs[i + 1];
+                }
+            }
+        }
+
+        // Create custom seed using the chosen scenes
+        for (int i = 0; i < InteractableConfig.SitesPerGame; i++)
+        {
+            actions[i + i * InteractableConfig.ActionsPerSite * 2] = scenes[i];
+            Debug.Log("Scene: " + (i + i * InteractableConfig.ActionsPerSite * 2));
+
+            for (int j = 0; j < InteractableConfig.ActionsPerSite; j++)
+            {
+                actions[j * 2 + i * InteractableConfig.ActionsPerSite * 2] = j % 4;
+                actions[j * 2 + 1 + i * InteractableConfig.ActionsPerSite * 2] = j % 4;
+
+                Debug.Log("Site: " + (j * 2 + i * InteractableConfig.ActionsPerSite * 2));
+                Debug.Log("Action: " + (j * 2 + 1 + i * InteractableConfig.ActionsPerSite * 2));
+            }
+        }
+
+        SeedToByte seeds = new SeedToByte();
+        string seed = seeds.getSeed(actions);
+        Debug.Log("Artificial seed: " + seed);
+
+        InteractablePath.ResetPath();
+        InteractablePathManager.SeedString = seed;
+        CameraZoom.ResetZoom();
+        GameManager.Mode = GameMode.Rehearsal;
+        GameManager.State = GameState.Play;
+
+        if (fuzzySceneNames.ContainsKey(stringInputs[1]))
+        {
+            SceneManager.LoadScene(fuzzySceneNames[stringInputs[1]]);
+            return "Loading custom seed. Scene: " + fuzzySceneNames[stringInputs[1]];
+        }
+        SceneManager.LoadScene(stringInputs[1]);
+
+        // set game mode to rehearse
+        // load the first scene
+
+        return "Loading custom seed. Scene: " + stringInputs[1];
     }
 
     // Returns a list of all the available scenes in the build by name
