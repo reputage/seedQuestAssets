@@ -204,17 +204,17 @@ public static class CommandLineManager
 
             if (i < stringInputs.Length)
             {
-                if (sceneIndeces.ContainsKey(stringInputs[i + 1]))
+                if (sceneIndeces.ContainsKey(stringInputs[i]))
                 {
-                    scenes[i] = sceneIndeces[stringInputs[i + 1]];
+                    scenes[i] = sceneIndeces[stringInputs[i]];
                 }
-                else if (fuzzySceneNames.ContainsKey(stringInputs[i + 1]))
+                else if (fuzzySceneNames.ContainsKey(stringInputs[i]))
                 {
-                    scenes[i] = sceneIndeces[fuzzySceneNames[stringInputs[i + 1]]];
+                    scenes[i] = sceneIndeces[fuzzySceneNames[stringInputs[i]]];
                 }
                 else
                 {
-                    return "Do not recognize scene name: " + stringInputs[i + 1];
+                    return "Do not recognize scene name: " + stringInputs[i];
                 }
             }
         }
@@ -223,15 +223,11 @@ public static class CommandLineManager
         for (int i = 0; i < InteractableConfig.SitesPerGame; i++)
         {
             actions[i + i * InteractableConfig.ActionsPerSite * 2] = scenes[i];
-            Debug.Log("Scene: " + (i + i * InteractableConfig.ActionsPerSite * 2));
 
             for (int j = 0; j < InteractableConfig.ActionsPerSite; j++)
             {
-                actions[j * 2 + i * InteractableConfig.ActionsPerSite * 2] = j % 4;
-                actions[j * 2 + 1 + i * InteractableConfig.ActionsPerSite * 2] = j % 4;
-
-                Debug.Log("Site: " + (j * 2 + i * InteractableConfig.ActionsPerSite * 2));
-                Debug.Log("Action: " + (j * 2 + 1 + i * InteractableConfig.ActionsPerSite * 2));
+                actions[j * 2 + 1 + i + i * InteractableConfig.ActionsPerSite * 2] = j % 4;
+                actions[j * 2 + 2 + i + i * InteractableConfig.ActionsPerSite * 2] = j % 4;
             }
         }
 
@@ -239,23 +235,23 @@ public static class CommandLineManager
         string seed = seeds.getSeed(actions);
         Debug.Log("Artificial seed: " + seed);
 
-        InteractablePath.ResetPath();
         InteractablePathManager.SeedString = seed;
-        CameraZoom.ResetZoom();
+        InteractablePath.ResetPath();
+        InteractablePathManager.Reset();
         GameManager.Mode = GameMode.Rehearsal;
         GameManager.State = GameState.Play;
+        InteractablePathManager.Initalize();
 
-        if (fuzzySceneNames.ContainsKey(stringInputs[1]))
+        if (fuzzySceneNames.ContainsKey(stringInputs[0]))
         {
-            SceneManager.LoadScene(fuzzySceneNames[stringInputs[1]]);
-            return "Loading custom seed. Scene: " + fuzzySceneNames[stringInputs[1]];
+            SceneManager.LoadScene(fuzzySceneNames[stringInputs[0]]);
+            return "Loading custom seed. Scene: " + fuzzySceneNames[stringInputs[0]];
         }
-        SceneManager.LoadScene(stringInputs[1]);
 
-        // set game mode to rehearse
-        // load the first scene
+        SceneManager.LoadScene(stringInputs[0]);
+        InteractablePath.InitializeNextInteractable();
 
-        return "Loading custom seed. Scene: " + stringInputs[1];
+        return "Loading custom seed. Scene: " + stringInputs[0];
     }
 
     // Returns a list of all the available scenes in the build by name

@@ -151,7 +151,7 @@ namespace SeedQuest.Interactables {
                 foreach(Interactable item in list) {
                     if(BoundingBox.InBounds(item.transform, bounds)) {
                         subset.Add(item);
-                        Debug.Log("Item name: " + item.name + " item number: " + counter);
+                        //Debug.Log("Item name: " + item.name + " item number: " + counter);
                         counter++;
                     }
                     else
