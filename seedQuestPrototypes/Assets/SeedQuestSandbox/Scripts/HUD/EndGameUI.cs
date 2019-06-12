@@ -8,8 +8,20 @@ using TMPro;
 using System.IO;
 using System;
 
+using System.Runtime.InteropServices;
+
 public class EndGameUI : MonoBehaviour
 {
+    #if UNITY_WEBGL
+        [DllImport("__Internal")]
+        private static extern void Copy(string copy_str);
+
+        [DllImport("__Internal")]
+        private static extern void Download(string file, string content);
+
+        [DllImport("__Internal")]
+        private static extern void Print(string str);
+    #endif
 
     static private EndGameUI instance = null;
     static private EndGameUI setInstance() { instance = HUDManager.Instance.GetComponentInChildren<EndGameUI>(true); return instance; }
@@ -88,33 +100,37 @@ public class EndGameUI : MonoBehaviour
         GameManager.GraduatedMode = true;
     }
 
-    public void copySeed()
+    public void copySeed(Button button)
     {
         var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
         string seed = textList[0].text;
-        GUIUtility.systemCopyBuffer = seed;
+
+        #if UNITY_WEBGL
+            Copy(seed);
+        #else
+            GUIUtility.systemCopyBuffer = seed;
+        #endif
+
         textList[1].text = "Seed Copied";
         textList[1].gameObject.SetActive(true);
     }
 
-    public void downloadSeed()
+    public void downloadSeed(Button button)
     {
         /*var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
         string seed = textList[0].text;
         string downloads = "";
         if (System.Environment.OSVersion.Platform == System.PlatformID.Unix)
         {
-
             string home = System.Environment.GetEnvironmentVariable("HOME");
             downloads = System.IO.Path.Combine(home, "Downloads");
         }
         else
         {
-
-            downloads = System.Convert.ToString(Microsoft.Win32.Registry.GetValue(
-                 @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
-                , "{374DE290-123F-4565-9164-39C4925E467B}"
-                , String.Empty));
+            //downloads = System.Convert.ToString(Microsoft.Win32.Registry.GetValue(
+            //     @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+            //    , "{374DE290-123F-4565-9164-39C4925E467B}"
+            //    , String.Empty));
         }
         using (StreamWriter outputFile = new StreamWriter(Path.Combine(downloads, "seed.txt")))
         {
@@ -123,17 +139,23 @@ public class EndGameUI : MonoBehaviour
 
         textList[1].text = "Seed Downloaded";
         textList[1].gameObject.SetActive(true);*/
-        string path = EditorUtility.SaveFilePanel("Save As", "Downloads", "seed", "txt");
-        if (path.Length != 0)
-        {
-            var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
-            string seed = textList[0].text;
-            using (StreamWriter outputFile = new StreamWriter(path))
+
+        var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
+        string seed = textList[0].text;
+        #if UNITY_WEBGL
+            Download("seed.txt", seed);
+        #else
+            string path = EditorUtility.SaveFilePanel("Save As", "Downloads", "seed", "txt");
+            if (path.Length != 0)
             {
-                outputFile.WriteLine(seed);
+                using (StreamWriter outputFile = new StreamWriter(path))
+                {
+                    outputFile.WriteLine(seed);
+                }
             }
-            textList[1].text = "Seed Downloaded";
-            textList[1].gameObject.SetActive(true);
-        }
+        #endif
+
+        textList[1].text = "Seed Downloaded";
+        textList[1].gameObject.SetActive(true);
     }
 }
