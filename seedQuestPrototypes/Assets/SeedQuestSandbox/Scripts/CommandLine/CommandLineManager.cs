@@ -238,6 +238,13 @@ public static class CommandLineManager
         InteractablePathManager.SeedString = seed;
         InteractablePath.ResetPath();
         InteractablePathManager.Reset();
+        LevelSetManager.ResetCurrentLevels();
+
+        for (int i = 0; i < scenes.Length; i++)
+        {
+            LevelSetManager.AddLevel(scenes[i]);
+        }
+
         GameManager.Mode = GameMode.Rehearsal;
         GameManager.State = GameState.Play;
         InteractablePathManager.Initalize();
@@ -249,7 +256,6 @@ public static class CommandLineManager
         }
 
         SceneManager.LoadScene(stringInputs[0]);
-        InteractablePath.InitializeNextInteractable();
 
         return "Loading custom seed. Scene: " + stringInputs[0];
     }
