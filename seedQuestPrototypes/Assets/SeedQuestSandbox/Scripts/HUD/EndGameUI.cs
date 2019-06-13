@@ -117,34 +117,11 @@ public class EndGameUI : MonoBehaviour
 
     public void downloadSeed(Button button)
     {
-        /*var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
-        string seed = textList[0].text;
-        string downloads = "";
-        if (System.Environment.OSVersion.Platform == System.PlatformID.Unix)
-        {
-            string home = System.Environment.GetEnvironmentVariable("HOME");
-            downloads = System.IO.Path.Combine(home, "Downloads");
-        }
-        else
-        {
-            //downloads = System.Convert.ToString(Microsoft.Win32.Registry.GetValue(
-            //     @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
-            //    , "{374DE290-123F-4565-9164-39C4925E467B}"
-            //    , String.Empty));
-        }
-        using (StreamWriter outputFile = new StreamWriter(Path.Combine(downloads, "seed.txt")))
-        {
-            outputFile.WriteLine(seed);
-        }
-
-        textList[1].text = "Seed Downloaded";
-        textList[1].gameObject.SetActive(true);*/
-
         var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
         string seed = textList[0].text;
         #if UNITY_WEBGL
             Download("seed.txt", seed);
-        #else
+        #elif UNITY_EDITOR
             string path = EditorUtility.SaveFilePanel("Save As", "Downloads", "seed", "txt");
             if (path.Length != 0)
             {
@@ -153,8 +130,25 @@ public class EndGameUI : MonoBehaviour
                     outputFile.WriteLine(seed);
                 }
             }
+        #else
+            string downloads = "";
+            if (System.Environment.OSVersion.Platform == System.PlatformID.Unix)
+            {
+                string home = System.Environment.GetEnvironmentVariable("HOME");
+                downloads = System.IO.Path.Combine(home, "Downloads");
+            }
+            else
+            {
+                downloads = System.Convert.ToString(Microsoft.Win32.Registry.GetValue(
+                    @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+                    , "{374DE290-123F-4565-9164-39C4925E467B}"
+                    , String.Empty));
+            }
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(downloads, "seed.txt")))
+            {
+                outputFile.WriteLine(seed);
+            }
         #endif
-
         textList[1].text = "Seed Downloaded";
         textList[1].gameObject.SetActive(true);
     }
