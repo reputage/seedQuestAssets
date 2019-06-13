@@ -194,10 +194,12 @@ public static class CommandLineManager
         string[] stringInputs = input.Split(null);
         int[] scenes = new int[InteractableConfig.SitesPerGame];
         int[] actions = new int[InteractableConfig.SitesPerGame + (InteractableConfig.SitesPerGame * InteractableConfig.ActionsPerSite * 2)];
-        if (stringInputs.Length <= 1)
+        if (stringInputs.Length <= 0 || input == null || input == "")
         {
             return "Please enter at least one scene name for the custom learn path.";
         }
+        Debug.Log("Input: ." + input + ".");
+        Debug.Log("String input length: " + stringInputs.Length);
 
         for (int i = 0; i < InteractableConfig.SitesPerGame; i++)
         {
@@ -215,9 +217,15 @@ public static class CommandLineManager
                 }
                 else
                 {
+                    Debug.Log("String input length: " + stringInputs.Length);
                     return "Do not recognize scene name: " + stringInputs[i];
                 }
             }
+            else
+            {
+                scenes[i] = 2;
+            }
+
         }
 
         // Create custom seed using the chosen scenes
@@ -350,7 +358,11 @@ public static class CommandLineManager
     public static string doNextAction(string input)
     {
         if (InteractablePath.NextInteractable != null && GameManager.Mode == GameMode.Rehearsal)
+        {
+            InteractableManager.SetActiveInteractable(InteractablePath.NextInteractable, InteractablePath.NextAction);
+            InteractableLog.Add(InteractablePath.NextInteractable, InteractablePath.NextAction);
             InteractablePath.GoToNextInteractable();
+        }
         return "Performing next queued action";
     }
 
