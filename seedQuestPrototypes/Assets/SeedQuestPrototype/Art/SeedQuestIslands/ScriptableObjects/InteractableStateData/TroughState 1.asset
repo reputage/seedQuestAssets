@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d1c21d9ece6c4e229a7c25408d3063a, type: 3}
-  m_Name: Arabian_old_lady
+  m_Name: TroughState 1
   m_EditorClassIdentifier: 
-  interactableName: What'll you buy?
-  prompt: '"Buy something!"'
-  labelPosOffset: {x: 0, y: 0, z: 0}
+  interactableName: Trough
+  prompt: 
+  labelPosOffset: {x: 0, y: 1, z: 0}
   states:
-  - actionName: Buy Macarons
-    prefab: {fileID: 6246588586307263078, guid: 2b67ac011e5da334086605a14b4eb093,
+  - actionName: Empty
+    prefab: {fileID: 6853220342187451464, guid: 912ac69efcb6610489e5f0f74a17e05e,
       type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
@@ -25,18 +25,17 @@ MonoBehaviour:
     materialIndex: 0
     uvOffset: {x: 0, y: 0}
     animatorController: {fileID: 0}
-    soundEffectName: 
+    soundEffectName: Splash
     soundEffect:
       name: 
       clip: {fileID: 0}
-      volume: 0
+      volume: 1
       loop: 0
       source: {fileID: 0}
     particleEffectName: 
-    particleEffect: {fileID: 3589441540930374132, guid: c0d5d0c1d9437d14f96f05b7db572c46,
-      type: 3}
-  - actionName: Buy Monkey
-    prefab: {fileID: 6246588586307263078, guid: 280f72216b50bc24d9bbbc052c281782,
+    particleEffect: {fileID: 0}
+  - actionName: Drink
+    prefab: {fileID: 6853220342187451464, guid: 4ea39b2ede0367f48b747de12d48ff26,
       type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
@@ -44,18 +43,17 @@ MonoBehaviour:
     materialIndex: 0
     uvOffset: {x: 0, y: 0}
     animatorController: {fileID: 0}
-    soundEffectName: 
+    soundEffectName: Slurp
     soundEffect:
       name: 
       clip: {fileID: 0}
-      volume: 0
+      volume: 1
       loop: 0
       source: {fileID: 0}
     particleEffectName: 
-    particleEffect: {fileID: 3589441540930374132, guid: c0d5d0c1d9437d14f96f05b7db572c46,
-      type: 3}
-  - actionName: Buy Fresh Fish
-    prefab: {fileID: 6246588586307263078, guid: 667b1e44d05c595429abee51db7db53f,
+    particleEffect: {fileID: 0}
+  - actionName: Poison
+    prefab: {fileID: 6853220342187451464, guid: a504fc9dca3e63946a32b5c7d061bbda,
       type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
@@ -63,18 +61,17 @@ MonoBehaviour:
     materialIndex: 0
     uvOffset: {x: 0, y: 0}
     animatorController: {fileID: 0}
-    soundEffectName: 
+    soundEffectName: Boil
     soundEffect:
       name: 
       clip: {fileID: 0}
-      volume: 0
+      volume: 1
       loop: 0
       source: {fileID: 0}
     particleEffectName: 
-    particleEffect: {fileID: 3589441540930374132, guid: c0d5d0c1d9437d14f96f05b7db572c46,
-      type: 3}
-  - actionName: Buy Fruit Bonanza
-    prefab: {fileID: 6246588586307263078, guid: a0f2623f749c8984d919023f00ec4524,
+    particleEffect: {fileID: 0}
+  - actionName: Fill With Hay
+    prefab: {fileID: 6853220342187451464, guid: 50216ec59ffcba1469982ca8afeb8288,
       type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
@@ -82,14 +79,13 @@ MonoBehaviour:
     materialIndex: 0
     uvOffset: {x: 0, y: 0}
     animatorController: {fileID: 0}
-    soundEffectName: 
+    soundEffectName: Whoosh
     soundEffect:
       name: 
       clip: {fileID: 0}
-      volume: 0
+      volume: 1
       loop: 0
       source: {fileID: 0}
     particleEffectName: 
-    particleEffect: {fileID: 3589441540930374132, guid: c0d5d0c1d9437d14f96f05b7db572c46,
-      type: 3}
-  effect: {fileID: 0}
+    particleEffect: {fileID: 0}
+  effect: {fileID: 3589441540930374132, guid: c0d5d0c1d9437d14f96f05b7db572c46, type: 3}
