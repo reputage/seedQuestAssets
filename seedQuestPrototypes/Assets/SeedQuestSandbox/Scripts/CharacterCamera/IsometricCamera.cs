@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
-//[ExecuteInEditMode]
+[ExecuteInEditMode]
 public class IsometricCamera : MonoBehaviour
 {
     static public IsometricCamera instance;
@@ -40,10 +41,19 @@ public class IsometricCamera : MonoBehaviour
         IsometricCamera.StaticDistance = distance;
     }
 
-    private void Start() {
+    private void Start()
+    {
         //transform.position = cameraDirection.normalized * startingDistance;
         CameraZoom.nearDistance = nearDistance;
         CameraZoom.farDistance = farDistance;
+
+        #if UNITY_WEBGL
+            PostProcessLayer layer = GetComponent<PostProcessLayer>();
+            layer.enabled = false;
+        #else
+            PostProcessLayer layer = GetComponent<PostProcessLayer>();
+            layer.enabled = true;
+        #endif
     }
 
     private void LateUpdate() {

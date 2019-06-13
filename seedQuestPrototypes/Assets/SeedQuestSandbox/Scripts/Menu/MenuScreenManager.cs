@@ -149,8 +149,7 @@ public class MenuScreenManager : MonoBehaviour
         
         canvas[9].gameObject.SetActive(true);
         var buttonGroup = canvas[9].transform.GetChild(0);
-        buttonGroup.localPosition = new Vector3(200, -100, 0);
-   
+        buttonGroup.localPosition = new Vector3(-640, 340, 0);
     }
 
     public void GoToEncodeSeed()
@@ -163,7 +162,7 @@ public class MenuScreenManager : MonoBehaviour
 
         canvas[9].gameObject.SetActive(true);
         var buttonGroup = canvas[9].transform.GetChild(0);
-        buttonGroup.localPosition = new Vector3(40, -60, 0);
+        buttonGroup.localPosition = new Vector3(-790, 380, 0);
     }
 
     public void GoToEncodeSeedFromSeedSetup() {
