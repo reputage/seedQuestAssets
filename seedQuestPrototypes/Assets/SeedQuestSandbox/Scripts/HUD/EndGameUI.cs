@@ -100,7 +100,7 @@ public class EndGameUI : MonoBehaviour
         GameManager.GraduatedMode = true;
     }
 
-    public void copySeed(Button button)
+    public void copySeed()
     {
         var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
         string seed = textList[0].text;
@@ -115,7 +115,7 @@ public class EndGameUI : MonoBehaviour
         textList[1].gameObject.SetActive(true);
     }
 
-    public void downloadSeed(Button button)
+    public void downloadSeed()
     {
         /*var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
         string seed = textList[0].text;
