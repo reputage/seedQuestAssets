@@ -26,13 +26,12 @@ public static class CommandLineManager
         {"gamemode", setGameMode},
         {"showcolliders", showBoxColliders},
         {"nextaction", doNextAction},
-        {"selectaction", selectAction},
         {"skip", skipScene},
         {"finduierrors", findUiErrors},
-        {"resetitem", resetInteractable},
         {"customlearn", learnCustom}
-        // make a function for 'select action' in recall mode that takes parameters for site id, interactable id, action id, in that order
-        // make a function for sandbox mode that shows the preview for an interactabel. takes parameters for site id, interactable id, and action id
+        //{"resetitem", resetInteractable},
+        //{"selectaction", selectAction},
+
     };
 
     // Initialize the help dictionary. All key strings must be lowercase.
@@ -50,9 +49,11 @@ public static class CommandLineManager
         {"showcolliders", "Shows box colliders for interactables.\nUse 'showcolliders b' to show colliders for non-interctable objects"},
         {"nextaction", "Performs the next action in the interactable path list, only works in learn mode."},
         {"skip", "Skip the current scene."},
-        {"selectaction", "Performs an action using the specified interactable.\nParameters:\nint siteID, int spotID, int action"},
         {"finduierrors", "Finds collisions between interactable objects and their interactableUIs"},
-        {"resetitem", "Finds and resets an item at the given site ID and spot ID.\nParameters:\n int siteID, int spotID"}
+        {"customlearn", "Creates a custom seed from input scene names and starts learn mode using that seed. \nParameters:\nSceneName1 SceneName2 SceneName3..."}
+        //{"resetitem", "Finds and resets an item at the given site ID and spot ID.\nParameters:\n int siteID, int spotID"},
+        //{"selectaction", "Performs an action using the specified interactable.\nParameters:\nint siteID, int spotID, int action"},
+
     };
 
     // Initialize fuzzy scene name dictionary.
@@ -354,6 +355,7 @@ public static class CommandLineManager
     }
 
     // Input paramters: interactableID, action #
+    // Incompatible with the current version of SeedQuest
     public static string selectAction(string input)
     {
         string[] stringInputs = input.Split(null);
@@ -384,6 +386,7 @@ public static class CommandLineManager
     }
 
     // Reset the state of interactable with given siteID and spotID
+    // Incompatible with current build of SeedQuest
     public static string resetInteractable(string input)
     {
         string[] stringInputs = input.Split(null);
