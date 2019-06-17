@@ -95,6 +95,41 @@ public class dicewareConverter
         Debug.Log("Recovered sentence: " + words);
     }
 
+    public int[] getActionsFromSentence(string sentence)
+    {
+        int[] actions = new int[1];
+        string[] wordArray = sentence.Split(null);
+        if (wordArray.Length < 12)
+        {
+            Debug.Log("Not enough words for 128 bits of entropy.");
+            return actions;
+        }
+        List<int> indeces = rebuildWordIndexes(wordArray);
+        byte[] bytes = processWordIndecesNoChecksum(indeces);
+        List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
+        SeedToByte seeds = new SeedToByte();
+
+        actions = seeds.getActionsFromBytes(bytes);
+        return actions;
+    }
+
+    public string getSentenceFromActions(int[] actions)
+    {
+        SeedToByte seeds = new SeedToByte();
+        string seed = seeds.getSeed(actions);
+        byte[] seedBytes = HexStringToByteArray(seed);
+        BitArray bits = byteToBits(seedBytes);
+        List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
+        int[] wordIndeces = seeds.bitToActions(bits, wordListSizes);
+        List<int> wordIndecesList = new List<int>();
+
+        for (int i = 0; i < wordIndeces.Length; i++)
+            wordIndecesList.Add(wordIndeces[i]);
+
+        string words = getMnemonicSentence(wordIndecesList);
+        return words;
+    }
+
     private int processBitsToInt(BitArray bits)
     {
         int number = 0;
