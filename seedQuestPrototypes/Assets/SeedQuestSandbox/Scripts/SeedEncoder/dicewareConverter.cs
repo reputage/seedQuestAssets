@@ -24,18 +24,8 @@ public class dicewareConverter
     {
         SeedToByte seeds = new SeedToByte();
         string testingHex = "3720B091810D8127C55630F55DD2275C05";
-        List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
-        byte[] bytes = HexStringToByteArray(testingHex);
-        BitArray bits = byteToBits(bytes);
-        int[] wordIndeces = seeds.bitToActions(bits, wordListSizes);
-        List<int> wordIndecesList = new List<int>();
-
-        for (int i = 0; i < wordIndeces.Length; i++)
-        {
-            wordIndecesList.Add(wordIndeces[i]);
-        }
-
-        string words = getMnemonicSentence(wordIndecesList);
+        int[] actions = seeds.getActions(testingHex);
+        string words = getSentenceFromActions(actions);
         Debug.Log("Words from hex: " + words);
     } 
 
@@ -43,56 +33,21 @@ public class dicewareConverter
     {
         SeedToByte seeds = new SeedToByte();
         string testingHex = "3720B091810D8127C55630F55DD2275C05";
-
         string testWords = "ugly call give address amount venture misery dose quick spoil weekend inspire";
-        string[] testWordArray = testWords.Split(null);
-        List<int> indeces = rebuildWordIndexes(testWordArray);
-        byte[] bytes = processWordIndecesNoChecksum(indeces);
-        List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
-
-        int[] actions = seeds.getActionsFromBytes(bytes);
-        int[] defaultActions = seeds.getActions(testingHex);
-        string actionString = "";
-        string defaultString = "";
-
-        for (int i = 0; i < actions.Length; i++)
-            actionString += actions[i] + " ";
-
-        for (int i = 0; i < defaultActions.Length; i++)
-            defaultString += defaultActions[i] + " ";
-        
-        Debug.Log("Action ints: " + actionString);
-        Debug.Log("Defaultints: " + defaultString);
-
+        int[] actions = getActionsFromSentence(testWords);
         string seed = seeds.getSeed(actions);
+        Debug.Log("Original seed: " + testingHex);
         Debug.Log("Seed from word sentence: " + seed);
     }
 
     public void testFullConversion()
     {
-        SeedToByte seeds = new SeedToByte();
-
         string testWords = "ugly call give address amount venture misery dose quick spoil weekend inspire";
-        string[] testWordArray = testWords.Split(null);
-        List<int> indeces = rebuildWordIndexes(testWordArray);
-        byte[] bytes = processWordIndecesNoChecksum(indeces);
-        List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
-        int[] actions = seeds.getActionsFromBytes(bytes);
-        string seed = seeds.getSeed(actions);
-        byte[] seedBytes = HexStringToByteArray(seed);
-        BitArray bits = byteToBits(seedBytes);
-        int[] wordIndeces = seeds.bitToActions(bits, wordListSizes);
+        int[] actions = getActionsFromSentence(testWords);
+        string sentence = getSentenceFromActions(actions);
 
-        List<int> wordIndecesList = new List<int>();
-
-        for (int i = 0; i < wordIndeces.Length; i++)
-        {
-            wordIndecesList.Add(wordIndeces[i]);
-        }
-
-        string words = getMnemonicSentence(wordIndecesList);
         Debug.Log("Input sentence: " + testWords);
-        Debug.Log("Recovered sentence: " + words);
+        Debug.Log("Recovered sentence: " + sentence);
     }
 
     public int[] getActionsFromSentence(string sentence)
