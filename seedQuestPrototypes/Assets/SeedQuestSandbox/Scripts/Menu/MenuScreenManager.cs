@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Runtime.InteropServices;
 
 using SeedQuest.Interactables;
 
@@ -11,6 +12,11 @@ public enum MenuScreenStates { Start, ModeSelect, SeedSetup, EncodeSeed, SceneLi
 
 public class MenuScreenManager : MonoBehaviour
 {
+    #if UNITY_WEBGL
+        [DllImport("__Internal")]
+        public static extern void Paste(string gameObj);
+    #endif
+
     static private MenuScreenManager instance = null;
     static private MenuScreenManager setInstance() { instance = GameObject.FindObjectOfType<MenuScreenManager>(); return instance; }
     static public MenuScreenManager Instance { get { return instance == null ? setInstance() : instance; } }
@@ -65,6 +71,17 @@ public class MenuScreenManager : MonoBehaviour
         RotateBackground();
 
         sceneLoadProgress.value = sceneLoadProgressValue;
+
+    #if UNITY_WEBGL
+        if (state == MenuScreenStates.SeedSetup)
+        {
+            if (Input.GetKeyDown(KeyCode.V) && (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.RightCommand) || Input.GetKey(KeyCode.LeftCommand)))
+            {
+                TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
+                Paste(seedInputField.name);
+            }
+        }
+    #endif
     }
 
     private void SetBackground(bool active)
