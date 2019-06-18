@@ -39,6 +39,7 @@ public class EndGameUI : MonoBehaviour
         Instance.gameObject.SetActive(true);
         var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
         SeedConverter converter = new SeedConverter();
+        dicewareConverter dwc = new dicewareConverter();
         //textList[0].text = converter.DecodeSeed();
 
         if (InteractableConfig.SeedHexLength % 2 == 1)
@@ -50,10 +51,17 @@ public class EndGameUI : MonoBehaviour
             if (alteredSeedText.Length > 1)
                 alteredSeedText = alteredSeedText.Substring(0, (alteredSeedText.Length - 1));
 
-            textList[0].text = alteredSeedText;
+            string sentence = dwc.getSentenceFromHex(alteredSeedText);
+            //textList[0].text = alteredSeedText;
+            textList[0].text = sentence;
         }
         else
-            textList[0].text = converter.DecodeSeed();
+        {
+            //textList[0].text = converter.DecodeSeed();
+            string hex = converter.DecodeSeed();
+            string sentence = dwc.getSentenceFromHex(hex);
+            textList[0].text = sentence;
+        }
 
         if (GameManager.Mode == GameMode.Rehearsal)
         {

@@ -105,6 +105,15 @@ public class dicewareConverter
         return hexSeed;
     }
 
+    public string getSentenceFromHex(string hex)
+    {
+        SeedToByte seeds = new SeedToByte();
+        int[] actions = seeds.getActions(hex);
+        string words = getSentenceFromActions(actions);
+
+        return words;
+    }
+
     private int processBitsToInt(BitArray bits)
     {
         int number = 0;

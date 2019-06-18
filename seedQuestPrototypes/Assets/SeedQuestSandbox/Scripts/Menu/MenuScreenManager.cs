@@ -161,7 +161,7 @@ public class MenuScreenManager : MonoBehaviour
         ResetCanvas();
         canvas[4].gameObject.SetActive(true);
         SetupRotateBackground(270);
-        SetupSeedSetup();
+        SetupSeedSetupBip();
 
         
         canvas[9].gameObject.SetActive(true);
@@ -175,7 +175,7 @@ public class MenuScreenManager : MonoBehaviour
         ResetCanvas();
         encodeSeedCanvas.gameObject.SetActive(true);
         SetupRotateBackground(330);
-        SetupEncodeSeed();
+        SetupEncodeSeedBip();
 
         canvas[9].gameObject.SetActive(true);
         var buttonGroup = canvas[9].transform.GetChild(0);
