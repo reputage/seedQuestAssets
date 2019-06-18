@@ -85,6 +85,26 @@ public class dicewareConverter
         return words;
     }
 
+    public string getHexFromSentence(string sentence)
+    {
+        string[] wordArray = sentence.Split(null);
+
+        if (wordArray.Length < 12)
+        {
+            Debug.Log("Not enough words for 128 bits of entropy.");
+            return "3720B091810D8127C55630F55DD2275C05";
+        }
+
+        List<int> indeces = rebuildWordIndexes(wordArray);
+        byte[] bytes = processWordIndecesNoChecksum(indeces);
+        List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
+        SeedToByte seeds = new SeedToByte();
+        int[] actions = seeds.getActionsFromBytes(bytes);
+
+        string hexSeed = seeds.getSeed(actions);
+        return hexSeed;
+    }
+
     private int processBitsToInt(BitArray bits)
     {
         int number = 0;

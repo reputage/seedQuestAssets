@@ -229,9 +229,16 @@ public class MenuScreenManager : MonoBehaviour
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
         seedInputField.text = InteractablePathManager.SeedString;
         int charLimit = InteractableConfig.SeedHexLength;
-//        if (charLimit %2 == 1)
-//            charLimit++;
-        
+
+        seedInputField.characterLimit = charLimit;
+    }
+
+    public void SetupSeedSetupBip()
+    {
+        TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
+        seedInputField.text = InteractablePathManager.SeedSentence;
+        int charLimit = 700;
+
         seedInputField.characterLimit = charLimit;
     }
 
@@ -265,6 +272,28 @@ public class MenuScreenManager : MonoBehaviour
             }
 
             InteractablePathManager.SeedString = seedFromInput;
+
+            int[] siteIDs = InteractablePathManager.GetPathSiteIDs();
+            SetIconAndPanelForRehearsal(siteIDs);
+        }
+    }
+
+    public void SetupEncodeSeedBip()
+    {
+        SetLevelPanelDefault();
+
+        if (GameManager.Mode == GameMode.Rehearsal)
+        {
+            TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>(true);
+
+            string seedFromInput = seedInputField.text;
+            dicewareConverter dwc = new dicewareConverter();
+            string hexSeed = dwc.getHexFromSentence(seedFromInput);
+
+            Debug.Log("Sentence: " + seedFromInput);
+            Debug.Log("Seed: " + hexSeed);
+
+            InteractablePathManager.SeedString = hexSeed;
 
             int[] siteIDs = InteractablePathManager.GetPathSiteIDs();
             SetIconAndPanelForRehearsal(siteIDs);
