@@ -11,6 +11,7 @@ public class dicewareTest : MonoBehaviour
         //dwc.testGetSentence();
         //dwc.testGetActions();
         dwc.testFullConversion();
+        //dwc.testHexConversion();
     }
 
 }

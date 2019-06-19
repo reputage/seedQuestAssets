@@ -45,13 +45,14 @@ public class EndGameUI : MonoBehaviour
         if (InteractableConfig.SeedHexLength % 2 == 1)
         {
             string alteredSeedText = converter.DecodeSeed();
+            string sentence = dwc.getSentenceFromHex(alteredSeedText);
+
             char[] array = alteredSeedText.ToCharArray();
             array[array.Length - 2] = array[array.Length - 1];
             alteredSeedText = new string(array);
             if (alteredSeedText.Length > 1)
                 alteredSeedText = alteredSeedText.Substring(0, (alteredSeedText.Length - 1));
 
-            string sentence = dwc.getSentenceFromHex(alteredSeedText);
             //textList[0].text = alteredSeedText;
             textList[0].text = sentence;
         }
