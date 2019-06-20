@@ -10,8 +10,8 @@ public class dicewareTest : MonoBehaviour
         dicewareConverter dwc = new dicewareConverter();
         //dwc.testGetSentence();
         //dwc.testGetActions();
-        dwc.testFullConversion();
         //dwc.testHexConversion();
+        dwc.testFullConversion();
     }
 
 }

@@ -53,14 +53,12 @@ public class dicewareConverter
     public void testHexConversion()
     {
         string hex = "3720B091810D8127C55630F55DD2275C05";
-        string badHex = "3720B091810D8127C55630F55DD2275C00";
         string hardSentence = "ugly call give address amount venture misery dose quick spoil weekend inspire";
         string sentence = getSentenceFromHex(hex);
         Debug.Log("Hex: " + hex);
         Debug.Log("New: " + getHexFromSentence(sentence));
         Debug.Log("Sentence: " + hardSentence);
         Debug.Log("New words: " + getSentenceFromHex(hex));
-        Debug.Log("Bad words: " + getSentenceFromHex(badHex));
 
     }
 
