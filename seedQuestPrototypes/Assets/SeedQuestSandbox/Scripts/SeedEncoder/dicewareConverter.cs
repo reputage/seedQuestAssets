@@ -69,7 +69,7 @@ public class dicewareConverter
         if (wordArray.Length < 12)
         {
             Debug.Log("Not enough words for 128 bits of entropy.");
-            return actions;
+            throw new Exception("Less than 12 words in this sentence. Not a valid seed.");
         }
         List<int> indeces = rebuildWordIndexes(wordArray);
         byte[] bytes = processWordIndecesNoChecksum(indeces);
@@ -104,7 +104,7 @@ public class dicewareConverter
         if (wordArray.Length < 12)
         {
             Debug.Log("Not enough words for 128 bits of entropy.");
-            return "3720B091810D8127C55630F55DD2275C05";
+            throw new Exception("Less than 12 words in this sentence. Not a valid seed.");
         }
 
         List<int> indeces = rebuildWordIndexes(wordArray);

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -162,7 +163,6 @@ public class MenuScreenManager : MonoBehaviour
         canvas[4].gameObject.SetActive(true);
         SetupRotateBackground(270);
         SetupSeedSetupBip();
-
         
         canvas[9].gameObject.SetActive(true);
         var buttonGroup = canvas[9].transform.GetChild(0);
@@ -185,11 +185,24 @@ public class MenuScreenManager : MonoBehaviour
     public void GoToEncodeSeedFromSeedSetup() {
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
         bool validSeed = validSeedString(seedInputField.text);
+
+        Debug.Log("Bip valididty: " + validBip(seedInputField.text));
+
         if (validSeed)
         {
-            Debug.Log("Seed: " + seedInputField.text);
+            Debug.Log("Valid hex seed: " + seedInputField.text);
             GoToEncodeSeed();
         }
+        else if (validBip(seedInputField.text))
+        {
+            Debug.Log("Valid bip39 seed: " + seedInputField.text);
+            GoToEncodeSeed();
+        }
+        else
+        {
+            warningText.GetComponent<TextMeshProUGUI>().text = "Warning: seed must only contain hex characters";
+        }
+
     }
 
     public void UndoLastSceneEncodeStep() {
@@ -287,8 +300,18 @@ public class MenuScreenManager : MonoBehaviour
             TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>(true);
 
             string seedFromInput = seedInputField.text;
-            dicewareConverter dwc = new dicewareConverter();
-            string hexSeed = dwc.getHexFromSentence(seedFromInput);
+            string hexSeed = "";
+
+            if (!detectHex(seedFromInput) && validBip(seedFromInput))
+            {
+                dicewareConverter dwc = new dicewareConverter();
+                hexSeed = dwc.getHexFromSentence(seedFromInput);
+            }
+            else
+            {
+                hexSeed = seedFromInput;
+                Debug.Log("Seed seems to be hex");
+            }
 
             Debug.Log("Sentence: " + seedFromInput);
             Debug.Log("Seed: " + hexSeed);
@@ -296,6 +319,7 @@ public class MenuScreenManager : MonoBehaviour
             InteractablePathManager.SeedString = hexSeed;
 
             int[] siteIDs = InteractablePathManager.GetPathSiteIDs();
+
             SetIconAndPanelForRehearsal(siteIDs);
         }
     }
@@ -481,6 +505,19 @@ public class MenuScreenManager : MonoBehaviour
         seedInputField.text = InteractablePathManager.SeedString;
     }
 
+    public bool detectHex(string seed)
+    {
+        if (seed.Length <= InteractableConfig.SeedHexLength + 1 && 
+                 System.Text.RegularExpressions.Regex.IsMatch(seed, @"\A\b[0-9a-fA-F]+\b\Z"))
+        {
+            Debug.Log("Seed is probably hex.");
+            return true;
+        }
+
+        Debug.Log("Seed doesn't appear to be hex.");
+        return false;
+    }
+
     public bool validSeedString(string seedString)
     {
         bool validHex = true;
@@ -491,9 +528,9 @@ public class MenuScreenManager : MonoBehaviour
                         (hexChar >= 'A' && hexChar <= 'F'));
         }
 
-        if (!validHex)
-            warningText.GetComponent<TextMeshProUGUI>().text = "Warning: seed must only contain hex characters";
-        else if (seedString.Length < 28)
+        //if (!validHex)
+        //    warningText.GetComponent<TextMeshProUGUI>().text = "Warning: seed must only contain hex characters";
+        if (seedString.Length < 28)
         {
             // send warning message that the length is too short
             validHex = false;
@@ -505,6 +542,24 @@ public class MenuScreenManager : MonoBehaviour
         }
 
         return validHex;
+    }
+
+    public bool validBip(string seed)
+    {
+        dicewareConverter dwc = new dicewareConverter();
+        string hex = "";
+        try
+        {
+            hex = dwc.getHexFromSentence(seed);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Exception: " + e);
+            return false;
+        }
+
+        Debug.Log("hex: " + hex);
+        return true;
     }
 
 }
