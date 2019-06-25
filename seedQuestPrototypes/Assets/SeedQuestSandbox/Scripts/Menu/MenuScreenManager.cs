@@ -185,8 +185,7 @@ public class MenuScreenManager : MonoBehaviour
     public void GoToEncodeSeedFromSeedSetup() {
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
         bool validSeed = validSeedString(seedInputField.text);
-
-        Debug.Log("Bip valididty: " + validBip(seedInputField.text));
+        //Debug.Log("Bip valididty: " + validBip(seedInputField.text));
 
         if (validSeed)
         {
@@ -310,11 +309,11 @@ public class MenuScreenManager : MonoBehaviour
             else
             {
                 hexSeed = seedFromInput;
-                Debug.Log("Seed seems to be hex");
+                //Debug.Log("Seed appears to be hex");
             }
 
-            Debug.Log("Sentence: " + seedFromInput);
-            Debug.Log("Seed: " + hexSeed);
+            //Debug.Log("Sentence: " + seedFromInput);
+            //Debug.Log("Seed: " + hexSeed);
 
             InteractablePathManager.SeedString = hexSeed;
 
@@ -510,11 +509,10 @@ public class MenuScreenManager : MonoBehaviour
         if (seed.Length <= InteractableConfig.SeedHexLength + 1 && 
                  System.Text.RegularExpressions.Regex.IsMatch(seed, @"\A\b[0-9a-fA-F]+\b\Z"))
         {
-            Debug.Log("Seed is probably hex.");
             return true;
         }
 
-        Debug.Log("Seed doesn't appear to be hex.");
+        //Debug.Log("Seed doesn't appear to be hex.");
         return false;
     }
 
@@ -558,7 +556,7 @@ public class MenuScreenManager : MonoBehaviour
             return false;
         }
 
-        Debug.Log("hex: " + hex);
+        //Debug.Log("hex: " + hex);
         return true;
     }
 
