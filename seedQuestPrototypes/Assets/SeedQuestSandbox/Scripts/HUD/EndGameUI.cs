@@ -124,6 +124,22 @@ public class EndGameUI : MonoBehaviour
         textList[1].gameObject.SetActive(true);
     }
 
+    public void copyHexSeed()
+    {
+        var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
+        dicewareConverter dwc = new dicewareConverter();
+        string seed = dwc.getHexFromSentence(textList[0].text);
+
+        #if UNITY_WEBGL
+            Copy(seed);
+        #else
+        GUIUtility.systemCopyBuffer = seed;
+        #endif
+
+        textList[1].text = "Seed Copied";
+        textList[1].gameObject.SetActive(true);
+    }
+
     public void downloadSeed()
     {
         var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
