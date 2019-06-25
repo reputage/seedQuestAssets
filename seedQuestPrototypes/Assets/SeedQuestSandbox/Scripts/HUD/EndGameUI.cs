@@ -144,7 +144,7 @@ public class EndGameUI : MonoBehaviour
     {
         var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
         dicewareConverter dwc = new dicewareConverter();
-        string seed = textList[0].text + "\n" + dwc.getHexFromSentence(textList[0].text);
+        string seed = textList[0].text + "\n0x" + dwc.getHexFromSentence(textList[0].text);
         #if UNITY_WEBGL
             Download("seed.txt", seed);
         #elif UNITY_EDITOR
