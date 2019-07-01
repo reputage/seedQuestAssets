@@ -303,8 +303,8 @@ public class MenuScreenManager : MonoBehaviour
 
             if (!detectHex(seedFromInput) && validBip(seedFromInput))
             {
-                dicewareConverter dwc = new dicewareConverter();
-                hexSeed = dwc.getHexFromSentence(seedFromInput);
+                BIP39Converter bpc = new BIP39Converter();
+                hexSeed = bpc.getHexFromSentence(seedFromInput);
             }
             else
             {
@@ -544,11 +544,11 @@ public class MenuScreenManager : MonoBehaviour
 
     public bool validBip(string seed)
     {
-        dicewareConverter dwc = new dicewareConverter();
+        BIP39Converter bpc = new BIP39Converter();
         string hex = "";
         try
         {
-            hex = dwc.getHexFromSentence(seed);
+            hex = bpc.getHexFromSentence(seed);
         }
         catch (Exception e)
         {

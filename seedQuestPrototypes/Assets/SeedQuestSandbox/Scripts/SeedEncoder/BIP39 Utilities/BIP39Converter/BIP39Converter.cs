@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using SeedQuest.SeedEncoder;
 
-public class dicewareConverter
+public class BIP39Converter
 {
     private string[] englishWordList = EnglishWordList.words;
         
@@ -189,6 +189,7 @@ public class dicewareConverter
         return wordIndexList;
     }
 
+    // Note to self: this funciton should be complete, but needs testing
     private byte[] processWordIndeces(List<int> wordIndex)
     {
         if (wordIndex.Contains(-1))
@@ -269,9 +270,9 @@ public class dicewareConverter
             index++;
         }
 
-        /*
         //calculate checksum of our entropy bytes
-        BitArray allChecksumBits = new BitArray(swapEndianBytes(Utilities.Sha256Digest(swapEndianBytes(entropy), 0, entropy.Length))); 
+        //Sha256Digest sha = new Sha256Digest();
+        BitArray allChecksumBits = new BitArray(swapEndianBytes(Sha256Process(swapEndianBytes(entropy), 0, entropy.Length))); 
 
         for (int i = 0; i < checksumActual.Length; i++)
         {
@@ -286,8 +287,6 @@ public class dicewareConverter
                 throw new Exception("Checksum does not match derived checksum.");
             }
         }
-
-        */
 
         return entropy;
     }
@@ -434,5 +433,14 @@ public class dicewareConverter
     {
         int val = (int)hex;
         return val - (val < 58 ? 48 : (val < 97 ? 55 : 87));
+    }
+
+    public static byte[] Sha256Process(byte[] input, int offset, int length)
+    {
+        var algorithm = new Sha256Digest();
+        Byte[] firstHash = new Byte[algorithm.GetDigestSize()];
+        algorithm.BlockUpdate(input, offset, length);
+        algorithm.DoFinal(firstHash, 0);
+        return firstHash;
     }
 }

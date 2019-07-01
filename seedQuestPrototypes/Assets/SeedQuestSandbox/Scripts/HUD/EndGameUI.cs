@@ -7,8 +7,9 @@ using UnityEngine.UI;
 using TMPro;
 using System.IO;
 using System;
-
 using System.Runtime.InteropServices;
+using QRCoder;
+using QRCoder.Unity;
 
 public class EndGameUI : MonoBehaviour
 {
@@ -39,13 +40,13 @@ public class EndGameUI : MonoBehaviour
         Instance.gameObject.SetActive(true);
         var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
         SeedConverter converter = new SeedConverter();
-        dicewareConverter dwc = new dicewareConverter();
+        BIP39Converter bpc = new BIP39Converter();
         //textList[0].text = converter.DecodeSeed();
 
         if (InteractableConfig.SeedHexLength % 2 == 1)
         {
             string alteredSeedText = converter.DecodeSeed();
-            string sentence = dwc.getSentenceFromHex(alteredSeedText);
+            string sentence = bpc.getSentenceFromHex(alteredSeedText);
 
             char[] array = alteredSeedText.ToCharArray();
             array[array.Length - 2] = array[array.Length - 1];
@@ -60,7 +61,7 @@ public class EndGameUI : MonoBehaviour
         {
             //textList[0].text = converter.DecodeSeed();
             string hex = converter.DecodeSeed();
-            string sentence = dwc.getSentenceFromHex(hex);
+            string sentence = bpc.getSentenceFromHex(hex);
             textList[0].text = sentence;
         }
 
@@ -127,8 +128,8 @@ public class EndGameUI : MonoBehaviour
     public void copyHexSeed()
     {
         var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
-        dicewareConverter dwc = new dicewareConverter();
-        string seed = dwc.getHexFromSentence(textList[0].text);
+        BIP39Converter bpc = new BIP39Converter();
+        string seed = bpc.getHexFromSentence(textList[0].text);
 
         #if UNITY_WEBGL
             Copy(seed);
@@ -143,8 +144,17 @@ public class EndGameUI : MonoBehaviour
     public void downloadSeed()
     {
         var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
-        dicewareConverter dwc = new dicewareConverter();
-        string seed = textList[0].text + "\n0x" + dwc.getHexFromSentence(textList[0].text);
+        BIP39Converter bpc = new BIP39Converter();
+        string seed = textList[0].text + "\n0x" + bpc.getHexFromSentence(textList[0].text);
+
+        QRCodeGenerator qrGenerator = new QRCodeGenerator();
+        QRCodeData qrCodeData = qrGenerator.CreateQrCode(textList[0].text, QRCodeGenerator.ECCLevel.Q);
+        UnityQRCode qrCode = new UnityQRCode(qrCodeData);
+        Texture2D qrCodeAsTexture2D = qrCode.GetGraphic(20);
+
+        byte[] bytes = qrCodeAsTexture2D.EncodeToPNG();
+        File.WriteAllBytes(Application.dataPath + "/../SavedQRCode.png", bytes);
+
         #if UNITY_WEBGL
             Download("seed.txt", seed);
         #elif UNITY_EDITOR
@@ -178,4 +188,48 @@ public class EndGameUI : MonoBehaviour
         textList[1].text = "Seed Downloaded";
         textList[1].gameObject.SetActive(true);
     }
+
+    public void downloadQRCode()
+    {
+        var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
+        string seed = textList[0].text;
+        QRCodeGenerator qrGenerator = new QRCodeGenerator();
+        QRCodeData qrCodeData = qrGenerator.CreateQrCode(seed, QRCodeGenerator.ECCLevel.Q);
+        UnityQRCode qrCode = new UnityQRCode(qrCodeData);
+        Texture2D qrCodeAsTexture2D = qrCode.GetGraphic(20);
+
+        byte[] bytes = qrCodeAsTexture2D.EncodeToPNG();
+
+        // These need to be tested
+        #if UNITY_WEBGL
+            Download("seed.png", bytes);
+        #elif UNITY_EDITOR
+        string path = EditorUtility.SaveFilePanel("Save As", "Downloads", "seed", "txt");
+        if (path.Length != 0)
+        {
+            File.WriteAllBytes(Application.dataPath + "/../SavedQRCode.png", bytes);
+        }
+        #else
+            string downloads = "";
+            if (System.Environment.OSVersion.Platform == System.PlatformID.Unix)
+            {
+                string home = System.Environment.GetEnvironmentVariable("HOME");
+                downloads = System.IO.Path.Combine(home, "Downloads");
+            }
+            else
+            {
+                downloads = System.Convert.ToString(Microsoft.Win32.Registry.GetValue(
+                    @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+                    , "{374DE290-123F-4565-9164-39C4925E467B}"
+                    , String.Empty));
+            }
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(downloads, "seed.png")))
+            {
+                outputFile.Write(bytes);
+            }
+        #endif
+        textList[1].text = "Seed Downloaded";
+        textList[1].gameObject.SetActive(true);
+    }
+
 }
