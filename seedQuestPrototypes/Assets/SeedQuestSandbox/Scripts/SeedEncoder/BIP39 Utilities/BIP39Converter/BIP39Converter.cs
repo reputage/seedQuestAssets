@@ -19,7 +19,7 @@ public class BIP39Converter
     public const int maximumEntropyBits = 8192;
     public const int entropyMultiple = 32;
     private Int32 dkLen;
-
+    private SeedToByte seeds = new SeedToByte();
 
     public int[] getActionsFromSentence(string sentence)
     {
@@ -33,7 +33,6 @@ public class BIP39Converter
         List<int> indeces = rebuildWordIndexes(wordArray);
         byte[] bytes = processWordIndecesNoChecksum(indeces);
         List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
-        SeedToByte seeds = new SeedToByte();
 
         actions = seeds.getActionsFromBytes(bytes);
         return actions;
@@ -63,7 +62,6 @@ public class BIP39Converter
         }
 
         List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
-        SeedToByte seeds = new SeedToByte();
 
         actions = seeds.getActionsFromBytes(bytes);
         return actions;
@@ -71,7 +69,6 @@ public class BIP39Converter
 
     public string getSentenceFromActions(int[] actions)
     {
-        SeedToByte seeds = new SeedToByte();
         string seed = seeds.getSeed(actions);
         byte[] seedBytes = HexStringToByteArray(seed);
         BitArray bits = byteToBits(seedBytes);
@@ -86,11 +83,8 @@ public class BIP39Converter
         return words;
     }
 
-    public string getSentence128Bits(int[] actions)
+    public string getSentence128Bits(byte[] seedBytes)
     {
-        SeedToByte seeds = new SeedToByte();
-        string seed = seeds.getSeed(actions);
-        byte[] seedBytes = HexStringToByteArray(seed);
         BitArray bits = byteToBits(seedBytes);
 
         if (bits.Count != 128)
@@ -98,10 +92,10 @@ public class BIP39Converter
             Debug.Log("Invalid actions! This does not represent exactly 128 bits.");
         }
 
-
+        BitArray bitsWithChecksum = appendChecksumBits(bits);
 
         List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
-        int[] wordIndeces = seeds.bitToActions(bits, wordListSizes);
+        int[] wordIndeces = seeds.bitToActions(bitsWithChecksum, wordListSizes);
         List<int> wordIndecesList = new List<int>();
 
         for (int i = 0; i < wordIndeces.Length; i++)
@@ -124,7 +118,6 @@ public class BIP39Converter
         List<int> indeces = rebuildWordIndexes(wordArray);
         byte[] bytes = processWordIndecesNoChecksum(indeces);
         List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
-        SeedToByte seeds = new SeedToByte();
         int[] actions = seeds.getActionsFromBytes(bytes);
 
         string hexSeed = seeds.getSeed(actions);
@@ -144,7 +137,6 @@ public class BIP39Converter
         List<int> indeces = rebuildWordIndexes(wordArray);
         byte[] bytes = processWordIndeces(indeces);
         List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
-        SeedToByte seeds = new SeedToByte();
         int[] actions = seeds.getActionsFromBytes(bytes);
 
         string hexSeed = seeds.getSeed(actions);
@@ -153,7 +145,6 @@ public class BIP39Converter
 
     public string getSentenceFromHex(string hex)
     {
-        SeedToByte seeds = new SeedToByte();
         int[] actions = seeds.getActions(hex);
         string words = getSentenceFromActions(actions);
 
@@ -474,5 +465,43 @@ public class BIP39Converter
         return firstHash;
     }
 
+    public BitArray appendChecksumBits(BitArray bits)
+    {
+        if (bits.Count != 128)
+        {
+            Debug.Log("Bit array does not contain exactly 128 bits!");
+            return bits;
+        }
+
+        int length = bits.Length - (bits.Length / (entropyMultiple + 1));
+
+        //get entropy bytes
+        byte[] entropy = new byte[length / bitsInByte];
+        int index = 0;
+        for (int byteIndex = 0; byteIndex < entropy.Length; byteIndex++)
+        {
+            for (int i = 0; i < bitsInByte; i++)
+            {
+                int bitIdx = index % bitsInByte;
+                byte mask = (byte)(1 << bitIdx);
+                entropy[byteIndex] = (byte)(bits.Get(index) ? (entropy[byteIndex] | mask) : (entropy[byteIndex] & ~mask));
+                index++;
+            }
+        }
+
+        BitArray allChecksumBits = new BitArray(swapEndianBytes(Sha256Process(swapEndianBytes(entropy), 0, entropy.Length)));
+        BitArray finalBits = new BitArray(128 + allChecksumBits.Count);
+
+        for (int i = 0; i < 128; i ++)
+        {
+            finalBits[i] = bits[i];
+        }
+        for (int i = 0; i < allChecksumBits.Count; i++)
+        {
+            finalBits[i + 128] = allChecksumBits[i];
+        }
+
+        return finalBits;
+    }
 
 }

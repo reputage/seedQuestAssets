@@ -116,14 +116,15 @@ public class BIP39Tests
         int[] passed = new int[2];
         passed[1] = 1;
 
-        string testingHex = "3720B091810D8127C55630F55DD2275C05";
-        string testWords = "ugly call give address amount venture misery dose quick spoil weekend inspire";
-        int[] actions = bpc.getActionsWithChecksum(testWords);
-        string seed = seeds.getSeed(actions);
+        string testingHex = "3720B091810D8127C55630F55DD2275C";
+        string testWords = "ugly call give address amount venture misery dose quick spoil weekend insane";
 
-        Debug.Log("Chechsum sentence: " + bpc.getSentenceFromActions(actions));
+        byte[] seedBytes = bpc.HexStringToByteArray(testingHex);
+        string ChecksumSentence = bpc.getSentence128Bits(seedBytes);
 
-        if (testingHex == seed)
+        Debug.Log("Checksum sentence: " + ChecksumSentence);
+
+        if (testWords == ChecksumSentence)
             passed[0] = 1;
         else
             Debug.Log("BIP39 test converting sentence to actions with checksum failed");
