@@ -20,47 +20,6 @@ public class BIP39Converter
     public const int entropyMultiple = 32;
     private Int32 dkLen;
 
-    public void testGetSentence()
-    {
-        SeedToByte seeds = new SeedToByte();
-        string testingHex = "3720B091810D8127C55630F55DD2275C05";
-        int[] actions = seeds.getActions(testingHex);
-        string words = getSentenceFromActions(actions);
-        Debug.Log("Words from hex: " + words);
-    } 
-
-    public void testGetActions()
-    {
-        SeedToByte seeds = new SeedToByte();
-        string testingHex = "3720B091810D8127C55630F55DD2275C05";
-        string testWords = "ugly call give address amount venture misery dose quick spoil weekend inspire";
-        int[] actions = getActionsFromSentence(testWords);
-        string seed = seeds.getSeed(actions);
-        Debug.Log("Original seed: " + testingHex);
-        Debug.Log("Seed from word sentence: " + seed);
-    }
-
-    public void testFullConversion()
-    {
-        string testWords = "ugly call give address amount venture misery dose quick spoil weekend inspire";
-        int[] actions = getActionsFromSentence(testWords);
-        string sentence = getSentenceFromActions(actions);
-
-        Debug.Log("Input sentence: " + testWords);
-        Debug.Log("Recovered sentence: " + sentence);
-    }
-
-    public void testHexConversion()
-    {
-        string hex = "3720B091810D8127C55630F55DD2275C05";
-        string hardSentence = "ugly call give address amount venture misery dose quick spoil weekend inspire";
-        string sentence = getSentenceFromHex(hex);
-        Debug.Log("Hex: " + hex);
-        Debug.Log("New: " + getHexFromSentence(sentence));
-        Debug.Log("Sentence: " + hardSentence);
-        Debug.Log("New words: " + getSentenceFromHex(hex));
-
-    }
 
     public int[] getActionsFromSentence(string sentence)
     {
@@ -73,6 +32,36 @@ public class BIP39Converter
         }
         List<int> indeces = rebuildWordIndexes(wordArray);
         byte[] bytes = processWordIndecesNoChecksum(indeces);
+        List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
+        SeedToByte seeds = new SeedToByte();
+
+        actions = seeds.getActionsFromBytes(bytes);
+        return actions;
+    }
+
+    public int[] getActionsWithChecksum(string sentence)
+    {
+        int[] actions = new int[1];
+        string[] wordArray = sentence.Split(null);
+
+        if (wordArray.Length < 12)
+        {
+            Debug.Log("Not enough words for 128 bits of entropy.");
+            throw new Exception("Less than 12 words in this sentence. Not a valid seed.");
+        }
+
+        List<int> indeces = rebuildWordIndexes(wordArray);
+        byte[] bytes = new byte[1];
+
+        try
+        {
+            bytes = processWordIndeces(indeces);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Exception: " + e);
+        }
+
         List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
         SeedToByte seeds = new SeedToByte();
 
@@ -97,6 +86,31 @@ public class BIP39Converter
         return words;
     }
 
+    public string getSentence128Bits(int[] actions)
+    {
+        SeedToByte seeds = new SeedToByte();
+        string seed = seeds.getSeed(actions);
+        byte[] seedBytes = HexStringToByteArray(seed);
+        BitArray bits = byteToBits(seedBytes);
+
+        if (bits.Count != 128)
+        {
+            Debug.Log("Invalid actions! This does not represent exactly 128 bits.");
+        }
+
+
+
+        List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
+        int[] wordIndeces = seeds.bitToActions(bits, wordListSizes);
+        List<int> wordIndecesList = new List<int>();
+
+        for (int i = 0; i < wordIndeces.Length; i++)
+            wordIndecesList.Add(wordIndeces[i]);
+
+        string words = getMnemonicSentence(wordIndecesList);
+        return words;
+    }
+
     public string getHexFromSentence(string sentence)
     {
         string[] wordArray = sentence.Split(null);
@@ -109,6 +123,26 @@ public class BIP39Converter
 
         List<int> indeces = rebuildWordIndexes(wordArray);
         byte[] bytes = processWordIndecesNoChecksum(indeces);
+        List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
+        SeedToByte seeds = new SeedToByte();
+        int[] actions = seeds.getActionsFromBytes(bytes);
+
+        string hexSeed = seeds.getSeed(actions);
+        return hexSeed;
+    }
+
+    public string getHexWithChecksum(string sentence)
+    {
+        string[] wordArray = sentence.Split(null);
+
+        if (wordArray.Length < 12)
+        {
+            Debug.Log("Not enough words for 128 bits of entropy.");
+            throw new Exception("Less than 12 words in this sentence. Not a valid seed.");
+        }
+
+        List<int> indeces = rebuildWordIndexes(wordArray);
+        byte[] bytes = processWordIndeces(indeces);
         List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
         SeedToByte seeds = new SeedToByte();
         int[] actions = seeds.getActionsFromBytes(bytes);
@@ -271,7 +305,6 @@ public class BIP39Converter
         }
 
         //calculate checksum of our entropy bytes
-        //Sha256Digest sha = new Sha256Digest();
         BitArray allChecksumBits = new BitArray(swapEndianBytes(Sha256Process(swapEndianBytes(entropy), 0, entropy.Length))); 
 
         for (int i = 0; i < checksumActual.Length; i++)
@@ -338,9 +371,6 @@ public class BIP39Converter
         }
 
         byte[] entropy = new byte[17];
-        BitArray checksum = new BitArray(bits.Length / (entropyMultiple + 1));
-        BitArray checksumActual = new BitArray(bits.Length / (entropyMultiple + 1));
-
         int index = 0;
 
         for (int byteIndex = 0; byteIndex < entropy.Length; byteIndex++)
@@ -443,4 +473,6 @@ public class BIP39Converter
         algorithm.DoFinal(firstHash, 0);
         return firstHash;
     }
+
+
 }

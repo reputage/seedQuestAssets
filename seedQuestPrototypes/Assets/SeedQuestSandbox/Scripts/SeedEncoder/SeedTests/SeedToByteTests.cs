@@ -3,9 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// TO DO: after OTP worker is imported into the new project, un-comment 
-//  out the lines  of code with OTP worker in them
-
 namespace SeedQuest.SeedEncoder
 {
     public class SeedToByteTests : MonoBehaviour
@@ -131,7 +128,6 @@ namespace SeedQuest.SeedEncoder
 
             byte[] testHexSeed = SeedToByte.HexStringToByteArray(testHex);
             byte[] testRunSeed = new byte[14];
-            //testRunSeed = OTPworker.randomSeedGenerator(testRunSeed);
 
             List<int> tempList1 = SeedToByte.customList(4, 4, 2, 4, 4);
             List<int> tempList2 = SeedToByte.customList(3, 4, 2, 4, 4);
