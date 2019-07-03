@@ -25,17 +25,40 @@ public class BIP39Converter
     {
         int[] actions = new int[1];
         string[] wordArray = sentence.Split(null);
+
         if (wordArray.Length < 12)
         {
-            Debug.Log("Not enough words for 128 bits of entropy.");
+            Debug.Log("Not enough words for 132 bits of entropy.");
             throw new Exception("Less than 12 words in this sentence. Not a valid seed.");
         }
+
         List<int> indeces = rebuildWordIndexes(wordArray);
         byte[] bytes = processWordIndecesNoChecksum(indeces);
         List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
 
         actions = seeds.getActionsFromBytes(bytes);
         return actions;
+    }
+
+    public string getIndecesFromSentence(string sentence)
+    {
+        int[] actions = new int[1];
+        string[] wordArray = sentence.Split(null);
+
+        if (wordArray.Length < 12)
+        {
+            Debug.Log("Not enough words for 132 bits of entropy.");
+            throw new Exception("Less than 12 words in this sentence. Not a valid seed.");
+        }
+        List<int> indeces = rebuildWordIndexesDebug(wordArray);
+        string indecesStr = "";
+
+        for (int i = 0; i < indeces.Count; i++)
+        {
+            indecesStr += indeces[i] + " ";
+        }
+
+        return indecesStr;
     }
 
     public int[] getActionsWithChecksum(string sentence)
@@ -45,7 +68,7 @@ public class BIP39Converter
 
         if (wordArray.Length < 12)
         {
-            Debug.Log("Not enough words for 128 bits of entropy.");
+            Debug.Log("Not enough words for 132 bits of entropy.");
             throw new Exception("Less than 12 words in this sentence. Not a valid seed.");
         }
 
@@ -72,6 +95,23 @@ public class BIP39Converter
         string seed = seeds.getSeed(actions);
         byte[] seedBytes = HexStringToByteArray(seed);
         BitArray bits = byteToBits(seedBytes);
+        List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
+        int[] wordIndeces = seeds.bitToActions(bits, wordListSizes);
+        List<int> wordIndecesList = new List<int>();
+
+        for (int i = 0; i < wordIndeces.Length; i++)
+            wordIndecesList.Add(wordIndeces[i]);
+
+        string words = getMnemonicSentence(wordIndecesList);
+        return words;
+    }
+
+    public string getSentenceFromActionsDebug(int[] actions)
+    {
+        string seed = seeds.getSeed(actions);
+        byte[] seedBytes = HexStringToByteArray(seed);
+        BitArray bits = byteToBits(seedBytes);
+
         List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
         int[] wordIndeces = seeds.bitToActions(bits, wordListSizes);
         List<int> wordIndecesList = new List<int>();
@@ -208,6 +248,29 @@ public class BIP39Converter
                 idx = Array.IndexOf(wordList, s);
             }
 
+            wordIndexList.Add(idx);
+        }
+
+        return wordIndexList;
+    }
+
+    private List<int> rebuildWordIndexesDebug(string[] wordsInMnemonicSentence)
+    {
+        List<int> wordIndexList = new List<int>();
+        string[] wordList = englishWordList;
+
+        foreach (string s in wordsInMnemonicSentence)
+        {
+            int idx = -1;
+
+            if (!wordList.Contains(s))
+            {
+                throw new Exception("Word " + s + " is not in the wordlist for language " + "english" + " cannot continue to rebuild entropy from wordlist");
+            }
+            else
+            {
+                idx = Array.IndexOf(wordList, s);
+            }
             wordIndexList.Add(idx);
         }
 

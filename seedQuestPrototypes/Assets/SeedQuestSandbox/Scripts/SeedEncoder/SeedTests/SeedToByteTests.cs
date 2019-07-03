@@ -14,8 +14,13 @@ namespace SeedQuest.SeedEncoder
 
         private SeedToByte seedToByte = new SeedToByte();
 
-        // Run all tests at once
-        public string runAllTests()
+		private void Start()
+		{
+            runQuickTests();
+		}
+
+		// Run all tests at once
+		public string runAllTests()
         {
             int[] passed = new int[2];
 
@@ -253,7 +258,7 @@ namespace SeedQuest.SeedEncoder
             runLeadingBits(ref passed, 4, 4, 14, 14, 0, 0, 10);
             runLeadingBits(ref passed, 4, 4, 9, 9, 0, 0, 11);
             runLeadingBits(ref passed, 4, 4, 1, 1, 0, 0, 12);
-            runLeadingBits(ref passed, 2, 3, 0, 0, 0, 0, 13);
+            runLeadingBits(ref passed, 2, 3, 0, 0, 0, 1, 13);
             runLeadingBits(ref passed, 0, 4, 9, 0, 0, 0, 14);
             runLeadingBits(ref passed, 1, 8, 255, 1, 127, 7, 15);
             runLeadingBits(ref passed, 2, 8, 255, 3, 63, 6, 16);

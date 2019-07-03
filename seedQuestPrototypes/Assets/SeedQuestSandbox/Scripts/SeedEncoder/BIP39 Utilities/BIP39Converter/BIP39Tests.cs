@@ -19,6 +19,7 @@ public class BIP39Tests
         sumTest(ref passed, testFullConversion());
         sumTest(ref passed, testHexConversion());
         sumTest(ref passed, testChecksumConversion());
+        sumTest(ref passed, testAllSeedWords());
 
         string passedString = "Successfully passed " + passed[0] + " of " + passed[1] + " tests.";
         Debug.Log(passedString);
@@ -72,24 +73,6 @@ public class BIP39Tests
         return passed;
     }
 
-    // Test converting from a BIP39 sentence to actions and back
-    public int[] testFullConversion()
-    {
-        int[] passed = new int[2];
-        passed[1] = 1;
-
-        string testWords = "ugly call give address amount venture misery dose quick spoil weekend inspire";
-        int[] actions = bpc.getActionsFromSentence(testWords);
-        string sentence = bpc.getSentenceFromActions(actions);
-
-        if (sentence == testWords)
-            passed[0] = 1;
-        else
-            Debug.Log("BIP39 full conversion test (sentence -> actions -> sentence) failed");
-
-        return passed;
-    }
-
     public int[] testHexConversion()
     {
         int[] passed = new int[2];
@@ -129,6 +112,70 @@ public class BIP39Tests
         else
             Debug.Log("BIP39 test converting sentence to actions with checksum failed");
 
+        return passed;
+    }
+
+    // Test converting from a BIP39 sentence to actions and back
+    public int[] testFullConversion()
+    {
+        int[] passed = new int[2];
+        passed[1] = 1;
+
+        string testWords = "ugly call give address amount venture misery dose quick spoil weekend inspire";
+        int[] actions = bpc.getActionsFromSentence(testWords);
+        string sentence = bpc.getSentenceFromActions(actions);
+
+        if (sentence == testWords)
+            passed[0] = 1;
+        else
+            Debug.Log("BIP39 full conversion test (sentence -> actions -> sentence) failed");
+
+        return passed;
+    }
+
+    // Test converting from a BIP39 sentence to actions and back
+    public int[] testFullConversion(string input, int iter)
+    {
+        int[] passed = new int[2];
+        passed[1] = 1;
+
+        int[] actions = bpc.getActionsFromSentence(input);
+        List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
+        string sentence = bpc.getSentenceFromActionsDebug(actions);
+
+        if (sentence == input)
+            passed[0] = 1;
+        else
+        {
+            Debug.Log("BIP39 custom conversion test (sentence -> actions -> sentence) failed." +
+                      "\nSentence: " + input + "\nRecovered: " + sentence + "\n Value: " + iter);
+        }
+
+        return passed;
+    }
+
+    public int[] testAllSeedWords()
+    {
+        int[] passed = new int[2];
+        passed[1] = 0;
+
+        for (int i = 1; i < EnglishWordList.words.Length; i++) 
+        {
+            string sentence = EnglishWordList.words[i];
+            sentence += " " + EnglishWordList.words[i]; 
+            sentence += " " + EnglishWordList.words[i]; 
+            sentence += " " + EnglishWordList.words[i]; 
+            sentence += " " + EnglishWordList.words[i]; 
+            sentence += " " + EnglishWordList.words[i]; 
+            sentence += " " + EnglishWordList.words[i]; 
+            sentence += " " + EnglishWordList.words[i]; 
+            sentence += " " + EnglishWordList.words[i]; 
+            sentence += " " + EnglishWordList.words[i];
+            sentence += " " + EnglishWordList.words[i]; 
+            sentence += " " + EnglishWordList.words[i];
+
+            sumTest(ref passed, testFullConversion(sentence, i));
+        }
 
         return passed;
     }
