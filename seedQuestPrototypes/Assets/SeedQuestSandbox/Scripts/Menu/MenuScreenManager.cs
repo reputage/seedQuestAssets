@@ -38,9 +38,11 @@ public class MenuScreenManager : MonoBehaviour
     private float sceneLoadProgressValue;
     private Slider sceneLoadProgress;
     private Button sceneContinueButton;
+    private bool isBip;
 
     public void Awake()
     {
+        isBip = true;
         canvas = GetComponentsInChildren<Canvas>(true);
         motionBackgroundCanvas = canvas[1];
         startCanvas = canvas[2];
@@ -499,9 +501,39 @@ public class MenuScreenManager : MonoBehaviour
     public void SetRandomSeed()
     {
         InteractablePathManager.SetRandomSeed();
+        BIP39Converter bpc = new BIP39Converter();
 
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
-        seedInputField.text = InteractablePathManager.SeedString;
+        if (isBip)
+            seedInputField.text = bpc.getSentenceFromHex(InteractablePathManager.SeedString);                
+        else
+            seedInputField.text = InteractablePathManager.SeedString;
+    }
+
+    public void SetRandomBIP39Seed()
+    {
+        BIP39Converter bpc = new BIP39Converter();
+        InteractablePathManager.SetRandomSeed();
+
+        TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
+        seedInputField.text = bpc.getSentenceFromHex(InteractablePathManager.SeedString);
+    }
+
+    public void SwitchSeedFormat()
+    {
+        TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
+
+        if (isBip)
+        {
+            seedInputField.text = InteractablePathManager.SeedString;
+            isBip = false;
+        }
+        else
+        {
+            BIP39Converter bpc = new BIP39Converter();
+            seedInputField.text = bpc.getSentenceFromHex(InteractablePathManager.SeedString);
+            isBip = true;
+        }
     }
 
     public bool detectHex(string seed)
