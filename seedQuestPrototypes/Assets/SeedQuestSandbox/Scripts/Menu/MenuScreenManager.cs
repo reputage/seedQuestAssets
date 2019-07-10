@@ -42,7 +42,7 @@ public class MenuScreenManager : MonoBehaviour
 
     public void Awake()
     {
-        isBip = true;
+        isBip = false;
         canvas = GetComponentsInChildren<Canvas>(true);
         motionBackgroundCanvas = canvas[1];
         startCanvas = canvas[2];
@@ -250,7 +250,7 @@ public class MenuScreenManager : MonoBehaviour
     public void SetupSeedSetupBip()
     {
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
-        seedInputField.text = InteractablePathManager.SeedSentence;
+        seedInputField.text = InteractablePathManager.SeedString;
         int charLimit = 700;
 
         seedInputField.characterLimit = charLimit;
