@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,9 +38,11 @@ public class MenuScreenManager : MonoBehaviour
     private float sceneLoadProgressValue;
     private Slider sceneLoadProgress;
     private Button sceneContinueButton;
+    private bool isBip;
 
     public void Awake()
     {
+        isBip = true;
         canvas = GetComponentsInChildren<Canvas>(true);
         motionBackgroundCanvas = canvas[1];
         startCanvas = canvas[2];
@@ -161,8 +164,7 @@ public class MenuScreenManager : MonoBehaviour
         ResetCanvas();
         canvas[4].gameObject.SetActive(true);
         SetupRotateBackground(270);
-        SetupSeedSetup();
-
+        SetupSeedSetupBip();
         
         canvas[9].gameObject.SetActive(true);
         var buttonGroup = canvas[9].transform.GetChild(0);
@@ -175,7 +177,7 @@ public class MenuScreenManager : MonoBehaviour
         ResetCanvas();
         encodeSeedCanvas.gameObject.SetActive(true);
         SetupRotateBackground(330);
-        SetupEncodeSeed();
+        SetupEncodeSeedBip();
 
         canvas[9].gameObject.SetActive(true);
         var buttonGroup = canvas[9].transform.GetChild(0);
@@ -185,11 +187,23 @@ public class MenuScreenManager : MonoBehaviour
     public void GoToEncodeSeedFromSeedSetup() {
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
         bool validSeed = validSeedString(seedInputField.text);
+        //Debug.Log("Bip valididty: " + validBip(seedInputField.text));
+
         if (validSeed)
         {
-            Debug.Log("Seed: " + seedInputField.text);
+            Debug.Log("Valid hex seed: " + seedInputField.text);
             GoToEncodeSeed();
         }
+        else if (validBip(seedInputField.text))
+        {
+            Debug.Log("Valid bip39 seed: " + seedInputField.text);
+            GoToEncodeSeed();
+        }
+        else
+        {
+            warningText.GetComponent<TextMeshProUGUI>().text = "Warning: seed must only contain hex characters";
+        }
+
     }
 
     public void UndoLastSceneEncodeStep() {
@@ -229,9 +243,16 @@ public class MenuScreenManager : MonoBehaviour
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
         seedInputField.text = InteractablePathManager.SeedString;
         int charLimit = InteractableConfig.SeedHexLength;
-//        if (charLimit %2 == 1)
-//            charLimit++;
-        
+
+        seedInputField.characterLimit = charLimit;
+    }
+
+    public void SetupSeedSetupBip()
+    {
+        TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
+        seedInputField.text = InteractablePathManager.SeedSentence;
+        int charLimit = 700;
+
         seedInputField.characterLimit = charLimit;
     }
 
@@ -267,6 +288,39 @@ public class MenuScreenManager : MonoBehaviour
             InteractablePathManager.SeedString = seedFromInput;
 
             int[] siteIDs = InteractablePathManager.GetPathSiteIDs();
+            SetIconAndPanelForRehearsal(siteIDs);
+        }
+    }
+
+    public void SetupEncodeSeedBip()
+    {
+        SetLevelPanelDefault();
+
+        if (GameManager.Mode == GameMode.Rehearsal)
+        {
+            TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>(true);
+
+            string seedFromInput = seedInputField.text;
+            string hexSeed = "";
+
+            if (!detectHex(seedFromInput) && validBip(seedFromInput))
+            {
+                BIP39Converter bpc = new BIP39Converter();
+                hexSeed = bpc.getHexFromSentence(seedFromInput);
+            }
+            else
+            {
+                hexSeed = seedFromInput;
+                //Debug.Log("Seed appears to be hex");
+            }
+
+            //Debug.Log("Sentence: " + seedFromInput);
+            //Debug.Log("Seed: " + hexSeed);
+
+            InteractablePathManager.SeedString = hexSeed;
+
+            int[] siteIDs = InteractablePathManager.GetPathSiteIDs();
+
             SetIconAndPanelForRehearsal(siteIDs);
         }
     }
@@ -447,9 +501,51 @@ public class MenuScreenManager : MonoBehaviour
     public void SetRandomSeed()
     {
         InteractablePathManager.SetRandomSeed();
+        BIP39Converter bpc = new BIP39Converter();
 
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
-        seedInputField.text = InteractablePathManager.SeedString;
+        if (isBip)
+            seedInputField.text = bpc.getSentenceFromHex(InteractablePathManager.SeedString);                
+        else
+            seedInputField.text = InteractablePathManager.SeedString;
+    }
+
+    public void SetRandomBIP39Seed()
+    {
+        BIP39Converter bpc = new BIP39Converter();
+        InteractablePathManager.SetRandomSeed();
+
+        TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
+        seedInputField.text = bpc.getSentenceFromHex(InteractablePathManager.SeedString);
+    }
+
+    public void SwitchSeedFormat()
+    {
+        TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
+
+        if (isBip)
+        {
+            seedInputField.text = InteractablePathManager.SeedString;
+            isBip = false;
+        }
+        else
+        {
+            BIP39Converter bpc = new BIP39Converter();
+            seedInputField.text = bpc.getSentenceFromHex(InteractablePathManager.SeedString);
+            isBip = true;
+        }
+    }
+
+    public bool detectHex(string seed)
+    {
+        if (seed.Length <= InteractableConfig.SeedHexLength + 1 && 
+                 System.Text.RegularExpressions.Regex.IsMatch(seed, @"\A\b[0-9a-fA-F]+\b\Z"))
+        {
+            return true;
+        }
+
+        //Debug.Log("Seed doesn't appear to be hex.");
+        return false;
     }
 
     public bool validSeedString(string seedString)
@@ -462,9 +558,9 @@ public class MenuScreenManager : MonoBehaviour
                         (hexChar >= 'A' && hexChar <= 'F'));
         }
 
-        if (!validHex)
-            warningText.GetComponent<TextMeshProUGUI>().text = "Warning: seed must only contain hex characters";
-        else if (seedString.Length < 28)
+        //if (!validHex)
+        //    warningText.GetComponent<TextMeshProUGUI>().text = "Warning: seed must only contain hex characters";
+        if (seedString.Length < 28)
         {
             // send warning message that the length is too short
             validHex = false;
@@ -476,6 +572,24 @@ public class MenuScreenManager : MonoBehaviour
         }
 
         return validHex;
+    }
+
+    public bool validBip(string seed)
+    {
+        BIP39Converter bpc = new BIP39Converter();
+        string hex = "";
+        try
+        {
+            hex = bpc.getHexFromSentence(seed);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Exception: " + e);
+            return false;
+        }
+
+        //Debug.Log("hex: " + hex);
+        return true;
     }
 
 }

@@ -3,9 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// TO DO: after OTP worker is imported into the new project, un-comment 
-//  out the lines  of code with OTP worker in them
-
 namespace SeedQuest.SeedEncoder
 {
     public class SeedToByteTests : MonoBehaviour
@@ -17,8 +14,13 @@ namespace SeedQuest.SeedEncoder
 
         private SeedToByte seedToByte = new SeedToByte();
 
-        // Run all tests at once
-        public string runAllTests()
+		private void Start()
+		{
+            runQuickTests();
+		}
+
+		// Run all tests at once
+		public string runAllTests()
         {
             int[] passed = new int[2];
 
@@ -131,7 +133,6 @@ namespace SeedQuest.SeedEncoder
 
             byte[] testHexSeed = SeedToByte.HexStringToByteArray(testHex);
             byte[] testRunSeed = new byte[14];
-            //testRunSeed = OTPworker.randomSeedGenerator(testRunSeed);
 
             List<int> tempList1 = SeedToByte.customList(4, 4, 2, 4, 4);
             List<int> tempList2 = SeedToByte.customList(3, 4, 2, 4, 4);
@@ -257,7 +258,7 @@ namespace SeedQuest.SeedEncoder
             runLeadingBits(ref passed, 4, 4, 14, 14, 0, 0, 10);
             runLeadingBits(ref passed, 4, 4, 9, 9, 0, 0, 11);
             runLeadingBits(ref passed, 4, 4, 1, 1, 0, 0, 12);
-            runLeadingBits(ref passed, 2, 3, 0, 0, 0, 0, 13);
+            runLeadingBits(ref passed, 2, 3, 0, 0, 0, 1, 13);
             runLeadingBits(ref passed, 0, 4, 9, 0, 0, 0, 14);
             runLeadingBits(ref passed, 1, 8, 255, 1, 127, 7, 15);
             runLeadingBits(ref passed, 2, 8, 255, 3, 63, 6, 16);
