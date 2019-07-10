@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.UI;
 using QRCoder;
 using QRCoder.Unity;
+using sharpPDF;
 
 public class QRCodeTextureTest : MonoBehaviour
 {
@@ -14,6 +17,7 @@ public class QRCodeTextureTest : MonoBehaviour
     void Start()
     {
         saveToFile("ugly call give address amount venture misery dose quick spoil weekend inspire");
+        pdfTest();
     }
 
     public void setRawImage(string sentence)
@@ -34,6 +38,7 @@ public class QRCodeTextureTest : MonoBehaviour
         Texture2D qrCodeAsTexture2D = qrCode.GetGraphic(20);
 
         byte[] bytes = qrCodeAsTexture2D.EncodeToPNG();
+           
         File.WriteAllBytes(Application.dataPath + "/../SavedQRCode.png", bytes);
     }
 
@@ -46,5 +51,31 @@ public class QRCodeTextureTest : MonoBehaviour
         Texture2D qrCodeAsTexture2D = qrCode.GetGraphic(20);
         rawImage.texture = qrCodeAsTexture2D;
     }
+
+    public void pdfTest()
+    {
+        string sentence = "ugly call give address amount venture misery dose quick spoil weekend inspire";
+        QRCodeGenerator qrGenerator = new QRCodeGenerator();
+        QRCodeData qrCodeData = qrGenerator.CreateQrCode(sentence, QRCodeGenerator.ECCLevel.Q);
+        UnityQRCode qrCode = new UnityQRCode(qrCodeData);
+        Texture2D qrCodeAsTexture2D = qrCode.GetGraphic(20);
+
+        rawImage.texture = qrCodeAsTexture2D;
+        byte[] bytes = qrCodeAsTexture2D.EncodeToJPG(); // .EncodeToPNG();
+
+        pdfDocument myDoc = new sharpPDF.pdfDocument("qr_pdf_test", "qr tester");
+        pdfPage myPage = myDoc.addPage(500, 500);
+        myPage.addImage(bytes, 1, 1, 200, 200);
+        string sentenceB = "ugly call give address amount venture \nmisery dose quick spoil weekend inspire";
+
+        myPage.addText("ugly call give address amount venture", 5, 300, sharpPDF.Enumerators.predefinedFont.csCourier, 20);
+        myPage.addText("misery dose quick spoil weekend inspire", 5, 250, sharpPDF.Enumerators.predefinedFont.csCourier, 20);
+
+        myDoc.createPDF("qr_pdf_test.pdf");
+        myPage = null;
+        myDoc = null;
+
+    }
+
 
 }
