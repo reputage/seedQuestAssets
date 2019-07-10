@@ -154,6 +154,9 @@ namespace SeedQuest.Interactables {
                         //Debug.Log("Item name: " + item.name + " item number: " + counter);
                         counter++;
                     }
+                    else
+                        Debug.Log("Item out of bounds! Item name: " + item.name + " item number: " + counter);
+
                 }
 
                 // Update siteID and spot ID for in-bounds subset
@@ -172,7 +175,7 @@ namespace SeedQuest.Interactables {
 
                 // Throw Error for not enough interactables in a Site
                 if (GameManager.Mode != GameMode.Sandbox && subset.Count < InteractableConfig.InteractableCount)
-                    Debug.Log("WARNING: SiteBounds does not contain sufficent interactables.");
+                    Debug.Log("WARNING: SiteBounds does not contain sufficent interactables. " + subset.Count + " vs. " + InteractableConfig.InteractableCount);
 
                 siteCount++;
             }
