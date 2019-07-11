@@ -9,6 +9,8 @@ public class IsometricCharacter : MonoBehaviour {
     
     public float runSpeedMultiplier = 2;
     public float runClickDistance = 6;
+    public Animator animator;
+
 
     private NavMeshAgent agent;
     private float walkSpeed;
@@ -16,6 +18,7 @@ public class IsometricCharacter : MonoBehaviour {
     public void Start() {
         agent = GetComponent<NavMeshAgent>();
         walkSpeed = agent.speed;
+        animator = GetComponent<Animator>();
     }
 
     public void Update() {
@@ -53,6 +56,14 @@ public class IsometricCharacter : MonoBehaviour {
         if (vertical > 0.0f) {
             agent.isStopped = true;
             MarkerManager.DeleteMarker();
+            if (animator != null)
+                animator.SetBool("Walk", true);
+                           
+        }
+        else
+        {
+            if (animator != null)
+                animator.SetBool("Walk", false);
         }
 
         // Translate character
