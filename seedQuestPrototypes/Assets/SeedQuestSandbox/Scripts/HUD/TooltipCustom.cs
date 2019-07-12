@@ -18,7 +18,12 @@ public class TooltipCustom : MonoBehaviour
     void Awake()
     {
         SetButtonHoverEvents();
-        offset = new Vector3(90, -40, 0);
+        Vector3 empty = new Vector3(0, 0, 0);
+
+        // if no input offseet has been given, default to a premade offset value
+        if (offset == empty)
+            offset = new Vector3(90, -40, 0);
+        
         tooltipObj = Instantiate(tooltipPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         tooltipObj.transform.parent = transform;
         tooltipObj.GetComponentInChildren<TextMeshProUGUI>().text = tooltipText;
