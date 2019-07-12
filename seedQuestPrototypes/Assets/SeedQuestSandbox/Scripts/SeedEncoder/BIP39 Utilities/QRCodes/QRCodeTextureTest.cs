@@ -16,7 +16,7 @@ public class QRCodeTextureTest : MonoBehaviour
 
     void Start()
     {
-        saveToFile("ugly call give address amount venture misery dose quick spoil weekend inspire");
+        //saveToFile("ugly call give address amount venture misery dose quick spoil weekend inspire");
         pdfTest();
     }
 
@@ -65,11 +65,12 @@ public class QRCodeTextureTest : MonoBehaviour
 
         pdfDocument myDoc = new sharpPDF.pdfDocument("qr_pdf_test", "qr tester");
         pdfPage myPage = myDoc.addPage(500, 500);
-        myPage.addImage(bytes, 1, 1, 200, 200);
-        string sentenceB = "ugly call give address amount venture \nmisery dose quick spoil weekend inspire";
+        myPage.addImage(bytes, 1, 150, 200, 200);
 
-        myPage.addText("ugly call give address amount venture", 5, 300, sharpPDF.Enumerators.predefinedFont.csCourier, 20);
-        myPage.addText("misery dose quick spoil weekend inspire", 5, 250, sharpPDF.Enumerators.predefinedFont.csCourier, 20);
+        myPage.addText("Your seed entropy is: ", 10, 470, sharpPDF.Enumerators.predefinedFont.csCourier, 15);
+        myPage.addText("0x3720B025A102812744F830F55DDA275C5", 10, 450, sharpPDF.Enumerators.predefinedFont.csCourier, 15);
+        myPage.addText("ugly call give address amount venture misery dose quick spoil weekend inspire", 10, 425, sharpPDF.Enumerators.predefinedFont.csCourier, 10);
+        //myPage.addText("misery dose quick spoil weekend inspire", 5, 250, sharpPDF.Enumerators.predefinedFont.csCourier, 20);
 
         myDoc.createPDF("qr_pdf_test.pdf");
         myPage = null;
