@@ -70,7 +70,6 @@ public class QRCodeTextureTest : MonoBehaviour
         myPage.addText("Your seed entropy is: ", 10, 470, sharpPDF.Enumerators.predefinedFont.csCourier, 15);
         myPage.addText("0x3720B025A102812744F830F55DDA275C5", 10, 450, sharpPDF.Enumerators.predefinedFont.csCourier, 15);
         myPage.addText("ugly call give address amount venture misery dose quick spoil weekend inspire", 10, 425, sharpPDF.Enumerators.predefinedFont.csCourier, 10);
-        //myPage.addText("misery dose quick spoil weekend inspire", 5, 250, sharpPDF.Enumerators.predefinedFont.csCourier, 20);
 
         myDoc.createPDF("qr_pdf_test.pdf");
         myPage = null;

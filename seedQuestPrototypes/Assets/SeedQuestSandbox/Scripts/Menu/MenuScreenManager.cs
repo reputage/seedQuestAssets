@@ -40,6 +40,9 @@ public class MenuScreenManager : MonoBehaviour
     private Button sceneContinueButton;
     private bool isBip;
 
+    private Image greenCheck;
+    private Image redWarning;
+
     public void Awake()
     {
         isBip = false;
@@ -51,6 +54,12 @@ public class MenuScreenManager : MonoBehaviour
         sceneLineUpCanvas = canvas[7];
         actionLineUpCanvas = canvas[8];
         backButtonCanvas = canvas[9];
+
+        Image[] images = canvas[4].GetComponentsInChildren<Image>();
+        // Unity is bugged and doesn't allow you to properly re-order child objects of prefabs
+        greenCheck = images[5];
+        redWarning = images[7];
+        deactivateCheckSymbols();
 
         sceneLoadProgress = GetComponentInChildren<Slider>(true);
         sceneContinueButton = sceneLineUpCanvas.GetComponentInChildren<Button>(true);
@@ -187,7 +196,6 @@ public class MenuScreenManager : MonoBehaviour
     public void GoToEncodeSeedFromSeedSetup() {
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
         bool validSeed = validSeedString(seedInputField.text);
-        //Debug.Log("Bip valididty: " + validBip(seedInputField.text));
 
         if (validSeed)
         {
@@ -198,10 +206,6 @@ public class MenuScreenManager : MonoBehaviour
         {
             Debug.Log("Valid bip39 seed: " + seedInputField.text);
             GoToEncodeSeed();
-        }
-        else
-        {
-            warningText.GetComponent<TextMeshProUGUI>().text = "Warning: seed must only contain hex characters";
         }
 
     }
@@ -241,7 +245,7 @@ public class MenuScreenManager : MonoBehaviour
     public void SetupSeedSetup()
     {
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
-        seedInputField.text = InteractablePathManager.SeedString;
+        //seedInputField.text = InteractablePathManager.SeedString;
         int charLimit = InteractableConfig.SeedHexLength;
 
         seedInputField.characterLimit = charLimit;
@@ -250,7 +254,7 @@ public class MenuScreenManager : MonoBehaviour
     public void SetupSeedSetupBip()
     {
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
-        seedInputField.text = InteractablePathManager.SeedString;
+        //seedInputField.text = InteractablePathManager.SeedString;
         int charLimit = 700;
 
         seedInputField.characterLimit = charLimit;
@@ -504,10 +508,7 @@ public class MenuScreenManager : MonoBehaviour
         BIP39Converter bpc = new BIP39Converter();
 
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
-        if (isBip)
-            seedInputField.text = bpc.getSentenceFromHex(InteractablePathManager.SeedString);                
-        else
-            seedInputField.text = InteractablePathManager.SeedString;
+        seedInputField.text = InteractablePathManager.SeedString;
     }
 
     public void SetRandomBIP39Seed()
@@ -551,24 +552,32 @@ public class MenuScreenManager : MonoBehaviour
     public bool validSeedString(string seedString)
     {
         bool validHex = true;
-        foreach (var hexChar in seedString)
+        foreach (char c in seedString)
         {
-            validHex = ((hexChar >= '0' && hexChar <= '9') ||
-                        (hexChar >= 'a' && hexChar <= 'f') ||
-                        (hexChar >= 'A' && hexChar <= 'F'));
+            validHex = (c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || 
+                        c == '5' || c == '6' || c == '7' || c == '8' || c == '9' || 
+                        c == 'a' || c == 'A' || c == 'b' || c == 'B' || c == 'c' || 
+                        c == 'C' || c == 'd' || c == 'D' || c == 'e' || c == 'E' || 
+                        c == 'f' || c == 'F') && validHex;
         }
 
-        //if (!validHex)
-        //    warningText.GetComponent<TextMeshProUGUI>().text = "Warning: seed must only contain hex characters";
-        if (seedString.Length < 28)
+        if (!validHex)
+        {
+            warningText.GetComponent<TextMeshProUGUI>().text = "Warning: seed must only contain hex characters";
+            warningText.GetComponent<TextMeshProUGUI>().color = new Color32(255, 20, 20, 255);
+            setRedWarning();
+        }
+        else if (seedString.Length < 33)
         {
             // send warning message that the length is too short
             validHex = false;
             int charLimit = InteractableConfig.SeedHexLength;
             if (charLimit % 2 == 1)
                 charLimit++;
-            
-            warningText.GetComponent<TextMeshProUGUI>().text = "Warning: seed must be " + charLimit + " characters long";
+
+            warningText.GetComponent<TextMeshProUGUI>().text = "Warning: seed must be " + "33" + " characters long";
+            warningText.GetComponent<TextMeshProUGUI>().color = new Color32(255, 20, 20, 255);
+            setRedWarning();
         }
 
         return validHex;
@@ -590,6 +599,45 @@ public class MenuScreenManager : MonoBehaviour
 
         //Debug.Log("hex: " + hex);
         return true;
+    }
+
+    public void checkInputSeed()
+    {
+        TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
+        bool validSeed = validSeedString(seedInputField.text);
+
+        if (validSeed)
+        {
+            Debug.Log("Valid hex seed: " + seedInputField.text);
+            warningText.GetComponent<TextMeshProUGUI>().text = "Character seed detected!";
+            warningText.GetComponent<TextMeshProUGUI>().color = new Color32(81, 150, 55, 255);
+            setGreenCheck();
+        }
+        else if (validBip(seedInputField.text))
+        {
+            Debug.Log("Valid bip39 seed: " + seedInputField.text);
+            warningText.GetComponent<TextMeshProUGUI>().text = "Word seed detected!";
+            warningText.GetComponent<TextMeshProUGUI>().color = new Color32(81, 150, 55, 255);
+            setGreenCheck();
+        }
+    }
+
+    public void setGreenCheck()
+    {
+        redWarning.gameObject.SetActive(false);
+        greenCheck.gameObject.SetActive(true);
+    }
+
+    public void setRedWarning()
+    {
+        redWarning.gameObject.SetActive(true);
+        greenCheck.gameObject.SetActive(false);
+    }
+
+    public void deactivateCheckSymbols()
+    {
+        redWarning.gameObject.SetActive(false);
+        greenCheck.gameObject.SetActive(false);
     }
 
 }
