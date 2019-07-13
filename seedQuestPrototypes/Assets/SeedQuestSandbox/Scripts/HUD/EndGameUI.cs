@@ -32,6 +32,9 @@ public class EndGameUI : MonoBehaviour
     public string RehearsalScene = "PrototypeSelect";
     public string RecallScene = "PrototypeSelect";
 
+    private static string hexSeed;
+    private static string bipSeed;
+
     /// <summary> Toggles On the EndGameUI </summary>
     static public void ToggleOn() {
         if (Instance.gameObject.activeSelf)
@@ -43,6 +46,11 @@ public class EndGameUI : MonoBehaviour
         BIP39Converter bpc = new BIP39Converter();
         //textList[0].text = converter.DecodeSeed();
 
+/*        for (int i = 0; i < textList.Length; i++)
+        {
+            Debug.Log("Text data #" + i + ": " + textList[i].text);
+        }
+*/
         if (InteractableConfig.SeedHexLength % 2 == 1)
         {
             string alteredSeedText = converter.DecodeSeed();
@@ -54,7 +62,8 @@ public class EndGameUI : MonoBehaviour
             if (alteredSeedText.Length > 1)
                 alteredSeedText = alteredSeedText.Substring(0, (alteredSeedText.Length - 1));
 
-            //textList[0].text = alteredSeedText;
+            hexSeed = alteredSeedText;
+            bipSeed = sentence;
             textList[0].text = sentence;
         }
         else
@@ -62,19 +71,31 @@ public class EndGameUI : MonoBehaviour
             //textList[0].text = converter.DecodeSeed();
             string hex = converter.DecodeSeed();
             string sentence = bpc.getSentenceFromHex(hex);
+            hexSeed = hex;
+            bipSeed = sentence;
             textList[0].text = sentence;
         }
 
+        Debug.Log("Hex: " + hexSeed);
+        Debug.Log("Bip: " + bipSeed);
+
         if (GameManager.Mode == GameMode.Rehearsal)
         {
-            textList[2].text = "Key Learned!";
+            //textList[2].text = "Key Learned!";
             textList[3].text = "Practice Again";
         }
         else
         {
-            textList[2].text = "Key Recovered!";
+            //textList[2].text = "Key Recovered!";
             textList[3].text = "Try Again";
         }
+
+        for (int i = 0; i < textList.Length; i++)
+        {
+            Debug.Log("Text data #" + i + ": " + textList[i].text);
+        }
+
+        setupCharacterMode();
     }
 
     /// <summary> Handles selecting PrototypeSelect Button </summary>
@@ -112,6 +133,7 @@ public class EndGameUI : MonoBehaviour
 
     public void copySeed()
     {
+        Debug.Log("Hello from copySeed()");
         var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
         string seed = textList[0].text;
 
@@ -121,8 +143,8 @@ public class EndGameUI : MonoBehaviour
             GUIUtility.systemCopyBuffer = seed;
         #endif
 
-        textList[1].text = "Seed Copied";
-        textList[1].gameObject.SetActive(true);
+        textList[1].text = "Seed Copied!";
+        textList[1].gameObject.SetActive(true); 
     }
 
     public void copyHexSeed()
@@ -134,7 +156,7 @@ public class EndGameUI : MonoBehaviour
         #if UNITY_WEBGL
             Copy(seed);
         #else
-        GUIUtility.systemCopyBuffer = seed;
+            GUIUtility.systemCopyBuffer = seed;
         #endif
 
         textList[1].text = "Seed Copied";
@@ -145,7 +167,7 @@ public class EndGameUI : MonoBehaviour
     {
         var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
         BIP39Converter bpc = new BIP39Converter();
-        string seed = textList[0].text + "\n0x" + bpc.getHexFromSentence(textList[0].text);
+        string seed = bipSeed + "\n0x" + hexSeed;
 
         QRCodeGenerator qrGenerator = new QRCodeGenerator();
         QRCodeData qrCodeData = qrGenerator.CreateQrCode(textList[0].text, QRCodeGenerator.ECCLevel.Q);
@@ -185,8 +207,8 @@ public class EndGameUI : MonoBehaviour
                 outputFile.WriteLine(seed);
             }
         #endif
-        textList[1].text = "Seed Downloaded";
-        textList[1].gameObject.SetActive(true);
+        //textList[1].text = "Seed Downloaded";
+        //textList[1].gameObject.SetActive(true);
     }
 
     public void downloadQRCode()
@@ -228,8 +250,57 @@ public class EndGameUI : MonoBehaviour
                 outputFile.Write(bytes);
             }
         #endif
-        textList[1].text = "Seed Downloaded";
-        textList[1].gameObject.SetActive(true);
+        //textList[1].text = "Seed Downloaded";
+        //textList[1].gameObject.SetActive(true);
     }
 
+    public void characterMode()
+    {
+        var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
+        textList[0].text = hexSeed;
+
+        Button[] buttons = Instance.GetComponentsInChildren<Button>();
+        GameObject characterButton = buttons[4].gameObject;
+        GameObject wordsButton = buttons[5].gameObject;
+
+        // color RGB values taken from UX doc in Figma
+        characterButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255,255,255,255);
+        characterButton.GetComponent<Image>().color = new Color32(32, 32, 32, 255);
+        wordsButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(89, 89, 89, 255);
+        wordsButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+    }
+
+    public void wordsMode()
+    {
+        var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
+        textList[0].text = bipSeed;
+
+        Button[] buttons = Instance.GetComponentsInChildren<Button>();
+        GameObject characterButton = buttons[4].gameObject;
+        GameObject wordsButton = buttons[5].gameObject;
+
+        wordsButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 255, 255, 255);
+        wordsButton.GetComponent<Image>().color = new Color(0, 0, 0, 255);
+        characterButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(89, 89, 89, 255);
+        characterButton.GetComponent<Image>().color = new Color(255, 255, 255, 255);
+    }
+
+    public static void setupCharacterMode()
+    {
+        var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
+        textList[0].text = hexSeed;
+
+        Button[] buttons = Instance.GetComponentsInChildren<Button>();
+        GameObject characterButton = buttons[4].gameObject;
+        GameObject wordsButton = buttons[5].gameObject;
+
+        characterButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 255, 255, 255);
+        characterButton.GetComponent<Image>().color = new Color32(32, 32, 32, 255);
+        wordsButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(89, 89, 89, 255);
+        wordsButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+    }
+
+
+    //crowd estate unveil olive execute foot excess two twist piano orchard avoid
+    // 
 }
