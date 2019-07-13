@@ -42,6 +42,8 @@ public class MenuScreenManager : MonoBehaviour
 
     private Image greenCheck;
     private Image redWarning;
+    private Image greenOutline;
+    private Image redOutline;
 
     public void Awake()
     {
@@ -59,6 +61,8 @@ public class MenuScreenManager : MonoBehaviour
         // Unity is bugged and doesn't allow you to properly re-order child objects of prefabs
         greenCheck = images[5];
         redWarning = images[7];
+        redOutline = images[8];
+        greenOutline = images[9];
         deactivateCheckSymbols();
 
         sceneLoadProgress = GetComponentInChildren<Slider>(true);
@@ -195,16 +199,17 @@ public class MenuScreenManager : MonoBehaviour
 
     public void GoToEncodeSeedFromSeedSetup() {
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
-        bool validSeed = validSeedString(seedInputField.text);
+        string seed = removeHexPrefix(seedInputField.text);
+        bool validSeed = validSeedString(seed);
 
         if (validSeed)
         {
-            Debug.Log("Valid hex seed: " + seedInputField.text);
+            Debug.Log("Valid hex seed: " + seed);
             GoToEncodeSeed();
         }
-        else if (validBip(seedInputField.text))
+        else if (validBip(seed))
         {
-            Debug.Log("Valid bip39 seed: " + seedInputField.text);
+            Debug.Log("Valid bip39 seed: " + seed);
             GoToEncodeSeed();
         }
 
@@ -268,7 +273,7 @@ public class MenuScreenManager : MonoBehaviour
         {
             TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>(true);
 
-            string seedFromInput = seedInputField.text;
+            string seedFromInput = removeHexPrefix(seedInputField.text);
             if (InteractableConfig.SeedHexLength % 2 == 1)
             {
                 if (seedFromInput.Length == InteractableConfig.SeedHexLength)
@@ -561,9 +566,18 @@ public class MenuScreenManager : MonoBehaviour
                         c == 'f' || c == 'F') && validHex;
         }
 
-        if (!validHex)
+        string[] wordArray = seedString.Split(null);
+
+        if (!validHex && wordArray.Length> 1 && wordArray.Length < 12)
         {
-            warningText.GetComponent<TextMeshProUGUI>().text = "Warning: seed must only contain hex characters";
+            Debug.Log("array length: " + wordArray.Length);
+            warningText.GetComponent<TextMeshProUGUI>().text = "Remember to add spaces between the words.";
+            warningText.GetComponent<TextMeshProUGUI>().color = new Color32(255, 20, 20, 255);
+            setRedWarning();
+        }
+        else if (!validHex)
+        {
+            warningText.GetComponent<TextMeshProUGUI>().text = "Character seeds must only contain hex characters.";
             warningText.GetComponent<TextMeshProUGUI>().color = new Color32(255, 20, 20, 255);
             setRedWarning();
         }
@@ -571,11 +585,16 @@ public class MenuScreenManager : MonoBehaviour
         {
             // send warning message that the length is too short
             validHex = false;
-            int charLimit = InteractableConfig.SeedHexLength;
-            if (charLimit % 2 == 1)
-                charLimit++;
 
-            warningText.GetComponent<TextMeshProUGUI>().text = "Warning: seed must be " + "33" + " characters long";
+            warningText.GetComponent<TextMeshProUGUI>().text = "Not enough characters!";
+            warningText.GetComponent<TextMeshProUGUI>().color = new Color32(255, 20, 20, 255);
+            setRedWarning();
+        }
+        else if (seedString.Length > 33)
+        {
+            validHex = false;
+
+            warningText.GetComponent<TextMeshProUGUI>().text = "Too many characters!";
             warningText.GetComponent<TextMeshProUGUI>().color = new Color32(255, 20, 20, 255);
             setRedWarning();
         }
@@ -587,6 +606,7 @@ public class MenuScreenManager : MonoBehaviour
     {
         BIP39Converter bpc = new BIP39Converter();
         string hex = "";
+
         try
         {
             hex = bpc.getHexFromSentence(seed);
@@ -604,18 +624,19 @@ public class MenuScreenManager : MonoBehaviour
     public void checkInputSeed()
     {
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
-        bool validSeed = validSeedString(seedInputField.text);
+        string seed = removeHexPrefix(seedInputField.text);
+        bool validSeed = validSeedString(seed);
 
         if (validSeed)
         {
-            Debug.Log("Valid hex seed: " + seedInputField.text);
+            Debug.Log("Valid hex seed: " + seed);
             warningText.GetComponent<TextMeshProUGUI>().text = "Character seed detected!";
             warningText.GetComponent<TextMeshProUGUI>().color = new Color32(81, 150, 55, 255);
             setGreenCheck();
         }
         else if (validBip(seedInputField.text))
         {
-            Debug.Log("Valid bip39 seed: " + seedInputField.text);
+            Debug.Log("Valid bip39 seed: " + seed);
             warningText.GetComponent<TextMeshProUGUI>().text = "Word seed detected!";
             warningText.GetComponent<TextMeshProUGUI>().color = new Color32(81, 150, 55, 255);
             setGreenCheck();
@@ -625,19 +646,32 @@ public class MenuScreenManager : MonoBehaviour
     public void setGreenCheck()
     {
         redWarning.gameObject.SetActive(false);
+        redOutline.gameObject.SetActive(false);
         greenCheck.gameObject.SetActive(true);
+        greenOutline.gameObject.SetActive(true);
     }
 
     public void setRedWarning()
     {
         redWarning.gameObject.SetActive(true);
+        redOutline.gameObject.SetActive(true);
         greenCheck.gameObject.SetActive(false);
+        greenOutline.gameObject.SetActive(false);
     }
 
     public void deactivateCheckSymbols()
     {
         redWarning.gameObject.SetActive(false);
+        redOutline.gameObject.SetActive(false);
         greenCheck.gameObject.SetActive(false);
+        greenOutline.gameObject.SetActive(false);
     }
 
+    // Removes the hex prefix from a string, if it has one
+    public static string removeHexPrefix(string hexString)
+    {
+        if (hexString != null && hexString.StartsWith("0x"))
+            hexString = hexString.Substring(2);
+        return hexString;
+    }
 }
