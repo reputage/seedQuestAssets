@@ -28,7 +28,8 @@ public static class CommandLineManager
         {"nextaction", doNextAction},
         {"skip", skipScene},
         {"finduierrors", findUiErrors},
-        {"customlearn", learnCustom}
+        {"customlearn", learnCustom},
+        {"custombreak", learnBreak}
         //{"resetitem", resetInteractable},
         //{"selectaction", selectAction},
 
@@ -191,6 +192,18 @@ public static class CommandLineManager
     // Creates a custom learn mode path with scenes dtermined by the user.
     public static string learnCustom(string input)
     {
+        return learnTest(input, false);
+    }
+
+    // Creates a custom learn mode that intentionaly tests whether a scene has all 16 interactables
+    public static string learnBreak(string input)
+    {
+        return learnTest(input, true);
+    }
+
+    // Creates a custom learn mode - does the heavy lifting for the above two functions
+    public static string learnTest(string input, bool tryToBreak)
+    {
         string[] stringInputs = input.Split(null);
         int[] scenes = new int[InteractableConfig.SitesPerGame];
         int[] actions = new int[InteractableConfig.SitesPerGame + (InteractableConfig.SitesPerGame * InteractableConfig.ActionsPerSite * 2)];
@@ -235,7 +248,11 @@ public static class CommandLineManager
 
             for (int j = 0; j < InteractableConfig.ActionsPerSite; j++)
             {
-                actions[j * 2 + 1 + i + i * InteractableConfig.ActionsPerSite * 2] = j % 4;
+                if (tryToBreak)
+                    actions[j * 2 + 1 + i + i * InteractableConfig.ActionsPerSite * 2] = j + 13;
+                else
+                    actions[j * 2 + 1 + i + i * InteractableConfig.ActionsPerSite * 2] = j % 16;
+                
                 actions[j * 2 + 2 + i + i * InteractableConfig.ActionsPerSite * 2] = j % 4;
             }
         }

@@ -32,7 +32,10 @@ namespace SeedQuest.Interactables {
         /// <summary> Seed String </summary>
         public static string SeedString = "3720B025A102812744F830F55DDA275C5"; //"3720B091810D8127C55630F55DD2275C5"; //"772283D9D40BAC27C6D6D60537D7B3525"; //"76101B07DC633F955696D7664C2B"; //"EBE0AC8C"; //"EB204654C9";
 
-        public static string SeedSentence = "ugly call give address amount venture misery dose quick spoil weekend inspire";
+        public static string SeedSentence = "ugly call hard appear amount velvet mask thunder quick spot weekend hybrid";
+
+        // This is the old seed sentence - keeping for testing purposes
+        //public static string SeedSentence = "ugly call give address amount venture misery dose quick spoil weekend inspire";
 
         /// <summary> Has a Level been compleleted for MultiLevel Game </summary>
         static public bool ShowLevelComplete = false;
@@ -153,7 +156,7 @@ namespace SeedQuest.Interactables {
                 foreach(Interactable item in list) {
                     if(BoundingBox.InBounds(item.transform, bounds)) {
                         subset.Add(item);
-                        //Debug.Log("Item name: " + item.name + " item number: " + counter);
+                        Debug.Log("Item name: " + item.name + " item number: " + counter);
                         counter++;
                     }
                     else
