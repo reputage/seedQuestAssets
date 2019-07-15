@@ -76,8 +76,8 @@ public class EndGameUI : MonoBehaviour
             textList[0].text = sentence;
         }
 
-        Debug.Log("Hex: " + hexSeed);
-        Debug.Log("Bip: " + bipSeed);
+        //Debug.Log("Hex: " + hexSeed);
+        //Debug.Log("Bip: " + bipSeed);
 
         if (GameManager.Mode == GameMode.Rehearsal)
         {
@@ -92,7 +92,7 @@ public class EndGameUI : MonoBehaviour
 
         for (int i = 0; i < textList.Length; i++)
         {
-            Debug.Log("Text data #" + i + ": " + textList[i].text);
+            //Debug.Log("Text data #" + i + ": " + textList[i].text);
         }
 
         setupCharacterMode();
@@ -133,7 +133,6 @@ public class EndGameUI : MonoBehaviour
 
     public void copySeed()
     {
-        Debug.Log("Hello from copySeed()");
         var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
         string seed = textList[0].text;
 
