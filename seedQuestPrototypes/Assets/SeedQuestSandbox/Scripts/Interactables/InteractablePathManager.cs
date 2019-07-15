@@ -62,7 +62,8 @@ namespace SeedQuest.Interactables {
                 }
                 else if(LevelManager.IsMultiLevelGame && ShowLevelComplete) {
                     GameManager.State = GameState.Menu;
-                    LevelClearUI.ToggleOn();
+                    if (!GameManager.TutorialMode)
+                        LevelClearUI.ToggleOn();
                 }
             }
             else if(GameManager.Mode == GameMode.Recall) {
@@ -72,7 +73,8 @@ namespace SeedQuest.Interactables {
                 }
                 else if(LevelManager.IsMultiLevelGame && ShowLevelComplete) {
                     GameManager.State = GameState.Menu;
-                    LevelClearUI.ToggleOn();
+                    if (!GameManager.TutorialMode)
+                        LevelClearUI.ToggleOn();
                 }
             }
         }

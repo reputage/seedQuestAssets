@@ -19,9 +19,14 @@ public class NewTutorialManager : MonoBehaviour
 
     void Awake()
     {
+        GameManager.Mode = GameMode.Rehearsal;
+        GameManager.TutorialMode = true;
         canvas = GetComponentsInChildren<Canvas>(true);
         currentCanvasIndex = 0;
         playerStartPosition = GameObject.FindGameObjectWithTag("Player").transform.localPosition;
+        InteractablePathManager.SeedString = "A09206000000000000000000000000000";
+        InteractablePathManager.SetupInteractablePathIDs();
+        InteractablePathManager.Initalize();
     }
 
     private void Update()
@@ -67,6 +72,11 @@ public class NewTutorialManager : MonoBehaviour
         {
             if (InteractableLog.Count == 3)
             {
+
+                InteractableManager.UnHighlightAllInteractables();
+                InteractableManager.UnTrackAllInteractables();
+                InteractablePathManager.Reset();
+                InteractablePreviewUI.ToggleShow();
                 GoToCanvas(14);
             }
         }
@@ -105,7 +115,6 @@ public class NewTutorialManager : MonoBehaviour
 
     public void StartRecall()
     {
-        InteractableLog.Clear();
         GameManager.Mode = GameMode.Recall;
         recall = true;
         canvas[currentCanvasIndex].gameObject.SetActive(false);
@@ -114,6 +123,7 @@ public class NewTutorialManager : MonoBehaviour
     public void Skip()
     {
         SaveSkip();
+        GameManager.TutorialMode = false;
         SceneManager.LoadScene("PrototypeSelect");
     }
 
