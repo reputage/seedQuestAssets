@@ -34,6 +34,7 @@ public class HUDManager : MonoBehaviour {
     public HUDItemProps useUndo;
     public HUDItemProps useZoomSlider;
     public HUDItemProps useHint;
+    public HUDItemProps useMinimap;
 
     static private HUDManager instance = null;
     static private HUDManager setInstance() { instance = GameObject.FindObjectOfType<HUDManager>(); return instance; }
@@ -89,6 +90,7 @@ public class HUDManager : MonoBehaviour {
         InstantiateHUDElement<UndoUI>(useUndo);
         InstantiateHUDElement<CameraSlider>(useZoomSlider);
         InstantiateHUDElement<GraduatedRehearsal>(useHint);
+        InstantiateHUDElement<MinimapUI>(useMinimap);
     }
 
     public void DestroyImmediateHUD() {
@@ -111,6 +113,7 @@ public class HUDManager : MonoBehaviour {
         DestroyHUDElement<UndoUI>(useUndo);
         DestroyHUDElement<CameraSlider>(useZoomSlider);
         DestroyHUDElement<GraduatedRehearsal>(useHint);
+        DestroyHUDElement<MinimapUI>(useMinimap);
     }
 
     public HUDItemProps GetProps<T>() {
@@ -131,6 +134,7 @@ public class HUDManager : MonoBehaviour {
         else if (listType == typeof(UndoUI)) { return useUndo; }
         else if (listType == typeof(CameraSlider)) { return useZoomSlider; }
         else if (listType == typeof(GraduatedRehearsal)) { return useHint; }
+        else if (listType == typeof(MinimapUI)) { return useMinimap; }
         return null;
     }
 }

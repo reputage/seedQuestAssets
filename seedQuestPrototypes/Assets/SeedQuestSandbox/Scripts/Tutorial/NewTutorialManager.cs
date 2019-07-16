@@ -24,7 +24,7 @@ public class NewTutorialManager : MonoBehaviour
         canvas = GetComponentsInChildren<Canvas>(true);
         currentCanvasIndex = 0;
         playerStartPosition = GameObject.FindGameObjectWithTag("Player").transform.localPosition;
-        InteractablePathManager.SeedString = "A09206000000000000000000000000000";
+        InteractablePathManager.SeedString = "A09206A09206000000000000000000000";
         InteractablePathManager.SetupInteractablePathIDs();
         InteractablePathManager.Initalize();
     }
@@ -72,11 +72,13 @@ public class NewTutorialManager : MonoBehaviour
         {
             if (InteractableLog.Count == 3)
             {
-
-                InteractableManager.UnHighlightAllInteractables();
-                InteractableManager.UnTrackAllInteractables();
                 InteractablePathManager.Reset();
                 InteractablePreviewUI.ToggleShow();
+                InteractableManager.UnHighlightAllInteractables();
+                InteractableManager.UnTrackAllInteractables();
+                ParticleSystem[] particles = FindObjectsOfType<ParticleSystem>();
+                foreach (ParticleSystem particle in particles)
+                    particle.Stop();
                 GoToCanvas(14);
             }
         }
