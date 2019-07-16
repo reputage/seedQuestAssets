@@ -8,7 +8,7 @@ namespace SeedQuest.HUD
     public class MinimapUI : MonoBehaviour
     {
         public Sprite source;
-        //public float rotation;
+        public float rotation;
         public float mapZoom;
         public float xScale;
         public float yScale;
@@ -16,6 +16,7 @@ namespace SeedQuest.HUD
         public float playerYOffset;
 
         private GameObject player;
+        private Image mapContainer;
         private Image map;
         private Image playerIcon;
         private Image pinIcon;
@@ -24,20 +25,24 @@ namespace SeedQuest.HUD
         {
             player = GameObject.FindGameObjectWithTag("Player");
             Image[] images = gameObject.GetComponentsInChildren<Image>();
+            mapContainer = images[1];
             map = images[2];
             playerIcon = images[3];
             pinIcon = images[4];
+
 
             map.sprite = source;
             //map.transform.eulerAngles = new Vector3(0, 0, -rotation);
             map.rectTransform.sizeDelta = source.bounds.size * mapZoom;
             //map.transform.localPosition = new Vector3(0, playerYOffset, 0);
+            mapContainer.transform.eulerAngles = new Vector3(0, 0, rotation);
             pinIcon.gameObject.SetActive(false);
+
         }
 
         private void Update()
         {
-            playerIcon.transform.eulerAngles = new Vector3(0, -180, player.transform.eulerAngles.y);
+            playerIcon.transform.eulerAngles = new Vector3(0, -180, player.transform.eulerAngles.y-rotation);
             map.transform.localPosition = new Vector3(-player.transform.localPosition.x * xScale + playerXOffset, -player.transform.localPosition.z * yScale + playerYOffset, 0);
         }
 
