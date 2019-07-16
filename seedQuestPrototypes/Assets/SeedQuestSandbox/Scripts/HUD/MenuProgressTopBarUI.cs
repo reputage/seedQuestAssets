@@ -25,7 +25,7 @@ public class MenuProgressTopBarUI : MonoBehaviour
     }
 
     public void UpdateText() {
-        sceneText.text = InteractableLog.CurrentLevelIndex + ". "  + LevelManager.LevelName;
+        sceneText.text = (InteractableLog.CurrentLevelIndex + 1) + ". "  + LevelManager.LevelName;
         actionText.text = InteractableLog.Count + "/" + InteractableConfig.ActionsPerGame + " actions";
     }
 
