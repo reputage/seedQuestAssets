@@ -178,7 +178,8 @@ public class MenuScreenManager : MonoBehaviour
         canvas[4].gameObject.SetActive(true);
         SetupRotateBackground(270);
         SetupSeedSetupBip();
-        
+        checkInputSeed();
+
         canvas[9].gameObject.SetActive(true);
         var buttonGroup = canvas[9].transform.GetChild(0);
         buttonGroup.localPosition = new Vector3(-640, 340, 0);
@@ -568,7 +569,13 @@ public class MenuScreenManager : MonoBehaviour
 
         string[] wordArray = seedString.Split(null);
 
-        if (!validHex && wordArray.Length> 1 && wordArray.Length < 12)
+        if (seedString == "" || seedString.Length < 1)
+        {
+            deactivateCheckSymbols();
+            warningText.GetComponent<TextMeshProUGUI>().text = "";
+            validHex = false;
+        }
+        else if (!validHex && wordArray.Length> 1 && wordArray.Length < 12)
         {
             Debug.Log("array length: " + wordArray.Length);
             warningText.GetComponent<TextMeshProUGUI>().text = "Remember to add spaces between the words.";
@@ -623,6 +630,7 @@ public class MenuScreenManager : MonoBehaviour
 
     public void checkInputSeed()
     {
+        Debug.Log("Hello from checkInputSeed()");
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
         string seed = removeHexPrefix(seedInputField.text);
         bool validSeed = validSeedString(seed);
