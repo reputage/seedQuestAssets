@@ -20,10 +20,13 @@ public class HUDManager : MonoBehaviour {
     public HUDItemProps useHomeSelect;
     public HUDItemProps useEndGame;
     public HUDItemProps useESCMenu;
+    public HUDItemProps useHelpMenu;
     public HUDItemProps useLevelClear;
     public HUDItemProps useLevelName;
     public HUDItemProps useLoadingScreen;
     public HUDItemProps usePauseMenu;
+    public HUDItemProps useMenuProgressTopBar;
+    public HUDItemProps useNewPauseMenu;
     public HUDItemProps useProgressTracker;
     public HUDItemProps useCLI;
     public HUDItemProps useTutorial;
@@ -31,7 +34,6 @@ public class HUDManager : MonoBehaviour {
     public HUDItemProps useUndo;
     public HUDItemProps useZoomSlider;
     public HUDItemProps useHint;
-
 
     static private HUDManager instance = null;
     static private HUDManager setInstance() { instance = GameObject.FindObjectOfType<HUDManager>(); return instance; }
@@ -45,8 +47,8 @@ public class HUDManager : MonoBehaviour {
     public void InstantiateHUDElement<T>(HUDItemProps props) {
         if(props.use && props.prefab != null && GetComponentInChildren<T>(true) == null) {
 
-            //PrefabUtility.InstantiatePrefab(props.prefab, transform);
-            Instantiate(props.prefab, transform);
+            PrefabUtility.InstantiatePrefab(props.prefab, transform);
+            //Instantiate(props.prefab, transform);
         }
     }
 
@@ -57,8 +59,8 @@ public class HUDManager : MonoBehaviour {
         HUDItemProps props = Instance.GetProps<T>();
         if (props.prefab != null && Instance.GetComponentInChildren<T>(true) == null) {
 
-           //PrefabUtility.InstantiatePrefab(props.prefab, Instance.transform);
-           Instantiate(props.prefab, Instance.transform);
+           PrefabUtility.InstantiatePrefab(props.prefab, Instance.transform);
+           //Instantiate(props.prefab, Instance.transform);
         }
     }
 
@@ -72,13 +74,16 @@ public class HUDManager : MonoBehaviour {
         InstantiateHUDElement<CursorUI>(useCursor);
         InstantiateHUDElement<EndGameUI>(useEndGame);
         InstantiateHUDElement<ESCMenuUI>(useESCMenu);
+        InstantiateHUDElement<HelpMenuUI>(useHelpMenu);
         InstantiateHUDElement<HomeSelectUI>(useHomeSelect);
         InstantiateHUDElement<InteractablePreviewUI>(useInteractablePreview);
         InstantiateHUDElement<InteractableTrackerUI>(useInteractableTracker);
         InstantiateHUDElement<LevelClearUI>(useLevelClear);
         InstantiateHUDElement<LevelNameUI>(useLevelName);
+        InstantiateHUDElement<MenuProgressTopBarUI>(useMenuProgressTopBar);
         InstantiateHUDElement<LoadingScreenUI>(useLoadingScreen);
         InstantiateHUDElement<ScenePauseMenu>(usePauseMenu);
+        InstantiateHUDElement<PauseMenuUI>(useNewPauseMenu);
         InstantiateHUDElement<ProgressTrackerUI>(useProgressTracker);
         InstantiateHUDElement<TutorialManager>(useTutorial);
         InstantiateHUDElement<UndoUI>(useUndo);
@@ -91,13 +96,16 @@ public class HUDManager : MonoBehaviour {
         DestroyHUDElement<CursorUI>(useCursor);
         DestroyHUDElement<EndGameUI>(useEndGame);
         DestroyHUDElement<ESCMenuUI>(useESCMenu);
+        DestroyHUDElement<HelpMenuUI>(useHelpMenu);
         DestroyHUDElement<HomeSelectUI>(useHomeSelect);
         DestroyHUDElement<InteractablePreviewUI>(useInteractablePreview);
         DestroyHUDElement<InteractableTrackerUI>(useInteractableTracker);
         DestroyHUDElement<LevelClearUI>(useLevelClear);
         DestroyHUDElement<LevelNameUI>(useLevelName);
+        DestroyHUDElement<MenuProgressTopBarUI>(useMenuProgressTopBar);
         DestroyHUDElement<LoadingScreenUI>(useLoadingScreen);
         DestroyHUDElement<ScenePauseMenu>(usePauseMenu);
+        DestroyHUDElement<PauseMenuUI>(useNewPauseMenu);
         DestroyHUDElement<ProgressTrackerUI>(useProgressTracker);
         DestroyHUDElement<TutorialManager>(useTutorial);
         DestroyHUDElement<UndoUI>(useUndo);

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,9 +38,16 @@ public class MenuScreenManager : MonoBehaviour
     private float sceneLoadProgressValue;
     private Slider sceneLoadProgress;
     private Button sceneContinueButton;
+    private bool isBip;
+
+    private Image greenCheck;
+    private Image redWarning;
+    private Image greenOutline;
+    private Image redOutline;
 
     public void Awake()
     {
+        isBip = false;
         canvas = GetComponentsInChildren<Canvas>(true);
         motionBackgroundCanvas = canvas[1];
         startCanvas = canvas[2];
@@ -48,6 +56,14 @@ public class MenuScreenManager : MonoBehaviour
         sceneLineUpCanvas = canvas[7];
         actionLineUpCanvas = canvas[8];
         backButtonCanvas = canvas[9];
+
+        Image[] images = canvas[4].GetComponentsInChildren<Image>();
+        // Unity is bugged and doesn't allow you to properly re-order child objects of prefabs
+        greenCheck = images[5];
+        redWarning = images[7];
+        redOutline = images[8];
+        greenOutline = images[9];
+        deactivateCheckSymbols();
 
         sceneLoadProgress = GetComponentInChildren<Slider>(true);
         sceneContinueButton = sceneLineUpCanvas.GetComponentInChildren<Button>(true);
@@ -161,9 +177,9 @@ public class MenuScreenManager : MonoBehaviour
         ResetCanvas();
         canvas[4].gameObject.SetActive(true);
         SetupRotateBackground(270);
-        SetupSeedSetup();
+        SetupSeedSetupBip();
+        checkInputSeed();
 
-        
         canvas[9].gameObject.SetActive(true);
         var buttonGroup = canvas[9].transform.GetChild(0);
         buttonGroup.localPosition = new Vector3(-640, 340, 0);
@@ -175,7 +191,7 @@ public class MenuScreenManager : MonoBehaviour
         ResetCanvas();
         encodeSeedCanvas.gameObject.SetActive(true);
         SetupRotateBackground(330);
-        SetupEncodeSeed();
+        SetupEncodeSeedBip();
 
         canvas[9].gameObject.SetActive(true);
         var buttonGroup = canvas[9].transform.GetChild(0);
@@ -184,12 +200,20 @@ public class MenuScreenManager : MonoBehaviour
 
     public void GoToEncodeSeedFromSeedSetup() {
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
-        bool validSeed = validSeedString(seedInputField.text);
+        string seed = removeHexPrefix(seedInputField.text);
+        bool validSeed = validSeedString(seed);
+
         if (validSeed)
         {
-            Debug.Log("Seed: " + seedInputField.text);
+            Debug.Log("Valid hex seed: " + seed);
             GoToEncodeSeed();
         }
+        else if (validBip(seed))
+        {
+            Debug.Log("Valid bip39 seed: " + seed);
+            GoToEncodeSeed();
+        }
+
     }
 
     public void UndoLastSceneEncodeStep() {
@@ -227,11 +251,18 @@ public class MenuScreenManager : MonoBehaviour
     public void SetupSeedSetup()
     {
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
-        seedInputField.text = InteractablePathManager.SeedString;
+        //seedInputField.text = InteractablePathManager.SeedString;
         int charLimit = InteractableConfig.SeedHexLength;
-//        if (charLimit %2 == 1)
-//            charLimit++;
-        
+
+        seedInputField.characterLimit = charLimit;
+    }
+
+    public void SetupSeedSetupBip()
+    {
+        TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
+        seedInputField.text = InteractablePathManager.SeedString;
+        int charLimit = 700;
+
         seedInputField.characterLimit = charLimit;
     }
 
@@ -243,7 +274,7 @@ public class MenuScreenManager : MonoBehaviour
         {
             TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>(true);
 
-            string seedFromInput = seedInputField.text;
+            string seedFromInput = removeHexPrefix(seedInputField.text);
             if (InteractableConfig.SeedHexLength % 2 == 1)
             {
                 if (seedFromInput.Length == InteractableConfig.SeedHexLength)
@@ -267,6 +298,39 @@ public class MenuScreenManager : MonoBehaviour
             InteractablePathManager.SeedString = seedFromInput;
 
             int[] siteIDs = InteractablePathManager.GetPathSiteIDs();
+            SetIconAndPanelForRehearsal(siteIDs);
+        }
+    }
+
+    public void SetupEncodeSeedBip()
+    {
+        SetLevelPanelDefault();
+
+        if (GameManager.Mode == GameMode.Rehearsal)
+        {
+            TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>(true);
+
+            string seedFromInput = seedInputField.text;
+            string hexSeed = "";
+
+            if (!detectHex(seedFromInput) && validBip(seedFromInput))
+            {
+                BIP39Converter bpc = new BIP39Converter();
+                hexSeed = bpc.getHexFromSentence(seedFromInput);
+            }
+            else
+            {
+                hexSeed = seedFromInput;
+                //Debug.Log("Seed appears to be hex");
+            }
+
+            //Debug.Log("Sentence: " + seedFromInput);
+            //Debug.Log("Seed: " + hexSeed);
+
+            InteractablePathManager.SeedString = hexSeed;
+
+            int[] siteIDs = InteractablePathManager.GetPathSiteIDs();
+
             SetIconAndPanelForRehearsal(siteIDs);
         }
     }
@@ -447,35 +511,175 @@ public class MenuScreenManager : MonoBehaviour
     public void SetRandomSeed()
     {
         InteractablePathManager.SetRandomSeed();
+        BIP39Converter bpc = new BIP39Converter();
 
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
         seedInputField.text = InteractablePathManager.SeedString;
     }
 
+    public void SetRandomBIP39Seed()
+    {
+        BIP39Converter bpc = new BIP39Converter();
+        InteractablePathManager.SetRandomSeed();
+
+        TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
+        seedInputField.text = bpc.getSentenceFromHex(InteractablePathManager.SeedString);
+    }
+
+    public void SwitchSeedFormat()
+    {
+        TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
+
+        if (isBip)
+        {
+            seedInputField.text = InteractablePathManager.SeedString;
+            isBip = false;
+        }
+        else
+        {
+            BIP39Converter bpc = new BIP39Converter();
+            seedInputField.text = bpc.getSentenceFromHex(InteractablePathManager.SeedString);
+            isBip = true;
+        }
+    }
+
+    public bool detectHex(string seed)
+    {
+        if (seed.Length <= InteractableConfig.SeedHexLength + 1 && 
+                 System.Text.RegularExpressions.Regex.IsMatch(seed, @"\A\b[0-9a-fA-F]+\b\Z"))
+        {
+            return true;
+        }
+
+        //Debug.Log("Seed doesn't appear to be hex.");
+        return false;
+    }
+
     public bool validSeedString(string seedString)
     {
         bool validHex = true;
-        foreach (var hexChar in seedString)
+        foreach (char c in seedString)
         {
-            validHex = ((hexChar >= '0' && hexChar <= '9') ||
-                        (hexChar >= 'a' && hexChar <= 'f') ||
-                        (hexChar >= 'A' && hexChar <= 'F'));
+            validHex = (c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || 
+                        c == '5' || c == '6' || c == '7' || c == '8' || c == '9' || 
+                        c == 'a' || c == 'A' || c == 'b' || c == 'B' || c == 'c' || 
+                        c == 'C' || c == 'd' || c == 'D' || c == 'e' || c == 'E' || 
+                        c == 'f' || c == 'F') && validHex;
         }
 
-        if (!validHex)
-            warningText.GetComponent<TextMeshProUGUI>().text = "Warning: seed must only contain hex characters";
-        else if (seedString.Length < 28)
+        string[] wordArray = seedString.Split(null);
+
+        if (seedString == "" || seedString.Length < 1)
+        {
+            deactivateCheckSymbols();
+            warningText.GetComponent<TextMeshProUGUI>().text = "";
+            validHex = false;
+        }
+        else if (!validHex && wordArray.Length> 1 && wordArray.Length < 12)
+        {
+            Debug.Log("array length: " + wordArray.Length);
+            warningText.GetComponent<TextMeshProUGUI>().text = "Remember to add spaces between the words.";
+            warningText.GetComponent<TextMeshProUGUI>().color = new Color32(255, 20, 20, 255);
+            setRedWarning();
+        }
+        else if (!validHex)
+        {
+            warningText.GetComponent<TextMeshProUGUI>().text = "Character seeds must only contain hex characters.";
+            warningText.GetComponent<TextMeshProUGUI>().color = new Color32(255, 20, 20, 255);
+            setRedWarning();
+        }
+        else if (seedString.Length < 33)
         {
             // send warning message that the length is too short
             validHex = false;
-            int charLimit = InteractableConfig.SeedHexLength;
-            if (charLimit % 2 == 1)
-                charLimit++;
-            
-            warningText.GetComponent<TextMeshProUGUI>().text = "Warning: seed must be " + charLimit + " characters long";
+
+            warningText.GetComponent<TextMeshProUGUI>().text = "Not enough characters!";
+            warningText.GetComponent<TextMeshProUGUI>().color = new Color32(255, 20, 20, 255);
+            setRedWarning();
+        }
+        else if (seedString.Length > 33)
+        {
+            validHex = false;
+
+            warningText.GetComponent<TextMeshProUGUI>().text = "Too many characters!";
+            warningText.GetComponent<TextMeshProUGUI>().color = new Color32(255, 20, 20, 255);
+            setRedWarning();
         }
 
         return validHex;
     }
 
+    public bool validBip(string seed)
+    {
+        BIP39Converter bpc = new BIP39Converter();
+        string hex = "";
+
+        try
+        {
+            hex = bpc.getHexFromSentence(seed);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Exception: " + e);
+            return false;
+        }
+
+        //Debug.Log("hex: " + hex);
+        return true;
+    }
+
+    public void checkInputSeed()
+    {
+        Debug.Log("Hello from checkInputSeed()");
+        TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
+        string seed = removeHexPrefix(seedInputField.text);
+        bool validSeed = validSeedString(seed);
+
+        if (validSeed)
+        {
+            Debug.Log("Valid hex seed: " + seed);
+            warningText.GetComponent<TextMeshProUGUI>().text = "Character seed detected!";
+            warningText.GetComponent<TextMeshProUGUI>().color = new Color32(81, 150, 55, 255);
+            setGreenCheck();
+        }
+        else if (validBip(seedInputField.text))
+        {
+            Debug.Log("Valid bip39 seed: " + seed);
+            warningText.GetComponent<TextMeshProUGUI>().text = "Word seed detected!";
+            warningText.GetComponent<TextMeshProUGUI>().color = new Color32(81, 150, 55, 255);
+            setGreenCheck();
+        }
+    }
+
+    public void setGreenCheck()
+    {
+        redWarning.gameObject.SetActive(false);
+        redOutline.gameObject.SetActive(false);
+        greenCheck.gameObject.SetActive(true);
+        greenOutline.gameObject.SetActive(true);
+    }
+
+    public void setRedWarning()
+    {
+        redWarning.gameObject.SetActive(true);
+        redOutline.gameObject.SetActive(true);
+        greenCheck.gameObject.SetActive(false);
+        greenOutline.gameObject.SetActive(false);
+    }
+
+    public void deactivateCheckSymbols()
+    {
+        redWarning.gameObject.SetActive(false);
+        redOutline.gameObject.SetActive(false);
+        greenCheck.gameObject.SetActive(false);
+        greenOutline.gameObject.SetActive(false);
+    }
+
+    // Removes the hex prefix from a string, if it has one
+    public static string removeHexPrefix(string hexString)
+    {
+        if (hexString != null && hexString.StartsWith("0x"))
+            hexString = hexString.Substring(2);
+        return hexString;
+    }
 }
