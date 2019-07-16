@@ -260,7 +260,7 @@ public class MenuScreenManager : MonoBehaviour
     public void SetupSeedSetupBip()
     {
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
-        //seedInputField.text = InteractablePathManager.SeedString;
+        seedInputField.text = InteractablePathManager.SeedString;
         int charLimit = 700;
 
         seedInputField.characterLimit = charLimit;

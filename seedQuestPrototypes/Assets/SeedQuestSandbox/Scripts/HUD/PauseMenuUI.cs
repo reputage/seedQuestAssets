@@ -17,4 +17,16 @@ public class PauseMenuUI : MonoBehaviour
        bool active = Instance.gameObject.activeSelf;
        Instance.gameObject.SetActive(true);
     }
-}
+
+    public void ExitToMainMenu()
+    {
+        SeedQuest.Level.LevelManager.Instance.StopLevelMusic();
+        MenuScreenManager.ActivateStart();
+        gameObject.SetActive(false);
+        GameManager.GraduatedMode = false;
+    }
+
+    public void Quit() {
+        Application.Quit();
+    }
+} 
