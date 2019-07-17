@@ -127,6 +127,14 @@ namespace SeedQuest.Interactables
                 interactable.HighlightInteractable(false);
         }
 
+        static public void UnTrackAllInteractables()
+        {
+            foreach (Interactable interactable in FindAllInteractables())
+            {
+                interactable.interactableUI.ToggleTracker(false);
+            }
+        }
+
 
         /// <summary> Initalize LookUp Table for querying interactable based on siteID and spotID  </summary>
         static public void InitalizeLookUp()
