@@ -174,8 +174,8 @@ public class EndGameUI : MonoBehaviour
         UnityQRCode qrCode = new UnityQRCode(qrCodeData);
         Texture2D qrCodeAsTexture2D = qrCode.GetGraphic(20);
 
-        byte[] bytes = qrCodeAsTexture2D.EncodeToPNG();
-        File.WriteAllBytes(Application.dataPath + "/../SavedQRCode.png", bytes);
+        //byte[] bytes = qrCodeAsTexture2D.EncodeToPNG();
+        //File.WriteAllBytes(Application.dataPath + "/../SavedQRCode.png", bytes);
 
         #if UNITY_WEBGL
             Download("seed.txt", seed);
@@ -224,7 +224,7 @@ public class EndGameUI : MonoBehaviour
 
         // These need to be tested
         #if UNITY_WEBGL
-            Download("seed.png", bytes);
+            //Download("seed.png", bytes);
         #elif UNITY_EDITOR
         string path = EditorUtility.SaveFilePanel("Save As", "Downloads", "seed", "txt");
         if (path.Length != 0)
