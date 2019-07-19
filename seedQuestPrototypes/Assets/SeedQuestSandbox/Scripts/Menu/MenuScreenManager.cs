@@ -35,12 +35,14 @@ public class MenuScreenManager : MonoBehaviour
     private Canvas actionLineUpCanvas;
     private Canvas backButtonCanvas;
     private Canvas debugCanvas;
+    private Canvas startDebugCanvas;
 
     private float sceneLoadProgressValue;
     private Slider sceneLoadProgress;
     private Button sceneContinueButton;
     private bool isBip;
     private bool debugRandom;
+    public bool isDebug;
 
     private Image greenCheck;
     private Image redWarning;
@@ -50,6 +52,7 @@ public class MenuScreenManager : MonoBehaviour
     public void Awake()
     {
         isBip = false;
+        isDebug = false;
         canvas = GetComponentsInChildren<Canvas>(true);
         motionBackgroundCanvas = canvas[1];
         startCanvas = canvas[2];
@@ -58,7 +61,8 @@ public class MenuScreenManager : MonoBehaviour
         sceneLineUpCanvas = canvas[7];
         actionLineUpCanvas = canvas[8];
         backButtonCanvas = canvas[9];
-        debugCanvas = canvas[10];
+        startDebugCanvas = canvas[10];
+        debugCanvas = canvas[11];
 
         Image[] images = canvas[4].GetComponentsInChildren<Image>();
         // Unity is bugged and doesn't allow you to properly re-order child objects of prefabs
@@ -118,6 +122,9 @@ public class MenuScreenManager : MonoBehaviour
         canvas[7].gameObject.SetActive(false);
         canvas[8].gameObject.SetActive(false);
         canvas[9].gameObject.SetActive(false);
+        canvas[10].gameObject.SetActive(false);
+        canvas[11].gameObject.SetActive(false);
+
     }
 
     public void GoToStart()
@@ -693,38 +700,44 @@ public class MenuScreenManager : MonoBehaviour
         return hexString;
     }
 
-    public void gotToDebugCanvas()
+    public void GoToDebugCanvas()
     {
-        
+        ResetCanvas();
+        debugCanvas.gameObject.SetActive(true);
     }
 
     public void GoToEncodeDebugOrdered()
     {
         debugRandom = false;
-
-        state = MenuScreenStates.EncodeSeed;
-        ResetCanvas();
-        encodeSeedCanvas.gameObject.SetActive(true);
-        SetupRotateBackground(330);
-        SetupEncodeSeedBip();
-
-        canvas[9].gameObject.SetActive(true);
-        var buttonGroup = canvas[9].transform.GetChild(0);
-        buttonGroup.localPosition = new Vector3(-790, 380, 0);
+        isDebug = true;
+        debugCanvas.gameObject.SetActive(false);
+        SetModeRecoverSeed();
     }
 
     public void GoToEncodeDebugRand()
     {
         debugRandom = true;
+        isDebug = true;
+        debugCanvas.gameObject.SetActive(false);
+        SetModeRecoverSeed();
+    }
 
-        state = MenuScreenStates.EncodeSeed;
-        ResetCanvas();
-        encodeSeedCanvas.gameObject.SetActive(true);
-        SetupRotateBackground(330);
-        SetupEncodeSeedBip();
+    public void startDebugRun()
+    {
+        if (!debugRandom)
+        {
+            CloseMenuScreen();
+            DebugSeedUtility.startIterative();
+        }
+        else
+        {
+            CloseMenuScreen();
+            DebugSeedUtility.startRandom();
+        }
+    }
 
-        canvas[9].gameObject.SetActive(true);
-        var buttonGroup = canvas[9].transform.GetChild(0);
-        buttonGroup.localPosition = new Vector3(-790, 380, 0);
+    public static void SetEncodeSeedDebugCanvas()
+    {
+        Instance.startDebugCanvas.gameObject.SetActive(true);
     }
 }

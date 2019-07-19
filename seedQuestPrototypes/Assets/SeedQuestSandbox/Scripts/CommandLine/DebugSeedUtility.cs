@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DebugSeedMenu : MonoBehaviour
+public class DebugSeedUtility
 {
 
     // Initialize fuzzy scene name dictionary.
@@ -26,26 +26,28 @@ public class DebugSeedMenu : MonoBehaviour
         {15, "cafe"}
     };
 
-    public void sendLevelSetToCLI()
+    public static string convertLevelSet()
     {
         string levelNames = "";
-
         for (int i = 0; i < LevelSetManager.CurrentLevels.Count; i++)
         {
             levelNames += sceneIndeces[LevelSetManager.CurrentLevels[i].index] + " ";
         }
 
-        // modes: random, iterative (test all in one scene)
+        Debug.Log("Level name string: " + levelNames);
+        return levelNames;
     }
 
-    public void setIterative()
+    public static void startIterative()
     {
-        
+        Debug.Log("Beginning iterative debug seed!");
+        CommandLineManager.learnTest(convertLevelSet(), false, true, false);
     }
 
-    public void setRandom()
+    public static void startRandom()
     {
-        
+        Debug.Log("Beginning random debug seed!");
+        CommandLineManager.learnTest(convertLevelSet(), true, false, false);
     }
 
 
