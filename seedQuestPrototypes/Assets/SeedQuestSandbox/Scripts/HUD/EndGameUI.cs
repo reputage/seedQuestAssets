@@ -10,6 +10,7 @@ using System;
 using System.Runtime.InteropServices;
 using QRCoder;
 using QRCoder.Unity;
+using sharpPDF;
 
 public class EndGameUI : MonoBehaviour
 {
@@ -173,8 +174,8 @@ public class EndGameUI : MonoBehaviour
         UnityQRCode qrCode = new UnityQRCode(qrCodeData);
         Texture2D qrCodeAsTexture2D = qrCode.GetGraphic(20);
 
-        byte[] bytes = qrCodeAsTexture2D.EncodeToPNG();
-        File.WriteAllBytes(Application.dataPath + "/../SavedQRCode.png", bytes);
+        //byte[] bytes = qrCodeAsTexture2D.EncodeToPNG();
+        //File.WriteAllBytes(Application.dataPath + "/../SavedQRCode.png", bytes);
 
         #if UNITY_WEBGL
             Download("seed.txt", seed);
@@ -223,7 +224,7 @@ public class EndGameUI : MonoBehaviour
 
         // These need to be tested
         #if UNITY_WEBGL
-            Download("seed.png", bytes);
+            //Download("seed.png", bytes);
         #elif UNITY_EDITOR
         string path = EditorUtility.SaveFilePanel("Save As", "Downloads", "seed", "txt");
         if (path.Length != 0)
@@ -297,6 +298,34 @@ public class EndGameUI : MonoBehaviour
         characterButton.GetComponent<Image>().color = new Color32(32, 32, 32, 255);
         wordsButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(89, 89, 89, 255);
         wordsButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+    }
+
+    public void pdfTest()
+    {
+        RawImage rawImage = gameObject.AddComponent<RawImage>();
+
+        string sentence = bipSeed;
+        QRCodeGenerator qrGenerator = new QRCodeGenerator();
+        QRCodeData qrCodeData = qrGenerator.CreateQrCode(sentence, QRCodeGenerator.ECCLevel.Q);
+        UnityQRCode qrCode = new UnityQRCode(qrCodeData);
+        Texture2D qrCodeAsTexture2D = qrCode.GetGraphic(20);
+
+        rawImage.texture = qrCodeAsTexture2D;
+        byte[] bytes = qrCodeAsTexture2D.EncodeToJPG(); // .EncodeToPNG();
+
+        pdfDocument myDoc = new sharpPDF.pdfDocument("qr_pdf_test", "qr tester");
+        pdfPage myPage = myDoc.addPage(500, 500);
+        myPage.addImage(bytes, 1, 150, 200, 200);
+
+        myPage.addText("Your seed entropy is: ", 10, 470, sharpPDF.Enumerators.predefinedFont.csCourier, 15);
+        myPage.addText(hexSeed, 10, 450, sharpPDF.Enumerators.predefinedFont.csCourier, 15);
+        myPage.addText(bipSeed, 10, 425, sharpPDF.Enumerators.predefinedFont.csCourier, 10);
+
+        // need to change this code depending on the current operating system/build type
+        myDoc.createPDF("qr_pdf_test.pdf");
+        myPage = null;
+        myDoc = null;
+
     }
 
 

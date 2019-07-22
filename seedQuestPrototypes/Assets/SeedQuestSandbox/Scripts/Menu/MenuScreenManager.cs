@@ -582,6 +582,13 @@ public class MenuScreenManager : MonoBehaviour
             warningText.GetComponent<TextMeshProUGUI>().color = new Color32(255, 20, 20, 255);
             setRedWarning();
         }
+        else if (!validHex && wordArray.Length > 1 && !validBip(seedString))
+        {
+            warningText.GetComponent<TextMeshProUGUI>().text = "Make sure the words are spelled correctly.";
+            warningText.GetComponent<TextMeshProUGUI>().color = new Color32(255, 20, 20, 255);
+            setRedWarning();
+
+        }
         else if (!validHex)
         {
             warningText.GetComponent<TextMeshProUGUI>().text = "Character seeds must only contain hex characters.";
