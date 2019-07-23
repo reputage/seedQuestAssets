@@ -31,6 +31,7 @@ namespace SeedQuest.Interactables
         private TMPro.TextMeshProUGUI actionUITextMesh;
         private RectTransform actionUIRect;
         private RectTransform actionTextRect;
+        private Canvas parentCanvas;
 
         Camera c;
 
@@ -122,6 +123,7 @@ namespace SeedQuest.Interactables
             actionUITextMesh = textList[0];
             persistentLabel = textList[1];
             actionTextRect = actionUITextMesh.gameObject.GetComponent<RectTransform>();
+            parentCanvas = actionUI.GetComponentInParent<Canvas>();
         }
 
         /// <summary> Intialize and Setupt Label Button </summary>
@@ -383,6 +385,7 @@ namespace SeedQuest.Interactables
             Vector3 position = parent.transform.position + labelPositionOffset + positionOffset;
             actionUIRect.position = position;
             actionTextRect.position = position;
+            parentCanvas.renderMode = RenderMode.WorldSpace;
         }
 
         public void SetPositionLow()
@@ -394,6 +397,7 @@ namespace SeedQuest.Interactables
                
             Vector3 position = parent.transform.position + labelPositionOffset + positionOffset - lowPositionOffset;
             actionTextRect.position = position;
+            parentCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
         }
 
         /// <summary> Sets UI Rotation </summary>
