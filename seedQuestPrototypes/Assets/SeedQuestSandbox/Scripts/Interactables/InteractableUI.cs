@@ -32,6 +32,8 @@ namespace SeedQuest.Interactables
         private RectTransform actionUIRect;
         private RectTransform actionTextRect;
         private Canvas parentCanvas;
+        private static HUD.ScreenspaceActionUI screenspaceAction;
+        private bool useScreenSpaceAction;
 
         Camera c;
 
@@ -51,14 +53,17 @@ namespace SeedQuest.Interactables
                 if (persistentLabel.text != actionUITextMesh.text)
                 {
                     persistentLabel.gameObject.SetActive(true);
-                    // code to make action options take new offset go here
-                    SetPositionLow();
+                    if (useScreenSpaceAction)
+                        SetScreenspaceAction();
                 }
                 else
                 {
                     if (persistentLabel.gameObject.activeSelf)
                     {
                         persistentLabel.gameObject.SetActive(false);
+                        if (useScreenSpaceAction)
+                            screenspaceAction.deactivate();
+
                         Color temp = actionUI.GetComponentInChildren<Image>().color;
                         temp.a = 0.0f;
                         actionUI.GetComponentInChildren<Image>().color = temp;
@@ -75,6 +80,7 @@ namespace SeedQuest.Interactables
             if (interactable.flagDeleteUI)
                 return;
 
+            useScreenSpaceAction = true;
             int modeIndex = 0;
             modeIndex = mode == InteractableUIMode.GridSelect ? 1 : modeIndex;
             modeIndex = mode == InteractableUIMode.ListSelect ? 2 : modeIndex;
@@ -124,6 +130,8 @@ namespace SeedQuest.Interactables
             persistentLabel = textList[1];
             actionTextRect = actionUITextMesh.gameObject.GetComponent<RectTransform>();
             parentCanvas = actionUI.GetComponentInParent<Canvas>();
+            screenspaceAction = HUDManager.Instance.GetComponentInChildren<HUD.ScreenspaceActionUI>();
+
         }
 
         /// <summary> Intialize and Setupt Label Button </summary>
@@ -380,6 +388,7 @@ namespace SeedQuest.Interactables
 
         /// <summary> Sets UI Position </summary>
         public void SetPosition() {
+            actionUITextMesh.gameObject.SetActive(true);
             Vector3 labelPositionOffset = Vector3.zero;
             if (parent.stateData != null) labelPositionOffset = parent.stateData.labelPosOffset;
             Vector3 position = parent.transform.position + labelPositionOffset + positionOffset;
@@ -388,16 +397,24 @@ namespace SeedQuest.Interactables
             parentCanvas.renderMode = RenderMode.WorldSpace;
         }
 
-        public void SetPositionLow()
+        public void SetScreenspaceAction()
+        {
+            Vector2 relativePos = c.WorldToViewportPoint(actionUI.transform.position);
+            screenspaceAction.setAction(actionUITextMesh.text, relativePos);
+            actionUITextMesh.gameObject.SetActive(false);
+        }
+
+        public void setCanvasToScreenspace()
         {
             Vector3 labelPositionOffset = Vector3.zero;
             if (parent.stateData != null) labelPositionOffset = parent.stateData.labelPosOffset;
             if (lowPositionOffset == new Vector3(0, 0, 0))
                 lowPositionOffset = new Vector3(0, 1, 0);
-               
+
             Vector3 position = parent.transform.position + labelPositionOffset + positionOffset - lowPositionOffset;
             actionTextRect.position = position;
-            parentCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            //parentCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+
         }
 
         /// <summary> Sets UI Rotation </summary>
