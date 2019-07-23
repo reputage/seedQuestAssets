@@ -17,6 +17,7 @@ namespace SeedQuest.Interactables
         public bool useRotateToCamera = true;
         public Vector3 rotationOffset = new Vector3(0, 0, 0);
         public Vector3 positionOffset = new Vector3(0, 0, 0);
+        public Vector3 lowPositionOffset = new Vector3(0, 0, 0);
         public GameObject debugActionUI = null;
 
         private Interactable parent;
@@ -29,6 +30,7 @@ namespace SeedQuest.Interactables
         private Image[] actionButtonImages;
         private TMPro.TextMeshProUGUI actionUITextMesh;
         private RectTransform actionUIRect;
+        private RectTransform actionTextRect;
 
         Camera c;
 
@@ -48,6 +50,8 @@ namespace SeedQuest.Interactables
                 if (persistentLabel.text != actionUITextMesh.text)
                 {
                     persistentLabel.gameObject.SetActive(true);
+                    // code to make action options take new offset go here
+                    SetPositionLow();
                 }
                 else
                 {
@@ -117,7 +121,7 @@ namespace SeedQuest.Interactables
             var textList = actionUI.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
             actionUITextMesh = textList[0];
             persistentLabel = textList[1];
-
+            actionTextRect = actionUITextMesh.gameObject.GetComponent<RectTransform>();
         }
 
         /// <summary> Intialize and Setupt Label Button </summary>
@@ -378,6 +382,18 @@ namespace SeedQuest.Interactables
             if (parent.stateData != null) labelPositionOffset = parent.stateData.labelPosOffset;
             Vector3 position = parent.transform.position + labelPositionOffset + positionOffset;
             actionUIRect.position = position;
+            actionTextRect.position = position;
+        }
+
+        public void SetPositionLow()
+        {
+            Vector3 labelPositionOffset = Vector3.zero;
+            if (parent.stateData != null) labelPositionOffset = parent.stateData.labelPosOffset;
+            if (lowPositionOffset == new Vector3(0, 0, 0))
+                lowPositionOffset = new Vector3(0, 1, 0);
+               
+            Vector3 position = parent.transform.position + labelPositionOffset + positionOffset - lowPositionOffset;
+            actionTextRect.position = position;
         }
 
         /// <summary> Sets UI Rotation </summary>
