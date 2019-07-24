@@ -17,7 +17,7 @@ namespace SeedQuest.Interactables
         public bool useRotateToCamera = true;
         public Vector3 rotationOffset = new Vector3(0, 0, 0);
         public Vector3 positionOffset = new Vector3(0, 0, 0);
-        public Vector3 lowPositionOffset = new Vector3(0, 0, 0);
+        public Vector2 lowPositionOffset = new Vector3(0, 0);
         public GameObject debugActionUI = null;
 
         private Interactable parent;
@@ -400,7 +400,13 @@ namespace SeedQuest.Interactables
         public void SetScreenspaceAction()
         {
             Vector2 relativePos = c.WorldToViewportPoint(actionUI.transform.position);
-            screenspaceAction.setAction(actionUITextMesh.text, relativePos);
+            if (lowPositionOffset != new Vector2(0, 0))
+                screenspaceAction.setAction(actionUITextMesh.text, relativePos, lowPositionOffset);
+            else
+            {
+                screenspaceAction.setAction(actionUITextMesh.text, relativePos, new Vector2(0, -80));
+            }
+            //screenspaceAction.setAction(actionUITextMesh.text, relativePos, lowPositionOffset);
             actionUITextMesh.gameObject.SetActive(false);
         }
 
@@ -408,11 +414,11 @@ namespace SeedQuest.Interactables
         {
             Vector3 labelPositionOffset = Vector3.zero;
             if (parent.stateData != null) labelPositionOffset = parent.stateData.labelPosOffset;
-            if (lowPositionOffset == new Vector3(0, 0, 0))
-                lowPositionOffset = new Vector3(0, 1, 0);
+            if (lowPositionOffset == new Vector2(0, 0))
+                lowPositionOffset = new Vector2(0, 1);
 
-            Vector3 position = parent.transform.position + labelPositionOffset + positionOffset - lowPositionOffset;
-            actionTextRect.position = position;
+            //Vector3 position = parent.transform.position + labelPositionOffset + positionOffset - lowPositionOffset;
+            //actionTextRect.position = position;
             //parentCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
         }

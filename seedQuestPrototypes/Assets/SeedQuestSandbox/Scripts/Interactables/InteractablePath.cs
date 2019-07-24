@@ -93,8 +93,13 @@ namespace SeedQuest.Interactables
         /// <summary> Generated Path of Interactables from a Seed string </summary>
         static public void GeneratePathFromSeed(string seed) {
             SeedConverter converter = new SeedConverter();
+            Debug.Log("Seed: " + seed);
             Instance.path = new List<Interactable>(converter.encodeSeed(seed));
             Instance.actionIds = new List<int>(converter.encodeActionIDs(seed));
+            for (int i = 0; i < Instance.path.Count; i++)
+            {
+                Debug.Log("Path var " + i + ": " + Instance.path[i].ID.spotID);
+            }
         }
 
         static public InteractableID[] GetPathIDsFromSeed(string seed) {

@@ -25,11 +25,11 @@ namespace SeedQuest.HUD
             canvasScreen.gameObject.SetActive(false);
         }
 
-        public void setAction(string inputText, Vector2 position)
+        public void setAction(string inputText, Vector2 position, Vector2 offset)
         {
             activateCanvas();
             setText(inputText);
-            setPosition(position);
+            setPosition(position, offset);
         }
 
         public void deactivate()
@@ -40,7 +40,6 @@ namespace SeedQuest.HUD
 
         public void activateCanvas()
         {
-            Debug.Log("Getting activated!!!");
             canvasScreen.gameObject.SetActive(true);
         }
 
@@ -54,11 +53,13 @@ namespace SeedQuest.HUD
             textObject.text = "";
         }
 
-        public void setPosition(Vector2 position)
+        public void setPosition(Vector2 position, Vector2 offset)
         {
             Vector2 relativePos = new Vector2(
                 ((position.x * canvasRect.sizeDelta.x) - (canvasRect.sizeDelta.x * 0.5f)),
                 ((position.y * canvasRect.sizeDelta.y) - (canvasRect.sizeDelta.y * 0.5f)));
+
+            relativePos += offset;
 
             textObject.GetComponent<RectTransform>().anchoredPosition = relativePos;
         }
