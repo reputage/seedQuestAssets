@@ -743,6 +743,7 @@ public class MenuScreenManager : MonoBehaviour
         debugRandom = false;
         isDebug = true;
         debugCanvas.gameObject.SetActive(false);
+        state = MenuScreenStates.EncodeSeed;
         SetModeRecoverSeed();
     }
 
@@ -751,6 +752,7 @@ public class MenuScreenManager : MonoBehaviour
         debugRandom = true;
         isDebug = true;
         debugCanvas.gameObject.SetActive(false);
+        state = MenuScreenStates.EncodeSeed;
         SetModeRecoverSeed();
     }
 
