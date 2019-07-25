@@ -261,7 +261,7 @@ public class MenuScreenManager : MonoBehaviour
     public void SetupSeedSetup()
     {
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
-        //seedInputField.text = InteractablePathManager.SeedString;
+        seedInputField.text = InteractablePathManager.SeedString;
         int charLimit = InteractableConfig.SeedHexLength;
 
         seedInputField.characterLimit = charLimit;
@@ -270,7 +270,7 @@ public class MenuScreenManager : MonoBehaviour
     public void SetupSeedSetupBip()
     {
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
-        seedInputField.text = InteractablePathManager.SeedString;
+        seedInputField.text = checkHexLength(InteractablePathManager.SeedString);
         int charLimit = 700;
 
         seedInputField.characterLimit = charLimit;
@@ -285,6 +285,7 @@ public class MenuScreenManager : MonoBehaviour
             TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>(true);
 
             string seedFromInput = removeHexPrefix(seedInputField.text);
+
             if (InteractableConfig.SeedHexLength % 2 == 1)
             {
                 if (seedFromInput.Length == InteractableConfig.SeedHexLength)
@@ -331,11 +332,29 @@ public class MenuScreenManager : MonoBehaviour
             else
             {
                 hexSeed = seedFromInput;
-                //Debug.Log("Seed appears to be hex");
+                if (InteractableConfig.SeedHexLength % 2 == 1)
+                {
+                    if (seedFromInput.Length == InteractableConfig.SeedHexLength)
+                    {
+                        string seedText = seedFromInput + "0";
+                        char[] array = seedText.ToCharArray();
+                        array[array.Length - 1] = array[array.Length - 2];
+                        array[array.Length - 2] = '0';
+                        hexSeed = new string(array);
+                    }
+                    else if (seedFromInput.Length == InteractableConfig.SeedHexLength + 1)
+                    {
+                        char[] array = seedFromInput.ToCharArray();
+                        array[array.Length - 2] = '0';
+                        hexSeed = new string(array);
+                    }
+                    else
+                        Debug.Log("Seed: " + hexSeed);
+                }
             }
 
             //Debug.Log("Sentence: " + seedFromInput);
-            //Debug.Log("Seed: " + hexSeed);
+            Debug.Log("Seed: " + hexSeed);
 
             InteractablePathManager.SeedString = hexSeed;
 
@@ -614,7 +633,7 @@ public class MenuScreenManager : MonoBehaviour
             warningText.GetComponent<TextMeshProUGUI>().color = new Color32(255, 20, 20, 255);
             setRedWarning();
         }
-        else if (seedString.Length > 33)
+        else if (seedString.Length > 34)
         {
             validHex = false;
 
@@ -647,7 +666,7 @@ public class MenuScreenManager : MonoBehaviour
 
     public void checkInputSeed()
     {
-        Debug.Log("Hello from checkInputSeed()");
+        //Debug.Log("Hello from checkInputSeed()");
         TMP_InputField seedInputField = GetComponentInChildren<TMP_InputField>();
         string seed = removeHexPrefix(seedInputField.text);
         bool validSeed = validSeedString(seed);
@@ -698,6 +717,19 @@ public class MenuScreenManager : MonoBehaviour
         if (hexString != null && hexString.StartsWith("0x"))
             hexString = hexString.Substring(2);
         return hexString;
+    }
+
+    // The end game UI removes a superfluous character from hex strings, this 
+    //  fixes a UI issue that arises when restarting from end game UI
+    public static string checkHexLength(string hexString)
+    {
+        if (hexString.Length == 34 && hexString[32] == '0')
+        {
+            hexString = hexString.Substring(0, 32) + hexString.Substring(33, 1);
+        }
+        Debug.Log("Fixed string: " + hexString);
+
+        return hexString;   
     }
 
     public void GoToDebugCanvas()
