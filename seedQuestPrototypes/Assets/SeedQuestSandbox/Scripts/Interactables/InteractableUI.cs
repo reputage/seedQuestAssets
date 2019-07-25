@@ -17,6 +17,7 @@ namespace SeedQuest.Interactables
         public bool useRotateToCamera = true;
         public Vector3 rotationOffset = new Vector3(0, 0, 0);
         public Vector3 positionOffset = new Vector3(0, 0, 0);
+        public Vector2 lowPositionOffset = new Vector3(0, 0);
         public GameObject debugActionUI = null;
 
         private Interactable parent;
@@ -29,6 +30,10 @@ namespace SeedQuest.Interactables
         private Image[] actionButtonImages;
         private TMPro.TextMeshProUGUI actionUITextMesh;
         private RectTransform actionUIRect;
+        private RectTransform actionTextRect;
+        private Canvas parentCanvas;
+        private static HUD.ScreenspaceActionUI screenspaceAction;
+        private bool useScreenSpaceAction;
 
         Camera c;
 
@@ -48,12 +53,17 @@ namespace SeedQuest.Interactables
                 if (persistentLabel.text != actionUITextMesh.text)
                 {
                     persistentLabel.gameObject.SetActive(true);
+                    if (useScreenSpaceAction)
+                        SetScreenspaceAction();
                 }
                 else
                 {
                     if (persistentLabel.gameObject.activeSelf)
                     {
                         persistentLabel.gameObject.SetActive(false);
+                        if (useScreenSpaceAction)
+                            screenspaceAction.deactivate();
+
                         Color temp = actionUI.GetComponentInChildren<Image>().color;
                         temp.a = 0.0f;
                         actionUI.GetComponentInChildren<Image>().color = temp;
@@ -70,6 +80,7 @@ namespace SeedQuest.Interactables
             if (interactable.flagDeleteUI)
                 return;
 
+            useScreenSpaceAction = true;
             int modeIndex = 0;
             modeIndex = mode == InteractableUIMode.GridSelect ? 1 : modeIndex;
             modeIndex = mode == InteractableUIMode.ListSelect ? 2 : modeIndex;
@@ -117,6 +128,9 @@ namespace SeedQuest.Interactables
             var textList = actionUI.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
             actionUITextMesh = textList[0];
             persistentLabel = textList[1];
+            actionTextRect = actionUITextMesh.gameObject.GetComponent<RectTransform>();
+            parentCanvas = actionUI.GetComponentInParent<Canvas>();
+            screenspaceAction = HUDManager.Instance.GetComponentInChildren<HUD.ScreenspaceActionUI>();
 
         }
 
@@ -374,10 +388,39 @@ namespace SeedQuest.Interactables
 
         /// <summary> Sets UI Position </summary>
         public void SetPosition() {
+            actionUITextMesh.gameObject.SetActive(true);
             Vector3 labelPositionOffset = Vector3.zero;
             if (parent.stateData != null) labelPositionOffset = parent.stateData.labelPosOffset;
             Vector3 position = parent.transform.position + labelPositionOffset + positionOffset;
             actionUIRect.position = position;
+            actionTextRect.position = position;
+            parentCanvas.renderMode = RenderMode.WorldSpace;
+        }
+
+        public void SetScreenspaceAction()
+        {
+            Vector2 relativePos = c.WorldToViewportPoint(actionUI.transform.position);
+            if (lowPositionOffset != new Vector2(0, 0))
+                screenspaceAction.setAction(actionUITextMesh.text, relativePos, lowPositionOffset);
+            else
+            {
+                screenspaceAction.setAction(actionUITextMesh.text, relativePos, new Vector2(0, -80));
+            }
+            //screenspaceAction.setAction(actionUITextMesh.text, relativePos, lowPositionOffset);
+            actionUITextMesh.gameObject.SetActive(false);
+        }
+
+        public void setCanvasToScreenspace()
+        {
+            Vector3 labelPositionOffset = Vector3.zero;
+            if (parent.stateData != null) labelPositionOffset = parent.stateData.labelPosOffset;
+            if (lowPositionOffset == new Vector2(0, 0))
+                lowPositionOffset = new Vector2(0, 1);
+
+            //Vector3 position = parent.transform.position + labelPositionOffset + positionOffset - lowPositionOffset;
+            //actionTextRect.position = position;
+            //parentCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+
         }
 
         /// <summary> Sets UI Rotation </summary>
