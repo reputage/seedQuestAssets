@@ -17,7 +17,8 @@ namespace SeedQuest.Interactables
         public bool useRotateToCamera = true;
         public Vector3 rotationOffset = new Vector3(0, 0, 0);
         public Vector3 positionOffset = new Vector3(0, 0, 0);
-        public Vector3 lowPositionOffset = new Vector3(0, 0, 0);
+        public Vector3 buttonOffset = new Vector3(0, 0, 0);
+        public Vector3 labelOffset = new Vector3(0, 0, 0);
         public GameObject debugActionUI = null;
 
         private Interactable parent;
@@ -35,10 +36,12 @@ namespace SeedQuest.Interactables
         private RectTransform actionButtonRect1;
         private RectTransform actionButtonRect2;
         private RectTransform parentCanvasRect;
+        private RectTransform labelRect;
 
         private Vector3 progressPosition;
         private Vector3 actionPosition1;
         private Vector3 actionPosition2;
+        private Vector3 labelPosition;
 
         private Canvas parentCanvas;
         private static HUD.ScreenspaceActionUI screenspaceAction;
@@ -65,7 +68,6 @@ namespace SeedQuest.Interactables
                 {
                     persistentLabel.gameObject.SetActive(true);
                     if (useScreenSpaceAction)
-                        //SetScreenspaceAction();
                         SetCanvasToScreenspace();
                 }
                 else
@@ -141,6 +143,8 @@ namespace SeedQuest.Interactables
             var textList = actionUI.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
             actionUITextMesh = textList[0];
             persistentLabel = textList[1];
+            labelRect = persistentLabel.gameObject.GetComponent<RectTransform>();
+            labelPosition = labelRect.anchoredPosition;
             actionTextRect = actionUITextMesh.gameObject.GetComponent<RectTransform>();
             parentCanvas = actionUI.GetComponentInParent<Canvas>();
             parentCanvasRect = parentCanvas.gameObject.GetComponent<RectTransform>();
@@ -408,14 +412,11 @@ namespace SeedQuest.Interactables
             if (parent.stateData != null) labelPositionOffset = parent.stateData.labelPosOffset;
             Vector3 position = parent.transform.position + labelPositionOffset + positionOffset;
             actionUIRect.position = position;
-            //actionTextRect.position = position;
-            //progressButtonRect.position = progressPosition;
-            //actionButtonRect1.position = actionPosition1;
-            //actionButtonRect2.position = actionPosition2;
 
             parentCanvas.renderMode = RenderMode.WorldSpace;
         }
 
+        /*
         public void SetScreenspaceAction()
         {
             Vector2 lowPosVector2 = new Vector2(0, 0);
@@ -426,19 +427,20 @@ namespace SeedQuest.Interactables
             {
                 screenspaceAction.setAction(actionUITextMesh.text, relativePos, new Vector2(0, -80));
             }
-            //screenspaceAction.setAction(actionUITextMesh.text, relativePos, lowPosVector2);
+
             actionUITextMesh.gameObject.SetActive(false);
         }
+        */
 
         public void SetCanvasToScreenspace()
         {
             Vector3 labelPositionOffset = Vector3.zero;
             if (parent.stateData != null) labelPositionOffset = parent.stateData.labelPosOffset;
-            if (lowPositionOffset == new Vector3(0, 0, 0))
-                lowPositionOffset = new Vector3(0, -80, 0);
+            if (buttonOffset == new Vector3(0, 0, 0))
+                buttonOffset = new Vector3(0, -150, 0);
 
             Vector2 worldPosition = c.WorldToViewportPoint(actionUI.transform.position);
-            Vector3 position = parent.transform.position + labelPositionOffset + positionOffset - lowPositionOffset;
+            Vector3 position = parent.transform.position + labelPositionOffset + positionOffset - buttonOffset;
 
             parentCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
@@ -446,12 +448,12 @@ namespace SeedQuest.Interactables
                 ((worldPosition.x * parentCanvasRect.sizeDelta.x) - (parentCanvasRect.sizeDelta.x * 0.5f)),
                 ((worldPosition.y * parentCanvasRect.sizeDelta.y) - (parentCanvasRect.sizeDelta.y * 0.5f)), 0);
 
-            //Vector3 relativePos = new Vector3(worldPosition.x, worldPosition.y, 0);
-            //relativePos.y += lowPositionOffset.y;
+            relativePos += buttonOffset;
 
-            progressButtonRect.anchoredPosition = relativePos + lowPositionOffset;
-            actionButtonRect1.anchoredPosition = relativePos + lowPositionOffset + actionPosition1;
-            actionButtonRect2.anchoredPosition = relativePos + lowPositionOffset + actionPosition2;
+            labelRect.anchoredPosition = labelOffset - buttonOffset;
+            progressButtonRect.anchoredPosition = relativePos;
+            actionButtonRect1.anchoredPosition = relativePos + actionPosition1;
+            actionButtonRect2.anchoredPosition = relativePos + actionPosition2;
         }
 
         public void ResetScreenspaceCanvas()
@@ -459,6 +461,7 @@ namespace SeedQuest.Interactables
             progressButtonRect.anchoredPosition = new Vector3(0, 0, 0);
             actionButtonRect1.anchoredPosition = new Vector3(0, 0, 0);
             actionButtonRect2.anchoredPosition = new Vector3(0, 0, 0);
+            labelRect.anchoredPosition = labelPosition;
             actionButtonRect1.position = actionPosition1;
             actionButtonRect2.position = actionPosition2;
 
