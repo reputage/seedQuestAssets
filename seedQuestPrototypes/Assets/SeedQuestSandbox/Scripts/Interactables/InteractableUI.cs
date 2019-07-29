@@ -37,11 +37,13 @@ namespace SeedQuest.Interactables
         private RectTransform actionButtonRect2;
         private RectTransform parentCanvasRect;
         private RectTransform labelRect;
+        private RectTransform trackerRect;
 
         private Vector3 progressPosition;
         private Vector3 actionPosition1;
         private Vector3 actionPosition2;
         private Vector3 labelPosition;
+        private Vector3 trackerPosition = new Vector3(-123, 0, 0);
 
         private Canvas parentCanvas;
         private static HUD.ScreenspaceActionUI screenspaceAction;
@@ -151,6 +153,8 @@ namespace SeedQuest.Interactables
             screenspaceAction = HUDManager.Instance.GetComponentInChildren<HUD.ScreenspaceActionUI>();
             progressButtonRect = progressButton.gameObject.GetComponent<RectTransform>();
             progressPosition = new Vector3(0, 0, 0);
+            trackerRect = actionUI.gameObject.GetComponentsInChildren<Canvas>(true)[2].gameObject.GetComponent<RectTransform>();
+
         }
 
         public void SetupActionComponentRefs()
@@ -454,6 +458,7 @@ namespace SeedQuest.Interactables
             progressButtonRect.anchoredPosition = relativePos;
             actionButtonRect1.anchoredPosition = relativePos + actionPosition1;
             actionButtonRect2.anchoredPosition = relativePos + actionPosition2;
+            trackerRect.anchoredPosition = relativePos + trackerPosition  + labelOffset - buttonOffset;
         }
 
         public void ResetScreenspaceCanvas()
@@ -464,7 +469,7 @@ namespace SeedQuest.Interactables
             labelRect.anchoredPosition = labelPosition;
             actionButtonRect1.position = actionPosition1;
             actionButtonRect2.position = actionPosition2;
-
+            trackerRect.anchoredPosition = trackerPosition;
         }
 
         /// <summary> Sets UI Rotation </summary>
