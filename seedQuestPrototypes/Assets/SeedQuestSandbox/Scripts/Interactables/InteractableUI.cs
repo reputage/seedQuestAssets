@@ -44,6 +44,9 @@ namespace SeedQuest.Interactables
         private Vector3 actionPosition2;
         private Vector3 labelPosition;
         private Vector3 trackerPosition = new Vector3(-123, 0, 0);
+        private Vector3 labelScale = new Vector3(1, 1, 1);
+        private Vector3 buttonScale = new Vector3(1.5f, 1.5f, 1f);
+        private Vector3 trackerScale = new Vector3(0.5f, 0.5f, 0.5f);
 
         private Canvas parentCanvas;
         private static HUD.ScreenspaceActionUI screenspaceAction;
@@ -444,7 +447,6 @@ namespace SeedQuest.Interactables
                 buttonOffset = new Vector3(0, -150, 0);
 
             Vector2 worldPosition = c.WorldToViewportPoint(actionUI.transform.position);
-            Vector3 position = parent.transform.position + labelPositionOffset + positionOffset - buttonOffset;
 
             parentCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
@@ -459,6 +461,7 @@ namespace SeedQuest.Interactables
             actionButtonRect1.anchoredPosition = relativePos + actionPosition1;
             actionButtonRect2.anchoredPosition = relativePos + actionPosition2;
             trackerRect.anchoredPosition = relativePos + trackerPosition  + labelOffset - buttonOffset;
+
         }
 
         public void ResetScreenspaceCanvas()
@@ -549,6 +552,38 @@ namespace SeedQuest.Interactables
                     checkImages[3].gameObject.SetActive(false);
                 }
             }
+        }
+
+        public float calculateScale()
+        {
+            float dist = Vector3.Distance(c.gameObject.transform.position, parent.gameObject.transform.position);
+            float scaleFloat = 17f / dist;
+            if (scaleFloat < .8)
+                scaleFloat = 0.8f;
+            else if (scaleFloat > 1.2)
+                scaleFloat = 1.2f;
+
+            Debug.Log("Calculated scale: " + scaleFloat);
+
+            return scaleFloat;
+        }
+
+        public void setScale(float scale)
+        {
+            labelRect.localScale = labelScale * scale;
+            progressButtonRect.localScale = buttonScale * scale;
+            actionButtonRect1.localScale = buttonScale * scale;
+            actionButtonRect2.localScale = buttonScale * scale;
+            trackerRect.localScale = trackerScale * scale;
+        }
+
+        public void resetScale()
+        {
+            labelRect.localScale = labelScale;
+            progressButtonRect.localScale = buttonScale;
+            actionButtonRect1.localScale = buttonScale;
+            actionButtonRect2.localScale = buttonScale;
+            trackerRect.localScale = trackerScale;
         }
 
         /// <summary> Activates Checkmarks for Rehearal Mode </summary>
