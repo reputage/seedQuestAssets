@@ -19,6 +19,7 @@ namespace SeedQuest.Interactables
         public Vector3 positionOffset = new Vector3(0, 0, 0);
         public Vector3 buttonOffset = new Vector3(0, 0, 0);
         public Vector3 labelOffset = new Vector3(0, 0, 0);
+        public float scalingCoefficient = 0f;
         public GameObject debugActionUI = null;
 
         private Interactable parent;
@@ -38,6 +39,7 @@ namespace SeedQuest.Interactables
         private RectTransform parentCanvasRect;
         private RectTransform labelRect;
         private RectTransform trackerRect;
+        private Transform playerTransform;
 
         private Vector3 progressPosition;
         private Vector3 actionPosition1;
@@ -48,9 +50,12 @@ namespace SeedQuest.Interactables
         private Vector3 buttonScale = new Vector3(1.5f, 1.5f, 1f);
         private Vector3 trackerScale = new Vector3(0.5f, 0.5f, 0.5f);
 
+        private UIScaler scaler;
+
         private Canvas parentCanvas;
         private static HUD.ScreenspaceActionUI screenspaceAction;
         private bool useScreenSpaceAction;
+        private bool useScaleToCamera = false;
 
         Camera c;
 
@@ -72,8 +77,11 @@ namespace SeedQuest.Interactables
                 if (persistentLabel.text != actionUITextMesh.text)
                 {
                     persistentLabel.gameObject.SetActive(true);
-                    if (useScreenSpaceAction)
+                    if (useScreenSpaceAction && (GameManager.State == GameState.Interact || GameManager.State == GameState.Play))
                         SetCanvasToScreenspace();
+
+                    else
+                        Debug.Log("State: " + GameManager.State);
                 }
                 else
                 {
@@ -157,7 +165,8 @@ namespace SeedQuest.Interactables
             progressButtonRect = progressButton.gameObject.GetComponent<RectTransform>();
             progressPosition = new Vector3(0, 0, 0);
             trackerRect = actionUI.gameObject.GetComponentsInChildren<Canvas>(true)[2].gameObject.GetComponent<RectTransform>();
-
+            scaler = actionUI.GetComponentInChildren<UIScaler>();
+            playerTransform = GameObject.FindWithTag("Player").transform;
         }
 
         public void SetupActionComponentRefs()
@@ -444,7 +453,7 @@ namespace SeedQuest.Interactables
             Vector3 labelPositionOffset = Vector3.zero;
             if (parent.stateData != null) labelPositionOffset = parent.stateData.labelPosOffset;
             if (buttonOffset == new Vector3(0, 0, 0))
-                buttonOffset = new Vector3(0, -150, 0);
+                buttonOffset = new Vector3(0, -200, 0);
 
             Vector2 worldPosition = c.WorldToViewportPoint(actionUI.transform.position);
 
@@ -462,6 +471,9 @@ namespace SeedQuest.Interactables
             actionButtonRect2.anchoredPosition = relativePos + actionPosition2;
             trackerRect.anchoredPosition = relativePos + trackerPosition  + labelOffset - buttonOffset;
 
+            float scale = calculateScale();
+            if (useScaleToCamera)
+                setNewScale(scale);
         }
 
         public void ResetScreenspaceCanvas()
@@ -473,6 +485,8 @@ namespace SeedQuest.Interactables
             actionButtonRect1.position = actionPosition1;
             actionButtonRect2.position = actionPosition2;
             trackerRect.anchoredPosition = trackerPosition;
+            if (useScaleToCamera)
+                resetScale();
         }
 
         /// <summary> Sets UI Rotation </summary>
@@ -557,33 +571,26 @@ namespace SeedQuest.Interactables
         public float calculateScale()
         {
             float dist = Vector3.Distance(c.gameObject.transform.position, parent.gameObject.transform.position);
-            float scaleFloat = 17f / dist;
-            if (scaleFloat < .8)
-                scaleFloat = 0.8f;
-            else if (scaleFloat > 1.2)
-                scaleFloat = 1.2f;
+            float cameraToPlayer = Vector3.Distance(c.gameObject.transform.position, playerTransform.position);
+            float scaleFloat = 0.2f + ((cameraToPlayer + scalingCoefficient) / dist);
+            if (scaleFloat < .5)
+                scaleFloat = 0.5f;
+            else if (scaleFloat > 1.5)
+                scaleFloat = 1.5f;
 
-            Debug.Log("Calculated scale: " + scaleFloat);
+            //Debug.Log("Calculated scale: " + scaleFloat);
 
             return scaleFloat;
         }
 
-        public void setScale(float scale)
+        public void setNewScale(float scale)
         {
-            labelRect.localScale = labelScale * scale;
-            progressButtonRect.localScale = buttonScale * scale;
-            actionButtonRect1.localScale = buttonScale * scale;
-            actionButtonRect2.localScale = buttonScale * scale;
-            trackerRect.localScale = trackerScale * scale;
+            scaler.setScale(scale);
         }
 
         public void resetScale()
         {
-            labelRect.localScale = labelScale;
-            progressButtonRect.localScale = buttonScale;
-            actionButtonRect1.localScale = buttonScale;
-            actionButtonRect2.localScale = buttonScale;
-            trackerRect.localScale = trackerScale;
+            scaler.resetScale();
         }
 
         /// <summary> Activates Checkmarks for Rehearal Mode </summary>
