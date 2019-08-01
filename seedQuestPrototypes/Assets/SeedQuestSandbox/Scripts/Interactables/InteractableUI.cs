@@ -54,7 +54,6 @@ namespace SeedQuest.Interactables
 
         private Canvas parentCanvas;
         private static HUD.ScreenspaceActionUI screenspaceAction;
-        private bool useScreenSpaceAction;
         private bool useScaleToCamera = false;
 
         Camera c;
@@ -65,7 +64,7 @@ namespace SeedQuest.Interactables
 
         public void Update() {
             if (isReady()) {
-                if (useScreenSpaceAction)
+                if (InteractableManager.Instance.useSeparatedUI)
                     ResetScreenspaceCanvas();
                 SetScale();
                 SetPosition();
@@ -77,18 +76,16 @@ namespace SeedQuest.Interactables
                 if (persistentLabel.text != actionUITextMesh.text)
                 {
                     persistentLabel.gameObject.SetActive(true);
-                    if (useScreenSpaceAction && (GameManager.State == GameState.Interact || GameManager.State == GameState.Play))
+                    if (InteractableManager.Instance.useSeparatedUI && (GameManager.State == GameState.Interact || GameManager.State == GameState.Play))
                         SetCanvasToScreenspace();
 
-                    else
-                        Debug.Log("State: " + GameManager.State);
                 }
                 else
                 {
                     if (persistentLabel.gameObject.activeSelf)
                     {
                         persistentLabel.gameObject.SetActive(false);
-                        if (useScreenSpaceAction)
+                        if (InteractableManager.Instance.useSeparatedUI)
                             screenspaceAction.deactivate();
 
                         Color temp = actionUI.GetComponentInChildren<Image>().color;
@@ -107,7 +104,6 @@ namespace SeedQuest.Interactables
             if (interactable.flagDeleteUI)
                 return;
 
-            useScreenSpaceAction = true;
             int modeIndex = 0;
             modeIndex = mode == InteractableUIMode.GridSelect ? 1 : modeIndex;
             modeIndex = mode == InteractableUIMode.ListSelect ? 2 : modeIndex;
@@ -454,7 +450,9 @@ namespace SeedQuest.Interactables
             if (parent.stateData != null) labelPositionOffset = parent.stateData.labelPosOffset;
             if (buttonOffset == new Vector3(0, 0, 0))
                 buttonOffset = new Vector3(0, -200, 0);
-
+            if (labelOffset == new Vector3(0, 0, 0))
+                labelOffset = new Vector3(0, 50, 0);
+            
             Vector2 worldPosition = c.WorldToViewportPoint(actionUI.transform.position);
 
             parentCanvas.renderMode = RenderMode.ScreenSpaceOverlay;

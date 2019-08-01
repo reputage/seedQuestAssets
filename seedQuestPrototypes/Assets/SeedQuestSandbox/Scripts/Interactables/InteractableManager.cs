@@ -19,6 +19,7 @@ namespace SeedQuest.Interactables
         public float nearDistanceForZoom = 4.0f;
         public bool useSingleTracker = true;
         public bool useInteractableNames = true;
+        public bool useSeparatedUI = false;
 
         public GameObject[] actionSpotIcons; // InteractableUI Prefab Templates
 
