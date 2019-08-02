@@ -138,6 +138,7 @@ public class MenuScreenManager : MonoBehaviour
     public void GoBack()
     {
         GameManager.Mode = GameMode.Rehearsal;
+        isDebug = false;
 
         if (state == MenuScreenStates.EncodeSeed)
         {
