@@ -199,6 +199,7 @@ public class MenuScreenManager : MonoBehaviour
     {
         state = MenuScreenStates.EncodeSeed;
         ResetCanvas();
+        LevelSetManager.ResetCurrentLevels();
         encodeSeedCanvas.gameObject.SetActive(true);
         SetupRotateBackground(330);
         SetupEncodeSeedBip();
