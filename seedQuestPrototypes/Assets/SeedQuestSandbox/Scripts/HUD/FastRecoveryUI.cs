@@ -11,6 +11,8 @@ public class FastRecoveryUI : MonoBehaviour
     public float scale;
     public float xOffset;
     public float yOffset;
+    public bool useInteractableUIPositions;
+    public bool useRenderTexture;
 
     private Image map;
     private Image overlay;
@@ -37,8 +39,18 @@ public class FastRecoveryUI : MonoBehaviour
         Toggle();
         ToggleInteractableGroup(false);
 
-        map.sprite = source;
-        map.rectTransform.sizeDelta = new Vector2(780 / source.bounds.size.y * source.bounds.size.x, 780);
+        if (useRenderTexture)
+        {
+            GameObject mapObject = map.gameObject;
+            Destroy(map);
+            mapObject.AddComponent<RawImage>();
+        }
+
+        else
+        {
+            map.sprite = source;
+            map.rectTransform.sizeDelta = new Vector2(780 / source.bounds.size.y * source.bounds.size.x, 780);
+        }
 
         Interactable[] interactables = InteractableManager.InteractableList;
         buttons = new List<Button>();
@@ -69,6 +81,17 @@ public class FastRecoveryUI : MonoBehaviour
     public void Toggle()
     {
         bool active = overlay.gameObject.activeSelf;
+        if (!active)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            InteractablePreviewUI.ClearPreviewObject();
+            ToggleInteractableGroup(false);
+
+            for (int i = 0; i < 4; i++)
+            {
+                interactableButtons[i].onClick.RemoveAllListeners();
+            }
+        }
         overlay.gameObject.SetActive(!active);
     }
 
@@ -103,6 +126,8 @@ public class FastRecoveryUI : MonoBehaviour
             {
                 int temp = i;
                 interactableButtons[i].gameObject.GetComponentInChildren<TMPro.TMP_Text>().text = interactable.stateData.getStateName(i);
+                interactableButtons[i].gameObject.GetComponent<FastRecoveryButton>().Interactable = interactable;
+                interactableButtons[i].gameObject.GetComponent<FastRecoveryButton>().ActionIndex = temp;
                 interactableButtons[i].onClick.AddListener(() => OnInteractableButtonClick(temp));
             }
         }

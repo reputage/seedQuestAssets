@@ -234,7 +234,6 @@ namespace SeedQuest.Interactables
         /// <summary> Set interactable state with given action index </summary>
         /// <param name="actionIndex"> Action Index </param>
         static public void SetPreviewAction(int actionIndex) {
-            Debug.Log(actionIndex);
             if (Instance == null) return;
             if (Instance.previewChild == null) return;
 
