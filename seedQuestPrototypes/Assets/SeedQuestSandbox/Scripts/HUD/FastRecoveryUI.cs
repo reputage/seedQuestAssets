@@ -11,8 +11,11 @@ public class FastRecoveryUI : MonoBehaviour
     public float scale;
     public float xOffset;
     public float yOffset;
-    public bool useInteractableUIPositions;
-    public bool useRenderTexture;
+
+    public Sprite interactableIcon;
+    public Sprite interactableIconSelected;
+    /*public bool useInteractableUIPositions;
+    public bool useRenderTexture;*/
 
     private Image map;
     private Image overlay;
@@ -39,7 +42,7 @@ public class FastRecoveryUI : MonoBehaviour
         Toggle();
         ToggleInteractableGroup(false);
 
-        if (useRenderTexture)
+       /* if (useRenderTexture)
         {
             GameObject mapObject = map.gameObject;
             Destroy(map);
@@ -47,10 +50,10 @@ public class FastRecoveryUI : MonoBehaviour
         }
 
         else
-        {
+        {*/
             map.sprite = source;
             map.rectTransform.sizeDelta = new Vector2(780 / source.bounds.size.y * source.bounds.size.x, 780);
-        }
+        //}
 
         Interactable[] interactables = InteractableManager.InteractableList;
         buttons = new List<Button>();
@@ -58,9 +61,10 @@ public class FastRecoveryUI : MonoBehaviour
         {
             Button button = Instantiate(buttonPrefab);
             button.transform.SetParent(map.transform);
-            button.transform.localPosition = new Vector3(interactable.transform.localPosition.x * scale + xOffset, interactable.transform.localPosition.z * scale + yOffset, 0);
+            //if (!useInteractableUIPositions)
+                button.transform.localPosition = new Vector3(interactable.transform.localPosition.x * scale + xOffset, interactable.transform.localPosition.z * scale + yOffset, 0);
             button.gameObject.SetActive(true);
-            button.onClick.AddListener(() => OnButtonClick(interactable));
+            button.onClick.AddListener(() => OnButtonClick(interactable, button));
             buttons.Add(button);
         }
     }
@@ -69,6 +73,18 @@ public class FastRecoveryUI : MonoBehaviour
     {
         ListenForKeyDown();
     }
+
+    /*private void LateUpdate()
+    {
+        if (useInteractableUIPositions)
+        {
+            for (int i = 0; i < InteractableManager.InteractableList.Length; i++)
+            {
+                buttons[i].transform.localPosition = new Vector3(InteractableManager.InteractableList[i].interactableUI.ActionUIRect.localPosition.x * scale + xOffset, InteractableManager.InteractableList[i].interactableUI.ActionUIRect.localPosition.y * scale + yOffset);
+            }
+            useInteractableUIPositions = false;
+        }
+    }*/
 
     private void ListenForKeyDown()
     {
@@ -112,8 +128,9 @@ public class FastRecoveryUI : MonoBehaviour
 
     }
 
-    public void OnButtonClick(Interactable interactable)
+    public void OnButtonClick(Interactable interactable, Button button)
     {
+        button.gameObject.GetComponent<Image>().sprite = interactableIconSelected; 
         AudioManager.Play("UI_Hover");
         if (interactableTitle.text != interactable.Name)
         {
@@ -134,7 +151,8 @@ public class FastRecoveryUI : MonoBehaviour
 
         else
         {
-            EventSystem.current.SetSelectedGameObject(null);
+            button.gameObject.GetComponent<Image>().sprite = interactableIcon;
+            //EventSystem.current.SetSelectedGameObject(null);
             InteractablePreviewUI.ClearPreviewObject();
             startingTitleImage.gameObject.SetActive(false);
             ToggleInteractableGroup(false);
