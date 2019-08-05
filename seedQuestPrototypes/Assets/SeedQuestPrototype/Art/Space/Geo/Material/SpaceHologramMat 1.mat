@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4413284419268340677
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
 --- !u!21 &2100000
 Material:
   serializedVersion: 6
@@ -8,18 +21,23 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SpaceHologramMat 1
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 2050
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseColor:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -83,6 +101,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _TextureSample0:
         m_Texture: {fileID: 0}
         m_Scale: {x: 10, y: 10}
@@ -101,15 +123,19 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _ASEOutlineWidth: 0.09
+    - _AlphaClip: 0
     - _AnimScale: 0.1
     - _AnimSpeed: 8.67
+    - _Blend: 0
     - _BumpScale: 1
+    - _Cull: 2
     - _Cutoff: 0.5
     - _Depth: 0.98
     - _DepthFalloff: -13
     - _DetailNormalMapScale: 1
     - _Distortion: 0
     - _DstBlend: 0
+    - _EnvironmentReflections: 1
     - _Float0: 0.01
     - _Float1: 0.85
     - _Float3: 0.9
@@ -133,12 +159,15 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Power: 0
-    - _Smoothness: 0.9
+    - _QueueOffset: 0
+    - _ReceiveShadows: 1
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _Specular: 0.1
     - _SpecularHighlights: 1
     - _Speed: -0.4
     - _SrcBlend: 1
+    - _Surface: 0
     - _TessMax: 25
     - _TessMin: 0
     - _TessValue: 16
@@ -152,6 +181,7 @@ Material:
     - _Water_Speed: 0.001
     - _WavesAmount: 8.41
     - _WavesAmplitude: 0.001
+    - _WorkflowMode: 1
     - _XRayBias: 0.3
     - _XRayIntensity: 0.29
     - _XRayPower: 2.07
@@ -160,6 +190,7 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
+    - _BaseColor: {r: 0.14048588, g: 0.6742035, b: 0.7264151, a: 0.39215687}
     - _Color: {r: 0.14048593, g: 0.6742036, b: 0.7264151, a: 0.39215687}
     - _Color0: {r: 0.88372195, g: 1, b: 0.39999998, a: 0}
     - _Color1: {r: 0, g: 0.048731543, b: 0.22794023, a: 0}
