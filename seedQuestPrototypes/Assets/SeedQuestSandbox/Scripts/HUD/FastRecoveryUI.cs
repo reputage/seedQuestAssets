@@ -99,7 +99,11 @@ public class FastRecoveryUI : MonoBehaviour
         bool active = overlay.gameObject.activeSelf;
         if (!active)
         {
-            EventSystem.current.SetSelectedGameObject(null);
+            //EventSystem.current.SetSelectedGameObject(null);
+            foreach (Button button in buttons)
+            {
+                button.gameObject.GetComponent<Image>().sprite = interactableIcon;
+            }
             InteractablePreviewUI.ClearPreviewObject();
             ToggleInteractableGroup(false);
 
@@ -130,6 +134,13 @@ public class FastRecoveryUI : MonoBehaviour
 
     public void OnButtonClick(Interactable interactable, Button button)
     {
+        foreach (Button interactableButton in buttons)
+        {
+            if (interactableButton != button)
+            {
+                interactableButton.gameObject.GetComponent<Image>().sprite = interactableIcon;
+            }
+        }
         button.gameObject.GetComponent<Image>().sprite = interactableIconSelected; 
         AudioManager.Play("UI_Hover");
         if (interactableTitle.text != interactable.Name)
