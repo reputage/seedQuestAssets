@@ -28,7 +28,7 @@ namespace SeedQuest.Interactables
         public InteractableID ID;
 
         public Shader defaultShader;
-        public Shader highlightShader;
+        private Shader highlightShader;
 
         Camera c;
         
@@ -111,8 +111,8 @@ namespace SeedQuest.Interactables
 
         public void getRefs()
         {
-            defaultShader = Shader.Find("Standard");
-            highlightShader = Shader.Find("SeedQuest/RimOutline");
+            defaultShader =  Shader.Find("Lightweight Render Pipeline/Lit"); //Shader.Find("Standard");
+            highlightShader = Shader.Find("Shader Graphs/RimHighlights"); //Shader.Find("SeedQuest/RimOutline");
             c = Camera.main;
         }
 
@@ -235,6 +235,7 @@ namespace SeedQuest.Interactables
                     if (useHighlight) {
                         material.shader = highlightShader;
 
+                        /*
                         material.SetFloat("_HighlightPower", interactableHighlights.highlightPower);
                         material.SetFloat("_RimExponent", interactableHighlights.rimExponent);
                         material.SetFloat("_RimPower", interactableHighlights.rimPower);
@@ -246,6 +247,7 @@ namespace SeedQuest.Interactables
                             material.SetFloat("_UseDynamicColor", 1.0f);
                         else
                             material.SetFloat("_UseDynamicColor", 0.0f);
+                        */
                     }
                     else
                         material.shader = defaultShader;
