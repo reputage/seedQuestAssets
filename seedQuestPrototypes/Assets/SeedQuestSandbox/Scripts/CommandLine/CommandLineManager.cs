@@ -262,8 +262,8 @@ public static class CommandLineManager
                 
                 actions[j * 2 + 2 + i + i * InteractableConfig.ActionsPerSite * 2] = j % 4;
 
-                if (iterative)
-                    Debug.Log("Counter " + counter % 16);
+                //if (iterative)
+                //    Debug.Log("Counter " + counter % 16);
                 counter++;
             }
         }
