@@ -77,8 +77,6 @@ namespace SeedQuest.Interactables
         static public void Add(Interactable interactable, int actionIndex) {
             Instance.log.Add(new InteractableLogItem(interactable, actionIndex));
 
-            Debug.Log("Adding item to log: " + interactable.ID.spotID + " action: " + actionIndex);
-
             if (GameManager.Mode == GameMode.Recall && PathLevelComplete)
                 InteractablePathManager.ShowLevelComplete = true;
         }
