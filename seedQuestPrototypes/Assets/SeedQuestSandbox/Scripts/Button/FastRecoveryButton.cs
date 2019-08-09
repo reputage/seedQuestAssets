@@ -27,14 +27,14 @@ public class FastRecoveryButton : MonoBehaviour, IPointerDownHandler, IPointerUp
             time += Time.deltaTime;
             if (time >= 0.2f)
             {
-                float progressPosition = 200 * (-1 + (time / 1.2f));
+                float progressPosition = 360 * (-1 + (time - 0.2f / 1.0f));
                 RectTransform progressTransform = progress.GetComponent<RectTransform>();
                 progressTransform.offsetMax = new Vector2(progressPosition, progressTransform.offsetMax.y);
                 if (time >= 1.2f)
                 {
                     interactable.SelectAction(actionIndex);
                     progressCompleted = true;
-                    progressTransform.offsetMax = new Vector2(-200, progressTransform.offsetMax.y);
+                    progressTransform.offsetMax = new Vector2(-360, progressTransform.offsetMax.y);
                     time = 0.0f;
                 }
             }
@@ -42,7 +42,7 @@ public class FastRecoveryButton : MonoBehaviour, IPointerDownHandler, IPointerUp
         else
         {
             RectTransform progressTransform = progress.GetComponent<RectTransform>();
-            progressTransform.offsetMax = new Vector2(-200, progressTransform.offsetMax.y);
+            progressTransform.offsetMax = new Vector2(-360, progressTransform.offsetMax.y);
             time = 0.0f;
             EventSystem.current.SetSelectedGameObject(null);
         }
