@@ -138,6 +138,7 @@ public class MenuScreenManager : MonoBehaviour
     public void GoBack()
     {
         GameManager.Mode = GameMode.Rehearsal;
+        isDebug = false;
 
         if (state == MenuScreenStates.EncodeSeed)
         {
@@ -199,6 +200,7 @@ public class MenuScreenManager : MonoBehaviour
     {
         state = MenuScreenStates.EncodeSeed;
         ResetCanvas();
+        LevelSetManager.ResetCurrentLevels();
         encodeSeedCanvas.gameObject.SetActive(true);
         SetupRotateBackground(330);
         SetupEncodeSeedBip();
