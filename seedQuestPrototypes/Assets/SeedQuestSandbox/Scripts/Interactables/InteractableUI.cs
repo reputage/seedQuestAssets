@@ -62,6 +62,11 @@ namespace SeedQuest.Interactables
             }
         }
 
+        public RectTransform ActionUIRect
+        {
+            get { return actionUIRect; }
+        }
+
         /// <summary> Initialize Interactable UI with Prompt Text and Buttons </summary>
         /// <param name="interactable">Parent Interactable Object</param>
         public void Initialize(Interactable interactable) {
