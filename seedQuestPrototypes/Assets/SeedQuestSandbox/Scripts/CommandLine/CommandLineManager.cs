@@ -192,17 +192,17 @@ public static class CommandLineManager
     // Creates a custom learn mode path with scenes dtermined by the user.
     public static string learnCustom(string input)
     {
-        return learnTest(input, false);
+        return learnTest(input, false, false, false);
     }
 
     // Creates a custom learn mode that intentionaly tests whether a scene has all 16 interactables
     public static string learnBreak(string input)
     {
-        return learnTest(input, true);
+        return learnTest(input, false, false, true);
     }
 
     // Creates a custom learn mode - does the heavy lifting for the above two functions
-    public static string learnTest(string input, bool tryToBreak)
+    public static string learnTest(string input, bool random, bool iterative, bool tryToBreak)
     {
         string[] stringInputs = input.Split(null);
         int[] scenes = new int[InteractableConfig.SitesPerGame];
@@ -241,6 +241,9 @@ public static class CommandLineManager
 
         }
 
+
+        int counter = 0;
+
         // Create custom seed using the chosen scenes
         for (int i = 0; i < InteractableConfig.SitesPerGame; i++)
         {
@@ -248,12 +251,20 @@ public static class CommandLineManager
 
             for (int j = 0; j < InteractableConfig.ActionsPerSite; j++)
             {
-                if (tryToBreak)
+                if (iterative)
+                    actions[j * 2 + 1 + i + i * InteractableConfig.ActionsPerSite * 2] = counter % 16;
+                else if (random)
+                    actions[j * 2 + 1 + i + i * InteractableConfig.ActionsPerSite * 2] = UnityEngine.Random.Range(0, 100) % 16;
+                else if (tryToBreak)
                     actions[j * 2 + 1 + i + i * InteractableConfig.ActionsPerSite * 2] = j + 13;
-                else
+                else 
                     actions[j * 2 + 1 + i + i * InteractableConfig.ActionsPerSite * 2] = j % 16;
                 
                 actions[j * 2 + 2 + i + i * InteractableConfig.ActionsPerSite * 2] = j % 4;
+
+                if (iterative)
+                    Debug.Log("Counter " + counter % 16);
+                counter++;
             }
         }
 
