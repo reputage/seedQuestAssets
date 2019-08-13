@@ -1,0 +1,9 @@
+{
+	string $sSel[] = `ls -sl -typ transform`;
+	string $sItem;
+
+	for($sItem in $sSel)
+	{
+		setAttr ($sItem + ".scalePivot") 0 0 0;
+		setAttr ($sItem + ".rotatePivot") 0 0 0;
+}
