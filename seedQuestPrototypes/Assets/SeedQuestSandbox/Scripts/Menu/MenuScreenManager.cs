@@ -95,6 +95,11 @@ public class MenuScreenManager : MonoBehaviour
 
         sceneLoadProgress.value = sceneLoadProgressValue;
 
+        if (state == MenuScreenStates.ModeSelect && Input.GetKeyDown(KeyCode.BackQuote))
+        {
+            GoToDebugCanvas();
+        }
+
     #if UNITY_WEBGL
         if (state == MenuScreenStates.SeedSetup)
         {
