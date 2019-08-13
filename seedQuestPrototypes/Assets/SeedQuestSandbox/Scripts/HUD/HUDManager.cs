@@ -35,6 +35,8 @@ public class HUDManager : MonoBehaviour {
     public HUDItemProps useZoomSlider;
     public HUDItemProps useHint;
     public HUDItemProps useMinimap;
+    public HUDItemProps useFastRecovery;
+    public HUDItemProps useScreenspaceActions;
 
     static private HUDManager instance = null;
     static private HUDManager setInstance() { instance = GameObject.FindObjectOfType<HUDManager>(); return instance; }
@@ -48,8 +50,11 @@ public class HUDManager : MonoBehaviour {
     public void InstantiateHUDElement<T>(HUDItemProps props) {
         if(props.use && props.prefab != null && GetComponentInChildren<T>(true) == null) {
 
-            PrefabUtility.InstantiatePrefab(props.prefab, transform);
-            //Instantiate(props.prefab, transform);
+            #if UNITY_EDITOR
+                PrefabUtility.InstantiatePrefab(props.prefab, transform);
+            #else
+                Instantiate(props.prefab, transform);
+            #endif
         }
     }
 
@@ -60,8 +65,11 @@ public class HUDManager : MonoBehaviour {
         HUDItemProps props = Instance.GetProps<T>();
         if (props.prefab != null && Instance.GetComponentInChildren<T>(true) == null) {
 
-           PrefabUtility.InstantiatePrefab(props.prefab, Instance.transform);
-           //Instantiate(props.prefab, Instance.transform);
+            #if UNITY_EDITOR
+                PrefabUtility.InstantiatePrefab(props.prefab, Instance.transform);
+            #else
+                Instantiate(props.prefab, Instance.transform);
+            #endif
         }
     }
 
@@ -91,6 +99,8 @@ public class HUDManager : MonoBehaviour {
         InstantiateHUDElement<CameraSlider>(useZoomSlider);
         InstantiateHUDElement<GraduatedRehearsal>(useHint);
         InstantiateHUDElement<MinimapUI>(useMinimap);
+        InstantiateHUDElement<FastRecoveryUI>(useFastRecovery);
+        InstantiateHUDElement<ScreenspaceActionUI>(useScreenspaceActions);
     }
 
     public void DestroyImmediateHUD() {
@@ -114,6 +124,8 @@ public class HUDManager : MonoBehaviour {
         DestroyHUDElement<CameraSlider>(useZoomSlider);
         DestroyHUDElement<GraduatedRehearsal>(useHint);
         DestroyHUDElement<MinimapUI>(useMinimap);
+        DestroyHUDElement<FastRecoveryUI>(useFastRecovery);
+        DestroyHUDElement<ScreenspaceActionUI>(useScreenspaceActions);
     }
 
     public HUDItemProps GetProps<T>() {
@@ -135,6 +147,8 @@ public class HUDManager : MonoBehaviour {
         else if (listType == typeof(CameraSlider)) { return useZoomSlider; }
         else if (listType == typeof(GraduatedRehearsal)) { return useHint; }
         else if (listType == typeof(MinimapUI)) { return useMinimap; }
+        else if (listType == typeof(FastRecoveryUI)) { return useFastRecovery; }
+        else if (listType == typeof(ScreenspaceActionUI)) { return useScreenspaceActions; }
         return null;
     }
 }
