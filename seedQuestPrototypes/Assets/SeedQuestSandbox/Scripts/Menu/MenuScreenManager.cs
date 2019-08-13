@@ -783,6 +783,16 @@ public class MenuScreenManager : MonoBehaviour
         autoCounter.loadFirstScene();
     }
 
+    public void GoToWaitingForCounter()
+    {
+        // This function will be finished at a later time - since 
+        //  the start menu is going to be changing anyways.
+
+        // To do: 
+        //  deactivate debug card
+        //  activate waiting card
+    }
+
     public static void SetEncodeSeedDebugCanvas()
     {
         Instance.startDebugCanvas.gameObject.SetActive(true);

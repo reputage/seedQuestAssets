@@ -16,8 +16,7 @@ public class InteractableAutoCounter : MonoBehaviour
 
     void Start()
     {
-        //if (checkInteractableCount)
-        //    LoadFirstScene();
+
     }
 
     void Update()
@@ -82,7 +81,7 @@ public class InteractableAutoCounter : MonoBehaviour
         if (sceneIndex >= 16)
         {
             Debug.Log("Finished checking all scenes. \nScenes with 16 interactables: " + success);
-            Debug.Log("Scenes with interactable count other than 16: " + failure);
+            Debug.Log("Scenes without 16 interactables: " + failure);
         }
     }
 
