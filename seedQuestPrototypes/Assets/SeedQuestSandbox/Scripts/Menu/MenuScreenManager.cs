@@ -777,6 +777,12 @@ public class MenuScreenManager : MonoBehaviour
         }
     }
 
+    public void autoCountInteractables()
+    {
+        InteractableAutoCounter autoCounter = GetComponentInChildren<InteractableAutoCounter>();
+        autoCounter.loadFirstScene();
+    }
+
     public static void SetEncodeSeedDebugCanvas()
     {
         Instance.startDebugCanvas.gameObject.SetActive(true);

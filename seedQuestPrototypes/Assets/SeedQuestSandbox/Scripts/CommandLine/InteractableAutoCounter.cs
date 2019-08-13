@@ -6,7 +6,7 @@ using SeedQuest.Interactables;
 
 public class InteractableAutoCounter : MonoBehaviour
 {
-    public bool checkInteractableCount = true;
+    public bool checkInteractableCount;
 
     private int sceneIndex = 0;
     private int success = 0;
@@ -16,8 +16,8 @@ public class InteractableAutoCounter : MonoBehaviour
 
     void Start()
     {
-        if (checkInteractableCount)
-            LoadFirstScene();
+        //if (checkInteractableCount)
+        //    LoadFirstScene();
     }
 
     void Update()
@@ -32,8 +32,11 @@ public class InteractableAutoCounter : MonoBehaviour
         updateDelay++;
     }
 
-    public void LoadFirstScene()
+    public void loadFirstScene()
     {
+        checkInteractableCount = true;
+        updateDelay = 0;
+        waitCheck = 0;
         LevelSetManager.AddLevel(0);
         MenuScreenManager.Instance.state = MenuScreenStates.Debug;
         SceneManager.LoadScene(DebugSeedUtility.sceneIndeces[0]);
@@ -52,15 +55,15 @@ public class InteractableAutoCounter : MonoBehaviour
             Debug.Log("16 interactables found in this scene!");
             success++;
             waitCheck = 0;
-            if (sceneIndex <= 16)
+            sceneIndex++;
+            if (sceneIndex < 16)
             {
-                sceneIndex++;
                 loadNextScene();
             }
         }
         else if (count < 16 && count > 0 && waitCheck < 5 && sceneIndex < 16)
         {
-            Debug.Log("Going to wait for a second to see if more ints load");
+            Debug.Log("Going to wait for a second to see if more interactables load");
             waitCheck++;
         }
         else if (sceneIndex < 16)
@@ -69,17 +72,17 @@ public class InteractableAutoCounter : MonoBehaviour
                       DebugSeedUtility.sceneIndeces[sceneIndex] + " Interactable count: " + count);
             failure++;
             waitCheck = 0;
-            if (sceneIndex <= 16)
+            sceneIndex++;
+            if (sceneIndex < 16)
             {
-                sceneIndex++;
                 loadNextScene();
             }
         }
 
         if (sceneIndex >= 16)
         {
-            Debug.Log("Finished checking all scenes. \nSceenes with 16 interactables: " 
-                      + success + "\nScenes with inteeractable count other than 16: " + failure);
+            Debug.Log("Finished checking all scenes. \nScenes with 16 interactables: " + success);
+            Debug.Log("Scenes with interactable count other than 16: " + failure);
         }
     }
 
