@@ -11,6 +11,7 @@ public class FastRecoveryUI : MonoBehaviour
     public float scale;
     public float xOffset;
     public float yOffset;
+    public float rotation;
 
     public Sprite interactableIcon;
     public Sprite interactableIconSelected;
@@ -33,7 +34,7 @@ public class FastRecoveryUI : MonoBehaviour
     {
         Image[] images = gameObject.GetComponentsInChildren<Image>();
         overlay = images[0];
-        map = images[3];
+        map = images[2];
         rawMap = gameObject.GetComponentInChildren<RawImage>();
         startingTitleImage = images[6];
         buttonPrefab = images[4].transform.parent.gameObject;
@@ -88,6 +89,7 @@ public class FastRecoveryUI : MonoBehaviour
         }
 
         buttonGroup.localPosition = new Vector3(xOffset, yOffset, 0);
+        buttonGroup.localEulerAngles = new Vector3(0, 0, rotation);
     }
 
     private void Update()
@@ -100,6 +102,32 @@ public class FastRecoveryUI : MonoBehaviour
         if (InputManager.GetKeyDown(KeyCode.F))
         {
             Toggle();
+        }
+
+        var input = Input.GetAxis("Mouse ScrollWheel")*20;
+
+        if (input > 0.0f)
+        {
+            if (slider.value + input > slider.maxValue)
+            {
+                slider.value = slider.maxValue;
+            }
+            else
+            {
+                slider.value += input;
+            }
+
+        }
+        else if (input < 0.0f)
+        {
+            if (slider.value + input < slider.minValue)
+            {
+                slider.value = slider.minValue;
+            }
+            else
+            {
+                slider.value += input;
+            }
         }
     }
 
