@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace SeedQuest.Interactables
 {
@@ -142,6 +143,9 @@ namespace SeedQuest.Interactables
 
         public void HoverOnInteractable() {
             if (PauseManager.isPaused == true)
+                return;
+
+            if (EventSystem.current.IsPointerOverGameObject())
                 return;
 
             RaycastHit hit;
