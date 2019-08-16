@@ -41,6 +41,7 @@ public static class CommandLineManager
         {"help", "Displays a list of commands"},
         {"print", "Prints a string to the console"},
         {"quit", "Quits the application"},
+        {"fps", "Displays an FPS counter."},
         {"get", "Prints an available value.\nParameters:\n string valueName\n" + getHelp("")},
         {"moveplayer", "Moves the player to the specified location.\nParameters:\n int x, int y, int z"},
         {"loadscene", "Loads the specified scene. 'help scenes' returns a list of available scene names. \nParameters:\n string sceneName"},
