@@ -121,6 +121,7 @@ public static class CommandLineManager
             {
                 returnString += "\n" + key;
             }
+            returnString += "\nfps";
         }
 
         else if (helpDetails.ContainsKey(input))
