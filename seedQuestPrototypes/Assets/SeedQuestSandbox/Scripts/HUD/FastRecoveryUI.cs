@@ -313,6 +313,14 @@ public class FastRecoveryUI : MonoBehaviour
                     buttons[i].gameObject.GetComponent<Animation>().Play();
                 }
             }
+            InteractablePreviewUI.ClearPreviewObject();
+            startingTitleImage.gameObject.SetActive(false);
+            ToggleInteractableGroup(false);
+
+            for (int i = 0; i < 4; i++)
+            {
+                interactableButtons[i].onClick.RemoveAllListeners();
+            }
         }
     }
 }
