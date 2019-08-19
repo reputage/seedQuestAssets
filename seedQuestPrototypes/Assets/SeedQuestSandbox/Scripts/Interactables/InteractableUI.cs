@@ -62,6 +62,11 @@ namespace SeedQuest.Interactables
             }
         }
 
+        public GameObject ActionUI
+        {
+            get { return actionUI; }
+        }
+
         public RectTransform ActionUIRect
         {
             get { return actionUIRect; }

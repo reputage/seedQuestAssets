@@ -15,7 +15,7 @@ public class FastRecoveryUI : MonoBehaviour
 
     public Sprite interactableIcon;
     public Sprite interactableIconSelected;
-    //public bool useInteractableUIPositions;
+    public bool useInteractableUIPositions;
     public bool useRenderTexture;
     public float renderCameraHeight;
 
@@ -137,11 +137,17 @@ public class FastRecoveryUI : MonoBehaviour
         if (!active)
         {
             //EventSystem.current.SetSelectedGameObject(null);
-            foreach (Button button in buttons)
+            for (int i = 0; i < buttons.Count; i++)
             {
-                button.gameObject.GetComponent<Image>().sprite = interactableIcon;
-                button.transform.parent.GetChild(1).gameObject.SetActive(false);
+                buttons[i].gameObject.GetComponent<Image>().sprite = interactableIcon;
+                buttons[i].transform.parent.GetChild(1).gameObject.SetActive(false);
+
+                if (useInteractableUIPositions)
+                {
+                    buttons[i].transform.parent.localPosition = new Vector3(InteractableManager.InteractableList[i].interactableUI.ActionUI.transform.localPosition.x * scale, InteractableManager.InteractableList[i].interactableUI.ActionUI.transform.localPosition.z * scale, 0);
+                }
             }
+
             InteractablePreviewUI.ClearPreviewObject();
             ToggleInteractableGroup(false);
 
@@ -261,7 +267,14 @@ public class FastRecoveryUI : MonoBehaviour
             buttons[i].gameObject.GetComponent<Image>().sprite = interactableIcon;
             buttons[i].transform.parent.GetChild(1).gameObject.SetActive(false);
             buttons[i].transform.parent.GetChild(0).gameObject.SetActive(true);
-            buttons[i].transform.parent.localPosition = new Vector3(interactables[i].transform.localPosition.x * newScale, interactables[i].transform.localPosition.z * newScale, 0);
+            if (useInteractableUIPositions)
+            {
+                buttons[i].transform.parent.localPosition = new Vector3(interactables[i].interactableUI.ActionUI.transform.localPosition.x * newScale, interactables[i].interactableUI.ActionUI.transform.localPosition.z * newScale, 0);
+            }
+            else
+            {
+                buttons[i].transform.parent.localPosition = new Vector3(interactables[i].transform.localPosition.x * newScale, interactables[i].transform.localPosition.z * newScale, 0);
+            }
         }
         if (useRenderTexture)
         {
