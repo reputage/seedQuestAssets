@@ -57,7 +57,7 @@ public class fpsTracker : MonoBehaviour
         }
 
         returnString = "Average FPS: " + fpsAverage.ToString("f2");
-        returnString += "\nUnity Editor FPS: " + unityEstimate.ToString("f2");
+        returnString += "\nEditor FPS: " + unityEstimate.ToString("f2");
 
         return returnString;
 

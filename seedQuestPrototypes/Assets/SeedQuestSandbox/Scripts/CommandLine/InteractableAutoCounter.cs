@@ -7,6 +7,9 @@ using SeedQuest.Interactables;
 public class InteractableAutoCounter : MonoBehaviour
 {
     public bool checkInteractableCount;
+    public bool finished;
+    public string results;
+    public string problemScenes = "";
 
     private int sceneIndex = 0;
     private int success = 0;
@@ -43,7 +46,6 @@ public class InteractableAutoCounter : MonoBehaviour
 
     public void countAllInteractables()
     {
-
         int count = interactableCount();
 
         if (count > 0)
@@ -69,6 +71,8 @@ public class InteractableAutoCounter : MonoBehaviour
         {
             Debug.Log("Unfortunately, could not find 16 interactables in scene: " + 
                       DebugSeedUtility.sceneIndeces[sceneIndex] + " Interactable count: " + count);
+            problemScenes += "\n" + DebugSeedUtility.sceneIndeces[sceneIndex] + " Interactable count: " + count;
+
             failure++;
             waitCheck = 0;
             sceneIndex++;
@@ -82,6 +86,10 @@ public class InteractableAutoCounter : MonoBehaviour
         {
             Debug.Log("Finished checking all scenes. \nScenes with 16 interactables: " + success);
             Debug.Log("Scenes without 16 interactables: " + failure);
+
+            results = "Scenes with 16 interactables: " + success + "\nScenes without 16 interactables: " + failure + "\n";
+            results += "Problematic scenes:" + problemScenes;
+            finished = true;
         }
     }
 

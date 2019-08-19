@@ -42,12 +42,15 @@ public class MenuScreenManager : MonoBehaviour
     private Button sceneContinueButton;
     private bool isBip;
     private bool debugRandom;
+    private bool counting;
     public bool isDebug;
 
     private Image greenCheck;
     private Image redWarning;
     private Image greenOutline;
     private Image redOutline;
+
+    private InteractableAutoCounter autoCounter;
 
     public void Awake()
     {
@@ -74,6 +77,8 @@ public class MenuScreenManager : MonoBehaviour
 
         sceneLoadProgress = GetComponentInChildren<Slider>(true);
         sceneContinueButton = sceneLineUpCanvas.GetComponentInChildren<Button>(true);
+
+        autoCounter = GetComponentInChildren<InteractableAutoCounter>(true);
     }
 
     public void Start()
@@ -98,6 +103,14 @@ public class MenuScreenManager : MonoBehaviour
         if (state == MenuScreenStates.ModeSelect && Input.GetKeyDown(KeyCode.BackQuote))
         {
             GoToDebugCanvas();
+        }
+        if (counting)
+        {
+            if (autoCounter.finished)
+            {
+                setCounterDebugText();
+                counting = false;
+            }
         }
 
     #if UNITY_WEBGL
@@ -779,8 +792,8 @@ public class MenuScreenManager : MonoBehaviour
 
     public void autoCountInteractables()
     {
-        InteractableAutoCounter autoCounter = GetComponentInChildren<InteractableAutoCounter>();
         autoCounter.loadFirstScene();
+        GoToWaitingForCounter();
     }
 
     public void GoToWaitingForCounter()
@@ -791,6 +804,16 @@ public class MenuScreenManager : MonoBehaviour
         // To do: 
         //  deactivate debug card
         //  activate waiting card
+
+        debugCanvas.GetComponentsInChildren<RectTransform>()[4].gameObject.SetActive(false);
+        counting = true;
+    }
+
+    public void setCounterDebugText()
+    {
+        Debug.Log("Setting text: " + autoCounter.results);
+        TextMeshProUGUI counterText = debugCanvas.GetComponentsInChildren<TextMeshProUGUI>()[0];
+        counterText.text = autoCounter.results;
     }
 
     public static void SetEncodeSeedDebugCanvas()
