@@ -28,6 +28,8 @@ namespace SeedQuest.Interactables
         public InteractableHighlightsProps interactableHighlights;
         public InteractableID ID;
 
+        private InteractableLabelUI interactableLabel;
+
         public Shader defaultShader;
         public Shader highlightShader;
 
@@ -45,13 +47,17 @@ namespace SeedQuest.Interactables
         [HideInInspector]
         public bool flagDeleteUI = false;
 
-
         void Start() {
-            interactableUI.Initialize(this);
+            //interactableUI.Initialize(this);
+            interactableLabel = new InteractableLabelUI();
+            interactableLabel.Initialize(this);
             getRefs();
         }
 
         void Update()  {
+            interactableLabel.Update();
+
+            /*
             if (interactableUI.isReady()) {
                 interactableUI.Update();
                 HoverOnInteractable();
@@ -60,6 +66,7 @@ namespace SeedQuest.Interactables
             else {
                 interactableUI.Initialize(this);
             }
+            */
         }
 
         void OnDestroy() {
@@ -84,6 +91,10 @@ namespace SeedQuest.Interactables
         }
 
         public bool IsNextInteractable { get => InteractablePath.NextInteractable == this; }
+
+        public string GetActionName(int actionIndex) {
+            return this.stateData.getStateName(actionIndex);
+        }
 
         int Mod(int x, int m) {
             return (x % m + m) % m;

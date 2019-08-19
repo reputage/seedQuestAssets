@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
+using SeedQuest.Interactables;
+
 [ExecuteInEditMode]
 public class IsometricCamera : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class IsometricCamera : MonoBehaviour
     public float startingDistance = 28;                         // Starting scene camera distance from player
     public float lookAtPeek = 4f;                               // Look Ahead peak distance 
 
+    private bool lookAtInteractable;
     private float nearInteractableDistance = 8.0f;
     private float nearDistance = 5.0f;
     private float farDistance = 40.0f;
@@ -65,9 +68,19 @@ public class IsometricCamera : MonoBehaviour
     public void SmoothFollowCamera() {
         if (playerTransform.position == Vector3.zero)
             return;
-        
-        Vector3 currentOffset = CameraZoom.GetCurrentZoomDistance(cameraDirection, StaticDistance, startingDistance);
-        Vector3 desiredPosition = playerTransform.position + playerTransform.forward * lookAtPeek + currentOffset;
+
+        Vector3 currentOffset;
+        Vector3 desiredPosition;
+        if (lookAtInteractable){
+            Interactable interactable = InteractableManager.ActiveInteractable;
+            currentOffset = CameraZoom.GetCurrentZoomDistance(cameraDirection, StaticDistance, startingDistance);
+            desiredPosition = interactable.transform.position + currentOffset;
+        }
+        else {
+            currentOffset = CameraZoom.GetCurrentZoomDistance(cameraDirection, StaticDistance, startingDistance);
+            desiredPosition = playerTransform.position + playerTransform.forward * lookAtPeek + currentOffset;
+        }
+
         Vector3 currentPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
         transform.position = currentPosition;
     }
@@ -75,5 +88,15 @@ public class IsometricCamera : MonoBehaviour
     public void CameraLookAt() {
         Vector3 lookAt = playerTransform.position + playerTransform.forward * lookAtPeek;
         transform.LookAt(lookAt);
+    }
+
+    public void CameraLookAtInteractable() {
+        Interactable interactable = InteractableManager.ActiveInteractable;
+        Vector3 lookAt = interactable.transform.position;
+        transform.LookAt(lookAt);
+    }
+
+    public void ToggleLookAtInteractable(bool active) {
+        lookAtInteractable = active;
     }
 }
