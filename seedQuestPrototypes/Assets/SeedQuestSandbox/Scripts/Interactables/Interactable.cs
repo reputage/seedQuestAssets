@@ -120,6 +120,7 @@ namespace SeedQuest.Interactables
         public void DoAction(int actionIndex)  {
             this.actionIndex = actionIndex;
             InteractableState state = stateData.states[actionIndex];
+            stateData.stopAudio();
             state.enterState(this);
             HighlightInteractable(true, true);
             interactableUI.SetActionUI(actionIndex);
