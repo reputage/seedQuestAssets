@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class DebugSeedUtility
 {
 
@@ -49,6 +50,7 @@ public class DebugSeedUtility
         Debug.Log("Beginning random debug seed!");
         CommandLineManager.learnTest(convertLevelSet(), true, false, false);
     }
+
 
 
 }
