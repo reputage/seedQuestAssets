@@ -61,18 +61,23 @@ public class IsometricCamera : MonoBehaviour
 
     private void LateUpdate() {
         SmoothFollowCamera();
-        //CameraLookAt();
+
+        if (lookAtInteractable)
+            CameraLookAtInteractable();
+        else
+            CameraLookAt();
     }
 
     /* Simple follow camera with Smoothing */
     public void SmoothFollowCamera() {
         if (playerTransform.position == Vector3.zero)
             return;
-
+        
         Vector3 currentOffset;
         Vector3 desiredPosition;
         if (lookAtInteractable){
             Interactable interactable = InteractableManager.ActiveInteractable;
+            Vector3 iOffset = interactable.GetComponent<BoxCollider>().center;
             currentOffset = CameraZoom.GetCurrentZoomDistance(cameraDirection, StaticDistance, startingDistance);
             desiredPosition = interactable.transform.position + currentOffset;
         }
@@ -86,14 +91,15 @@ public class IsometricCamera : MonoBehaviour
     }
 
     public void CameraLookAt() {
-        Vector3 lookAt = playerTransform.position + playerTransform.forward * lookAtPeek;
+        Vector3 lookAt = playerTransform.position; //+ playerTransform.forward * lookAtPeek;
         transform.LookAt(lookAt);
     }
 
     public void CameraLookAtInteractable() {
         Interactable interactable = InteractableManager.ActiveInteractable;
+        Vector3 iOffset = interactable.GetComponent<BoxCollider>().center;
         Vector3 lookAt = interactable.transform.position;
-        transform.LookAt(lookAt);
+        transform.LookAt(lookAt + iOffset);
     }
 
     public void ToggleLookAtInteractable(bool active) {
