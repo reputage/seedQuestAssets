@@ -16,7 +16,7 @@ public class MenuProgressTopBarUI : MonoBehaviour
     public void Awake() {
         sceneText = GetComponentsInChildren<TextMeshProUGUI>()[3];
         actionText = GetComponentsInChildren<TextMeshProUGUI>()[4];
-        progress = GetComponentsInChildren<Image>()[2];
+        progress = GetComponentsInChildren<Image>()[6];
     }
 
     public void Update() {
