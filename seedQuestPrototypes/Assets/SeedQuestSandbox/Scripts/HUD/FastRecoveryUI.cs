@@ -18,6 +18,7 @@ public class FastRecoveryUI : MonoBehaviour
     public bool useInteractableUIPositions;
     public bool useRenderTexture;
     public float renderCameraHeight;
+    public bool restrictViewport;
 
     private Image map;
     private RawImage rawMap;
@@ -32,9 +33,12 @@ public class FastRecoveryUI : MonoBehaviour
     private Interactable[] interactables;
     private int interactableProgess;
     private bool calculatePositions;
+    private int sliderMin;
+    private int sliderMax;
 
     private void Start()
     {
+        buttons = new List<Button>();
         Image[] images = gameObject.GetComponentsInChildren<Image>();
         overlay = images[0];
         map = images[2];
@@ -69,7 +73,15 @@ public class FastRecoveryUI : MonoBehaviour
             tempCamera.enabled = false;
             tempCamera.Render();
             rawMap.texture = tempCamera.targetTexture;
-            rawMap.rectTransform.sizeDelta = new Vector2(1000, 1000);
+            if (restrictViewport)
+            {
+                rawMap.rectTransform.sizeDelta = new Vector2(980, 980);
+                slider.minValue = 980;
+                slider.value = slider.minValue;
+            }
+
+            else
+                rawMap.rectTransform.sizeDelta = new Vector2(1000, 1000);
             buttonGroup = rawMap.transform.GetChild(0);
         }
 
@@ -77,11 +89,21 @@ public class FastRecoveryUI : MonoBehaviour
         {
             rawMap.gameObject.SetActive(false);
             map.sprite = source;
-            map.rectTransform.sizeDelta = new Vector2(1000 / source.bounds.size.y * source.bounds.size.x, 1000);
+            if (restrictViewport)
+            {
+                if ((980 / source.bounds.size.y * source.bounds.size.x) < 880)
+                    map.rectTransform.sizeDelta = new Vector2(880, 880 / source.bounds.size.x * source.bounds.size.y);
+                else
+                    map.rectTransform.sizeDelta = new Vector2(980 / source.bounds.size.y * source.bounds.size.x, 980);
+                slider.minValue = 980;
+                slider.value = slider.minValue;
+            }
+
+            else
+                map.rectTransform.sizeDelta = new Vector2(1000 / source.bounds.size.y * source.bounds.size.x, 1000);
             buttonGroup = map.transform.GetChild(0);
         }
 
-        buttons = new List<Button>();
         foreach (Interactable interactable in interactables)
         {
             GameObject buttonObject = Instantiate(buttonPrefab);
@@ -179,7 +201,10 @@ public class FastRecoveryUI : MonoBehaviour
                 map.transform.localPosition = new Vector3(0, 0, 0);
                 map.rectTransform.sizeDelta = new Vector2(1000 / source.bounds.size.y * source.bounds.size.x, 1000);
             }
-            slider.value = 1000;
+            if (restrictViewport)
+                slider.value = slider.minValue;
+            else
+                slider.value = 1000;
         }
         overlay.gameObject.SetActive(!active);
     }
@@ -270,11 +295,25 @@ public class FastRecoveryUI : MonoBehaviour
         {
             interactableButtons[i].onClick.RemoveAllListeners();
         }
-        float newScale = (scale * slider.value) / 1000;
-        float newXOffset = (xOffset * slider.value) / 1000;
-        float newYOffset = (yOffset * slider.value) / 1000;
 
-        for (int i = 0; i < interactables.Length; i++)
+        float newScale;
+        float newXOffset;
+        float newYOffset;
+
+        if (restrictViewport)
+        {
+            newScale = (scale * slider.value) / slider.minValue;
+            newXOffset = (xOffset * slider.value) / slider.minValue;
+            newYOffset = (yOffset * slider.value) / slider.minValue;
+        }
+        else
+        {
+            newScale = (scale * slider.value) / 1000;
+            newXOffset = (xOffset * slider.value) / 1000;
+            newYOffset = (yOffset * slider.value) / 1000;
+        }
+
+        for (int i = 0; i < buttons.Count; i++)
         {
             buttons[i].gameObject.GetComponent<Image>().sprite = interactableIcon;
             /*buttons[i].transform.parent.GetChild(1).gameObject.SetActive(false);
@@ -290,11 +329,13 @@ public class FastRecoveryUI : MonoBehaviour
         }
         if (useRenderTexture)
         {
+            rawMap.transform.localPosition = new Vector3(0, 0, 0);
             rawMap.rectTransform.sizeDelta = new Vector2(slider.value, slider.value);
             rawMap.transform.GetChild(0).localPosition = new Vector3(newXOffset, newYOffset, 0);
         }
         else
         {
+            map.transform.localPosition = new Vector3(0, 0, 0);
             map.rectTransform.sizeDelta = new Vector2(slider.value / source.bounds.size.y * source.bounds.size.x, slider.value);
             map.transform.GetChild(0).localPosition = new Vector3(newXOffset, newYOffset, 0);
         }
