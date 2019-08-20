@@ -54,7 +54,7 @@ public class IsometricCharacter : MonoBehaviour {
         float horizontal = Input.GetAxis("Horizontal") *  moveSpeed * Time.deltaTime;
         float vertical = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
 
-        Debug.Log("h" + Input.GetAxis("Horizontal") + "v" + Input.GetAxis("Vertical"));
+        //Debug.Log("h" + Input.GetAxis("Horizontal") + "v" + Input.GetAxis("Vertical"));
 
         // Use animation if input exists 
         if (vertical != 0.0f || horizontal != 0.0f) {
