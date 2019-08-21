@@ -13,6 +13,7 @@ public class IsometricCamera : MonoBehaviour
 
     public Transform playerTransform;                          // Reference to player transform
     public float smoothSpeed = 2f;                              // Camera lerp smoothing speed parameter
+    public float lookAtSpeed = 2f;
     public Vector3 cameraDirection = new Vector3(1, 1, -1);     // Camera direction vector
     public float distance = 14;                                 // Default camera distance from player
     public float startingDistance = 28;                         // Starting scene camera distance from player
@@ -60,49 +61,61 @@ public class IsometricCamera : MonoBehaviour
     }
 
     private void LateUpdate() {
-        SmoothFollowCamera();
-
-        if (lookAtInteractable)
+        if (lookAtInteractable) {
+            CameraFollowInteractable();
             CameraLookAtInteractable();
-        else
-            CameraLookAt();
-    }
-
-    /* Simple follow camera with Smoothing */
-    public void SmoothFollowCamera() {
-        if (playerTransform.position == Vector3.zero)
-            return;
-        
-        Vector3 currentOffset;
-        Vector3 desiredPosition;
-        if (lookAtInteractable){
-            Interactable interactable = InteractableManager.ActiveInteractable;
-            Vector3 iOffset = interactable.GetComponent<BoxCollider>().center;
-            currentOffset = CameraZoom.GetCurrentZoomDistance(cameraDirection, StaticDistance, startingDistance);
-            desiredPosition = interactable.transform.position + currentOffset;
         }
         else {
-            currentOffset = CameraZoom.GetCurrentZoomDistance(cameraDirection, StaticDistance, startingDistance);
-            desiredPosition = playerTransform.position + playerTransform.forward * lookAtPeek + currentOffset;
+            CameraFollowPlayer();
+            CameraLookAtPlayer();
         }
+    }
 
+    /// <summary> Follow player with camera with smoothing </summary>
+    public void CameraFollowPlayer() {
+        if (playerTransform.position == Vector3.zero) return;
+
+        Vector3 currentOffset = CameraZoom.GetCurrentZoomDistance(cameraDirection, StaticDistance, startingDistance);
+        Vector3 desiredPosition = playerTransform.position + playerTransform.forward * lookAtPeek + currentOffset;
         Vector3 currentPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
         transform.position = currentPosition;
     }
 
-    public void CameraLookAt() {
-        Vector3 lookAt = playerTransform.position; //+ playerTransform.forward * lookAtPeek;
-        transform.LookAt(lookAt);
+    /// <summary> Follow interactable with camera with smoothing </summary>
+    public void CameraFollowInteractable() {
+        if (playerTransform.position == Vector3.zero) return;
+
+        Interactable interactable = InteractableManager.ActiveInteractable;
+        Vector3 iOffset = interactable.GetComponent<BoxCollider>().center;
+        Vector3 currentOffset = CameraZoom.GetCurrentZoomDistance(cameraDirection, StaticDistance, startingDistance);
+        Vector3 desiredPosition = interactable.transform.position + currentOffset;
+        Vector3 currentPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
+        transform.position = currentPosition;
     }
 
+    /// <summary> LookAt player with camera with smoothing </summary>
+    public void CameraLookAtPlayer() {
+        Vector3 lookAt = playerTransform.position; //+ playerTransform.forward * lookAtPeek;
+        LookAt(lookAt);
+    }
+
+    /// <summary> LookAt interactable with camera with smoothing </summary>
     public void CameraLookAtInteractable() {
         Interactable interactable = InteractableManager.ActiveInteractable;
         Vector3 iOffset = interactable.GetComponent<BoxCollider>().center;
         Vector3 lookAt = interactable.transform.position;
-        transform.LookAt(lookAt + iOffset);
+        LookAt(lookAt + iOffset);
     }
 
     public void ToggleLookAtInteractable(bool active) {
         lookAtInteractable = active;
     }
+
+    public void LookAt(Vector3 target) {
+        Vector3 relativePos = target - transform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(relativePos, Vector3.up);
+        Quaternion rotation = Quaternion.Lerp(transform.rotation, targetRotation, lookAtSpeed * Time.deltaTime);
+        transform.rotation = rotation;
+    }
+
 }
