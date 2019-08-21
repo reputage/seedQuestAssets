@@ -22,6 +22,37 @@ public class FastRecoveryButton : MonoBehaviour, IPointerDownHandler, IPointerUp
 
     public void Update()
     {
+        CheckForButtonDown();       
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        buttonPressed = true;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        buttonPressed = false;
+        progressCompleted = false;
+        time = 0.0f;
+        progress.GetComponent<RectTransform>().offsetMax = new Vector2(-360, progress.GetComponent<RectTransform>().offsetMax.y);
+
+    }
+
+    public Interactable Interactable
+    {
+        get { return interactable; }
+        set { interactable = value; }
+    }
+
+    public int ActionIndex
+    {
+        get { return actionIndex; }
+        set { actionIndex = value; }
+    }
+
+    public void CheckForButtonDown()
+    {
         if (buttonPressed && !progressCompleted)
         {
             time += Time.deltaTime;
@@ -46,29 +77,5 @@ public class FastRecoveryButton : MonoBehaviour, IPointerDownHandler, IPointerUp
             time = 0.0f;
             EventSystem.current.SetSelectedGameObject(null);
         }
-            
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        buttonPressed = true;
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        buttonPressed = false;
-        progressCompleted = false;
-    }
-
-    public Interactable Interactable
-    {
-        get { return interactable; }
-        set { interactable = value; }
-    }
-
-    public int ActionIndex
-    {
-        get { return actionIndex; }
-        set { actionIndex = value; }
     }
 }
