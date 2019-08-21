@@ -376,18 +376,18 @@ public class FastRecoveryUI : MonoBehaviour
             {
                 if(buttons[i].gameObject.GetComponent<Image>().sprite == interactableIconSelected)
                 {
-                    buttons[i].gameObject.GetComponent<Image>().sprite = interactableIcon;
+                    //buttons[i].gameObject.GetComponent<Image>().sprite = interactableIcon;
                     buttons[i].gameObject.GetComponent<Animation>().Play();
                 }
             }
-            InteractablePreviewUI.ClearPreviewObject();
+            /*InteractablePreviewUI.ClearPreviewObject();
             startingTitleImage.gameObject.SetActive(false);
             ToggleInteractableGroup(false);
 
             for (int i = 0; i < 4; i++)
             {
                 interactableButtons[i].onClick.RemoveAllListeners();
-            }
+            }*/
         }
     }
 
@@ -396,7 +396,7 @@ public class FastRecoveryUI : MonoBehaviour
         if (InteractableLog.Count > 0 && InteractableLog.Count % 3 == 0 && levelFlag)
         {
             if (overlay.gameObject.activeSelf)
-                Toggle();
+            Toggle();
             levelFlag = false;
         }
 
