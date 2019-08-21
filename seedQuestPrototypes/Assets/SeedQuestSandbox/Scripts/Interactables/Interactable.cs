@@ -17,12 +17,18 @@ namespace SeedQuest.Interactables
         public float dynamicFlashSpeed = 0.5f;
     }
 
-    //[ExecuteInEditMode] 
+    [System.Serializable]
+    public class InteractableCameraProps {
+        public Vector3 lookAtOffset = Vector3.zero;
+        public float zoomDistance = 10.0f;
+    }
+
     [RequireComponent(typeof(BoxCollider))]
     public class Interactable : MonoBehaviour {
 
         public InteractableStateData stateData = null;
         public InteractableUI interactableUI;
+        public InteractableCameraProps interactableCamera;
         public InteractableTrackerProps interactableTracker;
         public InteractablePreviewInfo interactablePreview;
         public InteractableHighlightsProps interactableHighlights;

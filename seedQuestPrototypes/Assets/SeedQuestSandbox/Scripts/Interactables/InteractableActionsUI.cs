@@ -15,7 +15,7 @@ public class InteractableActionsUI : MonoBehaviour
 
     private TextMeshProUGUI interactableLabel;
     private Button[] actionButtons = new Button[4];
-    private Interactable interactable;
+    private Interactable interactable { get => InteractableManager.ActiveInteractable; }
 
     // Start is called before the first frame update
     void Start() {
@@ -30,7 +30,6 @@ public class InteractableActionsUI : MonoBehaviour
     }
 
     void SetComponentRef() {
-        interactable = InteractableManager.ActiveInteractable;
         actionButtons = GetComponentsInChildren<Button>();
         interactableLabel = GetComponentInChildren<TextMeshProUGUI>();
 

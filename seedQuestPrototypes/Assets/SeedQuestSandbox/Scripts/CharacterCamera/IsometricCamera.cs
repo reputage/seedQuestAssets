@@ -11,7 +11,7 @@ public class IsometricCamera : MonoBehaviour
     static public IsometricCamera instance;
     static public Camera Camera = null;                         // Static reference to Camera 
 
-    public Transform playerTransform;                          // Reference to player transform
+    public Transform playerTransform;                           // Reference to player transform
     public float smoothSpeed = 2f;                              // Camera lerp smoothing speed parameter
     public float lookAtSpeed = 2f;
     public Vector3 cameraDirection = new Vector3(1, 1, -1);     // Camera direction vector
@@ -87,7 +87,7 @@ public class IsometricCamera : MonoBehaviour
 
         Interactable interactable = InteractableManager.ActiveInteractable;
         Vector3 iOffset = interactable.GetComponent<BoxCollider>().center;
-        Vector3 currentOffset = CameraZoom.GetCurrentZoomDistance(cameraDirection, StaticDistance, startingDistance);
+        Vector3 currentOffset = CameraZoom.GetCurrentZoomDistance(cameraDirection, interactable.interactableCamera.zoomDistance, distance);
         Vector3 desiredPosition = interactable.transform.position + currentOffset;
         Vector3 currentPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
         transform.position = currentPosition;
@@ -102,7 +102,7 @@ public class IsometricCamera : MonoBehaviour
     /// <summary> LookAt interactable with camera with smoothing </summary>
     public void CameraLookAtInteractable() {
         Interactable interactable = InteractableManager.ActiveInteractable;
-        Vector3 iOffset = interactable.GetComponent<BoxCollider>().center;
+        Vector3 iOffset = interactable.GetComponent<BoxCollider>().center + interactable.interactableCamera.lookAtOffset;
         Vector3 lookAt = interactable.transform.position;
         LookAt(lookAt + iOffset);
     }
