@@ -30,6 +30,7 @@ public class InteractableLabelUI
         if (!isReady()) return;
         SetPosition();
         //SetIcon();
+        //ListenForNear();
     }
 
     private void InstantiateLabel(Interactable parentInteractable) {
@@ -117,4 +118,15 @@ public class InteractableLabelUI
         InteractableActionsUI.Toggle(true);
     }
 
+    private void ListenForNear() {
+        Vector3 playerPosition = IsometricCamera.instance.playerTransform.position;
+        Vector3 interactablePosition = interactable.GetComponent<BoxCollider>().center + interactable.interactableCamera.lookAtOffset;
+        //interactablePosition = interactable.transform.InverseTransformPoint(interactablePosition);
+
+        float dist = (interactablePosition - playerPosition).magnitude;
+        if (dist < InteractableManager.Instance.nearDistance)
+            labelObject.SetActive(true);
+        else
+            labelObject.SetActive(false);
+    }
 }
