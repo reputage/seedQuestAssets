@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class SceneLineUpCanvas : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void Continue() {
+        MenuScreenV2.Instance.GoToActionLineUp();
     }
 }
