@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SeedQuest.Interactables;
 
 public static class SeedUtility 
 {
@@ -46,6 +47,16 @@ public static class SeedUtility
         }
 
         return valid;
+    }
+
+    public static bool detectHex(string seed)
+    {
+        if (seed.Length <= InteractableConfig.SeedHexLength + 1 &&
+                 System.Text.RegularExpressions.Regex.IsMatch(seed, @"\A\b[0-9a-fA-F]+\b\Z"))
+        {
+            return true;
+        }
+        return false;
     }
 
 }

@@ -26,6 +26,7 @@ public class SeedSetupCanvas : MonoBehaviour
 
     public void FindKey() 
     {
+        EncodeSeed();
         MenuScreenV2.Instance.GoToEncodeSeed();
     }
 
@@ -39,19 +40,6 @@ public class SeedSetupCanvas : MonoBehaviour
     {
         InteractablePathManager.SetRandomSeed();
         seedInputField.text = bpc.getSentenceFromHex(InteractablePathManager.SeedString);
-    }
-
-    // The end game UI removes a superfluous character from hex strings, this 
-    //  fixes a UI issue that arises when restarting from end game UI
-    public static string checkHexLength(string hexString)
-    {
-        if (hexString.Length == 34 && hexString[32] == '0')
-        {
-            hexString = hexString.Substring(0, 32) + hexString.Substring(33, 1);
-        }
-        Debug.Log("Fixed string: " + hexString);
-
-        return hexString;
     }
 
     // Check the user's input to verify that it's a valid seed
@@ -75,6 +63,48 @@ public class SeedSetupCanvas : MonoBehaviour
             warningTextTMP.text = "Word seed detected!";
             warningTextTMP.color = new Color32(81, 150, 55, 255);
             setGreenCheck();
+        }
+    }
+
+    public void EncodeSeed()
+    {
+        if (GameManager.Mode == GameMode.Rehearsal)
+        {
+            string seedFromInput = seedInputField.text;
+            string hexSeed = "";
+
+            if (!SeedUtility.detectHex(seedFromInput) && SeedUtility.validBip(seedFromInput))
+            {
+                hexSeed = bpc.getHexFromSentence(seedFromInput);
+            }
+            else
+            {
+                hexSeed = seedFromInput;
+                if (InteractableConfig.SeedHexLength % 2 == 1)
+                {
+                    if (seedFromInput.Length == InteractableConfig.SeedHexLength)
+                    {
+                        string seedText = seedFromInput + "0";
+                        char[] array = seedText.ToCharArray();
+                        array[array.Length - 1] = array[array.Length - 2];
+                        array[array.Length - 2] = '0';
+                        hexSeed = new string(array);
+                    }
+                    else if (seedFromInput.Length == InteractableConfig.SeedHexLength + 1)
+                    {
+                        char[] array = seedFromInput.ToCharArray();
+                        array[array.Length - 2] = '0';
+                        hexSeed = new string(array);
+                    }
+                    else
+                        Debug.Log("Seed: " + hexSeed);
+                }
+            }
+            Debug.Log("Seed: " + hexSeed);
+
+            InteractablePathManager.SeedString = hexSeed;
+            int[] siteIDs = InteractablePathManager.GetPathSiteIDs();
+
         }
     }
 
@@ -128,6 +158,19 @@ public class SeedSetupCanvas : MonoBehaviour
         return validHex;
     }
 
+    // The end game UI removes a superfluous character from hex strings, this 
+    //  fixes a UI issue that arises when restarting from end game UI
+    public static string checkHexLength(string hexString)
+    {
+        if (hexString.Length == 34 && hexString[32] == '0')
+        {
+            hexString = hexString.Substring(0, 32) + hexString.Substring(33, 1);
+        }
+        Debug.Log("Fixed string: " + hexString);
+
+        return hexString;
+    }
+
     public void deactivateHideKeyButton()
     {
         HideKeyButton.interactable = false;
@@ -163,6 +206,5 @@ public class SeedSetupCanvas : MonoBehaviour
         greenCheck.gameObject.SetActive(false);
         greenOutline.gameObject.SetActive(false);
     }
-
 
 } 
