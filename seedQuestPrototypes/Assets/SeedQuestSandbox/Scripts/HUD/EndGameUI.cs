@@ -217,13 +217,21 @@ public class EndGameUI : MonoBehaviour
         textList[0].text = bipSeed;
 
         Button[] buttons = Instance.GetComponentsInChildren<Button>();
+
+        foreach (Button buttonOb in buttons)
+        {
+            Debug.Log("Button name: " + buttonOb.gameObject.name);
+        }
+
+
         GameObject characterButton = buttons[4].gameObject;
         GameObject wordsButton = buttons[5].gameObject;
 
-        wordsButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 255, 255, 255);
-        wordsButton.GetComponent<Image>().color = new Color(0, 0, 0, 255);
         characterButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(89, 89, 89, 255);
-        characterButton.GetComponent<Image>().color = new Color(255, 255, 255, 255);
+        characterButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        wordsButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 255, 255, 255);
+        wordsButton.GetComponent<Image>().color = new Color32(55, 90, 122, 255);
+
     }
 
     public static void setupCharacterMode()
@@ -236,7 +244,22 @@ public class EndGameUI : MonoBehaviour
         GameObject wordsButton = buttons[5].gameObject;
 
         characterButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 255, 255, 255);
-        characterButton.GetComponent<Image>().color = new Color32(32, 32, 32, 255);
+        characterButton.GetComponent<Image>().color = new Color32(55, 90, 122, 255);
+        wordsButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(89, 89, 89, 255);
+        wordsButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+    }
+
+    public void characterMode()
+    {
+        var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
+        textList[0].text = hexSeed;
+
+        Button[] buttons = Instance.GetComponentsInChildren<Button>();
+        GameObject characterButton = buttons[4].gameObject;
+        GameObject wordsButton = buttons[5].gameObject;
+
+        characterButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 255, 255, 255);
+        characterButton.GetComponent<Image>().color = new Color32(55, 90, 122, 255);
         wordsButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(89, 89, 89, 255);
         wordsButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
     }
@@ -270,6 +293,4 @@ public class EndGameUI : MonoBehaviour
     }
 
 
-    //crowd estate unveil olive execute foot excess two twist piano orchard avoid
-    // 
 }
