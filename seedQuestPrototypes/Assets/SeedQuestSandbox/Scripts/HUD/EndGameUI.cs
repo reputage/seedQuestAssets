@@ -169,10 +169,10 @@ public class EndGameUI : MonoBehaviour
         BIP39Converter bpc = new BIP39Converter();
         string seed = bipSeed + "\n0x" + hexSeed;
 
-        QRCodeGenerator qrGenerator = new QRCodeGenerator();
-        QRCodeData qrCodeData = qrGenerator.CreateQrCode(textList[0].text, QRCodeGenerator.ECCLevel.Q);
-        UnityQRCode qrCode = new UnityQRCode(qrCodeData);
-        Texture2D qrCodeAsTexture2D = qrCode.GetGraphic(20);
+        //QRCodeGenerator qrGenerator = new QRCodeGenerator();
+        //QRCodeData qrCodeData = qrGenerator.CreateQrCode(textList[0].text, QRCodeGenerator.ECCLevel.Q);
+        //UnityQRCode qrCode = new UnityQRCode(qrCodeData);
+        //Texture2D qrCodeAsTexture2D = qrCode.GetGraphic(20);
 
         //byte[] bytes = qrCodeAsTexture2D.EncodeToPNG();
         //File.WriteAllBytes(Application.dataPath + "/../SavedQRCode.png", bytes);
