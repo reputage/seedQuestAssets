@@ -15,15 +15,15 @@ namespace SeedQuest.Interactables
             }
         }
 
-        public float nearDistance = 2.0f;
+        public float nearDistance = 4.0f;
         public float nearDistanceForZoom = 4.0f;
+        public GameObject interactableLabelUI;
+        public GameObject[] actionSpotIcons; // InteractableUI Prefab Templates
+        public Interactable activeInteractable = null;
+
         public bool useSingleTracker = true;
         public bool useInteractableNames = true;
         public bool useSeparatedUI = false;
-
-        public GameObject[] actionSpotIcons; // InteractableUI Prefab Templates
-
-        public Interactable activeInteractable = null;
 
         static public Interactable ActiveInteractable {
             get { return Instance.activeInteractable; }

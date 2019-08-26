@@ -35,6 +35,7 @@ public class FastRecoveryUI : MonoBehaviour
     private bool calculatePositions;
     private int sliderMin;
     private int sliderMax;
+    private bool levelFlag;
 
     private void Start()
     {
@@ -91,11 +92,16 @@ public class FastRecoveryUI : MonoBehaviour
             map.sprite = source;
             if (restrictViewport)
             {
-                if ((980 / source.bounds.size.y * source.bounds.size.x) < 880)
+                if ((980 / source.bounds.size.y * source.bounds.size.x) < 880f)
+                {
                     map.rectTransform.sizeDelta = new Vector2(880, 880 / source.bounds.size.x * source.bounds.size.y);
+                    slider.minValue = 880 / source.bounds.size.x * source.bounds.size.y;
+                }
                 else
+                {
                     map.rectTransform.sizeDelta = new Vector2(980 / source.bounds.size.y * source.bounds.size.x, 980);
-                slider.minValue = 980;
+                    slider.minValue = 980;
+                }
                 slider.value = slider.minValue;
             }
 
@@ -123,6 +129,8 @@ public class FastRecoveryUI : MonoBehaviour
     {
         ListenForKeyDown();
         CheckForProgress();
+        CheckForLevelChange();
+        CheckForPreviewUI();
     }
 
     private void ListenForKeyDown()
@@ -194,17 +202,35 @@ public class FastRecoveryUI : MonoBehaviour
             if (useRenderTexture)
             {
                 rawMap.transform.localPosition = new Vector3(0, 0, 0);
-                rawMap.rectTransform.sizeDelta = new Vector2(1000, 1000);
+                if (restrictViewport)
+                {
+                    rawMap.rectTransform.sizeDelta = new Vector2(980, 980);
+                    slider.value = slider.minValue;
+                }
             }
             else
             {
                 map.transform.localPosition = new Vector3(0, 0, 0);
-                map.rectTransform.sizeDelta = new Vector2(1000 / source.bounds.size.y * source.bounds.size.x, 1000);
+                if (restrictViewport)
+                {
+                    if ((980 / source.bounds.size.y * source.bounds.size.x) < 880f)
+                    {
+                        map.rectTransform.sizeDelta = new Vector2(880, 880 / source.bounds.size.x * source.bounds.size.y);
+                    }
+                    else
+                        map.rectTransform.sizeDelta = new Vector2(980 / source.bounds.size.y * source.bounds.size.x, 980);
+                    slider.value = slider.minValue;
+                }
+                else
+                {
+                    map.rectTransform.sizeDelta = new Vector2(1000 / source.bounds.size.y * source.bounds.size.x, 1000);
+                    slider.value = 1000;
+                }
             }
-            if (restrictViewport)
-                slider.value = slider.minValue;
-            else
-                slider.value = 1000;
+        }
+        if (GameManager.Mode == GameMode.Recall && active && InteractablePreviewUI.Show)
+        {
+            InteractablePreviewUI.ToggleShow();
         }
         overlay.gameObject.SetActive(!active);
     }
@@ -350,18 +376,39 @@ public class FastRecoveryUI : MonoBehaviour
             {
                 if(buttons[i].gameObject.GetComponent<Image>().sprite == interactableIconSelected)
                 {
-                    buttons[i].gameObject.GetComponent<Image>().sprite = interactableIcon;
+                    //buttons[i].gameObject.GetComponent<Image>().sprite = interactableIcon;
                     buttons[i].gameObject.GetComponent<Animation>().Play();
                 }
             }
-            InteractablePreviewUI.ClearPreviewObject();
+            /*InteractablePreviewUI.ClearPreviewObject();
             startingTitleImage.gameObject.SetActive(false);
             ToggleInteractableGroup(false);
 
             for (int i = 0; i < 4; i++)
             {
                 interactableButtons[i].onClick.RemoveAllListeners();
-            }
+            }*/
+        }
+    }
+
+    public void CheckForLevelChange()
+    {
+        if (InteractableLog.Count > 0 && InteractableLog.Count % 3 == 0 && levelFlag)
+        {
+            if (overlay.gameObject.activeSelf)
+            Toggle();
+            levelFlag = false;
+        }
+
+        else if (InteractableLog.Count % 3 != 0)
+            levelFlag = true;
+    }
+
+    public void CheckForPreviewUI()
+    {
+        if (overlay.gameObject.activeSelf && !InteractablePreviewUI.Show)
+        {
+            InteractablePreviewUI.ToggleShow();
         }
     }
 }
