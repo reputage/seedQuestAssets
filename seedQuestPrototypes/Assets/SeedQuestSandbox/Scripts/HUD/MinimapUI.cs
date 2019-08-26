@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using SeedQuest.Interactables;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,7 +44,10 @@ namespace SeedQuest.HUD
             //largeMap.rectTransform.sizeDelta = new Vector2(980 / source.bounds.size.y * source.bounds.size.x, 980);
             //map.transform.localPosition = new Vector3(0, playerYOffset, 0);
             mapContainer.transform.eulerAngles = new Vector3(0, 0, rotation);
-            pinIcon.gameObject.SetActive(false);
+            if (GameManager.Mode != GameMode.Rehearsal)
+            {
+                pinIcon.gameObject.SetActive(false);
+            }
             active = false;
         }
 
@@ -51,6 +55,10 @@ namespace SeedQuest.HUD
         {
             playerIcon.transform.eulerAngles = new Vector3(0, -180, player.transform.eulerAngles.y-rotation);
             map.transform.localPosition = new Vector3(-player.transform.localPosition.x * xScale + playerXOffset, -player.transform.localPosition.z * yScale + playerYOffset, 0);
+            if (GameManager.Mode == GameMode.Rehearsal)
+            {
+                pinIcon.transform.localPosition = new Vector3((InteractablePath.NextInteractable.transform.localPosition.x - player.transform.localPosition.x) * xScale, (InteractablePath.NextInteractable.transform.localPosition.z - player.transform.localPosition.z) * yScale, 0);
+            }
 
             //ListenForKeyDown();
         }
