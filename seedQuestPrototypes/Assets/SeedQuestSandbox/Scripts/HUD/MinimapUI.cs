@@ -57,7 +57,12 @@ namespace SeedQuest.HUD
             map.transform.localPosition = new Vector3(-player.transform.localPosition.x * xScale + playerXOffset, -player.transform.localPosition.z * yScale + playerYOffset, 0);
             if (GameManager.Mode == GameMode.Rehearsal)
             {
-                pinIcon.transform.localPosition = new Vector3((InteractablePath.NextInteractable.transform.localPosition.x - player.transform.localPosition.x) * xScale, (InteractablePath.NextInteractable.transform.localPosition.z - player.transform.localPosition.z) * yScale, 0);
+                pinIcon.transform.localPosition = new Vector3((InteractablePath.NextInteractable.LookAtPosition.x - player.transform.localPosition.x) * xScale, (InteractablePath.NextInteractable.LookAtPosition.z - player.transform.localPosition.z) * yScale, 0);
+            }
+
+           else if (GameManager.Mode == GameMode.Recall || GameManager.Mode == GameMode.Sandbox)
+            {
+                pinIcon.gameObject.SetActive(false);
             }
 
             //ListenForKeyDown();

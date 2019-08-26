@@ -3464,7 +3464,7 @@ PrefabInstance:
     - target: {fileID: 9153467590411988273, guid: 70c082c534d6e4ba697693f5a980ec0d,
         type: 3}
       propertyPath: useInteractableUIPositions
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9153467590411988273, guid: 70c082c534d6e4ba697693f5a980ec0d,
         type: 3}
@@ -4712,6 +4712,12 @@ Transform:
   m_Father: {fileID: 50818695}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0.075, y: 0.067, z: -0.049000002}
+--- !u!1 &824002957 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 478797a95553adf43b6501e0251c46bc,
+    type: 3}
+  m_PrefabInstance: {fileID: 502463807}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &830498719
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8947,22 +8953,22 @@ MonoBehaviour:
     scalingCoefficient: 0
     debugActionUI: {fileID: 0}
   interactableCamera:
-    lookAtOffset: {x: -0.5, y: 1, z: 0}
+    lookAtOffset: {x: -0.5, y: 0.5, z: 0}
     zoomDistance: 20
   interactableTracker:
-    positionOffset: {x: -1.6, y: 5.5, z: 0}
+    positionOffset: {x: -1.5, y: 0.4, z: 0}
     screenPositionOffset: {x: 0, y: 0}
-    screenWobbleDirection: {x: 0, y: 1}
-    screenRotation: 0
+    screenWobbleDirection: {x: 1, y: 0}
+    screenRotation: 90
   interactablePreview:
-    scale: {x: 0.38, y: 0.38, z: 0.38}
-    position: {x: 0.5, y: -0.9, z: 0}
-    rotation: {x: -20, y: 45, z: -15}
+    scale: {x: 1, y: 1, z: 1}
+    position: {x: 0.1, y: -0.4, z: 0}
+    rotation: {x: -23, y: 27, z: -13}
     useOrthographic: 1
     fieldOfView: 60
     orthographicSize: 1
-    previewPrefab: {fileID: 309104406, guid: c5d988cf150990243a7c18eaecb6793c, type: 3}
-    useRotate: 0
+    previewPrefab: {fileID: 824002957}
+    useRotate: 1
     rotateSpeed: 25
   interactableHighlights:
     useHighlightsShader: 1
