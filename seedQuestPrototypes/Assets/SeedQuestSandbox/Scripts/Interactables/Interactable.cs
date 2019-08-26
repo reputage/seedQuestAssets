@@ -98,6 +98,8 @@ namespace SeedQuest.Interactables
 
         public bool IsNextInteractable { get => InteractablePath.NextInteractable == this; }
 
+        public Vector3 LookAtPosition { get =>  GetComponent<BoxCollider>().center + interactableCamera.lookAtOffset; }
+
         public string GetActionName(int actionIndex) {
             return this.stateData.getStateName(actionIndex);
         }
