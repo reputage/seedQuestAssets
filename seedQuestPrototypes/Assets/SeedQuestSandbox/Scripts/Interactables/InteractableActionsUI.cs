@@ -15,23 +15,24 @@ public class InteractableActionsUI : MonoBehaviour
 
     private TextMeshProUGUI interactableLabel;
     private Button[] actionButtons = new Button[4];
-    private Interactable interactable { get => InteractableManager.ActiveInteractable; }
+    private Interactable interactable;
 
     // Start is called before the first frame update
-    void Start() {
+    void Awake() {
         SetComponentRef();
-        SetText();
         SetHoverEvents();
     }
 
     static public void Toggle(bool active) {
+        Instance.interactable = InteractableManager.ActiveInteractable;
         Instance.gameObject.SetActive(active);
+        Instance.SetText();
         IsometricCamera.instance.ToggleLookAtInteractable(active);
     }
 
     void SetComponentRef() {
-        actionButtons = GetComponentsInChildren<Button>();
-        interactableLabel = GetComponentInChildren<TextMeshProUGUI>();
+        actionButtons = GetComponentsInChildren<Button>(true);
+        interactableLabel = GetComponentInChildren<TextMeshProUGUI>(true);
 
         actionButtons[0].onClick.AddListener(() => { clickActionButton(0); });
         actionButtons[1].onClick.AddListener(() => { clickActionButton(1); });
