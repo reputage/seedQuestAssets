@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine.SceneManagement;
 using System.Runtime.Serialization.Formatters.Binary;
 using SeedQuest.Interactables;
+using SeedQuest.HUD;
 
 public class NewTutorialManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class NewTutorialManager : MonoBehaviour
     private Vector3 playerStartPosition;
     private bool coroutineStarted = false;
     private bool recall = false;
+    private MenuProgressTopBarUI menuBar;
+    private Canvas sliderCanvas;
+    private Canvas minimapCanvas;
 
     static private NewTutorialManager instance = null;
     static private NewTutorialManager setInstance() { instance = GameObject.FindObjectOfType<NewTutorialManager>(); return instance; }
@@ -27,12 +31,24 @@ public class NewTutorialManager : MonoBehaviour
         InteractablePathManager.SeedString = "A09206A09206000000000000000000000";
         InteractablePathManager.SetupInteractablePathIDs();
         InteractablePathManager.Initalize();
+        menuBar = FindObjectOfType<MenuProgressTopBarUI>();
+        menuBar.gameObject.GetComponent<Canvas>().sortingOrder = 1;
+        sliderCanvas = FindObjectOfType<CameraSlider>().transform.parent.parent.gameObject.GetComponent<Canvas>();
+        sliderCanvas.sortingOrder = 1;
+        minimapCanvas = FindObjectOfType<MinimapUI>().gameObject.GetComponent<Canvas>();
+        minimapCanvas.sortingOrder = 1;
     }
 
     private void Update()
     {
+        if (currentCanvasIndex == 2)
+        {
+            menuBar.gameObject.GetComponent<Canvas>().sortingOrder = 3;
+        }
+
         if (currentCanvasIndex == 5)
         {
+            menuBar.gameObject.GetComponent<Canvas>().sortingOrder = 1;
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (Vector3.Distance(playerStartPosition, player.transform.localPosition) > 0.037)
             {
@@ -42,6 +58,18 @@ public class NewTutorialManager : MonoBehaviour
                     StartCoroutine(WaitNextCanvas(1.5f));
                 }
             }
+        }
+
+        if (currentCanvasIndex == 6)
+        {
+            minimapCanvas.sortingOrder = 3;
+            sliderCanvas.sortingOrder = 3;
+        }
+
+        if (currentCanvasIndex == 7)
+        {
+            minimapCanvas.sortingOrder = 1;
+            sliderCanvas.sortingOrder = 1;
         }
 
         else if (currentCanvasIndex == 10)
@@ -124,7 +152,7 @@ public class NewTutorialManager : MonoBehaviour
 
     public void Skip()
     {
-        SaveSkip();
+        //SaveSkip();
         GameManager.TutorialMode = false;
         SceneManager.LoadScene("PrototypeSelect");
     }
