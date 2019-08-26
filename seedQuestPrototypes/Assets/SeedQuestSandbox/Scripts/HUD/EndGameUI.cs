@@ -218,11 +218,12 @@ public class EndGameUI : MonoBehaviour
 
         Button[] buttons = Instance.GetComponentsInChildren<Button>();
 
+        /*
         foreach (Button buttonOb in buttons)
         {
             Debug.Log("Button name: " + buttonOb.gameObject.name);
         }
-
+        */
 
         GameObject characterButton = buttons[4].gameObject;
         GameObject wordsButton = buttons[5].gameObject;
