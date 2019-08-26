@@ -53,14 +53,15 @@ public class InteractableActionsUI : MonoBehaviour
 
     void clickActionButton(int actionIndex) {
         if (GameManager.Mode == GameMode.Rehearsal) {
-            if (actionIndex == InteractablePath.NextInteractable.ID.actionID) {
-                InteractableLog.Add(interactable, interactable.ActionIndex);
+            if (actionIndex == InteractablePath.NextInteractable.ActionIndex && interactable.ID == InteractablePath.NextInteractable.ID) {
+                InteractableLog.Add(interactable, actionIndex);
                 InteractablePath.GoToNextInteractable();
             } 
         }
-        else if (GameManager.Mode == GameMode.Recall)
-            InteractableLog.Add(interactable, interactable.ActionIndex);
-
+        else if (GameManager.Mode == GameMode.Recall || GameManager.Mode == GameMode.Sandbox)
+        {
+            InteractableLog.Add(interactable, actionIndex);
+        }
         InteractableActionsUI.Toggle(false);
     }
 
