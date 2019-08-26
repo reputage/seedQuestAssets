@@ -17,16 +17,24 @@ namespace SeedQuest.Interactables
         public float dynamicFlashSpeed = 0.5f;
     }
 
-    //[ExecuteInEditMode] 
+    [System.Serializable]
+    public class InteractableCameraProps {
+        public Vector3 lookAtOffset = Vector3.zero;
+        public float zoomDistance = 10.0f;
+    }
+
     [RequireComponent(typeof(BoxCollider))]
     public class Interactable : MonoBehaviour {
 
         public InteractableStateData stateData = null;
         public InteractableUI interactableUI;
+        public InteractableCameraProps interactableCamera;
         public InteractableTrackerProps interactableTracker;
         public InteractablePreviewInfo interactablePreview;
         public InteractableHighlightsProps interactableHighlights;
         public InteractableID ID;
+
+        private InteractableLabelUI interactableLabel;
 
         public Shader defaultShader;
         private Shader highlightShader;
@@ -37,7 +45,7 @@ namespace SeedQuest.Interactables
         public int ActionIndex { get => actionIndex; set => actionIndex = value; } // Current Action State 
 
         [HideInInspector]
-        public float interactDistance = 2.0f;
+        public float interactDistance = 4.0f;
 
         private bool isOnHover = false;
         public bool IsOnHover { get => isOnHover; } 
@@ -45,13 +53,17 @@ namespace SeedQuest.Interactables
         [HideInInspector]
         public bool flagDeleteUI = false;
 
-
         void Start() {
-            interactableUI.Initialize(this);
+            //interactableUI.Initialize(this);
+            interactableLabel = new InteractableLabelUI();
+            interactableLabel.Initialize(this);
             getRefs();
         }
 
         void Update()  {
+            interactableLabel.Update();
+
+            /*
             if (interactableUI.isReady()) {
                 interactableUI.Update();
                 HoverOnInteractable();
@@ -60,6 +72,7 @@ namespace SeedQuest.Interactables
             else {
                 interactableUI.Initialize(this);
             }
+            */
         }
 
         void OnDestroy() {
@@ -84,6 +97,10 @@ namespace SeedQuest.Interactables
         }
 
         public bool IsNextInteractable { get => InteractablePath.NextInteractable == this; }
+
+        public string GetActionName(int actionIndex) {
+            return this.stateData.getStateName(actionIndex);
+        }
 
         int Mod(int x, int m) {
             return (x % m + m) % m;
@@ -122,8 +139,8 @@ namespace SeedQuest.Interactables
             InteractableState state = stateData.states[actionIndex];
             stateData.stopAudio();
             state.enterState(this);
-            HighlightInteractable(true, true);
-            interactableUI.SetActionUI(actionIndex);
+            //HighlightInteractable(true, true);
+            //interactableUI.SetActionUI(actionIndex);
 
             if (GameManager.Mode == GameMode.Sandbox || GameManager.Mode == GameMode.Recall)
                 InteractablePreviewUI.SetPreviewAction(this.actionIndex);
@@ -134,7 +151,7 @@ namespace SeedQuest.Interactables
         }
 
         private bool PlayerIsNear() {
-            Vector3 playerPosition = PlayerCtrl.PlayerTransform.position;
+            Vector3 playerPosition = IsometricCamera.instance.playerTransform.position;
             float dist = (transform.position - playerPosition).magnitude;
             if (dist < interactDistance)
                 return true;
@@ -267,6 +284,19 @@ namespace SeedQuest.Interactables
                 EffectsManager.PlayEffect("highlight", this.transform);
             else
                 EffectsManager.StopEffect(this.transform);
+        }
+
+        void OnDrawGizmos() {
+            // Display the explosion radius when selected
+            if(PlayerIsNear())
+            {
+                Gizmos.color = Color.red;
+            }
+            else
+            {
+                Gizmos.color = Color.white;
+            }
+            Gizmos.DrawWireSphere(transform.position, interactDistance);
         }
     }
 }

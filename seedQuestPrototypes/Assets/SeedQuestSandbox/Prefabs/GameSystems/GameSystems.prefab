@@ -76,6 +76,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3159523895226436397}
   - component: {fileID: 5105786211925052156}
+  - component: {fileID: 5373112276980864987}
   - component: {fileID: 6066751126877689135}
   - component: {fileID: 7723091332566478742}
   - component: {fileID: 2956433494271178897}
@@ -85,7 +86,6 @@ GameObject:
   - component: {fileID: 6973026263860940960}
   - component: {fileID: 2960801132888328306}
   - component: {fileID: 236199805849083203}
-  - component: {fileID: 1566105724951940355}
   m_Layer: 0
   m_Name: GameSystems
   m_TagString: Untagged
@@ -124,6 +124,20 @@ MonoBehaviour:
   mode: 1
   state: 0
   prevState: 0
+--- !u!114 &5373112276980864987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5756832798645624810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87e6139a7ec92461aab2293b89955c0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldSceneList: {fileID: 11400000, guid: cc3549637ced44e82b5be35e56a7683c, type: 2}
+  currentScenes: []
 --- !u!114 &6066751126877689135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,15 +247,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nearDistance: 2
   nearDistanceForZoom: 4
-  useSingleTracker: 1
-  useInteractableNames: 0
-  useSeparatedUI: 0
+  interactableLabelUI: {fileID: 5565632855523937473, guid: 0774feb472586480f9cc349314691eb2,
+    type: 3}
   actionSpotIcons:
   - {fileID: 1114428110661150, guid: ebba1f71b28acad4e8c44439dac62f18, type: 3}
   - {fileID: 1105227693671952, guid: de1ea159ee8ad014d903fe727ed788a7, type: 3}
   - {fileID: 1435062868324278, guid: a77eb0d88a2b5f64aa59f925fcd94174, type: 3}
   - {fileID: 4936970349382980482, guid: a62d76c59a1b34002b97a60f498fb739, type: 3}
   activeInteractable: {fileID: 0}
+  useSingleTracker: 1
+  useInteractableNames: 0
+  useSeparatedUI: 0
 --- !u!114 &2956433494271178897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,21 +380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17adf53f7c98a4cbba29b0c5cee7acce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1566105724951940355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5756832798645624810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95cadfe5240c14e2e8b0c51e0f4243c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allLevels: []
-  currentLevels: []
-  levels: []
 --- !u!1001 &1769941042993680517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -386,6 +387,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3159523895226436397}
     m_Modifications:
+    - target: {fileID: 8389427446845670320, guid: f8cbd9f6b5698499092377e01a5fd969,
+        type: 3}
+      propertyPath: m_Name
+      value: ActionLineCameraRig
+      objectReference: {fileID: 0}
     - target: {fileID: 2221640757002197899, guid: f8cbd9f6b5698499092377e01a5fd969,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -440,11 +446,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8389427446845670320, guid: f8cbd9f6b5698499092377e01a5fd969,
-        type: 3}
-      propertyPath: m_Name
-      value: ActionLineCameraRig
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8cbd9f6b5698499092377e01a5fd969, type: 3}

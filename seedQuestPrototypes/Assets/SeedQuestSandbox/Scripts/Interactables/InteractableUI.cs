@@ -316,6 +316,7 @@ namespace SeedQuest.Interactables
 
         /// <summary> Sets Label Text to Current Action and Activates Checkmark if necessary </summary>
         public void SetActionUI(int actionIndex) {
+            Debug.Log(actionIndex);
             InteractableState state = parent.stateData.states[actionIndex];
             //SetText(parent.Name + ":\n "+ state.actionName);
             SetText(state.actionName);
