@@ -139,8 +139,8 @@ namespace SeedQuest.Interactables
             InteractableState state = stateData.states[actionIndex];
             stateData.stopAudio();
             state.enterState(this);
-            HighlightInteractable(true, true);
-            interactableUI.SetActionUI(actionIndex);
+            //HighlightInteractable(true, true);
+            //interactableUI.SetActionUI(actionIndex);
 
             if (GameManager.Mode == GameMode.Sandbox || GameManager.Mode == GameMode.Recall)
                 InteractablePreviewUI.SetPreviewAction(this.actionIndex);
