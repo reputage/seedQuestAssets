@@ -12,7 +12,7 @@ public class NewTutorialManager : MonoBehaviour
     private int currentCanvasIndex;
     private Vector3 playerStartPosition;
     private bool coroutineStarted = false;
-    private bool recall = false;
+    private bool recall = true;
     private MenuProgressTopBarUI menuBar;
     private Canvas sliderCanvas;
     private Canvas minimapCanvas;
@@ -72,55 +72,66 @@ public class NewTutorialManager : MonoBehaviour
             sliderCanvas.sortingOrder = 1;
         }
 
-        else if (currentCanvasIndex == 10)
-        {
-            if (InteractableLog.Count > 0)
-            {
-                NextCanvas();
-            }
-        }
+		if (currentCanvasIndex < 10)
+		{
+			if (InteractableLog.Count > 0)
+			{
+				InteractablePathManager.Reset();
+				InteractablePath.InitializeNextInteractable();
+			}
+		}
 
-        else if (currentCanvasIndex == 11)
-        {
-            if (InteractableLog.Count == 2)
-            {
-                GoToCanvas(13);
-            }
-        }
+		else if (currentCanvasIndex == 10)
+		{
+			if (InteractableLog.Count > 0)
+			{
+				NextCanvas();
+			}
+		}
 
-        else if (currentCanvasIndex == 12)
-        {
-            if (InteractableLog.Count == 0)
-            {
-                GoToCanvas(11);
-            }
-        }
+		else if (currentCanvasIndex == 11)
+		{
+			if (InteractableLog.Count == 2)
+			{
+				GoToCanvas(13);
+			}
+		}
 
-        else if (currentCanvasIndex == 13)
-        {
-            if (InteractableLog.Count == 3)
-            {
-                InteractablePathManager.Reset();
-                InteractablePreviewUI.ToggleShow();
-                InteractableManager.UnHighlightAllInteractables();
-                InteractableManager.UnTrackAllInteractables();
-                ParticleSystem[] particles = FindObjectsOfType<ParticleSystem>();
-                foreach (ParticleSystem particle in particles)
-                    particle.Stop();
-                GoToCanvas(14);
-            }
-        }
+		else if (currentCanvasIndex == 12)
+		{
+			if (InteractableLog.Count == 0)
+			{
+				GoToCanvas(11);
+			}
+		}
 
-        else if (currentCanvasIndex == 14)
-        {
-            if (recall)
-            {
-                if (InteractableLog.Count == 3)
-                {
-                    GoToCanvas(15);
-                }
-            }
-        }
+		else if (currentCanvasIndex == 13)
+		{
+			if (InteractableLog.Count == 3)
+			{
+				InteractablePathManager.Reset();
+				InteractablePreviewUI.ToggleShow();
+				InteractableManager.UnHighlightAllInteractables();
+				InteractableManager.UnTrackAllInteractables();
+				ParticleSystem[] particles = FindObjectsOfType<ParticleSystem>();
+				foreach (ParticleSystem particle in particles)
+					particle.Stop();
+				GoToCanvas(14);
+			}
+		}
+
+		else if (currentCanvasIndex == 14)
+		{
+
+			if (recall)
+			{
+				Debug.Log(InteractableLog.Count);
+				if (InteractableLog.Count == 3)
+				{
+					GoToCanvas(15);
+				}
+			}
+		}
     }
 
     public void NextCanvas()
