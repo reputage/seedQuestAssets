@@ -34,7 +34,7 @@ public class InteractableLabelUI
     }
 
     public void DeleteUI() {
-        //GameObject.Destroy(labelObject);
+        GameObject.Destroy(labelObject);
     }
 
     private void InstantiateLabel(Interactable parentInteractable) {
@@ -55,6 +55,15 @@ public class InteractableLabelUI
 
         // Create label object 
         labelObject = GameObject.Instantiate(InteractableManager.Instance.interactableLabelUI, UIContainer);
+    }
+
+    static public void ClearInteractableUI() {
+        GameObject container = GameObject.Find("InteractableUIContainer");
+        if (container != null) {
+            foreach (Transform child in container.transform) {
+                GameObject.Destroy(child.gameObject);
+            }
+        }
     }
 
     private bool isReady() {

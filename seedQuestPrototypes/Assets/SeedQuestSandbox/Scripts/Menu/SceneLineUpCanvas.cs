@@ -69,6 +69,7 @@ public class SceneLineUpCanvas : MonoBehaviour
     public void StartScene() {
         GameManager.State = GameState.Menu;
         CameraZoom.ResetZoom();
+        InteractableLabelUI.ClearInteractableUI();
 
         continueButton.gameObject.SetActive(false);
         if(WorldManager.CurrentWorldScene != null)
