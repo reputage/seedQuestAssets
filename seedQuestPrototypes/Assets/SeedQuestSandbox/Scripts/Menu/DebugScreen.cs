@@ -77,11 +77,17 @@ public class DebugScreen : MonoBehaviour
     {
         buttonCard.SetActive(false);
         counting = true;
+        activateCounterText();
     }
 
     public void setCounterDebugText()
     {
         counterText.text = autoCounter.results;
+    }
+
+    public void activateCounterText()
+    {
+        counterText.gameObject.SetActive(true);
     }
 
     public static void SetEncodeSeedDebugCanvas()
