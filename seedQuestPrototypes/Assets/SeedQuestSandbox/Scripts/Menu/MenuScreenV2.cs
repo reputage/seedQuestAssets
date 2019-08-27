@@ -38,8 +38,7 @@ public class MenuScreenV2 : MonoBehaviour
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.BackQuote) && (state == MenuScreenStates.Start || state == MenuScreenStates.ModeSelect) )
-        {
+        if (Input.GetKeyDown(KeyCode.BackQuote) && (state == MenuScreenStates.Start || state == MenuScreenStates.ModeSelect) ) {
             GoToDebugCanvas();
         }
     }
@@ -54,7 +53,7 @@ public class MenuScreenV2 : MonoBehaviour
         debugCanvas = canvas[6];
     }
 
-    private void ResetCanvas() {
+    public void ResetCanvas() {
         foreach(Canvas _canvas in canvas) {
             if(_canvas != canvas[0])
                 _canvas.gameObject.SetActive(false);
@@ -76,18 +75,13 @@ public class MenuScreenV2 : MonoBehaviour
 
     public void SetModeRecoverSeed() {
         GameManager.Mode = GameMode.Recall;
-        Debug.Log("Setting game mode to recall");
         GoToEncodeSeed();
-        LevelIconButton.ResetButtonStatus();
     }
 
     public void GoToSeedSetup() {
         state = MenuScreenStates.SeedSetup;
         ResetCanvas();
         seedSetupCanvas.gameObject.SetActive(true);
-
-        //SetupSeedSetupBip();
-        //checkInputSeed();
     }
 
     public void GoToEncodeSeed() {
@@ -95,74 +89,41 @@ public class MenuScreenV2 : MonoBehaviour
         ResetCanvas();
         encodeSeedCanvas.gameObject.SetActive(true);
         LevelSetManager.ResetCurrentLevels();
-
-        //SetupEncodeSeedBip();
     }
 
     public void GoToSceneLineUp() {
         GameManager.State = GameState.Menu;
         state = MenuScreenStates.SceneLineUp;
         ResetCanvas();
-        sceneLineUpCanvas.gameObject.SetActive(true);
+        sceneLineUpCanvas.GetComponent<SceneLineUpCanvas>().ToggleOn();
+    }
 
-        //SetupSceneLineUp();
+    public void ReturnToSceneLineUp() {
+        GoToSceneLineUp();
+        sceneLineUpCanvas.GetComponent<SceneLineUpCanvas>().Start();
     }
 
     public void GoToActionLineUp() {
         GameManager.State = GameState.Menu;
-        if (GameManager.Mode == GameMode.Rehearsal)
-        {
+        if (GameManager.Mode == GameMode.Rehearsal){
             state = MenuScreenStates.ActionLineUp;
             ResetCanvas();
             actionLineUpCanvas.gameObject.SetActive(true);
-            //SetupActionLineUp();
+            actionLineUpCanvas.GetComponent<ActionLineUpCanvas>().InitializeActionLineUp();
         }
-        else
-        {
-            //CloseSceneLineUp();
+        else {
+            CloseSceneLineUp();
         }
     }
 
-    IEnumerator LoadAsync(string sceneName)
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
-        operation.allowSceneActivation = false;
-
-        while (!operation.isDone)
-        {
-
-            //sceneLoadProgressValue = Mathf.Clamp01(operation.progress / 0.9f);
-
-            if (operation.progress >= 0.9f)
-            {
-                operation.allowSceneActivation = true;
-
-                //sceneLoadProgress.gameObject.SetActive(false);
-                //sceneContinueButton.gameObject.SetActive(true);
-            }
-
-            yield return null;
-        }
-
-        //sceneLoadProgress.gameObject.SetActive(false);
-        //sceneContinueButton.gameObject.SetActive(true);
-    }
-
-    public void StartScene() {
-        GameManager.State = GameState.Menu;
-        CameraZoom.ResetZoom();
-        Instance.StartCoroutine(Instance.LoadAsync(LevelSetManager.CurrentLevel.scenename));
+    public void CloseSceneLineUp() {
+        CameraZoom.StartZoomIn();
+        ResetCanvas();
+        GameManager.State = GameState.Play;
     }
 
     public void GoToDebugCanvas() {
         ResetCanvas();
         debugCanvas.gameObject.SetActive(true);
-    }
-
-    public void DeactivateCanvases()
-    {
-        ResetCanvas();
     }
 }

@@ -8,11 +8,10 @@ public class SceneSelectedIndicator : MonoBehaviour
     Image[] indicators;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Awake() {
         indicators = GetComponentsInChildren<Image>();
         foreach (Image img in indicators)
-            img.gameObject.SetActive(false);
+            img.gameObject.SetActive(false); 
     }
 
     public void Activate(int i) {

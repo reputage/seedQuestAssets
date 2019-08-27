@@ -111,12 +111,14 @@ namespace SeedQuest.Interactables
         public void Delete() {
             flagDeleteUI = true;
             interactableUI.DeleteUI();
+            //interactableLabel.DeleteUI();
             GameObject.Destroy(gameObject);
         }
 
         public void DeleteUI() {
             flagDeleteUI = true;
             interactableUI.DeleteUI();
+            //interactableLabel.DeleteUI();
         }
 
         public void NextAction() {

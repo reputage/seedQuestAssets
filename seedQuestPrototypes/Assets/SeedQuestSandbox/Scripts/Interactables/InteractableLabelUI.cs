@@ -33,6 +33,10 @@ public class InteractableLabelUI
         //ListenForNear();
     }
 
+    public void DeleteUI() {
+        //GameObject.Destroy(labelObject);
+    }
+
     private void InstantiateLabel(Interactable parentInteractable) {
         if (isReady()) return;
 

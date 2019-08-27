@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,5 +31,10 @@ public class WorldManager : MonoBehaviour
     /// <summary>  Resets current world scenes </summary>
     static public void Reset() {
         Instance.currentScenes.Clear();
+    }
+
+    static public int GetSiteIndexForCurrentWorldScene() {
+        int index = Array.FindIndex(WorldScenes, row => row.name == CurrentWorldScene.name);
+        return index;
     }
 }
