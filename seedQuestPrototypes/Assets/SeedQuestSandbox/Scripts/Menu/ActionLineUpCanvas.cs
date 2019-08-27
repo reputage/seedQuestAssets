@@ -8,7 +8,6 @@ using SeedQuest.Interactables;
 
 public class ActionLineUpCanvas : MonoBehaviour
 {
-
     public void Start() {
         SetupActionLineUp();
     }
@@ -36,4 +35,7 @@ public class ActionLineUpCanvas : MonoBehaviour
         GameManager.Instance.GetComponentInChildren<ActionLineCameraRig>().Initialize();
     }
 
+    public void Continue() {
+        MenuScreenV2.Instance.CloseSceneLineUp();
+    }
 }

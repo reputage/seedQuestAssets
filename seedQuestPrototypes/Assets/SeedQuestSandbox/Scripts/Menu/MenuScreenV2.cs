@@ -38,8 +38,7 @@ public class MenuScreenV2 : MonoBehaviour
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.BackQuote) && (state == MenuScreenStates.Start || state == MenuScreenStates.ModeSelect) )
-        {
+        if (Input.GetKeyDown(KeyCode.BackQuote) && (state == MenuScreenStates.Start || state == MenuScreenStates.ModeSelect) ) {
             GoToDebugCanvas();
         }
     }
@@ -54,7 +53,7 @@ public class MenuScreenV2 : MonoBehaviour
         debugCanvas = canvas[6];
     }
 
-    private void ResetCanvas() {
+    public void ResetCanvas() {
         foreach(Canvas _canvas in canvas) {
             if(_canvas != canvas[0])
                 _canvas.gameObject.SetActive(false);
@@ -77,16 +76,12 @@ public class MenuScreenV2 : MonoBehaviour
     public void SetModeRecoverSeed() {
         GameManager.Mode = GameMode.Recall;
         GoToEncodeSeed();
-        //LevelIconButton.ResetButtonStatus();
     }
 
     public void GoToSeedSetup() {
         state = MenuScreenStates.SeedSetup;
         ResetCanvas();
         seedSetupCanvas.gameObject.SetActive(true);
-
-        //SetupSeedSetupBip();
-        //checkInputSeed();
     }
 
     public void GoToEncodeSeed() {
@@ -94,8 +89,6 @@ public class MenuScreenV2 : MonoBehaviour
         ResetCanvas();
         encodeSeedCanvas.gameObject.SetActive(true);
         LevelSetManager.ResetCurrentLevels();
-
-        //SetupEncodeSeedBip();
     }
 
     public void GoToSceneLineUp() {
@@ -103,8 +96,6 @@ public class MenuScreenV2 : MonoBehaviour
         state = MenuScreenStates.SceneLineUp;
         ResetCanvas();
         sceneLineUpCanvas.gameObject.SetActive(true);
-
-        //SetupSceneLineUp();
     }
 
     public void GoToActionLineUp() {
@@ -125,46 +116,8 @@ public class MenuScreenV2 : MonoBehaviour
         GameManager.State = GameState.Play;
     }
 
-    IEnumerator LoadAsync(string sceneName)
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
-        operation.allowSceneActivation = false;
-
-        while (!operation.isDone)
-        {
-
-            //sceneLoadProgressValue = Mathf.Clamp01(operation.progress / 0.9f);
-
-            if (operation.progress >= 0.9f)
-            {
-                operation.allowSceneActivation = true;
-
-                //sceneLoadProgress.gameObject.SetActive(false);
-                //sceneContinueButton.gameObject.SetActive(true);
-            }
-
-            yield return null;
-        }
-
-        //sceneLoadProgress.gameObject.SetActive(false);
-        //sceneContinueButton.gameObject.SetActive(true);
-    }
-
-    public void StartScene() {
-        GameManager.State = GameState.Menu;
-        CameraZoom.ResetZoom();
-        Instance.StartCoroutine(Instance.LoadAsync(LevelSetManager.CurrentLevel.scenename));
-    }
-
     public void GoToDebugCanvas() {
         ResetCanvas();
         debugCanvas.gameObject.SetActive(true);
-    }
-
-    public void DeactivateCanvases()
-    {
-        ResetCanvas();
     }
 }

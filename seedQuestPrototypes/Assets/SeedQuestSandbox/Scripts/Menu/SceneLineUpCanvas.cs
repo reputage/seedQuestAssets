@@ -37,12 +37,8 @@ public class SceneLineUpCanvas : MonoBehaviour
         worldOutlines[index].gameObject.SetActive(true);
     }
 
-    public void Continue()
-    {
-        if (GameManager.Mode == GameMode.Rehearsal)
-            MenuScreenV2.Instance.GoToActionLineUp();
-        else
-            MenuScreenV2.Instance.DeactivateCanvases();
+    public void Continue() {
+        MenuScreenV2.Instance.GoToActionLineUp();
     }
 
     IEnumerator LoadAsync(string sceneName)
