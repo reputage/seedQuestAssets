@@ -67,4 +67,11 @@ public class GameManager : MonoBehaviour {
             ScenePauseMenu.ToggleOn();
         }
     }
+
+    private static bool v2Menus = true;
+    public static bool V2Menus
+    {
+        get { return v2Menus; }
+        set { v2Menus = value; }
+    }
 } 

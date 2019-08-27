@@ -119,7 +119,10 @@ public class EndGameUI : MonoBehaviour
 
     public void GoToStartScreen() {
         SeedQuest.Level.LevelManager.Instance.StopLevelMusic();
-        MenuScreenManager.ActivateStart();
+        if (GameManager.V2Menus)
+            MenuScreenV2.Instance.GoToStart();
+        else
+            MenuScreenManager.ActivateStart();
         gameObject.SetActive(false);
         GameManager.GraduatedMode = false;
     }

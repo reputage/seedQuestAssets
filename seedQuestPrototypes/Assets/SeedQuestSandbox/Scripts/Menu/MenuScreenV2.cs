@@ -160,4 +160,9 @@ public class MenuScreenV2 : MonoBehaviour
         ResetCanvas();
         debugCanvas.gameObject.SetActive(true);
     }
+
+    public void DeactivateCanvases()
+    {
+        ResetCanvas();
+    }
 }
