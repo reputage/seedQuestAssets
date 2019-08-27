@@ -38,7 +38,8 @@ public class MenuScreenV2 : MonoBehaviour
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.BackQuote)) {
+        if (Input.GetKeyDown(KeyCode.BackQuote) && (state == MenuScreenStates.Start || state == MenuScreenStates.ModeSelect) )
+        {
             GoToDebugCanvas();
         }
     }
@@ -160,5 +161,10 @@ public class MenuScreenV2 : MonoBehaviour
     public void GoToDebugCanvas() {
         ResetCanvas();
         debugCanvas.gameObject.SetActive(true);
+    }
+
+    public void DeactivateCanvases()
+    {
+        ResetCanvas();
     }
 }
