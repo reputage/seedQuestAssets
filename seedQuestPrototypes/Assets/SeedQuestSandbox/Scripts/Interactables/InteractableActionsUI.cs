@@ -14,7 +14,7 @@ public class InteractableActionsUI : MonoBehaviour
     static public InteractableActionsUI Instance { get { return instance == null ? setInstance() : instance; } }
 
     private TextMeshProUGUI interactableLabel;
-    private Button[] actionButtons = new Button[4];
+    private Button[] actionButtons;
     private Interactable interactable;
 
     // Start is called before the first frame update
@@ -31,9 +31,13 @@ public class InteractableActionsUI : MonoBehaviour
     }
 
     void SetComponentRef() {
-        actionButtons = GetComponentsInChildren<Button>(true);
         interactableLabel = GetComponentInChildren<TextMeshProUGUI>(true);
+        Button[] buttons = GetComponentsInChildren<Button>(true);
+        actionButtons = new Button[4];
+        for (int i = 0; i < 4; i++)
+            actionButtons[i] = buttons[i + 1];
 
+        buttons[0].onClick.AddListener(() => { BackExit(); });
         actionButtons[0].onClick.AddListener(() => { clickActionButton(0); });
         actionButtons[1].onClick.AddListener(() => { clickActionButton(1); });
         actionButtons[2].onClick.AddListener(() => { clickActionButton(2); });
@@ -54,13 +58,13 @@ public class InteractableActionsUI : MonoBehaviour
 
     void clickActionButton(int actionIndex) {
         if (GameManager.Mode == GameMode.Rehearsal) {
-            if (actionIndex == InteractablePath.NextInteractable.ID.actionID) {
-                InteractableLog.Add(interactable, interactable.ActionIndex);
+            if (actionIndex == InteractablePath.NextInteractable.ActionIndex && interactable.ID == InteractablePath.NextInteractable.ID) {
+                InteractableLog.Add(interactable, actionIndex);
                 InteractablePath.GoToNextInteractable();
             } 
         }
-        else if (GameManager.Mode == GameMode.Recall)
-            InteractableLog.Add(interactable, interactable.ActionIndex);
+        else if (GameManager.Mode == GameMode.Recall || GameManager.Mode == GameMode.Sandbox)
+            InteractableLog.Add(interactable, actionIndex);
 
         InteractableActionsUI.Toggle(false);
     }
@@ -102,5 +106,9 @@ public class InteractableActionsUI : MonoBehaviour
     private void OnHoverExit() {
         // TODO: Use Default 
     } 
+
+    private void BackExit() {
+        InteractableActionsUI.Toggle(false);
+    }
 
 }

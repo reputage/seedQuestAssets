@@ -58,7 +58,7 @@ public class InteractableTrackerUI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         tracker = GetComponentsInChildren<RectTransform>()[1];
-        arrow = GetComponentsInChildren<RectTransform>()[5];
+        arrow = GetComponentsInChildren<RectTransform>()[3];
         canvasGroup = GetComponentInChildren<CanvasGroup>();
 
         if (GameManager.Mode == GameMode.Rehearsal)
