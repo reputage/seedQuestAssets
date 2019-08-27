@@ -131,6 +131,24 @@ public class FastRecoveryUI : MonoBehaviour
         CheckForProgress();
         CheckForLevelChange();
         CheckForPreviewUI();
+
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            buttons[i].gameObject.GetComponent<Image>().sprite = interactableIcon;
+            //buttons[i].transform.parent.GetChild(1).gameObject.SetActive(false);
+
+            if (useInteractableUIPositions)
+            {
+                if (InteractableManager.InteractableList.Length > buttons.Count)
+                {
+                    buttons[i].transform.parent.localPosition = new Vector3(InteractableManager.InteractableList[i + 1].LookAtPosition.x * scale, InteractableManager.InteractableList[i + 1].LookAtPosition.z * scale, 0);
+                }
+                else
+                {
+                    buttons[i].transform.parent.localPosition = new Vector3(InteractableManager.InteractableList[i].LookAtPosition.x * scale, InteractableManager.InteractableList[i].LookAtPosition.z * scale, 0);
+                }
+            }
+        }
     }
 
     private void ListenForKeyDown()
@@ -191,9 +209,13 @@ public class FastRecoveryUI : MonoBehaviour
                     if (useInteractableUIPositions)
                     {
                         if (InteractableManager.InteractableList.Length > buttons.Count)
-                            buttons[i].transform.parent.localPosition = new Vector3(InteractableManager.InteractableList[i+1].interactableUI.ActionUI.transform.localPosition.x * scale, InteractableManager.InteractableList[i+1].interactableUI.ActionUI.transform.localPosition.z * scale, 0);
+                        {
+                            buttons[i].transform.parent.localPosition = new Vector3(InteractableManager.InteractableList[i + 1].LookAtPosition.x * scale, InteractableManager.InteractableList[i + 1].LookAtPosition.z * scale, 0);
+                        }
                         else
-                            buttons[i].transform.parent.localPosition = new Vector3(InteractableManager.InteractableList[i].interactableUI.ActionUI.transform.localPosition.x * scale, InteractableManager.InteractableList[i].interactableUI.ActionUI.transform.localPosition.z * scale, 0);
+                        {
+                            buttons[i].transform.parent.localPosition = new Vector3(InteractableManager.InteractableList[i].LookAtPosition.x * scale, InteractableManager.InteractableList[i].LookAtPosition.z * scale, 0);
+                        }
                     }
                 }
             }
@@ -346,7 +368,7 @@ public class FastRecoveryUI : MonoBehaviour
             buttons[i].transform.parent.GetChild(0).gameObject.SetActive(true);*/
             if (useInteractableUIPositions)
             {
-                buttons[i].transform.parent.localPosition = new Vector3(interactables[i].interactableUI.ActionUI.transform.localPosition.x * newScale, interactables[i].interactableUI.ActionUI.transform.localPosition.z * newScale, 0);
+                buttons[i].transform.parent.localPosition = new Vector3(interactables[i].LookAtPosition.x * newScale, interactables[i].LookAtPosition.z * newScale, 0);
             }
             else
             {
