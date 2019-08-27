@@ -75,9 +75,8 @@ public class MenuScreenV2 : MonoBehaviour
 
     public void SetModeRecoverSeed() {
         GameManager.Mode = GameMode.Recall;
-        Debug.Log("Setting game mode to recall");
         GoToEncodeSeed();
-        LevelIconButton.ResetButtonStatus();
+        //LevelIconButton.ResetButtonStatus();
     }
 
     public void GoToSeedSetup() {
@@ -109,17 +108,20 @@ public class MenuScreenV2 : MonoBehaviour
 
     public void GoToActionLineUp() {
         GameManager.State = GameState.Menu;
-        if (GameManager.Mode == GameMode.Rehearsal)
-        {
+        if (GameManager.Mode == GameMode.Rehearsal){
             state = MenuScreenStates.ActionLineUp;
             ResetCanvas();
             actionLineUpCanvas.gameObject.SetActive(true);
-            //SetupActionLineUp();
         }
-        else
-        {
-            //CloseSceneLineUp();
+        else {
+            CloseSceneLineUp();
         }
+    }
+
+    public void CloseSceneLineUp() {
+        CameraZoom.StartZoomIn();
+        ResetCanvas();
+        GameManager.State = GameState.Play;
     }
 
     IEnumerator LoadAsync(string sceneName)
