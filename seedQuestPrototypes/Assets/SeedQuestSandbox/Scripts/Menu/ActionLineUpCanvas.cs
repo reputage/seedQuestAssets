@@ -8,11 +8,7 @@ using SeedQuest.Interactables;
 
 public class ActionLineUpCanvas : MonoBehaviour
 {
-    public void Start() {
-        SetupActionLineUp();
-    }
-
-    public void SetupActionLineUp() {
+    public void InitializeActionLineUp() {
         
         TextMeshProUGUI text = GetComponentsInChildren<TextMeshProUGUI>()[1];
         text.text = WorldManager.CurrentWorldScene.name;

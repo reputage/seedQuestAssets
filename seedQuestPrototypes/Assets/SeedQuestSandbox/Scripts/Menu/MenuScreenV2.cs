@@ -95,7 +95,12 @@ public class MenuScreenV2 : MonoBehaviour
         GameManager.State = GameState.Menu;
         state = MenuScreenStates.SceneLineUp;
         ResetCanvas();
-        sceneLineUpCanvas.gameObject.SetActive(true);
+        sceneLineUpCanvas.GetComponent<SceneLineUpCanvas>().ToggleOn();
+    }
+
+    public void ReturnToSceneLineUp() {
+        GoToSceneLineUp();
+        sceneLineUpCanvas.GetComponent<SceneLineUpCanvas>().Start();
     }
 
     public void GoToActionLineUp() {
@@ -104,6 +109,7 @@ public class MenuScreenV2 : MonoBehaviour
             state = MenuScreenStates.ActionLineUp;
             ResetCanvas();
             actionLineUpCanvas.gameObject.SetActive(true);
+            actionLineUpCanvas.GetComponent<ActionLineUpCanvas>().InitializeActionLineUp();
         }
         else {
             CloseSceneLineUp();
