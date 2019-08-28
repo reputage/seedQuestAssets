@@ -52,7 +52,6 @@ public class EncodeSeedCanvas : MonoBehaviour {
         sceneCount++;
 
         buttons[i].GetComponentsInChildren<Image>()[3].gameObject.SetActive(false);
-        UnInteractiveButtons();
         EnableNext();
 
         if (sceneCount >= currentList.Length)
