@@ -6,19 +6,6 @@ using TMPro;
 
 using SeedQuest.Interactables;
 
-[System.Serializable]
-public class WorldSceneProps {
-    public string name;
-    public string sceneName;
-    public Sprite thumbnail;
-    public Sprite preview; 
-}
-
-[CreateAssetMenu(menuName = "Levels/WorldSceneList")]
-public class WorldSceneList : ScriptableObject {
-    public WorldSceneProps[] worldScenes = new WorldSceneProps[16];
-}
-
 public class EncodeSeedCanvas : MonoBehaviour {
     private EncodeSeed_ScenePreview[] worldPreviews;
     private int[] currentList = new int[6];
