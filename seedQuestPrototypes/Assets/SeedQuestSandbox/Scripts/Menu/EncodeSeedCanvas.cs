@@ -48,6 +48,7 @@ public class EncodeSeedCanvas : MonoBehaviour {
         worldPreviews[sceneCount].preview.sprite = WorldManager.WorldScenes[i].preview;
         worldPreviews[sceneCount].text.gameObject.SetActive(true);
         worldPreviews[sceneCount].text.text = WorldManager.WorldScenes[i].name;
+        worldPreviews[sceneCount].shade.gameObject.SetActive(true);
         indicators[i].Activate(sceneCount);
         sceneCount++;
 

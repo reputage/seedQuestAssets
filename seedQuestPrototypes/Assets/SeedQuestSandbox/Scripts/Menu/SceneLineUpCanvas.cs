@@ -20,6 +20,7 @@ public class SceneLineUpCanvas : MonoBehaviour
     }
 
     public void Initialize() {
+
         foreach (Image outline in worldOutlines) {
             outline.gameObject.SetActive(false);
         }
