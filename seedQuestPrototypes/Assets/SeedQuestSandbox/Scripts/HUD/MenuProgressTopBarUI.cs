@@ -35,13 +35,11 @@ public class MenuProgressTopBarUI : MonoBehaviour
         progress.GetComponent<RectTransform>().offsetMax = new Vector2(value, 0);
     }
 
-    public void OnClickMenuButton()
-    {
+    public void OnClickMenuButton() {
         PauseMenuUI.ToggleOn();
     }
 
-    public void OnClickHelpButton()
-    {
+    public void OnClickHelpButton() {
         HelpMenuUI.ToggleOn();
     }
 
