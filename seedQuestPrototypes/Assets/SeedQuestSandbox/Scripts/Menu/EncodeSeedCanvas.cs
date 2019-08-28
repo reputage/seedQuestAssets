@@ -94,4 +94,9 @@ public class EncodeSeedCanvas : MonoBehaviour {
         SetWorldScenes();
         MenuScreenV2.Instance.GoToSceneLineUp();
     }
+
+    public void backButton()
+    {
+        MenuScreenV2.Instance.GoToStart();
+    }
 } 
