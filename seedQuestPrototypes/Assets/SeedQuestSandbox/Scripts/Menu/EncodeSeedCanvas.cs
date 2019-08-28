@@ -20,9 +20,8 @@ public class WorldSceneList : ScriptableObject {
 }
 
 public class EncodeSeedCanvas : MonoBehaviour {
-    public Image[] worldImages;
-    public TextMeshProUGUI[] worldText;
-    public int[] currentList = new int[6];
+    private EncodeSeed_ScenePreview[] worldPreviews;
+    private int[] currentList = new int[6];
 
     private int sceneCount;
     private SceneSelectedIndicator[] indicators;
@@ -38,10 +37,11 @@ public class EncodeSeedCanvas : MonoBehaviour {
 
     public void Initialize() {
         indicators = GetComponentsInChildren<SceneSelectedIndicator>();
-        foreach (Image img in worldImages)
-            img.gameObject.SetActive(false);
-        foreach (TextMeshProUGUI text in worldText)
-            text.gameObject.SetActive(false);
+        worldPreviews = GetComponentsInChildren<EncodeSeed_ScenePreview>();
+        foreach(EncodeSeed_ScenePreview item in worldPreviews) {
+            item.preview.gameObject.SetActive(false);
+            item.text.gameObject.SetActive(false);
+        }
 
         Button[] _buttons = GetComponentsInChildren<Button>();
         buttons = new Button[16];
@@ -57,10 +57,10 @@ public class EncodeSeedCanvas : MonoBehaviour {
         if (sceneCount >= currentList.Length) return;
 
         currentList[sceneCount] = i;
-        worldImages[sceneCount].gameObject.SetActive(true);
-        worldImages[sceneCount].sprite = WorldManager.WorldScenes[i].preview;
-        worldText[sceneCount].gameObject.SetActive(true);
-        worldText[sceneCount].text = WorldManager.WorldScenes[i].name;
+        worldPreviews[sceneCount].preview.gameObject.SetActive(true);
+        worldPreviews[sceneCount].preview.sprite = WorldManager.WorldScenes[i].preview;
+        worldPreviews[sceneCount].text.gameObject.SetActive(true);
+        worldPreviews[sceneCount].text.text = WorldManager.WorldScenes[i].name;
         indicators[i].Activate(sceneCount);
         sceneCount++;
 
