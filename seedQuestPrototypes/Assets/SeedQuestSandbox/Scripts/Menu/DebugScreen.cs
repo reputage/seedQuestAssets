@@ -37,8 +37,8 @@ public class DebugScreen : MonoBehaviour
 
     public void GoToEncodeDebugOrdered()
     {
-        debugRandom = false;
-        isDebug = true;
+        DebugSeedUtility.debugLearnRun = true;
+        DebugSeedUtility.debugLearnRand = false;
         //debugCanvas.gameObject.SetActive(false);
         //state = MenuScreenStates.EncodeSeed;
         //SetModeRecoverSeed();
@@ -46,8 +46,8 @@ public class DebugScreen : MonoBehaviour
 
     public void GoToEncodeDebugRand()
     {
-        debugRandom = true;
-        isDebug = true;
+        DebugSeedUtility.debugLearnRun = true;
+        DebugSeedUtility.debugLearnRand = true;
         //debugCanvas.gameObject.SetActive(false);
         //state = MenuScreenStates.EncodeSeed;
         //SetModeRecoverSeed();

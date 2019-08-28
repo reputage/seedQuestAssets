@@ -6,6 +6,9 @@ using UnityEngine;
 public class DebugSeedUtility
 {
 
+    public static bool debugLearnRun = false;
+    public static bool debugLearnRand = false;
+
     // Initialize fuzzy scene name dictionary.
     public static Dictionary<int, string> sceneIndeces = new Dictionary<int, string>
     {
