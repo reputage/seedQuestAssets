@@ -95,8 +95,8 @@ public class IsometricCamera : MonoBehaviour
 
     /// <summary> LookAt player with camera with smoothing </summary>
     public void CameraLookAtPlayer() {
-        Vector3 lookAt = playerTransform.position; //+ playerTransform.forward * lookAtPeek;
-        LookAt(lookAt);
+        Vector3 lookAt = playerTransform.position + playerTransform.forward * lookAtPeek;
+        LookAt(lookAt); 
     }
 
     /// <summary> LookAt interactable with camera with smoothing </summary>

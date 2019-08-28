@@ -397,12 +397,12 @@ RectTransform:
   m_Children:
   - {fileID: 6674984285115688221}
   - {fileID: 6674984284587234057}
+  - {fileID: 6674984284577287126}
+  - {fileID: 6674984284383882970}
   - {fileID: 6674984284966987907}
   - {fileID: 6674984284108409586}
   - {fileID: 6674984284524775377}
   - {fileID: 6674984283443207519}
-  - {fileID: 6674984284577287126}
-  - {fileID: 6674984284383882970}
   - {fileID: 6674984284902933296}
   - {fileID: 3511404373349024812}
   m_Father: {fileID: 6674984283098264410}
@@ -586,7 +586,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 762434249d6a26f4aa78e8aa9db38704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  characterSeedText: 'A character seed is a username-password combo used to access
+    your funds within cryptocurrency wallets.   Each seed should be unique and very
+    difficult to guess or brute-force. If someone happens to generate the same seed
+    as you, they may gain access to your funds as well. Seeds are quite short, typically
+    64 characters long. '
+  privateKeyText: "A private key is a specific \u201Cpassword\u201D inside a wallet
+    that may contain many keys. A single seed can be used to open a wallet that contains
+    many private keys.  Addresses in a wallet and their respective private keys can
+    be recovered if you have the seed. So the seed is the only thing you need to back
+    up when using a deterministic wallet, don't worry about the private keys. Wallets
+    will typically ask you \"do you have a seed or you want to create a new one?\"
+    the first time you open them. "
+  encryptionText: 'Many cryptocurrencies use public-key cryptography, or asymmetric
+    cryptography, to perform transactions amongst users.   Therefore, the encryption
+    used in SeedQuest is a cryptographic system that uses pairs of keys: public keys
+    which may be disseminated widely, and private keys which are known only to the
+    owner. The generation of such keys depends on cryptographic algorithms based on
+    mathematical problems to produce one-way functions. Effective security only requires
+    keeping the private key private; the public key can be openly distributed without
+    compromising security.'
+  wordSeedText: "A word seed, also known as a seed phrase, seed recovery phrase or
+    backup seed phrase, is a list of words which store all the information needed
+    to recover a cryptocurrency wallet. Wallet software will typically generate a
+    seed phrase and instruct the user to write it down on paper. If the user's computer
+    breaks, or they don\u2019t remember their private key or seed, they can download
+    the same wallet software again and use the paper backup to get their bitcoins
+    back.  Anybody else who discovers the word seed e can steal the bitcoins, so it
+    must be kept safe like jewels or cash. For example, it must not be typed into
+    any website.  Seed phrases are an excellent way of backing up and storing bitcoins
+    and so they are used by almost all well-regarded wallets  An example of a seed
+    phrase is:     witch collapse practice feed shame open despair creek road again
+    ice least  The word order is important. "
 --- !u!95 &4877411439748213369
 Animator:
   serializedVersion: 3
@@ -1187,7 +1218,7 @@ RectTransform:
   m_Children:
   - {fileID: 6674984285006098410}
   m_Father: {fileID: 3565110854551668951}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1274,7 +1305,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6674984283443207517}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1027937691275323350}
+        m_MethodName: SelectWordSeedText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &6674984284084856840
@@ -1384,7 +1426,7 @@ RectTransform:
   m_Children:
   - {fileID: 6674984283355291734}
   m_Father: {fileID: 3565110854551668951}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1471,7 +1513,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6674984284108409584}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1027937691275323350}
+        m_MethodName: SelectPrivateKeyText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &6674984284383882965
@@ -1507,7 +1560,7 @@ RectTransform:
   - {fileID: 6674984284084856841}
   - {fileID: 6674984283286331498}
   m_Father: {fileID: 3565110854551668951}
-  m_RootOrder: 7
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1640,7 +1693,7 @@ RectTransform:
   m_Children:
   - {fileID: 6674984283245239014}
   m_Father: {fileID: 3565110854551668951}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1727,7 +1780,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6674984284524775383}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1027937691275323350}
+        m_MethodName: SelectEncryptionText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &6674984284577287121
@@ -1760,7 +1824,7 @@ RectTransform:
   m_LocalScale: {x: 0.9875, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3565110854551668951}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1906,7 +1970,7 @@ GameObject:
   - component: {fileID: 6674984284587234063}
   - component: {fileID: 6674984284587234062}
   m_Layer: 5
-  m_Name: Help
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2405,7 +2469,7 @@ RectTransform:
   m_Children:
   - {fileID: 6674984284816046460}
   m_Father: {fileID: 3565110854551668951}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2492,7 +2556,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6674984284966987905}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1027937691275323350}
+        m_MethodName: SelectCharacterSeedText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &6674984285006098405
@@ -2665,7 +2740,7 @@ GameObject:
   - component: {fileID: 6674984285115688195}
   - component: {fileID: 6674984285115688194}
   m_Layer: 5
-  m_Name: bg
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
