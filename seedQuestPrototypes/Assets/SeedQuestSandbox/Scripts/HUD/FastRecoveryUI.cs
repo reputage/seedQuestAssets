@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using SeedQuest.Interactables;
+using SeedQuest.Level;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -20,8 +21,7 @@ public class FastRecoveryUI : MonoBehaviour
     public float renderCameraHeight;
     public bool restrictViewport;*/
 
-    public FastRecoveryData settings;
-
+    private FastRecoveryData settings;
     private Image map;
     private RawImage rawMap;
     private Image overlay;
@@ -39,8 +39,13 @@ public class FastRecoveryUI : MonoBehaviour
     private int sliderMax;
     private bool levelFlag;
 
-    private void Start()
+    static private FastRecoveryUI instance = null;
+    static private FastRecoveryUI setInstance() { instance = HUDManager.Instance.GetComponentInChildren<FastRecoveryUI>(true); return instance; }
+    static public FastRecoveryUI Instance { get { return instance == null ? setInstance() : instance; } }
+
+    private void Awake()
     {
+        settings = LevelManager.FastRecoveryData;
         buttons = new List<Button>();
         Image[] images = gameObject.GetComponentsInChildren<Image>();
         overlay = images[0];
@@ -59,7 +64,7 @@ public class FastRecoveryUI : MonoBehaviour
         interactableProgess = 0;
 
         buttonPrefab.gameObject.SetActive(false);
-        Toggle();
+        //Toggle();
         ToggleInteractableGroup(false);
 
         Transform buttonGroup;
@@ -134,9 +139,8 @@ public class FastRecoveryUI : MonoBehaviour
         CheckForLevelChange();
         CheckForPreviewUI();
 
-        for (int i = 0; i < buttons.Count; i++)
+        /*for (int i = 0; i < buttons.Count; i++)
         {
-            buttons[i].gameObject.GetComponent<Image>().sprite = settings.interactableIcon;
             //buttons[i].transform.parent.GetChild(1).gameObject.SetActive(false);
 
             if (settings.useInteractableUIPositions)
@@ -150,15 +154,15 @@ public class FastRecoveryUI : MonoBehaviour
                     buttons[i].transform.parent.localPosition = new Vector3(InteractableManager.InteractableList[i].LookAtPosition.x * settings.scale, InteractableManager.InteractableList[i].LookAtPosition.z * settings.scale, 0);
                 }
             }
-        }
+        }*/
     }
 
     private void ListenForKeyDown()
     {
-        if (InputManager.GetKeyDown(KeyCode.F))
+        /*if (InputManager.GetKeyDown(KeyCode.F))
         {
             Toggle();
-        }
+        }*/
 
         var input = Input.GetAxis("Mouse ScrollWheel")*20;
 
@@ -187,9 +191,9 @@ public class FastRecoveryUI : MonoBehaviour
         }
     }
 
-    public void Toggle()
+    public void Toggle(bool active)
     {
-        bool active = overlay.gameObject.activeSelf;
+        //bool active = gameObject.activeSelf;
         if (!active)
         {
             InteractablePreviewUI.ClearPreviewObject();
@@ -256,7 +260,14 @@ public class FastRecoveryUI : MonoBehaviour
         {
             InteractablePreviewUI.ToggleShow();
         }
-        overlay.gameObject.SetActive(!active);
+        //gameObject.SetActive(!active);
+    }
+
+    public static void ToggleActive()
+    {
+        bool active = Instance.gameObject.activeSelf;
+        Instance.gameObject.SetActive(!active);
+        Instance.Toggle(active);
     }
 
     public void ToggleInteractableGroup(bool toggle)
@@ -290,6 +301,7 @@ public class FastRecoveryUI : MonoBehaviour
             else
             {
                 interactableButton.gameObject.GetComponent<Image>().sprite = settings.interactableIconSelected;
+                Debug.Log("Test");
                 //interactableButton.transform.parent.GetChild(0).gameObject.SetActive(false);
                 //interactableButton.transform.parent.GetChild(1).gameObject.SetActive(true);
             }
@@ -419,8 +431,12 @@ public class FastRecoveryUI : MonoBehaviour
     {
         if (InteractableLog.Count > 0 && InteractableLog.Count % 3 == 0 && levelFlag)
         {
-            if (overlay.gameObject.activeSelf)
-            Toggle();
+            if (gameObject.activeSelf)
+            {
+                Toggle(true);
+                gameObject.SetActive(false);
+            }
+                
             levelFlag = false;
         }
 
