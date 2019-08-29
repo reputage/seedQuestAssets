@@ -91,12 +91,28 @@ public class EncodeSeedCanvas : MonoBehaviour {
     }
 
     public void Continue() {
-        SetWorldScenes();
-        MenuScreenV2.Instance.GoToSceneLineUp();
+        if (DebugSeedUtility.debugLearnRun)
+        {
+            Debug.Log("Starting debug run!");
+            startDebugRun();
+        }
+        else
+        {
+            SetWorldScenes();
+            MenuScreenV2.Instance.GoToSceneLineUp();
+        }
     }
 
     public void backButton()
     {
         MenuScreenV2.Instance.GoToStart();
+    }
+
+    public void startDebugRun()
+    {
+        if (DebugSeedUtility.debugLearnRand)
+            DebugSeedUtility.startRandom();
+        else
+            DebugSeedUtility.startIterative();
     }
 } 
