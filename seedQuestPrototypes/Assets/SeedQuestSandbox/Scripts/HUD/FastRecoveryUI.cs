@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class FastRecoveryUI : MonoBehaviour
 {
-    public Sprite source;
+    /*public Sprite source;
     public float scale;
     public float xOffset;
     public float yOffset;
@@ -18,7 +18,9 @@ public class FastRecoveryUI : MonoBehaviour
     public bool useInteractableUIPositions;
     public bool useRenderTexture;
     public float renderCameraHeight;
-    public bool restrictViewport;
+    public bool restrictViewport;*/
+
+    public FastRecoveryData settings;
 
     private Image map;
     private RawImage rawMap;
@@ -61,20 +63,20 @@ public class FastRecoveryUI : MonoBehaviour
         ToggleInteractableGroup(false);
 
         Transform buttonGroup;
-        if (useRenderTexture)
+        if (settings.useRenderTexture)
         {
             map.gameObject.SetActive(false);
             GameObject tempCameraObject = new GameObject();
             tempCameraObject.name = "TempCamera";
             Camera tempCamera = tempCameraObject.AddComponent<Camera>();
-            tempCamera.transform.localPosition = new Vector3(0, renderCameraHeight, 0);
+            tempCamera.transform.localPosition = new Vector3(0, settings.renderCameraHeight, 0);
             tempCamera.transform.eulerAngles = new Vector3(90, 0, 0);
             RenderTexture target = new RenderTexture(512, 512, 16, RenderTextureFormat.ARGB32);
             tempCamera.targetTexture = target;
             tempCamera.enabled = false;
             tempCamera.Render();
             rawMap.texture = tempCamera.targetTexture;
-            if (restrictViewport)
+            if (settings.restrictViewport)
             {
                 rawMap.rectTransform.sizeDelta = new Vector2(980, 980);
                 slider.minValue = 980;
@@ -89,24 +91,24 @@ public class FastRecoveryUI : MonoBehaviour
         else
         {
             rawMap.gameObject.SetActive(false);
-            map.sprite = source;
-            if (restrictViewport)
+            map.sprite = settings.source;
+            if (settings.restrictViewport)
             {
-                if ((980 / source.bounds.size.y * source.bounds.size.x) < 880f)
+                if ((980 / settings.source.bounds.size.y * settings.source.bounds.size.x) < 880f)
                 {
-                    map.rectTransform.sizeDelta = new Vector2(880, 880 / source.bounds.size.x * source.bounds.size.y);
-                    slider.minValue = 880 / source.bounds.size.x * source.bounds.size.y;
+                    map.rectTransform.sizeDelta = new Vector2(880, 880 / settings.source.bounds.size.x * settings.source.bounds.size.y);
+                    slider.minValue = 880 / settings.source.bounds.size.x * settings.source.bounds.size.y;
                 }
                 else
                 {
-                    map.rectTransform.sizeDelta = new Vector2(980 / source.bounds.size.y * source.bounds.size.x, 980);
+                    map.rectTransform.sizeDelta = new Vector2(980 / settings.source.bounds.size.y * settings.source.bounds.size.x, 980);
                     slider.minValue = 980;
                 }
                 slider.value = slider.minValue;
             }
 
             else
-                map.rectTransform.sizeDelta = new Vector2(1000 / source.bounds.size.y * source.bounds.size.x, 1000);
+                map.rectTransform.sizeDelta = new Vector2(1000 / settings.source.bounds.size.y * settings.source.bounds.size.x, 1000);
             buttonGroup = map.transform.GetChild(0);
         }
 
@@ -115,14 +117,14 @@ public class FastRecoveryUI : MonoBehaviour
             GameObject buttonObject = Instantiate(buttonPrefab);
             Button button = buttonObject.GetComponentInChildren<Button>();
             buttonObject.transform.SetParent(buttonGroup);
-            buttonObject.transform.localPosition = new Vector3(interactable.transform.localPosition.x * scale, interactable.transform.localPosition.z * scale, 0);
+            buttonObject.transform.localPosition = new Vector3(interactable.transform.localPosition.x * settings.scale, interactable.transform.localPosition.z * settings.scale, 0);
             buttonObject.gameObject.SetActive(true);
             button.onClick.AddListener(() => OnButtonClick(interactable, button));
             buttons.Add(button);
         }
 
-        buttonGroup.localPosition = new Vector3(xOffset, yOffset, 0);
-        buttonGroup.localEulerAngles = new Vector3(0, 0, rotation);
+        buttonGroup.localPosition = new Vector3(settings.xOffset, settings.yOffset, 0);
+        buttonGroup.localEulerAngles = new Vector3(0, 0, settings.rotation);
     }
 
     private void Update()
@@ -134,18 +136,18 @@ public class FastRecoveryUI : MonoBehaviour
 
         for (int i = 0; i < buttons.Count; i++)
         {
-            buttons[i].gameObject.GetComponent<Image>().sprite = interactableIcon;
+            buttons[i].gameObject.GetComponent<Image>().sprite = settings.interactableIcon;
             //buttons[i].transform.parent.GetChild(1).gameObject.SetActive(false);
 
-            if (useInteractableUIPositions)
+            if (settings.useInteractableUIPositions)
             {
                 if (InteractableManager.InteractableList.Length > buttons.Count)
                 {
-                    buttons[i].transform.parent.localPosition = new Vector3(InteractableManager.InteractableList[i + 1].LookAtPosition.x * scale, InteractableManager.InteractableList[i + 1].LookAtPosition.z * scale, 0);
+                    buttons[i].transform.parent.localPosition = new Vector3(InteractableManager.InteractableList[i + 1].LookAtPosition.x * settings.scale, InteractableManager.InteractableList[i + 1].LookAtPosition.z * settings.scale, 0);
                 }
                 else
                 {
-                    buttons[i].transform.parent.localPosition = new Vector3(InteractableManager.InteractableList[i].LookAtPosition.x * scale, InteractableManager.InteractableList[i].LookAtPosition.z * scale, 0);
+                    buttons[i].transform.parent.localPosition = new Vector3(InteractableManager.InteractableList[i].LookAtPosition.x * settings.scale, InteractableManager.InteractableList[i].LookAtPosition.z * settings.scale, 0);
                 }
             }
         }
@@ -203,28 +205,28 @@ public class FastRecoveryUI : MonoBehaviour
             {
                 for (int i = 0; i < buttons.Count; i++)
                 {
-                    buttons[i].gameObject.GetComponent<Image>().sprite = interactableIcon;
+                    buttons[i].gameObject.GetComponent<Image>().sprite = settings.interactableIcon;
                     //buttons[i].transform.parent.GetChild(1).gameObject.SetActive(false);
 
-                    if (useInteractableUIPositions)
+                    if (settings.useInteractableUIPositions)
                     {
                         if (InteractableManager.InteractableList.Length > buttons.Count)
                         {
-                            buttons[i].transform.parent.localPosition = new Vector3(InteractableManager.InteractableList[i + 1].LookAtPosition.x * scale, InteractableManager.InteractableList[i + 1].LookAtPosition.z * scale, 0);
+                            buttons[i].transform.parent.localPosition = new Vector3(InteractableManager.InteractableList[i + 1].LookAtPosition.x * settings.scale, InteractableManager.InteractableList[i + 1].LookAtPosition.z * settings.scale, 0);
                         }
                         else
                         {
-                            buttons[i].transform.parent.localPosition = new Vector3(InteractableManager.InteractableList[i].LookAtPosition.x * scale, InteractableManager.InteractableList[i].LookAtPosition.z * scale, 0);
+                            buttons[i].transform.parent.localPosition = new Vector3(InteractableManager.InteractableList[i].LookAtPosition.x * settings.scale, InteractableManager.InteractableList[i].LookAtPosition.z * settings.scale, 0);
                         }
                     }
                 }
             }
             calculatePositions = false;
 
-            if (useRenderTexture)
+            if (settings.useRenderTexture)
             {
                 rawMap.transform.localPosition = new Vector3(0, 0, 0);
-                if (restrictViewport)
+                if (settings.restrictViewport)
                 {
                     rawMap.rectTransform.sizeDelta = new Vector2(980, 980);
                     slider.value = slider.minValue;
@@ -233,19 +235,19 @@ public class FastRecoveryUI : MonoBehaviour
             else
             {
                 map.transform.localPosition = new Vector3(0, 0, 0);
-                if (restrictViewport)
+                if (settings.restrictViewport)
                 {
-                    if ((980 / source.bounds.size.y * source.bounds.size.x) < 880f)
+                    if ((980 / settings.source.bounds.size.y * settings.source.bounds.size.x) < 880f)
                     {
-                        map.rectTransform.sizeDelta = new Vector2(880, 880 / source.bounds.size.x * source.bounds.size.y);
+                        map.rectTransform.sizeDelta = new Vector2(880, 880 / settings.source.bounds.size.x * settings.source.bounds.size.y);
                     }
                     else
-                        map.rectTransform.sizeDelta = new Vector2(980 / source.bounds.size.y * source.bounds.size.x, 980);
+                        map.rectTransform.sizeDelta = new Vector2(980 / settings.source.bounds.size.y * settings.source.bounds.size.x, 980);
                     slider.value = slider.minValue;
                 }
                 else
                 {
-                    map.rectTransform.sizeDelta = new Vector2(1000 / source.bounds.size.y * source.bounds.size.x, 1000);
+                    map.rectTransform.sizeDelta = new Vector2(1000 / settings.source.bounds.size.y * settings.source.bounds.size.x, 1000);
                     slider.value = 1000;
                 }
             }
@@ -280,14 +282,14 @@ public class FastRecoveryUI : MonoBehaviour
         {
             if (interactableButton != button)
             {
-                interactableButton.gameObject.GetComponent<Image>().sprite = interactableIcon;
+                interactableButton.gameObject.GetComponent<Image>().sprite = settings.interactableIcon;
                 //interactableButton.transform.parent.GetChild(1).gameObject.SetActive(false);
                 //interactableButton.transform.parent.GetChild(0).gameObject.SetActive(true);
             }
 
             else
             {
-                interactableButton.gameObject.GetComponent<Image>().sprite = interactableIconSelected;
+                interactableButton.gameObject.GetComponent<Image>().sprite = settings.interactableIconSelected;
                 //interactableButton.transform.parent.GetChild(0).gameObject.SetActive(false);
                 //interactableButton.transform.parent.GetChild(1).gameObject.SetActive(true);
             }
@@ -312,7 +314,7 @@ public class FastRecoveryUI : MonoBehaviour
 
         else
         {
-            button.gameObject.GetComponent<Image>().sprite = interactableIcon;
+            button.gameObject.GetComponent<Image>().sprite = settings.interactableIcon;
             /*button.transform.parent.GetChild(1).gameObject.SetActive(false);
             button.transform.parent.GetChild(0).gameObject.SetActive(true);*/
             //EventSystem.current.SetSelectedGameObject(null);
@@ -348,25 +350,25 @@ public class FastRecoveryUI : MonoBehaviour
         float newXOffset;
         float newYOffset;
 
-        if (restrictViewport)
+        if (settings.restrictViewport)
         {
-            newScale = (scale * slider.value) / slider.minValue;
-            newXOffset = (xOffset * slider.value) / slider.minValue;
-            newYOffset = (yOffset * slider.value) / slider.minValue;
+            newScale = (settings.scale * slider.value) / slider.minValue;
+            newXOffset = (settings.xOffset * slider.value) / slider.minValue;
+            newYOffset = (settings.yOffset * slider.value) / slider.minValue;
         }
         else
         {
-            newScale = (scale * slider.value) / 1000;
-            newXOffset = (xOffset * slider.value) / 1000;
-            newYOffset = (yOffset * slider.value) / 1000;
+            newScale = (settings.scale * slider.value) / 1000;
+            newXOffset = (settings.xOffset * slider.value) / 1000;
+            newYOffset = (settings.yOffset * slider.value) / 1000;
         }
 
         for (int i = 0; i < buttons.Count; i++)
         {
-            buttons[i].gameObject.GetComponent<Image>().sprite = interactableIcon;
+            buttons[i].gameObject.GetComponent<Image>().sprite = settings.interactableIcon;
             /*buttons[i].transform.parent.GetChild(1).gameObject.SetActive(false);
             buttons[i].transform.parent.GetChild(0).gameObject.SetActive(true);*/
-            if (useInteractableUIPositions)
+            if (settings.useInteractableUIPositions)
             {
                 buttons[i].transform.parent.localPosition = new Vector3(interactables[i].LookAtPosition.x * newScale, interactables[i].LookAtPosition.z * newScale, 0);
             }
@@ -375,7 +377,7 @@ public class FastRecoveryUI : MonoBehaviour
                 buttons[i].transform.parent.localPosition = new Vector3(interactables[i].transform.localPosition.x * newScale, interactables[i].transform.localPosition.z * newScale, 0);
             }
         }
-        if (useRenderTexture)
+        if (settings.useRenderTexture)
         {
             rawMap.transform.localPosition = new Vector3(0, 0, 0);
             rawMap.rectTransform.sizeDelta = new Vector2(slider.value, slider.value);
@@ -384,7 +386,7 @@ public class FastRecoveryUI : MonoBehaviour
         else
         {
             map.transform.localPosition = new Vector3(0, 0, 0);
-            map.rectTransform.sizeDelta = new Vector2(slider.value / source.bounds.size.y * source.bounds.size.x, slider.value);
+            map.rectTransform.sizeDelta = new Vector2(slider.value / settings.source.bounds.size.y * settings.source.bounds.size.x, slider.value);
             map.transform.GetChild(0).localPosition = new Vector3(newXOffset, newYOffset, 0);
         }
     }
@@ -396,7 +398,7 @@ public class FastRecoveryUI : MonoBehaviour
             interactableProgess = InteractableLog.Count;
             for (int i = 0; i < buttons.Count; i++)
             {
-                if(buttons[i].gameObject.GetComponent<Image>().sprite == interactableIconSelected)
+                if(buttons[i].gameObject.GetComponent<Image>().sprite == settings.interactableIconSelected)
                 {
                     //buttons[i].gameObject.GetComponent<Image>().sprite = interactableIcon;
                     buttons[i].gameObject.GetComponent<Animation>().Play();
