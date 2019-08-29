@@ -1,26 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using SeedQuest.Interactables;
 using SeedQuest.Level;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class FastRecoveryUI : MonoBehaviour
 {
-    /*public Sprite source;
-    public float scale;
-    public float xOffset;
-    public float yOffset;
-    public float rotation;
-
-    public Sprite interactableIcon;
-    public Sprite interactableIconSelected;
-    public bool useInteractableUIPositions;
-    public bool useRenderTexture;
-    public float renderCameraHeight;
-    public bool restrictViewport;*/
-
     private FastRecoveryData settings;
     private Image map;
     private RawImage rawMap;
@@ -60,11 +45,11 @@ public class FastRecoveryUI : MonoBehaviour
         slider = gameObject.GetComponentInChildren<Slider>();
         slider.onValueChanged.AddListener(delegate { OnSlideValueChanged(); });
         interactables = InteractableManager.InteractableList;
+        Debug.Log(interactables.Length);
         calculatePositions = true;
         interactableProgess = 0;
 
         buttonPrefab.gameObject.SetActive(false);
-        //Toggle();
         ToggleInteractableGroup(false);
 
         Transform buttonGroup;
@@ -138,32 +123,10 @@ public class FastRecoveryUI : MonoBehaviour
         CheckForProgress();
         CheckForLevelChange();
         CheckForPreviewUI();
-
-        /*for (int i = 0; i < buttons.Count; i++)
-        {
-            //buttons[i].transform.parent.GetChild(1).gameObject.SetActive(false);
-
-            if (settings.useInteractableUIPositions)
-            {
-                if (InteractableManager.InteractableList.Length > buttons.Count)
-                {
-                    buttons[i].transform.parent.localPosition = new Vector3(InteractableManager.InteractableList[i + 1].LookAtPosition.x * settings.scale, InteractableManager.InteractableList[i + 1].LookAtPosition.z * settings.scale, 0);
-                }
-                else
-                {
-                    buttons[i].transform.parent.localPosition = new Vector3(InteractableManager.InteractableList[i].LookAtPosition.x * settings.scale, InteractableManager.InteractableList[i].LookAtPosition.z * settings.scale, 0);
-                }
-            }
-        }*/
     }
 
     private void ListenForKeyDown()
     {
-        /*if (InputManager.GetKeyDown(KeyCode.F))
-        {
-            Toggle();
-        }*/
-
         var input = Input.GetAxis("Mouse ScrollWheel")*20;
 
         if (input > 0.0f)
@@ -193,7 +156,6 @@ public class FastRecoveryUI : MonoBehaviour
 
     public void Toggle(bool active)
     {
-        //bool active = gameObject.activeSelf;
         if (!active)
         {
             InteractablePreviewUI.ClearPreviewObject();
@@ -204,13 +166,20 @@ public class FastRecoveryUI : MonoBehaviour
                 interactableButtons[i].onClick.RemoveAllListeners();
             }
 
-            //EventSystem.current.SetSelectedGameObject(null);
+            foreach (Button interactableButton in buttons)
+            {
+                interactableButton.gameObject.GetComponent<Animation>().Stop();
+                interactableButton.gameObject.GetComponent<Image>().sprite = settings.interactableIcon;
+                ColorBlock colors = interactableButton.gameObject.GetComponent<Button>().colors;
+                colors.normalColor = Color.white;
+                interactableButton.gameObject.GetComponent<Button>().colors = colors;
+            }
+
             if (calculatePositions)
             {
                 for (int i = 0; i < buttons.Count; i++)
                 {
                     buttons[i].gameObject.GetComponent<Image>().sprite = settings.interactableIcon;
-                    //buttons[i].transform.parent.GetChild(1).gameObject.SetActive(false);
 
                     if (settings.useInteractableUIPositions)
                     {
@@ -260,7 +229,6 @@ public class FastRecoveryUI : MonoBehaviour
         {
             InteractablePreviewUI.ToggleShow();
         }
-        //gameObject.SetActive(!active);
     }
 
     public static void ToggleActive()
@@ -294,16 +262,11 @@ public class FastRecoveryUI : MonoBehaviour
             if (interactableButton != button)
             {
                 interactableButton.gameObject.GetComponent<Image>().sprite = settings.interactableIcon;
-                //interactableButton.transform.parent.GetChild(1).gameObject.SetActive(false);
-                //interactableButton.transform.parent.GetChild(0).gameObject.SetActive(true);
             }
 
             else
             {
                 interactableButton.gameObject.GetComponent<Image>().sprite = settings.interactableIconSelected;
-                Debug.Log("Test");
-                //interactableButton.transform.parent.GetChild(0).gameObject.SetActive(false);
-                //interactableButton.transform.parent.GetChild(1).gameObject.SetActive(true);
             }
         }
         AudioManager.Play("UI_Hover");
@@ -327,9 +290,6 @@ public class FastRecoveryUI : MonoBehaviour
         else
         {
             button.gameObject.GetComponent<Image>().sprite = settings.interactableIcon;
-            /*button.transform.parent.GetChild(1).gameObject.SetActive(false);
-            button.transform.parent.GetChild(0).gameObject.SetActive(true);*/
-            //EventSystem.current.SetSelectedGameObject(null);
             InteractablePreviewUI.ClearPreviewObject();
             startingTitleImage.gameObject.SetActive(false);
             ToggleInteractableGroup(false);
@@ -378,8 +338,6 @@ public class FastRecoveryUI : MonoBehaviour
         for (int i = 0; i < buttons.Count; i++)
         {
             buttons[i].gameObject.GetComponent<Image>().sprite = settings.interactableIcon;
-            /*buttons[i].transform.parent.GetChild(1).gameObject.SetActive(false);
-            buttons[i].transform.parent.GetChild(0).gameObject.SetActive(true);*/
             if (settings.useInteractableUIPositions)
             {
                 buttons[i].transform.parent.localPosition = new Vector3(interactables[i].LookAtPosition.x * newScale, interactables[i].LookAtPosition.z * newScale, 0);
@@ -412,18 +370,9 @@ public class FastRecoveryUI : MonoBehaviour
             {
                 if(buttons[i].gameObject.GetComponent<Image>().sprite == settings.interactableIconSelected)
                 {
-                    //buttons[i].gameObject.GetComponent<Image>().sprite = interactableIcon;
                     buttons[i].gameObject.GetComponent<Animation>().Play();
                 }
             }
-            /*InteractablePreviewUI.ClearPreviewObject();
-            startingTitleImage.gameObject.SetActive(false);
-            ToggleInteractableGroup(false);
-
-            for (int i = 0; i < 4; i++)
-            {
-                interactableButtons[i].onClick.RemoveAllListeners();
-            }*/
         }
     }
 
