@@ -53,4 +53,9 @@ public class MenuProgressTopBarUI : MonoBehaviour
             Debug.Log("Unable to undo actions from a previous scene.");
         }
     }
+
+    public void OnClickFastRecoveryButton()
+    {
+        FastRecoveryUI.ToggleActive();
+    }
 }

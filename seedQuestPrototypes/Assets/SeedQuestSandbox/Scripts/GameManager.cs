@@ -66,6 +66,11 @@ public class GameManager : MonoBehaviour {
             //ESCMenuUI.ToggleOn();
             //ScenePauseMenu.ToggleOn();
         }
+
+        if (InputManager.GetKeyDown(KeyCode.F) && state != GameState.Menu)
+        {
+            FastRecoveryUI.ToggleActive();
+        }
     }
 
     private static bool v2Menus = true;
