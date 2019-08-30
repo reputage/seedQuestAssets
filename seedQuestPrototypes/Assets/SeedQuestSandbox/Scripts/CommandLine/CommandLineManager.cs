@@ -212,13 +212,12 @@ public static class CommandLineManager
         {
             return "Please enter at least one scene name for the custom learn path.";
         }
-        Debug.Log("Input: ." + input + ".");
+        Debug.Log("Input: " + input);
         Debug.Log("String input length: " + stringInputs.Length);
 
         for (int i = 0; i < InteractableConfig.SitesPerGame; i++)
         {
             // queue up the scenes entered by user into a seed
-
             if (i < stringInputs.Length)
             {
                 if (sceneIndeces.ContainsKey(stringInputs[i]))
@@ -231,7 +230,7 @@ public static class CommandLineManager
                 }
                 else
                 {
-                    Debug.Log("String input length: " + stringInputs.Length);
+                    Debug.Log("Do not recognize scene name: " + stringInputs[i]);
                     return "Do not recognize scene name: " + stringInputs[i];
                 }
             }
@@ -241,7 +240,6 @@ public static class CommandLineManager
             }
 
         }
-
 
         int counter = 0;
 
@@ -276,11 +274,18 @@ public static class CommandLineManager
         InteractablePathManager.SeedString = seed;
         InteractablePath.ResetPath();
         InteractablePathManager.Reset();
-        LevelSetManager.ResetCurrentLevels();
+        if (GameManager.V2Menus)
+            WorldManager.Reset();
+        else
+            LevelSetManager.ResetCurrentLevels();
+
 
         for (int i = 0; i < scenes.Length; i++)
         {
-            LevelSetManager.AddLevel(scenes[i]);
+            if (GameManager.V2Menus)
+                WorldManager.Add(scenes[i]);
+            else
+                LevelSetManager.AddLevel(scenes[i]);
         }
 
         GameManager.Mode = GameMode.Rehearsal;
@@ -291,6 +296,10 @@ public static class CommandLineManager
         {
             SceneManager.LoadScene(fuzzySceneNames[stringInputs[0]]);
             return "Loading custom seed. Scene: " + fuzzySceneNames[stringInputs[0]];
+        }
+        else
+        {
+            Debug.Log("Could not find scene named " + stringInputs[0]);
         }
 
         SceneManager.LoadScene(stringInputs[0]);

@@ -94,6 +94,8 @@ public class EncodeSeedCanvas : MonoBehaviour {
         if (DebugSeedUtility.debugLearnRun)
         {
             Debug.Log("Starting debug run!");
+            SetWorldScenes();
+            MenuScreenV2.Instance.ResetCanvas();
             startDebugRun();
         }
         else

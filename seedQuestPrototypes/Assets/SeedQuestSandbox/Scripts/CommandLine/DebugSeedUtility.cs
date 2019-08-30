@@ -9,7 +9,6 @@ public class DebugSeedUtility
     public static bool debugLearnRun = false;
     public static bool debugLearnRand = false;
 
-    // Initialize fuzzy scene name dictionary.
     public static Dictionary<int, string> sceneIndeces = new Dictionary<int, string>
     {
         {0, "farm"},
@@ -30,12 +29,38 @@ public class DebugSeedUtility
         {15, "cafe"}
     };
 
+    public static Dictionary<string, string> sceneCasualNames = new Dictionary<string, string>
+    {
+        {"Farm", "farm"},
+        {"Campground Iso", "camp"},
+        {"CastleBeach", "castlebeach"},
+        {"CliffSideIso", "cliffsideiso"},
+        {"DinoSafari", "dinosafari"},
+        {"HauntedHouse", "hauntedhouse"},
+        {"Sports", "sports"},
+        {"Lab_ISO", "lab_iso"},
+        {"ArabianDay", "arabianday"},
+        {"NonnaBIG_ISO", "nonnabig_iso"},
+        {"PirateShip_Wreck", "pirateship_wreck"},
+        {"SaloonBiggerISO", "saloonbiggeriso"},
+        {"SnowLand", "snowland"},
+        {"Space", "space"},
+        {"SorcererTower", "sorcerertower"},
+        {"Cafe", "cafe"}
+    };
+
     public static string convertLevelSet()
     {
         string levelNames = "";
-        for (int i = 0; i < LevelSetManager.CurrentLevels.Count; i++)
+        if (GameManager.V2Menus)
         {
-            levelNames += sceneIndeces[LevelSetManager.CurrentLevels[i].index] + " ";
+            for (int i = 0; i < WorldManager.CurrentSceneList.Length; i++)
+                levelNames += sceneCasualNames[WorldManager.CurrentSceneList[i].sceneName] + " ";
+        }
+        else
+        {
+            for (int i = 0; i < LevelSetManager.CurrentLevels.Count; i++)
+                levelNames += sceneIndeces[LevelSetManager.CurrentLevels[i].index] + " ";
         }
 
         Debug.Log("Level name string: " + levelNames);
