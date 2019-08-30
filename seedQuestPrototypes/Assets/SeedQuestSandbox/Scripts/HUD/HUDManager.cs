@@ -48,15 +48,16 @@ public class HUDManager : MonoBehaviour {
         DestroyImmediateHUD();
     }
 
-    public void InstantiateHUDElement<T>(HUDItemProps props) {
-        if(props.use && props.prefab != null && GetComponentInChildren<T>(true) == null) {
 
-            #if UNITY_EDITOR
-                PrefabUtility.InstantiatePrefab(props.prefab, transform);
-            #else
-                Instantiate(props.prefab, transform);
-            #endif
-        }
+    public void InstantiateHUDElement<T>(HUDItemProps props) {
+    if(props.use && props.prefab != null && GetComponentInChildren<T>(true) == null) {
+
+        #if UNITY_EDITOR
+            PrefabUtility.InstantiatePrefab(props.prefab, transform);
+        #else
+            Instantiate(props.prefab, transform);
+        #endif
+    }
     }
 
     static public void InstantiateHUDElement<T>() {
