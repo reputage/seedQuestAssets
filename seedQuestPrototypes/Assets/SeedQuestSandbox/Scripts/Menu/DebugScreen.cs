@@ -32,40 +32,22 @@ public class DebugScreen : MonoBehaviour
         MenuScreenV2.Instance.GoToStart();
     }
 
-    // These next few functions will require the scene select menu to be finished 
-    //  before they can be functional
-
     public void GoToEncodeDebugOrdered()
     {
-        debugRandom = false;
-        isDebug = true;
-        //debugCanvas.gameObject.SetActive(false);
-        //state = MenuScreenStates.EncodeSeed;
-        //SetModeRecoverSeed();
+        GameManager.Mode = GameMode.Recall;
+        DebugSeedUtility.debugLearnRun = true;
+        DebugSeedUtility.debugLearnRand = false;
+        MenuScreenV2.Instance.GoToEncodeSeed();
     }
 
     public void GoToEncodeDebugRand()
     {
-        debugRandom = true;
-        isDebug = true;
-        //debugCanvas.gameObject.SetActive(false);
-        //state = MenuScreenStates.EncodeSeed;
-        //SetModeRecoverSeed();
+        GameManager.Mode = GameMode.Recall;
+        DebugSeedUtility.debugLearnRun = true;
+        DebugSeedUtility.debugLearnRand = true;
+        MenuScreenV2.Instance.GoToEncodeSeed();
     }
 
-    public void startDebugRun()
-    {
-        if (!debugRandom)
-        {
-            //CloseMenuScreen();
-            DebugSeedUtility.startIterative();
-        }
-        else
-        {
-            //CloseMenuScreen();
-            DebugSeedUtility.startRandom();
-        }
-    }
 
     public void autoCountInteractables()
     {
