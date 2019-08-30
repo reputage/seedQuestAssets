@@ -37,6 +37,15 @@ public class InteractableLabelUI
         GameObject.Destroy(labelObject);
     }
 
+    static public void ToggleAll(bool active) {
+        GameObject container = GameObject.Find("InteractableUIContainer");
+        if (container != null) {
+            foreach (Transform child in container.transform){
+                child.gameObject.SetActive(active);
+            }
+        }
+    }
+
     private void InstantiateLabel(Interactable parentInteractable) {
         if (isReady()) return;
 

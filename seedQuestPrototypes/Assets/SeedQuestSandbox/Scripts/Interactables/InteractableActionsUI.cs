@@ -28,6 +28,11 @@ public class InteractableActionsUI : MonoBehaviour
         Instance.gameObject.SetActive(active);
         Instance.SetText();
         IsometricCamera.instance.ToggleLookAtInteractable(active);
+
+        if (active)
+            InteractableLabelUI.ToggleAll(false);
+        else
+            InteractableLabelUI.ToggleAll(true);
     }
 
     void SetComponentRef() {
