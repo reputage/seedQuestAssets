@@ -63,11 +63,13 @@ public class EncodeSeedCanvas : MonoBehaviour {
         if (GameManager.Mode == GameMode.Rehearsal) {
             foreach(Button button in buttons) {
                 button.interactable = false;
+                button.GetComponentsInChildren<Image>(true)[3].gameObject.SetActive(true);
             }
         }
         else {
             foreach (Button button in buttons) {
                 button.interactable = true;
+                button.GetComponentsInChildren<Image>(true)[3].gameObject.SetActive(false);
             }
         } 
     }
@@ -114,6 +116,7 @@ public class EncodeSeedCanvas : MonoBehaviour {
         {
             item.preview.gameObject.SetActive(false);
             item.text.gameObject.SetActive(false);
+            item.shade.gameObject.SetActive(false);
         }
         foreach (SceneSelectedIndicator indicator in indicators)
         {
