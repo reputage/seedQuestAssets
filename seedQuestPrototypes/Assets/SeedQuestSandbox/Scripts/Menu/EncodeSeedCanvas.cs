@@ -105,6 +105,24 @@ public class EncodeSeedCanvas : MonoBehaviour {
         }
     }
 
+    public void resetCanvas()
+    {
+        sceneCount = 0;
+        continueButton.gameObject.SetActive(false);
+        worldPreviews = GetComponentsInChildren<EncodeSeed_ScenePreview>();
+        foreach (EncodeSeed_ScenePreview item in worldPreviews)
+        {
+            item.preview.gameObject.SetActive(false);
+            item.text.gameObject.SetActive(false);
+        }
+        foreach (SceneSelectedIndicator indicator in indicators)
+        {
+            indicator.Reset();
+        }
+        UnInteractiveButtons();
+        EnableNext();
+    }
+
     public void backButton()
     {
         MenuScreenV2.Instance.GoToStart();
