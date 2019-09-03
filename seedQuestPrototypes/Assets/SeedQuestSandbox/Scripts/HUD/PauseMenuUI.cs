@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using SeedQuest.Interactables;
 using UnityEngine;
 
 public class PauseMenuUI : MonoBehaviour
@@ -28,7 +29,13 @@ public class PauseMenuUI : MonoBehaviour
     public void ExitToMainMenu()
     {
         SeedQuest.Level.LevelManager.Instance.StopLevelMusic();
-        MenuScreenManager.ActivateStart();
+        InteractablePathManager.Reset();
+        if (GameManager.V2Menus)
+        {
+            MenuScreenV2.Instance.GoToStart();
+        }
+        else
+            MenuScreenManager.ActivateStart();
         //gameObject.SetActive(false);
         animator.Play("SlideDown");
         GameManager.GraduatedMode = false;
