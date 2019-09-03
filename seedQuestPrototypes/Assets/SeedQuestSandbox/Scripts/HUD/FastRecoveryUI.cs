@@ -318,10 +318,11 @@ public class FastRecoveryUI : MonoBehaviour
                     {
                         if (InteractablePath.NextAction == temp)
                         {
-                            ColorBlock colors = interactableButtons[i].colors;
+                            interactableButtons[i].gameObject.GetComponent<Animation>().Play();
+                            /*ColorBlock colors = interactableButtons[i].colors;
                             colors.normalColor = new Color(189, 205, 217);
                             colors.highlightedColor = new Color(189, 205, 217);
-                            interactableButtons[i].colors = colors;
+                            interactableButtons[i].colors = colors;*/
                         }
                     }
                 }
@@ -449,10 +450,12 @@ public class FastRecoveryUI : MonoBehaviour
 
                 for (int i = 0; i < 4; i++)
                 {
-                    ColorBlock colors = interactableButtons[i].colors;
+                    interactableButtons[i].gameObject.GetComponent<Animation>().Stop();
+                    interactableButtons[i].gameObject.GetComponent<Image>().color = Color.white;
+                    /*ColorBlock colors = interactableButtons[i].colors;
                     colors.normalColor = Color.white;
                     colors.highlightedColor = Color.white;
-                    interactableButtons[i].colors = colors;
+                    interactableButtons[i].colors = colors;*/
                 }
             }
         }
