@@ -265,6 +265,13 @@ public class FastRecoveryUI : MonoBehaviour
 
     //====================================================================================================//
 
+    public void BackButtonOnClick()
+    {
+        ToggleActive();
+    }
+
+    //====================================================================================================//
+
     public void ToggleInteractableGroup(bool toggle)
     {
         if (!toggle)
