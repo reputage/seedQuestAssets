@@ -33,6 +33,19 @@ public class InteractableLabelUI
         //ListenForNear();
     }
 
+    public void DeleteUI() {
+        GameObject.Destroy(labelObject);
+    }
+
+    static public void ToggleAll(bool active) {
+        GameObject container = GameObject.Find("InteractableUIContainer");
+        if (container != null) {
+            foreach (Transform child in container.transform){
+                child.gameObject.SetActive(active);
+            }
+        }
+    }
+
     private void InstantiateLabel(Interactable parentInteractable) {
         if (isReady()) return;
 
@@ -51,6 +64,15 @@ public class InteractableLabelUI
 
         // Create label object 
         labelObject = GameObject.Instantiate(InteractableManager.Instance.interactableLabelUI, UIContainer);
+    }
+
+    static public void ClearInteractableUI() {
+        GameObject container = GameObject.Find("InteractableUIContainer");
+        if (container != null) {
+            foreach (Transform child in container.transform) {
+                GameObject.Destroy(child.gameObject);
+            }
+        }
     }
 
     private bool isReady() {

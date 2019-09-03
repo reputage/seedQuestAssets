@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ public class WorldManager : MonoBehaviour
 
     /// <summary> Adds world scene with index </summary>
     static public void Add(int index) {
+        Debug.Log("Adding to current scenes");
         Instance.currentScenes.Add(Instance.worldSceneList.worldScenes[index]);
     }
 
@@ -30,5 +32,10 @@ public class WorldManager : MonoBehaviour
     /// <summary>  Resets current world scenes </summary>
     static public void Reset() {
         Instance.currentScenes.Clear();
+    }
+
+    static public int GetSiteIndexForCurrentWorldScene() {
+        int index = Array.FindIndex(WorldScenes, row => row.name == CurrentWorldScene.name);
+        return index;
     }
 }

@@ -125,7 +125,7 @@ public class NewTutorialManager : MonoBehaviour
 
 			if (recall)
 			{
-				Debug.Log(InteractableLog.Count);
+				//Debug.Log(InteractableLog.Count);
 				if (InteractableLog.Count == 3)
 				{
 					GoToCanvas(15);
@@ -157,6 +157,7 @@ public class NewTutorialManager : MonoBehaviour
     public void StartRecall()
     {
         GameManager.Mode = GameMode.Recall;
+        GameManager.State = GameState.Play;
         recall = true;
         canvas[currentCanvasIndex].gameObject.SetActive(false);
     }
@@ -165,7 +166,8 @@ public class NewTutorialManager : MonoBehaviour
     {
         //SaveSkip();
         GameManager.TutorialMode = false;
-        SceneManager.LoadScene("PrototypeSelect");
+        SceneManager.LoadScene("_StartMenu_v2");
+        MenuScreenV2.Instance.GoToStart();
     }
 
     public void SaveSkip()

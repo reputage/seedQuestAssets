@@ -63,7 +63,17 @@ public class FastRecoveryButton : MonoBehaviour, IPointerDownHandler, IPointerUp
                 progressTransform.offsetMax = new Vector2(progressPosition, progressTransform.offsetMax.y);
                 if (time >= 1.2f)
                 {
-                    interactable.SelectAction(actionIndex);
+                    if (GameManager.Mode == GameMode.Rehearsal)
+                    {
+                        if (interactable.ID == InteractablePath.NextInteractable.ID && actionIndex == InteractablePath.NextAction)
+                        {
+                            InteractableManager.SetActiveInteractable(interactable, actionIndex);
+                            interactable.SelectAction(actionIndex);
+                            InteractablePath.GoToNextInteractable();
+                        }
+                    }
+                    else
+                        interactable.SelectAction(actionIndex);
                     progressCompleted = true;
                     progressTransform.offsetMax = new Vector2(-360, progressTransform.offsetMax.y);
                     time = 0.0f;

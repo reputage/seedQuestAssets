@@ -32,8 +32,6 @@ public class ImageDragger : MonoBehaviour, IDragHandler, IEndDragHandler
                 transform.localPosition = new Vector3(transform.localPosition.x, y, 0);
             else if (transform.localPosition.y < -y)
                 transform.localPosition = new Vector3(transform.localPosition.x, -y, 0);
-
-            Debug.Log(x);
         }
     }
 

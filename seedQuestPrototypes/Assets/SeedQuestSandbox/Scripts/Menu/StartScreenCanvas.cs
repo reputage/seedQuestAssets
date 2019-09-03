@@ -6,16 +6,25 @@ using UnityEngine.SceneManagement;
 
 public class StartScreenCanvas : MonoBehaviour
 {
+    public void OnClickMenuButton() {
+        PauseMenuUI.ToggleOn();
+    }
+
+    public void OnClickHelpButton() {
+        HelpMenuUI.ToggleOn();
+    }
+
+    public void StartTutorial() {
+        StartCoroutine(LoadAsync("NonnaISO"));
+    }
+
+
     public void HideKey() {
         MenuScreenV2.Instance.SetModeLearnSeed();
     }
 
     public void FindKey() {
         MenuScreenV2.Instance.SetModeRecoverSeed();
-    }
-
-    public void StartTutorial(){
-        StartCoroutine(LoadAsync("NonnaISO"));
     }
 
     IEnumerator LoadAsync(string sceneName) {

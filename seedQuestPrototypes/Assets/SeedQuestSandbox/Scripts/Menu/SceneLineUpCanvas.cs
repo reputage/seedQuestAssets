@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+using SeedQuest.Interactables;
+
 public class SceneLineUpCanvas : MonoBehaviour
 {
     public GameObject continueButton;
@@ -12,12 +14,13 @@ public class SceneLineUpCanvas : MonoBehaviour
     public Image[] worldOutlines;
     public TextMeshProUGUI[] worldText;
 
-    void Start() {
+    public void Start() {
         Initialize();
         StartScene();
     }
 
     public void Initialize() {
+
         foreach (Image outline in worldOutlines) {
             outline.gameObject.SetActive(false);
         }
@@ -26,8 +29,10 @@ public class SceneLineUpCanvas : MonoBehaviour
             worldImages[i].sprite = WorldManager.CurrentSceneList[i].preview;
             worldText[i].text = WorldManager.CurrentSceneList[i].name;
         }
+    }
 
-        continueButton.gameObject.SetActive(false);   
+    public void ToggleOn() {
+        gameObject.SetActive(true);
     }
 
     public void SetupLoading(int index) {
@@ -65,7 +70,9 @@ public class SceneLineUpCanvas : MonoBehaviour
     public void StartScene() {
         GameManager.State = GameState.Menu;
         CameraZoom.ResetZoom();
+        InteractableLabelUI.ClearInteractableUI();
 
+        continueButton.gameObject.SetActive(false);
         if(WorldManager.CurrentWorldScene != null)
             StartCoroutine(LoadAsync(WorldManager.CurrentWorldScene.sceneName));
     }

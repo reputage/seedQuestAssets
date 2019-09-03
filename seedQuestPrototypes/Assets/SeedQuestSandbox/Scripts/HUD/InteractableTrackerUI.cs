@@ -195,7 +195,7 @@ public class InteractableTrackerUI : MonoBehaviour
                 else if (isClampedLeft)
                     screenPosition = new Vector3(padding.x, MidScreenY, screenPosition.z);    
                 else if (isClampedTop && !isClampedLeft && !isClampedRight)
-                    screenPosition = new Vector3(MidScreenX, camera.scaledPixelHeight - padding.y, screenPosition.z);
+                    screenPosition = new Vector3(MidScreenX, camera.scaledPixelHeight - padding.y - 100, screenPosition.z);
                 else if(isClampedBottom && !isClampedLeft && !isClampedRight)
                     screenPosition = new Vector3(MidScreenX, padding.y, screenPosition.z);
             }
