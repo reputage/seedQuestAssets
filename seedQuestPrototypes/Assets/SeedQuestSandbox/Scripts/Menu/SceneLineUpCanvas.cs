@@ -16,7 +16,6 @@ public class SceneLineUpCanvas : MonoBehaviour
 
     public void Start() {
         Initialize();
-        StartScene();
     }
 
     public void Initialize() {

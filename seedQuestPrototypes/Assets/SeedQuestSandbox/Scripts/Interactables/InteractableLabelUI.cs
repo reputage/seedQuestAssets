@@ -138,6 +138,7 @@ public class InteractableLabelUI
     public void ActivateInteractable() {
         InteractableManager.SetActiveInteractable(interactable, interactable.ActionIndex);
         InteractableActionsUI.Toggle(true);
+        ToggleIcon(false);
     }
 
     private void ListenForNear() {
