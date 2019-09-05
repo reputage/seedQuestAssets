@@ -133,4 +133,9 @@ public class MenuScreenV2 : MonoBehaviour
         ResetCanvas();
         debugCanvas.gameObject.SetActive(true);
     }
+
+    public void DeactivateTopMenu()
+    {
+        topMenu.SetActive(false);
+    }
 }
