@@ -53,6 +53,7 @@ public class EncodeSeedCanvas : MonoBehaviour {
         sceneCount++;
 
         buttons[i].GetComponentsInChildren<Image>()[3].gameObject.SetActive(false);
+        ResetInteractiveButtons();
         EnableNext();
 
         if (sceneCount >= currentList.Length)
@@ -72,6 +73,17 @@ public class EncodeSeedCanvas : MonoBehaviour {
                 button.GetComponentsInChildren<Image>(true)[3].gameObject.SetActive(false);
             }
         } 
+    }
+
+    public void ResetInteractiveButtons()
+    {
+        if (GameManager.Mode == GameMode.Rehearsal)
+        {
+            foreach (Button button in buttons)
+            {
+                button.interactable = false;
+            }
+        }
     }
 
     public void EnableNext() {
