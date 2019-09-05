@@ -28,7 +28,6 @@ public class PauseMenuUI : MonoBehaviour
 
     public void ExitToMainMenu()
     {
-        SeedQuest.Level.LevelManager.Instance.StopLevelMusic();
         InteractablePathManager.Reset();
         if (GameManager.V2Menus)
         {
@@ -39,6 +38,7 @@ public class PauseMenuUI : MonoBehaviour
         //gameObject.SetActive(false);
         animator.Play("SlideDown");
         GameManager.GraduatedMode = false;
+        SeedQuest.Level.LevelManager.Instance.StopLevelMusic();
     }
 
     public void Quit() {
