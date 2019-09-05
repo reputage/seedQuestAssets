@@ -43,9 +43,7 @@ namespace SeedQuest.Interactables
         
         private int actionIndex = -1;
         public int ActionIndex { get => actionIndex; set => actionIndex = value; } // Current Action State 
-
-        [HideInInspector]
-        public float interactDistance = 4.0f;
+        private float interactDistance = 6.0f;
 
         private bool isOnHover = false;
         public bool IsOnHover { get => isOnHover; } 
@@ -154,7 +152,7 @@ namespace SeedQuest.Interactables
             InteractableLog.Add(this, actionIndex);
         }
 
-        private bool PlayerIsNear() {
+        public bool PlayerIsNear() {
             Vector3 playerPosition = IsometricCamera.instance.playerTransform.position;
             float dist = (transform.position - playerPosition).magnitude;
             if (dist < interactDistance)
@@ -291,16 +289,13 @@ namespace SeedQuest.Interactables
         }
 
         void OnDrawGizmos() {
-            // Display the explosion radius when selected
-            if(PlayerIsNear())
-            {
+            
+            // Display the interactable label show radius when player enters radius
+            if(PlayerIsNear()) {
                 Gizmos.color = Color.red;
+                Gizmos.DrawWireSphere(LookAtPosition, interactDistance);
+
             }
-            else
-            {
-                Gizmos.color = Color.white;
-            }
-            Gizmos.DrawWireSphere(transform.position, interactDistance);
         }
     }
 }

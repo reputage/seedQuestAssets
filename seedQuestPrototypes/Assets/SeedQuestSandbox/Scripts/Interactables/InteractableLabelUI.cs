@@ -30,7 +30,7 @@ public class InteractableLabelUI
         if (!isReady()) return;
         SetPosition();
         //SetIcon();
-        //ListenForNear();
+        ListenForNear();
     }
 
     public void DeleteUI() {
@@ -142,12 +142,7 @@ public class InteractableLabelUI
     }
 
     private void ListenForNear() {
-        Vector3 playerPosition = IsometricCamera.instance.playerTransform.position;
-        Vector3 interactablePosition = interactable.GetComponent<BoxCollider>().center + interactable.interactableCamera.lookAtOffset;
-        //interactablePosition = interactable.transform.InverseTransformPoint(interactablePosition);
-
-        float dist = (interactablePosition - playerPosition).magnitude;
-        if (dist < InteractableManager.Instance.nearDistance)
+        if(interactable.PlayerIsNear())
             labelObject.SetActive(true);
         else
             labelObject.SetActive(false);
