@@ -43,10 +43,12 @@ public class InteractableCameraRig : MonoBehaviour
         if (interactable.interactablePreview.previewPrefab != null)
         {
             previewChild = Instantiate(interactable.interactablePreview.previewPrefab, previewObject.transform);
+            Destroy(previewChild.GetComponent<Interactable>());
         }
         else
         {
             previewChild = Instantiate(interactable.gameObject, previewObject.transform);
+            Destroy(previewChild.GetComponent<Interactable>());
 
             // Destroy InteractableUI and Remove Highlights
             Interactable previewInteractable = previewChild.GetComponent<Interactable>();
