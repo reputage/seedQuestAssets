@@ -138,6 +138,28 @@ public class EncodeSeedCanvas : MonoBehaviour {
         EnableNext();
     }
 
+    public void undoSelect()
+    {
+        if (sceneCount <= 0) return;
+
+        sceneCount -= 1;
+        int i = currentList[sceneCount];
+
+        currentList[sceneCount] = 0;
+        worldPreviews[sceneCount].preview.gameObject.SetActive(false);
+        worldPreviews[sceneCount].text.gameObject.SetActive(false);
+        worldPreviews[sceneCount].shade.gameObject.SetActive(false);
+        indicators[i].Deactivate(sceneCount);
+        //sceneCount++;
+
+        //buttons[i].GetComponentsInChildren<Image>()[3].gameObject.SetActive(false);
+        ResetInteractiveButtons();
+        EnableNext();
+
+        continueButton.gameObject.SetActive(false);
+
+    }
+
     public void backButton()
     {
         MenuScreenV2.Instance.GoToStart();
