@@ -44,4 +44,13 @@ public class PauseMenuUI : MonoBehaviour
     public void Quit() {
         Application.Quit();
     }
+
+    public void mute()
+    {
+        if (SettingsManager.IsVolumeMuted)
+            SettingsManager.IsVolumeMuted = false;
+        else
+            SettingsManager.IsVolumeMuted = true;
+
+    }
 } 
