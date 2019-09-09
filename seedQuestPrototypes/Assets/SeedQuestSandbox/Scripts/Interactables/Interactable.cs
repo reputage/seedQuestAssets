@@ -38,17 +38,8 @@ namespace SeedQuest.Interactables
 
         void Update()  {
             interactableLabel.Update();
-
-            /*
-            if (interactableUI.isReady()) {
-                interactableUI.Update();
-                HoverOnInteractable();
-                ClickOnInteractable();
-            }
-            else {
-                interactableUI.Initialize(this);
-            }
-            */
+            ClickOnInteractable();
+            //HoverOnInteractable();
         }
 
         void OnDestroy() {
@@ -145,21 +136,14 @@ namespace SeedQuest.Interactables
                     interactableUI.showCurrentActions();
 
                     if (!isOnHover)  {
-                        GameManager.State = GameState.Interact;
                         AudioManager.Play("UI_Hover");
-                        InteractableManager.SetActiveInteractable(this, this.ActionIndex);
                     } 
 
                     isOnHover = true;
                 }
                 else {
                     if (isOnHover) {
-                        GameManager.State = GameState.Play;
 
-                        //if (IsNextInteractable)
-                        //    HighlightInteractable(true, true);
-                        //else
-                        //    HighlightInteractable(false);
                     }
 
                     isOnHover = false;
@@ -167,10 +151,8 @@ namespace SeedQuest.Interactables
             }
         }
 
-        int mouseDownICount = 0;
         public void ClickOnInteractable() {
-            if (PauseManager.isPaused == true)
-                return;
+            if (PauseManager.isPaused == true) return;
 
             if (Input.GetMouseButtonDown(0)) {
                 RaycastHit hit;
@@ -180,31 +162,11 @@ namespace SeedQuest.Interactables
                     bool hitThisInteractable = hit.transform.GetInstanceID() == transform.GetInstanceID();
 
                     if (hitThisInteractable) {
-                        interactableUI.StartProgress();
-                        AudioManager.Play("UI_Click");
-                        mouseDownICount = InteractableLog.Count;
+                        interactableLabel.ActivateInteractable();
                     }
                 }
             }
 
-            if (Input.GetMouseButtonUp(0))
-            {
-                RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                if (Physics.Raycast(ray, out hit, 100.0f))
-                {
-                    bool hitThis = hit.transform.GetInstanceID() == transform.GetInstanceID();
-                    if (!hitThis)
-                        return;
-
-                    bool progressIsSmall = interactableUI.ProgressTime < 0.25f;
-                    interactableUI.CheckProgress();
-
-                    if(mouseDownICount == InteractableLog.Count && progressIsSmall)
-                        NextAction();
-                }
-            }
         }
 
         void OnDrawGizmos() {
@@ -213,7 +175,6 @@ namespace SeedQuest.Interactables
             if(PlayerIsNear()) {
                 Gizmos.color = Color.red;
                 Gizmos.DrawWireSphere(LookAtPosition, interactDistance);
-
             }
         }
     }
