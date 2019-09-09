@@ -88,7 +88,9 @@ public class MenuScreenV2 : MonoBehaviour
         state = MenuScreenStates.EncodeSeed;
         ResetCanvas();
         encodeSeedCanvas.gameObject.SetActive(true);
+        encodeSeedCanvas.gameObject.GetComponent<EncodeSeedCanvas>().resetCanvas();
         LevelSetManager.ResetCurrentLevels();
+        WorldManager.Reset();
     }
 
     public void GoToSceneLineUp() {
@@ -96,6 +98,7 @@ public class MenuScreenV2 : MonoBehaviour
         state = MenuScreenStates.SceneLineUp;
         ResetCanvas();
         sceneLineUpCanvas.GetComponent<SceneLineUpCanvas>().ToggleOn();
+        sceneLineUpCanvas.GetComponent<SceneLineUpCanvas>().StartScene();
     }
 
     public void ReturnToSceneLineUp() {

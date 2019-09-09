@@ -16,18 +16,15 @@ public class SceneLineUpCanvas : MonoBehaviour
 
     public void Start() {
         Initialize();
-        StartScene();
     }
 
     public void Initialize() {
+
         foreach (Image outline in worldOutlines) {
             outline.gameObject.SetActive(false);
         }
 
-        for (int i = 0; i < 6; i++) {
-            worldImages[i].sprite = WorldManager.CurrentSceneList[i].preview;
-            worldText[i].text = WorldManager.CurrentSceneList[i].name;
-        }
+        SetImages();
     }
 
     public void ToggleOn() {
@@ -39,6 +36,15 @@ public class SceneLineUpCanvas : MonoBehaviour
             outline.gameObject.SetActive(false);
         }
         worldOutlines[index].gameObject.SetActive(true);
+    }
+
+    public void SetImages()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            worldImages[i].sprite = WorldManager.CurrentSceneList[i].preview;
+            worldText[i].text = WorldManager.CurrentSceneList[i].name;
+        }
     }
 
     public void Continue() {
@@ -70,6 +76,7 @@ public class SceneLineUpCanvas : MonoBehaviour
         GameManager.State = GameState.Menu;
         CameraZoom.ResetZoom();
         InteractableLabelUI.ClearInteractableUI();
+        SetImages();
 
         continueButton.gameObject.SetActive(false);
         if(WorldManager.CurrentWorldScene != null)

@@ -64,7 +64,12 @@ public class GameManager : MonoBehaviour {
     public void ListenForKeyDown() {
         if (Input.GetKeyDown("escape") &&  state != GameState.Menu) {
             //ESCMenuUI.ToggleOn();
-            ScenePauseMenu.ToggleOn();
+            //ScenePauseMenu.ToggleOn();
+        }
+
+        if (InputManager.GetKeyDown(KeyCode.F) && state != GameState.Menu)
+        {
+            FastRecoveryUI.ToggleActive();
         }
     }
 

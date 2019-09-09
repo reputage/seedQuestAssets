@@ -30,11 +30,20 @@ public class InteractableLabelUI
         if (!isReady()) return;
         SetPosition();
         //SetIcon();
-        //ListenForNear();
+        ListenForNear();
     }
 
     public void DeleteUI() {
         GameObject.Destroy(labelObject);
+    }
+
+    static public void ToggleAll(bool active) {
+        GameObject container = GameObject.Find("InteractableUIContainer");
+        if (container != null) {
+            foreach (Transform child in container.transform){
+                child.gameObject.SetActive(active);
+            }
+        }
     }
 
     private void InstantiateLabel(Interactable parentInteractable) {
@@ -129,15 +138,11 @@ public class InteractableLabelUI
     public void ActivateInteractable() {
         InteractableManager.SetActiveInteractable(interactable, interactable.ActionIndex);
         InteractableActionsUI.Toggle(true);
+        ToggleIcon(false);
     }
 
     private void ListenForNear() {
-        Vector3 playerPosition = IsometricCamera.instance.playerTransform.position;
-        Vector3 interactablePosition = interactable.GetComponent<BoxCollider>().center + interactable.interactableCamera.lookAtOffset;
-        //interactablePosition = interactable.transform.InverseTransformPoint(interactablePosition);
-
-        float dist = (interactablePosition - playerPosition).magnitude;
-        if (dist < InteractableManager.Instance.nearDistance)
+        if(interactable.PlayerIsNear())
             labelObject.SetActive(true);
         else
             labelObject.SetActive(false);
