@@ -180,9 +180,11 @@ namespace SeedQuest.Interactables
             // Create Preview Gameobject
             if(interactable.interactablePreview.previewPrefab != null) {
                 Instance.previewChild = Instantiate(interactable.interactablePreview.previewPrefab, Instance.previewObject.transform);
+                Destroy(Instance.previewChild.GetComponent<Interactable>());
             }
             else {
                 Instance.previewChild = Instantiate(interactable.gameObject, Instance.previewObject.transform);
+                Destroy(Instance.previewChild.GetComponent<Interactable>());
 
                 // Destroy InteractableUI and Remove Highlights
                 Interactable previewInteractable = Instance.previewChild.GetComponent<Interactable>();

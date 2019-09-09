@@ -53,6 +53,7 @@ public class EncodeSeedCanvas : MonoBehaviour {
         sceneCount++;
 
         buttons[i].GetComponentsInChildren<Image>()[3].gameObject.SetActive(false);
+        ResetInteractiveButtons();
         EnableNext();
 
         if (sceneCount >= currentList.Length)
@@ -72,6 +73,17 @@ public class EncodeSeedCanvas : MonoBehaviour {
                 button.GetComponentsInChildren<Image>(true)[3].gameObject.SetActive(false);
             }
         } 
+    }
+
+    public void ResetInteractiveButtons()
+    {
+        if (GameManager.Mode == GameMode.Rehearsal)
+        {
+            foreach (Button button in buttons)
+            {
+                button.interactable = false;
+            }
+        }
     }
 
     public void EnableNext() {
@@ -124,6 +136,28 @@ public class EncodeSeedCanvas : MonoBehaviour {
         }
         UnInteractiveButtons();
         EnableNext();
+    }
+
+    public void undoSelect()
+    {
+        if (sceneCount <= 0) return;
+
+        sceneCount -= 1;
+        int i = currentList[sceneCount];
+
+        currentList[sceneCount] = 0;
+        worldPreviews[sceneCount].preview.gameObject.SetActive(false);
+        worldPreviews[sceneCount].text.gameObject.SetActive(false);
+        worldPreviews[sceneCount].shade.gameObject.SetActive(false);
+        indicators[i].Deactivate(sceneCount);
+        //sceneCount++;
+
+        //buttons[i].GetComponentsInChildren<Image>()[3].gameObject.SetActive(false);
+        ResetInteractiveButtons();
+        EnableNext();
+
+        continueButton.gameObject.SetActive(false);
+
     }
 
     public void backButton()
