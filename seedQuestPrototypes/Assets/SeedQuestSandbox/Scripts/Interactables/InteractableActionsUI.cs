@@ -63,7 +63,7 @@ public class InteractableActionsUI : MonoBehaviour
 
     void clickActionButton(int actionIndex) {
         if (GameManager.Mode == GameMode.Rehearsal) {
-            if (actionIndex == InteractablePath.NextInteractable.ActionIndex && interactable.ID == InteractablePath.NextInteractable.ID) {
+            if (actionIndex == InteractablePath.NextAction && interactable.ID == InteractablePath.NextInteractable.ID) {
                 InteractableLog.Add(interactable, actionIndex);
                 InteractablePath.GoToNextInteractable();
             } 
