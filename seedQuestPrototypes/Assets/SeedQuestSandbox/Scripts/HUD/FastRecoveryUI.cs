@@ -20,7 +20,7 @@ public class FastRecoveryUI : MonoBehaviour
     private Image startingTitleImage;
     private Slider slider;
     private Interactable[] interactables;
-    private int interactableProgess;
+    private int interactableProgress;
     private int sliderMin;
     private int sliderMax;
     private bool levelFlag;
@@ -181,7 +181,7 @@ public class FastRecoveryUI : MonoBehaviour
         TMPro.TMP_Text[] texts = gameObject.GetComponentsInChildren<TMPro.TMP_Text>();
         interactableTitle = texts[2];
         slider = gameObject.GetComponentInChildren<Slider>();
-        interactableProgess = 0;
+        interactableProgress = 0;
         List<Interactable> interactableList = new List<Interactable>();
         foreach (Interactable interactable in InteractableManager.InteractableList)
         {
@@ -429,9 +429,9 @@ public class FastRecoveryUI : MonoBehaviour
 
     public void CheckForProgress()
     {
-        if (InteractableLog.Count > interactableProgess)
+        if (InteractableLog.Count > interactableProgress)
         {
-            interactableProgess = InteractableLog.Count;
+            interactableProgress = InteractableLog.Count;
             for (int i = 0; i < buttons.Count; i++)
             {
                 if(buttons[i].gameObject.GetComponent<Image>().sprite == settings.interactableIconSelected)
@@ -465,6 +465,11 @@ public class FastRecoveryUI : MonoBehaviour
                     interactableButtons[i].colors = colors;*/
                 }
             }
+        }
+
+        else if (InteractableLog.Count < interactableProgress)
+        {
+            interactableProgress = InteractableLog.Count;
         }
     }
 

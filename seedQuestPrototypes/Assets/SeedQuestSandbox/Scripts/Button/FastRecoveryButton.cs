@@ -13,11 +13,13 @@ public class FastRecoveryButton : MonoBehaviour, IPointerDownHandler, IPointerUp
     private float time;
     private bool progressCompleted;
     private Image progress;
+    private float buttonLength;
 
     public void Start()
     {
         progressCompleted = false;
         progress = gameObject.transform.GetChild(0).GetComponent<Image>();
+        buttonLength = gameObject.GetComponent<RectTransform>().sizeDelta.x;
     }
 
     public void Update()
@@ -35,7 +37,7 @@ public class FastRecoveryButton : MonoBehaviour, IPointerDownHandler, IPointerUp
         buttonPressed = false;
         progressCompleted = false;
         time = 0.0f;
-        progress.GetComponent<RectTransform>().offsetMax = new Vector2(-360, progress.GetComponent<RectTransform>().offsetMax.y);
+        progress.GetComponent<RectTransform>().offsetMax = new Vector2(-buttonLength, progress.GetComponent<RectTransform>().offsetMax.y);
 
     }
 
@@ -58,7 +60,7 @@ public class FastRecoveryButton : MonoBehaviour, IPointerDownHandler, IPointerUp
             time += Time.deltaTime;
             if (time >= 0.2f)
             {
-                float progressPosition = 360 * (-1 + (time - 0.2f / 1.0f));
+                float progressPosition = buttonLength * (-1 + (time - 0.2f / 1.0f));
                 RectTransform progressTransform = progress.GetComponent<RectTransform>();
                 progressTransform.offsetMax = new Vector2(progressPosition, progressTransform.offsetMax.y);
                 if (time >= 1.2f)
@@ -75,7 +77,7 @@ public class FastRecoveryButton : MonoBehaviour, IPointerDownHandler, IPointerUp
                     else
                         interactable.SelectAction(actionIndex);
                     progressCompleted = true;
-                    progressTransform.offsetMax = new Vector2(-360, progressTransform.offsetMax.y);
+                    progressTransform.offsetMax = new Vector2(-buttonLength, progressTransform.offsetMax.y);
                     time = 0.0f;
                 }
             }
@@ -83,7 +85,7 @@ public class FastRecoveryButton : MonoBehaviour, IPointerDownHandler, IPointerUp
         else
         {
             RectTransform progressTransform = progress.GetComponent<RectTransform>();
-            progressTransform.offsetMax = new Vector2(-360, progressTransform.offsetMax.y);
+            progressTransform.offsetMax = new Vector2(-buttonLength, progressTransform.offsetMax.y);
             time = 0.0f;
             EventSystem.current.SetSelectedGameObject(null);
         }
