@@ -96,13 +96,13 @@ namespace SeedQuest.Interactables
         }
 
         static public void HighlightAllInteractables() {
-            foreach(Interactable interactable in FindAllInteractables()) 
-                interactable.HighlightInteractable(true);
+            //foreach(Interactable interactable in FindAllInteractables()) 
+            //    interactable.HighlightInteractable(true);
         }
 
         static public void UnHighlightAllInteractables() {
-            foreach (Interactable interactable in FindAllInteractables())
-                interactable.HighlightInteractable(false);
+            //foreach (Interactable interactable in FindAllInteractables())
+            //    interactable.HighlightInteractable(false);
         }
 
         static public void UnTrackAllInteractables()

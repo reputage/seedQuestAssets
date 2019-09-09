@@ -96,8 +96,8 @@ namespace SeedQuest.Interactables
             
             if (preview != null) {
                 Interactable interactable = Instance.previewChild.GetComponent<Interactable>();
-                if(interactable != null)
-                    interactable.HighlightInteractable(false);
+                //if(interactable != null)
+                //    interactable.HighlightInteractable(false);
 
                 previewChild.transform.localPosition = preview.position;
                 previewChild.transform.localRotation = Quaternion.Euler(preview.rotation);
@@ -187,7 +187,7 @@ namespace SeedQuest.Interactables
                 // Destroy InteractableUI and Remove Highlights
                 Interactable previewInteractable = Instance.previewChild.GetComponent<Interactable>();
                 previewInteractable.DeleteUI();
-                previewInteractable.HighlightInteractableWithEffect(false);
+                //previewInteractable.HighlightInteractableWithEffect(false);
             }
 
             // Set Layer to "InteractablePreview"
