@@ -1,22 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace SeedQuest.Interactables
+namespace SeedQuest.Interactables 
 {
-    [System.Serializable]
-    public class InteractableHighlightsProps {
-        public bool useHighlightsShader = true;
-        public Color highlightColor = Color.white;
-        public float highlightPower = 0.2f;
-        public Color rimColor = Color.white;
-        public float rimExponent = 3.0f;
-        public float rimPower = 0.6f;
-        public Color outlineColor = Color.white;
-        public float outlineWidth = 0.02f;
-        public float outlinePower = 0.2f;
-        public float dynamicFlashSpeed = 0.5f;
-    }
-
     [System.Serializable]
     public class InteractableCameraProps {
         public Vector3 lookAtOffset = Vector3.zero;
@@ -31,21 +17,13 @@ namespace SeedQuest.Interactables
         public InteractableCameraProps interactableCamera;
         public InteractableTrackerProps interactableTracker;
         public InteractablePreviewInfo interactablePreview;
-        public InteractableHighlightsProps interactableHighlights;
         public InteractableID ID;
 
         private InteractableLabelUI interactableLabel;
 
-        public Shader defaultShader;
-        private Shader highlightShader;
-
-        Camera c;
-        
         private int actionIndex = -1;
         public int ActionIndex { get => actionIndex; set => actionIndex = value; } // Current Action State 
-
-        [HideInInspector]
-        public float interactDistance = 4.0f;
+        private float interactDistance = 6.0f;
 
         private bool isOnHover = false;
         public bool IsOnHover { get => isOnHover; } 
@@ -54,10 +32,8 @@ namespace SeedQuest.Interactables
         public bool flagDeleteUI = false;
 
         void Start() {
-            //interactableUI.Initialize(this);
             interactableLabel = new InteractableLabelUI();
             interactableLabel.Initialize(this);
-            getRefs();
         }
 
         void Update()  {
@@ -111,14 +87,12 @@ namespace SeedQuest.Interactables
         public void Delete() {
             flagDeleteUI = true;
             interactableUI.DeleteUI();
-            //interactableLabel.DeleteUI();
             GameObject.Destroy(gameObject);
         }
 
         public void DeleteUI() {
             flagDeleteUI = true;
             interactableUI.DeleteUI();
-            //interactableLabel.DeleteUI();
         }
 
         public void NextAction() {
@@ -131,20 +105,11 @@ namespace SeedQuest.Interactables
             DoAction(actionIndex);
         }
 
-        public void getRefs()
-        {
-            defaultShader =  Shader.Find("Lightweight Render Pipeline/Lit"); //Shader.Find("Standard");
-            highlightShader = Shader.Find("Shader Graphs/RimHighlights"); //Shader.Find("SeedQuest/RimOutline");
-            c = Camera.main;
-        }
-
         public void DoAction(int actionIndex)  {
             this.actionIndex = actionIndex;
             InteractableState state = stateData.states[actionIndex];
             stateData.stopAudio();
             state.enterState(this);
-            //HighlightInteractable(true, true);
-            //interactableUI.SetActionUI(actionIndex);
 
             if (GameManager.Mode == GameMode.Sandbox || GameManager.Mode == GameMode.Recall)
                 InteractablePreviewUI.SetPreviewAction(this.actionIndex);
@@ -154,7 +119,7 @@ namespace SeedQuest.Interactables
             InteractableLog.Add(this, actionIndex);
         }
 
-        private bool PlayerIsNear() {
+        public bool PlayerIsNear() {
             Vector3 playerPosition = IsometricCamera.instance.playerTransform.position;
             float dist = (transform.position - playerPosition).magnitude;
             if (dist < interactDistance)
@@ -171,7 +136,7 @@ namespace SeedQuest.Interactables
                 return;
 
             RaycastHit hit;
-            Ray ray = c.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out hit, 100.0f)) {
                 bool hitThisInteractable = hit.transform.GetInstanceID() == transform.GetInstanceID();
@@ -191,10 +156,10 @@ namespace SeedQuest.Interactables
                     if (isOnHover) {
                         GameManager.State = GameState.Play;
 
-                        if (IsNextInteractable)
-                            HighlightInteractable(true, true);
-                        else
-                            HighlightInteractable(false);
+                        //if (IsNextInteractable)
+                        //    HighlightInteractable(true, true);
+                        //else
+                        //    HighlightInteractable(false);
                     }
 
                     isOnHover = false;
@@ -209,7 +174,7 @@ namespace SeedQuest.Interactables
 
             if (Input.GetMouseButtonDown(0)) {
                 RaycastHit hit;
-                Ray ray = c.ScreenPointToRay(Input.mousePosition);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 if (Physics.Raycast(ray, out hit, 100.0f)) {
                     bool hitThisInteractable = hit.transform.GetInstanceID() == transform.GetInstanceID();
@@ -225,7 +190,7 @@ namespace SeedQuest.Interactables
             if (Input.GetMouseButtonUp(0))
             {
                 RaycastHit hit;
-                Ray ray = c.ScreenPointToRay(Input.mousePosition);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 if (Physics.Raycast(ray, out hit, 100.0f))
                 {
@@ -242,65 +207,14 @@ namespace SeedQuest.Interactables
             }
         }
 
-        public void HighlightInteractable(bool useHighlight) {
-            HighlightInteractable(useHighlight, false);
-        }
-
-        public void HighlightInteractable(bool useHighlight, bool useDynamicRim) {
-            if (!interactableHighlights.useHighlightsShader)
-                return;
-
-            Renderer[] rendererList = transform.GetComponentsInChildren<Renderer>();
-
-            foreach (Renderer renderer in rendererList) {
-
-                if (renderer.GetComponent<ParticleSystem>() != null)
-                    continue;
-
-                foreach (Material material in renderer.materials) {
-                    if (useHighlight) {
-                        material.shader = highlightShader;
-
-                        /*
-                        material.SetFloat("_HighlightPower", interactableHighlights.highlightPower);
-                        material.SetFloat("_RimExponent", interactableHighlights.rimExponent);
-                        material.SetFloat("_RimPower", interactableHighlights.rimPower);
-                        material.SetFloat("_OutlineWidth", interactableHighlights.outlineWidth);
-                        material.SetFloat("_OutlinePower", interactableHighlights.outlinePower);
-                        material.SetFloat("_DynamicColorSpeed", interactableHighlights.dynamicFlashSpeed);
-
-                        if(useDynamicRim)
-                            material.SetFloat("_UseDynamicColor", 1.0f);
-                        else
-                            material.SetFloat("_UseDynamicColor", 0.0f);
-                        */
-                    }
-                    else
-                        material.shader = defaultShader;
-                }
-            }
-        }
-
-        public void HighlightInteractableWithEffect(bool useHighlight) {
-            HighlightInteractable(true, true);
-
-            if (useHighlight)
-                EffectsManager.PlayEffect("highlight", this.transform);
-            else
-                EffectsManager.StopEffect(this.transform);
-        }
-
         void OnDrawGizmos() {
-            // Display the explosion radius when selected
-            if(PlayerIsNear())
-            {
+            
+            // Display the interactable label show radius when player enters radius
+            if(PlayerIsNear()) {
                 Gizmos.color = Color.red;
+                Gizmos.DrawWireSphere(LookAtPosition, interactDistance);
+
             }
-            else
-            {
-                Gizmos.color = Color.white;
-            }
-            Gizmos.DrawWireSphere(transform.position, interactDistance);
         }
     }
 }
