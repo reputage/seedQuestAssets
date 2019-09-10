@@ -82,13 +82,13 @@ public class EndGameUI : MonoBehaviour
 
         if (GameManager.Mode == GameMode.Rehearsal)
         {
-            //textList[2].text = "Key Learned!";
+            //textList[2].text = "Key Encrypted!";
             textList[3].text = "Practice Again";
         }
         else
         {
-            //textList[2].text = "Key Recovered!";
-            textList[3].text = "Try Again";
+            //textList[2].text = "Key Decrypted!";
+            textList[3].text = "Back to Start Screen";
         }
 
         for (int i = 0; i < textList.Length; i++)

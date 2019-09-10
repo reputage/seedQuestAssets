@@ -261,7 +261,7 @@ namespace SeedQuest.Interactables
 
         /// <summary> Handles Clicking an Action Button </summary>
         public void ClickActionButton(int actionIndex) {
-            parent.DoAction(actionIndex);
+            parent.PreviewAction(actionIndex);
 
             if (mode == InteractableUIMode.GridSelect || mode == InteractableUIMode.ListSelect)
                 hideActions();

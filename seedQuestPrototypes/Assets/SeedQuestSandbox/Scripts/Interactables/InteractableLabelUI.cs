@@ -109,8 +109,7 @@ public class InteractableLabelUI
 
     private void SetHoverEvents() {
         EventTrigger trigger = labelObject.GetComponent<EventTrigger>();
-        if (trigger == null)
-        {
+        if (trigger == null) {
             labelObject.gameObject.AddComponent<EventTrigger>();
             trigger = labelObject.GetComponent<EventTrigger>();
         }
@@ -136,6 +135,9 @@ public class InteractableLabelUI
     }
 
     public void ActivateInteractable() {
+        if (!labelObject.activeSelf) return;
+
+        AudioManager.Play("UI_Click");
         InteractableManager.SetActiveInteractable(interactable, interactable.ActionIndex);
         InteractableActionsUI.Toggle(true);
         ToggleIcon(false);
