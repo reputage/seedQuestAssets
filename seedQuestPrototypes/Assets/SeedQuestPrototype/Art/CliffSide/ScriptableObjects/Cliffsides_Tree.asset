@@ -10,14 +10,69 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d1c21d9ece6c4e229a7c25408d3063a, type: 3}
-  m_Name: InteractableFirePit
+  m_Name: Cliffsides_Tree
   m_EditorClassIdentifier: 
-  interactableName: FirePit
+  interactableName: Tree
   prompt: 
-  labelPosOffset: {x: 0, y: 1, z: 0}
+  labelPosOffset: {x: 0, y: 3.5, z: 0}
   states:
-  - actionName: Cook Chicken
-    prefab: {fileID: 1843770447042320, guid: b02a2f09103284043a204a3341a09d30, type: 3}
+  - actionName: Do Nothing
+    prefab: {fileID: 3739944403619610996, guid: e79d7b641f725334a8f8469c4e3d45d8,
+      type: 3}
+    positionOffset: {x: 0, y: 0, z: 0}
+    mesh: {fileID: 0}
+    material: {fileID: 0}
+    materialIndex: 0
+    uvOffset: {x: 0, y: 0}
+    animatorController: {fileID: 0}
+    soundEffectName: Birds
+    soundEffect:
+      name: 
+      clip: {fileID: 0}
+      volume: 1
+      loop: 0
+      source: {fileID: 0}
+    particleEffectName: 
+    particleEffect: {fileID: 0}
+  - actionName: Cut Down Tree
+    prefab: {fileID: 4970159548785396197, guid: cbe686f57462f1c48b086547b981c019,
+      type: 3}
+    positionOffset: {x: 0, y: 0, z: 0}
+    mesh: {fileID: 0}
+    material: {fileID: 0}
+    materialIndex: 0
+    uvOffset: {x: 0, y: 0}
+    animatorController: {fileID: 0}
+    soundEffectName: TreeFall
+    soundEffect:
+      name: 
+      clip: {fileID: 0}
+      volume: 1
+      loop: 0
+      source: {fileID: 0}
+    particleEffectName: 
+    particleEffect: {fileID: 0}
+  - actionName: HugTree
+    prefab: {fileID: 5006253374322469862, guid: b93fc963629aab14dacfd28aaaee4e59,
+      type: 3}
+    positionOffset: {x: 0, y: 0, z: 0}
+    mesh: {fileID: 0}
+    material: {fileID: 0}
+    materialIndex: 0
+    uvOffset: {x: 0, y: 0}
+    animatorController: {fileID: 0}
+    soundEffectName: Birds
+    soundEffect:
+      name: 
+      clip: {fileID: 0}
+      volume: 1
+      loop: 0
+      source: {fileID: 0}
+    particleEffectName: 
+    particleEffect: {fileID: 0}
+  - actionName: Trim Leaves
+    prefab: {fileID: 3728015355192971441, guid: ee7329f7efad34b4fb266612bc5c34ac,
+      type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
     material: {fileID: 0}
@@ -33,55 +88,4 @@ MonoBehaviour:
       source: {fileID: 0}
     particleEffectName: 
     particleEffect: {fileID: 0}
-  - actionName: Cook Egg
-    prefab: {fileID: 1754473636389656, guid: ebf876da2356e664aa0414ce70006434, type: 3}
-    positionOffset: {x: 0, y: 0, z: 0}
-    mesh: {fileID: 0}
-    material: {fileID: 0}
-    materialIndex: 0
-    uvOffset: {x: 0, y: 0}
-    animatorController: {fileID: 0}
-    soundEffectName: 
-    soundEffect:
-      name: 
-      clip: {fileID: 0}
-      volume: 1
-      loop: 0
-      source: {fileID: 0}
-    particleEffectName: 
-    particleEffect: {fileID: 0}
-  - actionName: Cook Fish
-    prefab: {fileID: 1199689459851048, guid: 1621af3f55a88d945bd28ba7914b2e1b, type: 3}
-    positionOffset: {x: 0, y: 0, z: 0}
-    mesh: {fileID: 0}
-    material: {fileID: 0}
-    materialIndex: 0
-    uvOffset: {x: 0, y: 0}
-    animatorController: {fileID: 0}
-    soundEffectName: 
-    soundEffect:
-      name: 
-      clip: {fileID: 0}
-      volume: 1
-      loop: 0
-      source: {fileID: 0}
-    particleEffectName: 
-    particleEffect: {fileID: 0}
-  - actionName: Cook Soup
-    prefab: {fileID: 1950324792163414, guid: 046b2475587e5db4da2560ef19ff603f, type: 3}
-    positionOffset: {x: 0, y: 0, z: 0}
-    mesh: {fileID: 0}
-    material: {fileID: 0}
-    materialIndex: 0
-    uvOffset: {x: 0, y: 0}
-    animatorController: {fileID: 0}
-    soundEffectName: 
-    soundEffect:
-      name: 
-      clip: {fileID: 0}
-      volume: 1
-      loop: 0
-      source: {fileID: 0}
-    particleEffectName: 
-    particleEffect: {fileID: 0}
-  effect: {fileID: 3589441540930374132, guid: c0d5d0c1d9437d14f96f05b7db572c46, type: 3}
+  effect: {fileID: 3589441540930374132, guid: 00ccde9367669a7428dae10bb63cdfcc, type: 3}
