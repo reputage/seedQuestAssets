@@ -280,9 +280,9 @@ public class InteractableTrackerUI : MonoBehaviour
             return;
         }
 
-        if (GameManager.Mode == GameMode.Rehearsal && target.interactableUI.IsOnHover())
-        {
-            canvasGroup.alpha = 0.0f;
+        if (GameManager.Mode == GameMode.Rehearsal)
+        { 
+            canvasGroup.alpha = 1.0f;
             return;
         }
 

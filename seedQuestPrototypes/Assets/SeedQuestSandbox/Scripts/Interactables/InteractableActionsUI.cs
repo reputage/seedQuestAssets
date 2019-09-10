@@ -76,25 +76,17 @@ public class InteractableActionsUI : MonoBehaviour
     }
 
     void hoverActionButton(int actionIndex) {
-        interactable.DoAction(actionIndex);
+        interactable.PreviewAction(actionIndex);
     }
 
     void clickActionButton(int actionIndex) {
-        /*if (GameManager.Mode == GameMode.Rehearsal) {
-            if (actionIndex == InteractablePath.NextInteractable.ActionIndex && interactable.ID == InteractablePath.NextInteractable.ID) {
-                InteractableLog.Add(interactable, actionIndex);
-                InteractablePath.GoToNextInteractable();
-            } 
-        }
-        else if (GameManager.Mode == GameMode.Recall || GameManager.Mode == GameMode.Sandbox)
-            InteractableLog.Add(interactable, actionIndex);
+        /* InteractableActionsUI.Toggle(false); */
 
-        InteractableActionsUI.Toggle(false);*/
-        hoverActionButton(actionIndex);
-        AudioManager.Play("UI_Hover");
+        interactable.PreviewAction(actionIndex);
+        //AudioManager.Play("UI_Hover");
     }
 
-    /*private void SetHoverEvents() {
+    private void SetHoverEvents() {
         SetHoverForActionButton(0);
         SetHoverForActionButton(1);
         SetHoverForActionButton(2);
@@ -104,8 +96,7 @@ public class InteractableActionsUI : MonoBehaviour
     private void SetHoverForActionButton(int index) {
         Button button = actionButtons[index];
         EventTrigger trigger = button.GetComponent<EventTrigger>();
-        if (trigger == null)
-        {
+        if (trigger == null) {
             button.gameObject.AddComponent<EventTrigger>();
             trigger = button.GetComponent<EventTrigger>();
         }
@@ -124,13 +115,13 @@ public class InteractableActionsUI : MonoBehaviour
     }
 
     private void OnHoverEnter(int actionIndex) {
-        hoverActionButton(actionIndex-1);
+        //hoverActionButton(actionIndex-1);
         AudioManager.Play("UI_Hover");
     }
 
     private void OnHoverExit() {
         // TODO: Use Default 
-    } */
+    } 
 
     private void BackExit() {
         InteractableActionsUI.Toggle(false);

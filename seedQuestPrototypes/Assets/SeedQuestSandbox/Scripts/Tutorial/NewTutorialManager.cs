@@ -111,8 +111,6 @@ public class NewTutorialManager : MonoBehaviour
 			{
 				InteractablePathManager.Reset();
 				InteractablePreviewUI.ToggleShow();
-				InteractableManager.UnHighlightAllInteractables();
-				InteractableManager.UnTrackAllInteractables();
 				ParticleSystem[] particles = FindObjectsOfType<ParticleSystem>();
 				foreach (ParticleSystem particle in particles)
 					particle.Stop();
