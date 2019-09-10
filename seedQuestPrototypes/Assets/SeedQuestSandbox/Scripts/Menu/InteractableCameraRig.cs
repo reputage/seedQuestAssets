@@ -52,8 +52,6 @@ public class InteractableCameraRig : MonoBehaviour
 
             // Destroy InteractableUI and Remove Highlights
             Interactable previewInteractable = previewChild.GetComponent<Interactable>();
-            previewInteractable.DeleteUI();
-            //previewInteractable.HighlightInteractableWithEffect(false);
             Destroy(previewInteractable);
         }
 

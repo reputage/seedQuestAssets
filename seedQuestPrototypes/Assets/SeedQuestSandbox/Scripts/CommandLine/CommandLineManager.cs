@@ -482,8 +482,6 @@ public static class CommandLineManager
                 item.ActionIndex = 0;
                 InteractableState state = item.stateData.states[item.ActionIndex];
                 state.enterState(item);
-                //item.HighlightInteractable(true, true);
-                item.interactableUI.SetActionUI(item.ActionIndex);
                 return "resetting interactable at site: " + intInput[0] + " and spot: " + intInput[1];
             }
         }

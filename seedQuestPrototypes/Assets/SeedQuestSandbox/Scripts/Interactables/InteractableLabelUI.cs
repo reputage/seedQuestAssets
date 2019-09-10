@@ -17,7 +17,11 @@ public class InteractableLabelUI
     private Interactable interactable;
     private Vector3 labelPosition = new Vector3();
 
+    static private bool show;
+
     public void Initialize(Interactable parentInteractable) {
+        show = true;
+
         InstantiateLabel(parentInteractable);
         SetComponentRef();
         SetLabelText();
@@ -29,19 +33,18 @@ public class InteractableLabelUI
     public void Update() {
         if (!isReady()) return;
         SetPosition();
-        //SetIcon();
         ListenForNear();
     }
 
-    public void DeleteUI() {
-        GameObject.Destroy(labelObject);
+    static public void ToggleAll(bool active) {
+        show = active;
     }
 
-    static public void ToggleAll(bool active) {
+    static public void ClearInteractableUI() {
         GameObject container = GameObject.Find("InteractableUIContainer");
         if (container != null) {
-            foreach (Transform child in container.transform){
-                child.gameObject.SetActive(active);
+            foreach (Transform child in container.transform) {
+                GameObject.Destroy(child.gameObject);
             }
         }
     }
@@ -64,15 +67,6 @@ public class InteractableLabelUI
 
         // Create label object 
         labelObject = GameObject.Instantiate(InteractableManager.Instance.interactableLabelUI, UIContainer);
-    }
-
-    static public void ClearInteractableUI() {
-        GameObject container = GameObject.Find("InteractableUIContainer");
-        if (container != null) {
-            foreach (Transform child in container.transform) {
-                GameObject.Destroy(child.gameObject);
-            }
-        }
     }
 
     private bool isReady() {
@@ -144,7 +138,7 @@ public class InteractableLabelUI
     }
 
     private void ListenForNear() {
-        if(interactable.PlayerIsNear())
+        if(interactable.PlayerIsNear() && show)
             labelObject.SetActive(true);
         else
             labelObject.SetActive(false);

@@ -28,9 +28,6 @@ namespace SeedQuest.Interactables
         private bool isOnHover = false;
         public bool IsOnHover { get => isOnHover; } 
 
-        [HideInInspector]
-        public bool flagDeleteUI = false;
-
         void Start() {
             interactableLabel = new InteractableLabelUI();
             interactableLabel.Initialize(this);
@@ -42,10 +39,6 @@ namespace SeedQuest.Interactables
             //HoverOnInteractable();
         }
 
-        void OnDestroy() {
-            DeleteUI();
-        }
-        
         public string Name {
             get {
                 if (interactableUI.name != "")
@@ -71,29 +64,8 @@ namespace SeedQuest.Interactables
             return this.stateData.getStateName(actionIndex);
         }
 
-        int Mod(int x, int m) {
-            return (x % m + m) % m;
-        }
-
         public void Delete() {
-            flagDeleteUI = true;
-            interactableUI.DeleteUI();
             GameObject.Destroy(gameObject);
-        }
-
-        public void DeleteUI() {
-            flagDeleteUI = true;
-            interactableUI.DeleteUI();
-        }
-
-        public void NextAction() {
-            actionIndex = (actionIndex == -1) ? 0 : Mod(actionIndex + 1, 4);
-            PreviewAction(actionIndex);
-        }
-
-        public void PrevAction() {
-            actionIndex = (actionIndex == -1) ? (4-1) : Mod(actionIndex - 1, 4);
-            PreviewAction(actionIndex);
         }
 
         /// <summary> Shows previews interactable action. </summary>
@@ -150,8 +122,6 @@ namespace SeedQuest.Interactables
                 bool hitThisInteractable = hit.transform.GetInstanceID() == transform.GetInstanceID();
                 
                 if (hitThisInteractable) { 
-                    interactableUI.showCurrentActions();
-
                     if (!isOnHover)  {
                         AudioManager.Play("UI_Hover");
                     } 
