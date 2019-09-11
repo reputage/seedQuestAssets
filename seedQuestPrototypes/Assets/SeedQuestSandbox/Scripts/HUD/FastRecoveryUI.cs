@@ -505,6 +505,11 @@ public class FastRecoveryUI : MonoBehaviour
             InteractablePreviewUI.ToggleShow();
         }
     }
+
+    public void StartGraduatedRehearsal()
+    {
+
+    }
 }
 
 

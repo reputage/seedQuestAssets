@@ -140,7 +140,15 @@ namespace SeedQuest.Interactables
                 Instance.nextIndex++;
 
                 if (PathLevelComplete)
-                    InteractablePathManager.ShowLevelComplete = true;
+                {
+                    if (GameManager.GraduatedMode == false)
+                    {
+                        GameManager.GraduatedMode = true;
+                        FastRecoveryUI.ToggleActive();
+                    }
+                    else
+                        InteractablePathManager.ShowLevelComplete = true;
+                }
 
                 if(NextInteractable != null)
                     InitializeNextInteractable();

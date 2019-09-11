@@ -130,6 +130,7 @@ public class InteractableLabelUI
 
     public void ActivateInteractable() {
         if (!labelObject.activeSelf) return;
+        if (FastRecoveryUI.Instance.gameObject.activeSelf) return;
 
         AudioManager.Play("UI_Click");
         InteractableManager.SetActiveInteractable(interactable, interactable.ActionIndex);
