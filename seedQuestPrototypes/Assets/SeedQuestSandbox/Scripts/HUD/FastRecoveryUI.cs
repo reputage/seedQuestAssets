@@ -248,6 +248,7 @@ public class FastRecoveryUI : MonoBehaviour
             }
             InteractablePreviewUI.ClearPreviewObject();
         }
+
         if (GameManager.Mode == GameMode.Recall && active && InteractablePreviewUI.Show)
             InteractablePreviewUI.ToggleShow();
         else if (GameManager.Mode == GameMode.Rehearsal && active && InteractableLog.Count % 3 != 0)
