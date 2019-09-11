@@ -16,11 +16,12 @@ public class InteractableActionsUI : MonoBehaviour
     private TextMeshProUGUI interactableLabel;
     private Button[] actionButtons;
     private Interactable interactable;
+    private int interactableProgress;
 
     // Start is called before the first frame update
     void Awake() {
         SetComponentRef();
-        SetHoverEvents();
+        //SetHoverEvents();
     }
 
     static public void Toggle(bool active) {
@@ -35,7 +36,13 @@ public class InteractableActionsUI : MonoBehaviour
             InteractableLabelUI.ToggleAll(true);
     }
 
+    public void Update()
+    {
+        CheckForProgress();
+    }
+
     void SetComponentRef() {
+        interactableProgress = InteractableLog.Count;
         interactableLabel = GetComponentInChildren<TextMeshProUGUI>(true);
         Button[] buttons = GetComponentsInChildren<Button>(true);
         actionButtons = new Button[4];
@@ -47,6 +54,17 @@ public class InteractableActionsUI : MonoBehaviour
         actionButtons[1].onClick.AddListener(() => { clickActionButton(1); });
         actionButtons[2].onClick.AddListener(() => { clickActionButton(2); });
         actionButtons[3].onClick.AddListener(() => { clickActionButton(3); });
+
+        actionButtons[0].gameObject.GetComponent<FastRecoveryButton>().Interactable = interactable;
+        actionButtons[1].gameObject.GetComponent<FastRecoveryButton>().Interactable = interactable;
+        actionButtons[2].gameObject.GetComponent<FastRecoveryButton>().Interactable = interactable;
+        actionButtons[3].gameObject.GetComponent<FastRecoveryButton>().Interactable = interactable;
+
+        actionButtons[0].gameObject.GetComponent<FastRecoveryButton>().ActionIndex = 0;
+        actionButtons[1].gameObject.GetComponent<FastRecoveryButton>().ActionIndex = 1;
+        actionButtons[2].gameObject.GetComponent<FastRecoveryButton>().ActionIndex = 2;
+        actionButtons[3].gameObject.GetComponent<FastRecoveryButton>().ActionIndex = 3;
+
     }
 
     void SetText() {
@@ -58,20 +76,14 @@ public class InteractableActionsUI : MonoBehaviour
     }
 
     void hoverActionButton(int actionIndex) {
-        interactable.DoAction(actionIndex);
+        interactable.PreviewAction(actionIndex);
     }
 
     void clickActionButton(int actionIndex) {
-        if (GameManager.Mode == GameMode.Rehearsal) {
-            if (actionIndex == InteractablePath.NextAction && interactable.ID == InteractablePath.NextInteractable.ID) {
-                InteractableLog.Add(interactable, actionIndex);
-                InteractablePath.GoToNextInteractable();
-            } 
-        }
-        else if (GameManager.Mode == GameMode.Recall || GameManager.Mode == GameMode.Sandbox)
-            InteractableLog.Add(interactable, actionIndex);
+        /* InteractableActionsUI.Toggle(false); */
 
-        InteractableActionsUI.Toggle(false);
+        interactable.PreviewAction(actionIndex);
+        //AudioManager.Play("UI_Hover");
     }
 
     private void SetHoverEvents() {
@@ -84,8 +96,7 @@ public class InteractableActionsUI : MonoBehaviour
     private void SetHoverForActionButton(int index) {
         Button button = actionButtons[index];
         EventTrigger trigger = button.GetComponent<EventTrigger>();
-        if (trigger == null)
-        {
+        if (trigger == null) {
             button.gameObject.AddComponent<EventTrigger>();
             trigger = button.GetComponent<EventTrigger>();
         }
@@ -104,7 +115,7 @@ public class InteractableActionsUI : MonoBehaviour
     }
 
     private void OnHoverEnter(int actionIndex) {
-        hoverActionButton(actionIndex-1);
+        //hoverActionButton(actionIndex-1);
         AudioManager.Play("UI_Hover");
     }
 
@@ -114,6 +125,20 @@ public class InteractableActionsUI : MonoBehaviour
 
     private void BackExit() {
         InteractableActionsUI.Toggle(false);
+    }
+
+    public void CheckForProgress()
+    {
+        if (InteractableLog.Count > interactableProgress)
+        {
+            interactableProgress = InteractableLog.Count;
+            InteractableActionsUI.Toggle(false);
+        }
+
+        else if (InteractableLog.Count < interactableProgress)
+        {
+            interactableProgress = InteractableLog.Count;
+        }
     }
 
 }

@@ -28,9 +28,6 @@ namespace SeedQuest.Interactables
         private bool isOnHover = false;
         public bool IsOnHover { get => isOnHover; } 
 
-        [HideInInspector]
-        public bool flagDeleteUI = false;
-
         void Start() {
             interactableLabel = new InteractableLabelUI();
             interactableLabel.Initialize(this);
@@ -42,10 +39,6 @@ namespace SeedQuest.Interactables
             //HoverOnInteractable();
         }
 
-        void OnDestroy() {
-            DeleteUI();
-        }
-        
         public string Name {
             get {
                 if (interactableUI.name != "")
@@ -71,32 +64,13 @@ namespace SeedQuest.Interactables
             return this.stateData.getStateName(actionIndex);
         }
 
-        int Mod(int x, int m) {
-            return (x % m + m) % m;
-        }
-
         public void Delete() {
-            flagDeleteUI = true;
-            interactableUI.DeleteUI();
             GameObject.Destroy(gameObject);
         }
 
-        public void DeleteUI() {
-            flagDeleteUI = true;
-            interactableUI.DeleteUI();
-        }
-
-        public void NextAction() {
-            actionIndex = (actionIndex == -1) ? 0 : Mod(actionIndex + 1, 4);
-            DoAction(actionIndex);
-        }
-
-        public void PrevAction() {
-            actionIndex = (actionIndex == -1) ? (4-1) : Mod(actionIndex - 1, 4);
-            DoAction(actionIndex);
-        }
-
-        public void DoAction(int actionIndex)  {
+        /// <summary> Shows previews interactable action. </summary>
+        /// <param name="actionIndex">Action index</param>
+        public void PreviewAction(int actionIndex)  {
             this.actionIndex = actionIndex;
             InteractableState state = stateData.states[actionIndex];
             stateData.stopAudio();
@@ -106,8 +80,23 @@ namespace SeedQuest.Interactables
                 InteractablePreviewUI.SetPreviewAction(this.actionIndex);
         }
 
+        /// <summary>
+        /// Selects the action based on <paramref name="actionIndex"/> and goes to next interactable if 
+        /// in rehersal mode. 
+        /// </summary>
+        /// <param name="actionIndex">Action index.</param>
         public void SelectAction(int actionIndex) {
-            InteractableLog.Add(this, actionIndex);
+            if (GameManager.Mode == GameMode.Rehearsal) {
+                bool isNextAction = this.ID == InteractablePath.NextInteractable.ID && actionIndex == InteractablePath.NextAction;
+
+                if (isNextAction) {
+                    InteractableManager.SetActiveInteractable(this, actionIndex);
+                    InteractableLog.Add(this, actionIndex);
+                    InteractablePath.GoToNextInteractable();
+                }
+            }
+            else
+                InteractableLog.Add(this, actionIndex);
         }
 
         public bool PlayerIsNear() {
@@ -133,8 +122,6 @@ namespace SeedQuest.Interactables
                 bool hitThisInteractable = hit.transform.GetInstanceID() == transform.GetInstanceID();
                 
                 if (hitThisInteractable) { 
-                    interactableUI.showCurrentActions();
-
                     if (!isOnHover)  {
                         AudioManager.Play("UI_Hover");
                     } 

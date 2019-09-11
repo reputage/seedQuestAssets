@@ -78,41 +78,6 @@ namespace SeedQuest.Interactables
             }
         }
 
-        static public void deleteAllInteractableUI() {
-            foreach (Interactable interactable in FindAllInteractables())
-                interactable.DeleteUI(); 
-        }
-
-        static public void resetInteractableUIText() {
-            foreach (Interactable interactable in FindAllInteractables())
-                interactable.interactableUI.SetText(interactable.Name);
-        }
-
-        /// <summary> Hides all UI Canvas for Interactables </summary>
-        static public void hideAllInteractableUI() {
-            foreach(Interactable interactable in FindAllInteractables()) {
-                interactable.interactableUI.hideActions();
-            }
-        }
-
-        static public void HighlightAllInteractables() {
-            //foreach(Interactable interactable in FindAllInteractables()) 
-            //    interactable.HighlightInteractable(true);
-        }
-
-        static public void UnHighlightAllInteractables() {
-            //foreach (Interactable interactable in FindAllInteractables())
-            //    interactable.HighlightInteractable(false);
-        }
-
-        static public void UnTrackAllInteractables()
-        {
-            foreach (Interactable interactable in FindAllInteractables()) {
-                interactable.interactableUI.ToggleTracker(false);
-            }
-        }
-
-
         /// <summary> Initalize LookUp Table for querying interactable based on siteID and spotID  </summary>
         static public void InitalizeLookUp()
         {
