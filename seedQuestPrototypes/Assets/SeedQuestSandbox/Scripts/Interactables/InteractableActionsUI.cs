@@ -24,21 +24,22 @@ public class InteractableActionsUI : MonoBehaviour
         //SetHoverEvents();
     }
 
+    public void Update() {
+        CheckForProgress();
+    }
+
     static public void Toggle(bool active) {
         Instance.interactable = InteractableManager.ActiveInteractable;
         Instance.gameObject.SetActive(active);
         Instance.SetText();
+        Instance.SetInteractable();
+
         IsometricCamera.instance.ToggleLookAtInteractable(active);
 
         if (active)
             InteractableLabelUI.ToggleAll(false);
         else
             InteractableLabelUI.ToggleAll(true);
-    }
-
-    public void Update()
-    {
-        CheckForProgress();
     }
 
     void SetComponentRef() {
@@ -55,16 +56,17 @@ public class InteractableActionsUI : MonoBehaviour
         actionButtons[2].onClick.AddListener(() => { clickActionButton(2); });
         actionButtons[3].onClick.AddListener(() => { clickActionButton(3); });
 
-        actionButtons[0].gameObject.GetComponent<FastRecoveryButton>().Interactable = interactable;
-        actionButtons[1].gameObject.GetComponent<FastRecoveryButton>().Interactable = interactable;
-        actionButtons[2].gameObject.GetComponent<FastRecoveryButton>().Interactable = interactable;
-        actionButtons[3].gameObject.GetComponent<FastRecoveryButton>().Interactable = interactable;
-
         actionButtons[0].gameObject.GetComponent<FastRecoveryButton>().ActionIndex = 0;
         actionButtons[1].gameObject.GetComponent<FastRecoveryButton>().ActionIndex = 1;
         actionButtons[2].gameObject.GetComponent<FastRecoveryButton>().ActionIndex = 2;
         actionButtons[3].gameObject.GetComponent<FastRecoveryButton>().ActionIndex = 3;
+    }
 
+    void SetInteractable() {
+        actionButtons[0].gameObject.GetComponent<FastRecoveryButton>().Interactable = interactable;
+        actionButtons[1].gameObject.GetComponent<FastRecoveryButton>().Interactable = interactable;
+        actionButtons[2].gameObject.GetComponent<FastRecoveryButton>().Interactable = interactable;
+        actionButtons[3].gameObject.GetComponent<FastRecoveryButton>().Interactable = interactable;
     }
 
     void SetText() {

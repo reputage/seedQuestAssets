@@ -132,7 +132,7 @@ public class InteractableLabelUI
         if (!labelObject.activeSelf) return;
 
         AudioManager.Play("UI_Click");
-        InteractableManager.SetActiveInteractable(interactable, interactable.ActionIndex);
+        InteractableManager.SetActiveInteractable(interactable);
         InteractableActionsUI.Toggle(true);
         ToggleIcon(false);
     }

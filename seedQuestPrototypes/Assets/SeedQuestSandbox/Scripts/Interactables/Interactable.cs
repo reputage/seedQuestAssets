@@ -89,8 +89,8 @@ namespace SeedQuest.Interactables
             if (GameManager.Mode == GameMode.Rehearsal) {
                 bool isNextAction = this.ID == InteractablePath.NextInteractable.ID && actionIndex == InteractablePath.NextAction;
 
-                if (isNextAction) {
-                    InteractableManager.SetActiveInteractable(this, actionIndex);
+                if (isNextAction) { 
+                    InteractableManager.SetActiveInteractable(this);
                     InteractableLog.Add(this, actionIndex);
                     InteractablePath.GoToNextInteractable();
                 }
