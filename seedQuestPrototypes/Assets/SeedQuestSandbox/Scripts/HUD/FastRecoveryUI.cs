@@ -24,6 +24,7 @@ public class FastRecoveryUI : MonoBehaviour
     private int sliderMin;
     private int sliderMax;
     private bool levelFlag;
+    private Animator animator;
 
     static private FastRecoveryUI instance = null;
     static private FastRecoveryUI setInstance() { instance = HUDManager.Instance.GetComponentInChildren<FastRecoveryUI>(true); return instance; }
@@ -165,6 +166,7 @@ public class FastRecoveryUI : MonoBehaviour
     private void SetRefs()
     {
         settings = LevelManager.FastRecoveryData;
+        animator = gameObject.GetComponent<Animator>();
         buttons = new List<Button>();
         Image[] images = gameObject.GetComponentsInChildren<Image>();
         overlay = images[0];
@@ -199,6 +201,7 @@ public class FastRecoveryUI : MonoBehaviour
     {
         if (!active)
         {
+            animator.Play("SlideUp");
             ToggleInteractableGroup(false);
 
             for (int i = 0; i < 4; i++)
@@ -245,6 +248,7 @@ public class FastRecoveryUI : MonoBehaviour
             }
             InteractablePreviewUI.ClearPreviewObject();
         }
+
         if (GameManager.Mode == GameMode.Recall && active && InteractablePreviewUI.Show)
             InteractablePreviewUI.ToggleShow();
         else if (GameManager.Mode == GameMode.Rehearsal && active && InteractableLog.Count % 3 != 0)
@@ -260,6 +264,7 @@ public class FastRecoveryUI : MonoBehaviour
     {
         bool active = Instance.gameObject.activeSelf;
         Instance.gameObject.SetActive(!active);
+        Instance.animator.Play("Default");
         Instance.Toggle(active);
     }
 
@@ -501,6 +506,11 @@ public class FastRecoveryUI : MonoBehaviour
         {
             InteractablePreviewUI.ToggleShow();
         }
+    }
+
+    public void StartGraduatedRehearsal()
+    {
+
     }
 }
 
