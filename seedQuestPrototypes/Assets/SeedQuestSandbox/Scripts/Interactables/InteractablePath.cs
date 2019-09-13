@@ -144,7 +144,7 @@ namespace SeedQuest.Interactables
                     if (GameManager.GraduatedMode == false)
                     {
                         GameManager.GraduatedMode = true;
-                        FastRecoveryUI.ToggleActive();
+                        InteractablePathManager.ShowLevelComplete = true;
                     }
                     else
                         InteractablePathManager.ShowLevelComplete = true;
