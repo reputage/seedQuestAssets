@@ -23,7 +23,7 @@ namespace SeedQuest.Interactables
 
         private int actionIndex = -1;
         public int ActionIndex { get => actionIndex; set => actionIndex = value; } // Current Action State 
-        private float interactDistance = 6.0f;
+        private float interactDistance = 12.0f;  
 
         private bool isOnHover = false;
         public bool IsOnHover { get => isOnHover; } 
