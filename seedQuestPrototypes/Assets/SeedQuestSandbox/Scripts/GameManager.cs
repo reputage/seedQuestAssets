@@ -35,6 +35,13 @@ public class GameManager : MonoBehaviour {
         set { graduatedMode = value; }
     }
 
+    private static bool reviewMode = false;
+    public static bool ReviewMode
+    {
+        get { return reviewMode; }
+        set { reviewMode = value; }
+    }
+
     private static bool tutorialMode = false;
     public static bool TutorialMode
     {

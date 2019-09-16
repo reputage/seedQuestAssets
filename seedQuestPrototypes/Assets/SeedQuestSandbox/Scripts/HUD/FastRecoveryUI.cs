@@ -3,6 +3,7 @@ using System.Linq;
 using SeedQuest.Interactables;
 using SeedQuest.Level;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class FastRecoveryUI : MonoBehaviour
@@ -12,12 +13,19 @@ public class FastRecoveryUI : MonoBehaviour
     private RawImage rawMap;
     private Image overlay;
     private Image pin;
+    private Image mapInstructions;
+    private Image preview;
+    private Image skip;
+    private Image back;
     private List<Button> buttons;
     private GameObject buttonPrefab;
     private GameObject interactableGroup;
     private Button[] interactableButtons;
+    private TMPro.TMP_Text mainTitle;
+    private TMPro.TMP_Text instructions;
     private TMPro.TMP_Text interactableTitle;
-    private Image startingTitleImage;
+    private TMPro.TMP_Text previewMapInstructions;
+    //private Image startingTitleImage;
     private Slider slider;
     private Interactable[] interactables;
     private int interactableProgress;
@@ -25,6 +33,7 @@ public class FastRecoveryUI : MonoBehaviour
     private int sliderMax;
     private bool levelFlag;
     private Animator animator;
+    private List<InteractableLogItem> backupLog;
 
     static private FastRecoveryUI instance = null;
     static private FastRecoveryUI setInstance() { instance = HUDManager.Instance.GetComponentInChildren<FastRecoveryUI>(true); return instance; }
@@ -108,16 +117,27 @@ public class FastRecoveryUI : MonoBehaviour
 
         if (GameManager.Mode == GameMode.Rehearsal)
         {
+            mainTitle.text = "REVIEW";
+            instructions.text = "Let's review the objects you just selected so you can remember them.";
+            previewMapInstructions.alignment = TMPro.TextAlignmentOptions.BaselineLeft;
+            previewMapInstructions.fontSize = 16;
+            previewMapInstructions.text = "Choose an orb from the map to the right.";
+            previewMapInstructions.transform.localPosition = new Vector3(previewMapInstructions.transform.localPosition.x, 140, previewMapInstructions.transform.localPosition.z);
+            back.gameObject.SetActive(false);
             if (settings.useInteractableUIPositions)
                 pin.transform.localPosition = new Vector3(InteractablePath.NextInteractable.LookAtPosition.x * settings.scale, InteractablePath.NextInteractable.LookAtPosition.z * settings.scale, 0);
             else
                 pin.transform.localPosition = new Vector3(InteractablePath.NextInteractable.transform.localPosition.x * settings.scale, InteractablePath.NextInteractable.transform.localPosition.z * settings.scale, 0);
             pin.transform.localEulerAngles = new Vector3(0, 0, -settings.rotation);
-            pin.transform.position = new Vector3(pin.transform.position.x, pin.transform.position.y + 20, pin.transform.position.z);
+            pin.transform.position = new Vector3(pin.transform.position.x, pin.transform.position.y + 30, pin.transform.position.z);
+            pin.transform.SetAsLastSibling();
         }
 
         else
+        {
             pin.gameObject.SetActive(false);
+            skip.gameObject.SetActive(false);
+        }
     }
 
     //====================================================================================================//
@@ -176,12 +196,19 @@ public class FastRecoveryUI : MonoBehaviour
         else
             pin = images[3];
         rawMap = gameObject.GetComponentInChildren<RawImage>();
-        startingTitleImage = images[8];
+        //startingTitleImage = images[8];
         buttonPrefab = images[6].transform.parent.gameObject;
+        preview = images[7];
+        back = images[16];
+        mapInstructions = images[23];
+        skip = images[24];
         interactableGroup = gameObject.transform.GetChild(0).GetChild(0).GetChild(6).GetChild(2).gameObject;
         interactableButtons = interactableGroup.GetComponentsInChildren<Button>();
         TMPro.TMP_Text[] texts = gameObject.GetComponentsInChildren<TMPro.TMP_Text>();
+        mainTitle = texts[0];
+        instructions = texts[1];
         interactableTitle = texts[2];
+        previewMapInstructions = texts[11];
         slider = gameObject.GetComponentInChildren<Slider>();
         interactableProgress = 0;
         List<Interactable> interactableList = new List<Interactable>();
@@ -277,21 +304,51 @@ public class FastRecoveryUI : MonoBehaviour
 
     //====================================================================================================//
 
+    public void SkipButtonOnClick()
+    {
+        GameManager.ReviewMode = false;
+        InteractableLog.Clear();
+        foreach (InteractableLogItem interactable in backupLog)
+        {
+            InteractableLog.Add(interactable.siteIndex, interactable.interactableIndex, interactable.actionIndex);
+
+        }
+        InteractablePath.Instance.nextIndex = backupLog.Count;
+        LevelClearUI.Instance.GoToSceneSelect();
+    }
+
+
+    //====================================================================================================//
+
     public void ToggleInteractableGroup(bool toggle)
     {
-        if (!toggle)
+        /*if (!toggle)
         {
-            interactableTitle.text = "Choose a";
-            startingTitleImage.gameObject.SetActive(!toggle);
+            //interactableTitle.text = "Choose a";
+            //startingTitleImage.gameObject.SetActive(!toggle);
             interactableGroup.SetActive(toggle);
         }
 
         else
         {
             interactableGroup.SetActive(toggle);
-            startingTitleImage.gameObject.SetActive(!toggle);
-        }
+            //startingTitleImage.gameObject.SetActive(!toggle);
+        }*/
 
+        preview.gameObject.SetActive(toggle);
+        mapInstructions.gameObject.SetActive(!toggle);
+        if (GameManager.Mode == GameMode.Rehearsal && GameManager.ReviewMode == true && toggle)
+        {
+            previewMapInstructions.text = "Select an option and keep the button pressed to perform an action.";
+        }
+        else if (GameManager.Mode == GameMode.Rehearsal && GameManager.ReviewMode == true && !toggle)
+        {
+            previewMapInstructions.text = "Choose an orb from the map to the right.";
+        }
+        else
+            previewMapInstructions.gameObject.SetActive(!toggle);
+        interactableTitle.gameObject.SetActive(toggle);
+        interactableGroup.SetActive(toggle);
     }
 
     //====================================================================================================//
@@ -348,7 +405,7 @@ public class FastRecoveryUI : MonoBehaviour
         {
             button.gameObject.GetComponent<Image>().sprite = settings.interactableIcon;
             InteractablePreviewUI.ClearPreviewObject();
-            startingTitleImage.gameObject.SetActive(false);
+            //startingTitleImage.gameObject.SetActive(false);
             ToggleInteractableGroup(false);
 
             for (int i = 0; i < 4; i++)
@@ -371,7 +428,7 @@ public class FastRecoveryUI : MonoBehaviour
     public void OnSlideValueChanged()
     {
         InteractablePreviewUI.ClearPreviewObject();
-        startingTitleImage.gameObject.SetActive(false);
+        //startingTitleImage.gameObject.SetActive(false);
         ToggleInteractableGroup(false);
 
         for (int i = 0; i < 4; i++)
@@ -415,7 +472,7 @@ public class FastRecoveryUI : MonoBehaviour
                 pin.transform.localPosition = new Vector3(InteractablePath.NextInteractable.LookAtPosition.x * newScale, InteractablePath.NextInteractable.LookAtPosition.z * newScale, 0);
             else
                 pin.transform.localPosition = new Vector3(InteractablePath.NextInteractable.transform.localPosition.x * newScale, InteractablePath.NextInteractable.transform.localPosition.z * newScale, 0);
-            pin.transform.position = new Vector3(pin.transform.position.x, pin.transform.position.y + 20, pin.transform.position.z);
+            pin.transform.position = new Vector3(pin.transform.position.x, pin.transform.position.y + 30, pin.transform.position.z);
         }
 
         if (settings.useRenderTexture)
@@ -460,7 +517,7 @@ public class FastRecoveryUI : MonoBehaviour
                     pin.transform.localPosition = new Vector3(InteractablePath.NextInteractable.LookAtPosition.x * currentScale, InteractablePath.NextInteractable.LookAtPosition.z * currentScale, 0);
                 else
                     pin.transform.localPosition = new Vector3(InteractablePath.NextInteractable.transform.localPosition.x * currentScale, InteractablePath.NextInteractable.transform.localPosition.z * currentScale, 0);
-                pin.transform.position = new Vector3(pin.transform.position.x, pin.transform.position.y + 20, pin.transform.position.z);
+                pin.transform.position = new Vector3(pin.transform.position.x, pin.transform.position.y + 30, pin.transform.position.z);
 
                 for (int i = 0; i < 4; i++)
                 {
@@ -491,7 +548,8 @@ public class FastRecoveryUI : MonoBehaviour
                 Toggle(true);
                 gameObject.SetActive(false);
             }
-                
+
+            GameManager.ReviewMode = false;
             levelFlag = false;
         }
 
@@ -508,9 +566,19 @@ public class FastRecoveryUI : MonoBehaviour
         }
     }
 
-    public void StartGraduatedRehearsal()
-    {
+    //====================================================================================================//
 
+    public void StartFastRehearsal()
+    {
+        backupLog = new List<InteractableLogItem>();
+        foreach (InteractableLogItem item in InteractableLog.Log)
+        {
+            backupLog.Add(item);
+        }
+        InteractablePath.UndoLastAction();
+        InteractablePath.UndoLastAction();
+        InteractablePath.UndoLastAction();
+        ToggleActive();
     }
 }
 
