@@ -8,6 +8,8 @@ public class SceneSelectedIndicator : MonoBehaviour
     Image[] indicators;
     public bool[] activeNums;
 
+    int counter;
+
     void Awake()
     {
         indicators = GetComponentsInChildren<Image>();
@@ -20,17 +22,22 @@ public class SceneSelectedIndicator : MonoBehaviour
     //  setting them to be active on every update is necessary to deal with visual bugs
     void Update()
     {
-        setActive();
+        if (counter > 0)
+        {
+            setActive();
+            counter -= 1;
+        }
     }
 
     public void Activate(int i) {
         activeNums[i] = true;
-        //setActive();
+        counter = 5;
     }
 
     public void Deactivate(int i ) {
         activeNums[i] = false;
         indicators[i].gameObject.SetActive(false);
+        counter = 5;
     }
 
     public void setActive()
