@@ -190,7 +190,7 @@ public static class CommandLineManager
             for (int i = 0 + actionsThisScene; i < InteractableConfig.ActionsPerSite; i++)
             {
                 Debug.Log("Auto-performing action " + (i + 1));
-                InteractableManager.SetActiveInteractable(InteractablePath.NextInteractable, InteractablePath.NextAction);
+                InteractableManager.SetActiveInteractable(InteractablePath.NextInteractable);
                 InteractableLog.Add(InteractablePath.NextInteractable, InteractablePath.NextAction);
                 InteractablePath.GoToNextInteractable();
             }
@@ -418,7 +418,7 @@ public static class CommandLineManager
     {
         if (InteractablePath.NextInteractable != null && GameManager.Mode == GameMode.Rehearsal)
         {
-            InteractableManager.SetActiveInteractable(InteractablePath.NextInteractable, InteractablePath.NextAction);
+            InteractableManager.SetActiveInteractable(InteractablePath.NextInteractable);
             InteractableLog.Add(InteractablePath.NextInteractable, InteractablePath.NextAction);
             InteractablePath.GoToNextInteractable();
         }

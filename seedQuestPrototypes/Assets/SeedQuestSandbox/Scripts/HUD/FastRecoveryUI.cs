@@ -298,19 +298,18 @@ public class FastRecoveryUI : MonoBehaviour
 
     public void OnButtonClick(Interactable interactable, Button button)
     {
-        foreach (Button interactableButton in buttons)
-        {
-            if (interactableButton != button)
-            {
+        AudioManager.Play("UI_Hover");
+        InteractableManager.SetActiveInteractable(interactable);
+
+        foreach (Button interactableButton in buttons) {
+            if (interactableButton != button) {
                 interactableButton.gameObject.GetComponent<Image>().sprite = settings.interactableIcon;
             }
-
-            else
-            {
+            else {
                 interactableButton.gameObject.GetComponent<Image>().sprite = settings.interactableIconSelected;
             }
         }
-        AudioManager.Play("UI_Hover");
+
         if (interactableTitle.text != interactable.Name)
         {
             interactable.ClickOnInteractable();
@@ -324,6 +323,9 @@ public class FastRecoveryUI : MonoBehaviour
                 interactableButtons[i].gameObject.GetComponentInChildren<TMPro.TMP_Text>().text = interactable.stateData.getStateName(i);
                 interactableButtons[i].gameObject.GetComponent<FastRecoveryButton>().Interactable = interactable;
                 interactableButtons[i].gameObject.GetComponent<FastRecoveryButton>().ActionIndex = temp;
+
+
+
                 if (GameManager.Mode == GameMode.Rehearsal)
                 {
                     if (InteractablePath.NextInteractable.ID == interactable.ID)

@@ -105,33 +105,28 @@ public class EncodeSeedCanvas : MonoBehaviour {
     }
 
     public void Continue() {
-        if (DebugSeedUtility.debugLearnRun)
-        {
-            Debug.Log("Starting debug run!");
+        if (DebugSeedUtility.debugLearnRun) {
             SetWorldScenes();
             MenuScreenV2.Instance.ResetCanvas();
             startDebugRun();
         }
-        else
-        {
+        else {
             SetWorldScenes();
             MenuScreenV2.Instance.GoToSceneLineUp();
         }
+
+        continueButton.gameObject.SetActive(false);
     }
 
-    public void resetCanvas()
-    {
+    public void resetCanvas() {
         sceneCount = 0;
-        continueButton.gameObject.SetActive(false);
         worldPreviews = GetComponentsInChildren<EncodeSeed_ScenePreview>();
-        foreach (EncodeSeed_ScenePreview item in worldPreviews)
-        {
+        foreach (EncodeSeed_ScenePreview item in worldPreviews) {
             item.preview.gameObject.SetActive(false);
             item.text.gameObject.SetActive(false);
             item.shade.gameObject.SetActive(false);
         }
-        foreach (SceneSelectedIndicator indicator in indicators)
-        {
+        foreach (SceneSelectedIndicator indicator in indicators) {
             indicator.Reset();
         }
         UnInteractiveButtons();

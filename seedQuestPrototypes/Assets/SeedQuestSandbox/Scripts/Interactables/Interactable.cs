@@ -23,7 +23,7 @@ namespace SeedQuest.Interactables
 
         private int actionIndex = -1;
         public int ActionIndex { get => actionIndex; set => actionIndex = value; } // Current Action State 
-        private float interactDistance = 6.0f;
+        private float interactDistance = 12.0f;  
 
         private bool isOnHover = false;
         public bool IsOnHover { get => isOnHover; } 
@@ -89,8 +89,8 @@ namespace SeedQuest.Interactables
             if (GameManager.Mode == GameMode.Rehearsal) {
                 bool isNextAction = this.ID == InteractablePath.NextInteractable.ID && actionIndex == InteractablePath.NextAction;
 
-                if (isNextAction) {
-                    InteractableManager.SetActiveInteractable(this, actionIndex);
+                if (isNextAction) { 
+                    InteractableManager.SetActiveInteractable(this);
                     InteractableLog.Add(this, actionIndex);
                     InteractablePath.GoToNextInteractable();
                 }
