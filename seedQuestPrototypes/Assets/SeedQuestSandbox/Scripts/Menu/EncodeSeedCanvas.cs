@@ -144,10 +144,9 @@ public class EncodeSeedCanvas : MonoBehaviour {
         worldPreviews[sceneCount].preview.gameObject.SetActive(false);
         worldPreviews[sceneCount].text.gameObject.SetActive(false);
         worldPreviews[sceneCount].shade.gameObject.SetActive(false);
-        indicators[i].Deactivate(sceneCount);
-        //sceneCount++;
+        if (sceneCount+1 < 6)
+            indicators[i].Deactivate(sceneCount+1);
 
-        //buttons[i].GetComponentsInChildren<Image>()[3].gameObject.SetActive(false);
         ResetInteractiveButtons();
         EnableNext();
 
