@@ -40,7 +40,7 @@ public class FastRecoveryUI : MonoBehaviour
     static public FastRecoveryUI Instance { get { return instance == null ? setInstance() : instance; } }
 
     //====================================================================================================//
-    
+
     private void Awake()
     {
         SetRefs();
@@ -109,6 +109,7 @@ public class FastRecoveryUI : MonoBehaviour
                 buttonObject.transform.localPosition = new Vector3(interactable.transform.localPosition.x * settings.scale, interactable.transform.localPosition.z * settings.scale, 0);
             buttonObject.gameObject.SetActive(true);
             button.onClick.AddListener(() => OnButtonClick(interactable, button));
+            SetHoverEvents(buttonObject);
             buttons.Add(button);
         }
 
@@ -154,7 +155,7 @@ public class FastRecoveryUI : MonoBehaviour
 
     private void ListenForKeyDown()
     {
-        var input = Input.GetAxis("Mouse ScrollWheel")*20;
+        var input = Input.GetAxis("Mouse ScrollWheel") * 20;
 
         if (input > 0.0f)
         {
@@ -358,11 +359,14 @@ public class FastRecoveryUI : MonoBehaviour
         AudioManager.Play("UI_Hover");
         InteractableManager.SetActiveInteractable(interactable);
 
-        foreach (Button interactableButton in buttons) {
-            if (interactableButton != button) {
+        foreach (Button interactableButton in buttons)
+        {
+            if (interactableButton != button)
+            {
                 interactableButton.gameObject.GetComponent<Image>().sprite = settings.interactableIcon;
             }
-            else {
+            else
+            {
                 interactableButton.gameObject.GetComponent<Image>().sprite = settings.interactableIconSelected;
             }
         }
@@ -498,7 +502,7 @@ public class FastRecoveryUI : MonoBehaviour
             interactableProgress = InteractableLog.Count;
             for (int i = 0; i < buttons.Count; i++)
             {
-                if(buttons[i].gameObject.GetComponent<Image>().sprite == settings.interactableIconSelected)
+                if (buttons[i].gameObject.GetComponent<Image>().sprite == settings.interactableIconSelected)
                 {
                     buttons[i].gameObject.GetComponent<Animation>().Play();
                 }
@@ -580,6 +584,47 @@ public class FastRecoveryUI : MonoBehaviour
         InteractablePath.UndoLastAction();
         ToggleActive();
     }
-}
 
+    //====================================================================================================//
+
+    private void OnHoverEnter(GameObject button)
+    {
+        Animator buttonAnimator = button.GetComponent<Animator>();
+        Debug.Log(buttonAnimator);
+        buttonAnimator.Play("ButtonHoverEnter");
+    }
+
+    //====================================================================================================//
+
+    private void OnHoverExit(GameObject button)
+    {
+        Animator buttonAnimator = button.GetComponent<Animator>();
+        Debug.Log(buttonAnimator);
+        buttonAnimator.Play("ButtonHoverExit");
+    }
+
+    //====================================================================================================//
+
+    private void SetHoverEvents(GameObject button)
+    {
+        EventTrigger trigger = button.GetComponent<EventTrigger>();
+        if (trigger == null)
+        {
+            button.gameObject.AddComponent<EventTrigger>();
+            trigger = button.GetComponent<EventTrigger>();
+        }
+
+        EventTrigger.Entry entry = new EventTrigger.Entry();
+        entry.eventID = EventTriggerType.PointerEnter;
+        entry.callback.AddListener((data) => { OnHoverEnter(button); });
+        trigger.triggers.Add(entry);
+
+        EventTrigger.Entry exit = new EventTrigger.Entry();
+        exit.eventID = EventTriggerType.PointerExit;
+        exit.callback.AddListener((data) => { OnHoverExit(button); });
+        trigger.triggers.Add(exit);
+    }
+
+    //====================================================================================================//
+}
 
