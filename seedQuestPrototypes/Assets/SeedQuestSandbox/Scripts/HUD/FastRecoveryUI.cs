@@ -323,14 +323,14 @@ public class FastRecoveryUI : MonoBehaviour
 
     public void ToggleInteractableGroup(bool toggle)
     {
-        /*if (!toggle)
+        if (!toggle)
         {
-            //interactableTitle.text = "Choose a";
+            interactableTitle.text = "Titl";//"Choose a";
             //startingTitleImage.gameObject.SetActive(!toggle);
-            interactableGroup.SetActive(toggle);
+            //interactableGroup.SetActive(toggle);
         }
 
-        else
+        /*else
         {
             interactableGroup.SetActive(toggle);
             //startingTitleImage.gameObject.SetActive(!toggle);
@@ -356,6 +356,7 @@ public class FastRecoveryUI : MonoBehaviour
 
     public void OnButtonClick(Interactable interactable, Button button)
     {
+        Debug.Log("Test");
         AudioManager.Play("UI_Hover");
         InteractableManager.SetActiveInteractable(interactable);
 
@@ -364,15 +365,18 @@ public class FastRecoveryUI : MonoBehaviour
             if (interactableButton != button)
             {
                 interactableButton.gameObject.GetComponent<Image>().sprite = settings.interactableIcon;
+                Debug.Log("Test 2");
             }
             else
             {
                 interactableButton.gameObject.GetComponent<Image>().sprite = settings.interactableIconSelected;
+                Debug.Log("Test 3");
             }
         }
 
         if (interactableTitle.text != interactable.Name)
         {
+            Debug.Log("Test 4");
             interactable.ClickOnInteractable();
             interactableTitle.text = interactable.Name;
             ToggleInteractableGroup(true);
@@ -393,6 +397,7 @@ public class FastRecoveryUI : MonoBehaviour
                     {
                         if (InteractablePath.NextAction == temp)
                         {
+                            Debug.Log("Test 5");
                             interactableButtons[i].gameObject.GetComponent<Animation>().Play();
                             /*ColorBlock colors = interactableButtons[i].colors;
                             colors.normalColor = new Color(189, 205, 217);
@@ -407,6 +412,7 @@ public class FastRecoveryUI : MonoBehaviour
 
         else
         {
+            Debug.Log("Test 6");
             button.gameObject.GetComponent<Image>().sprite = settings.interactableIcon;
             InteractablePreviewUI.ClearPreviewObject();
             //startingTitleImage.gameObject.SetActive(false);
@@ -590,7 +596,6 @@ public class FastRecoveryUI : MonoBehaviour
     private void OnHoverEnter(GameObject button)
     {
         Animator buttonAnimator = button.GetComponent<Animator>();
-        Debug.Log(buttonAnimator);
         buttonAnimator.Play("ButtonHoverEnter");
     }
 
@@ -599,29 +604,28 @@ public class FastRecoveryUI : MonoBehaviour
     private void OnHoverExit(GameObject button)
     {
         Animator buttonAnimator = button.GetComponent<Animator>();
-        Debug.Log(buttonAnimator);
         buttonAnimator.Play("ButtonHoverExit");
     }
 
     //====================================================================================================//
 
-    private void SetHoverEvents(GameObject button)
+    private void SetHoverEvents(GameObject buttonObject)
     {
-        EventTrigger trigger = button.GetComponent<EventTrigger>();
+        EventTrigger trigger = buttonObject.GetComponent<EventTrigger>();
         if (trigger == null)
         {
-            button.gameObject.AddComponent<EventTrigger>();
-            trigger = button.GetComponent<EventTrigger>();
+            buttonObject.gameObject.AddComponent<EventTrigger>();
+            trigger = buttonObject.GetComponent<EventTrigger>();
         }
 
         EventTrigger.Entry entry = new EventTrigger.Entry();
         entry.eventID = EventTriggerType.PointerEnter;
-        entry.callback.AddListener((data) => { OnHoverEnter(button); });
+        entry.callback.AddListener((data) => { OnHoverEnter(buttonObject); });
         trigger.triggers.Add(entry);
 
         EventTrigger.Entry exit = new EventTrigger.Entry();
         exit.eventID = EventTriggerType.PointerExit;
-        exit.callback.AddListener((data) => { OnHoverExit(button); });
+        exit.callback.AddListener((data) => { OnHoverExit(buttonObject); });
         trigger.triggers.Add(exit);
     }
 
