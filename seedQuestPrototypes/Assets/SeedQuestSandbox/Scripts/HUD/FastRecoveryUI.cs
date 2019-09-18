@@ -276,12 +276,17 @@ public class FastRecoveryUI : MonoBehaviour
                     slider.value = 1000;
                 }
             }
-            if (settings.useInteractableUIPositions)
-                pin.transform.localPosition = new Vector3(InteractablePath.NextInteractable.LookAtPosition.x * settings.scale, InteractablePath.NextInteractable.LookAtPosition.z * settings.scale, 0);
+            if (GameManager.GraduatedFlags[InteractableLog.CurrentLevelIndex] == true)
+                pin.gameObject.SetActive(false);
             else
-                pin.transform.localPosition = new Vector3(InteractablePath.NextInteractable.transform.localPosition.x * settings.scale, InteractablePath.NextInteractable.transform.localPosition.z * settings.scale, 0);
-            pin.transform.localEulerAngles = new Vector3(0, 0, -settings.rotation);
-            pin.transform.position = new Vector3(pin.transform.position.x, pin.transform.position.y + 30, pin.transform.position.z);
+            {
+                if (settings.useInteractableUIPositions)
+                    pin.transform.localPosition = new Vector3(InteractablePath.NextInteractable.LookAtPosition.x * settings.scale, InteractablePath.NextInteractable.LookAtPosition.z * settings.scale, 0);
+                else
+                    pin.transform.localPosition = new Vector3(InteractablePath.NextInteractable.transform.localPosition.x * settings.scale, InteractablePath.NextInteractable.transform.localPosition.z * settings.scale, 0);
+                pin.transform.localEulerAngles = new Vector3(0, 0, -settings.rotation);
+                pin.transform.position = new Vector3(pin.transform.position.x, pin.transform.position.y + 30, pin.transform.position.z);
+            }
 
             InteractablePreviewUI.ClearPreviewObject();
         }
@@ -332,7 +337,8 @@ public class FastRecoveryUI : MonoBehaviour
 
         }
         InteractablePath.Instance.nextIndex = backupLog.Count;
-        LevelClearUI.Instance.GoToSceneSelect();
+        ToggleActive();
+        LevelClearUI.ToggleOn();
     }
 
 
@@ -404,7 +410,7 @@ public class FastRecoveryUI : MonoBehaviour
 
 
 
-                if (GameManager.Mode == GameMode.Rehearsal)
+                if (GameManager.Mode == GameMode.Rehearsal && GameManager.GraduatedFlags[InteractableLog.CurrentLevelIndex] != true)
                 {
                     if (InteractablePath.NextInteractable.ID == interactable.ID)
                     {

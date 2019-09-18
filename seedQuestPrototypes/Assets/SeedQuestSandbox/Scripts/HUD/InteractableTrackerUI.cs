@@ -101,6 +101,13 @@ public class InteractableTrackerUI : MonoBehaviour
 
     /// <summary> Activates/Deactivates the tracker and arrow gameobjects </summary>
     private void SetActive() {
+        if (GameManager.GraduatedFlags[InteractableLog.CurrentLevelIndex] == true)
+        {
+            tracker.gameObject.SetActive(false);
+            arrow.gameObject.SetActive(false);
+            return;
+        }
+
         if (target == null) {
             tracker.gameObject.SetActive(false);
             arrow.gameObject.SetActive(false);
@@ -221,7 +228,13 @@ public class InteractableTrackerUI : MonoBehaviour
         if (InBounds(unclampedScreenPosition) && unclampedScreenPosition.z > 0)
             arrow.gameObject.SetActive(false);
         else
-            arrow.gameObject.SetActive(true);
+        {
+            if (GameManager.Mode == GameMode.Rehearsal && GameManager.GraduatedFlags[InteractableLog.CurrentLevelIndex] == true)
+                return;
+            else
+                arrow.gameObject.SetActive(true);
+
+        }
 
         // Set ArrowIcon facing direction
         Vector3 playerPosition = camera.WorldToScreenPoint(player.position);

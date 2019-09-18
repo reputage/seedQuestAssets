@@ -37,7 +37,7 @@ public class PauseMenuUI : MonoBehaviour
             MenuScreenManager.ActivateStart();
         //gameObject.SetActive(false);
         animator.Play("SlideDown");
-        GameManager.GraduatedMode = false;
+        GameManager.ResetGraduatedRehearsal();
         SeedQuest.Level.LevelManager.Instance.StopLevelMusic();
     }
 
