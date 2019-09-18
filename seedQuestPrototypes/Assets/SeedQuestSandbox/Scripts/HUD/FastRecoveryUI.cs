@@ -356,7 +356,6 @@ public class FastRecoveryUI : MonoBehaviour
 
     public void OnButtonClick(Interactable interactable, Button button)
     {
-        Debug.Log("Test");
         AudioManager.Play("UI_Hover");
         InteractableManager.SetActiveInteractable(interactable);
 
@@ -365,18 +364,15 @@ public class FastRecoveryUI : MonoBehaviour
             if (interactableButton != button)
             {
                 interactableButton.gameObject.GetComponent<Image>().sprite = settings.interactableIcon;
-                Debug.Log("Test 2");
             }
             else
             {
                 interactableButton.gameObject.GetComponent<Image>().sprite = settings.interactableIconSelected;
-                Debug.Log("Test 3");
             }
         }
 
         if (interactableTitle.text != interactable.Name)
         {
-            Debug.Log("Test 4");
             interactable.ClickOnInteractable();
             interactableTitle.text = interactable.Name;
             ToggleInteractableGroup(true);
@@ -397,7 +393,6 @@ public class FastRecoveryUI : MonoBehaviour
                     {
                         if (InteractablePath.NextAction == temp)
                         {
-                            Debug.Log("Test 5");
                             interactableButtons[i].gameObject.GetComponent<Animation>().Play();
                             /*ColorBlock colors = interactableButtons[i].colors;
                             colors.normalColor = new Color(189, 205, 217);
@@ -412,7 +407,6 @@ public class FastRecoveryUI : MonoBehaviour
 
         else
         {
-            Debug.Log("Test 6");
             button.gameObject.GetComponent<Image>().sprite = settings.interactableIcon;
             InteractablePreviewUI.ClearPreviewObject();
             //startingTitleImage.gameObject.SetActive(false);
@@ -511,6 +505,12 @@ public class FastRecoveryUI : MonoBehaviour
                 if (buttons[i].gameObject.GetComponent<Image>().sprite == settings.interactableIconSelected)
                 {
                     buttons[i].gameObject.GetComponent<Animation>().Play();
+
+                    if (GameManager.Mode == GameMode.Rehearsal)
+                    {
+                        buttons[i].gameObject.GetComponent<Image>().sprite = settings.interactableIcon;
+                        ToggleInteractableGroup(false);
+                    }
                 }
             }
 
