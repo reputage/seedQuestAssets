@@ -235,6 +235,8 @@ public class FastRecoveryUI : MonoBehaviour
             for (int i = 0; i < 4; i++)
             {
                 interactableButtons[i].onClick.RemoveAllListeners();
+                interactableButtons[i].gameObject.GetComponent<Animation>().Stop();
+                interactableButtons[i].gameObject.GetComponent<Image>().color = Color.white;
             }
 
             foreach (Button button in buttons)
@@ -274,7 +276,22 @@ public class FastRecoveryUI : MonoBehaviour
                     slider.value = 1000;
                 }
             }
+            if (settings.useInteractableUIPositions)
+                pin.transform.localPosition = new Vector3(InteractablePath.NextInteractable.LookAtPosition.x * settings.scale, InteractablePath.NextInteractable.LookAtPosition.z * settings.scale, 0);
+            else
+                pin.transform.localPosition = new Vector3(InteractablePath.NextInteractable.transform.localPosition.x * settings.scale, InteractablePath.NextInteractable.transform.localPosition.z * settings.scale, 0);
+            pin.transform.localEulerAngles = new Vector3(0, 0, -settings.rotation);
+            pin.transform.position = new Vector3(pin.transform.position.x, pin.transform.position.y + 30, pin.transform.position.z);
+
             InteractablePreviewUI.ClearPreviewObject();
+        }
+        else
+        {
+            if (settings.useRenderTexture)
+                EventSystem.current.SetSelectedGameObject(rawMap.gameObject);
+            else
+                EventSystem.current.SetSelectedGameObject(map.gameObject);
+
         }
 
         if (GameManager.Mode == GameMode.Recall && active && InteractablePreviewUI.Show)
