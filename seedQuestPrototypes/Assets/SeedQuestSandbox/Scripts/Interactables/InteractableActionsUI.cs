@@ -36,10 +36,14 @@ public class InteractableActionsUI : MonoBehaviour
 
         IsometricCamera.instance.ToggleLookAtInteractable(active);
 
-        if (active)
+        if (active) {
+            GameManager.State = GameState.Menu;
             InteractableLabelUI.ToggleAll(false);
-        else
+        }
+        else {
+            GameManager.State = GameState.Play;
             InteractableLabelUI.ToggleAll(true);
+        }
     }
 
     void SetComponentRef() {
