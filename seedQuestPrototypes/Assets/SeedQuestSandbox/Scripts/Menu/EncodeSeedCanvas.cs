@@ -14,6 +14,7 @@ public class EncodeSeedCanvas : MonoBehaviour {
     private SceneSelectedIndicator[] indicators;
     private Button[] buttons;
     private Button continueButton;
+    private bool initialized = false;
 
     private void Start() {
         sceneCount = 0;
@@ -38,6 +39,7 @@ public class EncodeSeedCanvas : MonoBehaviour {
 
         continueButton = _buttons[17];
         continueButton.gameObject.SetActive(false);
+        initialized = true;
     }
 
     public void SelectScene(int i) {
@@ -51,13 +53,13 @@ public class EncodeSeedCanvas : MonoBehaviour {
         worldPreviews[sceneCount].shade.gameObject.SetActive(true);
         indicators[i].Activate(sceneCount);
         sceneCount++;
+        ResetInteractiveButtons();
         EnableNext();
 
         if (sceneCount >= currentList.Length)
             continueButton.gameObject.SetActive(true);
 
         buttons[i].GetComponentsInChildren<Image>()[3].gameObject.SetActive(false);
-        ResetInteractiveButtons();
     }
 
     public void UnInteractiveButtons() {
@@ -126,11 +128,16 @@ public class EncodeSeedCanvas : MonoBehaviour {
             item.text.gameObject.SetActive(false);
             item.shade.gameObject.SetActive(false);
         }
-        foreach (SceneSelectedIndicator indicator in indicators) {
-            indicator.Reset();
+        if (initialized)
+        {
+            foreach (SceneSelectedIndicator indicator in indicators)
+            {
+                indicator.Reset();
+            }
+
+            UnInteractiveButtons();
+            EnableNext();
         }
-        UnInteractiveButtons();
-        EnableNext();
     }
 
     public void undoSelect()
