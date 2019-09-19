@@ -151,14 +151,13 @@ public class EncodeSeedCanvas : MonoBehaviour {
         worldPreviews[sceneCount].preview.gameObject.SetActive(false);
         worldPreviews[sceneCount].text.gameObject.SetActive(false);
         worldPreviews[sceneCount].shade.gameObject.SetActive(false);
-        if (sceneCount+1 < 6)
-            indicators[i].Deactivate(sceneCount+1);
-
         ResetInteractiveButtons();
         EnableNext();
 
+        if (sceneCount < 6)
+            indicators[i].Deactivate(sceneCount);
+        
         continueButton.gameObject.SetActive(false);
-
     }
 
     public void backButton()
