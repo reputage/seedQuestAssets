@@ -19,10 +19,6 @@ public class SeedSetupCanvas : MonoBehaviour
     public TMP_InputField seedInputField;
     public TextMeshProUGUI warningTextTMP;
 
-    public Button weakButton;
-    public Button strongButton;
-    public Button crytoButton;
-
     public void Back() {
         MenuScreenV2.Instance.GoToStart();
     }
@@ -40,33 +36,6 @@ public class SeedSetupCanvas : MonoBehaviour
     public void SetRandomBIP39Seed() {
         InteractablePathManager.SetRandomSeed();
         seedInputField.text = bpc.getSentenceFromHex(InteractablePathManager.SeedString);
-    }
-
-    public void SetSeedStrength(int sceneCount) {
-        // Set SeedStrength
-        InteractableConfig.SitesPerGame = sceneCount;
-
-        // Update UI
-        Color[] colors = new Color[3];
-        if(sceneCount == 1) {
-            colors[0] = new Color(1f, 1f, 1f, 1f);
-            colors[1] = new Color(1f, 1f, 1f, 0.7f);
-            colors[2] = new Color(1f, 1f, 1f, 0.7f);
-        }
-        else if(sceneCount == 2) {
-            colors[0] = new Color(1f, 1f, 1f, 0.7f);
-            colors[1] = new Color(1f, 1f, 1f, 1f);
-            colors[2] = new Color(1f, 1f, 1f, 0.7f);   
-        }
-        else if(sceneCount == 6) {
-            colors[0] = new Color(1f, 1f, 1f, 0.7f);
-            colors[1] = new Color(1f, 1f, 1f, 0.7f);
-            colors[2] = new Color(1f, 1f, 1f, 1f);  
-        }
-
-        weakButton.GetComponent<Image>().color = colors[0];
-        strongButton.GetComponent<Image>().color = colors[1];
-        crytoButton.GetComponent<Image>().color = colors[2];
     }
 
     // Check the user's input to verify that it's a valid seed
