@@ -193,54 +193,54 @@ public class BIP39Tests
         string testWords8 = "armed canvas hand burst grunt leopard wall garlic";
         string testWords10 = "ugly call give address amount venture misery dose quick spoil";
 
-        int[] actions2 = bpc.getActionsFromSentence(testWords2);
-        int[] actions3 = bpc.getActionsFromSentence(testWords3);
-        int[] actions4 = bpc.getActionsFromSentence(testWords4);
-        int[] actions5 = bpc.getActionsFromSentence(testWords5);
-        int[] actions6 = bpc.getActionsFromSentence(testWords6);
-        int[] actions8 = bpc.getActionsFromSentence(testWords8);
-        int[] actions10 = bpc.getActionsFromSentence(testWords10);
+        int[] actions2 = bpc.getActionsFromShortSentence(testWords2);
+        int[] actions3 = bpc.getActionsFromShortSentence(testWords3);
+        int[] actions4 = bpc.getActionsFromShortSentence(testWords4);
+        int[] actions5 = bpc.getActionsFromShortSentence(testWords5);
+        int[] actions6 = bpc.getActionsFromShortSentence(testWords6);
+        int[] actions8 = bpc.getActionsFromShortSentence(testWords8);
+        int[] actions10 = bpc.getActionsFromShortSentence(testWords10);
 
-        string sentence2 = bpc.getSentenceFromActions(actions2);
-        string sentence3 = bpc.getSentenceFromActions(actions3);
-        string sentence4 = bpc.getSentenceFromActions(actions4);
-        string sentence5 = bpc.getSentenceFromActions(actions5);
-        string sentence6 = bpc.getSentenceFromActions(actions6);
-        string sentence8 = bpc.getSentenceFromActions(actions8);
-        string sentence10 = bpc.getSentenceFromActions(actions10);
+        string sentence2 = bpc.getSentenceFromShortActions(actions2, 2);
+        string sentence3 = bpc.getSentenceFromShortActions(actions3, 3);
+        string sentence4 = bpc.getSentenceFromShortActions(actions4, 4);
+        string sentence5 = bpc.getSentenceFromShortActions(actions5, 5);
+        string sentence6 = bpc.getSentenceFromShortActions(actions6, 6);
+        string sentence8 = bpc.getSentenceFromShortActions(actions8, 8);
+        string sentence10 = bpc.getSentenceFromShortActions(actions10, 10);
 
         if (sentence2 == testWords2)
-            passed[0] = 1;
+            passed[0] += 1;
         else
             Debug.Log("BIP39 full conversion test for two words failed " + sentence2);
 
         if (sentence3 == testWords3)
-            passed[0] = 1;
+            passed[0] += 1;
         else
             Debug.Log("BIP39 full conversion test for three words failed " + sentence3);
 
         if (sentence4 == testWords4)
-            passed[0] = 1;
+            passed[0] += 1;
         else
             Debug.Log("BIP39 full conversion test for four words failed " + sentence4);
 
         if (sentence5 == testWords5)
-            passed[0] = 1;
+            passed[0] += 1;
         else
             Debug.Log("BIP39 full conversion test for five words failed " + sentence5);
 
         if (sentence6 == testWords6)
-            passed[0] = 1;
+            passed[0] += 1;
         else
             Debug.Log("BIP39 full conversion test for six words failed " + sentence6);
 
         if (sentence8 == testWords8)
-            passed[0] = 1;
+            passed[0] += 1;
         else
             Debug.Log("BIP39 full conversion test for eight words failed " + sentence8);
 
         if (sentence10 == testWords10)
-            passed[0] = 1;
+            passed[0] += 1;
         else
             Debug.Log("BIP39 full conversion test for ten words failed " + sentence10);
 

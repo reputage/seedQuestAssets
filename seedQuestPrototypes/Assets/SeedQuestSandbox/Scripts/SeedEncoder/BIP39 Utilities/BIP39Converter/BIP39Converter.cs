@@ -34,7 +34,18 @@ public class BIP39Converter
 
         List<int> indeces = rebuildWordIndexes(wordArray);
         byte[] bytes = processWordIndecesNoChecksum(indeces);
-        List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
+
+        actions = seeds.getActionsFromBytes(bytes);
+        return actions;
+    }
+
+    public int[] getActionsFromShortSentence(string sentence)
+    {
+        int[] actions = new int[1];
+        string[] wordArray = sentence.Split(null);
+
+        List<int> indeces = rebuildWordIndexes(wordArray);
+        byte[] bytes = processWordShortIndeces(indeces);
 
         actions = seeds.getActionsFromBytes(bytes);
         return actions;
@@ -106,6 +117,32 @@ public class BIP39Converter
         return words;
     }
 
+    public string getSentenceFromShortActions(int[] actions, int wordCount)
+    {
+        string seed = seeds.getSeed(actions);
+        byte[] seedBytes = HexStringToByteArray(seed);
+        BitArray bits = byteToBits(seedBytes);
+        List<int> wordListSizes = new List<int>() { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
+        int[] wordIndeces = seeds.bitToActions(bits, wordListSizes);
+        List<int> wordIndecesList = new List<int>();
+
+        for (int i = 0; i < wordIndeces.Length; i++)
+            wordIndecesList.Add(wordIndeces[i]);
+
+        string words = getMnemonicSentence(wordIndecesList);
+        string[] wordArray = words.Split(null);
+        words = "";
+        for (int i = 0; i < wordCount; i++)
+        {
+            if (i == 0)
+                words += wordArray[i];
+            else
+                words += " " + wordArray[i];
+        }
+
+        return words;
+    }
+
     public string getSentenceFromActionsDebug(int[] actions)
     {
         string seed = seeds.getSeed(actions);
@@ -157,7 +194,6 @@ public class BIP39Converter
 
         List<int> indeces = rebuildWordIndexes(wordArray);
         byte[] bytes = processWordIndecesNoChecksum(indeces);
-        List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
         int[] actions = seeds.getActionsFromBytes(bytes);
 
         string hexSeed = seeds.getSeed(actions);
@@ -176,7 +212,6 @@ public class BIP39Converter
 
         List<int> indeces = rebuildWordIndexes(wordArray);
         byte[] bytes = processWordIndeces(indeces);
-        List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
         int[] actions = seeds.getActionsFromBytes(bytes);
 
         string hexSeed = seeds.getSeed(actions);
@@ -277,7 +312,6 @@ public class BIP39Converter
         return wordIndexList;
     }
 
-    // Note to self: this funciton should be complete, but needs testing
     private byte[] processWordIndeces(List<int> wordIndex)
     {
         if (wordIndex.Contains(-1))
@@ -422,6 +456,79 @@ public class BIP39Converter
         if (length % 8 != 0)
         {
             throw new Exception("Entropy bits less checksum need to be cleanly divisible by " + bitsInByte);
+        }
+
+        byte[] entropy = new byte[17];
+        int index = 0;
+
+        for (int byteIndex = 0; byteIndex < entropy.Length; byteIndex++)
+        {
+            for (int i = 0; i < bitsInByte; i++)
+            {
+                if (index < bits.Length)
+                {
+                    int bitIdx = index % bitsInByte;
+                    byte mask = (byte)(1 << bitIdx);
+                    entropy[byteIndex] = (byte)(bits.Get(index) ? (entropy[byteIndex] | mask) : (entropy[byteIndex] & ~mask));
+                }
+
+                index++;
+            }
+        }
+
+        return entropy;
+    }
+
+    private byte[] processWordShortIndeces(List<int> wordIndex)
+    {
+        if (wordIndex.Contains(-1))
+        {
+            throw new Exception("the wordlist index contains -1. Invalid indexes.");
+        }
+
+        BitArray bits = new BitArray(wordIndex.Count * bitGroupSize);
+        int bitIndex = 0;
+
+        for (int i = 0; i < wordIndex.Count; i++)
+        {
+            double wordindex = (double)wordIndex[i];
+
+            for (int biti = 0; biti < 11; biti++)
+            {
+                bits[bitIndex] = false;
+
+                if (wordindex % 2 == 1)
+                {
+                    bits[bitIndex] = true;
+                }
+
+                wordindex = Math.Floor(wordindex / (double)2);
+
+                bitIndex++;
+            }
+
+            bool temp = bits.Get(bitIndex - (bitGroupSize));
+            bits.Set(bitIndex - (bitGroupSize), bits.Get(bitIndex - 1));
+            bits.Set(bitIndex - 1, temp);
+            temp = bits.Get(bitIndex - (bitGroupSize - 1));
+            bits.Set(bitIndex - (bitGroupSize - 1), bits.Get(bitIndex - 2));
+            bits.Set(bitIndex - 2, temp);
+            temp = bits.Get(bitIndex - (bitGroupSize - 2));
+            bits.Set(bitIndex - (bitGroupSize - 2), bits.Get(bitIndex - 3));
+            bits.Set(bitIndex - 3, temp);
+            temp = bits.Get(bitIndex - (bitGroupSize - 3));
+            bits.Set(bitIndex - (bitGroupSize - 3), bits.Get(bitIndex - 4));
+            bits.Set(bitIndex - 4, temp);
+            temp = bits.Get(bitIndex - (bitGroupSize - 4));
+            bits.Set(bitIndex - (bitGroupSize - 4), bits.Get(bitIndex - 5));
+            bits.Set(bitIndex - 5, temp);
+        }
+
+        int length = bits.Length - (bits.Length / (entropyMultiple + 1));
+
+        if (length % 8 != 0)
+        {
+            //throw new Exception("Entropy bits less checksum need to be cleanly divisible by " + bitsInByte);
         }
 
         byte[] entropy = new byte[17];
