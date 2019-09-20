@@ -19,27 +19,54 @@ public class SeedSetupCanvas : MonoBehaviour
     public TMP_InputField seedInputField;
     public TextMeshProUGUI warningTextTMP;
 
-    public void Back() 
-    {
+    public Button weakButton;
+    public Button strongButton;
+    public Button crytoButton;
+
+    public void Back() {
         MenuScreenV2.Instance.GoToStart();
     }
 
-    public void FindKey() 
-    {
+    public void FindKey() {
         EncodeSeed();
         MenuScreenV2.Instance.GoToEncodeSeed();
     }
 
-    public void SetRandomSeed()
-    {
+    public void SetRandomSeed() {
         InteractablePathManager.SetRandomSeed();
         seedInputField.text = InteractablePathManager.SeedString;
     }
 
-    public void SetRandomBIP39Seed()
-    {
+    public void SetRandomBIP39Seed() {
         InteractablePathManager.SetRandomSeed();
         seedInputField.text = bpc.getSentenceFromHex(InteractablePathManager.SeedString);
+    }
+
+    public void SetSeedStrength(int sceneCount) {
+        // Set SeedStrength
+        InteractableConfig.SitesPerGame = sceneCount;
+
+        // Update UI
+        Color[] colors = new Color[3];
+        if(sceneCount == 1) {
+            colors[0] = new Color(1f, 1f, 1f, 1f);
+            colors[1] = new Color(1f, 1f, 1f, 0.7f);
+            colors[2] = new Color(1f, 1f, 1f, 0.7f);
+        }
+        else if(sceneCount == 2) {
+            colors[0] = new Color(1f, 1f, 1f, 0.7f);
+            colors[1] = new Color(1f, 1f, 1f, 1f);
+            colors[2] = new Color(1f, 1f, 1f, 0.7f);   
+        }
+        else if(sceneCount == 6) {
+            colors[0] = new Color(1f, 1f, 1f, 0.7f);
+            colors[1] = new Color(1f, 1f, 1f, 0.7f);
+            colors[2] = new Color(1f, 1f, 1f, 1f);  
+        }
+
+        weakButton.GetComponent<Image>().color = colors[0];
+        strongButton.GetComponent<Image>().color = colors[1];
+        crytoButton.GetComponent<Image>().color = colors[2];
     }
 
     // Check the user's input to verify that it's a valid seed
@@ -115,40 +142,34 @@ public class SeedSetupCanvas : MonoBehaviour
 
         string[] wordArray = seedString.Split(null);
 
-        if (seedString == "" || seedString.Length < 1)
-        {
+        if (seedString == "" || seedString.Length < 1) {
             deactivateCheckSymbols();
             warningTextTMP.text = "";
             validHex = false;
         }
-        else if (!validHex && wordArray.Length > 1 && wordArray.Length < 12)
-        {
+        else if (!validHex && wordArray.Length > 1 && wordArray.Length < 12) {
             Debug.Log("array length: " + wordArray.Length);
             warningTextTMP.text = "Remember to add spaces between the words.";
             warningTextTMP.color = new Color32(255, 20, 20, 255);
             setRedWarning();
         }
-        else if (!validHex && wordArray.Length > 1 && !SeedUtility.validBip(seedString))
-        {
+        else if (!validHex && wordArray.Length > 1 && !SeedUtility.validBip(seedString)) {
             warningTextTMP.text = "Make sure the words are spelled correctly.";
             warningTextTMP.color = new Color32(255, 20, 20, 255);
             setRedWarning();
         }
-        else if (!validHex)
-        {
+        else if (!validHex) {
             warningTextTMP.text = "Character seeds must only contain hex characters.";
             warningTextTMP.color = new Color32(255, 20, 20, 255);
             setRedWarning();
         }
-        else if (seedString.Length < 33)
-        {
+        else if (seedString.Length < InteractableConfig.SeedHexLength) {
             validHex = false;
             warningTextTMP.text = "Not enough characters!";
             warningTextTMP.color = new Color32(255, 20, 20, 255);
             setRedWarning();
         }
-        else if (seedString.Length > 34)
-        {
+        else if (seedString.Length > InteractableConfig.SeedHexLength + 1) {
             validHex = false;
             warningTextTMP.text = "Too many characters!";
             warningTextTMP.color = new Color32(255, 20, 20, 255);

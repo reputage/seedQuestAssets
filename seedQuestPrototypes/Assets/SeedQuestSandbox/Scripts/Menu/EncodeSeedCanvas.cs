@@ -8,7 +8,7 @@ using SeedQuest.Interactables;
 
 public class EncodeSeedCanvas : MonoBehaviour {
     private EncodeSeed_ScenePreview[] worldPreviews;
-    private int[] currentList = new int[6];
+    private int[] currentList;
 
     private int sceneCount;
     private SceneSelectedIndicator[] indicators;
@@ -24,22 +24,34 @@ public class EncodeSeedCanvas : MonoBehaviour {
     }
 
     public void Initialize() {
-        indicators = GetComponentsInChildren<SceneSelectedIndicator>();
-        worldPreviews = GetComponentsInChildren<EncodeSeed_ScenePreview>();
-        foreach(EncodeSeed_ScenePreview item in worldPreviews) {
-            item.preview.gameObject.SetActive(false);
-            item.text.gameObject.SetActive(false);
-        }
+        InitalizeWorldPreviews();
 
+        indicators = GetComponentsInChildren<SceneSelectedIndicator>();
         Button[] _buttons = GetComponentsInChildren<Button>();
         buttons = new Button[16];
         for (int i = 0; i < buttons.Length; i++) {
             buttons[i] = _buttons[i + 1];
         }
 
+        currentList = new int[InteractableConfig.SitesPerGame];
+
         continueButton = _buttons[17];
         continueButton.gameObject.SetActive(false);
         initialized = true;
+    }
+
+    public void InitalizeWorldPreviews() {
+        worldPreviews = GetComponentsInChildren<EncodeSeed_ScenePreview>();
+        int count = 0;
+        foreach (EncodeSeed_ScenePreview item in worldPreviews) {
+            item.preview.gameObject.SetActive(false);
+            item.text.gameObject.SetActive(false);
+
+            if(count >= InteractableConfig.SitesPerGame) {
+                item.gameObject.SetActive(false);
+            }
+            count++;
+        }
     }
 
     public void SelectScene(int i) {
