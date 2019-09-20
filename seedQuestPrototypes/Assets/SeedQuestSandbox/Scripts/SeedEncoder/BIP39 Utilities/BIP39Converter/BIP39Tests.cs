@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using SeedQuest.SeedEncoder;
 
-
 public class BIP39Tests
 {
     private SeedToByte seeds = new SeedToByte();
@@ -19,7 +18,8 @@ public class BIP39Tests
         sumTest(ref passed, testFullConversion());
         sumTest(ref passed, testHexConversion());
         sumTest(ref passed, testChecksumConversion());
-        sumTest(ref passed, testAllSeedWords());
+        //sumTest(ref passed, testAllSeedWords());
+        sumTest(ref passed, testShortSeeds());
 
         string passedString = "Successfully passed " + passed[0] + " of " + passed[1] + " tests.";
         Debug.Log(passedString);
@@ -176,6 +176,73 @@ public class BIP39Tests
 
             sumTest(ref passed, testFullConversion(sentence, i));
         }
+
+        return passed;
+    }
+
+    public int[] testShortSeeds()
+    {
+        int[] passed = new int[2];
+        passed[1] = 7;
+
+        string testWords2 = "ugly call";
+        string testWords3 = "armed canvas hand";
+        string testWords4 = "ugly call give address";
+        string testWords5 = "armed canvas hand burst grunt";
+        string testWords6 = "ugly call give address amount venture";
+        string testWords8 = "armed canvas hand burst grunt leopard wall garlic";
+        string testWords10 = "ugly call give address amount venture misery dose quick spoil";
+
+        int[] actions2 = bpc.getActionsFromSentence(testWords2);
+        int[] actions3 = bpc.getActionsFromSentence(testWords3);
+        int[] actions4 = bpc.getActionsFromSentence(testWords4);
+        int[] actions5 = bpc.getActionsFromSentence(testWords5);
+        int[] actions6 = bpc.getActionsFromSentence(testWords6);
+        int[] actions8 = bpc.getActionsFromSentence(testWords8);
+        int[] actions10 = bpc.getActionsFromSentence(testWords10);
+
+        string sentence2 = bpc.getSentenceFromActions(actions2);
+        string sentence3 = bpc.getSentenceFromActions(actions3);
+        string sentence4 = bpc.getSentenceFromActions(actions4);
+        string sentence5 = bpc.getSentenceFromActions(actions5);
+        string sentence6 = bpc.getSentenceFromActions(actions6);
+        string sentence8 = bpc.getSentenceFromActions(actions8);
+        string sentence10 = bpc.getSentenceFromActions(actions10);
+
+        if (sentence2 == testWords2)
+            passed[0] = 1;
+        else
+            Debug.Log("BIP39 full conversion test for two words failed " + sentence2);
+
+        if (sentence3 == testWords3)
+            passed[0] = 1;
+        else
+            Debug.Log("BIP39 full conversion test for three words failed " + sentence3);
+
+        if (sentence4 == testWords4)
+            passed[0] = 1;
+        else
+            Debug.Log("BIP39 full conversion test for four words failed " + sentence4);
+
+        if (sentence5 == testWords5)
+            passed[0] = 1;
+        else
+            Debug.Log("BIP39 full conversion test for five words failed " + sentence5);
+
+        if (sentence6 == testWords6)
+            passed[0] = 1;
+        else
+            Debug.Log("BIP39 full conversion test for six words failed " + sentence6);
+
+        if (sentence8 == testWords8)
+            passed[0] = 1;
+        else
+            Debug.Log("BIP39 full conversion test for eight words failed " + sentence8);
+
+        if (sentence10 == testWords10)
+            passed[0] = 1;
+        else
+            Debug.Log("BIP39 full conversion test for ten words failed " + sentence10);
 
         return passed;
     }
