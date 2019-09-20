@@ -140,7 +140,15 @@ namespace SeedQuest.Interactables
                 Instance.nextIndex++;
 
                 if (PathLevelComplete)
-                    InteractablePathManager.ShowLevelComplete = true;
+                {
+                    if (GameManager.ReviewMode == false)
+                    {
+                        GameManager.ReviewMode = true;
+                        FastRecoveryUI.Instance.StartFastRehearsal();
+                    }
+                    else
+                        InteractablePathManager.ShowLevelComplete = true;
+                }
 
                 if(NextInteractable != null)
                     InitializeNextInteractable();
@@ -156,17 +164,8 @@ namespace SeedQuest.Interactables
             if (NextInteractable == null) return;
 
             if (GameManager.Mode == GameMode.Rehearsal) {
-                NextInteractable.interactableUI.ToggleTracker(true);
-
-                InteractableManager.UnHighlightAllInteractables();
-                NextInteractable.HighlightInteractableWithEffect(true);
                 InteractablePreviewUI.SetPreviewObject(NextInteractable, Instance.actionIds[Instance.nextIndex]);
                 InteractablePreviewUI.SetPreviewAction(Instance.actionIds[Instance.nextIndex]);
-
-                if (InteractableManager.Instance.useSingleTracker && Instance.nextIndex % 3 != 0)
-                {
-                    Instance.path[Instance.nextIndex - 1].interactableUI.ToggleTracker(false);
-                }
             }
         }
     }

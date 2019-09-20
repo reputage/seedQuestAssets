@@ -37,6 +37,7 @@ public class HUDManager : MonoBehaviour {
     public HUDItemProps useMinimap;
     public HUDItemProps useFastRecovery;
     public HUDItemProps useScreenspaceActions;
+    public HUDItemProps useInteractableActionUI;
 
     static private HUDManager instance = null;
     static private HUDManager setInstance() { instance = GameObject.FindObjectOfType<HUDManager>(); return instance; }
@@ -47,15 +48,16 @@ public class HUDManager : MonoBehaviour {
         DestroyImmediateHUD();
     }
 
-    public void InstantiateHUDElement<T>(HUDItemProps props) {
-        if(props.use && props.prefab != null && GetComponentInChildren<T>(true) == null) {
 
-            #if UNITY_EDITOR
-                PrefabUtility.InstantiatePrefab(props.prefab, transform);
-            #else
-                Instantiate(props.prefab, transform);
-            #endif
-        }
+    public void InstantiateHUDElement<T>(HUDItemProps props) {
+    if(props.use && props.prefab != null && GetComponentInChildren<T>(true) == null) {
+
+        #if UNITY_EDITOR
+            PrefabUtility.InstantiatePrefab(props.prefab, transform);
+        #else
+            Instantiate(props.prefab, transform);
+        #endif
+    }
     }
 
     static public void InstantiateHUDElement<T>() {
@@ -85,6 +87,7 @@ public class HUDManager : MonoBehaviour {
         InstantiateHUDElement<ESCMenuUI>(useESCMenu);
         InstantiateHUDElement<HelpMenuUI>(useHelpMenu);
         InstantiateHUDElement<HomeSelectUI>(useHomeSelect);
+        InstantiateHUDElement<InteractableActionsUI>(useInteractableActionUI);
         InstantiateHUDElement<InteractablePreviewUI>(useInteractablePreview);
         InstantiateHUDElement<InteractableTrackerUI>(useInteractableTracker);
         InstantiateHUDElement<LevelClearUI>(useLevelClear);
@@ -110,6 +113,7 @@ public class HUDManager : MonoBehaviour {
         DestroyHUDElement<ESCMenuUI>(useESCMenu);
         DestroyHUDElement<HelpMenuUI>(useHelpMenu);
         DestroyHUDElement<HomeSelectUI>(useHomeSelect);
+        DestroyHUDElement<InteractableActionsUI>(useInteractableActionUI);
         DestroyHUDElement<InteractablePreviewUI>(useInteractablePreview);
         DestroyHUDElement<InteractableTrackerUI>(useInteractableTracker);
         DestroyHUDElement<LevelClearUI>(useLevelClear);
@@ -135,6 +139,7 @@ public class HUDManager : MonoBehaviour {
         else if (listType == typeof(EndGameUI)) { return useEndGame; }
         else if (listType == typeof(ESCMenuUI)) { return useESCMenu; }
         else if (listType == typeof(HomeSelectUI)) { return useHomeSelect; }
+        else if (listType == typeof(InteractableActionsUI)) { return useInteractableActionUI; }
         else if (listType == typeof(InteractablePreviewUI)) { return useInteractablePreview; }
         else if (listType == typeof(InteractableTrackerUI)) { return useInteractableTracker; }
         else if (listType == typeof(LevelClearUI)) { return useLevelClear; }

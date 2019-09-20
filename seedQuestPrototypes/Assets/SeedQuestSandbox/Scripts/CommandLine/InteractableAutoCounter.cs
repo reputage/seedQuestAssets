@@ -40,7 +40,8 @@ public class InteractableAutoCounter : MonoBehaviour
         updateDelay = 0;
         waitCheck = 0;
         LevelSetManager.AddLevel(0);
-        MenuScreenManager.Instance.state = MenuScreenStates.Debug;
+        if (!GameManager.V2Menus)
+            MenuScreenManager.Instance.state = MenuScreenStates.Debug;
         SceneManager.LoadScene(DebugSeedUtility.sceneIndeces[0]);
     }
 
@@ -96,7 +97,8 @@ public class InteractableAutoCounter : MonoBehaviour
     public void loadNextScene()
     {
         LevelSetManager.AddLevel(sceneIndex);
-        MenuScreenManager.Instance.state = MenuScreenStates.Debug;
+        if(!GameManager.V2Menus)
+            MenuScreenManager.Instance.state = MenuScreenStates.Debug;
         SceneManager.LoadScene(DebugSeedUtility.sceneIndeces[sceneIndex]);
     }
 

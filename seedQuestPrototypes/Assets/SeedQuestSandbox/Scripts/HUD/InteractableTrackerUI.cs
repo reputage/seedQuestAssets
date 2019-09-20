@@ -58,7 +58,7 @@ public class InteractableTrackerUI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         tracker = GetComponentsInChildren<RectTransform>()[1];
-        arrow = GetComponentsInChildren<RectTransform>()[5];
+        arrow = GetComponentsInChildren<RectTransform>()[3];
         canvasGroup = GetComponentInChildren<CanvasGroup>();
 
         if (GameManager.Mode == GameMode.Rehearsal)
@@ -101,6 +101,13 @@ public class InteractableTrackerUI : MonoBehaviour
 
     /// <summary> Activates/Deactivates the tracker and arrow gameobjects </summary>
     private void SetActive() {
+        if (GameManager.GraduatedFlags[InteractableLog.CurrentLevelIndex] == true)
+        {
+            tracker.gameObject.SetActive(false);
+            arrow.gameObject.SetActive(false);
+            return;
+        }
+
         if (target == null) {
             tracker.gameObject.SetActive(false);
             arrow.gameObject.SetActive(false);
@@ -195,7 +202,7 @@ public class InteractableTrackerUI : MonoBehaviour
                 else if (isClampedLeft)
                     screenPosition = new Vector3(padding.x, MidScreenY, screenPosition.z);    
                 else if (isClampedTop && !isClampedLeft && !isClampedRight)
-                    screenPosition = new Vector3(MidScreenX, camera.scaledPixelHeight - padding.y, screenPosition.z);
+                    screenPosition = new Vector3(MidScreenX, camera.scaledPixelHeight - padding.y - 100, screenPosition.z);
                 else if(isClampedBottom && !isClampedLeft && !isClampedRight)
                     screenPosition = new Vector3(MidScreenX, padding.y, screenPosition.z);
             }
@@ -221,7 +228,13 @@ public class InteractableTrackerUI : MonoBehaviour
         if (InBounds(unclampedScreenPosition) && unclampedScreenPosition.z > 0)
             arrow.gameObject.SetActive(false);
         else
-            arrow.gameObject.SetActive(true);
+        {
+            if (GameManager.Mode == GameMode.Rehearsal && GameManager.GraduatedFlags[InteractableLog.CurrentLevelIndex] == true)
+                return;
+            else
+                arrow.gameObject.SetActive(true);
+
+        }
 
         // Set ArrowIcon facing direction
         Vector3 playerPosition = camera.WorldToScreenPoint(player.position);
@@ -280,9 +293,9 @@ public class InteractableTrackerUI : MonoBehaviour
             return;
         }
 
-        if (GameManager.Mode == GameMode.Rehearsal && target.interactableUI.IsOnHover())
-        {
-            canvasGroup.alpha = 0.0f;
+        if (GameManager.Mode == GameMode.Rehearsal)
+        { 
+            canvasGroup.alpha = 1.0f;
             return;
         }
 
