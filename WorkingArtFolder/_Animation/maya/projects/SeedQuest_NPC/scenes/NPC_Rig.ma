@@ -1,6 +1,6 @@
 //Maya ASCII 2019 scene
 //Name: NPC_Rig.ma
-//Last modified: Thu, Sep 19, 2019 11:23:10 PM
+//Last modified: Fri, Sep 20, 2019 03:47:49 PM
 //Codeset: 1252
 file -rdi 1 -ns "NPC_Base" -rfn "NPC_Base_04RN" -op "v=0;" -typ "mayaAscii" "C:/Users/winka/Documents/maya/projects/SeedQuest_NPC//assets/NPC_Base_JointLength_Adjust_01.ma";
 file -r -ns "NPC_Base" -dr 1 -rfn "NPC_Base_04RN" -op "v=0;" -typ "mayaAscii" "C:/Users/winka/Documents/maya/projects/SeedQuest_NPC//assets/NPC_Base_JointLength_Adjust_01.ma";
@@ -18,17 +18,17 @@ fileInfo "osv" "Microsoft Windows 10 Technical Preview  (Build 18362)\n";
 createNode transform -s -n "persp";
 	rename -uid "DB47CFE8-4773-8ADA-309A-62BBCEA2E87B";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 94.149078458266615 270.79473952065882 387.47972435243992 ;
-	setAttr ".r" -type "double3" -21.938351995566343 -19062.59999999934 -1.2499031637110195e-15 ;
+	setAttr ".t" -type "double3" -95.661808381532865 145.64175909441096 547.73453629500375 ;
+	setAttr ".r" -type "double3" -8.1383519958021324 -19087.799999996143 -1.0032051520548695e-16 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "A16730F9-4B90-4D20-899E-688C2CDFED35";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 393.98124047865275;
+	setAttr ".coi" 546.34351820276504;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
-	setAttr ".tp" -type "double3" -16.646451655056921 178.02000427246111 45.145650492574894 ;
+	setAttr ".tp" -type "double3" 32.06177117827113 5.1028231190019806 19.389164056256213 ;
 	setAttr ".hc" -type "string" "viewSet -p %camera";
 	setAttr ".ai_translator" -type "string" "perspective";
 createNode transform -s -n "top";
@@ -241,7 +241,7 @@ createNode joint -n "FK_L_Toe_joint_01" -p "FK_L_Foot_joint_01";
 	setAttr ".radi" 4;
 	setAttr ".hio" yes;
 createNode orientConstraint -n "FK_L_Toe_joint_01_orientConstraint1" -p "FK_L_Toe_joint_01";
-	rename -uid "B048ED44-4002-474D-950C-4B8661A2069E";
+	rename -uid "8E567357-4D47-D7EF-DC05-DC909357F222";
 	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "L_FK_Toe_Ctrl_01W0" -dv 1 -min 0 
 		-at "double";
 	setAttr -k on ".nds";
@@ -256,8 +256,6 @@ createNode orientConstraint -n "FK_L_Toe_joint_01_orientConstraint1" -p "FK_L_To
 	setAttr -k off ".sy";
 	setAttr -k off ".sz";
 	setAttr ".erp" yes;
-	setAttr ".lr" -type "double3" 0 90.459962895197577 0.9257950411749083 ;
-	setAttr ".rsrr" -type "double3" 0 90.459962895197577 0.92579504117442479 ;
 	setAttr -k on ".w0";
 createNode orientConstraint -n "FK_L_Foot_joint_01_orientConstraint1" -p "FK_L_Foot_joint_01";
 	rename -uid "8E2FCFAB-454C-0AC8-BF6F-48828B4F9BAE";
@@ -1136,6 +1134,7 @@ createNode pointConstraint -n "FK_Hip_joint_pointConstraint1" -p "FK_Hip_joint";
 createNode joint -n "FK_Tail_Joint_01" -p "FK_Hip_joint";
 	rename -uid "3950CE2C-490B-4A4E-C80B-52988D83C408";
 	addAttr -ci true -sn "liw" -ln "lockInfluenceWeights" -min 0 -max 1 -at "bool";
+	setAttr ".v" no;
 	setAttr ".uoc" 1;
 	setAttr ".oc" 2;
 	setAttr ".mnrl" -type "double3" -360 -360 -360 ;
@@ -1158,7 +1157,6 @@ createNode orientConstraint -n "FK_Tail_Joint_01_orientConstraint1" -p "FK_Tail_
 	setAttr -k off ".sy";
 	setAttr -k off ".sz";
 	setAttr ".erp" yes;
-	setAttr ".lr" -type "double3" 0.5232884981995376 0.1357777419504084 0.14079097567250887 ;
 	setAttr -k on ".w0";
 createNode pointConstraint -n "FK_Tail_Joint_01_pointConstraint1" -p "FK_Tail_Joint_01";
 	rename -uid "1E66E3CF-4C1B-1D12-CF37-FA915D1ACD02";
@@ -6479,14 +6477,20 @@ createNode nurbsCurve -n "Waist_Ctrl_Shape1" -p "Waist_Ctrl_01";
 		;
 createNode transform -n "R_FK_Leg_Grp_01" -p "Waist_Ctrl_01";
 	rename -uid "1DF30801-4912-C0DC-CB43-2D9F43B954DE";
-	setAttr -av ".v" no;
 	setAttr ".t" -type "double3" -30.7581 -1.7010116210937554 -7.51558 ;
 	setAttr ".r" -type "double3" -94.095112148827425 22.4576543536514 88.433386361113563 ;
 	setAttr ".s" -type "double3" 1 1.0000000000000002 1.0000000000000002 ;
 createNode transform -n "R_FK_Leg_Ctrl_01" -p "R_FK_Leg_Grp_01";
 	rename -uid "CF71CD60-47F5-AB6A-873B-14A6EFB7DD36";
+	setAttr -l on -k off ".v";
 	setAttr ".ove" yes;
 	setAttr ".ovc" 6;
+	setAttr -l on -k off ".tx";
+	setAttr -l on -k off ".ty";
+	setAttr -l on -k off ".tz";
+	setAttr -l on -k off ".sx";
+	setAttr -l on -k off ".sy";
+	setAttr -l on -k off ".sz";
 	setAttr ".rp" -type "double3" -4.4276483428973279e-05 1.2824409131084735e-05 3.6492032503332439e-05 ;
 	setAttr ".sp" -type "double3" -4.4276483428973279e-05 1.2824409129308378e-05 3.6492032503332439e-05 ;
 createNode nurbsCurve -n "R_FK_Leg_Ctrl_Shape1" -p "R_FK_Leg_Ctrl_01";
@@ -6515,6 +6519,13 @@ createNode transform -n "R_FK_Knee_Grp_01" -p "R_FK_Leg_Ctrl_01";
 	setAttr ".s" -type "double3" 0.99999999999999956 0.99999999999999989 0.99999999999999967 ;
 createNode transform -n "R_FK_Knee_Ctrl_01" -p "R_FK_Knee_Grp_01";
 	rename -uid "CC61EE82-43E8-0371-CE3F-5C82F4F4DF41";
+	setAttr -l on -k off ".v";
+	setAttr -l on -k off ".tx";
+	setAttr -l on -k off ".ty";
+	setAttr -l on -k off ".tz";
+	setAttr -l on -k off ".sx";
+	setAttr -l on -k off ".sy";
+	setAttr -l on -k off ".sz";
 	setAttr ".rp" -type "double3" 5.0238792994150572e-05 1.0531628723775555e-05 3.5834938284295959e-05 ;
 	setAttr ".sp" -type "double3" 5.0238792994150572e-05 1.0531628723775555e-05 3.5834938284295959e-05 ;
 createNode nurbsCurve -n "R_FK_Knee_Ctrl_Shape1" -p "R_FK_Knee_Ctrl_01";
@@ -6543,6 +6554,13 @@ createNode transform -n "R_FK_Ankle_Grp_01" -p "R_FK_Knee_Ctrl_01";
 	setAttr ".s" -type "double3" 1.0000000000000002 1.0000000000000002 0.99999999999999956 ;
 createNode transform -n "R_FK_Ankle_Ctrl_01" -p "R_FK_Ankle_Grp_01";
 	rename -uid "6C6E0BEE-4ABB-4EC7-E230-82BC2B4813BA";
+	setAttr -l on -k off ".v";
+	setAttr -l on -k off ".tx";
+	setAttr -l on -k off ".ty";
+	setAttr -l on -k off ".tz";
+	setAttr -l on -k off ".sx";
+	setAttr -l on -k off ".sy";
+	setAttr -l on -k off ".sz";
 	setAttr ".rp" -type "double3" 2.090927563447309e-05 -1.1147262114263867e-05 0.00012353382997076778 ;
 	setAttr ".sp" -type "double3" 2.090927563447309e-05 -1.1147262114263867e-05 0.00012353382997076778 ;
 createNode nurbsCurve -n "R_FK_Ankle_Ctrl_Shape1" -p "R_FK_Ankle_Ctrl_01";
@@ -6566,6 +6584,13 @@ createNode transform -n "R_FK_Foot_Grp_01" -p "R_FK_Ankle_Ctrl_01";
 	setAttr ".s" -type "double3" 1.0000000000000002 1 1.0000000000000004 ;
 createNode transform -n "R_FK_Foot_Ctrl_01" -p "R_FK_Foot_Grp_01";
 	rename -uid "CE3FFDB8-46E8-797E-F00A-D2952D75DDE8";
+	setAttr -l on -k off ".v";
+	setAttr -l on -k off ".tx";
+	setAttr -l on -k off ".ty";
+	setAttr -l on -k off ".tz";
+	setAttr -l on -k off ".sx";
+	setAttr -l on -k off ".sy";
+	setAttr -l on -k off ".sz";
 	setAttr ".rp" -type "double3" 2.3971915737330818e-05 -1.1198456448369143e-05 -4.4040038979176188e-05 ;
 	setAttr ".sp" -type "double3" 2.3971915736442639e-05 -1.1198456448369143e-05 -4.4040038979176188e-05 ;
 createNode nurbsCurve -n "nurbsCircleShape2" -p "R_FK_Foot_Ctrl_01";
@@ -6613,6 +6638,12 @@ createNode transform -n "R_FK_Toe_Grp_01" -p "R_FK_Foot_Ctrl_01";
 createNode transform -n "R_FK_Toe_Ctrl_01" -p "R_FK_Toe_Grp_01";
 	rename -uid "4228E313-44C1-61D8-1BD4-058F1745CBFB";
 	setAttr -l on -k off ".v";
+	setAttr -l on -k off ".tx";
+	setAttr -l on -k off ".ty";
+	setAttr -l on -k off ".tz";
+	setAttr -l on -k off ".sx";
+	setAttr -l on -k off ".sy";
+	setAttr -l on -k off ".sz";
 	setAttr ".rp" -type "double3" -1.5199523542008819e-05 1.9325534141856338e-06 -9.6470508736956617e-07 ;
 	setAttr ".sp" -type "double3" -1.5199523538456106e-05 1.9325534150738122e-06 -9.6470508736956617e-07 ;
 createNode nurbsCurve -n "R_FK_Toe_Ctrl_Shape1" -p "R_FK_Toe_Ctrl_01";
@@ -6636,14 +6667,20 @@ createNode nurbsCurve -n "R_FK_Toe_Ctrl_Shape1" -p "R_FK_Toe_Ctrl_01";
 		;
 createNode transform -n "L_FK_Leg_Grp_01" -p "Waist_Ctrl_01";
 	rename -uid "FDC1366D-41E2-4589-108F-9B973E50F6E9";
-	setAttr -av ".v" no;
 	setAttr ".t" -type "double3" 30.758136581427305 -1.7010571683390197 -7.515577114717285 ;
 	setAttr ".r" -type "double3" 85.904887851172631 -22.45765435365146 -88.433386361113563 ;
 	setAttr ".s" -type "double3" 0.99999999999999978 0.99999999999999989 1 ;
 createNode transform -n "L_FK_Leg_Ctrl_01" -p "L_FK_Leg_Grp_01";
 	rename -uid "0E54A08A-4F9D-7935-EF4B-BA8FF6050C44";
+	setAttr -l on -k off ".v";
 	setAttr ".ove" yes;
 	setAttr ".ovc" 13;
+	setAttr -l on -k off ".tx";
+	setAttr -l on -k off ".ty";
+	setAttr -l on -k off ".tz";
+	setAttr -l on -k off ".sx";
+	setAttr -l on -k off ".sy";
+	setAttr -l on -k off ".sz";
 	setAttr ".rp" -type "double3" 1.7273978869525308e-07 -2.7730769858180793e-07 -1.807770857453761e-07 ;
 	setAttr ".sp" -type "double3" 1.7273978869525308e-07 -2.7730769858180793e-07 -1.807770857453761e-07 ;
 createNode nurbsCurve -n "L_FK_Leg_Ctrl_Shape1" -p "L_FK_Leg_Ctrl_01";
@@ -6672,6 +6709,13 @@ createNode transform -n "L_FK_Knee_Grp_01" -p "L_FK_Leg_Ctrl_01";
 	setAttr ".s" -type "double3" 1.0000000000000004 1.0000000000000004 1 ;
 createNode transform -n "L_FK_Knee_Ctrl_01" -p "L_FK_Knee_Grp_01";
 	rename -uid "EC64ACEA-453E-D671-BDAD-4BAA35EB9DB9";
+	setAttr -l on -k off ".v";
+	setAttr -l on -k off ".tx";
+	setAttr -l on -k off ".ty";
+	setAttr -l on -k off ".tz";
+	setAttr -l on -k off ".sx";
+	setAttr -l on -k off ".sy";
+	setAttr -l on -k off ".sz";
 	setAttr ".rp" -type "double3" -5.2675484738529121e-06 6.0925139768741587e-06 -4.2300198831668467e-05 ;
 	setAttr ".sp" -type "double3" -5.2675484738529121e-06 6.0925139768741587e-06 -4.2300198831668467e-05 ;
 createNode nurbsCurve -n "L_FK_Knee_Ctrl_Shape1" -p "L_FK_Knee_Ctrl_01";
@@ -6700,6 +6744,13 @@ createNode transform -n "L_FK_Ankle_Grp_01" -p "L_FK_Knee_Ctrl_01";
 	setAttr ".s" -type "double3" 1 0.99999999999999956 0.99999999999999967 ;
 createNode transform -n "L_FK_Ankle_Ctrl_01" -p "L_FK_Ankle_Grp_01";
 	rename -uid "3988B50F-4097-FFA8-4CDE-AF9C02BDEB49";
+	setAttr -l on -k off ".v";
+	setAttr -l on -k off ".tx";
+	setAttr -l on -k off ".ty";
+	setAttr -l on -k off ".tz";
+	setAttr -l on -k off ".sx";
+	setAttr -l on -k off ".sy";
+	setAttr -l on -k off ".sz";
 	setAttr ".rp" -type "double3" -2.868085016416444e-05 6.4027020432178006e-06 -8.7787955127538453e-05 ;
 	setAttr ".sp" -type "double3" -2.868085016416444e-05 6.4027020432178006e-06 -8.7787955127538453e-05 ;
 createNode nurbsCurve -n "L_FK_Ankle_Ctrl_Shape1" -p "L_FK_Ankle_Ctrl_01";
@@ -6723,6 +6774,13 @@ createNode transform -n "L_FK_Foot_Grp_01" -p "L_FK_Ankle_Ctrl_01";
 	setAttr ".s" -type "double3" 1.0000000000000002 1 1.0000000000000004 ;
 createNode transform -n "L_FK_Foot_Ctrl_01" -p "L_FK_Foot_Grp_01";
 	rename -uid "289DAC87-40E5-E9D2-B186-BFA233D51504";
+	setAttr -l on -k off ".v";
+	setAttr -l on -k off ".tx";
+	setAttr -l on -k off ".ty";
+	setAttr -l on -k off ".tz";
+	setAttr -l on -k off ".sx";
+	setAttr -l on -k off ".sy";
+	setAttr -l on -k off ".sz";
 	setAttr ".rp" -type "double3" -2.6450612143680274e-05 1.0016690970005016e-05 2.4701462137954877e-06 ;
 	setAttr ".sp" -type "double3" -2.6450612143680274e-05 1.0016690970005016e-05 2.4701462137954877e-06 ;
 createNode nurbsCurve -n "nurbsCircleShape2" -p "L_FK_Foot_Ctrl_01";
@@ -6764,15 +6822,20 @@ createNode nurbsCurve -n "nurbsCircleShape3" -p "L_FK_Foot_Ctrl_01";
 		-0.22845712392765538 3.4925438405883904 -21.421211283352548
 		;
 createNode transform -n "L_FK_Toe_Grp_01" -p "L_FK_Foot_Ctrl_01";
-	rename -uid "7959FF95-4EBE-CB92-CA60-DCAF47E9159B";
-	setAttr ".t" -type "double3" 15.057060361435058 -1.0658141036401503e-14 1.4210854715202004e-14 ;
-	setAttr ".r" -type "double3" 0 90.459962895197577 0.92579504117060818 ;
-	setAttr ".s" -type "double3" 0.99999999999999989 1.0000000000000002 0.99999999999999989 ;
+	rename -uid "DCCC828E-4C5E-F324-BEA4-BDA7BCFCFBCA";
+	setAttr ".t" -type "double3" 15.050363974275776 0.014732236856561443 0.01086913118781041 ;
+	setAttr ".s" -type "double3" 0.99999999999999911 0.99999999999999978 1.0000000000000002 ;
 createNode transform -n "L_FK_Toe_Ctrl_01" -p "L_FK_Toe_Grp_01";
 	rename -uid "61DD856D-4AFC-0DC4-E874-48BC58E7F8A2";
 	setAttr -l on -k off ".v";
-	setAttr ".rp" -type "double3" -4.9784284783527255e-07 6.5999046139353368e-07 -2.6689518374922727e-05 ;
-	setAttr ".sp" -type "double3" -4.9784284783527255e-07 6.5999046139353368e-07 -2.6689518374922727e-05 ;
+	setAttr -l on -k off ".tx";
+	setAttr -l on -k off ".ty";
+	setAttr -l on -k off ".tz";
+	setAttr -l on -k off ".sx";
+	setAttr -l on -k off ".sy";
+	setAttr -l on -k off ".sz";
+	setAttr ".rp" -type "double3" -0.0022829665655379472 -0.014731225026281436 -0.010869037848316054 ;
+	setAttr ".sp" -type "double3" -0.0022829665655379472 -0.014731225026281436 -0.010869037848316054 ;
 createNode nurbsCurve -n "L_FK_Toe_Ctrl_Shape1" -p "L_FK_Toe_Ctrl_01";
 	rename -uid "C578672C-4A57-92C0-094C-D59CB625BAA9";
 	setAttr -k off ".v";
@@ -6780,17 +6843,17 @@ createNode nurbsCurve -n "L_FK_Toe_Ctrl_Shape1" -p "L_FK_Toe_Ctrl_01";
 		3 8 2 no 3
 		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
 		11
-		13.554268739828494 9.4126131888667501 20.601858258866429
-		0.023923098281265709 17.744527062964057 20.601858714994876
-		-13.506502751300246 9.4123907463070786 20.601858396515681
-		-14.327847231681197 -4.8911628615953529 20.601857735810633
-		-10.124342934791386 -4.8911057994522515 20.601857714429848
-		0.02381414778624702 -4.891067398217289 20.601857662807397
-		10.171971230795108 -4.8909389614814867 20.601857611189153
-		14.375475527469327 -4.8909269170886773 20.601857589806265
-		13.554268739828494 9.4126131888667501 20.601858258866429
-		0.023923098281265709 17.744527062964057 20.601858714994876
-		-13.506502751300246 9.4123907463070786 20.601858396515681
+		20.335368343958862 9.7277580541740498 -13.730088929253203
+		20.309350632402662 18.06033928653191 -0.20017928173691132
+		20.552581657286847 9.7310456580614328 13.329810577447487
+		20.790282927133639 -4.5705342332285532 14.151128596825307
+		20.756541578043883 -4.5710224095994381 9.9477597502603743
+		20.675084360847073 -4.5723003176093231 -0.20007032630589053
+		20.593625688905231 -4.5734882018716281 -10.347900403303404
+		20.559885067187988 -4.574021390116175 -14.551269249652735
+		20.335368343958862 9.7277580541740498 -13.730088929253203
+		20.309350632402662 18.06033928653191 -0.20017928173691132
+		20.552581657286847 9.7310456580614328 13.329810577447487
 		;
 createNode transform -n "Spine_Pivot_Grp_02" -p "Waist_Ctrl_01";
 	rename -uid "0049B156-4063-82F0-8E21-7E8999C210C9";
@@ -7933,7 +7996,6 @@ createNode transform -n "FK_Tail_Grp_01" -p "Waist_Ctrl_01";
 	setAttr ".t" -type "double3" 0 6.7866713338361819 -34.607699763993139 ;
 createNode transform -n "FK_Tail_Ctrl_01" -p "FK_Tail_Grp_01";
 	rename -uid "59F78318-4943-090C-00A7-2891CBB5EB47";
-	setAttr ".r" -type "double3" 0.5232884981995376 0.13577774195040837 0.14079097567250884 ;
 	setAttr ".rp" -type "double3" 0 -6.4902172880465514e-07 -5.8390724433365904e-07 ;
 	setAttr ".sp" -type "double3" 1.5777218104420236e-30 -6.4902172880465514e-07 -5.8390725143908639e-07 ;
 createNode nurbsCurve -n "FK_Tail_Ctrl_Shape1" -p "FK_Tail_Ctrl_01";
@@ -12620,7 +12682,7 @@ createNode mesh -n "R_Arm_MeshShapeOrig" -p "R_Arm_Mesh";
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 	setAttr ".ai_translator" -type "string" "polymesh";
 createNode fosterParent -n "NPC_Base_04RNfosterParent1";
-	rename -uid "72A74200-4142-0DC5-959D-338C2B6510F7";
+	rename -uid "97DDB95B-4299-F379-126D-4A9E90FACE63";
 createNode orientConstraint -n "Master_Dock_joint_01_orientConstraint1" -p "NPC_Base_04RNfosterParent1";
 	rename -uid "EE61FF95-4F97-9F4E-EF93-CFB1A9B7430E";
 	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "FK_Dock_joint_01W0" -dv 1 -min 0 
@@ -12772,7 +12834,6 @@ createNode orientConstraint -n "Tail_Joint_01_orientConstraint1" -p "NPC_Base_04
 	setAttr -k off ".sy";
 	setAttr -k off ".sz";
 	setAttr ".erp" yes;
-	setAttr ".lr" -type "double3" 0.5232884981995376 0.13577774195040843 0.14079097567250889 ;
 	setAttr -k on ".w0";
 createNode orientConstraint -n "R_Leg_joint_01_orientConstraint1" -p "NPC_Base_04RNfosterParent1";
 	rename -uid "B4989585-4350-0365-D6B1-1A892486BABA";
@@ -16102,23 +16163,23 @@ createNode scaleConstraint -n "L_Toe_joint_01_scaleConstraint1" -p "NPC_Base_04R
 	setAttr ".erp" yes;
 	setAttr -k on ".w0";
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "1C30955B-440B-EE45-A6E0-03A248A05A62";
+	rename -uid "DACE27EC-42CD-D9A8-570D-6696F8D467B6";
 	setAttr -s 5 ".lnk";
 	setAttr -s 5 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "9EEBED4D-41D9-E7F3-14F7-BBA5DBE9A588";
+	rename -uid "71F46B95-46A9-3B8F-C644-E787138EA7FD";
 	setAttr ".bsdt[0].bscd" -type "Int32Array" 1 0 ;
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "0CB66AB7-460C-C7CC-07FE-C5AC6BB9B5E1";
+	rename -uid "BF30DD81-4FC2-1D79-3372-C3BE312718BC";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "76154932-4BD6-58CD-D944-50B1682449F2";
+	rename -uid "3B320065-4353-DBFA-CD7D-859DE849BDC1";
 	setAttr ".cdl" 5;
 	setAttr -s 6 ".dli[1:5]"  1 2 3 4 5;
 	setAttr -s 4 ".dli";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "A5A2D118-4890-3798-87D1-E3A187CE2363";
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "7CA69ACC-4234-90D5-3C16-138CBEFA7E9B";
+	rename -uid "4AD97DC5-4376-F7D4-5455-F5B4D4ADFFF1";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "8544316C-483A-5019-0647-14927E8C6261";
 	setAttr ".g" yes;
@@ -16128,17 +16189,17 @@ createNode script -n "uiConfigurationScriptNode";
 		"// Maya Mel UI Configuration File.\n//\n//  This script is machine generated.  Edit at your own risk.\n//\n//\n\nglobal string $gMainPane;\nif (`paneLayout -exists $gMainPane`) {\n\n\tglobal int $gUseScenePanelConfig;\n\tint    $useSceneConfig = $gUseScenePanelConfig;\n\tint    $nodeEditorPanelVisible = stringArrayContains(\"nodeEditorPanel1\", `getPanel -vis`);\n\tint    $nodeEditorWorkspaceControlOpen = (`workspaceControl -exists nodeEditorPanel1Window` && `workspaceControl -q -visible nodeEditorPanel1Window`);\n\tint    $menusOkayInPanels = `optionVar -q allowMenusInPanels`;\n\tint    $nVisPanes = `paneLayout -q -nvp $gMainPane`;\n\tint    $nPanes = 0;\n\tstring $editorName;\n\tstring $panelName;\n\tstring $itemFilterName;\n\tstring $panelConfig;\n\n\t//\n\t//  get current state of the UI\n\t//\n\tsceneUIReplacement -update $gMainPane;\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Top View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Top View\")) -mbv $menusOkayInPanels  $panelName;\n"
 		+ "\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"top\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"wireframe\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 1\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n"
 		+ "            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n"
-		+ "            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 762\n            -height 503\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n"
+		+ "            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1\n            -height 1\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n"
 		+ "\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Side View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Side View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"side\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"wireframe\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 1\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n"
 		+ "            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n"
-		+ "            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 761\n            -height 502\n"
+		+ "            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1\n            -height 1\n"
 		+ "            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Front View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Front View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"front\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"wireframe\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n"
 		+ "            -xray 0\n            -jointXray 1\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n"
 		+ "            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n"
-		+ "            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 762\n            -height 502\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Persp View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Persp View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"persp\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n"
+		+ "            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1\n            -height 1\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Persp View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Persp View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"persp\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n"
 		+ "            -wireframeOnShaded 1\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 1\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n"
 		+ "            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 0\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n"
-		+ "            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1734\n            -height 1053\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"ToggledOutliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\toutlinerPanel -edit -l (localizedPanelLabel(\"ToggledOutliner\")) -mbv $menusOkayInPanels  $panelName;\n"
+		+ "            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 2064\n            -height 1053\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"ToggledOutliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\toutlinerPanel -edit -l (localizedPanelLabel(\"ToggledOutliner\")) -mbv $menusOkayInPanels  $panelName;\n"
 		+ "\t\t$editorName = $panelName;\n        outlinerEditor -e \n            -showShapes 0\n            -showAssignedMaterials 0\n            -showTimeEditor 1\n            -showReferenceNodes 1\n            -showReferenceMembers 1\n            -showAttributes 0\n            -showConnected 0\n            -showAnimCurvesOnly 0\n            -showMuteInfo 0\n            -organizeByLayer 1\n            -organizeByClip 1\n            -showAnimLayerWeight 1\n            -autoExpandLayers 1\n            -autoExpand 0\n            -showDagOnly 1\n            -showAssets 1\n            -showContainedOnly 1\n            -showPublishedAsConnected 0\n            -showParentContainers 0\n            -showContainerContents 1\n            -ignoreDagHierarchy 0\n            -expandConnections 0\n            -showUpstreamCurves 1\n            -showUnitlessCurves 1\n            -showCompounds 1\n            -showLeafs 1\n            -showNumericAttrsOnly 0\n            -highlightActive 1\n            -autoSelectNewObjects 0\n            -doNotSelectNewObjects 0\n            -dropIsParent 1\n"
 		+ "            -transmitFilters 0\n            -setFilter \"defaultSetFilter\" \n            -showSetMembers 1\n            -allowMultiSelection 1\n            -alwaysToggleSelect 0\n            -directSelect 0\n            -isSet 0\n            -isSetMember 0\n            -displayMode \"DAG\" \n            -expandObjects 0\n            -setsIgnoreFilters 1\n            -containersIgnoreFilters 0\n            -editAttrName 0\n            -showAttrValues 0\n            -highlightSecondary 0\n            -showUVAttrsOnly 0\n            -showTextureNodesOnly 0\n            -attrAlphaOrder \"default\" \n            -animLayerFilterOptions \"allAffecting\" \n            -sortOrder \"none\" \n            -longNames 0\n            -niceNames 1\n            -showNamespace 1\n            -showPinIcons 0\n            -mapMotionTrails 0\n            -ignoreHiddenAttribute 1\n            -ignoreOutlinerColor 0\n            -renderFilterVisible 0\n            -renderFilterIndex 0\n            -selectionOrder \"chronological\" \n            -expandAttribute 0\n            $editorName;\n"
 		+ "\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"Outliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\toutlinerPanel -edit -l (localizedPanelLabel(\"Outliner\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        outlinerEditor -e \n            -docTag \"isolOutln_fromSeln\" \n            -showShapes 0\n            -showAssignedMaterials 0\n            -showTimeEditor 1\n            -showReferenceNodes 0\n            -showReferenceMembers 0\n            -showAttributes 0\n            -showConnected 0\n            -showAnimCurvesOnly 0\n            -showMuteInfo 0\n            -organizeByLayer 1\n            -organizeByClip 1\n            -showAnimLayerWeight 1\n            -autoExpandLayers 1\n            -autoExpand 0\n            -showDagOnly 1\n            -showAssets 1\n            -showContainedOnly 1\n            -showPublishedAsConnected 0\n            -showParentContainers 0\n"
@@ -16154,20 +16215,20 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"sequenceEditorPanel\" (localizedPanelLabel(\"Camera Sequencer\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Camera Sequencer\")) -mbv $menusOkayInPanels  $panelName;\n\n\t\t\t$editorName = sequenceEditorNameFromPanel($panelName);\n            clipEditor -e \n                -displayKeys 0\n                -displayTangents 0\n                -displayActiveKeys 0\n                -displayActiveKeyTangents 0\n                -displayInfinities 0\n                -displayValues 0\n                -autoFit 0\n                -autoFitTime 0\n                -snapTime \"none\" \n                -snapValue \"none\" \n                -initialized 0\n                -manageSequencer 1 \n                $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"hyperGraphPanel\" (localizedPanelLabel(\"Hypergraph Hierarchy\")) `;\n"
 		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Hypergraph Hierarchy\")) -mbv $menusOkayInPanels  $panelName;\n\n\t\t\t$editorName = ($panelName+\"HyperGraphEd\");\n            hyperGraph -e \n                -graphLayoutStyle \"hierarchicalLayout\" \n                -orientation \"horiz\" \n                -mergeConnections 0\n                -zoom 1\n                -animateTransition 0\n                -showRelationships 1\n                -showShapes 0\n                -showDeformers 0\n                -showExpressions 0\n                -showConstraints 0\n                -showConnectionFromSelected 0\n                -showConnectionToSelected 0\n                -showConstraintLabels 0\n                -showUnderworld 0\n                -showInvisible 0\n                -transitionFrames 1\n                -opaqueContainers 0\n                -freeform 0\n                -imagePosition 0 0 \n                -imageScale 1\n                -imageEnabled 0\n                -graphType \"DAG\" \n"
 		+ "                -heatMapDisplay 0\n                -updateSelection 1\n                -updateNodeAdded 1\n                -useDrawOverrideColor 0\n                -limitGraphTraversal -1\n                -range 0 0 \n                -iconSize \"smallIcons\" \n                -showCachedConnections 0\n                $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"hyperShadePanel\" (localizedPanelLabel(\"Hypershade\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Hypershade\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"visorPanel\" (localizedPanelLabel(\"Visor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Visor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n"
-		+ "\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"nodeEditorPanel\" (localizedPanelLabel(\"Node Editor\")) `;\n\tif ($nodeEditorPanelVisible || $nodeEditorWorkspaceControlOpen) {\n\t\tif (\"\" == $panelName) {\n\t\t\tif ($useSceneConfig) {\n\t\t\t\t$panelName = `scriptedPanel -unParent  -type \"nodeEditorPanel\" -l (localizedPanelLabel(\"Node Editor\")) -mbv $menusOkayInPanels `;\n\n\t\t\t$editorName = ($panelName+\"NodeEditorEd\");\n            nodeEditor -e \n                -allAttributes 0\n                -allNodes 0\n                -autoSizeNodes 1\n                -consistentNameSize 1\n                -createNodeCommand \"nodeEdCreateNodeCommand\" \n                -connectNodeOnCreation 0\n                -connectOnDrop 0\n                -copyConnectionsOnPaste 0\n                -connectionStyle \"bezier\" \n                -connectionMinSegment 0.03\n                -connectionOffset 0.03\n                -connectionRoundness 0.8\n                -connectionTension -100\n                -defaultPinnedState 0\n"
-		+ "                -additiveGraphingMode 0\n                -settingsChangedCallback \"nodeEdSyncControls\" \n                -traversalDepthLimit -1\n                -keyPressCommand \"nodeEdKeyPressCommand\" \n                -nodeTitleMode \"name\" \n                -gridSnap 0\n                -gridVisibility 1\n                -crosshairOnEdgeDragging 0\n                -popupMenuScript \"nodeEdBuildPanelMenus\" \n                -showNamespace 1\n                -showShapes 1\n                -showSGShapes 0\n                -showTransforms 1\n                -useAssets 1\n                -syncedSelection 1\n                -extendToShapes 1\n                -editorMode \"default\" \n                -hasWatchpoint 0\n                $editorName;\n\t\t\t}\n\t\t} else {\n\t\t\t$label = `panel -q -label $panelName`;\n\t\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Node Editor\")) -mbv $menusOkayInPanels  $panelName;\n\n\t\t\t$editorName = ($panelName+\"NodeEditorEd\");\n            nodeEditor -e \n                -allAttributes 0\n                -allNodes 0\n                -autoSizeNodes 1\n"
-		+ "                -consistentNameSize 1\n                -createNodeCommand \"nodeEdCreateNodeCommand\" \n                -connectNodeOnCreation 0\n                -connectOnDrop 0\n                -copyConnectionsOnPaste 0\n                -connectionStyle \"bezier\" \n                -connectionMinSegment 0.03\n                -connectionOffset 0.03\n                -connectionRoundness 0.8\n                -connectionTension -100\n                -defaultPinnedState 0\n                -additiveGraphingMode 0\n                -settingsChangedCallback \"nodeEdSyncControls\" \n                -traversalDepthLimit -1\n                -keyPressCommand \"nodeEdKeyPressCommand\" \n                -nodeTitleMode \"name\" \n                -gridSnap 0\n                -gridVisibility 1\n                -crosshairOnEdgeDragging 0\n                -popupMenuScript \"nodeEdBuildPanelMenus\" \n                -showNamespace 1\n                -showShapes 1\n                -showSGShapes 0\n                -showTransforms 1\n                -useAssets 1\n                -syncedSelection 1\n"
-		+ "                -extendToShapes 1\n                -editorMode \"default\" \n                -hasWatchpoint 0\n                $editorName;\n\t\t\tif (!$useSceneConfig) {\n\t\t\t\tpanel -e -l $label $panelName;\n\t\t\t}\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"createNodePanel\" (localizedPanelLabel(\"Create Node\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Create Node\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"polyTexturePlacementPanel\" (localizedPanelLabel(\"UV Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"UV Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"renderWindowPanel\" (localizedPanelLabel(\"Render View\")) `;\n"
-		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Render View\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"shapePanel\" (localizedPanelLabel(\"Shape Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tshapePanel -edit -l (localizedPanelLabel(\"Shape Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"posePanel\" (localizedPanelLabel(\"Pose Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tposePanel -edit -l (localizedPanelLabel(\"Pose Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynRelEdPanel\" (localizedPanelLabel(\"Dynamic Relationships\")) `;\n\tif (\"\" != $panelName) {\n"
-		+ "\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Dynamic Relationships\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"relationshipPanel\" (localizedPanelLabel(\"Relationship Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Relationship Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"referenceEditorPanel\" (localizedPanelLabel(\"Reference Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Reference Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"componentEditorPanel\" (localizedPanelLabel(\"Component Editor\")) `;\n"
-		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Component Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynPaintScriptedPanelType\" (localizedPanelLabel(\"Paint Effects\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Paint Effects\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"scriptEditorPanel\" (localizedPanelLabel(\"Script Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Script Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"profilerPanel\" (localizedPanelLabel(\"Profiler Tool\")) `;\n"
-		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Profiler Tool\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"contentBrowserPanel\" (localizedPanelLabel(\"Content Browser\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Content Browser\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"Stereo\" (localizedPanelLabel(\"Stereo\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Stereo\")) -mbv $menusOkayInPanels  $panelName;\n{ string $editorName = ($panelName+\"Editor\");\n            stereoCameraView -e \n                -editorChanged \"updateModelPanelBar\" \n                -camera \"persp\" \n                -useInteractiveMode 0\n"
-		+ "                -displayLights \"default\" \n                -displayAppearance \"smoothShaded\" \n                -activeOnly 0\n                -ignorePanZoom 0\n                -wireframeOnShaded 0\n                -headsUpDisplay 1\n                -holdOuts 1\n                -selectionHiliteDisplay 1\n                -useDefaultMaterial 0\n                -bufferMode \"double\" \n                -twoSidedLighting 0\n                -backfaceCulling 0\n                -xray 0\n                -jointXray 0\n                -activeComponentsXray 0\n                -displayTextures 0\n                -smoothWireframe 0\n                -lineWidth 1\n                -textureAnisotropic 0\n                -textureHilight 1\n                -textureSampling 2\n                -textureDisplay \"modulate\" \n                -textureMaxSize 32768\n                -fogging 0\n                -fogSource \"fragment\" \n                -fogMode \"linear\" \n                -fogStart 0\n                -fogEnd 100\n                -fogDensity 0.1\n                -fogColor 0.5 0.5 0.5 1 \n"
-		+ "                -depthOfFieldPreview 1\n                -maxConstantTransparency 1\n                -objectFilterShowInHUD 1\n                -isFiltered 0\n                -colorResolution 4 4 \n                -bumpResolution 4 4 \n                -textureCompression 0\n                -transparencyAlgorithm \"frontAndBackCull\" \n                -transpInShadows 0\n                -cullingOverride \"none\" \n                -lowQualityLighting 0\n                -maximumNumHardwareLights 0\n                -occlusionCulling 0\n                -shadingModel 0\n                -useBaseRenderer 0\n                -useReducedRenderer 0\n                -smallObjectCulling 0\n                -smallObjectThreshold -1 \n                -interactiveDisableShadows 0\n                -interactiveBackFaceCull 0\n                -sortTransparent 1\n                -controllers 1\n                -nurbsCurves 1\n                -nurbsSurfaces 1\n                -polymeshes 1\n                -subdivSurfaces 1\n                -planes 1\n                -lights 1\n"
-		+ "                -cameras 1\n                -controlVertices 1\n                -hulls 1\n                -grid 1\n                -imagePlane 1\n                -joints 1\n                -ikHandles 1\n                -deformers 1\n                -dynamics 1\n                -particleInstancers 1\n                -fluids 1\n                -hairSystems 1\n                -follicles 1\n                -nCloths 1\n                -nParticles 1\n                -nRigids 1\n                -dynamicConstraints 1\n                -locators 1\n                -manipulators 1\n                -pluginShapes 1\n                -dimensions 1\n                -handles 1\n                -pivots 1\n                -textures 1\n                -strokes 1\n                -motionTrails 1\n                -clipGhosts 1\n                -greasePencils 1\n                -shadows 0\n                -captureSequenceNumber -1\n                -width 0\n                -height 0\n                -sceneRenderFilter 0\n                -displayMode \"centerEye\" \n                -viewColor 0 0 0 1 \n"
-		+ "                -useCustomBackground 1\n                $editorName;\n            stereoCameraView -e -viewSelected 0 $editorName;\n            stereoCameraView -e \n                -pluginObjects \"gpuCacheDisplayFilter\" 1 \n                $editorName; };\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-userCreated false\n\t\t\t\t-defaultImage \"vacantCell.xP:/\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"single\\\" -ps 1 100 100 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
-		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 1\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 1\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 0\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1734\\n    -height 1053\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
-		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 1\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 1\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 0\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1734\\n    -height 1053\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
+		+ "\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"nodeEditorPanel\" (localizedPanelLabel(\"Node Editor\")) `;\n\tif ($nodeEditorPanelVisible || $nodeEditorWorkspaceControlOpen) {\n\t\tif (\"\" == $panelName) {\n\t\t\tif ($useSceneConfig) {\n\t\t\t\t$panelName = `scriptedPanel -unParent  -type \"nodeEditorPanel\" -l (localizedPanelLabel(\"Node Editor\")) -mbv $menusOkayInPanels `;\n\n\t\t\t$editorName = ($panelName+\"NodeEditorEd\");\n            nodeEditor -e \n                -allAttributes 0\n                -allNodes 0\n                -autoSizeNodes 1\n                -consistentNameSize 1\n                -createNodeCommand \"nodeEdCreateNodeCommand\" \n                -connectNodeOnCreation 0\n                -connectOnDrop 0\n                -copyConnectionsOnPaste 0\n                -connectionStyle \"bezier\" \n                -defaultPinnedState 0\n                -additiveGraphingMode 0\n                -settingsChangedCallback \"nodeEdSyncControls\" \n                -traversalDepthLimit -1\n                -keyPressCommand \"nodeEdKeyPressCommand\" \n"
+		+ "                -nodeTitleMode \"name\" \n                -gridSnap 0\n                -gridVisibility 1\n                -crosshairOnEdgeDragging 0\n                -popupMenuScript \"nodeEdBuildPanelMenus\" \n                -showNamespace 1\n                -showShapes 1\n                -showSGShapes 0\n                -showTransforms 1\n                -useAssets 1\n                -syncedSelection 1\n                -extendToShapes 1\n                -editorMode \"default\" \n                -hasWatchpoint 0\n                $editorName;\n\t\t\t}\n\t\t} else {\n\t\t\t$label = `panel -q -label $panelName`;\n\t\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Node Editor\")) -mbv $menusOkayInPanels  $panelName;\n\n\t\t\t$editorName = ($panelName+\"NodeEditorEd\");\n            nodeEditor -e \n                -allAttributes 0\n                -allNodes 0\n                -autoSizeNodes 1\n                -consistentNameSize 1\n                -createNodeCommand \"nodeEdCreateNodeCommand\" \n                -connectNodeOnCreation 0\n                -connectOnDrop 0\n"
+		+ "                -copyConnectionsOnPaste 0\n                -connectionStyle \"bezier\" \n                -defaultPinnedState 0\n                -additiveGraphingMode 0\n                -settingsChangedCallback \"nodeEdSyncControls\" \n                -traversalDepthLimit -1\n                -keyPressCommand \"nodeEdKeyPressCommand\" \n                -nodeTitleMode \"name\" \n                -gridSnap 0\n                -gridVisibility 1\n                -crosshairOnEdgeDragging 0\n                -popupMenuScript \"nodeEdBuildPanelMenus\" \n                -showNamespace 1\n                -showShapes 1\n                -showSGShapes 0\n                -showTransforms 1\n                -useAssets 1\n                -syncedSelection 1\n                -extendToShapes 1\n                -editorMode \"default\" \n                -hasWatchpoint 0\n                $editorName;\n\t\t\tif (!$useSceneConfig) {\n\t\t\t\tpanel -e -l $label $panelName;\n\t\t\t}\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"createNodePanel\" (localizedPanelLabel(\"Create Node\")) `;\n"
+		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Create Node\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"polyTexturePlacementPanel\" (localizedPanelLabel(\"UV Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"UV Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"renderWindowPanel\" (localizedPanelLabel(\"Render View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Render View\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"shapePanel\" (localizedPanelLabel(\"Shape Editor\")) `;\n"
+		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tshapePanel -edit -l (localizedPanelLabel(\"Shape Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"posePanel\" (localizedPanelLabel(\"Pose Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tposePanel -edit -l (localizedPanelLabel(\"Pose Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynRelEdPanel\" (localizedPanelLabel(\"Dynamic Relationships\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Dynamic Relationships\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"relationshipPanel\" (localizedPanelLabel(\"Relationship Editor\")) `;\n"
+		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Relationship Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"referenceEditorPanel\" (localizedPanelLabel(\"Reference Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Reference Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"componentEditorPanel\" (localizedPanelLabel(\"Component Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Component Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynPaintScriptedPanelType\" (localizedPanelLabel(\"Paint Effects\")) `;\n"
+		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Paint Effects\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"scriptEditorPanel\" (localizedPanelLabel(\"Script Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Script Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"profilerPanel\" (localizedPanelLabel(\"Profiler Tool\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Profiler Tool\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"contentBrowserPanel\" (localizedPanelLabel(\"Content Browser\")) `;\n"
+		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Content Browser\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"Stereo\" (localizedPanelLabel(\"Stereo\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Stereo\")) -mbv $menusOkayInPanels  $panelName;\n{ string $editorName = ($panelName+\"Editor\");\n            stereoCameraView -e \n                -editorChanged \"updateModelPanelBar\" \n                -camera \"persp\" \n                -useInteractiveMode 0\n                -displayLights \"default\" \n                -displayAppearance \"smoothShaded\" \n                -activeOnly 0\n                -ignorePanZoom 0\n                -wireframeOnShaded 0\n                -headsUpDisplay 1\n                -holdOuts 1\n                -selectionHiliteDisplay 1\n                -useDefaultMaterial 0\n"
+		+ "                -bufferMode \"double\" \n                -twoSidedLighting 0\n                -backfaceCulling 0\n                -xray 0\n                -jointXray 0\n                -activeComponentsXray 0\n                -displayTextures 0\n                -smoothWireframe 0\n                -lineWidth 1\n                -textureAnisotropic 0\n                -textureHilight 1\n                -textureSampling 2\n                -textureDisplay \"modulate\" \n                -textureMaxSize 32768\n                -fogging 0\n                -fogSource \"fragment\" \n                -fogMode \"linear\" \n                -fogStart 0\n                -fogEnd 100\n                -fogDensity 0.1\n                -fogColor 0.5 0.5 0.5 1 \n                -depthOfFieldPreview 1\n                -maxConstantTransparency 1\n                -objectFilterShowInHUD 1\n                -isFiltered 0\n                -colorResolution 4 4 \n                -bumpResolution 4 4 \n                -textureCompression 0\n                -transparencyAlgorithm \"frontAndBackCull\" \n"
+		+ "                -transpInShadows 0\n                -cullingOverride \"none\" \n                -lowQualityLighting 0\n                -maximumNumHardwareLights 0\n                -occlusionCulling 0\n                -shadingModel 0\n                -useBaseRenderer 0\n                -useReducedRenderer 0\n                -smallObjectCulling 0\n                -smallObjectThreshold -1 \n                -interactiveDisableShadows 0\n                -interactiveBackFaceCull 0\n                -sortTransparent 1\n                -controllers 1\n                -nurbsCurves 1\n                -nurbsSurfaces 1\n                -polymeshes 1\n                -subdivSurfaces 1\n                -planes 1\n                -lights 1\n                -cameras 1\n                -controlVertices 1\n                -hulls 1\n                -grid 1\n                -imagePlane 1\n                -joints 1\n                -ikHandles 1\n                -deformers 1\n                -dynamics 1\n                -particleInstancers 1\n                -fluids 1\n"
+		+ "                -hairSystems 1\n                -follicles 1\n                -nCloths 1\n                -nParticles 1\n                -nRigids 1\n                -dynamicConstraints 1\n                -locators 1\n                -manipulators 1\n                -pluginShapes 1\n                -dimensions 1\n                -handles 1\n                -pivots 1\n                -textures 1\n                -strokes 1\n                -motionTrails 1\n                -clipGhosts 1\n                -greasePencils 1\n                -shadows 0\n                -captureSequenceNumber -1\n                -width 0\n                -height 0\n                -sceneRenderFilter 0\n                -displayMode \"centerEye\" \n                -viewColor 0 0 0 1 \n                -useCustomBackground 1\n                $editorName;\n            stereoCameraView -e -viewSelected 0 $editorName;\n            stereoCameraView -e \n                -pluginObjects \"gpuCacheDisplayFilter\" 1 \n                $editorName; };\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n"
+		+ "\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-userCreated false\n\t\t\t\t-defaultImage \"vacantCell.xP:/\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"single\\\" -ps 1 100 100 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
+		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 1\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 1\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 0\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 2064\\n    -height 1053\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
+		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 1\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 1\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 0\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 2064\\n    -height 1053\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
 		+ "\t\t\t\t$configName;\n\n            setNamedPanelLayout (localizedPanelLabel(\"Current Layout\"));\n        }\n\n        panelHistory -e -clear mainPanelHistory;\n        sceneUIReplacement -clear;\n\t}\n\n\ngrid -spacing 5 -size 120 -divisions 5 -displayAxes yes -displayGridLines yes -displayDivisionLines yes -displayPerspectiveLabels yes -displayOrthographicLabels no -displayAxesBold yes -perspectiveLabelPosition edge -orthographicLabelPosition axis;\nviewManip -drawCompass 0 -compassAngle 0 -frontParameters \"\" -homeParameters \"\" -selectionLockParameters \"\";\n}\n");
 	setAttr ".st" 3;
 createNode script -n "sceneConfigurationScriptNode";
@@ -23594,9 +23655,9 @@ connectAttr "Master_Dock_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[20]"
 connectAttr "NPC_SkinSkel.di" "NPC_Base_04RN.phl[21]";
 connectAttr "NPC_Base_04RN.phl[22]" "Master_Dock_joint_01_orientConstraint1.cro"
 		;
-connectAttr "NPC_Base_04RN.phl[23]" "Master_Dock_joint_01_pointConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[23]" "Master_Dock_joint_01_orientConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[24]" "Master_Dock_joint_01_orientConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[24]" "Master_Dock_joint_01_pointConstraint1.cpim"
 		;
 connectAttr "NPC_Base_04RN.phl[25]" "Master_Dock_joint_01_scaleConstraint1.cpim"
 		;
@@ -23620,8 +23681,8 @@ connectAttr "NPC_Base_04RN.phl[41]" "Hip_Joint_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[42]" "Hip_Joint_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[43]" "Hip_Joint_pointConstraint1.crp";
 connectAttr "NPC_Base_04RN.phl[44]" "Hip_Joint_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[45]" "Hip_Joint_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[46]" "Hip_Joint_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[45]" "Hip_Joint_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[46]" "Hip_Joint_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[47]" "Hip_Joint_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[48]" "L_Leg_joint_01_orientConstraint1.is";
 connectAttr "L_Leg_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[49]";
@@ -23635,8 +23696,8 @@ connectAttr "L_Leg_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[56]";
 connectAttr "L_Leg_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[57]";
 connectAttr "L_Leg_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[58]";
 connectAttr "NPC_Base_04RN.phl[59]" "L_Leg_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[60]" "L_Leg_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[61]" "L_Leg_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[60]" "L_Leg_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[61]" "L_Leg_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[62]" "L_Leg_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[63]" "L_Leg_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[64]" "L_Leg_joint_01_pointConstraint1.crp";
@@ -23653,8 +23714,8 @@ connectAttr "L_Knee_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[74]";
 connectAttr "L_Knee_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[75]";
 connectAttr "NPC_Base_04RN.phl[76]" "L_Knee_joint_01_scaleConstraint1.tsc";
 connectAttr "NPC_Base_04RN.phl[77]" "L_Knee_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[78]" "L_Knee_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[79]" "L_Knee_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[78]" "L_Knee_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[79]" "L_Knee_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[80]" "L_Knee_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[81]" "L_Knee_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[82]" "L_Knee_joint_01_pointConstraint1.crp";
@@ -23671,8 +23732,8 @@ connectAttr "L_Ankle_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[92]";
 connectAttr "L_Ankle_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[93]";
 connectAttr "NPC_Base_04RN.phl[94]" "L_Ankle_joint_01_scaleConstraint1.tsc";
 connectAttr "NPC_Base_04RN.phl[95]" "L_Ankle_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[96]" "L_Ankle_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[97]" "L_Ankle_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[96]" "L_Ankle_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[97]" "L_Ankle_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[98]" "L_Ankle_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[99]" "L_Ankle_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[100]" "L_Ankle_joint_01_pointConstraint1.crp";
@@ -23689,8 +23750,8 @@ connectAttr "L_Foot_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[110]";
 connectAttr "L_Foot_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[111]";
 connectAttr "NPC_Base_04RN.phl[112]" "L_Foot_joint_01_scaleConstraint1.tsc";
 connectAttr "NPC_Base_04RN.phl[113]" "L_Foot_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[114]" "L_Foot_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[115]" "L_Foot_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[114]" "L_Foot_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[115]" "L_Foot_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[116]" "L_Foot_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[117]" "L_Foot_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[118]" "L_Foot_joint_01_pointConstraint1.crp";
@@ -23704,8 +23765,8 @@ connectAttr "L_Toe_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[125]";
 connectAttr "L_Toe_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[126]";
 connectAttr "NPC_Base_04RN.phl[127]" "L_Toe_joint_01_scaleConstraint1.tsc";
 connectAttr "NPC_Base_04RN.phl[128]" "L_Toe_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[129]" "L_Toe_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[130]" "L_Toe_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[129]" "L_Toe_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[130]" "L_Toe_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[131]" "L_Toe_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[132]" "L_Toe_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[133]" "L_Toe_joint_01_pointConstraint1.crp";
@@ -23722,8 +23783,8 @@ connectAttr "NPC_Base_04RN.phl[142]" "Spine_joint_01_scaleConstraint1.tsc";
 connectAttr "Spine_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[143]";
 connectAttr "Spine_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[144]";
 connectAttr "Spine_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[145]";
-connectAttr "NPC_Base_04RN.phl[146]" "Spine_joint_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[147]" "Spine_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[146]" "Spine_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[147]" "Spine_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[148]" "Spine_joint_01_pointConstraint1.crp";
 connectAttr "NPC_Base_04RN.phl[149]" "Spine_joint_01_pointConstraint1.crt";
 connectAttr "NPC_Base_04RN.phl[150]" "Chest_joint_01_orientConstraint1.is";
@@ -23740,8 +23801,8 @@ connectAttr "Chest_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[159]";
 connectAttr "Chest_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[160]";
 connectAttr "Chest_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[161]";
 connectAttr "NPC_Base_04RN.phl[162]" "Chest_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[163]" "Chest_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[164]" "Chest_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[163]" "Chest_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[164]" "Chest_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[165]" "Chest_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[166]" "Chest_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[167]" "Chest_joint_01_pointConstraint1.crp";
@@ -23762,9 +23823,9 @@ connectAttr "L_Clavical_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[179]"
 		;
 connectAttr "NPC_Base_04RN.phl[180]" "L_Clavical_joint_01_orientConstraint1.cro"
 		;
-connectAttr "NPC_Base_04RN.phl[181]" "L_Clavical_joint_01_pointConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[181]" "L_Clavical_joint_01_orientConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[182]" "L_Clavical_joint_01_orientConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[182]" "L_Clavical_joint_01_pointConstraint1.cpim"
 		;
 connectAttr "NPC_Base_04RN.phl[183]" "L_Clavical_joint_01_scaleConstraint1.cpim"
 		;
@@ -23788,9 +23849,9 @@ connectAttr "L_Shoulder_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[197]"
 		;
 connectAttr "NPC_Base_04RN.phl[198]" "L_Shoulder_joint_01_orientConstraint1.cro"
 		;
-connectAttr "NPC_Base_04RN.phl[199]" "L_Shoulder_joint_01_pointConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[199]" "L_Shoulder_joint_01_orientConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[200]" "L_Shoulder_joint_01_orientConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[200]" "L_Shoulder_joint_01_pointConstraint1.cpim"
 		;
 connectAttr "NPC_Base_04RN.phl[201]" "L_Shoulder_joint_01_scaleConstraint1.cpim"
 		;
@@ -23810,8 +23871,8 @@ connectAttr "L_Elbow_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[213]";
 connectAttr "L_Elbow_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[214]";
 connectAttr "L_Elbow_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[215]";
 connectAttr "NPC_Base_04RN.phl[216]" "L_Elbow_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[217]" "L_Elbow_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[218]" "L_Elbow_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[217]" "L_Elbow_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[218]" "L_Elbow_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[219]" "L_Elbow_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[220]" "L_Elbow_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[221]" "L_Elbow_joint_01_pointConstraint1.crp";
@@ -23828,8 +23889,8 @@ connectAttr "L_Wrist_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[231]";
 connectAttr "L_Wrist_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[232]";
 connectAttr "L_Wrist_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[233]";
 connectAttr "NPC_Base_04RN.phl[234]" "L_Wrist_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[235]" "L_Wrist_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[236]" "L_Wrist_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[235]" "L_Wrist_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[236]" "L_Wrist_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[237]" "L_Wrist_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[238]" "L_Wrist_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[239]" "L_Wrist_joint_01_pointConstraint1.crp";
@@ -23846,8 +23907,8 @@ connectAttr "L_Thumb_01_orientConstraint1.crx" "NPC_Base_04RN.phl[249]";
 connectAttr "L_Thumb_01_orientConstraint1.cry" "NPC_Base_04RN.phl[250]";
 connectAttr "L_Thumb_01_orientConstraint1.crz" "NPC_Base_04RN.phl[251]";
 connectAttr "NPC_Base_04RN.phl[252]" "L_Thumb_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[253]" "L_Thumb_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[254]" "L_Thumb_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[253]" "L_Thumb_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[254]" "L_Thumb_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[255]" "L_Thumb_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[256]" "L_Thumb_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[257]" "L_Thumb_01_pointConstraint1.crp";
@@ -23864,8 +23925,8 @@ connectAttr "L_Thumb_02_orientConstraint1.crx" "NPC_Base_04RN.phl[267]";
 connectAttr "L_Thumb_02_orientConstraint1.cry" "NPC_Base_04RN.phl[268]";
 connectAttr "L_Thumb_02_orientConstraint1.crz" "NPC_Base_04RN.phl[269]";
 connectAttr "NPC_Base_04RN.phl[270]" "L_Thumb_02_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[271]" "L_Thumb_02_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[272]" "L_Thumb_02_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[271]" "L_Thumb_02_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[272]" "L_Thumb_02_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[273]" "L_Thumb_02_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[274]" "L_Thumb_02_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[275]" "L_Thumb_02_pointConstraint1.crp";
@@ -23879,8 +23940,8 @@ connectAttr "L_Thumb_03_orientConstraint1.crx" "NPC_Base_04RN.phl[282]";
 connectAttr "L_Thumb_03_orientConstraint1.cry" "NPC_Base_04RN.phl[283]";
 connectAttr "L_Thumb_03_orientConstraint1.crz" "NPC_Base_04RN.phl[284]";
 connectAttr "NPC_Base_04RN.phl[285]" "L_Thumb_03_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[286]" "L_Thumb_03_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[287]" "L_Thumb_03_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[286]" "L_Thumb_03_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[287]" "L_Thumb_03_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[288]" "L_Thumb_03_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[289]" "L_Thumb_03_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[290]" "L_Thumb_03_pointConstraint1.crp";
@@ -23900,8 +23961,8 @@ connectAttr "L_Index_01_orientConstraint1.crx" "NPC_Base_04RN.phl[303]";
 connectAttr "L_Index_01_orientConstraint1.cry" "NPC_Base_04RN.phl[304]";
 connectAttr "L_Index_01_orientConstraint1.crz" "NPC_Base_04RN.phl[305]";
 connectAttr "NPC_Base_04RN.phl[306]" "L_Index_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[307]" "L_Index_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[308]" "L_Index_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[307]" "L_Index_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[308]" "L_Index_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[309]" "L_Index_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[310]" "L_Index_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[311]" "L_Index_01_pointConstraint1.crp";
@@ -23918,8 +23979,8 @@ connectAttr "L_Index_02_orientConstraint1.crx" "NPC_Base_04RN.phl[321]";
 connectAttr "L_Index_02_orientConstraint1.cry" "NPC_Base_04RN.phl[322]";
 connectAttr "L_Index_02_orientConstraint1.crz" "NPC_Base_04RN.phl[323]";
 connectAttr "NPC_Base_04RN.phl[324]" "L_Index_02_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[325]" "L_Index_02_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[326]" "L_Index_02_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[325]" "L_Index_02_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[326]" "L_Index_02_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[327]" "L_Index_02_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[328]" "L_Index_02_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[329]" "L_Index_02_pointConstraint1.crp";
@@ -23933,8 +23994,8 @@ connectAttr "L_Index_03_orientConstraint1.crx" "NPC_Base_04RN.phl[336]";
 connectAttr "L_Index_03_orientConstraint1.cry" "NPC_Base_04RN.phl[337]";
 connectAttr "L_Index_03_orientConstraint1.crz" "NPC_Base_04RN.phl[338]";
 connectAttr "NPC_Base_04RN.phl[339]" "L_Index_03_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[340]" "L_Index_03_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[341]" "L_Index_03_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[340]" "L_Index_03_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[341]" "L_Index_03_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[342]" "L_Index_03_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[343]" "L_Index_03_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[344]" "L_Index_03_pointConstraint1.crp";
@@ -23954,8 +24015,8 @@ connectAttr "L_Middle_01_orientConstraint1.crx" "NPC_Base_04RN.phl[357]";
 connectAttr "L_Middle_01_orientConstraint1.cry" "NPC_Base_04RN.phl[358]";
 connectAttr "L_Middle_01_orientConstraint1.crz" "NPC_Base_04RN.phl[359]";
 connectAttr "NPC_Base_04RN.phl[360]" "L_Middle_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[361]" "L_Middle_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[362]" "L_Middle_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[361]" "L_Middle_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[362]" "L_Middle_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[363]" "L_Middle_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[364]" "L_Middle_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[365]" "L_Middle_01_pointConstraint1.crp";
@@ -23972,8 +24033,8 @@ connectAttr "L_Middle_02_orientConstraint1.crx" "NPC_Base_04RN.phl[375]";
 connectAttr "L_Middle_02_orientConstraint1.cry" "NPC_Base_04RN.phl[376]";
 connectAttr "L_Middle_02_orientConstraint1.crz" "NPC_Base_04RN.phl[377]";
 connectAttr "NPC_Base_04RN.phl[378]" "L_Middle_02_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[379]" "L_Middle_02_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[380]" "L_Middle_02_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[379]" "L_Middle_02_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[380]" "L_Middle_02_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[381]" "L_Middle_02_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[382]" "L_Middle_02_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[383]" "L_Middle_02_pointConstraint1.crp";
@@ -23987,8 +24048,8 @@ connectAttr "L_Middle_03_orientConstraint1.crx" "NPC_Base_04RN.phl[390]";
 connectAttr "L_Middle_03_orientConstraint1.cry" "NPC_Base_04RN.phl[391]";
 connectAttr "L_Middle_03_orientConstraint1.crz" "NPC_Base_04RN.phl[392]";
 connectAttr "NPC_Base_04RN.phl[393]" "L_Middle_03_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[394]" "L_Middle_03_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[395]" "L_Middle_03_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[394]" "L_Middle_03_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[395]" "L_Middle_03_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[396]" "L_Middle_03_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[397]" "L_Middle_03_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[398]" "L_Middle_03_pointConstraint1.crp";
@@ -24008,8 +24069,8 @@ connectAttr "L_Pinky_01_orientConstraint1.crx" "NPC_Base_04RN.phl[411]";
 connectAttr "L_Pinky_01_orientConstraint1.cry" "NPC_Base_04RN.phl[412]";
 connectAttr "L_Pinky_01_orientConstraint1.crz" "NPC_Base_04RN.phl[413]";
 connectAttr "NPC_Base_04RN.phl[414]" "L_Pinky_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[415]" "L_Pinky_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[416]" "L_Pinky_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[415]" "L_Pinky_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[416]" "L_Pinky_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[417]" "L_Pinky_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[418]" "L_Pinky_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[419]" "L_Pinky_01_pointConstraint1.crp";
@@ -24026,8 +24087,8 @@ connectAttr "L_Pinky_02_orientConstraint1.crx" "NPC_Base_04RN.phl[429]";
 connectAttr "L_Pinky_02_orientConstraint1.cry" "NPC_Base_04RN.phl[430]";
 connectAttr "L_Pinky_02_orientConstraint1.crz" "NPC_Base_04RN.phl[431]";
 connectAttr "NPC_Base_04RN.phl[432]" "L_Pinky_02_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[433]" "L_Pinky_02_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[434]" "L_Pinky_02_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[433]" "L_Pinky_02_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[434]" "L_Pinky_02_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[435]" "L_Pinky_02_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[436]" "L_Pinky_02_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[437]" "L_Pinky_02_pointConstraint1.crp";
@@ -24041,8 +24102,8 @@ connectAttr "L_Pinky_03_orientConstraint1.crx" "NPC_Base_04RN.phl[444]";
 connectAttr "L_Pinky_03_orientConstraint1.cry" "NPC_Base_04RN.phl[445]";
 connectAttr "L_Pinky_03_orientConstraint1.crz" "NPC_Base_04RN.phl[446]";
 connectAttr "NPC_Base_04RN.phl[447]" "L_Pinky_03_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[448]" "L_Pinky_03_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[449]" "L_Pinky_03_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[448]" "L_Pinky_03_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[449]" "L_Pinky_03_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[450]" "L_Pinky_03_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[451]" "L_Pinky_03_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[452]" "L_Pinky_03_pointConstraint1.crp";
@@ -24066,9 +24127,9 @@ connectAttr "R_Clavical_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[467]"
 		;
 connectAttr "NPC_Base_04RN.phl[468]" "R_Clavical_joint_01_orientConstraint1.cro"
 		;
-connectAttr "NPC_Base_04RN.phl[469]" "R_Clavical_joint_01_pointConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[469]" "R_Clavical_joint_01_orientConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[470]" "R_Clavical_joint_01_orientConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[470]" "R_Clavical_joint_01_pointConstraint1.cpim"
 		;
 connectAttr "NPC_Base_04RN.phl[471]" "R_Clavical_joint_01_scaleConstraint1.cpim"
 		;
@@ -24092,9 +24153,9 @@ connectAttr "R_Shoulder_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[485]"
 		;
 connectAttr "NPC_Base_04RN.phl[486]" "R_Shoulder_joint_01_orientConstraint1.cro"
 		;
-connectAttr "NPC_Base_04RN.phl[487]" "R_Shoulder_joint_01_pointConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[487]" "R_Shoulder_joint_01_orientConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[488]" "R_Shoulder_joint_01_orientConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[488]" "R_Shoulder_joint_01_pointConstraint1.cpim"
 		;
 connectAttr "NPC_Base_04RN.phl[489]" "R_Shoulder_joint_01_scaleConstraint1.cpim"
 		;
@@ -24114,8 +24175,8 @@ connectAttr "R_Elbow_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[501]";
 connectAttr "R_Elbow_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[502]";
 connectAttr "R_Elbow_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[503]";
 connectAttr "NPC_Base_04RN.phl[504]" "R_Elbow_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[505]" "R_Elbow_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[506]" "R_Elbow_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[505]" "R_Elbow_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[506]" "R_Elbow_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[507]" "R_Elbow_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[508]" "R_Elbow_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[509]" "R_Elbow_joint_01_pointConstraint1.crp";
@@ -24132,8 +24193,8 @@ connectAttr "R_Wrist_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[519]";
 connectAttr "R_Wrist_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[520]";
 connectAttr "R_Wrist_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[521]";
 connectAttr "NPC_Base_04RN.phl[522]" "R_Wrist_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[523]" "R_Wrist_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[524]" "R_Wrist_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[523]" "R_Wrist_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[524]" "R_Wrist_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[525]" "R_Wrist_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[526]" "R_Wrist_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[527]" "R_Wrist_joint_01_pointConstraint1.crp";
@@ -24150,8 +24211,8 @@ connectAttr "R_Thumb_01_orientConstraint1.crx" "NPC_Base_04RN.phl[537]";
 connectAttr "R_Thumb_01_orientConstraint1.cry" "NPC_Base_04RN.phl[538]";
 connectAttr "R_Thumb_01_orientConstraint1.crz" "NPC_Base_04RN.phl[539]";
 connectAttr "NPC_Base_04RN.phl[540]" "R_Thumb_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[541]" "R_Thumb_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[542]" "R_Thumb_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[541]" "R_Thumb_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[542]" "R_Thumb_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[543]" "R_Thumb_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[544]" "R_Thumb_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[545]" "R_Thumb_01_pointConstraint1.crp";
@@ -24168,8 +24229,8 @@ connectAttr "R_Thumb_02_orientConstraint1.crx" "NPC_Base_04RN.phl[555]";
 connectAttr "R_Thumb_02_orientConstraint1.cry" "NPC_Base_04RN.phl[556]";
 connectAttr "R_Thumb_02_orientConstraint1.crz" "NPC_Base_04RN.phl[557]";
 connectAttr "NPC_Base_04RN.phl[558]" "R_Thumb_02_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[559]" "R_Thumb_02_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[560]" "R_Thumb_02_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[559]" "R_Thumb_02_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[560]" "R_Thumb_02_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[561]" "R_Thumb_02_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[562]" "R_Thumb_02_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[563]" "R_Thumb_02_pointConstraint1.crp";
@@ -24183,8 +24244,8 @@ connectAttr "R_Thumb_03_orientConstraint1.crx" "NPC_Base_04RN.phl[570]";
 connectAttr "R_Thumb_03_orientConstraint1.cry" "NPC_Base_04RN.phl[571]";
 connectAttr "R_Thumb_03_orientConstraint1.crz" "NPC_Base_04RN.phl[572]";
 connectAttr "NPC_Base_04RN.phl[573]" "R_Thumb_03_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[574]" "R_Thumb_03_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[575]" "R_Thumb_03_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[574]" "R_Thumb_03_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[575]" "R_Thumb_03_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[576]" "R_Thumb_03_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[577]" "R_Thumb_03_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[578]" "R_Thumb_03_pointConstraint1.crp";
@@ -24204,8 +24265,8 @@ connectAttr "R_Index_01_orientConstraint1.crx" "NPC_Base_04RN.phl[591]";
 connectAttr "R_Index_01_orientConstraint1.cry" "NPC_Base_04RN.phl[592]";
 connectAttr "R_Index_01_orientConstraint1.crz" "NPC_Base_04RN.phl[593]";
 connectAttr "NPC_Base_04RN.phl[594]" "R_Index_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[595]" "R_Index_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[596]" "R_Index_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[595]" "R_Index_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[596]" "R_Index_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[597]" "R_Index_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[598]" "R_Index_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[599]" "R_Index_01_pointConstraint1.crp";
@@ -24222,8 +24283,8 @@ connectAttr "R_Index_02_orientConstraint1.crx" "NPC_Base_04RN.phl[609]";
 connectAttr "R_Index_02_orientConstraint1.cry" "NPC_Base_04RN.phl[610]";
 connectAttr "R_Index_02_orientConstraint1.crz" "NPC_Base_04RN.phl[611]";
 connectAttr "NPC_Base_04RN.phl[612]" "R_Index_02_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[613]" "R_Index_02_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[614]" "R_Index_02_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[613]" "R_Index_02_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[614]" "R_Index_02_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[615]" "R_Index_02_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[616]" "R_Index_02_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[617]" "R_Index_02_pointConstraint1.crp";
@@ -24237,8 +24298,8 @@ connectAttr "R_Index_03_orientConstraint1.crx" "NPC_Base_04RN.phl[624]";
 connectAttr "R_Index_03_orientConstraint1.cry" "NPC_Base_04RN.phl[625]";
 connectAttr "R_Index_03_orientConstraint1.crz" "NPC_Base_04RN.phl[626]";
 connectAttr "NPC_Base_04RN.phl[627]" "R_Index_03_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[628]" "R_Index_03_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[629]" "R_Index_03_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[628]" "R_Index_03_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[629]" "R_Index_03_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[630]" "R_Index_03_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[631]" "R_Index_03_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[632]" "R_Index_03_pointConstraint1.crp";
@@ -24258,8 +24319,8 @@ connectAttr "R_Middle_01_orientConstraint1.crx" "NPC_Base_04RN.phl[645]";
 connectAttr "R_Middle_01_orientConstraint1.cry" "NPC_Base_04RN.phl[646]";
 connectAttr "R_Middle_01_orientConstraint1.crz" "NPC_Base_04RN.phl[647]";
 connectAttr "NPC_Base_04RN.phl[648]" "R_Middle_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[649]" "R_Middle_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[650]" "R_Middle_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[649]" "R_Middle_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[650]" "R_Middle_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[651]" "R_Middle_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[652]" "R_Middle_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[653]" "R_Middle_01_pointConstraint1.crp";
@@ -24276,8 +24337,8 @@ connectAttr "R_Middle_02_orientConstraint1.crx" "NPC_Base_04RN.phl[663]";
 connectAttr "R_Middle_02_orientConstraint1.cry" "NPC_Base_04RN.phl[664]";
 connectAttr "R_Middle_02_orientConstraint1.crz" "NPC_Base_04RN.phl[665]";
 connectAttr "NPC_Base_04RN.phl[666]" "R_Middle_02_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[667]" "R_Middle_02_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[668]" "R_Middle_02_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[667]" "R_Middle_02_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[668]" "R_Middle_02_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[669]" "R_Middle_02_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[670]" "R_Middle_02_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[671]" "R_Middle_02_pointConstraint1.crp";
@@ -24291,8 +24352,8 @@ connectAttr "R_Middle_03_orientConstraint1.crx" "NPC_Base_04RN.phl[678]";
 connectAttr "R_Middle_03_orientConstraint1.cry" "NPC_Base_04RN.phl[679]";
 connectAttr "R_Middle_03_orientConstraint1.crz" "NPC_Base_04RN.phl[680]";
 connectAttr "NPC_Base_04RN.phl[681]" "R_Middle_03_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[682]" "R_Middle_03_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[683]" "R_Middle_03_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[682]" "R_Middle_03_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[683]" "R_Middle_03_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[684]" "R_Middle_03_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[685]" "R_Middle_03_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[686]" "R_Middle_03_pointConstraint1.crp";
@@ -24312,8 +24373,8 @@ connectAttr "R_Pinky_01_orientConstraint1.crx" "NPC_Base_04RN.phl[699]";
 connectAttr "R_Pinky_01_orientConstraint1.cry" "NPC_Base_04RN.phl[700]";
 connectAttr "R_Pinky_01_orientConstraint1.crz" "NPC_Base_04RN.phl[701]";
 connectAttr "NPC_Base_04RN.phl[702]" "R_Pinky_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[703]" "R_Pinky_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[704]" "R_Pinky_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[703]" "R_Pinky_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[704]" "R_Pinky_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[705]" "R_Pinky_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[706]" "R_Pinky_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[707]" "R_Pinky_01_pointConstraint1.crp";
@@ -24330,8 +24391,8 @@ connectAttr "R_Pinky_02_orientConstraint1.crx" "NPC_Base_04RN.phl[717]";
 connectAttr "R_Pinky_02_orientConstraint1.cry" "NPC_Base_04RN.phl[718]";
 connectAttr "R_Pinky_02_orientConstraint1.crz" "NPC_Base_04RN.phl[719]";
 connectAttr "NPC_Base_04RN.phl[720]" "R_Pinky_02_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[721]" "R_Pinky_02_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[722]" "R_Pinky_02_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[721]" "R_Pinky_02_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[722]" "R_Pinky_02_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[723]" "R_Pinky_02_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[724]" "R_Pinky_02_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[725]" "R_Pinky_02_pointConstraint1.crp";
@@ -24345,8 +24406,8 @@ connectAttr "R_Pinky_03_orientConstraint1.crx" "NPC_Base_04RN.phl[732]";
 connectAttr "R_Pinky_03_orientConstraint1.cry" "NPC_Base_04RN.phl[733]";
 connectAttr "R_Pinky_03_orientConstraint1.crz" "NPC_Base_04RN.phl[734]";
 connectAttr "NPC_Base_04RN.phl[735]" "R_Pinky_03_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[736]" "R_Pinky_03_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[737]" "R_Pinky_03_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[736]" "R_Pinky_03_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[737]" "R_Pinky_03_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[738]" "R_Pinky_03_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[739]" "R_Pinky_03_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[740]" "R_Pinky_03_pointConstraint1.crp";
@@ -24366,8 +24427,8 @@ connectAttr "Neck_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[753]";
 connectAttr "Neck_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[754]";
 connectAttr "Neck_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[755]";
 connectAttr "NPC_Base_04RN.phl[756]" "Neck_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[757]" "Neck_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[758]" "Neck_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[757]" "Neck_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[758]" "Neck_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[759]" "Neck_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[760]" "Neck_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[761]" "Neck_joint_01_pointConstraint1.crp";
@@ -24384,8 +24445,8 @@ connectAttr "Head_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[771]";
 connectAttr "Head_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[772]";
 connectAttr "Head_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[773]";
 connectAttr "NPC_Base_04RN.phl[774]" "Head_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[775]" "Head_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[776]" "Head_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[775]" "Head_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[776]" "Head_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[777]" "Head_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[778]" "Head_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[779]" "Head_joint_01_pointConstraint1.crp";
@@ -24402,8 +24463,8 @@ connectAttr "Jaw_Joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[789]";
 connectAttr "Jaw_Joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[790]";
 connectAttr "Jaw_Joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[791]";
 connectAttr "NPC_Base_04RN.phl[792]" "Jaw_Joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[793]" "Jaw_Joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[794]" "Jaw_Joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[793]" "Jaw_Joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[794]" "Jaw_Joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[795]" "Jaw_Joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[796]" "Jaw_Joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[797]" "Jaw_Joint_01_pointConstraint1.crp";
@@ -24417,8 +24478,8 @@ connectAttr "Lip_Lower_Mid_01_orientConstraint1.crx" "NPC_Base_04RN.phl[804]";
 connectAttr "Lip_Lower_Mid_01_orientConstraint1.cry" "NPC_Base_04RN.phl[805]";
 connectAttr "Lip_Lower_Mid_01_orientConstraint1.crz" "NPC_Base_04RN.phl[806]";
 connectAttr "NPC_Base_04RN.phl[807]" "Lip_Lower_Mid_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[808]" "Lip_Lower_Mid_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[809]" "Lip_Lower_Mid_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[808]" "Lip_Lower_Mid_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[809]" "Lip_Lower_Mid_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[810]" "Lip_Lower_Mid_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[811]" "Lip_Lower_Mid_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[812]" "Lip_Lower_Mid_01_pointConstraint1.crp";
@@ -24435,8 +24496,8 @@ connectAttr "Lip_Upper_Mid_01_orientConstraint1.crx" "NPC_Base_04RN.phl[822]";
 connectAttr "Lip_Upper_Mid_01_orientConstraint1.cry" "NPC_Base_04RN.phl[823]";
 connectAttr "Lip_Upper_Mid_01_orientConstraint1.crz" "NPC_Base_04RN.phl[824]";
 connectAttr "NPC_Base_04RN.phl[825]" "Lip_Upper_Mid_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[826]" "Lip_Upper_Mid_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[827]" "Lip_Upper_Mid_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[826]" "Lip_Upper_Mid_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[827]" "Lip_Upper_Mid_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[828]" "Lip_Upper_Mid_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[829]" "Lip_Upper_Mid_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[830]" "Lip_Upper_Mid_01_pointConstraint1.crp";
@@ -24456,8 +24517,8 @@ connectAttr "Nose_Joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[843]";
 connectAttr "Nose_Joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[844]";
 connectAttr "Nose_Joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[845]";
 connectAttr "NPC_Base_04RN.phl[846]" "Nose_Joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[847]" "Nose_Joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[848]" "Nose_Joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[847]" "Nose_Joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[848]" "Nose_Joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[849]" "Nose_Joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[850]" "Nose_Joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[851]" "Nose_Joint_01_pointConstraint1.crp";
@@ -24486,9 +24547,9 @@ connectAttr "L_Eyebrow_Exterior_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[863]
 		;
 connectAttr "NPC_Base_04RN.phl[864]" "L_Eyebrow_Exterior_01_orientConstraint1.cro"
 		;
-connectAttr "NPC_Base_04RN.phl[865]" "L_Eyebrow_Exterior_01_pointConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[865]" "L_Eyebrow_Exterior_01_orientConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[866]" "L_Eyebrow_Exterior_01_orientConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[866]" "L_Eyebrow_Exterior_01_pointConstraint1.cpim"
 		;
 connectAttr "NPC_Base_04RN.phl[867]" "L_Eyebrow_Exterior_01_scaleConstraint1.cpim"
 		;
@@ -24522,9 +24583,9 @@ connectAttr "L_Eyebrow_Interior_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[881]
 		;
 connectAttr "NPC_Base_04RN.phl[882]" "L_Eyebrow_Interior_01_orientConstraint1.cro"
 		;
-connectAttr "NPC_Base_04RN.phl[883]" "L_Eyebrow_Interior_01_pointConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[883]" "L_Eyebrow_Interior_01_orientConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[884]" "L_Eyebrow_Interior_01_orientConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[884]" "L_Eyebrow_Interior_01_pointConstraint1.cpim"
 		;
 connectAttr "NPC_Base_04RN.phl[885]" "L_Eyebrow_Interior_01_scaleConstraint1.cpim"
 		;
@@ -24543,8 +24604,8 @@ connectAttr "Lip_L_Corner_01_orientConstraint1.crx" "NPC_Base_04RN.phl[894]";
 connectAttr "Lip_L_Corner_01_orientConstraint1.cry" "NPC_Base_04RN.phl[895]";
 connectAttr "Lip_L_Corner_01_orientConstraint1.crz" "NPC_Base_04RN.phl[896]";
 connectAttr "NPC_Base_04RN.phl[897]" "Lip_L_Corner_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[898]" "Lip_L_Corner_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[899]" "Lip_L_Corner_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[898]" "Lip_L_Corner_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[899]" "Lip_L_Corner_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[900]" "Lip_L_Corner_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[901]" "Lip_L_Corner_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[902]" "Lip_L_Corner_01_pointConstraint1.crp";
@@ -24561,8 +24622,8 @@ connectAttr "Lip_R_Corner_01_orientConstraint1.crx" "NPC_Base_04RN.phl[912]";
 connectAttr "Lip_R_Corner_01_orientConstraint1.cry" "NPC_Base_04RN.phl[913]";
 connectAttr "Lip_R_Corner_01_orientConstraint1.crz" "NPC_Base_04RN.phl[914]";
 connectAttr "NPC_Base_04RN.phl[915]" "Lip_R_Corner_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[916]" "Lip_R_Corner_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[917]" "Lip_R_Corner_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[916]" "Lip_R_Corner_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[917]" "Lip_R_Corner_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[918]" "Lip_R_Corner_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[919]" "Lip_R_Corner_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[920]" "Lip_R_Corner_01_pointConstraint1.crp";
@@ -24582,8 +24643,8 @@ connectAttr "L_Ear_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[933]";
 connectAttr "L_Ear_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[934]";
 connectAttr "L_Ear_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[935]";
 connectAttr "NPC_Base_04RN.phl[936]" "L_Ear_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[937]" "L_Ear_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[938]" "L_Ear_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[937]" "L_Ear_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[938]" "L_Ear_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[939]" "L_Ear_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[940]" "L_Ear_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[941]" "L_Ear_01_pointConstraint1.crp";
@@ -24600,8 +24661,8 @@ connectAttr "R_Ear_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[951]";
 connectAttr "R_Ear_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[952]";
 connectAttr "R_Ear_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[953]";
 connectAttr "NPC_Base_04RN.phl[954]" "R_Ear_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[955]" "R_Ear_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[956]" "R_Ear_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[955]" "R_Ear_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[956]" "R_Ear_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[957]" "R_Ear_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[958]" "R_Ear_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[959]" "R_Ear_01_pointConstraint1.crp";
@@ -24618,8 +24679,8 @@ connectAttr "L_Eye_01_orientConstraint1.crx" "NPC_Base_04RN.phl[969]";
 connectAttr "L_Eye_01_orientConstraint1.cry" "NPC_Base_04RN.phl[970]";
 connectAttr "L_Eye_01_orientConstraint1.crz" "NPC_Base_04RN.phl[971]";
 connectAttr "NPC_Base_04RN.phl[972]" "L_Eye_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[973]" "L_Eye_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[974]" "L_Eye_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[973]" "L_Eye_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[974]" "L_Eye_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[975]" "L_Eye_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[976]" "L_Eye_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[977]" "L_Eye_01_pointConstraint1.crp";
@@ -24636,8 +24697,8 @@ connectAttr "L_Eye_Bottom_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[987]";
 connectAttr "L_Eye_Bottom_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[988]";
 connectAttr "L_Eye_Bottom_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[989]";
 connectAttr "NPC_Base_04RN.phl[990]" "L_Eye_Bottom_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[991]" "L_Eye_Bottom_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[992]" "L_Eye_Bottom_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[991]" "L_Eye_Bottom_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[992]" "L_Eye_Bottom_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[993]" "L_Eye_Bottom_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[994]" "L_Eye_Bottom_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[995]" "L_Eye_Bottom_01_pointConstraint1.crp";
@@ -24654,8 +24715,8 @@ connectAttr "L_Eye_Top_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1005]";
 connectAttr "L_Eye_Top_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1006]";
 connectAttr "L_Eye_Top_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1007]";
 connectAttr "NPC_Base_04RN.phl[1008]" "L_Eye_Top_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[1009]" "L_Eye_Top_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1010]" "L_Eye_Top_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1009]" "L_Eye_Top_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1010]" "L_Eye_Top_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[1011]" "L_Eye_Top_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[1012]" "L_Eye_Top_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[1013]" "L_Eye_Top_01_pointConstraint1.crp";
@@ -24672,8 +24733,8 @@ connectAttr "R_Eye_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1023]";
 connectAttr "R_Eye_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1024]";
 connectAttr "R_Eye_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1025]";
 connectAttr "NPC_Base_04RN.phl[1026]" "R_Eye_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[1027]" "R_Eye_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1028]" "R_Eye_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1027]" "R_Eye_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1028]" "R_Eye_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[1029]" "R_Eye_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[1030]" "R_Eye_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[1031]" "R_Eye_01_pointConstraint1.crp";
@@ -24690,8 +24751,8 @@ connectAttr "R_Eye_Bottom_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1041]";
 connectAttr "R_Eye_Bottom_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1042]";
 connectAttr "R_Eye_Bottom_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1043]";
 connectAttr "NPC_Base_04RN.phl[1044]" "R_Eye_Bottom_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[1045]" "R_Eye_Bottom_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1046]" "R_Eye_Bottom_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1045]" "R_Eye_Bottom_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1046]" "R_Eye_Bottom_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[1047]" "R_Eye_Bottom_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[1048]" "R_Eye_Bottom_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[1049]" "R_Eye_Bottom_01_pointConstraint1.crp";
@@ -24708,8 +24769,8 @@ connectAttr "R_Eye_Top_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1059]";
 connectAttr "R_Eye_Top_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1060]";
 connectAttr "R_Eye_Top_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1061]";
 connectAttr "NPC_Base_04RN.phl[1062]" "R_Eye_Top_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[1063]" "R_Eye_Top_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1064]" "R_Eye_Top_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1063]" "R_Eye_Top_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1064]" "R_Eye_Top_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[1065]" "R_Eye_Top_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[1066]" "R_Eye_Top_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[1067]" "R_Eye_Top_01_pointConstraint1.crp";
@@ -24738,9 +24799,9 @@ connectAttr "R_Eyebrow_Interior_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1079
 		;
 connectAttr "NPC_Base_04RN.phl[1080]" "R_Eyebrow_Interior_01_orientConstraint1.cro"
 		;
-connectAttr "NPC_Base_04RN.phl[1081]" "R_Eyebrow_Interior_01_pointConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[1081]" "R_Eyebrow_Interior_01_orientConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[1082]" "R_Eyebrow_Interior_01_orientConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[1082]" "R_Eyebrow_Interior_01_pointConstraint1.cpim"
 		;
 connectAttr "NPC_Base_04RN.phl[1083]" "R_Eyebrow_Interior_01_scaleConstraint1.cpim"
 		;
@@ -24774,9 +24835,9 @@ connectAttr "R_Eyebrow_Exterior_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1097
 		;
 connectAttr "NPC_Base_04RN.phl[1098]" "R_Eyebrow_Exterior_01_orientConstraint1.cro"
 		;
-connectAttr "NPC_Base_04RN.phl[1099]" "R_Eyebrow_Exterior_01_pointConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[1099]" "R_Eyebrow_Exterior_01_orientConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[1100]" "R_Eyebrow_Exterior_01_orientConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[1100]" "R_Eyebrow_Exterior_01_pointConstraint1.cpim"
 		;
 connectAttr "NPC_Base_04RN.phl[1101]" "R_Eyebrow_Exterior_01_scaleConstraint1.cpim"
 		;
@@ -24797,8 +24858,8 @@ connectAttr "R_Leg_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1112]";
 connectAttr "R_Leg_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1113]";
 connectAttr "R_Leg_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1114]";
 connectAttr "R_Leg_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1115]";
-connectAttr "NPC_Base_04RN.phl[1116]" "R_Leg_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1117]" "R_Leg_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1116]" "R_Leg_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1117]" "R_Leg_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[1118]" "R_Leg_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[1119]" "R_Leg_joint_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[1120]" "R_Leg_joint_01_orientConstraint1.cjo";
@@ -24816,8 +24877,8 @@ connectAttr "R_Knee_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1131]";
 connectAttr "R_Knee_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1132]";
 connectAttr "R_Knee_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1133]";
 connectAttr "NPC_Base_04RN.phl[1134]" "R_Knee_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[1135]" "R_Knee_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1136]" "R_Knee_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1135]" "R_Knee_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1136]" "R_Knee_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[1137]" "R_Knee_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[1138]" "R_Knee_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[1139]" "R_Knee_joint_01_pointConstraint1.crp";
@@ -24834,8 +24895,8 @@ connectAttr "R_Ankle_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1149]";
 connectAttr "R_Ankle_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1150]";
 connectAttr "NPC_Base_04RN.phl[1151]" "R_Ankle_joint_01_scaleConstraint1.tsc";
 connectAttr "NPC_Base_04RN.phl[1152]" "R_Ankle_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[1153]" "R_Ankle_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1154]" "R_Ankle_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1153]" "R_Ankle_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1154]" "R_Ankle_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[1155]" "R_Ankle_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[1156]" "R_Ankle_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[1157]" "R_Ankle_joint_01_pointConstraint1.crp";
@@ -24852,8 +24913,8 @@ connectAttr "R_Foot_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1167]";
 connectAttr "R_Foot_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1168]";
 connectAttr "NPC_Base_04RN.phl[1169]" "R_Foot_joint_01_scaleConstraint1.tsc";
 connectAttr "NPC_Base_04RN.phl[1170]" "R_Foot_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[1171]" "R_Foot_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1172]" "R_Foot_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1171]" "R_Foot_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1172]" "R_Foot_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[1173]" "R_Foot_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[1174]" "R_Foot_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[1175]" "R_Foot_joint_01_pointConstraint1.crp";
@@ -24867,8 +24928,8 @@ connectAttr "R_Toe_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1182]";
 connectAttr "R_Toe_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1183]";
 connectAttr "NPC_Base_04RN.phl[1184]" "R_Toe_joint_01_scaleConstraint1.tsc";
 connectAttr "NPC_Base_04RN.phl[1185]" "R_Toe_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[1186]" "R_Toe_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1187]" "R_Toe_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1186]" "R_Toe_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1187]" "R_Toe_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[1188]" "R_Toe_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[1189]" "R_Toe_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[1190]" "R_Toe_joint_01_pointConstraint1.crp";
@@ -24882,8 +24943,8 @@ connectAttr "Tail_Joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1197]";
 connectAttr "Tail_Joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1198]";
 connectAttr "Tail_Joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1199]";
 connectAttr "NPC_Base_04RN.phl[1200]" "Tail_Joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[1201]" "Tail_Joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1202]" "Tail_Joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1201]" "Tail_Joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1202]" "Tail_Joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[1203]" "Tail_Joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[1204]" "Tail_Joint_01_orientConstraint1.cjo";
 connectAttr "Tail_Joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1205]";
