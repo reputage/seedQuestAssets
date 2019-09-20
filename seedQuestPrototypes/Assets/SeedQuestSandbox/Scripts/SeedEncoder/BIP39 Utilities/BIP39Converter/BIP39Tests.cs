@@ -18,8 +18,9 @@ public class BIP39Tests
         sumTest(ref passed, testFullConversion());
         sumTest(ref passed, testHexConversion());
         sumTest(ref passed, testChecksumConversion());
-        //sumTest(ref passed, testAllSeedWords());
-        sumTest(ref passed, testShortSeeds());
+        sumTest(ref passed, testAllSeedWords());
+        sumTest(ref passed, testShortSeedPhrases());
+        sumTest(ref passed, testGetSentenceShort());
 
         string passedString = "Successfully passed " + passed[0] + " of " + passed[1] + " tests.";
         Debug.Log(passedString);
@@ -180,7 +181,7 @@ public class BIP39Tests
         return passed;
     }
 
-    public int[] testShortSeeds()
+    public int[] testShortSeedPhrases()
     {
         int[] passed = new int[2];
         passed[1] = 7;
@@ -243,6 +244,45 @@ public class BIP39Tests
             passed[0] += 1;
         else
             Debug.Log("BIP39 full conversion test for ten words failed " + sentence10);
+
+        return passed;
+    }
+
+    // Test to make sure a BIP39 sentence can be retrieved from a list of actions
+    public int[] testGetSentenceShort()
+    {
+        int[] passed = new int[2];
+        passed[1] = 2;
+
+        string testWords = "ugly call give address amount venture";
+        int[] actions = bpc.getActionsFromShortSentence(testWords);
+
+        int[] subActionArray = new int[21];
+        for (int i = 0; i < subActionArray.Length; i++)
+        {
+            subActionArray[i] = actions[i];
+        }
+
+        string words = bpc.getSentenceFromShortActions(actions, 6);
+
+        if (words == "ugly call give address amount venture")
+            passed[0] = 1;
+        else
+            Debug.Log("BIP39 test converting short actions (6 words) to sentence failed");
+
+
+        testWords = "venture";
+        actions = bpc.getActionsFromShortSentence(testWords);
+        subActionArray = new int[7];
+        for (int i = 0; i < subActionArray.Length; i++)
+            subActionArray[i] = actions[i];
+        words = bpc.getSentenceFromShortActions(actions, 1);
+
+        if (words == "venture")
+            passed[0] += 1;
+        else
+            Debug.Log("BIP39 test converting short actions (1 word) to sentence failed");
+
 
         return passed;
     }
