@@ -163,6 +163,16 @@ public class BIP39Converter
         return hexSeed;
     }
 
+    // Take a BIP39 sentence, and return the bits as a hex string
+    public string getHexFromShortSentence(string sentence, int wordCount)
+    {
+        string[] wordArray = sentence.Split(null);
+        bool useChecksum = false;
+
+        string hexSeed = convertIndecesToHex(wordArray, useChecksum, wordCount);
+        return hexSeed;
+    }
+
     // Take a BIP39 sentence, and return the bits as a hex string, while regenerating the checksum bits
     public string getHexWithChecksum(string sentence)
     {
@@ -180,11 +190,15 @@ public class BIP39Converter
     }
 
     // Takes a string array for a BIP39 sentence, returns the corresponding hex string
-    public string convertIndecesToHex(string[] wordArray, bool useChecksum)
+    public string convertIndecesToHex(string[] wordArray, bool useChecksum, int wordCount = 0)
     {
         List<int> indeces = bipPro.rebuildWordIndexes(wordArray);
         byte[] bytes;
-        if (useChecksum)
+        if (wordCount != 0)
+        {
+            bytes = bipPro.processWordShortIndeces(indeces);
+        }
+        else if (useChecksum)
             bytes = bipPro.processWordIndeces(indeces);
         else
             bytes = bipPro.processWordIndecesNoChecksum(indeces);
@@ -200,6 +214,15 @@ public class BIP39Converter
     {
         int[] actions = seeds.getActions(hex);
         string words = getSentenceFromActions(actions);
+
+        return words;
+    }
+
+    // Takes a hex string, returns the corresponding BIP39 sentence
+    public string getShortSentenceFromHex(string hex, int wordCount)
+    {
+        int[] actions = seeds.getActions(hex);
+        string words = getSentenceFromShortActions(actions, wordCount);
 
         return words;
     }

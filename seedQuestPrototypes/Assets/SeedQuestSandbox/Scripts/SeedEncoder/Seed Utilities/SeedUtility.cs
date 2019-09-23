@@ -15,6 +15,16 @@ public static class SeedUtility
 
         try
         {
+            hex = bpc.getShortSentenceFromHex(seed, InteractableConfig.SitesPerGame * 2);
+            return true;
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Exception: " + e);
+        }
+
+        try
+        {
             hex = bpc.getHexFromSentence(seed);
         }
         catch (Exception e)
