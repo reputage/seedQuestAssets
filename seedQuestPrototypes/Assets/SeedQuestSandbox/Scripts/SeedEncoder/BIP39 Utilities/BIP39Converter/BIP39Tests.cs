@@ -103,11 +103,10 @@ public class BIP39Tests
 
         string testingHex = "3720B091810D8127C55630F55DD2275C";
         string testWords = "ugly call give address amount venture misery dose quick spoil weekend insane";
-
         byte[] seedBytes = bpc.HexStringToByteArray(testingHex);
         string ChecksumSentence = bpc.getSentence128Bits(seedBytes);
 
-        Debug.Log("Checksum sentence: " + ChecksumSentence);
+        //Debug.Log("Checksum sentence: " + ChecksumSentence);
 
         if (testWords == ChecksumSentence)
             passed[0] = 1;
@@ -143,7 +142,7 @@ public class BIP39Tests
 
         int[] actions = bpc.getActionsFromSentence(input);
         List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
-        string sentence = bpc.getSentenceFromActionsDebug(actions);
+        string sentence = bpc.getSentenceFromActions(actions);
 
         if (sentence == input)
             passed[0] = 1;

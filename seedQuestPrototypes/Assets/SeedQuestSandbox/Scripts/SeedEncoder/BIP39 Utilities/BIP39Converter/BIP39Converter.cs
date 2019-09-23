@@ -22,9 +22,9 @@ public class BIP39Converter
     private Int32 dkLen;
     private SeedToByte seeds = new SeedToByte();
 
+    // Take a BIP39 sentence, and return the corresponding seedquest actions
     public int[] getActionsFromSentence(string sentence)
     {
-        int[] actions = new int[1];
         string[] wordArray = sentence.Split(null);
 
         if (wordArray.Length < 12)
@@ -35,47 +35,26 @@ public class BIP39Converter
 
         List<int> indeces = rebuildWordIndexes(wordArray);
         byte[] bytes = processWordIndecesNoChecksum(indeces);
+        int[] actions = seeds.getActionsFromBytes(bytes);
 
-        actions = seeds.getActionsFromBytes(bytes);
         return actions;
     }
 
+    // Take a short BIP39 sentence (< 12 words), and return the corresponding seedquest actions
     public int[] getActionsFromShortSentence(string sentence)
     {
-        int[] actions = new int[1];
         string[] wordArray = sentence.Split(null);
-
         List<int> indeces = rebuildWordIndexes(wordArray);
         byte[] bytes = processWordShortIndeces(indeces);
+        int[] actions = seeds.getActionsFromBytes(bytes);
 
-        actions = seeds.getActionsFromBytes(bytes);
         return actions;
     }
 
-    public string getIndecesFromSentence(string sentence)
-    {
-        int[] actions = new int[1];
-        string[] wordArray = sentence.Split(null);
-
-        if (wordArray.Length < 12)
-        {
-            Debug.Log("Not enough words for 132 bits of entropy.");
-            throw new Exception("Less than 12 words in this sentence. Not a valid seed.");
-        }
-        List<int> indeces = rebuildWordIndexesDebug(wordArray);
-        string indecesStr = "";
-
-        for (int i = 0; i < indeces.Count; i++)
-        {
-            indecesStr += indeces[i] + " ";
-        }
-
-        return indecesStr;
-    }
-
+    // Take a BIP39 sentence, and return the corresponding seedquest actions, checking to 
+    //  ensure the checksum matches the rest of the seed phrase
     public int[] getActionsWithChecksum(string sentence)
     {
-        int[] actions = new int[1];
         string[] wordArray = sentence.Split(null);
 
         if (wordArray.Length < 12)
@@ -98,47 +77,48 @@ public class BIP39Converter
 
         List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
 
-        actions = seeds.getActionsFromBytes(bytes);
+        int[] actions = seeds.getActionsFromBytes(bytes);
         return actions;
     }
 
+    // Retrieve a BIP39 seed phrase from player actions 
     public string getSentenceFromActions(int[] actions)
     {
         string seed = seeds.getSeed(actions);
         byte[] seedBytes = HexStringToByteArray(seed);
         BitArray bits = byteToBits(seedBytes);
-        List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
-        int[] wordIndeces = seeds.bitToActions(bits, wordListSizes);
-        List<int> wordIndecesList = new List<int>();
-
-        for (int i = 0; i < wordIndeces.Length; i++)
-            wordIndecesList.Add(wordIndeces[i]);
-
-        string words = getMnemonicSentence(wordIndecesList);
+        string words = convertBitsToWords(bits);
         return words;
     }
 
+    // Retrieve a BIP39 seed phrase from only 128 bits of actions, using a checksum 
+    public string getSentence128Bits(byte[] seedBytes)
+    {
+        BitArray bits = byteToBits(seedBytes);
+
+        if (bits.Count != 128)
+        {
+            Debug.Log("Invalid actions! This does not represent exactly 128 bits.");
+        }
+
+        BitArray bitsWithChecksum = appendChecksumBits(bits);
+
+        string words = convertBitsToWords(bitsWithChecksum);
+        return words;
+    }
+
+    // Retrieve a non-normal sized BIP39 seed phrase based on the sites peere game config variable
     public string getSentenceSiteBased(int[] actions)
     {
         int wordCount = InteractableConfig.SitesPerGame;
         wordCount = wordCount * 2;
-        Debug.Log("Word count: " + wordCount);
         return getSentenceFromShortActions(actions, wordCount);
     }
 
+    // Retrieve a shorter-than-normal BIP39 seed phrase, specifying the number of words desired
     public string getSentenceFromShortActions(int[] actions, int wordCount)
     {
-        string seed = seeds.getSeed(actions);
-        byte[] seedBytes = HexStringToByteArray(seed);
-        BitArray bits = byteToBits(seedBytes);
-        List<int> wordListSizes = new List<int>() { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
-        int[] wordIndeces = seeds.bitToActions(bits, wordListSizes);
-        List<int> wordIndecesList = new List<int>();
-
-        for (int i = 0; i < wordIndeces.Length; i++)
-            wordIndecesList.Add(wordIndeces[i]);
-
-        string words = getMnemonicSentence(wordIndecesList);
+        string words = getSentenceFromActions(actions);
         string[] wordArray = words.Split(null);
         words = "";
         for (int i = 0; i < wordCount; i++)
@@ -152,12 +132,9 @@ public class BIP39Converter
         return words;
     }
 
-    public string getSentenceFromActionsDebug(int[] actions)
+    // Takes a bitarray, and returns the corresponding BIP39 seed sentence
+    public string convertBitsToWords(BitArray bits)
     {
-        string seed = seeds.getSeed(actions);
-        byte[] seedBytes = HexStringToByteArray(seed);
-        BitArray bits = byteToBits(seedBytes);
-
         List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
         int[] wordIndeces = seeds.bitToActions(bits, wordListSizes);
         List<int> wordIndecesList = new List<int>();
@@ -169,49 +146,27 @@ public class BIP39Converter
         return words;
     }
 
-    public string getSentence128Bits(byte[] seedBytes)
-    {
-        BitArray bits = byteToBits(seedBytes);
-
-        if (bits.Count != 128)
-        {
-            Debug.Log("Invalid actions! This does not represent exactly 128 bits.");
-        }
-
-        BitArray bitsWithChecksum = appendChecksumBits(bits);
-
-        List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
-        int[] wordIndeces = seeds.bitToActions(bitsWithChecksum, wordListSizes);
-        List<int> wordIndecesList = new List<int>();
-
-        for (int i = 0; i < wordIndeces.Length; i++)
-            wordIndecesList.Add(wordIndeces[i]);
-
-        string words = getMnemonicSentence(wordIndecesList);
-        return words;
-    }
-
+    // Take a BIP39 sentence, and return the bits as a hex string
     public string getHexFromSentence(string sentence)
     {
         string[] wordArray = sentence.Split(null);
+        bool useChecksum = false;
 
         if (wordArray.Length < 12)
         {
-            Debug.Log("Not enough words for 128 bits of entropy.");
+            Debug.Log("Not enough words for 132 bits of entropy.");
             throw new Exception("Less than 12 words in this sentence. Not a valid seed.");
         }
 
-        List<int> indeces = rebuildWordIndexes(wordArray);
-        byte[] bytes = processWordIndecesNoChecksum(indeces);
-        int[] actions = seeds.getActionsFromBytes(bytes);
-
-        string hexSeed = seeds.getSeed(actions);
+        string hexSeed = convertIndecesToHex(wordArray, useChecksum);
         return hexSeed;
     }
 
+    // Take a BIP39 sentence, and return the bits as a hex string, while regenerating the checksum bits
     public string getHexWithChecksum(string sentence)
     {
         string[] wordArray = sentence.Split(null);
+        bool useChecksum = true;
 
         if (wordArray.Length < 12)
         {
@@ -219,14 +174,27 @@ public class BIP39Converter
             throw new Exception("Less than 12 words in this sentence. Not a valid seed.");
         }
 
-        List<int> indeces = rebuildWordIndexes(wordArray);
-        byte[] bytes = processWordIndeces(indeces);
-        int[] actions = seeds.getActionsFromBytes(bytes);
-
-        string hexSeed = seeds.getSeed(actions);
+        string hexSeed = convertIndecesToHex(wordArray, useChecksum);
         return hexSeed;
     }
 
+    // Takes a string array for a BIP39 sentence, returns the corresponding hex string
+    public string convertIndecesToHex(string[] wordArray, bool useChecksum)
+    {
+        List<int> indeces = rebuildWordIndexes(wordArray);
+        byte[] bytes;
+        if (useChecksum)
+            bytes = processWordIndeces(indeces);
+        else
+            bytes = processWordIndecesNoChecksum(indeces);
+        
+        int[] actions = seeds.getActionsFromBytes(bytes);
+        string hexSeed = seeds.getSeed(actions);
+
+        return hexSeed;
+    }
+
+    // Takes a hex string, returns the corresponding BIP39 sentence
     public string getSentenceFromHex(string hex)
     {
         int[] actions = seeds.getActions(hex);
@@ -235,24 +203,7 @@ public class BIP39Converter
         return words;
     }
 
-    private int processBitsToInt(BitArray bits)
-    {
-        int number = 0;
-        int base2Divide = 1024; 
-
-        foreach (bool b in bits)
-        {
-            if (b)
-            {
-                number = number + base2Divide;
-            }
-
-            base2Divide = base2Divide / 2;
-        }
-
-        return number;
-    }
-
+    // Take a list of word indeces and return the mnemonic sentence
     private string getMnemonicSentence(List<int> wordIndexList)
     {
         if (wordIndexList.Contains(-1))
