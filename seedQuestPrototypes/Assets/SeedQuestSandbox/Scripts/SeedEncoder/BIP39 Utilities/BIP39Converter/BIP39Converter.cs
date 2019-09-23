@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using SeedQuest.SeedEncoder;
+using SeedQuest.Interactables;
 
 public class BIP39Converter
 {
@@ -115,6 +116,14 @@ public class BIP39Converter
 
         string words = getMnemonicSentence(wordIndecesList);
         return words;
+    }
+
+    public string getSentenceSiteBased(int[] actions)
+    {
+        int wordCount = InteractableConfig.SitesPerGame;
+        wordCount = wordCount * 2;
+        Debug.Log("Word count: " + wordCount);
+        return getSentenceFromShortActions(actions, wordCount);
     }
 
     public string getSentenceFromShortActions(int[] actions, int wordCount)
