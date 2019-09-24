@@ -21,6 +21,7 @@ public class BIP39Tests
         sumTest(ref passed, testAllSeedWords());
         sumTest(ref passed, testShortSeedPhrases());
         sumTest(ref passed, testGetSentenceShort());
+        sumTest(ref passed, testGetSentenceSitesBased());
 
         string passedString = "Successfully passed " + passed[0] + " of " + passed[1] + " tests.";
         Debug.Log(passedString);
@@ -102,11 +103,10 @@ public class BIP39Tests
 
         string testingHex = "3720B091810D8127C55630F55DD2275C";
         string testWords = "ugly call give address amount venture misery dose quick spoil weekend insane";
-
         byte[] seedBytes = bpc.HexStringToByteArray(testingHex);
         string ChecksumSentence = bpc.getSentence128Bits(seedBytes);
 
-        Debug.Log("Checksum sentence: " + ChecksumSentence);
+        //Debug.Log("Checksum sentence: " + ChecksumSentence);
 
         if (testWords == ChecksumSentence)
             passed[0] = 1;
@@ -142,7 +142,7 @@ public class BIP39Tests
 
         int[] actions = bpc.getActionsFromSentence(input);
         List<int> wordListSizes = new List<int> { 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11 };
-        string sentence = bpc.getSentenceFromActionsDebug(actions);
+        string sentence = bpc.getSentenceFromActions(actions);
 
         if (sentence == input)
             passed[0] = 1;
@@ -155,6 +155,7 @@ public class BIP39Tests
         return passed;
     }
 
+    // Test to ensure the conversion proccess is functional with all words in the BIP39 word list
     public int[] testAllSeedWords()
     {
         int[] passed = new int[2];
@@ -181,6 +182,7 @@ public class BIP39Tests
         return passed;
     }
 
+    // Test to ensure seed phrases shorter than 12 words can be succesfully recoveered
     public int[] testShortSeedPhrases()
     {
         int[] passed = new int[2];
@@ -283,6 +285,24 @@ public class BIP39Tests
         else
             Debug.Log("BIP39 test converting short actions (1 word) to sentence failed");
 
+
+        return passed;
+    }
+
+    // Test to make sure retrieving a short seed phrase based on number of sites pere game is functional
+    public int[] testGetSentenceSitesBased()
+    {
+        int[] passed = new int[2];
+        passed[1] = 1;
+
+        string testingHex = "3720B091810D8127C55630F55DD2275C05";
+        int[] actions = seeds.getActions(testingHex);
+        string words = bpc.getSentenceSiteBased(actions);
+
+        if (words == "ugly call give address amount venture misery dose quick spoil weekend inspire")
+            passed[0] = 1;
+        else
+            Debug.Log("BIP39 test converting actions to sentence failed");
 
         return passed;
     }
