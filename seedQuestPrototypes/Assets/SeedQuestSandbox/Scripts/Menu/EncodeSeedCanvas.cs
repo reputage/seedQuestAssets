@@ -25,6 +25,7 @@ public class EncodeSeedCanvas : MonoBehaviour {
 
     private void Update() {
         bool doUpdate = GetComponentInChildren<SeedStrSelection>(true).updateFlag;
+        Debug.Log("Sites per game: " + InteractableConfig.SitesPerGame);
 
         if(doUpdate) {
             resetCanvas();
@@ -151,6 +152,8 @@ public class EncodeSeedCanvas : MonoBehaviour {
 
     public void resetCanvas() {
         sceneCount = 0;
+        Initialize();
+
         worldPreviews = GetComponentsInChildren<EncodeSeed_ScenePreview>();
         foreach (EncodeSeed_ScenePreview item in worldPreviews) {
             item.preview.gameObject.SetActive(false);
