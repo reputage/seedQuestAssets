@@ -25,7 +25,6 @@ public class EncodeSeedCanvas : MonoBehaviour {
 
     private void Update() {
         bool doUpdate = GetComponentInChildren<SeedStrSelection>(true).updateFlag;
-        Debug.Log("Sites per game: " + InteractableConfig.SitesPerGame);
 
         if(doUpdate) {
             resetCanvas();

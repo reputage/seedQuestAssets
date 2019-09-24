@@ -16,8 +16,6 @@ public class SeedStrSelection : MonoBehaviour
         // Set SeedStrength
         InteractableConfig.SitesPerGame = sceneCount;
 
-        Debug.Log("Setting seed strength");
-
         // Update UI
         Color[] colors = new Color[3];
         if (sceneCount == 1)

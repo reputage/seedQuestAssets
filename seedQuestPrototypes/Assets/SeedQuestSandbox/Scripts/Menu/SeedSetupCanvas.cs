@@ -19,6 +19,18 @@ public class SeedSetupCanvas : MonoBehaviour
     public TMP_InputField seedInputField;
     public TextMeshProUGUI warningTextTMP;
 
+    private void Update()
+    {
+        bool doUpdate = GetComponentInChildren<SeedStrSelection>(true).updateFlag;
+
+        if (doUpdate)
+        {
+            seedInputField.text = "";
+            checkInputSeed();
+            GetComponentInChildren<SeedStrSelection>().updateFlag = false;
+        }
+    }
+
     public void Back() {
         MenuScreenV2.Instance.GoToStart();
     }
@@ -131,12 +143,9 @@ public class SeedSetupCanvas : MonoBehaviour
             warningTextTMP.text = "";
             validHex = false;
         }
-        else if (!validHex && wordArray.Length > 1 && wordArray.Length < ((InteractableConfig.SitesPerGame * 2 )) )
+        else if (!validHex && wordArray.Length > 1 && wordArray.Length != ((InteractableConfig.SitesPerGame * 2 )) && InteractableConfig.SitesPerGame < 6)
         {
-            Debug.Log("array length: " + wordArray.Length);
-            int wordEstimate = (InteractableConfig.SeedHexLength * 4) / 11;
-
-            Debug.Log("Hex length: " + InteractableConfig.SeedHexLength + " word estimate: " + wordEstimate);
+            Debug.Log("array length: " + wordArray.Length + " word req: " + InteractableConfig.SitesPerGame * 2);
             warningTextTMP.text = "Remember to add spaces between the words.";
             warningTextTMP.color = new Color32(255, 20, 20, 255);
             setRedWarning();
