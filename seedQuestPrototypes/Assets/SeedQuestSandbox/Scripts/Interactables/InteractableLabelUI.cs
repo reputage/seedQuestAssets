@@ -13,9 +13,11 @@ public class InteractableLabelUI
     private Button labelButton;
     private TextMeshProUGUI labelText;
     private Image labelIcon;
+    private Image trackerIcon;
 
     private Interactable interactable;
     private Vector3 labelPosition = new Vector3();
+    private Animator animator;
 
     static private bool show;
 
@@ -26,8 +28,9 @@ public class InteractableLabelUI
         SetComponentRef();
         SetLabelText();
         SetPosition();
-        ToggleIcon(false);
         SetHoverEvents();
+        ToggleTrackerIcon(false);
+        ToggleText(false);
     }
 
     public void Update() {
@@ -74,10 +77,12 @@ public class InteractableLabelUI
     }
 
     private void SetComponentRef() {
-        labelCanvas = labelObject.GetComponentsInChildren<Canvas>()[1];
-        labelButton = labelObject.GetComponentInChildren<Button>();
-        labelText = labelObject.GetComponentInChildren<TextMeshProUGUI>();
+        animator = labelObject.GetComponent<Animator>();
+        labelCanvas = labelObject.GetComponentsInChildren<Canvas>(true)[1];
+        labelButton = labelObject.GetComponentInChildren<Button>(true);
+        labelText = labelObject.GetComponentInChildren<TextMeshProUGUI>(true);
         labelIcon = labelObject.GetComponentsInChildren<Image>(true)[0];
+        trackerIcon = labelObject.GetComponentsInChildren<Image>(true)[1];
 
         labelButton.onClick.AddListener(ActivateInteractable);
     }
@@ -92,13 +97,19 @@ public class InteractableLabelUI
         labelCanvas.transform.position = labelPosition;
     }
 
-    private void SetIcon() {
-        bool active = interactable == InteractableManager.ActiveInteractable;
-        labelIcon.gameObject.SetActive(active);
+    public void ToggleTrackerIcon(bool active) {
+        if (labelObject == null) return;
+
+        trackerIcon.gameObject.SetActive(active);
+        labelIcon.gameObject.SetActive(!active);
     }
 
     private void ToggleIcon(bool active) {
         labelIcon.gameObject.SetActive(active);
+    }
+
+    private void ToggleText(bool active) {
+        labelText.gameObject.SetActive(active);
     }
 
     private void SetHoverEvents() {
@@ -119,15 +130,17 @@ public class InteractableLabelUI
         trigger.triggers.Add(exit);
     }
 
-    private void OnHoverEnter() {
-        ToggleIcon(true);
+    public void OnHoverEnter() {
+        ToggleText(true);
+        animator.Play("HoverStartLabelAnimation");
         AudioManager.Play("UI_Hover");
     }
 
-    private void OnHoverExit() {
-        ToggleIcon(false);
+    public void OnHoverExit() {
+        ToggleText(false);
+        animator.Play("LabelIdleAnimation");
     }
-
+    
     public void ActivateInteractable() {
         if (!labelObject.activeSelf) return;
         if (FastRecoveryUI.Instance.gameObject.activeSelf) return;
@@ -139,9 +152,14 @@ public class InteractableLabelUI
     }
 
     private void ListenForNear() {
-        if(interactable.PlayerIsNear() && show)
+        if(interactable.PlayerIsNear() && show) {
             labelObject.SetActive(true);
-        else
+        }
+        else {
             labelObject.SetActive(false);
+        }
+
+        if (InteractablePath.isNextInteractable(interactable))
+            labelObject.SetActive(true);
     }
 }
