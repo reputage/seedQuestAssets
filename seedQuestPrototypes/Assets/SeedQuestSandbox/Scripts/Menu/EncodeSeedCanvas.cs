@@ -151,6 +151,8 @@ public class EncodeSeedCanvas : MonoBehaviour {
 
     public void resetCanvas() {
         sceneCount = 0;
+        Initialize();
+
         worldPreviews = GetComponentsInChildren<EncodeSeed_ScenePreview>();
         foreach (EncodeSeed_ScenePreview item in worldPreviews) {
             item.preview.gameObject.SetActive(false);
