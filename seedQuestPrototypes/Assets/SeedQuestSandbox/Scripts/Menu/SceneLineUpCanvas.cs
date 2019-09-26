@@ -18,6 +18,10 @@ public class SceneLineUpCanvas : MonoBehaviour
         Initialize();
     }
 
+    public void Update() {
+        
+    }
+
     public void Initialize() {
 
         int count = 0;

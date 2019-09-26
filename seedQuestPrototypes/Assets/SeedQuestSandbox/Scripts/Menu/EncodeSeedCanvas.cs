@@ -23,17 +23,34 @@ public class EncodeSeedCanvas : MonoBehaviour {
         EnableNext();
     }
 
+    private void Update() {
+        bool doUpdate = GetComponentInChildren<SeedStrSelection>(true).updateFlag;
+
+        if(doUpdate) {
+            resetCanvas();
+            Initialize();
+            UnInteractiveButtons();
+            EnableNext();
+
+            GetComponentInChildren<SeedStrSelection>().updateFlag = false;
+        }
+    }
+
     public void Initialize() {
         InitalizeWorldPreviews();
 
-        indicators = GetComponentsInChildren<SceneSelectedIndicator>();
-        Button[] _buttons = GetComponentsInChildren<Button>();
+        if (GameManager.Mode == GameMode.Rehearsal)
+            GetComponentInChildren<SeedStrSelection>(true).gameObject.SetActive(false);
+        else if(GameManager.Mode == GameMode.Recall)
+            GetComponentInChildren<SeedStrSelection>(true).gameObject.SetActive(true);
+        
+        indicators = GetComponentsInChildren<SceneSelectedIndicator>(true);
+        Button[] _buttons = GetComponentsInChildren<Button>(true);
         buttons = new Button[16];
         for (int i = 0; i < buttons.Length; i++) {
             buttons[i] = _buttons[i + 1];
         }
 
-        currentList = new int[InteractableConfig.SitesPerGame];
 
         continueButton = _buttons[17];
         continueButton.gameObject.SetActive(false);
@@ -41,9 +58,11 @@ public class EncodeSeedCanvas : MonoBehaviour {
     }
 
     public void InitalizeWorldPreviews() {
-        worldPreviews = GetComponentsInChildren<EncodeSeed_ScenePreview>();
+        currentList = new int[InteractableConfig.SitesPerGame];
+        worldPreviews = GetComponentsInChildren<EncodeSeed_ScenePreview>(true);
         int count = 0;
         foreach (EncodeSeed_ScenePreview item in worldPreviews) {
+            item.gameObject.SetActive(true);
             item.preview.gameObject.SetActive(false);
             item.text.gameObject.SetActive(false);
 
@@ -70,8 +89,8 @@ public class EncodeSeedCanvas : MonoBehaviour {
 
         if (sceneCount >= currentList.Length)
             continueButton.gameObject.SetActive(true);
-
-        buttons[i].GetComponentsInChildren<Image>()[3].gameObject.SetActive(false);
+        
+        buttons[i].GetComponentsInChildren<Image>(true)[3].gameObject.SetActive(false);
     }
 
     public void UnInteractiveButtons() {
@@ -91,10 +110,8 @@ public class EncodeSeedCanvas : MonoBehaviour {
 
     public void ResetInteractiveButtons()
     {
-        if (GameManager.Mode == GameMode.Rehearsal)
-        {
-            foreach (Button button in buttons)
-            {
+        if (GameManager.Mode == GameMode.Rehearsal){
+            foreach (Button button in buttons){
                 button.interactable = false;
             }
         }
@@ -134,16 +151,16 @@ public class EncodeSeedCanvas : MonoBehaviour {
 
     public void resetCanvas() {
         sceneCount = 0;
+        Initialize();
+
         worldPreviews = GetComponentsInChildren<EncodeSeed_ScenePreview>();
         foreach (EncodeSeed_ScenePreview item in worldPreviews) {
             item.preview.gameObject.SetActive(false);
             item.text.gameObject.SetActive(false);
             item.shade.gameObject.SetActive(false);
         }
-        if (initialized)
-        {
-            foreach (SceneSelectedIndicator indicator in indicators)
-            {
+        if (initialized) {
+            foreach (SceneSelectedIndicator indicator in indicators) {
                 indicator.Reset();
             }
 
