@@ -44,4 +44,20 @@ public class SeedStrSelection : MonoBehaviour
         updateFlag = true;
     }
 
+    public void reset()
+    {
+        InteractableConfig.SitesPerGame = 6;
+
+        Color[] colors = new Color[3];
+        colors[0] = new Color(1f, 1f, 1f, 0.7f);
+        colors[1] = new Color(1f, 1f, 1f, 0.7f);
+        colors[2] = new Color(1f, 1f, 1f, 1f);
+
+        weakButton.GetComponent<Image>().color = colors[0];
+        strongButton.GetComponent<Image>().color = colors[1];
+        crytoButton.GetComponent<Image>().color = colors[2];
+
+        updateFlag = true;
+    }
+
 }

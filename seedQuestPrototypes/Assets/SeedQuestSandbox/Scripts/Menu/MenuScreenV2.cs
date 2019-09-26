@@ -92,6 +92,7 @@ public class MenuScreenV2 : MonoBehaviour
         ResetCanvas();
         encodeSeedCanvas.gameObject.SetActive(true);
         encodeSeedCanvas.gameObject.GetComponent<EncodeSeedCanvas>().resetCanvas();
+        encodeSeedCanvas.gameObject.GetComponent<EncodeSeedCanvas>().resetSeedStr();
         LevelSetManager.ResetCurrentLevels();
         WorldManager.Reset();
     }
