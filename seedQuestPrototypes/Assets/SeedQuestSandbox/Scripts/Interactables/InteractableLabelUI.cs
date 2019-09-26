@@ -159,7 +159,7 @@ public class InteractableLabelUI
             labelObject.SetActive(false);
         }
 
-        if (InteractablePath.isNextInteractable(interactable))
+        if (InteractablePath.isNextInteractable(interactable) && show)
             labelObject.SetActive(true);
     }
 }
