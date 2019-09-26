@@ -139,7 +139,7 @@ public class InteractableLabelUI
 
     public void OnHoverExit() {
         ToggleText(false);
-        animator.Play("LabelIdleAnimation");
+        animator.Play("HoverStopLabelAnimation");
     }
     
     public void ActivateInteractable() {
@@ -149,7 +149,6 @@ public class InteractableLabelUI
         AudioManager.Play("UI_Click");
         InteractableManager.SetActiveInteractable(interactable);
         InteractableActionsUI.Toggle(true);
-        ToggleIcon(false);
     }
 
     private void ListenForNear() {
