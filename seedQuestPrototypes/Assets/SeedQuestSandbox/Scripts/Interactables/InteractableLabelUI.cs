@@ -92,10 +92,11 @@ public class InteractableLabelUI
     }
 
     private void SetPosition() {
-        Vector3 position = interactable.transform.position + interactable.interactableUI.positionOffset + interactable.stateData.labelPosOffset;
+        Vector3 offset = interactable.stateData != null ? interactable.stateData.labelPosOffset : Vector3.zero;
+        Vector3 position = interactable.transform.position + interactable.interactableUI.positionOffset + offset;
         labelPosition = IsometricCamera.Camera.WorldToScreenPoint(position);
         labelCanvas.transform.position = labelPosition;
-    }
+    }   
 
     public void ToggleTrackerIcon(bool active) {
         if (labelObject == null) return;
