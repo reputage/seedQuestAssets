@@ -15,7 +15,6 @@ namespace SeedQuest.Interactables
         public InteractableStateData stateData = null;
         public InteractableUI interactableUI;
         public InteractableCameraProps interactableCamera;
-        public InteractableTrackerProps interactableTracker;
         public InteractablePreviewInfo interactablePreview;
         public InteractableID ID;
 
@@ -23,7 +22,7 @@ namespace SeedQuest.Interactables
 
         private int actionIndex = -1;
         public int ActionIndex { get => actionIndex; set => actionIndex = value; } // Current Action State 
-        private float interactDistance = 12.0f;  
+        private float interactDistance = 16.0f;  
 
         private bool isOnHover = false;
         public bool IsOnHover { get => isOnHover; } 
@@ -36,7 +35,7 @@ namespace SeedQuest.Interactables
         void Update()  {
             interactableLabel.Update();
             ClickOnInteractable();
-            //HoverOnInteractable();
+            HoverOnInteractable();
         }
 
         public string Name {
@@ -108,6 +107,16 @@ namespace SeedQuest.Interactables
                 return false;
         }
 
+        public void SetInteractableLabelTrackerIcon() {
+            foreach (Interactable i in InteractableManager.InteractableList) {
+                if (i.interactableLabel != null)
+                    i.interactableLabel.ToggleTrackerIcon(false);
+            }
+
+            if (interactableLabel != null)
+                interactableLabel.ToggleTrackerIcon(true);
+        }
+
         public void HoverOnInteractable() {
             if (PauseManager.isPaused == true)
                 return;
@@ -123,14 +132,14 @@ namespace SeedQuest.Interactables
                 
                 if (hitThisInteractable) { 
                     if (!isOnHover)  {
-                        AudioManager.Play("UI_Hover");
+                        interactableLabel.OnHoverEnter();
                     } 
 
                     isOnHover = true;
                 }
                 else {
                     if (isOnHover) {
-
+                        interactableLabel.OnHoverExit();
                     }
 
                     isOnHover = false;
