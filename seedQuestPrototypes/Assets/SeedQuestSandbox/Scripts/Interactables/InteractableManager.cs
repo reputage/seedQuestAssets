@@ -66,6 +66,15 @@ namespace SeedQuest.Interactables
             return items;
         }
 
+        static public void ResetLabelTrackers()
+        {
+            Interactable[] interactables = GameObject.FindObjectsOfType<Interactable>();
+            foreach (Interactable interactable in interactables)
+            {
+                interactable.ResetInteractableLabelTrackerIcon();
+            }
+        }
+
         static public void Reset() {
             destroyInteractables();
         }

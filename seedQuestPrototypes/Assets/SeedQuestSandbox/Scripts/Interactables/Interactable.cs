@@ -6,6 +6,7 @@ namespace SeedQuest.Interactables
     [System.Serializable]
     public class InteractableCameraProps {
         public Vector3 lookAtOffset = Vector3.zero;
+        public Vector3 positionOffset = Vector3.zero;
         public float zoomDistance = 10.0f;
     }
 
@@ -58,6 +59,8 @@ namespace SeedQuest.Interactables
         public bool IsNextInteractable { get => InteractablePath.NextInteractable == this; }
 
         public Vector3 LookAtPosition { get => transform.position + GetComponent<BoxCollider>().center + interactableCamera.lookAtOffset; }
+
+        public Vector3 LabelPosition { get => interactableLabel.LabelPosition; }
 
         public string GetActionName(int actionIndex) {
             return this.stateData.getStateName(actionIndex);
@@ -115,6 +118,11 @@ namespace SeedQuest.Interactables
 
             if (interactableLabel != null)
                 interactableLabel.ToggleTrackerIcon(true);
+        }
+
+        public void ResetInteractableLabelTrackerIcon()
+        {
+            interactableLabel.ToggleTrackerIcon(false);
         }
 
         public void HoverOnInteractable() {

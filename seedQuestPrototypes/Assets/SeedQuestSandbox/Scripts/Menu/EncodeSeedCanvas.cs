@@ -203,11 +203,9 @@ public class EncodeSeedCanvas : MonoBehaviour {
 
     public void resetSeedStr()
     {
-        Debug.Log("Hello from reset seed str()");
         if (GameManager.Mode == GameMode.Recall)
         {
             GetComponentInChildren<SeedStrSelection>().reset();
-            Debug.Log("Ressetting the seed strength");
         }
     }
 } 

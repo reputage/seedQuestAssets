@@ -104,7 +104,7 @@ public class InteractableTrackerUI : MonoBehaviour
             return;
 
         // Set Unclamped ScreenPosition
-        unclampedScreenPosition = camera.WorldToScreenPoint(target.transform.position);
+        unclampedScreenPosition = camera.WorldToScreenPoint(target.LabelPosition);
     }
 
     /// <summary> Sets the position clamp status for TrackerIcon i.e. when outside of the bounds of screen it sets which edges of the screen it is out of bounds </summary>
@@ -117,7 +117,7 @@ public class InteractableTrackerUI : MonoBehaviour
 
     /// <summary> Checks if screen position is in Camera frame bounds </summary>
     private bool InBounds(Vector3 pos) {
-        float screenPadding = 100;
+        float screenPadding = 100; 
 
         float x0 = 0 + screenPadding;
         float x1 = camera.scaledPixelWidth - screenPadding;
