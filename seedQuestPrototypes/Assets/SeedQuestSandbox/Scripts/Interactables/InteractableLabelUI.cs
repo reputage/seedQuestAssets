@@ -91,10 +91,16 @@ public class InteractableLabelUI
         labelText.text = interactable.Name;
     }
 
+    public Vector3 LabelPosition {
+        get {
+            Vector3 offset = interactable.stateData != null ? interactable.stateData.labelPosOffset : Vector3.zero;
+            Vector3 position = interactable.transform.position + interactable.interactableUI.positionOffset + offset;
+            return position;
+        }
+    }
+
     private void SetPosition() {
-        Vector3 offset = interactable.stateData != null ? interactable.stateData.labelPosOffset : Vector3.zero;
-        Vector3 position = interactable.transform.position + interactable.interactableUI.positionOffset + offset;
-        labelPosition = IsometricCamera.Camera.WorldToScreenPoint(position);
+        labelPosition = IsometricCamera.Camera.WorldToScreenPoint(LabelPosition);
         labelCanvas.transform.position = labelPosition;
     }   
 

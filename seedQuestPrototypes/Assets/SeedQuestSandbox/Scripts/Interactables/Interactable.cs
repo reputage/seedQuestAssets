@@ -59,6 +59,8 @@ namespace SeedQuest.Interactables
 
         public Vector3 LookAtPosition { get => transform.position + GetComponent<BoxCollider>().center + interactableCamera.lookAtOffset; }
 
+        public Vector3 LabelPosition { get => interactableLabel.LabelPosition; }
+
         public string GetActionName(int actionIndex) {
             return this.stateData.getStateName(actionIndex);
         }
