@@ -42,7 +42,7 @@ public class NewTutorialManager : MonoBehaviour
 
     private void Update()
     {
-        if (currentCanvasIndex == 0)
+        if (currentCanvasIndex < 5)
         {
             GameManager.State = GameState.Menu;
         }
@@ -124,6 +124,7 @@ public class NewTutorialManager : MonoBehaviour
 				foreach (ParticleSystem particle in particles)
 					particle.Stop();
                 InteractableActionsUI.Toggle(false);
+                InteractableManager.ResetLabelTrackers();
                 GameManager.State = GameState.Menu;
 				GoToCanvas(14);
 			}
