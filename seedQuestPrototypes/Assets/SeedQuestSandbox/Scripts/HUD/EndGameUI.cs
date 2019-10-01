@@ -82,12 +82,12 @@ public class EndGameUI : MonoBehaviour
 
         if (GameManager.Mode == GameMode.Rehearsal)
         {
-            //textList[2].text = "Key Encrypted!";
+            //textList[2].text = "Key Encoded!";
             textList[3].text = "Practice Again";
         }
         else
         {
-            //textList[2].text = "Key Decrypted!";
+            //textList[2].text = "Key Decoded!";
             textList[3].text = "Back to Start Screen";
         }
 
@@ -161,7 +161,7 @@ public class EndGameUI : MonoBehaviour
             GUIUtility.systemCopyBuffer = seed;
         #endif
 
-        textList[1].text = "Seed Copied";
+        textList[1].text = "Seed Copied!";
         textList[1].gameObject.SetActive(true);
     }
 
