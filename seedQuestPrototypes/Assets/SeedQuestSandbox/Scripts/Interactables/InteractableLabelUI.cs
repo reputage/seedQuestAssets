@@ -138,6 +138,9 @@ public class InteractableLabelUI
     }
 
     public void OnHoverEnter() {
+        if(GameManager.Mode == GameMode.Sandbox)
+            InteractableManager.SetActiveInteractable(interactable);
+        
         ToggleText(true);
         animator.Play("HoverStartLabelAnimation");
         AudioManager.Play("UI_Hover");
