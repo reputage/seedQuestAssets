@@ -6,6 +6,7 @@ namespace SeedQuest.Interactables
     [System.Serializable]
     public class InteractableCameraProps {
         public Vector3 lookAtOffset = Vector3.zero;
+        public Vector3 positionOffset = Vector3.zero;
         public float zoomDistance = 10.0f;
     }
 
