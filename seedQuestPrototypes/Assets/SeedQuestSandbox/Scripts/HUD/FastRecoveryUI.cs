@@ -229,6 +229,7 @@ public class FastRecoveryUI : MonoBehaviour
     {
         if (!active)
         {
+            GameManager.State = GameState.Menu;
             animator.Play("SlideUp");
             ToggleInteractableGroup(false);
 
@@ -292,6 +293,7 @@ public class FastRecoveryUI : MonoBehaviour
         }
         else
         {
+            GameManager.State = GameState.Play;
             if (settings.useRenderTexture)
                 EventSystem.current.SetSelectedGameObject(rawMap.gameObject);
             else

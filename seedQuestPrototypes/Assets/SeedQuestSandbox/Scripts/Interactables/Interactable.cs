@@ -120,6 +120,11 @@ namespace SeedQuest.Interactables
                 interactableLabel.ToggleTrackerIcon(true);
         }
 
+        public void ResetInteractableLabelTrackerIcon()
+        {
+            interactableLabel.ToggleTrackerIcon(false);
+        }
+
         public void HoverOnInteractable() {
             if (PauseManager.isPaused == true)
                 return;

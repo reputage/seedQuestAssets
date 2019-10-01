@@ -140,7 +140,12 @@ namespace SeedQuest.Interactables
                 Instance.nextIndex++;
 
                 if (PathLevelComplete) {
-                    if (GameManager.ReviewMode == false) {
+                    if (GameManager.TutorialMode)
+                    {
+                        return;
+                    }
+
+                    if (GameManager.ReviewMode == false ) {
                         GameManager.ReviewMode = true;
                         FastRecoveryUI.Instance.StartFastRehearsal();
                     }
