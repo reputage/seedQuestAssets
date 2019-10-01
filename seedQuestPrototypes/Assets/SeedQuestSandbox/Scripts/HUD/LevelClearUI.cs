@@ -16,10 +16,12 @@ public class LevelClearUI : MonoBehaviour {
             return;
         GameManager.GraduatedFlags[InteractableLog.CurrentLevelIndex - 1] = true;
         Instance.gameObject.SetActive(true);
+        GameManager.State = GameState.Menu;
     }
 
     static public void ToggleOff()
     {
+        GameManager.State = GameState.Play;
         Instance.gameObject.SetActive(false);
     }
 
