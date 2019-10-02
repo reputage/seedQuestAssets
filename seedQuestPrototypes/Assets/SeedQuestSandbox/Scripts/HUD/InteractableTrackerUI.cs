@@ -150,9 +150,25 @@ public class InteractableTrackerUI : MonoBehaviour
             // Clamp TrackerIcon when Next Interactable if off screen
             var x = Mathf.Clamp(screenPosition.x, 0.0f + paddingX.x, camera.scaledPixelWidth - paddingX.y);
             var y = Mathf.Clamp(screenPosition.y, 0.0f + paddingY.x, camera.scaledPixelHeight - paddingY.y); 
+
+            // Correction if interactable is behind the camera 
+            if (unclampedScreenPosition.z < 0f) {
+                x = MidScreenX - (x - MidScreenX);
+                y = MidScreenY - (y - MidScreenY);
+            }
+
             screenPosition = new Vector3(x, y, screenPosition.z);
 
             // Clamp TrackerIcon to Center Edge of Screen based on position off screen
+            float xMax = camera.scaledPixelWidth;
+            float yMax = camera.scaledPixelHeight;
+            if (x > camera.scaledPixelWidth * 0.7f && y < MidScreenY) {
+                if( (x / xMax) > (1 - (y / yMax)) )
+                    screenPosition = new Vector3(camera.scaledPixelWidth * 0.7f, 0 + paddingY.x);
+                else 
+                    screenPosition = new Vector3(camera.scaledPixelWidth - paddingX.y, MidScreenY);
+            }
+
             if(isFixedToCenterEdge) {
                 if (screenPosition.z < 0)
                     screenPosition = new Vector3(camera.scaledPixelWidth - paddingX.x, MidScreenY, screenPosition.z);    
