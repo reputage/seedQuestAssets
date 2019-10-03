@@ -10,6 +10,7 @@ using SeedQuest.Interactables;
 public class SceneLineUpCanvas : MonoBehaviour
 {
     public GameObject continueButton;
+    public GameObject spinningLoadIcon;
     public Image[] worldImages;
     public Image[] worldOutlines;
     public TextMeshProUGUI[] worldText;
@@ -76,6 +77,10 @@ public class SceneLineUpCanvas : MonoBehaviour
         }
 
         //sceneLoadProgress.gameObject.SetActive(false);
+        spinningLoadIcon.gameObject.SetActive(false);
+        spinningLoadIcon.transform.parent.GetComponent<TMP_Text>().text = "Continue";
+        int index = spinningLoadIcon.transform.parent.GetSiblingIndex();
+        spinningLoadIcon.transform.parent.parent.GetChild(index + 1).GetComponent<TMP_Text>().text = "Your world has finished loading.";
         continueButton.gameObject.SetActive(true);
     }
 
@@ -85,6 +90,10 @@ public class SceneLineUpCanvas : MonoBehaviour
         InteractableLabelUI.ClearInteractableUI();
         SetImages();
 
+        spinningLoadIcon.gameObject.SetActive(true);
+        spinningLoadIcon.transform.parent.GetComponent<TMP_Text>().text = "Loading";
+        int index = spinningLoadIcon.transform.parent.GetSiblingIndex();
+        spinningLoadIcon.transform.parent.parent.GetChild(index + 1).GetComponent<TMP_Text>().text = "While you wait, why don't you review the world sequence?";
         continueButton.gameObject.SetActive(false);
         if(WorldManager.CurrentWorldScene != null)
             StartCoroutine(LoadAsync(WorldManager.CurrentWorldScene.sceneName));
