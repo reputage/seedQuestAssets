@@ -21,7 +21,7 @@ public class InteractableActionsUI : MonoBehaviour
     // Start is called before the first frame update
     void Awake() {
         SetComponentRef();
-        //SetHoverEvents();
+        SetHoverEvents();
     }
 
     public void Update() {
@@ -88,7 +88,7 @@ public class InteractableActionsUI : MonoBehaviour
     void clickActionButton(int actionIndex) {
         /* InteractableActionsUI.Toggle(false); */
 
-        interactable.PreviewAction(actionIndex);
+        //interactable.PreviewAction(actionIndex);
         //AudioManager.Play("UI_Hover");
     }
 
@@ -121,7 +121,7 @@ public class InteractableActionsUI : MonoBehaviour
     }
 
     private void OnHoverEnter(int actionIndex) {
-        //hoverActionButton(actionIndex-1);
+        hoverActionButton(actionIndex-1);
         AudioManager.Play("UI_Hover");
     }
 
