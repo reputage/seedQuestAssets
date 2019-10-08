@@ -1,6 +1,6 @@
 //Maya ASCII 2019 scene
-//Name: NPC_Rig.ma
-//Last modified: Mon, Oct 07, 2019 07:57:06 PM
+//Name: NPC_Rig_11.ma
+//Last modified: Mon, Oct 07, 2019 06:57:12 PM
 //Codeset: 1252
 file -rdi 1 -ns "NPC_Base" -rfn "NPC_Base_04RN" -op "v=0;" -typ "mayaAscii" "C:/Users/winka/Documents/seedQuestAssets/WorkingArtFolder/_Animation/maya/projects/SeedQuest_NPC//assets/NPC_Base.ma";
 file -r -ns "NPC_Base" -dr 1 -rfn "NPC_Base_04RN" -op "v=0;" -typ "mayaAscii" "C:/Users/winka/Documents/seedQuestAssets/WorkingArtFolder/_Animation/maya/projects/SeedQuest_NPC//assets/NPC_Base.ma";
@@ -19,13 +19,13 @@ fileInfo "osv" "Microsoft Windows 10 Technical Preview  (Build 18362)\n";
 createNode transform -s -n "persp";
 	rename -uid "DB47CFE8-4773-8ADA-309A-62BBCEA2E87B";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 34.11522563821373 163.2623761197722 474.37604548442295 ;
-	setAttr ".r" -type "double3" -8.7383520164141419 -20514.999999986285 9.9771996365977889e-17 ;
+	setAttr ".t" -type "double3" 59.882334520139885 109.53238857977506 36.137196312016016 ;
+	setAttr ".r" -type "double3" -11.738352016453121 -20524.99999999662 -9.9771996363374303e-17 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "A16730F9-4B90-4D20-899E-688C2CDFED35";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 508.64649848154193;
+	setAttr ".coi" 25.669201529819237;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -2498,6 +2498,7 @@ createNode joint -n "Base_R_Wrist_joint_01" -p "Base_R_Elbow_joint_01";
 	addAttr -ci true -sn "liw" -ln "lockInfluenceWeights" -min 0 -max 1 -at "bool";
 	setAttr ".uoc" 1;
 	setAttr ".oc" 2;
+	setAttr ".t" -type "double3" -14.99999989091512 -0.00071284009483463251 -3.3836412551835338e-06 ;
 	setAttr ".mnrl" -type "double3" -360 -360 -360 ;
 	setAttr ".mxrl" -type "double3" 360 360 360 ;
 	setAttr ".jo" -type "double3" -1.257336489539268e-17 8.8390628806517562 0.98923305102312098 ;
@@ -2937,8 +2938,6 @@ createNode orientConstraint -n "Base_R_Wrist_joint_01_orientConstraint1" -p "Bas
 		0 -at "double";
 	addAttr -dcb 0 -ci true -k true -sn "w1" -ln "IK_R_Wrist_joint_01W1" -dv 1 -min 
 		0 -at "double";
-	addAttr -dcb 0 -ci true -k true -sn "w2" -ln "Freeform_R_Wrist_joint_01W2" -dv 1 
-		-min 0 -at "double";
 	setAttr -k on ".nds";
 	setAttr -k off ".v" no;
 	setAttr -k off ".tx";
@@ -2951,12 +2950,11 @@ createNode orientConstraint -n "Base_R_Wrist_joint_01_orientConstraint1" -p "Bas
 	setAttr -k off ".sy";
 	setAttr -k off ".sz";
 	setAttr ".erp" yes;
-	setAttr -s 3 ".tg";
-	setAttr ".rsrr" -type "double3" 3.4930441789173075e-12 4.7399951623821619e-14 5.5193494759901071e-13 ;
+	setAttr -s 2 ".tg";
+	setAttr ".rsrr" -type "double3" 2.5096564283423067e-15 -2.0690397298406084e-14 -4.6054369667383109e-15 ;
 	setAttr ".hio" yes;
 	setAttr -k on ".w0";
 	setAttr -k on ".w1";
-	setAttr -k on ".w2";
 createNode transform -n "R_Hand_DockPoint_Grp_01" -p "Base_R_Wrist_joint_01";
 	rename -uid "0F5B953A-422E-9DFB-F609-AC9FA46363EF";
 	setAttr -l on -k off ".v";
@@ -3479,31 +3477,6 @@ createNode nurbsCurve -n "R_Pinky_Ctrl_Shape3" -p "R_Pinky_Ctrl_03";
 createNode transform -n "null1" -p "Base_R_Wrist_joint_01";
 	rename -uid "27D9922E-4B21-6606-8F93-758735AA0423";
 	setAttr ".s" -type "double3" 1.0000000000000007 0.99999999999999967 1.0000000000000002 ;
-createNode pointConstraint -n "Base_R_Wrist_joint_01_pointConstraint1" -p "Base_R_Wrist_joint_01";
-	rename -uid "A06C1BD2-4DB1-A41F-2745-65B035BE6C36";
-	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "IK_R_Wrist_joint_01W0" -dv 1 -min 
-		0 -at "double";
-	addAttr -dcb 0 -ci true -k true -sn "w1" -ln "FK_R_Wrist_joint_01W1" -dv 1 -min 
-		0 -at "double";
-	addAttr -dcb 0 -ci true -k true -sn "w2" -ln "Freeform_R_Wrist_joint_01W2" -dv 1 
-		-min 0 -at "double";
-	setAttr -k on ".nds";
-	setAttr -k off ".v";
-	setAttr -k off ".tx";
-	setAttr -k off ".ty";
-	setAttr -k off ".tz";
-	setAttr -k off ".rx";
-	setAttr -k off ".ry";
-	setAttr -k off ".rz";
-	setAttr -k off ".sx";
-	setAttr -k off ".sy";
-	setAttr -k off ".sz";
-	setAttr ".erp" yes;
-	setAttr -s 3 ".tg";
-	setAttr ".rst" -type "double3" -16.25210395917518 -2.0992102477319747 -0.059614501049555457 ;
-	setAttr -k on ".w0";
-	setAttr -k on ".w1";
-	setAttr -k on ".w2";
 createNode orientConstraint -n "Base_R_Elbow_joint_01_orientConstraint1" -p "Base_R_Elbow_joint_01";
 	rename -uid "2537A16B-47A4-22D1-0985-31BFBCFB6C59";
 	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "FK_R_Elbow_joint_01W0" -dv 1 -min 
@@ -4264,7 +4237,7 @@ createNode orientConstraint -n "Base_L_Wrist_joint_01_orientConstraint1" -p "Bas
 	setAttr -k off ".sz";
 	setAttr ".erp" yes;
 	setAttr -s 3 ".tg";
-	setAttr ".lr" -type "double3" -4.9696166897867449e-17 -9.7062825972397194e-20 3.9601632996738124e-16 ;
+	setAttr ".lr" -type "double3" -2.1742073017816969e-14 3.3398736040146124e-14 1.3950102299535282e-13 ;
 	setAttr ".rsrr" -type "double3" -3.006618097320975e-15 3.3398250726016233e-14 1.9167190370421253e-14 ;
 	setAttr -k on ".w0";
 	setAttr -k on ".w1";
@@ -4808,7 +4781,7 @@ createNode pointConstraint -n "Base_L_Wrist_joint_01_pointConstraint1" -p "Base_
 	setAttr -s 3 ".tg";
 	setAttr ".o" -type "double3" 7.5266727975531467e-05 0.00043623995038899466 -1.3793798473216157e-05 ;
 	setAttr ".rst" -type "double3" 15.000075419897684 0.00043181458363505953 -1.387875163416652e-05 ;
-	setAttr -k on ".w0";
+	setAttr -k on ".w0" 0;
 	setAttr -k on ".w1";
 	setAttr -k on ".w2";
 createNode transform -n "point_constraint_dock" -p "Base_L_Wrist_joint_01";
@@ -4855,7 +4828,7 @@ createNode orientConstraint -n "Base_L_Shoulder_joint_01_orientConstraint1" -p "
 	setAttr -k off ".sz";
 	setAttr ".erp" yes;
 	setAttr -s 2 ".tg";
-	setAttr ".lr" -type "double3" 3.727212517340058e-16 1.5980423668095499e-15 -3.7272125173400575e-17 ;
+	setAttr ".lr" -type "double3" 9.1937908761054754e-16 6.3750864098670571e-15 3.2302508483613845e-16 ;
 	setAttr ".rsrr" -type "double3" 2.0875407342721921e-15 4.3191522943760272e-15 15.378036730057966 ;
 	setAttr -k on ".w0";
 	setAttr -k on ".w1";
@@ -5588,7 +5561,7 @@ createNode transform -n "L_Hand_IKFK" -p "Switch_Grp";
 	setAttr -l on -k off ".sz";
 	setAttr ".rp" -type "double3" 0 -70 -30 ;
 	setAttr ".sp" -type "double3" 0 -70 -30 ;
-	setAttr -k on ".IK_FK_Switch" 10;
+	setAttr -k on ".IK_FK_Switch" -10;
 createNode nurbsCurve -n "polyToCurveShape13" -p "L_Hand_IKFK";
 	rename -uid "CB0652A8-4145-4B59-15C8-9FAC744BB7CE";
 	setAttr -k off ".v";
@@ -6186,7 +6159,7 @@ createNode transform -n "R_Hand_IKFK" -p "Switch_Grp";
 	setAttr -l on -k off ".sz";
 	setAttr ".rp" -type "double3" 0 102 -30 ;
 	setAttr ".sp" -type "double3" 0 102 -30 ;
-	setAttr -k on ".IK_FK_Switch";
+	setAttr -k on ".IK_FK_Switch" -10;
 createNode nurbsCurve -n "polyToCurveShape31" -p "R_Hand_IKFK";
 	rename -uid "5B54A700-4628-86BC-6909-B692CC7B368E";
 	setAttr -k off ".v";
@@ -8387,202 +8360,6 @@ createNode scaleConstraint -n "Dock_Grp_scaleConstraint1" -p "Dock_Grp";
 	setAttr ".erp" yes;
 	setAttr ".hio" yes;
 	setAttr -k on ".w0";
-createNode transform -n "L_Free_Wrist_Grp_01" -p "Dock_Grp";
-	rename -uid "750857B1-4D65-BCF7-C190-2691F2901F44";
-	setAttr ".ove" yes;
-	setAttr ".ovrgbf" yes;
-	setAttr ".ovc" 9;
-	setAttr ".ovrgb" -type "float3" 1 0.24669999 0.28699988 ;
-	setAttr ".t" -type "double3" 100.88493347167966 -56.092098236083942 0.24589440226554826 ;
-	setAttr ".r" -type "double3" 0 0 -90 ;
-createNode transform -n "L_Free_Wrist_Ctrl_01" -p "L_Free_Wrist_Grp_01";
-	rename -uid "B4EA92BF-4142-24E9-57AC-68927BAC2020";
-	setAttr ".rp" -type "double3" 8.3923339886382564e-05 0.00043487548830967171 -9.0897082527519046e-07 ;
-	setAttr ".sp" -type "double3" 8.3923339886382564e-05 0.00043487548830967171 -9.0897082527519046e-07 ;
-createNode nurbsCurve -n "curveShape4" -p "L_Free_Wrist_Ctrl_01";
-	rename -uid "9F5E71C0-4877-122A-F954-CB8B034E2565";
-	setAttr -k off ".v";
-	setAttr ".cc" -type "nurbsCurve" 
-		3 6 0 no 3
-		11 0 0 0 1 2 3 4 5 6 6 6
-		9
-		8.3923339886382564e-05 -1.5876684673913815 -9.0897083238061782e-07
-		8.3923339886382564e-05 -1.5876684673913815 -9.0897083238061782e-07
-		8.3923339886382564e-05 -17.46870189618835 -7.9405176233693169
-		8.3923339886382564e-05 -17.46870189618835 -7.9405176233693169
-		8.3923339886382564e-05 -17.46870189618835 -6.3524142804896115
-		8.3923339886382564e-05 -17.46870189618835 6.3524124625479601
-		8.3923339886382564e-05 -17.46870189618835 7.9405158054276512
-		8.3923339886382564e-05 -17.46870189618835 7.9405158054276512
-		8.3923339886382564e-05 -1.5876684673913815 -9.0897083238061782e-07
-		;
-createNode nurbsCurve -n "curveShape3" -p "L_Free_Wrist_Ctrl_01";
-	rename -uid "BD678B26-4ACF-60AD-F775-528402D5F82D";
-	setAttr -k off ".v";
-	setAttr ".cc" -type "nurbsCurve" 
-		3 6 0 no 3
-		11 0 0 0 1 2 3 4 5 6 6 6
-		9
-		8.3923339886382564e-05 0.00043487548830967171 -1.5881042518505235
-		8.3923339886382564e-05 0.00043487548830967171 -1.5881042518505235
-		8.3923339886382564e-05 7.9409515898868079 -17.469137680647492
-		8.3923339886382564e-05 7.9409515898868079 -17.469137680647492
-		8.3923339886382564e-05 6.3528482470071026 -17.469137680647492
-		8.3923339886382564e-05 -6.351978496030469 -17.469137680647492
-		8.3923339886382564e-05 -7.9400818389101744 -17.469137680647492
-		8.3923339886382564e-05 -7.9400818389101744 -17.469137680647492
-		8.3923339886382564e-05 0.00043487548830967171 -1.5881042518505235
-		;
-createNode nurbsCurve -n "curveShape2" -p "L_Free_Wrist_Ctrl_01";
-	rename -uid "105B6220-4CB7-1521-A0A5-50B38FAA2570";
-	setAttr -k off ".v";
-	setAttr ".cc" -type "nurbsCurve" 
-		3 6 0 no 3
-		11 0 0 0 1 2 3 4 5 6 6 6
-		9
-		8.3923339886382564e-05 1.5885382183680008 -9.0897083238061782e-07
-		8.3923339886382564e-05 1.5885382183680008 -9.0897083238061782e-07
-		8.3923339886382564e-05 17.469571647164983 7.9405158054276512
-		8.3923339886382564e-05 17.469571647164983 7.9405158054276512
-		8.3923339886382564e-05 17.469571647164983 6.3524124625479743
-		8.3923339886382564e-05 17.469571647164983 -6.3524142804895973
-		8.3923339886382564e-05 17.469571647164983 -7.9405176233693169
-		8.3923339886382564e-05 17.469571647164983 -7.9405176233693169
-		8.3923339886382564e-05 1.5885382183680008 -9.0897083238061782e-07
-		;
-createNode nurbsCurve -n "curveShape1" -p "L_Free_Wrist_Ctrl_01";
-	rename -uid "E5DD78A2-4594-0F2B-809E-08A09282154E";
-	setAttr -k off ".v";
-	setAttr ".cc" -type "nurbsCurve" 
-		3 6 0 no 3
-		11 0 0 0 1 2 3 4 5 6 6 6
-		9
-		8.3923339886382564e-05 0.00043487548830967171 1.5881024339088872
-		8.3923339886382564e-05 0.00043487548830967171 1.5881024339088872
-		8.3923339886382564e-05 -7.9400818389101744 17.469135862705841
-		8.3923339886382564e-05 -7.9400818389101744 17.469135862705841
-		8.3923339886382564e-05 -6.3519784960304833 17.469135862705841
-		8.3923339886382564e-05 6.3528482470071026 17.469135862705841
-		8.3923339886382564e-05 7.9409515898868079 17.469135862705841
-		8.3923339886382564e-05 7.9409515898868079 17.469135862705841
-		8.3923339886382564e-05 0.00043487548830967171 1.5881024339088872
-		;
-createNode nurbsCurve -n "CetnerShape" -p "L_Free_Wrist_Ctrl_01";
-	rename -uid "BDBC16B3-4DF2-7AAA-C661-2A95064D2381";
-	setAttr -k off ".v";
-	setAttr ".cc" -type "nurbsCurve" 
-		3 8 2 no 3
-		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
-		11
-		8.3923339886382564e-05 6.1749542655537653 -6.1745202990362884
-		8.3923339886382564e-05 0.00043487548830967171 -8.7320899715370501
-		8.3923339886382564e-05 -6.1740845145771459 -6.1745202990362742
-		8.3923339886382564e-05 -8.7316541870779076 -9.0897083238061782e-07
-		8.3923339886382564e-05 -6.1740845145771459 6.1745184810946228
-		8.3923339886382564e-05 0.00043487548830967171 8.7320881535953845
-		8.3923339886382564e-05 6.1749542655537653 6.1745184810946228
-		8.3923339886382564e-05 8.732523938054527 -9.0897083238061782e-07
-		8.3923339886382564e-05 6.1749542655537653 -6.1745202990362884
-		8.3923339886382564e-05 0.00043487548830967171 -8.7320899715370501
-		8.3923339886382564e-05 -6.1740845145771459 -6.1745202990362742
-		;
-createNode transform -n "R_Free_Wrist_Grp_01" -p "Dock_Grp";
-	rename -uid "7C8AF80E-4F44-8698-2C69-F8BBCB681DB5";
-	setAttr ".t" -type "double3" 100.88536834716803 56.092182159423793 0.24589349329472343 ;
-	setAttr ".r" -type "double3" -179.99999999999284 0 -90 ;
-createNode transform -n "R_Free_Wrist_Ctrl_01" -p "R_Free_Wrist_Grp_01";
-	rename -uid "689FD153-4370-A871-12EB-0AAA6B647013";
-	setAttr ".ove" yes;
-	setAttr ".ovc" 18;
-	setAttr ".rp" -type "double3" -3.5527136788005009e-14 5.6843418860808015e-14 7.5495165674510645e-15 ;
-	setAttr ".sp" -type "double3" -3.5527136788005009e-14 5.6843418860808015e-14 7.5495165674510645e-15 ;
-createNode nurbsCurve -n "curveShape4" -p "R_Free_Wrist_Ctrl_01";
-	rename -uid "8D2DD445-4A1D-8797-697A-CABB780A8A61";
-	setAttr -k off ".v";
-	setAttr ".cc" -type "nurbsCurve" 
-		3 6 0 no 3
-		11 0 0 0 1 2 3 4 5 6 6 6
-		9
-		-3.5527136788005009e-14 1.588103342879748 -1.9081958235744878e-13
-		-3.5527136788005009e-14 1.588103342879748 -1.9081958235744878e-13
-		-3.5527136788005009e-14 17.469136771677711 7.9405167143963089
-		-3.5527136788005009e-14 17.469136771677711 7.9405167143963089
-		-3.5527136788005009e-14 17.469136771677512 6.3524133715166036
-		-3.5527136788005009e-14 17.46913677167592 -6.3524133715209681
-		-3.5527136788005009e-14 17.469136771675721 -7.9405167144006583
-		-3.5527136788005009e-14 17.469136771675721 -7.9405167144006583
-		-3.5527136788005009e-14 1.588103342879748 -1.9081958235744878e-13
-		;
-createNode nurbsCurve -n "curveShape3" -p "R_Free_Wrist_Ctrl_01";
-	rename -uid "EAF2CBB1-4E85-89D1-8A51-18A24EC297FB";
-	setAttr -k off ".v";
-	setAttr ".cc" -type "nurbsCurve" 
-		3 6 0 no 3
-		11 0 0 0 1 2 3 4 5 6 6 6
-		9
-		-3.5527136788005009e-14 2.5579538487363607e-13 1.5881033428796987
-		-3.5527136788005009e-14 2.5579538487363607e-13 1.5881033428796987
-		-3.5527136788005009e-14 -7.9405167143962672 17.469136771677658
-		-3.5527136788005009e-14 -7.9405167143962672 17.469136771677658
-		-3.5527136788005009e-14 -6.3524133715165618 17.469136771677459
-		-3.5527136788005009e-14 6.3524133715210098 17.469136771675874
-		-3.5527136788005009e-14 7.9405167144007152 17.469136771675675
-		-3.5527136788005009e-14 7.9405167144007152 17.469136771675675
-		-3.5527136788005009e-14 2.5579538487363607e-13 1.5881033428796987
-		;
-createNode nurbsCurve -n "curveShape2" -p "R_Free_Wrist_Ctrl_01";
-	rename -uid "2ED07F75-4B3C-2229-FB8B-ADAF0E21DDB3";
-	setAttr -k off ".v";
-	setAttr ".cc" -type "nurbsCurve" 
-		3 6 0 no 3
-		11 0 0 0 1 2 3 4 5 6 6 6
-		9
-		-3.5527136788005009e-14 -1.5881033428796343 2.0591861549235091e-13
-		-3.5527136788005009e-14 -1.5881033428796343 2.0591861549235091e-13
-		-3.5527136788005009e-14 -17.469136771677611 -7.9405167143962938
-		-3.5527136788005009e-14 -17.469136771677611 -7.9405167143962938
-		-3.5527136788005009e-14 -17.469136771677412 -6.3524133715166178
-		-3.5527136788005009e-14 -17.469136771675821 6.3524133715209539
-		-3.5527136788005009e-14 -17.469136771675622 7.9405167144006734
-		-3.5527136788005009e-14 -17.469136771675622 7.9405167144006734
-		-3.5527136788005009e-14 -1.5881033428796343 2.0591861549235091e-13
-		;
-createNode nurbsCurve -n "curveShape1" -p "R_Free_Wrist_Ctrl_01";
-	rename -uid "24FFC72C-46A5-1B33-A578-5E9393BB5AD2";
-	setAttr -k off ".v";
-	setAttr ".cc" -type "nurbsCurve" 
-		3 6 0 no 3
-		11 0 0 0 1 2 3 4 5 6 6 6
-		9
-		-3.5527136788005009e-14 -1.4210854715202004e-13 -1.588103342879712
-		-3.5527136788005009e-14 -1.4210854715202004e-13 -1.588103342879712
-		-3.5527136788005009e-14 7.9405167143963524 -17.469136771677658
-		-3.5527136788005009e-14 7.9405167143963524 -17.469136771677658
-		-3.5527136788005009e-14 6.3524133715166613 -17.469136771677459
-		-3.5527136788005009e-14 -6.3524133715209246 -17.469136771675874
-		-3.5527136788005009e-14 -7.9405167144006299 -17.469136771675675
-		-3.5527136788005009e-14 -7.9405167144006299 -17.469136771675675
-		-3.5527136788005009e-14 -1.4210854715202004e-13 -1.588103342879712
-		;
-createNode nurbsCurve -n "CetnerShape" -p "R_Free_Wrist_Ctrl_01";
-	rename -uid "4C74A689-4F6D-09ED-043D-9488431146F7";
-	setAttr -k off ".v";
-	setAttr ".cc" -type "nurbsCurve" 
-		3 8 2 no 3
-		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
-		11
-		-3.5527136788005009e-14 -6.1745193900646314 6.1745193900662345
-		-3.5527136788005009e-14 1.1510792319313623e-12 8.7320890625662244
-		-3.5527136788005009e-14 6.1745193900662798 6.1745193900646775
-		-3.5527136788005009e-14 8.7320890625662742 -1.083189093975534e-12
-		-3.5527136788005009e-14 6.174519390064745 -6.1745193900662194
-		-3.5527136788005009e-14 -1.0373923942097463e-12 -8.7320890625662102
-		-3.5527136788005009e-14 -6.1745193900661661 -6.1745193900646766
-		-3.5527136788005009e-14 -8.7320890625661605 1.0982881271104361e-12
-		-3.5527136788005009e-14 -6.1745193900646314 6.1745193900662345
-		-3.5527136788005009e-14 1.1510792319313623e-12 8.7320890625662244
-		-3.5527136788005009e-14 6.1745193900662798 6.1745193900646775
-		;
 createNode transform -n "Measure_Tools" -p "Master_NPC_Ctrl_01";
 	rename -uid "1C3D89F3-491D-C669-3D93-83A0F12E8E89";
 	setAttr ".ove" yes;
@@ -8690,6 +8467,37 @@ createNode pointConstraint -n "Hip_pointConstraint1" -p "Hip";
 	setAttr ".erp" yes;
 	setAttr ".rst" -type "double3" 0 49.08441162109375 0 ;
 	setAttr -k on ".w0";
+createNode joint -n "Freeform_R_Wrist_dock_point" -p "Master_NPC_Ctrl_01";
+	rename -uid "1C318ED3-47F7-D9EC-338D-A0912830D327";
+	addAttr -ci true -sn "liw" -ln "lockInfluenceWeights" -min 0 -max 1 -at "bool";
+	setAttr ".v" no;
+	setAttr ".uoc" 1;
+	setAttr ".oc" 2;
+	setAttr ".t" -type "double3" 100.88536834716797 56.092182159423828 0.24589349329471588 ;
+	setAttr ".mnrl" -type "double3" -360 -360 -360 ;
+	setAttr ".mxrl" -type "double3" 360 360 360 ;
+	setAttr ".jo" -type "double3" -179.99999999999284 0 -90 ;
+	setAttr ".ssc" no;
+	setAttr ".bps" -type "matrix" 1.0000000000000002 5.3810077924414628e-16 -1.3322676295501878e-15 0
+		 5.377642775528102e-16 -0.99999999999999989 -1.2625230721985403e-13 0 -1.3600232051658168e-15 1.2626115825687264e-13 -1 0
+		 -69.397799999999989 100.99799999999996 0.33440200000001852 1;
+	setAttr ".radi" 10;
+createNode joint -n "Freeform_L_Wrist_dock_point" -p "Master_NPC_Ctrl_01";
+	rename -uid "EDF1EFE4-4F3B-464C-4FA9-7DA2B991A8FC";
+	addAttr -ci true -sn "liw" -ln "lockInfluenceWeights" -min 0 -max 1 -at "bool";
+	setAttr ".v" no;
+	setAttr ".uoc" 1;
+	setAttr ".oc" 2;
+	setAttr ".t" -type "double3" 100.88536834716797 -56.092182159423828 0.24589349329472299 ;
+	setAttr ".mnrl" -type "double3" -360 -360 -360 ;
+	setAttr ".mxrl" -type "double3" 360 360 360 ;
+	setAttr ".jo" -type "double3" 0 0 -90 ;
+	setAttr ".ssc" no;
+	setAttr ".bps" -type "matrix" 0.99999999999999989 -2.7150040274472447e-16 1.2212453270876722e-15 0
+		 2.9143354396410359e-16 1 2.978953889121172e-14 0 -1.3322676295501878e-15 -2.9901993615435223e-14 0.99999999999999989 0
+		 69.397834777832031 100.99757012375596 0.33440181683144576 1;
+	setAttr ".radi" 10;
+	setAttr ".hio" yes;
 createNode joint -n "Freeform_L_Wrist_joint_01" -p "Master_NPC_Ctrl_01";
 	rename -uid "F46F7FF0-4A2B-EDC7-01A9-1788F6B5098E";
 	addAttr -ci true -sn "liw" -ln "lockInfluenceWeights" -min 0 -max 1 -at "bool";
@@ -13021,8 +12829,203 @@ createNode mesh -n "R_Arm_MeshShapeOrig" -p "R_Arm_Mesh";
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 	setAttr ".ai_translator" -type "string" "polymesh";
+createNode transform -n "L_Free_Wrist_Grp_01";
+	rename -uid "750857B1-4D65-BCF7-C190-2691F2901F44";
+	setAttr ".ove" yes;
+	setAttr ".ovrgbf" yes;
+	setAttr ".ovc" 9;
+	setAttr ".ovrgb" -type "float3" 1 0.24669999 0.28699988 ;
+	setAttr ".t" -type "double3" 56.092098236083942 100.88493347167966 0.24589440226554826 ;
+createNode transform -n "L_Free_Wrist_Ctrl_01" -p "L_Free_Wrist_Grp_01";
+	rename -uid "B4EA92BF-4142-24E9-57AC-68927BAC2020";
+	setAttr ".rp" -type "double3" 8.3923339886382564e-05 0.00043487548830967171 -9.0897082527519046e-07 ;
+	setAttr ".sp" -type "double3" 8.3923339886382564e-05 0.00043487548830967171 -9.0897082527519046e-07 ;
+createNode nurbsCurve -n "curveShape4" -p "L_Free_Wrist_Ctrl_01";
+	rename -uid "9F5E71C0-4877-122A-F954-CB8B034E2565";
+	setAttr -k off ".v";
+	setAttr ".cc" -type "nurbsCurve" 
+		3 6 0 no 3
+		11 0 0 0 1 2 3 4 5 6 6 6
+		9
+		8.3923339886382564e-05 -1.5876684673913815 -9.0897083238061782e-07
+		8.3923339886382564e-05 -1.5876684673913815 -9.0897083238061782e-07
+		8.3923339886382564e-05 -17.46870189618835 -7.9405176233693169
+		8.3923339886382564e-05 -17.46870189618835 -7.9405176233693169
+		8.3923339886382564e-05 -17.46870189618835 -6.3524142804896115
+		8.3923339886382564e-05 -17.46870189618835 6.3524124625479601
+		8.3923339886382564e-05 -17.46870189618835 7.9405158054276512
+		8.3923339886382564e-05 -17.46870189618835 7.9405158054276512
+		8.3923339886382564e-05 -1.5876684673913815 -9.0897083238061782e-07
+		;
+createNode nurbsCurve -n "curveShape3" -p "L_Free_Wrist_Ctrl_01";
+	rename -uid "BD678B26-4ACF-60AD-F775-528402D5F82D";
+	setAttr -k off ".v";
+	setAttr ".cc" -type "nurbsCurve" 
+		3 6 0 no 3
+		11 0 0 0 1 2 3 4 5 6 6 6
+		9
+		8.3923339886382564e-05 0.00043487548830967171 -1.5881042518505235
+		8.3923339886382564e-05 0.00043487548830967171 -1.5881042518505235
+		8.3923339886382564e-05 7.9409515898868079 -17.469137680647492
+		8.3923339886382564e-05 7.9409515898868079 -17.469137680647492
+		8.3923339886382564e-05 6.3528482470071026 -17.469137680647492
+		8.3923339886382564e-05 -6.351978496030469 -17.469137680647492
+		8.3923339886382564e-05 -7.9400818389101744 -17.469137680647492
+		8.3923339886382564e-05 -7.9400818389101744 -17.469137680647492
+		8.3923339886382564e-05 0.00043487548830967171 -1.5881042518505235
+		;
+createNode nurbsCurve -n "curveShape2" -p "L_Free_Wrist_Ctrl_01";
+	rename -uid "105B6220-4CB7-1521-A0A5-50B38FAA2570";
+	setAttr -k off ".v";
+	setAttr ".cc" -type "nurbsCurve" 
+		3 6 0 no 3
+		11 0 0 0 1 2 3 4 5 6 6 6
+		9
+		8.3923339886382564e-05 1.5885382183680008 -9.0897083238061782e-07
+		8.3923339886382564e-05 1.5885382183680008 -9.0897083238061782e-07
+		8.3923339886382564e-05 17.469571647164983 7.9405158054276512
+		8.3923339886382564e-05 17.469571647164983 7.9405158054276512
+		8.3923339886382564e-05 17.469571647164983 6.3524124625479743
+		8.3923339886382564e-05 17.469571647164983 -6.3524142804895973
+		8.3923339886382564e-05 17.469571647164983 -7.9405176233693169
+		8.3923339886382564e-05 17.469571647164983 -7.9405176233693169
+		8.3923339886382564e-05 1.5885382183680008 -9.0897083238061782e-07
+		;
+createNode nurbsCurve -n "curveShape1" -p "L_Free_Wrist_Ctrl_01";
+	rename -uid "E5DD78A2-4594-0F2B-809E-08A09282154E";
+	setAttr -k off ".v";
+	setAttr ".cc" -type "nurbsCurve" 
+		3 6 0 no 3
+		11 0 0 0 1 2 3 4 5 6 6 6
+		9
+		8.3923339886382564e-05 0.00043487548830967171 1.5881024339088872
+		8.3923339886382564e-05 0.00043487548830967171 1.5881024339088872
+		8.3923339886382564e-05 -7.9400818389101744 17.469135862705841
+		8.3923339886382564e-05 -7.9400818389101744 17.469135862705841
+		8.3923339886382564e-05 -6.3519784960304833 17.469135862705841
+		8.3923339886382564e-05 6.3528482470071026 17.469135862705841
+		8.3923339886382564e-05 7.9409515898868079 17.469135862705841
+		8.3923339886382564e-05 7.9409515898868079 17.469135862705841
+		8.3923339886382564e-05 0.00043487548830967171 1.5881024339088872
+		;
+createNode nurbsCurve -n "CetnerShape" -p "L_Free_Wrist_Ctrl_01";
+	rename -uid "BDBC16B3-4DF2-7AAA-C661-2A95064D2381";
+	setAttr -k off ".v";
+	setAttr ".cc" -type "nurbsCurve" 
+		3 8 2 no 3
+		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
+		11
+		8.3923339886382564e-05 6.1749542655537653 -6.1745202990362884
+		8.3923339886382564e-05 0.00043487548830967171 -8.7320899715370501
+		8.3923339886382564e-05 -6.1740845145771459 -6.1745202990362742
+		8.3923339886382564e-05 -8.7316541870779076 -9.0897083238061782e-07
+		8.3923339886382564e-05 -6.1740845145771459 6.1745184810946228
+		8.3923339886382564e-05 0.00043487548830967171 8.7320881535953845
+		8.3923339886382564e-05 6.1749542655537653 6.1745184810946228
+		8.3923339886382564e-05 8.732523938054527 -9.0897083238061782e-07
+		8.3923339886382564e-05 6.1749542655537653 -6.1745202990362884
+		8.3923339886382564e-05 0.00043487548830967171 -8.7320899715370501
+		8.3923339886382564e-05 -6.1740845145771459 -6.1745202990362742
+		;
+createNode transform -n "R_Free_Wrist_Grp_01";
+	rename -uid "7C8AF80E-4F44-8698-2C69-F8BBCB681DB5";
+	setAttr ".t" -type "double3" -56.092182159423793 100.88536834716803 0.24589349329472343 ;
+	setAttr ".r" -type "double3" -179.99999999999284 0 0 ;
+createNode transform -n "R_Free_Wrist_Ctrl_01" -p "R_Free_Wrist_Grp_01";
+	rename -uid "689FD153-4370-A871-12EB-0AAA6B647013";
+	setAttr ".ove" yes;
+	setAttr ".ovc" 18;
+	setAttr ".rp" -type "double3" -3.5527136788005009e-14 5.6843418860808015e-14 7.5495165674510645e-15 ;
+	setAttr ".sp" -type "double3" -3.5527136788005009e-14 5.6843418860808015e-14 7.5495165674510645e-15 ;
+createNode nurbsCurve -n "curveShape4" -p "R_Free_Wrist_Ctrl_01";
+	rename -uid "8D2DD445-4A1D-8797-697A-CABB780A8A61";
+	setAttr -k off ".v";
+	setAttr ".cc" -type "nurbsCurve" 
+		3 6 0 no 3
+		11 0 0 0 1 2 3 4 5 6 6 6
+		9
+		-3.5527136788005009e-14 1.588103342879748 -1.9081958235744878e-13
+		-3.5527136788005009e-14 1.588103342879748 -1.9081958235744878e-13
+		-3.5527136788005009e-14 17.469136771677711 7.9405167143963089
+		-3.5527136788005009e-14 17.469136771677711 7.9405167143963089
+		-3.5527136788005009e-14 17.469136771677512 6.3524133715166036
+		-3.5527136788005009e-14 17.46913677167592 -6.3524133715209681
+		-3.5527136788005009e-14 17.469136771675721 -7.9405167144006583
+		-3.5527136788005009e-14 17.469136771675721 -7.9405167144006583
+		-3.5527136788005009e-14 1.588103342879748 -1.9081958235744878e-13
+		;
+createNode nurbsCurve -n "curveShape3" -p "R_Free_Wrist_Ctrl_01";
+	rename -uid "EAF2CBB1-4E85-89D1-8A51-18A24EC297FB";
+	setAttr -k off ".v";
+	setAttr ".cc" -type "nurbsCurve" 
+		3 6 0 no 3
+		11 0 0 0 1 2 3 4 5 6 6 6
+		9
+		-3.5527136788005009e-14 2.5579538487363607e-13 1.5881033428796987
+		-3.5527136788005009e-14 2.5579538487363607e-13 1.5881033428796987
+		-3.5527136788005009e-14 -7.9405167143962672 17.469136771677658
+		-3.5527136788005009e-14 -7.9405167143962672 17.469136771677658
+		-3.5527136788005009e-14 -6.3524133715165618 17.469136771677459
+		-3.5527136788005009e-14 6.3524133715210098 17.469136771675874
+		-3.5527136788005009e-14 7.9405167144007152 17.469136771675675
+		-3.5527136788005009e-14 7.9405167144007152 17.469136771675675
+		-3.5527136788005009e-14 2.5579538487363607e-13 1.5881033428796987
+		;
+createNode nurbsCurve -n "curveShape2" -p "R_Free_Wrist_Ctrl_01";
+	rename -uid "2ED07F75-4B3C-2229-FB8B-ADAF0E21DDB3";
+	setAttr -k off ".v";
+	setAttr ".cc" -type "nurbsCurve" 
+		3 6 0 no 3
+		11 0 0 0 1 2 3 4 5 6 6 6
+		9
+		-3.5527136788005009e-14 -1.5881033428796343 2.0591861549235091e-13
+		-3.5527136788005009e-14 -1.5881033428796343 2.0591861549235091e-13
+		-3.5527136788005009e-14 -17.469136771677611 -7.9405167143962938
+		-3.5527136788005009e-14 -17.469136771677611 -7.9405167143962938
+		-3.5527136788005009e-14 -17.469136771677412 -6.3524133715166178
+		-3.5527136788005009e-14 -17.469136771675821 6.3524133715209539
+		-3.5527136788005009e-14 -17.469136771675622 7.9405167144006734
+		-3.5527136788005009e-14 -17.469136771675622 7.9405167144006734
+		-3.5527136788005009e-14 -1.5881033428796343 2.0591861549235091e-13
+		;
+createNode nurbsCurve -n "curveShape1" -p "R_Free_Wrist_Ctrl_01";
+	rename -uid "24FFC72C-46A5-1B33-A578-5E9393BB5AD2";
+	setAttr -k off ".v";
+	setAttr ".cc" -type "nurbsCurve" 
+		3 6 0 no 3
+		11 0 0 0 1 2 3 4 5 6 6 6
+		9
+		-3.5527136788005009e-14 -1.4210854715202004e-13 -1.588103342879712
+		-3.5527136788005009e-14 -1.4210854715202004e-13 -1.588103342879712
+		-3.5527136788005009e-14 7.9405167143963524 -17.469136771677658
+		-3.5527136788005009e-14 7.9405167143963524 -17.469136771677658
+		-3.5527136788005009e-14 6.3524133715166613 -17.469136771677459
+		-3.5527136788005009e-14 -6.3524133715209246 -17.469136771675874
+		-3.5527136788005009e-14 -7.9405167144006299 -17.469136771675675
+		-3.5527136788005009e-14 -7.9405167144006299 -17.469136771675675
+		-3.5527136788005009e-14 -1.4210854715202004e-13 -1.588103342879712
+		;
+createNode nurbsCurve -n "CetnerShape" -p "R_Free_Wrist_Ctrl_01";
+	rename -uid "4C74A689-4F6D-09ED-043D-9488431146F7";
+	setAttr -k off ".v";
+	setAttr ".cc" -type "nurbsCurve" 
+		3 8 2 no 3
+		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
+		11
+		-3.5527136788005009e-14 -6.1745193900646314 6.1745193900662345
+		-3.5527136788005009e-14 1.1510792319313623e-12 8.7320890625662244
+		-3.5527136788005009e-14 6.1745193900662798 6.1745193900646775
+		-3.5527136788005009e-14 8.7320890625662742 -1.083189093975534e-12
+		-3.5527136788005009e-14 6.174519390064745 -6.1745193900662194
+		-3.5527136788005009e-14 -1.0373923942097463e-12 -8.7320890625662102
+		-3.5527136788005009e-14 -6.1745193900661661 -6.1745193900646766
+		-3.5527136788005009e-14 -8.7320890625661605 1.0982881271104361e-12
+		-3.5527136788005009e-14 -6.1745193900646314 6.1745193900662345
+		-3.5527136788005009e-14 1.1510792319313623e-12 8.7320890625662244
+		-3.5527136788005009e-14 6.1745193900662798 6.1745193900646775
+		;
 createNode fosterParent -n "NPC_Base_04RNfosterParent1";
-	rename -uid "263D2E55-4FBB-3BBB-DDBB-6183697915AB";
+	rename -uid "4EF7E645-4A2A-7F21-E03E-DD9EB2E989F1";
 createNode scaleConstraint -n "Master_Dock_joint_01_scaleConstraint1" -p "NPC_Base_04RNfosterParent1";
 	rename -uid "1AB4173A-49C2-79F8-A11E-AFB673779E0A";
 	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "FK_Dock_joint_01W0" -dv 1 -min 0 
@@ -16536,10 +16539,10 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Front View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Front View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"front\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"wireframe\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n"
 		+ "            -xray 0\n            -jointXray 1\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n"
 		+ "            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n"
-		+ "            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1\n            -height 1\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Persp View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Persp View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"persp\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"wireframe\" \n            -activeOnly 0\n            -ignorePanZoom 0\n"
+		+ "            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1\n            -height 1\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Persp View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Persp View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"persp\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n"
 		+ "            -wireframeOnShaded 1\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 1\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n"
-		+ "            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 0\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n"
-		+ "            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1903\n            -height 1053\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"ToggledOutliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\toutlinerPanel -edit -l (localizedPanelLabel(\"ToggledOutliner\")) -mbv $menusOkayInPanels  $panelName;\n"
+		+ "            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n"
+		+ "            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 2708\n            -height 1062\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"ToggledOutliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\toutlinerPanel -edit -l (localizedPanelLabel(\"ToggledOutliner\")) -mbv $menusOkayInPanels  $panelName;\n"
 		+ "\t\t$editorName = $panelName;\n        outlinerEditor -e \n            -showShapes 0\n            -showAssignedMaterials 0\n            -showTimeEditor 1\n            -showReferenceNodes 1\n            -showReferenceMembers 1\n            -showAttributes 0\n            -showConnected 0\n            -showAnimCurvesOnly 0\n            -showMuteInfo 0\n            -organizeByLayer 1\n            -organizeByClip 1\n            -showAnimLayerWeight 1\n            -autoExpandLayers 1\n            -autoExpand 0\n            -showDagOnly 1\n            -showAssets 1\n            -showContainedOnly 1\n            -showPublishedAsConnected 0\n            -showParentContainers 0\n            -showContainerContents 1\n            -ignoreDagHierarchy 0\n            -expandConnections 0\n            -showUpstreamCurves 1\n            -showUnitlessCurves 1\n            -showCompounds 1\n            -showLeafs 1\n            -showNumericAttrsOnly 0\n            -highlightActive 1\n            -autoSelectNewObjects 0\n            -doNotSelectNewObjects 0\n            -dropIsParent 1\n"
 		+ "            -transmitFilters 0\n            -setFilter \"defaultSetFilter\" \n            -showSetMembers 1\n            -allowMultiSelection 1\n            -alwaysToggleSelect 0\n            -directSelect 0\n            -isSet 0\n            -isSetMember 0\n            -displayMode \"DAG\" \n            -expandObjects 0\n            -setsIgnoreFilters 1\n            -containersIgnoreFilters 0\n            -editAttrName 0\n            -showAttrValues 0\n            -highlightSecondary 0\n            -showUVAttrsOnly 0\n            -showTextureNodesOnly 0\n            -attrAlphaOrder \"default\" \n            -animLayerFilterOptions \"allAffecting\" \n            -sortOrder \"none\" \n            -longNames 0\n            -niceNames 1\n            -showNamespace 1\n            -showPinIcons 0\n            -mapMotionTrails 0\n            -ignoreHiddenAttribute 1\n            -ignoreOutlinerColor 0\n            -renderFilterVisible 0\n            -renderFilterIndex 0\n            -selectionOrder \"chronological\" \n            -expandAttribute 0\n            $editorName;\n"
 		+ "\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"Outliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\toutlinerPanel -edit -l (localizedPanelLabel(\"Outliner\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        outlinerEditor -e \n            -docTag \"isolOutln_fromSeln\" \n            -showShapes 0\n            -showAssignedMaterials 0\n            -showTimeEditor 1\n            -showReferenceNodes 0\n            -showReferenceMembers 0\n            -showAttributes 0\n            -showConnected 0\n            -showAnimCurvesOnly 0\n            -showMuteInfo 0\n            -organizeByLayer 1\n            -organizeByClip 1\n            -showAnimLayerWeight 1\n            -autoExpandLayers 1\n            -autoExpand 0\n            -showDagOnly 1\n            -showAssets 1\n            -showContainedOnly 1\n            -showPublishedAsConnected 0\n            -showParentContainers 0\n"
@@ -16567,8 +16570,8 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "                -transpInShadows 0\n                -cullingOverride \"none\" \n                -lowQualityLighting 0\n                -maximumNumHardwareLights 0\n                -occlusionCulling 0\n                -shadingModel 0\n                -useBaseRenderer 0\n                -useReducedRenderer 0\n                -smallObjectCulling 0\n                -smallObjectThreshold -1 \n                -interactiveDisableShadows 0\n                -interactiveBackFaceCull 0\n                -sortTransparent 1\n                -controllers 1\n                -nurbsCurves 1\n                -nurbsSurfaces 1\n                -polymeshes 1\n                -subdivSurfaces 1\n                -planes 1\n                -lights 1\n                -cameras 1\n                -controlVertices 1\n                -hulls 1\n                -grid 1\n                -imagePlane 1\n                -joints 1\n                -ikHandles 1\n                -deformers 1\n                -dynamics 1\n                -particleInstancers 1\n                -fluids 1\n"
 		+ "                -hairSystems 1\n                -follicles 1\n                -nCloths 1\n                -nParticles 1\n                -nRigids 1\n                -dynamicConstraints 1\n                -locators 1\n                -manipulators 1\n                -pluginShapes 1\n                -dimensions 1\n                -handles 1\n                -pivots 1\n                -textures 1\n                -strokes 1\n                -motionTrails 1\n                -clipGhosts 1\n                -greasePencils 1\n                -shadows 0\n                -captureSequenceNumber -1\n                -width 0\n                -height 0\n                -sceneRenderFilter 0\n                -displayMode \"centerEye\" \n                -viewColor 0 0 0 1 \n                -useCustomBackground 1\n                $editorName;\n            stereoCameraView -e -viewSelected 0 $editorName;\n            stereoCameraView -e \n                -pluginObjects \"gpuCacheDisplayFilter\" 1 \n                $editorName; };\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n"
 		+ "\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-userCreated false\n\t\t\t\t-defaultImage \"vacantCell.xP:/\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"single\\\" -ps 1 100 100 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
-		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"wireframe\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 1\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 1\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 0\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1903\\n    -height 1053\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
-		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"wireframe\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 1\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 1\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 0\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1903\\n    -height 1053\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
+		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 1\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 1\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 2708\\n    -height 1062\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
+		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 1\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 1\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 2708\\n    -height 1062\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
 		+ "\t\t\t\t$configName;\n\n            setNamedPanelLayout (localizedPanelLabel(\"Current Layout\"));\n        }\n\n        panelHistory -e -clear mainPanelHistory;\n        sceneUIReplacement -clear;\n\t}\n\n\ngrid -spacing 5 -size 120 -divisions 5 -displayAxes yes -displayGridLines yes -displayDivisionLines yes -displayPerspectiveLabels yes -displayOrthographicLabels no -displayAxesBold yes -perspectiveLabelPosition edge -orthographicLabelPosition axis;\nviewManip -drawCompass 0 -compassAngle 0 -frontParameters \"\" -homeParameters \"\" -selectionLockParameters \"\";\n}\n");
 	setAttr ".st" 3;
 createNode script -n "sceneConfigurationScriptNode";
@@ -18200,7 +18203,7 @@ createNode reference -n "NPC_Base_04RN";
 		"-s -r "
 		2 "|NPC_Base:Mesh_Grp" "translate" " -type \"double3\" 0 0 0"
 		2 "|NPC_Base:Mesh_Grp" "rotate" " -type \"double3\" 0 0 0"
-		2 "|NPC_Base:Joint_Grp" "visibility" " 0"
+		2 "|NPC_Base:Joint_Grp" "visibility" " 1"
 		2 "|NPC_Base:Joint_Grp" "translate" " -type \"double3\" 0 0 0"
 		2 "|NPC_Base:Joint_Grp" "rotate" " -type \"double3\" 0 0 0"
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01" "visibility" " 1"
@@ -18350,7 +18353,7 @@ createNode reference -n "NPC_Base_04RN";
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01" 
 		"radius" " 2"
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01" 
-		"translate" " -type \"double3\" 15.00007541989767645 0.00043181458363505953 -1.3878751627061092e-05"
+		"translate" " -type \"double3\" 15.00007541989768356 0.00043181458363505953 -1.3878751630613806e-05"
 		
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01" 
 		"translateX" " -av"
@@ -18363,7 +18366,7 @@ createNode reference -n "NPC_Base_04RN";
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01" 
 		"radius" " 2"
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01" 
-		"translate" " -type \"double3\" 9.56696161164831693 -0.94657340960448266 10.94314554583285037"
+		"translate" " -type \"double3\" 9.56696161164830983 -0.94657340960448266 10.9431455458328486"
 		
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01" 
 		"translateX" " -av"
@@ -18376,7 +18379,7 @@ createNode reference -n "NPC_Base_04RN";
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01" 
 		"radius" " 2"
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02" 
-		"translate" " -type \"double3\" 13.52031726804579392 0.18726023285462645 -0.71705810008577942"
+		"translate" " -type \"double3\" 13.52031726804579037 0.18726023285462645 -0.71705810008577942"
 		
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02" 
 		"translateX" " -av"
@@ -18389,7 +18392,7 @@ createNode reference -n "NPC_Base_04RN";
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02" 
 		"radius" " 2"
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03" 
-		"translate" " -type \"double3\" 8.77161203164696346 0 0"
+		"translate" " -type \"double3\" 8.77161203164696701 0 0"
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03" 
 		"translateX" " -av"
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03" 
@@ -18401,7 +18404,7 @@ createNode reference -n "NPC_Base_04RN";
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03" 
 		"radius" " 2"
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01" 
-		"translate" " -type \"double3\" 29.79551060613076885 -0.86226779868428594 11.379297519927567"
+		"translate" " -type \"double3\" 29.79551060613076174 -0.86226779868428594 11.37929751992756522"
 		
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01" 
 		"translateX" " -av"
@@ -18438,7 +18441,7 @@ createNode reference -n "NPC_Base_04RN";
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03" 
 		"radius" " 2"
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01" 
-		"translate" " -type \"double3\" 30.16086320295408285 0.30935921339624883 -1.17347642164263855"
+		"translate" " -type \"double3\" 30.16086320295407575 0.30935921339624883 -1.17347642164263899"
 		
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01" 
 		"translateX" " -av"
@@ -18475,7 +18478,7 @@ createNode reference -n "NPC_Base_04RN";
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03" 
 		"radius" " 2"
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01" 
-		"translate" " -type \"double3\" 30.71464498070900362 -2.81152792277541153 -13.83408685210449818"
+		"translate" " -type \"double3\" 30.71464498070899651 -2.81152792277541153 -13.83408685210449995"
 		
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01" 
 		"translateX" " -av"
@@ -18533,7 +18536,7 @@ createNode reference -n "NPC_Base_04RN";
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01" 
 		"radius" " 2"
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01" 
-		"translate" " -type \"double3\" -14.99999989091513442 -0.00071284009477778909 -3.3836412711707453e-06"
+		"translate" " -type \"double3\" -14.99999989091512731 -0.00071284009482042165 -3.3836412693943885e-06"
 		
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01" 
 		"translateX" " -av"
@@ -18546,7 +18549,7 @@ createNode reference -n "NPC_Base_04RN";
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01" 
 		"radius" " 2"
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01" 
-		"translate" " -type \"double3\" -9.56699999999997885 0.94699999999855322 -10.94309800000010746"
+		"translate" " -type \"double3\" -9.56699999999997885 0.94699999999855322 -10.94309800000010569"
 		
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01" 
 		"translateX" " -av"
@@ -18559,7 +18562,7 @@ createNode reference -n "NPC_Base_04RN";
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01" 
 		"radius" " 2"
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02" 
-		"translate" " -type \"double3\" -13.52035202151665061 -0.18724971486100372 0.71708162614535809"
+		"translate" " -type \"double3\" -13.5203520215166364 -0.18724971486101083 0.71708162614535809"
 		
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02" 
 		"translateX" " -av"
@@ -18572,7 +18575,7 @@ createNode reference -n "NPC_Base_04RN";
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02" 
 		"radius" " 2"
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03" 
-		"translate" " -type \"double3\" -8.77157573636459276 -2.0375120769244859e-05 -2.8377009115843066e-05"
+		"translate" " -type \"double3\" -8.77157573636460342 -2.0375120755034004e-05 -2.8377009115843066e-05"
 		
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03" 
 		"translateX" " -av"
@@ -18585,7 +18588,7 @@ createNode reference -n "NPC_Base_04RN";
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03" 
 		"radius" " 2"
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01" 
-		"translate" " -type \"double3\" -29.79550000000000409 0.86299999999849319 -11.37929800000009095"
+		"translate" " -type \"double3\" -29.79550000000000409 0.86299999999849319 -11.37929800000008917"
 		
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01" 
 		"translateX" " -av"
@@ -18598,7 +18601,7 @@ createNode reference -n "NPC_Base_04RN";
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01" 
 		"radius" " 2"
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02" 
-		"translate" " -type \"double3\" -16.04758366900820477 -0.00030950265205831329 1.9805975963294031e-05"
+		"translate" " -type \"double3\" -16.04758366900821898 -0.00030950265205831329 1.9805975963294031e-05"
 		
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02" 
 		"translateX" " -av"
@@ -18611,7 +18614,7 @@ createNode reference -n "NPC_Base_04RN";
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02" 
 		"radius" " 2"
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03" 
-		"translate" " -type \"double3\" -8.77019578854364568 1.0284406414484693e-05 -2.2458879329612103e-05"
+		"translate" " -type \"double3\" -8.77019578854364568 1.0284406414484693e-05 -2.2458879330500281e-05"
 		
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03" 
 		"translateX" " -av"
@@ -18624,7 +18627,7 @@ createNode reference -n "NPC_Base_04RN";
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03" 
 		"radius" " 2"
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01" 
-		"translate" " -type \"double3\" -30.16089999999999804 -0.30899999999991223 1.17347700000005473"
+		"translate" " -type \"double3\" -30.16089999999998383 -0.30899999999991223 1.17347700000005606"
 		
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01" 
 		"translateX" " -av"
@@ -18663,7 +18666,7 @@ createNode reference -n "NPC_Base_04RN";
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03" 
 		"radius" " 2"
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01" 
-		"translate" " -type \"double3\" -30.71419999999996264 2.81200000000170292 13.83410199999966217"
+		"translate" " -type \"double3\" -30.71419999999996264 2.81200000000170292 13.83410199999966395"
 		
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01" 
 		"translateX" " -av"
@@ -18676,7 +18679,7 @@ createNode reference -n "NPC_Base_04RN";
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01" 
 		"radius" " 2"
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02" 
-		"translate" " -type \"double3\" -12.84389133848307551 -7.1357798461235689e-05 1.2131094328182712e-05"
+		"translate" " -type \"double3\" -12.8438913384830613 -7.1357798461235689e-05 1.2131094328182712e-05"
 		
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02" 
 		"translateX" " -av"
@@ -18689,7 +18692,7 @@ createNode reference -n "NPC_Base_04RN";
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02" 
 		"radius" " 2"
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03" 
-		"translate" " -type \"double3\" -9.41730229615015446 -7.8682498667603795e-06 -5.3529329788304381e-05"
+		"translate" " -type \"double3\" -9.41730229615018288 -7.8682498951820889e-06 -5.3529329788304381e-05"
 		
 		2 "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03" 
 		"translateX" " -av"
@@ -21733,22 +21736,22 @@ createNode animCurveUU -n "Skin_R_Wrist_joint_01_orientConstraint1_FK_R_Wrist_jo
 	rename -uid "57E8FB0D-4951-6AE9-590F-4A991C28BF04";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 3 ".ktv[0:2]"  -10 0 0 1 10 0;
+	setAttr -s 2 ".ktv[0:1]"  0 1 10 0;
 createNode animCurveUU -n "Skin_R_Wrist_joint_01_orientConstraint1_IK_R_Wrist_joint_01W1";
 	rename -uid "37F9986E-4A95-EB85-0F84-4094D076B89F";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 3 ".ktv[0:2]"  -10 0 0 0 10 1;
+	setAttr -s 2 ".ktv[0:1]"  0 0 10 1;
 createNode animCurveUU -n "Base_L_Wrist_joint_01_orientConstraint1_FK_L_Wrist_joint_01W0";
 	rename -uid "1ABA43BF-4B40-8080-65D9-5CAADF7CAE27";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 3 ".ktv[0:2]"  -10 0 0 1 10 0;
+	setAttr -s 2 ".ktv[0:1]"  0 1 10 0;
 createNode animCurveUU -n "Base_L_Wrist_joint_01_orientConstraint1_IK_L_Wrist_joint_01W1";
 	rename -uid "94E8CBB9-4D91-FD6B-37D7-A2907FB9F624";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 3 ".ktv[0:2]"  -10 0 0 0 10 1;
+	setAttr -s 2 ".ktv[0:1]"  0 0 10 1;
 createNode animCurveUU -n "Base_L_Elbow_joint_01_orientConstraint1_FK_L_Elbow_joint_01W0";
 	rename -uid "24204725-4746-3A07-E1B9-EA851A2927CE";
 	setAttr ".tan" 18;
@@ -23773,66 +23776,6 @@ createNode nodeGraphEditorInfo -n "MayaNodeEditorSavedTabsInfo";
 	setAttr ".tgi[1].ni[10].x" 2634.28564453125;
 	setAttr ".tgi[1].ni[10].y" 614.28570556640625;
 	setAttr ".tgi[1].ni[10].nvs" 18304;
-createNode animCurveUU -n "Base_L_Wrist_joint_01_pointConstraint1_Freeform_L_Wrist_joint_01W0";
-	rename -uid "BBE9C19E-4BA0-B9BC-A7CF-A3B4F19464EA";
-	setAttr ".tan" 18;
-	setAttr ".wgt" no;
-	setAttr -s 3 ".ktv[0:2]"  -10 1 0 0 10 0;
-createNode animCurveUU -n "Base_L_Wrist_joint_01_pointConstraint1_IK_L_Wrist_joint_01W1";
-	rename -uid "BF83E4BB-4F82-F13E-6403-9BB2CAE63662";
-	setAttr ".tan" 18;
-	setAttr ".wgt" no;
-	setAttr -s 3 ".ktv[0:2]"  -10 0 0 0 10 1;
-createNode animCurveUU -n "Base_L_Wrist_joint_01_pointConstraint1_FK_L_Wrist_joint_01W2";
-	rename -uid "E1ED1E53-4A32-21B4-494D-07BAD1347188";
-	setAttr ".tan" 18;
-	setAttr ".wgt" no;
-	setAttr -s 3 ".ktv[0:2]"  -10 0 0 1 10 0;
-createNode animCurveUU -n "Base_L_Wrist_joint_01_orientConstraint1_Freeform_L_Wrist_joint_01W2";
-	rename -uid "497AA288-4D01-6484-F675-C8B2DF07460A";
-	setAttr ".tan" 18;
-	setAttr ".wgt" no;
-	setAttr -s 3 ".ktv[0:2]"  -10 1 0 0 10 0;
-createNode animCurveUU -n "Base_R_Wrist_joint_01_orientConstraint1_Freeform_R_Wrist_joint_01W2";
-	rename -uid "5AA803C3-457C-1AFE-B929-1D99AB266EFA";
-	setAttr ".tan" 18;
-	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  -10 1 0 0;
-createNode animCurveUU -n "Base_R_Wrist_joint_01_pointConstraint1_IK_R_Wrist_joint_01W0";
-	rename -uid "6DA57D24-43A8-6163-B3F9-69AC1AC84373";
-	setAttr ".tan" 18;
-	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  -10 0 0 0;
-createNode animCurveUU -n "Base_R_Wrist_joint_01_pointConstraint1_FK_R_Wrist_joint_01W1";
-	rename -uid "A122B944-4254-FD6D-1DBC-13A849255137";
-	setAttr ".tan" 18;
-	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  -10 0 0 1;
-createNode animCurveUU -n "Base_R_Wrist_joint_01_pointConstraint1_Freeform_R_Wrist_joint_01W2";
-	rename -uid "69CA0B65-4193-0552-F587-059D360882B0";
-	setAttr ".tan" 18;
-	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  -10 1 0 0;
-createNode animCurveUU -n "R_Free_Wrist_Grp_01_visibility";
-	rename -uid "6E980F9E-4564-E876-7EBD-96A29D87E92E";
-	setAttr ".tan" 18;
-	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  -10 1 0 0;
-createNode animCurveUU -n "L_Free_Wrist_Grp_01_visibility";
-	rename -uid "31A03805-4194-F3B3-E9C6-BF9D50209F3C";
-	setAttr ".tan" 18;
-	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  -10 1 0 0;
-createNode animCurveUU -n "L_FK_Wrist_Grp_01_visibility";
-	rename -uid "78417A69-4412-CA0C-E9D6-638766854B9C";
-	setAttr ".tan" 18;
-	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  -10 0 0 1;
-createNode animCurveUU -n "R_FK_Wrist_Grp_01_visibility";
-	rename -uid "FDEC0CA5-4C01-E830-E123-89B126A45DBD";
-	setAttr ".tan" 18;
-	setAttr ".wgt" no;
-	setAttr -s 3 ".ktv[0:2]"  -10 0 -9.1000003814697266 0 0 1;
 select -ne :time1;
 	setAttr -av -k on ".cch";
 	setAttr -cb on ".ihi";
@@ -26802,12 +26745,6 @@ connectAttr "Base_R_Wrist_joint_01_orientConstraint1.cry" "Base_R_Wrist_joint_01
 		;
 connectAttr "Base_R_Wrist_joint_01_orientConstraint1.crz" "Base_R_Wrist_joint_01.rz"
 		;
-connectAttr "Base_R_Wrist_joint_01_pointConstraint1.ctx" "Base_R_Wrist_joint_01.tx"
-		;
-connectAttr "Base_R_Wrist_joint_01_pointConstraint1.cty" "Base_R_Wrist_joint_01.ty"
-		;
-connectAttr "Base_R_Wrist_joint_01_pointConstraint1.ctz" "Base_R_Wrist_joint_01.tz"
-		;
 connectAttr "Base_R_Wrist_joint_01.s" "Base_R_Thumb_01.is";
 connectAttr "Base_R_Thumb_01_orientConstraint1.crx" "Base_R_Thumb_01.rx";
 connectAttr "Base_R_Thumb_01_orientConstraint1.cry" "Base_R_Thumb_01.ry";
@@ -26998,63 +26935,9 @@ connectAttr "IK_R_Wrist_joint_01.jo" "Base_R_Wrist_joint_01_orientConstraint1.tg
 		;
 connectAttr "Base_R_Wrist_joint_01_orientConstraint1.w1" "Base_R_Wrist_joint_01_orientConstraint1.tg[1].tw"
 		;
-connectAttr "Freeform_R_Wrist_joint_01.r" "Base_R_Wrist_joint_01_orientConstraint1.tg[2].tr"
-		;
-connectAttr "Freeform_R_Wrist_joint_01.ro" "Base_R_Wrist_joint_01_orientConstraint1.tg[2].tro"
-		;
-connectAttr "Freeform_R_Wrist_joint_01.pm" "Base_R_Wrist_joint_01_orientConstraint1.tg[2].tpm"
-		;
-connectAttr "Freeform_R_Wrist_joint_01.jo" "Base_R_Wrist_joint_01_orientConstraint1.tg[2].tjo"
-		;
-connectAttr "Base_R_Wrist_joint_01_orientConstraint1.w2" "Base_R_Wrist_joint_01_orientConstraint1.tg[2].tw"
-		;
 connectAttr "Skin_R_Wrist_joint_01_orientConstraint1_FK_R_Wrist_joint_01W0.o" "Base_R_Wrist_joint_01_orientConstraint1.w0"
 		;
 connectAttr "Skin_R_Wrist_joint_01_orientConstraint1_IK_R_Wrist_joint_01W1.o" "Base_R_Wrist_joint_01_orientConstraint1.w1"
-		;
-connectAttr "Base_R_Wrist_joint_01_orientConstraint1_Freeform_R_Wrist_joint_01W2.o" "Base_R_Wrist_joint_01_orientConstraint1.w2"
-		;
-connectAttr "Base_R_Wrist_joint_01.pim" "Base_R_Wrist_joint_01_pointConstraint1.cpim"
-		;
-connectAttr "Base_R_Wrist_joint_01.rp" "Base_R_Wrist_joint_01_pointConstraint1.crp"
-		;
-connectAttr "Base_R_Wrist_joint_01.rpt" "Base_R_Wrist_joint_01_pointConstraint1.crt"
-		;
-connectAttr "IK_R_Wrist_joint_01.t" "Base_R_Wrist_joint_01_pointConstraint1.tg[0].tt"
-		;
-connectAttr "IK_R_Wrist_joint_01.rp" "Base_R_Wrist_joint_01_pointConstraint1.tg[0].trp"
-		;
-connectAttr "IK_R_Wrist_joint_01.rpt" "Base_R_Wrist_joint_01_pointConstraint1.tg[0].trt"
-		;
-connectAttr "IK_R_Wrist_joint_01.pm" "Base_R_Wrist_joint_01_pointConstraint1.tg[0].tpm"
-		;
-connectAttr "Base_R_Wrist_joint_01_pointConstraint1.w0" "Base_R_Wrist_joint_01_pointConstraint1.tg[0].tw"
-		;
-connectAttr "FK_R_Wrist_joint_01.t" "Base_R_Wrist_joint_01_pointConstraint1.tg[1].tt"
-		;
-connectAttr "FK_R_Wrist_joint_01.rp" "Base_R_Wrist_joint_01_pointConstraint1.tg[1].trp"
-		;
-connectAttr "FK_R_Wrist_joint_01.rpt" "Base_R_Wrist_joint_01_pointConstraint1.tg[1].trt"
-		;
-connectAttr "FK_R_Wrist_joint_01.pm" "Base_R_Wrist_joint_01_pointConstraint1.tg[1].tpm"
-		;
-connectAttr "Base_R_Wrist_joint_01_pointConstraint1.w1" "Base_R_Wrist_joint_01_pointConstraint1.tg[1].tw"
-		;
-connectAttr "Freeform_R_Wrist_joint_01.t" "Base_R_Wrist_joint_01_pointConstraint1.tg[2].tt"
-		;
-connectAttr "Freeform_R_Wrist_joint_01.rp" "Base_R_Wrist_joint_01_pointConstraint1.tg[2].trp"
-		;
-connectAttr "Freeform_R_Wrist_joint_01.rpt" "Base_R_Wrist_joint_01_pointConstraint1.tg[2].trt"
-		;
-connectAttr "Freeform_R_Wrist_joint_01.pm" "Base_R_Wrist_joint_01_pointConstraint1.tg[2].tpm"
-		;
-connectAttr "Base_R_Wrist_joint_01_pointConstraint1.w2" "Base_R_Wrist_joint_01_pointConstraint1.tg[2].tw"
-		;
-connectAttr "Base_R_Wrist_joint_01_pointConstraint1_IK_R_Wrist_joint_01W0.o" "Base_R_Wrist_joint_01_pointConstraint1.w0"
-		;
-connectAttr "Base_R_Wrist_joint_01_pointConstraint1_FK_R_Wrist_joint_01W1.o" "Base_R_Wrist_joint_01_pointConstraint1.w1"
-		;
-connectAttr "Base_R_Wrist_joint_01_pointConstraint1_Freeform_R_Wrist_joint_01W2.o" "Base_R_Wrist_joint_01_pointConstraint1.w2"
 		;
 connectAttr "Base_R_Elbow_joint_01.ro" "Base_R_Elbow_joint_01_orientConstraint1.cro"
 		;
@@ -27467,8 +27350,6 @@ connectAttr "Base_L_Wrist_joint_01_orientConstraint1_FK_L_Wrist_joint_01W0.o" "B
 		;
 connectAttr "Base_L_Wrist_joint_01_orientConstraint1_IK_L_Wrist_joint_01W1.o" "Base_L_Wrist_joint_01_orientConstraint1.w1"
 		;
-connectAttr "Base_L_Wrist_joint_01_orientConstraint1_Freeform_L_Wrist_joint_01W2.o" "Base_L_Wrist_joint_01_orientConstraint1.w2"
-		;
 connectAttr "Base_L_Wrist_joint_01.pim" "Base_L_Wrist_joint_01_pointConstraint1.cpim"
 		;
 connectAttr "Base_L_Wrist_joint_01.rp" "Base_L_Wrist_joint_01_pointConstraint1.crp"
@@ -27504,12 +27385,6 @@ connectAttr "FK_L_Wrist_joint_01.rpt" "Base_L_Wrist_joint_01_pointConstraint1.tg
 connectAttr "FK_L_Wrist_joint_01.pm" "Base_L_Wrist_joint_01_pointConstraint1.tg[2].tpm"
 		;
 connectAttr "Base_L_Wrist_joint_01_pointConstraint1.w2" "Base_L_Wrist_joint_01_pointConstraint1.tg[2].tw"
-		;
-connectAttr "Base_L_Wrist_joint_01_pointConstraint1_Freeform_L_Wrist_joint_01W0.o" "Base_L_Wrist_joint_01_pointConstraint1.w0"
-		;
-connectAttr "Base_L_Wrist_joint_01_pointConstraint1_IK_L_Wrist_joint_01W1.o" "Base_L_Wrist_joint_01_pointConstraint1.w1"
-		;
-connectAttr "Base_L_Wrist_joint_01_pointConstraint1_FK_L_Wrist_joint_01W2.o" "Base_L_Wrist_joint_01_pointConstraint1.w2"
 		;
 connectAttr "Base_L_Elbow_joint_01.ro" "Base_L_Elbow_joint_01_orientConstraint1.cro"
 		;
@@ -27846,10 +27721,8 @@ connectAttr "locator1.pm" "L_Lip_Grp_01_pointConstraint1.tg[1].tpm";
 connectAttr "L_Lip_Grp_01_pointConstraint1.w1" "L_Lip_Grp_01_pointConstraint1.tg[1].tw"
 		;
 connectAttr "L_FK_Shoulder_Grp_01_visibility.o" "L_FK_Shoulder_Grp_01.v";
-connectAttr "L_FK_Wrist_Grp_01_visibility.o" "L_FK_Wrist_Grp_01.v";
 connectAttr "L_IK_Wrist_Grp_01_visibility.o" "L_IK_Wrist_Grp_01.v";
 connectAttr "R_FK_Shoulder_Grp_01_visibility.o" "R_FK_Shoulder_Grp_01.v";
-connectAttr "R_FK_Wrist_Grp_01_visibility.o" "R_FK_Wrist_Grp_01.v";
 connectAttr "R_IK_Wrist_Grp_01_visibility.o" "R_IK_Wrist_Grp_01.v";
 connectAttr "transformGeometry1.og" "FK_Tail_Ctrl_Shape1.cr";
 connectAttr "L_IK_Leg_Grp_01_visibility.o" "L_IK_Leg_Grp_01.v";
@@ -27914,8 +27787,6 @@ connectAttr "Dock_Grp.pim" "Dock_Grp_scaleConstraint1.cpim";
 connectAttr "Master_NPC_Ctrl_01.s" "Dock_Grp_scaleConstraint1.tg[0].ts";
 connectAttr "Master_NPC_Ctrl_01.pm" "Dock_Grp_scaleConstraint1.tg[0].tpm";
 connectAttr "Dock_Grp_scaleConstraint1.w0" "Dock_Grp_scaleConstraint1.tg[0].tw";
-connectAttr "L_Free_Wrist_Grp_01_visibility.o" "L_Free_Wrist_Grp_01.v";
-connectAttr "R_Free_Wrist_Grp_01_visibility.o" "R_Free_Wrist_Grp_01.v";
 connectAttr "Spine_pointConstraint1.ctx" "Spine.tx";
 connectAttr "Spine_pointConstraint1.cty" "Spine.ty";
 connectAttr "Spine_pointConstraint1.ctz" "Spine.tz";
@@ -29844,26 +29715,6 @@ connectAttr "srtetch_intensity.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[7].dn
 connectAttr "Spine_joint_01_scaleConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[8].dn"
 		;
 connectAttr "condition1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[9].dn";
-connectAttr "L_Hand_IKFK.IK_FK_Switch" "Base_L_Wrist_joint_01_pointConstraint1_Freeform_L_Wrist_joint_01W0.i"
-		;
-connectAttr "L_Hand_IKFK.IK_FK_Switch" "Base_L_Wrist_joint_01_pointConstraint1_IK_L_Wrist_joint_01W1.i"
-		;
-connectAttr "L_Hand_IKFK.IK_FK_Switch" "Base_L_Wrist_joint_01_pointConstraint1_FK_L_Wrist_joint_01W2.i"
-		;
-connectAttr "L_Hand_IKFK.IK_FK_Switch" "Base_L_Wrist_joint_01_orientConstraint1_Freeform_L_Wrist_joint_01W2.i"
-		;
-connectAttr "R_Hand_IKFK.IK_FK_Switch" "Base_R_Wrist_joint_01_orientConstraint1_Freeform_R_Wrist_joint_01W2.i"
-		;
-connectAttr "R_Hand_IKFK.IK_FK_Switch" "Base_R_Wrist_joint_01_pointConstraint1_IK_R_Wrist_joint_01W0.i"
-		;
-connectAttr "R_Hand_IKFK.IK_FK_Switch" "Base_R_Wrist_joint_01_pointConstraint1_FK_R_Wrist_joint_01W1.i"
-		;
-connectAttr "R_Hand_IKFK.IK_FK_Switch" "Base_R_Wrist_joint_01_pointConstraint1_Freeform_R_Wrist_joint_01W2.i"
-		;
-connectAttr "R_Hand_IKFK.IK_FK_Switch" "R_Free_Wrist_Grp_01_visibility.i";
-connectAttr "L_Hand_IKFK.IK_FK_Switch" "L_Free_Wrist_Grp_01_visibility.i";
-connectAttr "L_Hand_IKFK.IK_FK_Switch" "L_FK_Wrist_Grp_01_visibility.i";
-connectAttr "R_Hand_IKFK.IK_FK_Switch" "R_FK_Wrist_Grp_01_visibility.i";
 connectAttr "typeBlinnSG.pa" ":renderPartition.st" -na;
 connectAttr "flexiPlane:surfaceShader1SG.pa" ":renderPartition.st" -na;
 connectAttr "flexiPlane:surfaceShader2SG.pa" ":renderPartition.st" -na;
@@ -29893,4 +29744,4 @@ connectAttr "R_Arm_MeshShape.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "L_Arm_MeshShape.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "ikSCsolver.msg" ":ikSystem.sol" -na;
 connectAttr "ikRPsolver.msg" ":ikSystem.sol" -na;
-// End of NPC_Rig.ma
+// End of NPC_Rig_11.ma
