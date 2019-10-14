@@ -72,7 +72,7 @@ public class SeedSetupCanvas : MonoBehaviour
         if (validSeed)
         {
             Debug.Log("Valid hex seed: " + seed);
-            warningTextTMP.text = "Character seed detected!";
+            warningTextTMP.text = "Hex seed detected!";
             warningTextTMP.color = new Color32(81, 150, 55, 255);
             setGreenCheck();
         }
@@ -80,6 +80,13 @@ public class SeedSetupCanvas : MonoBehaviour
         {
             Debug.Log("Valid bip39 seed: " + seed);
             warningTextTMP.text = "Word seed detected!";
+            warningTextTMP.color = new Color32(81, 150, 55, 255);
+            setGreenCheck();
+        }
+        else if (SeedUtility.validBase64(seedInputField.text))
+        {
+            Debug.Log("Valid base64 seed: " + seed);
+            warningTextTMP.text = "Character seed detected!";
             warningTextTMP.color = new Color32(81, 150, 55, 255);
             setGreenCheck();
         }
@@ -92,13 +99,17 @@ public class SeedSetupCanvas : MonoBehaviour
             string seedFromInput = seedInputField.text;
             string hexSeed = "";
 
-            if (!SeedUtility.detectHex(seedFromInput) && SeedUtility.validBip(seedFromInput) && InteractableConfig.SitesPerGame < 6)
+            if (!SeedUtility.detectHex(seedFromInput) && !SeedUtility.validBase64(seedFromInput) && SeedUtility.validBip(seedFromInput) && InteractableConfig.SitesPerGame < 6)
             {
                 hexSeed = bpc.getHexFromShortSentence(seedFromInput, InteractableConfig.SitesPerGame * 2);
             }
-            else if (!SeedUtility.detectHex(seedFromInput) && SeedUtility.validBip(seedFromInput))
+            else if (!SeedUtility.detectHex(seedFromInput) && !SeedUtility.validBase64(seedFromInput) && SeedUtility.validBip(seedFromInput))
             {
                 hexSeed = bpc.getHexFromSentence(seedFromInput);
+            }
+            else if (SeedUtility.validBase64(seedFromInput))
+            {
+                hexSeed = Base64Converter.base64ToHex(seedFromInput);
             }
             else
             {
@@ -135,6 +146,9 @@ public class SeedSetupCanvas : MonoBehaviour
     public bool validSeedString(string seedString)
     {
         bool validHex = SeedUtility.validHex(seedString);
+        bool validBase64 = SeedUtility.detectBase64(seedString);
+        int base64Limit = (InteractableConfig.SitesPerGame * 22 + 5 )/ 6;
+        Debug.Log("Base 64 character limit: " + base64Limit);
 
         string[] wordArray = seedString.Split(null);
 
@@ -161,18 +175,30 @@ public class SeedSetupCanvas : MonoBehaviour
             warningTextTMP.color = new Color32(255, 20, 20, 255);
             setRedWarning();
         }
-        else if (!validHex) {
-            warningTextTMP.text = "Character seeds must only contain hex characters.";
+        else if (!validHex && !validBase64) {
+            warningTextTMP.text = "Some characters are invalid.";
             warningTextTMP.color = new Color32(255, 20, 20, 255);
             setRedWarning();
         }
-        else if (seedString.Length < InteractableConfig.SeedHexLength) {
+        else if (!validHex && validBase64 && seedString.Length < base64Limit)
+        {
+            warningTextTMP.text = "Not enough characters!";
+            warningTextTMP.color = new Color32(255, 20, 20, 255);
+            setRedWarning();
+        }
+        else if (!validHex && validBase64 && seedString.Length > base64Limit)
+        {
+            warningTextTMP.text = "Too many characters!";
+            warningTextTMP.color = new Color32(255, 20, 20, 255);
+            setRedWarning();
+        }
+        else if (validHex && seedString.Length < InteractableConfig.SeedHexLength) {
             validHex = false;
             warningTextTMP.text = "Not enough characters!";
             warningTextTMP.color = new Color32(255, 20, 20, 255);
             setRedWarning();
         }
-        else if (seedString.Length > InteractableConfig.SeedHexLength + 1) {
+        else if (validHex && seedString.Length > InteractableConfig.SeedHexLength + 1) {
             validHex = false;
             warningTextTMP.text = "Too many characters!";
             warningTextTMP.color = new Color32(255, 20, 20, 255);
