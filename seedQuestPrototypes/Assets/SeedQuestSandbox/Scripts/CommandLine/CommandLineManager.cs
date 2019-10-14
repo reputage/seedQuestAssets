@@ -233,8 +233,6 @@ public static class CommandLineManager
         {
             return "Please enter at least one scene name for the custom learn path.";
         }
-        Debug.Log("Input: " + input);
-        Debug.Log("String input length: " + stringInputs.Length);
 
         for (int i = 0; i < InteractableConfig.SitesPerGame; i++)
         {

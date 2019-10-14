@@ -55,7 +55,7 @@ public class EndGameUI : MonoBehaviour
         if (InteractableConfig.SeedHexLength % 2 == 1)
         {
             string alteredSeedText = converter.DecodeSeed();
-            string sentence = bpc.getSentenceFromHex(alteredSeedText);
+            string sentence = getSentence(alteredSeedText);
 
             char[] array = alteredSeedText.ToCharArray();
             array[array.Length - 2] = array[array.Length - 1];
@@ -71,7 +71,7 @@ public class EndGameUI : MonoBehaviour
         {
             //textList[0].text = converter.DecodeSeed();
             string hex = converter.DecodeSeed();
-            string sentence = bpc.getSentenceFromHex(hex);
+            string sentence = getSentence(hex);
             hexSeed = hex;
             bipSeed = sentence;
             textList[0].text = sentence;
@@ -82,12 +82,12 @@ public class EndGameUI : MonoBehaviour
 
         if (GameManager.Mode == GameMode.Rehearsal)
         {
-            //textList[2].text = "Key Encrypted!";
+            //textList[2].text = "Key Encoded!";
             textList[3].text = "Practice Again";
         }
         else
         {
-            //textList[2].text = "Key Decrypted!";
+            //textList[2].text = "Key Decoded!";
             textList[3].text = "Back to Start Screen";
         }
 
@@ -161,8 +161,20 @@ public class EndGameUI : MonoBehaviour
             GUIUtility.systemCopyBuffer = seed;
         #endif
 
-        textList[1].text = "Seed Copied";
+        textList[1].text = "Seed Copied!";
         textList[1].gameObject.SetActive(true);
+    }
+
+    public static string getSentence(string hex)
+    {
+        string sentence;
+        BIP39Converter bpc = new BIP39Converter();
+        if (InteractableConfig.SitesPerGame < 6)
+            sentence = bpc.getShortSentenceFromHex(hex, InteractableConfig.SitesPerGame * 2);
+        else
+            sentence = bpc.getSentenceFromHex(hex);
+
+        return sentence;
     }
 
     public void downloadSeed()
@@ -219,13 +231,6 @@ public class EndGameUI : MonoBehaviour
         textList[0].text = bipSeed;
 
         Button[] buttons = Instance.GetComponentsInChildren<Button>();
-
-        /*
-        foreach (Button buttonOb in buttons)
-        {
-            Debug.Log("Button name: " + buttonOb.gameObject.name);
-        }
-        */
 
         GameObject characterButton = buttons[4].gameObject;
         GameObject wordsButton = buttons[5].gameObject;

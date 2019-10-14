@@ -139,10 +139,13 @@ namespace SeedQuest.Interactables
 
                 Instance.nextIndex++;
 
-                if (PathLevelComplete)
-                {
-                    if (GameManager.ReviewMode == false)
+                if (PathLevelComplete) {
+                    if (GameManager.TutorialMode)
                     {
+                        return;
+                    }
+
+                    if (GameManager.ReviewMode == false ) {
                         GameManager.ReviewMode = true;
                         FastRecoveryUI.Instance.StartFastRehearsal();
                     }
@@ -153,8 +156,7 @@ namespace SeedQuest.Interactables
                 if(NextInteractable != null)
                     InitializeNextInteractable();
             }
-            else if (GameManager.Mode == GameMode.Rehearsal && NextInteractable != InteractableManager.ActiveInteractable)
-            {
+            else if (GameManager.Mode == GameMode.Rehearsal && NextInteractable != InteractableManager.ActiveInteractable) {
                 Debug.Log("Next interactable is not the current active interactable.");
             }
         }
@@ -164,6 +166,7 @@ namespace SeedQuest.Interactables
             if (NextInteractable == null) return;
 
             if (GameManager.Mode == GameMode.Rehearsal) {
+                NextInteractable.SetInteractableLabelTrackerIcon();
                 InteractablePreviewUI.SetPreviewObject(NextInteractable, Instance.actionIds[Instance.nextIndex]);
                 InteractablePreviewUI.SetPreviewAction(Instance.actionIds[Instance.nextIndex]);
             }
