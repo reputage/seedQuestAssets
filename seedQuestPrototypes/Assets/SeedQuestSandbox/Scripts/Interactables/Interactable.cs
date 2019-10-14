@@ -31,12 +31,28 @@ namespace SeedQuest.Interactables
         void Start() {
             interactableLabel = new InteractableLabelUI();
             interactableLabel.Initialize(this);
+            Copy();
         }
 
         void Update()  {
             interactableLabel.Update();
             ClickOnInteractable();
             HoverOnInteractable();
+        }
+
+        public void Copy() {
+            if (stateData == null)
+                return;
+
+            stateData.interactableUI = interactableUI;
+            stateData.interactableCamera = interactableCamera;
+            stateData.interactablePreview = interactablePreview;
+            stateData.ID = ID;
+        }
+
+        static public void CopyAll() {
+            foreach (Interactable i in InteractableManager.InteractableList)
+                i.Copy();
         }
 
         public string Name {
