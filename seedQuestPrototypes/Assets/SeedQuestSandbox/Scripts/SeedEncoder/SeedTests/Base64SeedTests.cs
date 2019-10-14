@@ -24,6 +24,7 @@ public class Base64SeedTests : MonoBehaviour
         int[] passed = new int[2];
 
         sumTest(ref passed, testHexToBase64());
+        sumTest(ref passed, testBase64Validator());
 
         string passedString = "Successfully passed " + passed[0] + " of " + passed[1] + " base64 tests.";
         Debug.Log(passedString);
@@ -98,6 +99,21 @@ public class Base64SeedTests : MonoBehaviour
     {
         int[] passed = new int[2];
         string j = "";
+        return passed;
+    }
+
+    public int[] testBase64Validator()
+    {
+        int[] passed = new int[2];
+        passed[1] = 2;
+        string valid = "qwertyuiopasdfghjklzxcvbnmZXCVBNMASDFGHJKLQWERTYUIOP1234567890/+=";
+        string invalid = "abcdefg123456[";
+
+        if (SeedUtility.validBase64(valid))
+            passed[0] += 1;
+        if (!SeedUtility.validBase64(invalid))
+            passed[0] += 1;
+        
         return passed;
     }
 

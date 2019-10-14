@@ -51,6 +51,7 @@ public static class SeedUtility
         return hexString;
     }
 
+    // Checks a string to see if it's a hex string
     public static bool validHex(string input)
     {
         bool valid = true;
@@ -76,4 +77,12 @@ public static class SeedUtility
         return false;
     }
 
+    // Detect whether or not the input is a valid alpha/numeric/etc. string
+    public static bool validBase64(string seed)
+    {
+        if (System.Text.RegularExpressions.Regex.IsMatch(seed, @"^[A-Za-z0-9+/]+={0,2}$"))
+            return true;
+        
+        return false;
+    }
 }
