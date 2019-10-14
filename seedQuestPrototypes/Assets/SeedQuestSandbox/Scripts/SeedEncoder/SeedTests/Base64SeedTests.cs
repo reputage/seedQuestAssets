@@ -109,9 +109,9 @@ public class Base64SeedTests : MonoBehaviour
         string valid = "qwertyuiopasdfghjklzxcvbnmZXCVBNMASDFGHJKLQWERTYUIOP1234567890/+=";
         string invalid = "abcdefg123456[";
 
-        if (SeedUtility.validBase64(valid))
+        if (SeedUtility.detectBase64(valid))
             passed[0] += 1;
-        if (!SeedUtility.validBase64(invalid))
+        if (!SeedUtility.detectBase64(invalid))
             passed[0] += 1;
         
         return passed;
