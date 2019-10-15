@@ -20,6 +20,7 @@ public class FastRecoveryUI : MonoBehaviour
     private List<Button> buttons;
     private GameObject buttonPrefab;
     private GameObject interactableGroup;
+    private Camera renderCamera;
     private Button[] interactableButtons;
     private TMPro.TMP_Text mainTitle;
     private TMPro.TMP_Text instructions;
@@ -27,6 +28,7 @@ public class FastRecoveryUI : MonoBehaviour
     private TMPro.TMP_Text previewMapInstructions;
     //private Image startingTitleImage;
     private Slider slider;
+    private Slider rotator;
     private Interactable[] interactables;
     private int interactableProgress;
     private int sliderMin;
@@ -51,17 +53,18 @@ public class FastRecoveryUI : MonoBehaviour
         Transform buttonGroup;
         if (settings.useRenderTexture)
         {
+            rotator.onValueChanged.AddListener(delegate { OnRotateValueChanged(); });
             map.gameObject.SetActive(false);
-            GameObject tempCameraObject = new GameObject();
-            tempCameraObject.name = "TempCamera";
-            Camera tempCamera = tempCameraObject.AddComponent<Camera>();
-            tempCamera.transform.localPosition = new Vector3(0, settings.renderCameraHeight, 0);
-            tempCamera.transform.eulerAngles = new Vector3(90, 0, 0);
-            RenderTexture target = new RenderTexture(512, 512, 16, RenderTextureFormat.ARGB32);
-            tempCamera.targetTexture = target;
-            tempCamera.enabled = false;
-            tempCamera.Render();
-            rawMap.texture = tempCamera.targetTexture;
+            GameObject cameraObject = new GameObject();
+            cameraObject.name = "RenderCamera";
+            renderCamera = cameraObject.AddComponent<Camera>();
+            renderCamera.transform.localPosition = new Vector3(0, (float) settings.renderCameraHeight, 0);
+            renderCamera.transform.eulerAngles = new Vector3(90, 0, 0);
+            RenderTexture target = new RenderTexture(1024, 1024, 16, RenderTextureFormat.ARGB32);
+            renderCamera.targetTexture = target;
+            renderCamera.enabled = true;//false;
+            renderCamera.Render();
+            rawMap.texture = renderCamera.targetTexture;
             if (settings.restrictViewport)
             {
                 rawMap.rectTransform.sizeDelta = new Vector2(Screen.height - 100, Screen.height - 100);
@@ -77,6 +80,7 @@ public class FastRecoveryUI : MonoBehaviour
         else
         {
             rawMap.gameObject.SetActive(false);
+            rotator.transform.parent.gameObject.SetActive(false);
             map.sprite = settings.source;
             if (settings.restrictViewport)
             {
@@ -115,6 +119,9 @@ public class FastRecoveryUI : MonoBehaviour
 
         buttonGroup.localPosition = new Vector3(settings.xOffset, settings.yOffset, 0);
         buttonGroup.localEulerAngles = new Vector3(0, 0, settings.rotation);
+
+        rotator.minValue = 15;
+        rotator.maxValue = 90;
 
         if (GameManager.Mode == GameMode.Rehearsal)
         {
@@ -210,7 +217,9 @@ public class FastRecoveryUI : MonoBehaviour
         instructions = texts[1];
         interactableTitle = texts[2];
         previewMapInstructions = texts[11];
-        slider = gameObject.GetComponentInChildren<Slider>();
+        Slider[] sliders = gameObject.GetComponentsInChildren<Slider>();
+        slider = sliders[0];
+        rotator = sliders[1];
         interactableProgress = 0;
         List<Interactable> interactableList = new List<Interactable>();
         foreach (Interactable interactable in InteractableManager.InteractableList)
@@ -232,6 +241,7 @@ public class FastRecoveryUI : MonoBehaviour
             GameManager.State = GameState.Menu;
             animator.Play("SlideUp");
             ToggleInteractableGroup(false);
+            rotator.value = rotator.maxValue;
 
             for (int i = 0; i < 4; i++)
             {
@@ -350,7 +360,7 @@ public class FastRecoveryUI : MonoBehaviour
     {
         if (!toggle)
         {
-            interactableTitle.text = "Titl";//"Choose a";
+            interactableTitle.text = "Title";//"Choose a";
             //startingTitleImage.gameObject.SetActive(!toggle);
             //interactableGroup.SetActive(toggle);
         }
@@ -365,7 +375,8 @@ public class FastRecoveryUI : MonoBehaviour
         mapInstructions.gameObject.SetActive(!toggle);
         if (GameManager.Mode == GameMode.Rehearsal && GameManager.ReviewMode == true && toggle)
         {
-            previewMapInstructions.text = "Select an option and keep the button pressed to perform an action.";
+            //previewMapInstructions.text = "Select an option and keep the button pressed to perform an action.";
+            previewMapInstructions.gameObject.SetActive(false);
         }
         else if (GameManager.Mode == GameMode.Rehearsal && GameManager.ReviewMode == true && !toggle)
         {
@@ -516,6 +527,20 @@ public class FastRecoveryUI : MonoBehaviour
             map.rectTransform.sizeDelta = new Vector2(slider.value / settings.source.bounds.size.y * settings.source.bounds.size.x, slider.value);
             map.transform.GetChild(0).localPosition = new Vector3(newXOffset, newYOffset, 0);
         }
+    }
+
+    //====================================================================================================//
+
+    public void OnRotateValueChanged()
+    {
+        renderCamera.transform.eulerAngles = new Vector3(rotator.value, 0, 0);
+        double height = settings.renderCameraHeight;
+        double sinTheta = System.Math.Sin(System.Math.Round(rotator.value * System.Math.PI / 180, 2));
+        double cosTheta = System.Math.Cos(System.Math.Round(rotator.value * System.Math.PI / 180, 2));
+        float z = (float)(height * cosTheta);
+        float y = (float)(height * sinTheta);
+        renderCamera.transform.localPosition = new Vector3(0, y, -z);
+        buttons[0].transform.parent.parent.localEulerAngles = new Vector3(rotator.maxValue - rotator.value, 0, settings.rotation);
     }
 
     //====================================================================================================//
