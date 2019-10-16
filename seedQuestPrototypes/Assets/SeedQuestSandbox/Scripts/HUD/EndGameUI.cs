@@ -75,9 +75,6 @@ public class EndGameUI : MonoBehaviour
             textList[0].text = bipSeed;
         }
 
-        //Debug.Log("Hex: " + hexSeed);
-        //Debug.Log("Bip: " + bipSeed);
-
         if (GameManager.Mode == GameMode.Rehearsal)
         {
             textList[3].text = "Practice Again";
@@ -85,11 +82,6 @@ public class EndGameUI : MonoBehaviour
         else
         {
             textList[3].text = "Back to Start Screen";
-        }
-
-        for (int i = 0; i < textList.Length; i++)
-        {
-            //Debug.Log("Text data #" + i + ": " + textList[i].text);
         }
 
         setupCharacterMode();
@@ -224,7 +216,7 @@ public class EndGameUI : MonoBehaviour
     public static void setupCharacterMode()
     {
         var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
-        textList[0].text = hexSeed;
+        textList[0].text = base64Seed;
 
         Button[] buttons = Instance.GetComponentsInChildren<Button>();
         GameObject charButton = buttons[4].gameObject;

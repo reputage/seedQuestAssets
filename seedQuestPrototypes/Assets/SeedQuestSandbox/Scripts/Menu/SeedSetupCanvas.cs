@@ -107,6 +107,10 @@ public class SeedSetupCanvas : MonoBehaviour
             {
                 hexSeed = bpc.getHexFromSentence(seedFromInput);
             }
+            else if (SeedUtility.validBase64(seedFromInput))
+            {
+                hexSeed = Base64Converter.base64ToHex(seedFromInput);
+            }
             else
             {
                 hexSeed = seedFromInput;
