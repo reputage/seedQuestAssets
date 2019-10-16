@@ -51,6 +51,26 @@ public static class SeedUtility
         return hexString;
     }
 
+    public static bool validBase64(string input)
+    {
+        int base64Length = (5 + InteractableConfig.BitEncodingCount / 6);
+        Debug.Log("Calculated base64 length: " + base64Length);
+
+        if (detectBase64(input) && input.Length == base64Length)
+            return true;
+
+        return false;
+    }
+
+    public static bool detectBase64(string input)
+    {
+        if (System.Text.RegularExpressions.Regex.IsMatch(input, @"^[a-zA-Z0-9\+/]*={0,2}$"))
+        {
+            return true;
+        }
+        return false;
+    }
+
     public static bool validHex(string input)
     {
         bool valid = true;
