@@ -58,8 +58,8 @@ public class FastRecoveryUI : MonoBehaviour
             GameObject cameraObject = new GameObject();
             cameraObject.name = "RenderCamera";
             renderCamera = cameraObject.AddComponent<Camera>();
-            renderCamera.transform.localPosition = new Vector3(0, (float) settings.renderCameraHeight, 0);
-            renderCamera.transform.eulerAngles = new Vector3(90, 0, 0);
+            renderCamera.transform.localPosition = new Vector3(0 + settings.renderCameraOffsetX, (float) settings.renderCameraHeight, 0 + settings.renderCameraOffsetZ);
+            renderCamera.transform.eulerAngles = new Vector3(90, Camera.main.transform.eulerAngles.y, 0);
             RenderTexture target = new RenderTexture(1024, 1024, 16, RenderTextureFormat.ARGB32);
             renderCamera.targetTexture = target;
             renderCamera.enabled = true;//false;
@@ -245,7 +245,8 @@ public class FastRecoveryUI : MonoBehaviour
 
             for (int i = 0; i < 4; i++)
             {
-                interactableButtons[i].onClick.RemoveAllListeners();
+                //interactableButtons[i].onClick.RemoveAllListeners();
+                RemoveHoverForActionButton(interactableButtons[i]);
                 interactableButtons[i].gameObject.GetComponent<Animation>().Stop();
                 interactableButtons[i].gameObject.GetComponent<Image>().color = Color.white;
             }
@@ -287,9 +288,9 @@ public class FastRecoveryUI : MonoBehaviour
                     slider.value = 1000;
                 }
             }
-            if (GameManager.GraduatedFlags[InteractableLog.CurrentLevelIndex] == true || GameManager.Mode == GameMode.Recall)
+            if (GameManager.GraduatedFlags[InteractableLog.CurrentLevelIndex] == true)
                 pin.gameObject.SetActive(false);
-            else
+            if (pin.gameObject.activeSelf)
             {
                 if (settings.useInteractableUIPositions)
                     pin.transform.localPosition = new Vector3(InteractablePath.NextInteractable.LookAtPosition.x * settings.scale, InteractablePath.NextInteractable.LookAtPosition.z * settings.scale, 0);
@@ -437,7 +438,8 @@ public class FastRecoveryUI : MonoBehaviour
                         }
                     }
                 }
-                interactableButtons[i].onClick.AddListener(() => OnInteractableButtonClick(temp));
+                //interactableButtons[i].onClick.AddListener(() => OnInteractableButtonClick(interactable, temp));
+                SetHoverForActionButton(interactableButtons[i], interactable, i);
             }
         }
 
@@ -450,18 +452,19 @@ public class FastRecoveryUI : MonoBehaviour
 
             for (int i = 0; i < 4; i++)
             {
-                interactableButtons[i].onClick.RemoveAllListeners();
+                //interactableButtons[i].onClick.RemoveAllListeners();
+                RemoveHoverForActionButton(interactableButtons[i]);
             }
         }
     }
 
     //====================================================================================================//
 
-    public void OnInteractableButtonClick(int index)
+    /*public void OnInteractableButtonClick(Interactable interactable, int index)
     {
         AudioManager.Play("UI_Click");
-        InteractablePreviewUI.SetPreviewAction(index);
-    }
+        InteractablePreviewUI.SetPreviewObject(interactable, index, true);
+    }*/
 
     //====================================================================================================//
 
@@ -473,7 +476,8 @@ public class FastRecoveryUI : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-            interactableButtons[i].onClick.RemoveAllListeners();
+            //interactableButtons[i].onClick.RemoveAllListeners();
+            RemoveHoverForActionButton(interactableButtons[i]);
         }
 
         float newScale;
@@ -533,14 +537,16 @@ public class FastRecoveryUI : MonoBehaviour
 
     public void OnRotateValueChanged()
     {
-        renderCamera.transform.eulerAngles = new Vector3(rotator.value, 0, 0);
+        renderCamera.transform.eulerAngles = new Vector3(rotator.value, Camera.main.transform.eulerAngles.y, 0);
         double height = settings.renderCameraHeight;
         double sinTheta = System.Math.Sin(System.Math.Round(rotator.value * System.Math.PI / 180, 2));
         double cosTheta = System.Math.Cos(System.Math.Round(rotator.value * System.Math.PI / 180, 2));
-        float z = (float)(height * cosTheta);
+        double tanSigma = System.Math.Tan(System.Math.Round(Camera.main.transform.eulerAngles.y * System.Math.PI / 180, 2));
+        float x = (float)(height * tanSigma * cosTheta);
         float y = (float)(height * sinTheta);
-        renderCamera.transform.localPosition = new Vector3(0, y, -z);
-        buttons[0].transform.parent.parent.localEulerAngles = new Vector3(rotator.maxValue - rotator.value, 0, settings.rotation);
+        float z = (float)(height * cosTheta);
+        renderCamera.transform.localPosition = new Vector3((-x + settings.renderCameraOffsetX) * settings.renderRotationMultiplier, y, (-z + settings.renderCameraOffsetZ) * settings.renderRotationMultiplier);
+        //buttons[0].transform.parent.parent.localEulerAngles = new Vector3(rotator.maxValue - rotator.value, 0, settings.rotation);
     }
 
     //====================================================================================================//
@@ -677,6 +683,51 @@ public class FastRecoveryUI : MonoBehaviour
         exit.eventID = EventTriggerType.PointerExit;
         exit.callback.AddListener((data) => { OnHoverExit(buttonObject); });
         trigger.triggers.Add(exit);
+    }
+
+    //====================================================================================================//
+
+    void hoverActionButton(Interactable interactable, int actionIndex)
+    {
+        InteractablePreviewUI.SetPreviewObject(interactable, actionIndex, true);
+    }
+
+    //====================================================================================================//
+
+    private void SetHoverForActionButton(Button button, Interactable interactable, int index)
+    {
+        EventTrigger trigger = button.GetComponent<EventTrigger>();
+        if (trigger == null)
+        {
+            button.gameObject.AddComponent<EventTrigger>();
+            trigger = button.GetComponent<EventTrigger>();
+        }
+
+        EventTrigger.Entry entry = new EventTrigger.Entry();
+        entry.eventID = EventTriggerType.PointerEnter;
+        entry.callback.AddListener((data) => { OnHoverEnter(interactable, index); });
+        trigger.triggers.Add(entry);
+
+    }
+
+    //====================================================================================================//
+
+    private void RemoveHoverForActionButton(Button button)
+    {
+        EventTrigger trigger = button.GetComponent<EventTrigger>();
+        if (trigger != null)
+        {
+            Destroy(trigger);
+        }
+
+    }
+
+    //====================================================================================================//
+
+    private void OnHoverEnter(Interactable interactable, int actionIndex)
+    {
+        hoverActionButton(interactable, actionIndex);
+        AudioManager.Play("UI_Hover");
     }
 
     //====================================================================================================//
