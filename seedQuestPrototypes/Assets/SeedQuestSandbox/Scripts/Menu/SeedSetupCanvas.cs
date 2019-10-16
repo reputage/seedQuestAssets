@@ -154,7 +154,7 @@ public class SeedSetupCanvas : MonoBehaviour
     {
         bool validHex = SeedUtility.validHex(seedString);
         bool detectBase64 = SeedUtility.detectBase64(seedString);
-        int base64Length = (5 + InteractableConfig.BitEncodingCount / 6);
+        int base64Length = ((5 + InteractableConfig.BitEncodingCount) / 6);
 
         string[] wordArray = seedString.Split(null);
 
