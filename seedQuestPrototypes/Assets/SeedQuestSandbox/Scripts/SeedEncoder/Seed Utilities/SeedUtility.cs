@@ -1,4 +1,4 @@
-﻿susing System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -65,9 +65,8 @@ public static class SeedUtility
     public static bool detectBase64(string input)
     {
         if (System.Text.RegularExpressions.Regex.IsMatch(input, @"^[a-zA-Z0-9\+/]*={0,2}$"))
-        {
             return true;
-        }
+            
         return false;
     }
 
@@ -96,26 +95,4 @@ public static class SeedUtility
         return false;
     }
 
-    // Detect whether or not the input is a valid alpha/numeric/etc. string
-    public static bool validBase64(string seed)
-    {
-        int base64Limit = (InteractableConfig.SitesPerGame * 22 + 5) / 6;
-        if (!System.Text.RegularExpressions.Regex.IsMatch(seed, @"^[A-Za-z0-9+/]+={0,2}$"))
-            return false;
-        if (seed.Length > base64Limit)
-            return false;
-        if (seed.Length < base64Limit)
-            return false;
-
-        return true;
-    }
-
-    // Detect whether or not the input is a valid alpha/numeric/etc. string
-    public static bool detectBase64(string seed)
-    {
-        if (System.Text.RegularExpressions.Regex.IsMatch(seed, @"^[A-Za-z0-9+/]+={0,2}$"))
-            return true;
-        
-        return false;
-    }
 }
