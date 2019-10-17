@@ -64,8 +64,8 @@ public class FastRecoveryUI : MonoBehaviour
             rawMap.texture = tempCamera.targetTexture;
             if (settings.restrictViewport)
             {
-                rawMap.rectTransform.sizeDelta = new Vector2(980, 980);
-                slider.minValue = 980;
+                rawMap.rectTransform.sizeDelta = new Vector2(Screen.height - 100, Screen.height - 100);
+                slider.minValue = Screen.height - 100;
                 slider.value = slider.minValue;
             }
 
@@ -80,15 +80,15 @@ public class FastRecoveryUI : MonoBehaviour
             map.sprite = settings.source;
             if (settings.restrictViewport)
             {
-                if ((980 / settings.source.bounds.size.y * settings.source.bounds.size.x) < 880f)
+                if (((Screen.height - 100) / settings.source.bounds.size.y * settings.source.bounds.size.x) < (Screen.width - 1040))
                 {
-                    map.rectTransform.sizeDelta = new Vector2(880, 880 / settings.source.bounds.size.x * settings.source.bounds.size.y);
-                    slider.minValue = 880 / settings.source.bounds.size.x * settings.source.bounds.size.y;
+                    map.rectTransform.sizeDelta = new Vector2(Screen.width - 1040, (Screen.width - 1040) / settings.source.bounds.size.x * settings.source.bounds.size.y);
+                    slider.minValue = (Screen.width - 1040) / settings.source.bounds.size.x * settings.source.bounds.size.y;
                 }
                 else
                 {
-                    map.rectTransform.sizeDelta = new Vector2(980 / settings.source.bounds.size.y * settings.source.bounds.size.x, 980);
-                    slider.minValue = 980;
+                    map.rectTransform.sizeDelta = new Vector2((Screen.height - 100) / settings.source.bounds.size.y * settings.source.bounds.size.x, (Screen.height - 100));
+                    slider.minValue = Screen.height - 100;
                 }
                 slider.value = slider.minValue;
             }
@@ -254,7 +254,7 @@ public class FastRecoveryUI : MonoBehaviour
                 rawMap.transform.localPosition = new Vector3(0, 0, 0);
                 if (settings.restrictViewport)
                 {
-                    rawMap.rectTransform.sizeDelta = new Vector2(980, 980);
+                    rawMap.rectTransform.sizeDelta = new Vector2(Screen.height - 100, Screen.height - 100);
                     slider.value = slider.minValue;
                 }
             }
@@ -263,12 +263,12 @@ public class FastRecoveryUI : MonoBehaviour
                 map.transform.localPosition = new Vector3(0, 0, 0);
                 if (settings.restrictViewport)
                 {
-                    if ((980 / settings.source.bounds.size.y * settings.source.bounds.size.x) < 880f)
+                    if (((Screen.height - 100) / settings.source.bounds.size.y * settings.source.bounds.size.x) < (Screen.width - 1040))
                     {
-                        map.rectTransform.sizeDelta = new Vector2(880, 880 / settings.source.bounds.size.x * settings.source.bounds.size.y);
+                        map.rectTransform.sizeDelta = new Vector2((Screen.width - 1040), (Screen.width - 1040) / settings.source.bounds.size.x * settings.source.bounds.size.y);
                     }
                     else
-                        map.rectTransform.sizeDelta = new Vector2(980 / settings.source.bounds.size.y * settings.source.bounds.size.x, 980);
+                        map.rectTransform.sizeDelta = new Vector2((Screen.height - 100) / settings.source.bounds.size.y * settings.source.bounds.size.x, (Screen.height - 100));
                     slider.value = slider.minValue;
                 }
                 else
@@ -277,7 +277,7 @@ public class FastRecoveryUI : MonoBehaviour
                     slider.value = 1000;
                 }
             }
-            if (GameManager.GraduatedFlags[InteractableLog.CurrentLevelIndex] == true)
+            if (GameManager.GraduatedFlags[InteractableLog.CurrentLevelIndex] == true || GameManager.Mode == GameMode.Recall)
                 pin.gameObject.SetActive(false);
             else
             {
