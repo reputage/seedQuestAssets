@@ -77,14 +77,21 @@ public class AsciiSeedTests : MonoBehaviour
         string asciiByte = AsciiConverter.hexToAscii(hex);
         string recHex = AsciiConverter.asciiToHex(asciiByte);
 
-        if (recSeed == asciiSeeed)
+        if (recSeed == asciiSeed)
             passed[0] += 1;
+        else
+            Debug.Log("Test for converting ascii seed into bytes and back failed.");
 
         if (asciiByte == f1234a)
             passed[0] += 1;
+        else
+            Debug.Log("Test for converting hex seed into ascii failed.");
+
 
         if (hex == recHex)
             passed[0] += 1;
+        else
+            Debug.Log("Test for converting ascii seed into hex failed.");
 
         return passed;
     }
