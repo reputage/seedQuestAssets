@@ -57,10 +57,8 @@ namespace SeedQuest.Interactables
 
         public string Name {
             get {
-                if (interactableUI.name != "")
-                    return interactableUI.name;
-                else if (stateData != null)
-                    return stateData.interactableName;
+                if (stateData != null)
+                    return stateData.interactableUI.name;
                 else
                     return "Error: Missing StateData/Name";
             }
