@@ -43,8 +43,8 @@ namespace SeedQuest.Interactables
         public void Copy() {
             if (stateData == null)
                 return;
-
-            stateData.interactableUI = interactableUI;
+            
+            stateData.interactableUI.positionOffset = interactableUI.positionOffset;
             stateData.interactableCamera = interactableCamera;
             stateData.interactablePreview = interactablePreview;
             stateData.ID = ID;
