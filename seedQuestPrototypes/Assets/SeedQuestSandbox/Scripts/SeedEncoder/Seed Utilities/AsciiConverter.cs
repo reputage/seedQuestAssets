@@ -14,8 +14,8 @@ public static class AsciiConverter
         byte[] bytes = new byte[ascii.Length];
         for (int i = 0; i < ascii.Length; i++)
         {
-            char j = ascii[i].ToChar();
-            bytes[i] = asciiArray.GetLowerBound(j);
+            char j = ascii[i];
+            bytes[i] = Convert.ToByte(Array.IndexOf(asciiArray, j));
         }
 
         return bytes;
