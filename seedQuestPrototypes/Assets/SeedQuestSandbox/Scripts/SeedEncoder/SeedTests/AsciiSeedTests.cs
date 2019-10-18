@@ -44,8 +44,11 @@ public class AsciiSeedTests : MonoBehaviour
     {
         int[] passed = new int[2];
         string asciiChars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ ";
+        string badTest = "\n01234abcd";
+        passed[1] += 2;
 
-        Debug.Log("Pseudo Ascii lookup table length: " + AsciiConverter.asciiArray.Length);
+        string badResult = AsciiConverter.byteToAscii(AsciiConverter.asciiToByte(badTest));
+
         for (int i = 0; i < AsciiConverter.asciiArray.Length; i++)
         {
             passed[1] += 1;
@@ -53,13 +56,20 @@ public class AsciiSeedTests : MonoBehaviour
                 passed[0] += 1;
             else
                 Debug.Log("Ascii char at index #" + i + ": " + AsciiConverter.asciiArray[i] + " does not match the test char.");
+            Debug.Log("Ascii char at index #" + i + ": " + AsciiConverter.asciiArray[i] + " does not match the test char.");
+
         }
 
-        passed[1] += 1;
         if (AsciiConverter.asciiArray.Length == 95)
             passed[0] += 1;
         else
             Debug.Log("Ascii char lookup table is the incorrect length (shorter than 95 items)");
+
+        if (badResult == " 01234abcd")
+            passed += 1;
+        else
+            Debug.Log("Error handling for reserved characters (such as newline char) has failed");
+
 
         return passed;
     }
@@ -67,6 +77,7 @@ public class AsciiSeedTests : MonoBehaviour
     public int[] testCustomTable()
     {
         int[] passed = new int[2];
+        passed[1] = 3;
 
         string asciiSeed = "123qwertyuiop?>:{}";
         byte[] seedBytes = AsciiConverter.asciiToByte(asciiSeed);
@@ -82,11 +93,10 @@ public class AsciiSeedTests : MonoBehaviour
         else
             Debug.Log("Test for converting ascii seed into bytes and back failed.");
 
-        if (asciiByte == f1234a)
+        if (asciiByte == "f1234a")
             passed[0] += 1;
         else
             Debug.Log("Test for converting hex seed into ascii failed.");
-
 
         if (hex == recHex)
             passed[0] += 1;

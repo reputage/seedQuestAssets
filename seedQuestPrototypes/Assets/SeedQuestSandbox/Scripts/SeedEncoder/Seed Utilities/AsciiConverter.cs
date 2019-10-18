@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using UnityEngine;
 using SeedQuest.SeedEncoder;
 
@@ -15,7 +16,10 @@ public static class AsciiConverter
         for (int i = 0; i < ascii.Length; i++)
         {
             char j = ascii[i];
-            bytes[i] = Convert.ToByte(Array.IndexOf(asciiArray, j));
+            if (asciiArray.Contains(j))
+                bytes[i] = Convert.ToByte(Array.IndexOf(asciiArray, j));
+            else
+                bytes[i] = 94; // 94 is the value used for whitespace in the custom table
         }
 
         return bytes;
@@ -27,7 +31,7 @@ public static class AsciiConverter
 
         for (int i = 0; i < bytes.Length; i++)
         {
-            if (bytes[i] > 95)
+            if (bytes[i] >= 94)
                 ascii += " ";
             else
                 ascii += asciiArray[bytes[i]].ToString();
