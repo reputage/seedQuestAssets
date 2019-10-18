@@ -93,7 +93,7 @@ public class InteractableLabelUI
 
     public Vector3 LabelPosition {
         get {
-            Vector3 offset = interactable.stateData != null ? interactable.stateData.labelPosOffset : Vector3.zero;
+            Vector3 offset = interactable.stateData != null ? interactable.stateData.interactableUI.positionOffset : Vector3.zero;
             Vector3 position = interactable.transform.position + interactable.interactableUI.positionOffset + offset;
             return position;
         }
