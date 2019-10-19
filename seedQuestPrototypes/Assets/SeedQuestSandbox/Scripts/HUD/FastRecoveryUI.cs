@@ -36,6 +36,7 @@ public class FastRecoveryUI : MonoBehaviour
     private bool levelFlag;
     private Animator animator;
     private List<InteractableLogItem> backupLog;
+    private float currentScale;
 
     static private FastRecoveryUI instance = null;
     static private FastRecoveryUI setInstance() { instance = HUDManager.Instance.GetComponentInChildren<FastRecoveryUI>(true); return instance; }
@@ -480,42 +481,52 @@ public class FastRecoveryUI : MonoBehaviour
             RemoveHoverForActionButton(interactableButtons[i]);
         }
 
-        float newScale;
         float newXOffset;
         float newYOffset;
 
         if (settings.restrictViewport)
         {
-            newScale = (settings.scale * slider.value) / slider.minValue;
+            currentScale = (settings.scale * slider.value) / slider.minValue;
             newXOffset = (settings.xOffset * slider.value) / slider.minValue;
             newYOffset = (settings.yOffset * slider.value) / slider.minValue;
         }
         else
         {
-            newScale = (settings.scale * slider.value) / 1000;
+            currentScale = (settings.scale * slider.value) / 1000;
             newXOffset = (settings.xOffset * slider.value) / 1000;
             newYOffset = (settings.yOffset * slider.value) / 1000;
+        }
+
+        if (settings.useRenderTexture)
+        {
+            currentScale = slider.value / slider.minValue;
         }
 
         for (int i = 0; i < buttons.Count; i++)
         {
             buttons[i].gameObject.GetComponent<Image>().sprite = settings.interactableIcon;
-            if (settings.useInteractableUIPositions)
+            if (settings.useInteractableUIPositions && !settings.useRenderTexture)
             {
-                buttons[i].transform.parent.localPosition = new Vector3(interactables[i].LookAtPosition.x * newScale, interactables[i].LookAtPosition.z * newScale, 0);
+                buttons[i].transform.parent.localPosition = new Vector3(interactables[i].LookAtPosition.x * currentScale, interactables[i].LookAtPosition.z * currentScale, 0);
+            }
+            else if(settings.useRenderTexture)
+            {
+                Vector3 offset = interactables[i].stateData != null ? interactables[i].stateData.labelPosOffset : Vector3.zero;
+                Vector3 position = interactables[i].transform.localPosition + interactables[i].interactableUI.positionOffset + offset;
+                buttons[i].transform.parent.localPosition = renderCamera.WorldToScreenPoint(position) * currentScale;
             }
             else
             {
-                buttons[i].transform.parent.localPosition = new Vector3(interactables[i].transform.localPosition.x * newScale, interactables[i].transform.localPosition.z * newScale, 0);
+                buttons[i].transform.parent.localPosition = new Vector3(interactables[i].transform.localPosition.x * currentScale, interactables[i].transform.localPosition.z * currentScale, 0);
             }
         }
 
         if (GameManager.Mode == GameMode.Rehearsal)
         {
             if (settings.useInteractableUIPositions)
-                pin.transform.localPosition = new Vector3(InteractablePath.NextInteractable.LookAtPosition.x * newScale, InteractablePath.NextInteractable.LookAtPosition.z * newScale, 0);
+                pin.transform.localPosition = new Vector3(InteractablePath.NextInteractable.LookAtPosition.x * currentScale, InteractablePath.NextInteractable.LookAtPosition.z * currentScale, 0);
             else
-                pin.transform.localPosition = new Vector3(InteractablePath.NextInteractable.transform.localPosition.x * newScale, InteractablePath.NextInteractable.transform.localPosition.z * newScale, 0);
+                pin.transform.localPosition = new Vector3(InteractablePath.NextInteractable.transform.localPosition.x * currentScale, InteractablePath.NextInteractable.transform.localPosition.z * currentScale, 0);
             pin.transform.position = new Vector3(pin.transform.position.x, pin.transform.position.y + 30, pin.transform.position.z);
         }
 
@@ -523,7 +534,7 @@ public class FastRecoveryUI : MonoBehaviour
         {
             rawMap.transform.localPosition = new Vector3(0, 0, 0);
             rawMap.rectTransform.sizeDelta = new Vector2(slider.value, slider.value);
-            rawMap.transform.GetChild(0).localPosition = new Vector3(newXOffset, newYOffset, 0);
+            rawMap.transform.GetChild(0).localPosition = new Vector3(-500, -500, 0) * currentScale;
         }
         else
         {
@@ -547,6 +558,17 @@ public class FastRecoveryUI : MonoBehaviour
         float z = (float)(height * cosTheta);
         renderCamera.transform.localPosition = new Vector3((-x + settings.renderCameraOffsetX) * settings.renderRotationMultiplier, y, (-z + settings.renderCameraOffsetZ) * settings.renderRotationMultiplier);
         //buttons[0].transform.parent.parent.localEulerAngles = new Vector3(rotator.maxValue - rotator.value, 0, settings.rotation);
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            if (i == 0)
+            {
+                buttons[i].transform.parent.parent.localPosition = new Vector3(-500, -500, 0) * currentScale;
+                buttons[i].transform.parent.parent.eulerAngles = Vector3.zero;
+            }
+            Vector3 offset = interactables[i].stateData != null ? interactables[i].stateData.labelPosOffset : Vector3.zero;
+            Vector3 position = interactables[i].transform.localPosition + interactables[i].interactableUI.positionOffset + offset;
+            buttons[i].transform.parent.localPosition = renderCamera.WorldToScreenPoint(position) * currentScale;
+        }
     }
 
     //====================================================================================================//
