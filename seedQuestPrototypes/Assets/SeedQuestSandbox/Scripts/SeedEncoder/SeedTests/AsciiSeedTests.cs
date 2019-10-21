@@ -56,8 +56,6 @@ public class AsciiSeedTests : MonoBehaviour
                 passed[0] += 1;
             else
                 Debug.Log("Ascii char at index #" + i + ": " + AsciiConverter.asciiArray[i] + " does not match the test char.");
-            Debug.Log("Ascii char at index #" + i + ": " + AsciiConverter.asciiArray[i] + " does not match the test char.");
-
         }
 
         if (AsciiConverter.asciiArray.Length == 95)
@@ -69,8 +67,7 @@ public class AsciiSeedTests : MonoBehaviour
             passed += 1;
         else
             Debug.Log("Error handling for reserved characters (such as newline char) has failed");
-
-
+        
         return passed;
     }
 
@@ -84,7 +81,6 @@ public class AsciiSeedTests : MonoBehaviour
         string recSeed = AsciiConverter.byteToAscii(seedBytes);
 
         string hex = "0F010203040A";
-
         string asciiByte = AsciiConverter.hexToAscii(hex);
         string recHex = AsciiConverter.asciiToHex(asciiByte);
 

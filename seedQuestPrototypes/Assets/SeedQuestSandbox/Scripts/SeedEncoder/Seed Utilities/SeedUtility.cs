@@ -6,7 +6,6 @@ using SeedQuest.Interactables;
 
 public static class SeedUtility 
 {
-
     // Checks a string to see if it's a valid bip-39 seed phrase
     public static bool validBip(string seed)
     {
@@ -54,7 +53,6 @@ public static class SeedUtility
     public static bool validBase64(string input)
     {
         int base64Length = ((5 + InteractableConfig.BitEncodingCount) / 6);
-        Debug.Log("Calculated base64 length: " + base64Length);
 
         if (detectBase64(input) && input.Length == base64Length)
             return true;
@@ -67,6 +65,24 @@ public static class SeedUtility
         if (System.Text.RegularExpressions.Regex.IsMatch(input, @"^[a-zA-Z0-9\+/]*={0,2}$"))
             return true;
             
+        return false;
+    }
+
+    public static bool validAscii(string input)
+    {
+        int AsciiLength = ((InteractableConfig.BitEncodingCount) / 8);
+        byte[] bytes = AsciiConverter.asciiToByte(input);
+        if (input.Length == AsciiLength && detectAscii(input))
+            return true;
+
+        return false;
+    }
+
+    public static bool detectAscii(string input)
+    {
+        if (System.Text.RegularExpressions.Regex.IsMatch(input, @"^[ -~]"))
+            return true;
+
         return false;
     }
 
