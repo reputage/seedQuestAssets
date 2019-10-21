@@ -44,8 +44,9 @@ public class AsciiSeedTests : MonoBehaviour
     {
         int[] passed = new int[2];
         string asciiChars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ ";
+        string validAscii = "0123456789abcdef";
         string badTest = "\n01234abcd";
-        passed[1] += 2;
+        passed[1] += 6;
 
         string badResult = AsciiConverter.byteToAscii(AsciiConverter.asciiToByte(badTest));
 
@@ -64,9 +65,29 @@ public class AsciiSeedTests : MonoBehaviour
             Debug.Log("Ascii char lookup table is the incorrect length (shorter than 95 items)");
 
         if (badResult == " 01234abcd")
-            passed += 1;
+            passed[0] += 1;
         else
             Debug.Log("Error handling for reserved characters (such as newline char) has failed");
+
+        if (SeedUtility.detectAscii(asciiChars))
+            passed[0] += 1;
+        else
+            Debug.Log("Detect ascii test for correct strings failed.");
+
+        if (!SeedUtility.detectAscii(badTest))
+            passed[0] += 1;
+        else
+            Debug.Log("Detect ascii test for incorrect strings failed.");
+
+        if (SeedUtility.validAscii(validAscii))
+            passed[0] += 1;
+        else
+            Debug.Log("Valid ascii test for correct strings failed.");
+
+        if (!SeedUtility.validAscii(badTest))
+            passed[0] += 1;
+        else
+            Debug.Log("Valid ascii test for incorrect strings failed.");
         
         return passed;
     }

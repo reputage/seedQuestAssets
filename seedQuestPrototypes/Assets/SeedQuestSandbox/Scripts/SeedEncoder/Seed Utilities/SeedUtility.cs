@@ -71,6 +71,7 @@ public static class SeedUtility
     public static bool validAscii(string input)
     {
         int AsciiLength = ((InteractableConfig.BitEncodingCount) / 8);
+        Debug.Log("Calculated Ascii length: " + AsciiLength);
         byte[] bytes = AsciiConverter.asciiToByte(input);
         if (input.Length == AsciiLength && detectAscii(input))
             return true;
