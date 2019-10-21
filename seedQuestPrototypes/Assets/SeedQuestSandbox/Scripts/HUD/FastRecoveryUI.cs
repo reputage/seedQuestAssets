@@ -26,13 +26,10 @@ public class FastRecoveryUI : MonoBehaviour
     private TMPro.TMP_Text instructions;
     private TMPro.TMP_Text interactableTitle;
     private TMPro.TMP_Text previewMapInstructions;
-    //private Image startingTitleImage;
     private Slider slider;
     private Slider rotator;
     private Interactable[] interactables;
     private int interactableProgress;
-    private int sliderMin;
-    private int sliderMax;
     private bool levelFlag;
     private Animator animator;
     private List<InteractableLogItem> backupLog;
@@ -63,7 +60,9 @@ public class FastRecoveryUI : MonoBehaviour
             renderCamera.transform.eulerAngles = new Vector3(90, Camera.main.transform.eulerAngles.y, 0);
             RenderTexture target = new RenderTexture(1024, 1024, 16, RenderTextureFormat.ARGB32);
             renderCamera.targetTexture = target;
-            renderCamera.enabled = true;//false;
+            renderCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("Player"));
+            renderCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("FastRecoveryHide"));
+            renderCamera.enabled = true;
             renderCamera.Render();
             rawMap.texture = renderCamera.targetTexture;
             if (settings.restrictViewport)
@@ -432,10 +431,6 @@ public class FastRecoveryUI : MonoBehaviour
                         if (InteractablePath.NextAction == temp)
                         {
                             interactableButtons[i].gameObject.GetComponent<Animation>().Play();
-                            /*ColorBlock colors = interactableButtons[i].colors;
-                            colors.normalColor = new Color(189, 205, 217);
-                            colors.highlightedColor = new Color(189, 205, 217);
-                            interactableButtons[i].colors = colors;*/
                         }
                     }
                 }
@@ -595,7 +590,6 @@ public class FastRecoveryUI : MonoBehaviour
             if (GameManager.Mode == GameMode.Rehearsal && InteractableLog.Count % 3 != 0)
             {
                 InteractablePreviewUI.ClearPreviewObject();
-                float currentScale;
                 if (settings.restrictViewport)
                     currentScale = (settings.scale * slider.value) / slider.minValue;
                 else
@@ -611,10 +605,6 @@ public class FastRecoveryUI : MonoBehaviour
                 {
                     interactableButtons[i].gameObject.GetComponent<Animation>().Stop();
                     interactableButtons[i].gameObject.GetComponent<Image>().color = Color.white;
-                    /*ColorBlock colors = interactableButtons[i].colors;
-                    colors.normalColor = Color.white;
-                    colors.highlightedColor = Color.white;
-                    interactableButtons[i].colors = colors;*/
                 }
             }
         }
