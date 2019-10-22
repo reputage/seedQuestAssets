@@ -35,11 +35,11 @@ public class EndGameUI : MonoBehaviour
 
     private static string hexSeed;
     private static string bipSeed;
-    private static string base64Seed;
+    private static string asciiSeed;
 
     private GameObject characterButton;
     private GameObject wordsButton;
-    private GameObject base64Button;
+    private GameObject asciiButton;
 
     /// <summary> Toggles On the EndGameUI </summary>
     static public void ToggleOn() {
@@ -64,14 +64,14 @@ public class EndGameUI : MonoBehaviour
 
             hexSeed = alteredSeedText;
             bipSeed = sentence;
-            base64Seed = Base64Converter.hexToBase64(alteredSeedText);
+            asciiSeed = AsciiConverter.hexToAscii(alteredSeedText);
             textList[0].text = sentence;
         }
         else
         {
             hexSeed = converter.DecodeSeed();
             bipSeed = getSentence(hexSeed);
-            base64Seed = Base64Converter.hexToBase64(hexSeed);
+            asciiSeed = AsciiConverter.hexToAscii(hexSeed);
             textList[0].text = bipSeed;
         }
 
@@ -169,7 +169,7 @@ public class EndGameUI : MonoBehaviour
     {
         var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
         BIP39Converter bpc = new BIP39Converter();
-        string seed = bipSeed + "\n0x" + hexSeed + "\n" + base64Seed;
+        string seed = bipSeed + "\n0x" + hexSeed + "\n" + asciiSeed;
 
         //QRCodeGenerator qrGenerator = new QRCodeGenerator();
         //QRCodeData qrCodeData = qrGenerator.CreateQrCode(textList[0].text, QRCodeGenerator.ECCLevel.Q);
@@ -216,7 +216,7 @@ public class EndGameUI : MonoBehaviour
     public static void setupCharacterMode()
     {
         var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
-        textList[0].text = base64Seed;
+        textList[0].text = asciiSeed;
 
         Button[] buttons = Instance.GetComponentsInChildren<Button>();
         GameObject charButton = buttons[4].gameObject;
@@ -251,15 +251,15 @@ public class EndGameUI : MonoBehaviour
         setButtonColors(wordsButton);
     }
 
-    public void base64Mode()
+    public void asciiMode()
     {
         var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
-        textList[0].text = base64Seed;
+        textList[0].text = asciiSeed;
 
         if (characterButton == null)
             getButtonRefs();
 
-        setButtonColors(base64Button);
+        setButtonColors(asciiButton);
     }
 
     public void pdfTest()
@@ -294,7 +294,7 @@ public class EndGameUI : MonoBehaviour
         Button[] buttons = Instance.GetComponentsInChildren<Button>();
         characterButton = buttons[6].gameObject;
         wordsButton = buttons[5].gameObject;
-        base64Button = buttons[4].gameObject;
+        asciiButton = buttons[4].gameObject;
     }
 
     private void setButtonColors(GameObject selectedButton)
@@ -303,8 +303,8 @@ public class EndGameUI : MonoBehaviour
         characterButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         wordsButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(89, 89, 89, 255);
         wordsButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
-        base64Button.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(89, 89, 89, 255);
-        base64Button.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        asciiButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(89, 89, 89, 255);
+        asciiButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
 
         selectedButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 255, 255, 255);
         selectedButton.GetComponent<Image>().color = new Color32(55, 90, 122, 255);
