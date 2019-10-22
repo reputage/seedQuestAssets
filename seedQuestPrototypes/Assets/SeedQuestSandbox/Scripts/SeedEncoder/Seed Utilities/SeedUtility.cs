@@ -71,7 +71,6 @@ public static class SeedUtility
     public static bool validAscii(string input)
     {
         int AsciiLength = ((InteractableConfig.BitEncodingCount) / 8);
-        Debug.Log("Calculated Ascii length: " + AsciiLength);
         byte[] bytes = AsciiConverter.asciiToByte(input);
         if (input.Length == AsciiLength && detectAscii(input))
             return true;
@@ -85,6 +84,18 @@ public static class SeedUtility
             return true;
 
         return false;
+    }
+
+    public static string asciiHexLengthCheck(string hex)
+    {
+        if (hex.Length < InteractableConfig.BitEncodingCount / 4)
+        {
+            for (int i = 0; i < ((InteractableConfig.BitEncodingCount / 4) - hex.Length); i++)
+            {
+                hex += "0";
+            }
+        }
+        return hex;
     }
 
     public static bool validHex(string input)
