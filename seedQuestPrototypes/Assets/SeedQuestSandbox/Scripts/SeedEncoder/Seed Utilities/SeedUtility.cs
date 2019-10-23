@@ -100,6 +100,12 @@ public static class SeedUtility
 
     public static bool validHex(string input)
     {
+        if (InteractableConfig.SeedHexLength % 2 == 1)
+        {
+            if (input.Length == InteractableConfig.SeedHexLength + 1 && input[input.Length - 2] != '0')
+                return false;
+        }
+
         bool valid = true;
         foreach (char c in input)
         {
