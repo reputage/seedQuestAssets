@@ -14,6 +14,8 @@ import sys
 
 #mc.GamePipeline(sp = "Unity", sup = True)
 
+
+
 class Initialize(object):
     global renderLayerWin
     renderLayerWin = ''
@@ -48,9 +50,7 @@ class Initialize(object):
 
         #calls function that grabs all texture references in scene and categorizes them into appropriate arrays
         self.BuildWindow()
-        
-        
-        
+
     def BuildWindow(self):
         
         prepWin = mc.window(self.windowName, w = 650, h = 600, mnb = True, mxb = True, s = 1)
@@ -79,6 +79,21 @@ class Initialize(object):
 
         mc.showWindow()
         
+        
+    #Open up export UI
+	#List available rigs in the scene (each rig can have a specific node that can be searched for, e.g. PipelineExport = True)
+    def FindAllRigs(self):
+        print 'finding rigs in scene'
+        #search for all assets in a scene that have this property: 'ConsensysAnimRig'
+        #determine if the rig is a reference or imported into scene
+            #if already imported, do nothing
+            #else, place import button next to rig
+    
+	#Each rig can have a node that manages the animation frame data (Walk 1-55, etc etc)
+    #Write a separate script or have a window that can display and manage this information
+	#Export should be able to export fbx's that support automatically splitting the exported animations into clips
+	#Have option to fix FBX export settings
+    #Ability to export skinned asset meshes that do not have animation
     def StartExport(self):
         print 'Started Export!'
         
@@ -94,3 +109,9 @@ class Initialize(object):
     def FindBaseJoint(self):
         print 'found the base jump'
         return 'nothing found'
+        
+
+class LaunchWindow():
+    
+    def __init__():
+        print 'launching export window'
