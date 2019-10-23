@@ -55,6 +55,8 @@ public class EndGameUI : MonoBehaviour
         {
             string alteredSeedText = converter.DecodeSeed();
             string sentence = getSentence(alteredSeedText);
+            string alteredHex = SeedUtility.hexToAsciiLengthCheck(alteredSeedText);
+            asciiSeed = AsciiConverter.hexToAscii(alteredHex);
 
             char[] array = alteredSeedText.ToCharArray();
             array[array.Length - 2] = array[array.Length - 1];
@@ -64,7 +66,6 @@ public class EndGameUI : MonoBehaviour
 
             hexSeed = alteredSeedText;
             bipSeed = sentence;
-            asciiSeed = AsciiConverter.hexToAscii(alteredSeedText);
             textList[0].text = sentence;
         }
         else
