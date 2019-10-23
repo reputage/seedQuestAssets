@@ -86,7 +86,7 @@ public static class SeedUtility
         return false;
     }
 
-    public static string asciiHexLengthCheck(string hex)
+    public static string asciiToHexLengthCheck(string hex)
     {
         if (hex.Length < InteractableConfig.BitEncodingCount / 4)
         {
@@ -95,8 +95,24 @@ public static class SeedUtility
                 hex += "0";
             }
         }
+
+        if (hex.Length % 2 == 1)
+            hex += "0";
+        
         return hex;
     }
+
+    public static string hexToAsciiLengthCheck(string hex)
+    {
+        if (hex.Length > InteractableConfig.BitEncodingCount / 4)
+        {
+            Debug.Log("Shortening hex for Ascii conversion");
+            hex = hex.Substring(0, (hex.Length - 2));
+        }
+
+        return hex;
+    }
+
 
     public static bool validHex(string input)
     {

@@ -117,7 +117,7 @@ public class SeedSetupCanvas : MonoBehaviour
             else if (SeedUtility.validAscii(seedFromInput))
             {
                 hexSeed = AsciiConverter.asciiToHex(seedFromInput);
-                hexSeed = SeedUtility.asciiHexLengthCheck(hexSeed);
+                hexSeed = SeedUtility.asciiToHexLengthCheck(hexSeed);
             }
             else
             {
@@ -206,6 +206,13 @@ public class SeedSetupCanvas : MonoBehaviour
             setRedWarning();
         }
         else if (validHex && seedString.Length > InteractableConfig.SeedHexLength + 1) {
+            validHex = false;
+            warningTextTMP.text = "Too many characters!";
+            warningTextTMP.color = new Color32(255, 20, 20, 255);
+            setRedWarning();
+        }
+        else if (validHex && seedString.Length > InteractableConfig.SeedHexLength + 1)
+        {
             validHex = false;
             warningTextTMP.text = "Too many characters!";
             warningTextTMP.color = new Color32(255, 20, 20, 255);
