@@ -34,6 +34,11 @@ namespace SeedQuest.Interactables
             HoverOnInteractable();
         }
 
+        public void UpdateStateData(InteractableStateData data) {
+            stateData = data;
+            interactableLabel.SetLabelText();
+        }
+
         public InteractableUI interactableUI { get => stateData.interactableUI; }
 
         public InteractableCameraProps interactableCamera { get => stateData.interactableCamera; }

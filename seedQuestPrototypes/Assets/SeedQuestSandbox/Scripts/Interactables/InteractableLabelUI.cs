@@ -87,7 +87,7 @@ public class InteractableLabelUI
         labelButton.onClick.AddListener(ActivateInteractable);
     }
 
-    private void SetLabelText() {
+    public void SetLabelText() {
         labelText.text = interactable.Name;
     }
 
@@ -153,7 +153,9 @@ public class InteractableLabelUI
     
     public void ActivateInteractable() {
         if (!labelObject.activeSelf) return;
-        if (FastRecoveryUI.Instance.gameObject.activeSelf) return;
+        if (FastRecoveryUI.Instance != null) { 
+            if (FastRecoveryUI.Instance.gameObject.activeSelf) return;
+        }
 
         AudioManager.Play("UI_Click");
         InteractableManager.SetActiveInteractable(interactable);
