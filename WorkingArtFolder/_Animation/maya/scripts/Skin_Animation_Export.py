@@ -46,15 +46,48 @@ class window_ui(QDialog):
 
         btn = self.qtui.findChild(QPushButton, 'button_exportselected')
         #btn.clicked.connect()
+        
+        #class instance
+        ui_funct = UI_Functionality()
+        #fill out rig list
+        self.qtui.list_scenerigs.addItems(ui_funct.FindAllRigs())
+        #fill out rig ref list
+        self.qtui.list_scenerigsreference.addItems(ui_funct.FindRigDetails())
+        
+        #fill animation scene rigs
+        self.qtui.list_animations.addItems(ui_funct.FindAnimationClipsinScene())
+        
+        self.qtui.list_scenerigs.itemSelectionChanged.connect(self.UpdateAnimationList)
+        #callbacks from selection change
+        #idx = qtui.addEventCallback("SelectionChanged", test)
+        #when ever you finish doing your stuff
+        #OpenMaya.MMessage.removeCallback(idx)
 
+
+    def UpdateAnimationList(self):
+        #Get selection from scene rigs
+        rigSelection = [item.text() for item in self.qtui.list_scenerigs.selectedItems()]
+        print rigSelection
+        self.qtui.list_animations.clear()
+        #Based on selection, update animation list
+        for x in rigSelection:
+            if x == "test1":
+                print "test1 anim"
+                self.qtui.list_animations.addItems(["test1 anim"])
+            if x == "test2":
+                print "test2 anim"
+                self.qtui.list_animations.addItems(["test2 anim"])
+            if x == "test3":
+                print "test3 anim"
+                self.qtui.list_animations.addItems(["test3 anim"])
+                      
 
     def closeEvent(self, event):
         self.close()
 
-        
+
 def main():
     global ui_win 
-    #ui_win = MayaUI.MQtUtil.findWindow('Consensys Animation Export')
 
     try:
         ui_win.close()
@@ -82,7 +115,7 @@ def main():
 
 class UI_Functionality():
     
-    def __init__():
+    def __init__(self):
         print 'launching export window'
         
     def onExitCode(self):
@@ -93,11 +126,23 @@ class UI_Functionality():
 	#List available rigs in the scene (each rig can have a specific node that can be searched for, e.g. PipelineExport = True)
     def FindAllRigs(self):
         print 'finding rigs in scene'
+        sceneRigs = ["test1", "test2", "test3"]
+        
+        return sceneRigs
         #search for all assets in a scene that have this property: 'ConsensysAnimRig'
         #determine if the rig is a reference or imported into scene
             #if already imported, do nothing
             #else, place import button next to rig
-    
+    def FindRigDetails(self):
+        print 'R'
+        return ["R","", "R"]
+        
+    def FindAnimationClipsinScene(self):
+        print 'finding animation clips...'
+        return ["walk", "run", "idle"]
+        
+    def SelectionChanged(self):
+        print 'changed'
 	#Each rig can have a node that manages the animation frame data (Walk 1-55, etc etc)
     #Write a separate script or have a window that can display and manage this information
 	#Export should be able to export fbx's that support automatically splitting the exported animations into clips
