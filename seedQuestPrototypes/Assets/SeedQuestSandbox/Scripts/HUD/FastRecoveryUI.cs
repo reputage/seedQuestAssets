@@ -403,8 +403,7 @@ public class FastRecoveryUI : MonoBehaviour
         }
         else if (settings.useRenderTexture)
         {
-            Vector3 offset = interactable.stateData != null ? interactable.stateData.labelPosOffset : Vector3.zero;
-            Vector3 position = interactable.transform.localPosition + interactable.interactableUI.positionOffset + offset;
+            Vector3 position = interactable.transform.localPosition + interactable.interactableUI.positionOffset;
             button.transform.parent.localPosition = renderCamera.WorldToScreenPoint(position) * currentScale;
         }
         else
@@ -430,8 +429,7 @@ public class FastRecoveryUI : MonoBehaviour
             else if (settings.useRenderTexture)
             {
 
-                Vector3 offset = InteractablePath.NextInteractable.stateData != null ? InteractablePath.NextInteractable.stateData.labelPosOffset : Vector3.zero;
-                Vector3 position = InteractablePath.NextInteractable.transform.localPosition + InteractablePath.NextInteractable.interactableUI.positionOffset + offset;
+                Vector3 position = InteractablePath.NextInteractable.transform.localPosition + InteractablePath.NextInteractable.interactableUI.positionOffset;
                 pin.transform.localPosition = renderCamera.WorldToScreenPoint(position) * currentScale;
             }
             else

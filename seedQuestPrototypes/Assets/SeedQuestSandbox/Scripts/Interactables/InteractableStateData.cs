@@ -89,22 +89,18 @@ namespace SeedQuest.Interactables
     }
 
     [CreateAssetMenu(menuName = "Interactables/InteractableStateData")]
-    public class InteractableStateData : ScriptableObject
-    {
-        public string interactableName;
-        public string prompt;
-        public Vector3 labelPosOffset;
+    public class InteractableStateData : ScriptableObject {
+        public InteractableUI interactableUI;
+        public InteractableCameraProps interactableCamera;
+        public InteractablePreviewInfo interactablePreview;
+        public InteractableID ID;
+
         public List<InteractableState> states;
         public GameObject effect;
 
         public string getStateName(int index)
         {
             return states[index].actionName;
-        }
-
-        public string getPrompt()
-        {
-            return prompt;
         }
 
         public void stopAudio()

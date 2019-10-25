@@ -55,10 +55,10 @@ public class InteractableActionsUI : MonoBehaviour
             actionButtons[i] = buttons[i + 1];
 
         buttons[0].onClick.AddListener(() => { BackExit(); });
-        actionButtons[0].onClick.AddListener(() => { clickActionButton(0); });
+        /*actionButtons[0].onClick.AddListener(() => { clickActionButton(0); });
         actionButtons[1].onClick.AddListener(() => { clickActionButton(1); });
         actionButtons[2].onClick.AddListener(() => { clickActionButton(2); });
-        actionButtons[3].onClick.AddListener(() => { clickActionButton(3); });
+        actionButtons[3].onClick.AddListener(() => { clickActionButton(3); });*/
 
         actionButtons[0].gameObject.GetComponent<FastRecoveryButton>().ActionIndex = 0;
         actionButtons[1].gameObject.GetComponent<FastRecoveryButton>().ActionIndex = 1;
