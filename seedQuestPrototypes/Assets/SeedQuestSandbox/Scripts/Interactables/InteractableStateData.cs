@@ -95,6 +95,7 @@ namespace SeedQuest.Interactables
         public InteractablePreviewInfo interactablePreview;
         public InteractableID ID;
 
+        public InteractableState defaultState;
         public List<InteractableState> states;
         public GameObject effect;
 

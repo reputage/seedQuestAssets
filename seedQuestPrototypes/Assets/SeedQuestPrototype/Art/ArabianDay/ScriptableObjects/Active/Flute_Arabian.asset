@@ -10,21 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d1c21d9ece6c4e229a7c25408d3063a, type: 3}
-  m_Name: Arabian_tiger
+  m_Name: Flute_Arabian
   m_EditorClassIdentifier: 
-  interactableName: 
-  labelPosOffset: {x: 0, y: 0, z: 0}
   interactableUI:
-    name: Cat
-    positionOffset: {x: 0.2, y: 2, z: -0.2}
+    name: Flute
+    positionOffset: {x: -0.34, y: 1.89, z: 0.29}
   interactableCamera:
-    lookAtOffset: {x: 0, y: 0.6, z: 0}
+    lookAtOffset: {x: 0, y: 1.3, z: 0}
     positionOffset: {x: 0, y: 0, z: 0}
     zoomDistance: 10
   interactablePreview:
     scale: {x: 1, y: 1, z: 1}
-    position: {x: 0.34, y: -0.41, z: -1.93}
-    rotation: {x: 23.1, y: 165.38, z: -8.6}
+    position: {x: -0.09, y: -0.4, z: -2.62}
+    rotation: {x: 0, y: 300.31, z: 0}
     useOrthographic: 0
     fieldOfView: 60
     orthographicSize: 1
@@ -33,11 +31,29 @@ MonoBehaviour:
     rotateSpeed: 25
   ID:
     siteID: 8
-    spotID: 0
+    spotID: 6
     actionID: 0
+  defaultState:
+    actionName: 
+    prefab: {fileID: 0}
+    positionOffset: {x: 0, y: 0, z: 0}
+    mesh: {fileID: 0}
+    material: {fileID: 0}
+    materialIndex: 0
+    uvOffset: {x: 0, y: 0}
+    animatorController: {fileID: 0}
+    soundEffectName: 
+    soundEffect:
+      name: 
+      clip: {fileID: 0}
+      volume: 1
+      loop: 0
+      source: {fileID: 0}
+    particleEffectName: 
+    particleEffect: {fileID: 0}
   states:
-  - actionName: Pet cat
-    prefab: {fileID: 1751768785083222839, guid: 35a6a7da1a622fc4e93f1cd49f273642,
+  - actionName: Play Energetic Song
+    prefab: {fileID: 3012153451825994890, guid: 80bb4a2dbfaaca346bfa8a1b7e45bf50,
       type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
@@ -49,14 +65,13 @@ MonoBehaviour:
     soundEffect:
       name: 
       clip: {fileID: 0}
-      volume: 0
+      volume: 1
       loop: 0
       source: {fileID: 0}
     particleEffectName: 
-    particleEffect: {fileID: 3589441540930374132, guid: c0d5d0c1d9437d14f96f05b7db572c46,
-      type: 3}
-  - actionName: Feed cat
-    prefab: {fileID: 1751768785083222839, guid: 1162a6c805a956340974085ee20628f5,
+    particleEffect: {fileID: 0}
+  - actionName: Play Mellow Song
+    prefab: {fileID: 3012153451825994890, guid: 8736af8a7322bd44aa5b7f653ec6f813,
       type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
@@ -68,32 +83,13 @@ MonoBehaviour:
     soundEffect:
       name: 
       clip: {fileID: 0}
-      volume: 0
+      volume: 1
       loop: 0
       source: {fileID: 0}
     particleEffectName: 
-    particleEffect: {fileID: 3589441540930374132, guid: c0d5d0c1d9437d14f96f05b7db572c46,
-      type: 3}
-  - actionName: Get eaten by cat
-    prefab: {fileID: 283177162861326670, guid: 8400a874c489c4f05b2b750c6a7c267b, type: 3}
-    positionOffset: {x: 0, y: 0, z: 0}
-    mesh: {fileID: 0}
-    material: {fileID: 0}
-    materialIndex: 0
-    uvOffset: {x: 0, y: 0}
-    animatorController: {fileID: 0}
-    soundEffectName: 
-    soundEffect:
-      name: 
-      clip: {fileID: 0}
-      volume: 0
-      loop: 0
-      source: {fileID: 0}
-    particleEffectName: 
-    particleEffect: {fileID: 3589441540930374132, guid: c0d5d0c1d9437d14f96f05b7db572c46,
-      type: 3}
-  - actionName: Run from cat
-    prefab: {fileID: 5690390833296325311, guid: 6d3f97855d7f84808bae350b0774db7e,
+    particleEffect: {fileID: 0}
+  - actionName: Play Mysterious Song
+    prefab: {fileID: 3012153451825994890, guid: f69d190eba0c92c4dafbd5a4dd19bbc6,
       type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
@@ -105,10 +101,27 @@ MonoBehaviour:
     soundEffect:
       name: 
       clip: {fileID: 0}
-      volume: 0
+      volume: 1
       loop: 0
       source: {fileID: 0}
     particleEffectName: 
-    particleEffect: {fileID: 3589441540930374132, guid: c0d5d0c1d9437d14f96f05b7db572c46,
+    particleEffect: {fileID: 0}
+  - actionName: Play Harsh Song
+    prefab: {fileID: 3012153451825994890, guid: c83ae2ae25de21b498d8447dd169d090,
       type: 3}
-  effect: {fileID: 0}
+    positionOffset: {x: 0, y: 0, z: 0}
+    mesh: {fileID: 0}
+    material: {fileID: 0}
+    materialIndex: 0
+    uvOffset: {x: 0, y: 0}
+    animatorController: {fileID: 0}
+    soundEffectName: 
+    soundEffect:
+      name: 
+      clip: {fileID: 0}
+      volume: 1
+      loop: 0
+      source: {fileID: 0}
+    particleEffectName: 
+    particleEffect: {fileID: 0}
+  effect: {fileID: 3589441540930374132, guid: 71afa81c53028c949876d5203f468837, type: 3}
