@@ -14,6 +14,7 @@ public class StartScreenCanvas : MonoBehaviour
 
     private void Start() {
         Invoke("StartAnimation", 0.1f);
+        AudioManager.Play("MenuStart");
     }
 
     private void StartAnimation() {
