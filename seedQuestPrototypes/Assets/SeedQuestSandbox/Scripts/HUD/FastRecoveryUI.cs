@@ -203,7 +203,7 @@ public class FastRecoveryUI : MonoBehaviour
         cameraObject.name = "RenderCamera";
         renderCamera = cameraObject.AddComponent<Camera>();
         renderCamera.transform.localPosition = new Vector3(0 + settings.renderCameraOffsetX, (float)settings.renderCameraHeight, 0 + settings.renderCameraOffsetZ);
-        renderCamera.transform.eulerAngles = new Vector3(90, Camera.main.transform.eulerAngles.y, 0);
+        renderCamera.transform.localRotation = Quaternion.Euler(90, Camera.main.transform.localEulerAngles.y, 0);
         RenderTexture target = new RenderTexture(1024, 1024, 16, RenderTextureFormat.ARGB32);
         renderCamera.targetTexture = target;
         renderCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("Player"));
@@ -403,8 +403,8 @@ public class FastRecoveryUI : MonoBehaviour
         }
         else if (settings.useRenderTexture)
         {
-            Vector3 position = interactable.transform.localPosition + interactable.interactableUI.positionOffset;
-            button.transform.parent.localPosition = renderCamera.WorldToScreenPoint(position) * currentScale;
+            //Vector3 position = interactable.transform.localPosition + interactable.interactableUI.positionOffset;
+            button.transform.parent.localPosition = renderCamera.WorldToScreenPoint(interactable.LabelPosition) * currentScale;
         }
         else
         {
@@ -573,7 +573,7 @@ public class FastRecoveryUI : MonoBehaviour
 
     public void OnRotateValueChanged()
     {
-        renderCamera.transform.eulerAngles = new Vector3(rotator.value, Camera.main.transform.eulerAngles.y, 0);
+        renderCamera.transform.localRotation = Quaternion.Euler(rotator.value, Camera.main.transform.localEulerAngles.y, 0);
         double height = settings.renderCameraHeight;
         double sinTheta = System.Math.Sin(System.Math.Round(rotator.value * System.Math.PI / 180, 2));
         double cosTheta = System.Math.Cos(System.Math.Round(rotator.value * System.Math.PI / 180, 2));
