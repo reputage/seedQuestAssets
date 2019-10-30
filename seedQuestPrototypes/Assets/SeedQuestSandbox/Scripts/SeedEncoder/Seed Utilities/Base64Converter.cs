@@ -23,6 +23,10 @@ public static class Base64Converter
 
     public static string base64ToHex(string base64)
     {
+        if (base64.Length % 3 == 1)
+            base64 += "==";
+        else if (base64.Length % 3 == 1)
+            base64 += "=";
         byte[] bytes = Convert.FromBase64String(base64);
         return SeedToByte.ByteArrayToHex(bytes);
     }
