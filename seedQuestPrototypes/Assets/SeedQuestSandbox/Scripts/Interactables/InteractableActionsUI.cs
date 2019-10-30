@@ -130,19 +130,17 @@ public class InteractableActionsUI : MonoBehaviour
     } 
 
     private void BackExit() {
+        interactable.stateData.SetToDefaultState(interactable);
         InteractableActionsUI.Toggle(false);
-    }
+    } 
 
-    public void CheckForProgress()
-    {
-        if (InteractableLog.Count > interactableProgress)
-        {
+    public void CheckForProgress() {
+        if (InteractableLog.Count > interactableProgress) {
             interactableProgress = InteractableLog.Count;
             InteractableActionsUI.Toggle(false);
         }
 
-        else if (InteractableLog.Count < interactableProgress)
-        {
+        else if (InteractableLog.Count < interactableProgress) {
             interactableProgress = InteractableLog.Count;
         }
     }
