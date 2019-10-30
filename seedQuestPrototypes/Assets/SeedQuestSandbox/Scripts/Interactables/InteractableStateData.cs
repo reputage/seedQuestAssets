@@ -104,6 +104,11 @@ namespace SeedQuest.Interactables
             return states[index].actionName;
         }
 
+        public void SetToDefaultState(Interactable interactable) {
+            if (defaultState.prefab != null)
+                defaultState.enterState(interactable);
+        }
+
         public void stopAudio()
         {
             for (int i = 0; i < states.Count; i++)
