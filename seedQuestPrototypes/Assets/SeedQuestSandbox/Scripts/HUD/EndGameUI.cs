@@ -47,6 +47,8 @@ public class EndGameUI : MonoBehaviour
             return;
 
         Instance.gameObject.SetActive(true);
+        SeedQuest.Level.LevelManager.Instance.StopLevelMusic();
+        AudioManager.Play("KeyOutput");
         var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
         SeedConverter converter = new SeedConverter();
         BIP39Converter bpc = new BIP39Converter();
