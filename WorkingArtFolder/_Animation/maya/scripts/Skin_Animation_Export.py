@@ -21,7 +21,10 @@ def get_main_window():
     return mayaMainWindow
     
 class window_ui(QDialog):
-
+    #class instance
+    global ui_funct
+    ui_funct = UI_Functionality()
+    
     def __init__(self, *args, **kwargs):
         super(window_ui, self).__init__(*args, **kwargs)
 
@@ -36,7 +39,7 @@ class window_ui(QDialog):
         self.setWindowFlags(Qt.Window)
         self.setWindowTitle('Consensys Animation Export')
         self.setObjectName('ExportUI')
-        self.setWindowFlags(Qt.Window | Qt.WindowStaysOnTopHint)
+        #self.setWindowFlags(Qt.Window)
         self.setContentsMargins(5, 5, 5, 5)
         self.main_layout = QVBoxLayout()
         self.main_layout.setContentsMargins(0, 0, 0, 0)
@@ -48,40 +51,27 @@ class window_ui(QDialog):
         #btn.clicked.connect()
         
         #class instance
-        ui_funct = UI_Functionality()
+        #ui_funct = UI_Functionality()
         #fill out rig list
         self.qtui.list_scenerigs.addItems(ui_funct.FindAllRigs())
         #fill out rig ref list
         self.qtui.list_scenerigsreference.addItems(ui_funct.FindRigDetails())
-        
+
         #fill animation scene rigs
         self.qtui.list_animations.addItems(ui_funct.FindAnimationClipsinScene())
         
-        self.qtui.list_scenerigs.itemSelectionChanged.connect(self.UpdateAnimationList)
+        self.qtui.list_scenerigs.itemSelectionChanged.connect(self.UpdateAnimList)
         #callbacks from selection change
         #idx = qtui.addEventCallback("SelectionChanged", test)
         #when ever you finish doing your stuff
         #OpenMaya.MMessage.removeCallback(idx)
 
 
-    def UpdateAnimationList(self):
-        #Get selection from scene rigs
+    def UpdateAnimList(self):
         rigSelection = [item.text() for item in self.qtui.list_scenerigs.selectedItems()]
-        print rigSelection
         self.qtui.list_animations.clear()
-        #Based on selection, update animation list
-        for x in rigSelection:
-            if x == "test1":
-                print "test1 anim"
-                self.qtui.list_animations.addItems(["test1 anim"])
-            if x == "test2":
-                print "test2 anim"
-                self.qtui.list_animations.addItems(["test2 anim"])
-            if x == "test3":
-                print "test3 anim"
-                self.qtui.list_animations.addItems(["test3 anim"])
-                      
-
+        self.qtui.list_animations.addItems(ui_funct.UpdateAnimationList(rigSelection))
+     
     def closeEvent(self, event):
         self.close()
 
@@ -116,30 +106,73 @@ def main():
 class UI_Functionality():
     
     def __init__(self):
-        print 'launching export window'
-        
-    def onExitCode(self):
-        """Do this when the script is closed"""
-        sys.stdout.write("You closed the demo ui!\n")
+        print 'initialize functionality'
         
     #Open up export UI
 	#List available rigs in the scene (each rig can have a specific node that can be searched for, e.g. PipelineExport = True)
     def FindAllRigs(self):
-        print 'finding rigs in scene'
-        sceneRigs = ["test1", "test2", "test3"]
-        
+        sceneRigs = []
+        selection = mc.ls(l = True)
+        for obj in selection:
+            if mc.nodeType(obj) == 'container':
+                sceneRigs.append(obj)
+
         return sceneRigs
         #search for all assets in a scene that have this property: 'ConsensysAnimRig'
         #determine if the rig is a reference or imported into scene
             #if already imported, do nothing
             #else, place import button next to rig
+
+        
     def FindRigDetails(self):
-        print 'R'
-        return ["R","", "R"]
+        #query list of containers from UI
+        items = self.FindAllRigs()
+        referenced = []  
+        print items
+        for x in items:
+            if mc.referenceQuery(x, isNodeReferenced=True):
+                referenced.append("R")
+            else:
+                referenced.append(" ")
+        print items
+        return referenced
+
         
     def FindAnimationClipsinScene(self):
+        containers = self.FindAllRigs()
+        animations = []
+        #get current container
+        for x in containers:
+            temp = mc.container(x,q = True, nl = True)
+            
+            for u in temp:
+                animations.append(self.FillSequenceUI(u, ".AnimationName"))
+            break
+
+        return animations
+        
+    def UpdateAnimationList(self, selection):
         print 'finding animation clips...'
-        return ["walk", "run", "idle"]
+        animations = []
+        print selection
+        if len(selection) == 0:
+            return ['']
+        else:
+            #get current container
+            for x in selection:
+                temp = mc.container(x,q = True, nl = True)
+                
+                for u in temp:
+                    animations.append(self.FillSequenceUI(u, ".AnimationName"))
+            print "Animations:    "
+            print animations
+            return animations
+            
+        
+        
+    def FillSequenceUI(self, seq, attr):
+        info = mc.getAttr(seq + attr)
+        return info   
         
     def SelectionChanged(self):
         print 'changed'
