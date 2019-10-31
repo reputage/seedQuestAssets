@@ -1,6 +1,6 @@
 //Maya ASCII 2019 scene
-//Name: NPC_Rig.ma
-//Last modified: Mon, Oct 21, 2019 01:04:11 AM
+//Name: NPC_Rig_14.ma
+//Last modified: Mon, Oct 21, 2019 01:03:53 AM
 //Codeset: 1252
 file -rdi 1 -ns "NPC_Base" -rfn "NPC_Base_04RN" -op "v=0;" -typ "mayaAscii" "C:/Users/winka/Documents/seedQuestAssets/WorkingArtFolder/_Animation/maya/projects/SeedQuest_NPC//assets/NPC_Base.ma";
 file -r -ns "NPC_Base" -dr 1 -rfn "NPC_Base_04RN" -op "v=0;" -typ "mayaAscii" "C:/Users/winka/Documents/seedQuestAssets/WorkingArtFolder/_Animation/maya/projects/SeedQuest_NPC//assets/NPC_Base.ma";
@@ -13302,7 +13302,7 @@ createNode mesh -n "R_Arm_MeshShapeOrig" -p "R_Arm_Mesh";
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 	setAttr ".ai_translator" -type "string" "polymesh";
 createNode fosterParent -n "NPC_Base_04RNfosterParent1";
-	rename -uid "14C33875-49EB-DFA3-E2DC-3A8EE85EB75D";
+	rename -uid "BD51E088-4193-4348-86C5-4A866015C6D3";
 createNode scaleConstraint -n "Master_Dock_joint_01_scaleConstraint1" -p "NPC_Base_04RNfosterParent1";
 	rename -uid "1AB4173A-49C2-79F8-A11E-AFB673779E0A";
 	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "FK_Dock_joint_01W0" -dv 1 -min 0 
@@ -30708,4 +30708,4 @@ connectAttr "R_Arm_MeshShape.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "L_Arm_MeshShape.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "ikSCsolver.msg" ":ikSystem.sol" -na;
 connectAttr "ikRPsolver.msg" ":ikSystem.sol" -na;
-// End of NPC_Rig.ma
+// End of NPC_Rig_14.ma
