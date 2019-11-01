@@ -95,12 +95,18 @@ namespace SeedQuest.Interactables
         public InteractablePreviewInfo interactablePreview;
         public InteractableID ID;
 
+        public InteractableState defaultState;
         public List<InteractableState> states;
         public GameObject effect;
 
         public string getStateName(int index)
         {
             return states[index].actionName;
+        }
+
+        public void SetToDefaultState(Interactable interactable) {
+            if (defaultState.prefab != null)
+                defaultState.enterState(interactable);
         }
 
         public void stopAudio()
