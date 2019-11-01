@@ -10,68 +10,52 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d1c21d9ece6c4e229a7c25408d3063a, type: 3}
-  m_Name: PottedPlantState_Cafe
+  m_Name: BaristaItemState_Cafe
   m_EditorClassIdentifier: 
-  interactableName: 
-  labelPosOffset: {x: 0, y: 0, z: 0}
   interactableUI:
-    name: Potted Plant
-    positionOffset: {x: -0.44, y: 2.11, z: 0}
+    name: Barista
+    positionOffset: {x: 0.48, y: 2.75, z: -1}
   interactableCamera:
-    lookAtOffset: {x: 0, y: 1.4, z: 0}
+    lookAtOffset: {x: 0, y: 0, z: 0}
     positionOffset: {x: 0, y: 0, z: 0}
-    zoomDistance: 15
+    zoomDistance: 10
   interactablePreview:
-    scale: {x: 1, y: 1, z: 1}
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: -25, y: 0, z: 0}
+    scale: {x: 0.5, y: 0.5, z: 0.5}
+    position: {x: 0, y: -0.5, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
     useOrthographic: 1
     fieldOfView: 60
-    orthographicSize: 5
-    previewPrefab: {fileID: 0}
+    orthographicSize: 1
+    previewPrefab: {fileID: 3457141560933724350, guid: df34a0c894d3fb2499579cc8293494a9,
+      type: 3}
     useRotate: 1
     rotateSpeed: 25
   ID:
     siteID: 15
-    spotID: 12
+    spotID: 1
     actionID: 0
+  defaultState:
+    actionName: 
+    prefab: {fileID: 8555799244309755964, guid: 78d4f350deb884797b9821bda56b9b5b,
+      type: 3}
+    positionOffset: {x: 0, y: 0, z: 0}
+    mesh: {fileID: 0}
+    material: {fileID: 0}
+    materialIndex: 0
+    uvOffset: {x: 0, y: 0}
+    animatorController: {fileID: 0}
+    soundEffectName: 
+    soundEffect:
+      name: 
+      clip: {fileID: 0}
+      volume: 1
+      loop: 0
+      source: {fileID: 0}
+    particleEffectName: 
+    particleEffect: {fileID: 0}
   states:
-  - actionName: Bonsai
-    prefab: {fileID: 649978990977836235, guid: eb085f4243562ff47bcdefb88b68db5d, type: 3}
-    positionOffset: {x: 0, y: 0, z: 0}
-    mesh: {fileID: 0}
-    material: {fileID: 0}
-    materialIndex: 0
-    uvOffset: {x: 0, y: 0}
-    animatorController: {fileID: 0}
-    soundEffectName: 
-    soundEffect:
-      name: 
-      clip: {fileID: 0}
-      volume: 0
-      loop: 0
-      source: {fileID: 0}
-    particleEffectName: 
-    particleEffect: {fileID: 0}
-  - actionName: Venus Fly Trap
-    prefab: {fileID: 649978990977836235, guid: fa34626de6aa057498eb3ed0440830a0, type: 3}
-    positionOffset: {x: 0, y: 0, z: 0}
-    mesh: {fileID: 0}
-    material: {fileID: 0}
-    materialIndex: 0
-    uvOffset: {x: 0, y: 0}
-    animatorController: {fileID: 0}
-    soundEffectName: 
-    soundEffect:
-      name: 
-      clip: {fileID: 0}
-      volume: 0
-      loop: 0
-      source: {fileID: 0}
-    particleEffectName: 
-    particleEffect: {fileID: 0}
-  - actionName: Peace Lily
-    prefab: {fileID: 4961017037349131934, guid: 2e4544619307b004dbd8f77bcd23d612,
+  - actionName: '"Here''s your coffee!" '
+    prefab: {fileID: 7753686096968641140, guid: 4b1e63647e8bc784b8f32f220725039d,
       type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
@@ -88,8 +72,9 @@ MonoBehaviour:
       source: {fileID: 0}
     particleEffectName: 
     particleEffect: {fileID: 0}
-  - actionName: Succulent
-    prefab: {fileID: 649978990977836235, guid: cd1d052fb36c49942bc6f8d4382787cb, type: 3}
+  - actionName: '"That''s $98 in change."'
+    prefab: {fileID: 4003156897888905139, guid: dbe373adbea29f34eabce9b25278adce,
+      type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
     material: {fileID: 0}
@@ -105,4 +90,40 @@ MonoBehaviour:
       source: {fileID: 0}
     particleEffectName: 
     particleEffect: {fileID: 0}
-  effect: {fileID: 3589441540930374132, guid: 00ccde9367669a7428dae10bb63cdfcc, type: 3}
+  - actionName: '"Did you lose a toy?"'
+    prefab: {fileID: 5023869030569843968, guid: ab661a24d2ecb594ca44a4ba921c6a88,
+      type: 3}
+    positionOffset: {x: 0, y: 0, z: 0}
+    mesh: {fileID: 0}
+    material: {fileID: 0}
+    materialIndex: 0
+    uvOffset: {x: 0, y: 0}
+    animatorController: {fileID: 0}
+    soundEffectName: 
+    soundEffect:
+      name: 
+      clip: {fileID: 0}
+      volume: 0
+      loop: 0
+      source: {fileID: 0}
+    particleEffectName: 
+    particleEffect: {fileID: 0}
+  - actionName: '"Here''s the bathroom key."'
+    prefab: {fileID: 6583323745147472050, guid: 63f718cbc18fe6140ac9a9e2fbe6064d,
+      type: 3}
+    positionOffset: {x: 0, y: 0, z: 0}
+    mesh: {fileID: 0}
+    material: {fileID: 0}
+    materialIndex: 0
+    uvOffset: {x: 0, y: 0}
+    animatorController: {fileID: 0}
+    soundEffectName: 
+    soundEffect:
+      name: 
+      clip: {fileID: 0}
+      volume: 0
+      loop: 0
+      source: {fileID: 0}
+    particleEffectName: 
+    particleEffect: {fileID: 0}
+  effect: {fileID: 3589441540930374132, guid: c0d5d0c1d9437d14f96f05b7db572c46, type: 3}

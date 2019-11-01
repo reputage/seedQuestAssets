@@ -10,34 +10,84 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d1c21d9ece6c4e229a7c25408d3063a, type: 3}
-  m_Name: DrinkState
+  m_Name: PottedPlantState_Cafe
   m_EditorClassIdentifier: 
-  interactableName: 
-  labelPosOffset: {x: 0, y: 0, z: 0}
   interactableUI:
-    name: Drink
-    positionOffset: {x: 0, y: 1.5, z: 0}
+    name: Potted Plant
+    positionOffset: {x: -0.44, y: 2.11, z: 0}
   interactableCamera:
-    lookAtOffset: {x: 0, y: 0.4, z: 0}
+    lookAtOffset: {x: 0, y: 1.4, z: 0}
     positionOffset: {x: 0, y: 0, z: 0}
-    zoomDistance: 6
+    zoomDistance: 15
   interactablePreview:
     scale: {x: 1, y: 1, z: 1}
     position: {x: 0, y: 0, z: 0}
     rotation: {x: -25, y: 0, z: 0}
     useOrthographic: 1
     fieldOfView: 60
-    orthographicSize: 1
+    orthographicSize: 5
     previewPrefab: {fileID: 0}
     useRotate: 1
     rotateSpeed: 25
   ID:
     siteID: 15
-    spotID: 5
+    spotID: 12
     actionID: 0
+  defaultState:
+    actionName: 
+    prefab: {fileID: 649978990977836235, guid: cd1d052fb36c49942bc6f8d4382787cb, type: 3}
+    positionOffset: {x: 0, y: 0, z: 0}
+    mesh: {fileID: 0}
+    material: {fileID: 0}
+    materialIndex: 0
+    uvOffset: {x: 0, y: 0}
+    animatorController: {fileID: 0}
+    soundEffectName: 
+    soundEffect:
+      name: 
+      clip: {fileID: 0}
+      volume: 1
+      loop: 0
+      source: {fileID: 0}
+    particleEffectName: 
+    particleEffect: {fileID: 0}
   states:
-  - actionName: Beer
-    prefab: {fileID: 3942887534074067340, guid: 8c10c3de4a3c54548b1a7923b746f1f4,
+  - actionName: Bonsai
+    prefab: {fileID: 649978990977836235, guid: eb085f4243562ff47bcdefb88b68db5d, type: 3}
+    positionOffset: {x: 0, y: 0, z: 0}
+    mesh: {fileID: 0}
+    material: {fileID: 0}
+    materialIndex: 0
+    uvOffset: {x: 0, y: 0}
+    animatorController: {fileID: 0}
+    soundEffectName: 
+    soundEffect:
+      name: 
+      clip: {fileID: 0}
+      volume: 0
+      loop: 0
+      source: {fileID: 0}
+    particleEffectName: 
+    particleEffect: {fileID: 0}
+  - actionName: Venus Fly Trap
+    prefab: {fileID: 649978990977836235, guid: fa34626de6aa057498eb3ed0440830a0, type: 3}
+    positionOffset: {x: 0, y: 0, z: 0}
+    mesh: {fileID: 0}
+    material: {fileID: 0}
+    materialIndex: 0
+    uvOffset: {x: 0, y: 0}
+    animatorController: {fileID: 0}
+    soundEffectName: 
+    soundEffect:
+      name: 
+      clip: {fileID: 0}
+      volume: 0
+      loop: 0
+      source: {fileID: 0}
+    particleEffectName: 
+    particleEffect: {fileID: 0}
+  - actionName: Peace Lily
+    prefab: {fileID: 4961017037349131934, guid: 2e4544619307b004dbd8f77bcd23d612,
       type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
@@ -54,9 +104,8 @@ MonoBehaviour:
       source: {fileID: 0}
     particleEffectName: 
     particleEffect: {fileID: 0}
-  - actionName: Latte
-    prefab: {fileID: 8310350956451309707, guid: ac8ef8bb2eee88c409b63fbc4663a315,
-      type: 3}
+  - actionName: Succulent
+    prefab: {fileID: 649978990977836235, guid: cd1d052fb36c49942bc6f8d4382787cb, type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
     material: {fileID: 0}
@@ -72,40 +121,4 @@ MonoBehaviour:
       source: {fileID: 0}
     particleEffectName: 
     particleEffect: {fileID: 0}
-  - actionName: Juice
-    prefab: {fileID: 6851670646211158151, guid: 97ff01c95b0a0a245b59936c720e25eb,
-      type: 3}
-    positionOffset: {x: 0, y: 0, z: 0}
-    mesh: {fileID: 0}
-    material: {fileID: 0}
-    materialIndex: 0
-    uvOffset: {x: 0, y: 0}
-    animatorController: {fileID: 0}
-    soundEffectName: 
-    soundEffect:
-      name: 
-      clip: {fileID: 0}
-      volume: 0
-      loop: 0
-      source: {fileID: 0}
-    particleEffectName: 
-    particleEffect: {fileID: 0}
-  - actionName: Tiki Bowl
-    prefab: {fileID: 4522044761374372798, guid: 6b420a06ca67e024fafae9254fce505b,
-      type: 3}
-    positionOffset: {x: 0, y: 0, z: 0}
-    mesh: {fileID: 0}
-    material: {fileID: 0}
-    materialIndex: 0
-    uvOffset: {x: 0, y: 0}
-    animatorController: {fileID: 0}
-    soundEffectName: 
-    soundEffect:
-      name: 
-      clip: {fileID: 0}
-      volume: 0
-      loop: 0
-      source: {fileID: 0}
-    particleEffectName: 
-    particleEffect: {fileID: 0}
-  effect: {fileID: 3589441540930374132, guid: c0d5d0c1d9437d14f96f05b7db572c46, type: 3}
+  effect: {fileID: 3589441540930374132, guid: 00ccde9367669a7428dae10bb63cdfcc, type: 3}

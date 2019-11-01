@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d1c21d9ece6c4e229a7c25408d3063a, type: 3}
-  m_Name: SleepingStudentState
+  m_Name: Customer_Cafe
   m_EditorClassIdentifier: 
-  interactableName: 
-  labelPosOffset: {x: 0, y: 0, z: 0}
   interactableUI:
-    name: Student
-    positionOffset: {x: 0, y: 2.89, z: 0}
+    name: Customer
+    positionOffset: {x: 0, y: 2, z: 0}
   interactableCamera:
-    lookAtOffset: {x: -0.5, y: 0.5, z: 0}
+    lookAtOffset: {x: -0.3, y: 0.3, z: 0}
     positionOffset: {x: 0, y: 0, z: 0}
     zoomDistance: 10
   interactablePreview:
@@ -33,11 +31,30 @@ MonoBehaviour:
     rotateSpeed: 25
   ID:
     siteID: 15
-    spotID: 11
+    spotID: 0
     actionID: 0
+  defaultState:
+    actionName: 
+    prefab: {fileID: 2321414932990144570, guid: 6006b1633831be74a891c194c7d25787,
+      type: 3}
+    positionOffset: {x: 0, y: 0, z: 0}
+    mesh: {fileID: 0}
+    material: {fileID: 0}
+    materialIndex: 0
+    uvOffset: {x: 0, y: 0}
+    animatorController: {fileID: 0}
+    soundEffectName: 
+    soundEffect:
+      name: 
+      clip: {fileID: 0}
+      volume: 1
+      loop: 0
+      source: {fileID: 0}
+    particleEffectName: 
+    particleEffect: {fileID: 0}
   states:
-  - actionName: Studying
-    prefab: {fileID: 6502565871008567163, guid: e5a830f0a8ae48842b43666b56244f75,
+  - actionName: Ghost
+    prefab: {fileID: 2321414932990144570, guid: 85be002baebd58c468abf5a2eebec97a,
       type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
@@ -54,8 +71,8 @@ MonoBehaviour:
       source: {fileID: 0}
     particleEffectName: 
     particleEffect: {fileID: 0}
-  - actionName: Sleeping
-    prefab: {fileID: 4677779151547171247, guid: 1826e75eb0e2a8b4a9394e4533d09130,
+  - actionName: Pirate
+    prefab: {fileID: 2321414932990144570, guid: 167b27ab5b5c51c4d95ad9ceb6ac0650,
       type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
@@ -72,8 +89,8 @@ MonoBehaviour:
       source: {fileID: 0}
     particleEffectName: 
     particleEffect: {fileID: 0}
-  - actionName: Jittery
-    prefab: {fileID: 6502565871008567163, guid: ffc827c8da8035f4cb8c2a5909d92509,
+  - actionName: Human
+    prefab: {fileID: 2321414932990144570, guid: 6006b1633831be74a891c194c7d25787,
       type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
@@ -90,8 +107,8 @@ MonoBehaviour:
       source: {fileID: 0}
     particleEffectName: 
     particleEffect: {fileID: 0}
-  - actionName: Playing Games
-    prefab: {fileID: 6502565871008567163, guid: 8f0cf588f5ca36d4e840be1ee16bdd1c,
+  - actionName: Child
+    prefab: {fileID: 2321414932990144570, guid: a108773ccbddb924b80e04c5fc8a7894,
       type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
@@ -108,4 +125,4 @@ MonoBehaviour:
       source: {fileID: 0}
     particleEffectName: 
     particleEffect: {fileID: 0}
-  effect: {fileID: 3589441540930374132, guid: 00ccde9367669a7428dae10bb63cdfcc, type: 3}
+  effect: {fileID: 3589441540930374132, guid: c0d5d0c1d9437d14f96f05b7db572c46, type: 3}
