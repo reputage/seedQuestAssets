@@ -24,7 +24,8 @@ public class SceneLineUpCanvas : MonoBehaviour
     }
 
     public void Initialize() {
-
+        SeedQuest.Level.LevelManager.Instance.StopLevelMusic();
+        AudioManager.Play("Loading");
         int count = 0;
         foreach (Image outline in worldOutlines) {
             outline.gameObject.SetActive(false);
@@ -82,6 +83,7 @@ public class SceneLineUpCanvas : MonoBehaviour
         int index = spinningLoadIcon.transform.parent.GetSiblingIndex();
         spinningLoadIcon.transform.parent.parent.GetChild(index + 1).GetComponent<TMP_Text>().text = "Your world has finished loading.";*/
         spinningLoadIcon.transform.parent.gameObject.SetActive(false);
+        AudioManager.Stop("Loading");
         int index = spinningLoadIcon.transform.parent.GetSiblingIndex();
         spinningLoadIcon.transform.parent.parent.GetChild(index + 1).gameObject.SetActive(false);
         continueButton.gameObject.SetActive(true);
