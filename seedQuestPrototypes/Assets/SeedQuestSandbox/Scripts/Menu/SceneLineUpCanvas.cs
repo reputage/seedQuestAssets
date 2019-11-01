@@ -24,6 +24,7 @@ public class SceneLineUpCanvas : MonoBehaviour
     }
 
     public void Initialize() {
+        SeedQuest.Level.LevelManager.Instance.StopLevelMusic();
         AudioManager.Play("Loading");
         int count = 0;
         foreach (Image outline in worldOutlines) {
