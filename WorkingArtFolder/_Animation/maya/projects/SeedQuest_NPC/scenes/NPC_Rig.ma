@@ -1,6 +1,6 @@
 //Maya ASCII 2019 scene
 //Name: NPC_Rig.ma
-//Last modified: Mon, Oct 21, 2019 01:04:11 AM
+//Last modified: Sat, Nov 02, 2019 05:26:49 PM
 //Codeset: 1252
 file -rdi 1 -ns "NPC_Base" -rfn "NPC_Base_04RN" -op "v=0;" -typ "mayaAscii" "C:/Users/winka/Documents/seedQuestAssets/WorkingArtFolder/_Animation/maya/projects/SeedQuest_NPC//assets/NPC_Base.ma";
 file -r -ns "NPC_Base" -dr 1 -rfn "NPC_Base_04RN" -op "v=0;" -typ "mayaAscii" "C:/Users/winka/Documents/seedQuestAssets/WorkingArtFolder/_Animation/maya/projects/SeedQuest_NPC//assets/NPC_Base.ma";
@@ -20,13 +20,13 @@ fileInfo "osv" "Microsoft Windows 10 Technical Preview  (Build 18362)\n";
 createNode transform -s -n "persp";
 	rename -uid "DB47CFE8-4773-8ADA-309A-62BBCEA2E87B";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 118.85332137970434 134.09942559393647 360.8868276371324 ;
-	setAttr ".r" -type "double3" -2.1383520139383596 -20505.799999966024 -1.0252494771510256e-16 ;
+	setAttr ".t" -type "double3" 255.33448288687924 185.11560270461155 298.29801981678941 ;
+	setAttr ".r" -type "double3" -12.938352013928725 -20474.999999965657 -1.1244958922727453e-15 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "A16730F9-4B90-4D20-899E-688C2CDFED35";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 402.03356882024963;
+	setAttr ".coi" 402.03356882093055;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -13302,7 +13302,7 @@ createNode mesh -n "R_Arm_MeshShapeOrig" -p "R_Arm_Mesh";
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 	setAttr ".ai_translator" -type "string" "polymesh";
 createNode fosterParent -n "NPC_Base_04RNfosterParent1";
-	rename -uid "14C33875-49EB-DFA3-E2DC-3A8EE85EB75D";
+	rename -uid "1C5CC16C-4078-E8AF-A093-638C14991648";
 createNode scaleConstraint -n "Master_Dock_joint_01_scaleConstraint1" -p "NPC_Base_04RNfosterParent1";
 	rename -uid "1AB4173A-49C2-79F8-A11E-AFB673779E0A";
 	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "FK_Dock_joint_01W0" -dv 1 -min 0 
@@ -16783,23 +16783,23 @@ createNode orientConstraint -n "L_Toe_joint_01_orientConstraint1" -p "NPC_Base_0
 	setAttr ".erp" yes;
 	setAttr -k on ".w0";
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "3F7F5BF4-4166-D2D2-3FB7-F2B09D9F3CF2";
-	setAttr -s 6 ".lnk";
-	setAttr -s 6 ".slnk";
+	rename -uid "1C2F27CE-455C-8037-44CB-C9B29492549A";
+	setAttr -s 5 ".lnk";
+	setAttr -s 5 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "36CAFDC3-4F1B-F67A-CE57-57845209C1B6";
+	rename -uid "85D4565C-4AF5-6599-D470-2CB13FD37825";
 	setAttr ".bsdt[0].bscd" -type "Int32Array" 1 0 ;
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "045070C5-42FD-46D7-F522-E09A2E5186FE";
+	rename -uid "C807F73D-44EC-FC23-B49C-0AB9422582B6";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "0791A50C-4362-246C-516B-48AAA5E81524";
+	rename -uid "D5F23896-4C9A-0F18-8D23-EA9D722E9174";
 	setAttr ".cdl" 5;
 	setAttr -s 6 ".dli[1:5]"  1 2 3 4 5;
 	setAttr -s 4 ".dli";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "A5A2D118-4890-3798-87D1-E3A187CE2363";
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "03BCCE76-4575-297F-DE7A-2CB3550367C7";
+	rename -uid "FF2C7ACF-4EAA-78EA-2AED-16833B1E8FD8";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "8544316C-483A-5019-0647-14927E8C6261";
 	setAttr ".g" yes;
@@ -16819,7 +16819,7 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1\n            -height 1\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Persp View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Persp View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"persp\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n"
 		+ "            -wireframeOnShaded 1\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 1\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n"
 		+ "            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 0\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n"
-		+ "            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1253\n            -height 1053\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"ToggledOutliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\toutlinerPanel -edit -l (localizedPanelLabel(\"ToggledOutliner\")) -mbv $menusOkayInPanels  $panelName;\n"
+		+ "            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1379\n            -height 813\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"ToggledOutliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\toutlinerPanel -edit -l (localizedPanelLabel(\"ToggledOutliner\")) -mbv $menusOkayInPanels  $panelName;\n"
 		+ "\t\t$editorName = $panelName;\n        outlinerEditor -e \n            -showShapes 0\n            -showAssignedMaterials 0\n            -showTimeEditor 1\n            -showReferenceNodes 1\n            -showReferenceMembers 1\n            -showAttributes 0\n            -showConnected 0\n            -showAnimCurvesOnly 0\n            -showMuteInfo 1\n            -organizeByLayer 1\n            -organizeByClip 1\n            -showAnimLayerWeight 1\n            -autoExpandLayers 1\n            -autoExpand 0\n            -showDagOnly 1\n            -showAssets 1\n            -showContainedOnly 1\n            -showPublishedAsConnected 0\n            -showParentContainers 0\n            -showContainerContents 1\n            -ignoreDagHierarchy 0\n            -expandConnections 0\n            -showUpstreamCurves 1\n            -showUnitlessCurves 1\n            -showCompounds 1\n            -showLeafs 1\n            -showNumericAttrsOnly 0\n            -highlightActive 1\n            -autoSelectNewObjects 0\n            -doNotSelectNewObjects 0\n            -dropIsParent 1\n"
 		+ "            -transmitFilters 0\n            -setFilter \"defaultSetFilter\" \n            -showSetMembers 1\n            -allowMultiSelection 1\n            -alwaysToggleSelect 0\n            -directSelect 0\n            -isSet 0\n            -isSetMember 0\n            -displayMode \"DAG\" \n            -expandObjects 0\n            -setsIgnoreFilters 1\n            -containersIgnoreFilters 0\n            -editAttrName 0\n            -showAttrValues 0\n            -highlightSecondary 0\n            -showUVAttrsOnly 0\n            -showTextureNodesOnly 0\n            -attrAlphaOrder \"default\" \n            -animLayerFilterOptions \"allAffecting\" \n            -sortOrder \"none\" \n            -longNames 0\n            -niceNames 1\n            -showNamespace 1\n            -showPinIcons 0\n            -mapMotionTrails 0\n            -ignoreHiddenAttribute 0\n            -ignoreOutlinerColor 0\n            -renderFilterVisible 0\n            -renderFilterIndex 0\n            -selectionOrder \"chronological\" \n            -expandAttribute 0\n            $editorName;\n"
 		+ "\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"Outliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\toutlinerPanel -edit -l (localizedPanelLabel(\"Outliner\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        outlinerEditor -e \n            -docTag \"isolOutln_fromSeln\" \n            -showShapes 0\n            -showAssignedMaterials 0\n            -showTimeEditor 1\n            -showReferenceNodes 0\n            -showReferenceMembers 0\n            -showAttributes 0\n            -showConnected 0\n            -showAnimCurvesOnly 0\n            -showMuteInfo 0\n            -organizeByLayer 1\n            -organizeByClip 1\n            -showAnimLayerWeight 1\n            -autoExpandLayers 1\n            -autoExpand 0\n            -showDagOnly 1\n            -showAssets 1\n            -showContainedOnly 1\n            -showPublishedAsConnected 0\n            -showParentContainers 0\n"
@@ -16835,20 +16835,20 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"sequenceEditorPanel\" (localizedPanelLabel(\"Camera Sequencer\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Camera Sequencer\")) -mbv $menusOkayInPanels  $panelName;\n\n\t\t\t$editorName = sequenceEditorNameFromPanel($panelName);\n            clipEditor -e \n                -displayKeys 0\n                -displayTangents 0\n                -displayActiveKeys 0\n                -displayActiveKeyTangents 0\n                -displayInfinities 0\n                -displayValues 0\n                -autoFit 0\n                -autoFitTime 0\n                -snapTime \"none\" \n                -snapValue \"none\" \n                -initialized 0\n                -manageSequencer 1 \n                $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"hyperGraphPanel\" (localizedPanelLabel(\"Hypergraph Hierarchy\")) `;\n"
 		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Hypergraph Hierarchy\")) -mbv $menusOkayInPanels  $panelName;\n\n\t\t\t$editorName = ($panelName+\"HyperGraphEd\");\n            hyperGraph -e \n                -graphLayoutStyle \"hierarchicalLayout\" \n                -orientation \"horiz\" \n                -mergeConnections 0\n                -zoom 1\n                -animateTransition 0\n                -showRelationships 1\n                -showShapes 0\n                -showDeformers 0\n                -showExpressions 0\n                -showConstraints 0\n                -showConnectionFromSelected 0\n                -showConnectionToSelected 0\n                -showConstraintLabels 0\n                -showUnderworld 0\n                -showInvisible 0\n                -transitionFrames 1\n                -opaqueContainers 0\n                -freeform 0\n                -imagePosition 0 0 \n                -imageScale 1\n                -imageEnabled 0\n                -graphType \"DAG\" \n"
 		+ "                -heatMapDisplay 0\n                -updateSelection 1\n                -updateNodeAdded 1\n                -useDrawOverrideColor 0\n                -limitGraphTraversal -1\n                -range 0 0 \n                -iconSize \"smallIcons\" \n                -showCachedConnections 0\n                $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"hyperShadePanel\" (localizedPanelLabel(\"Hypershade\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Hypershade\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"visorPanel\" (localizedPanelLabel(\"Visor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Visor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n"
-		+ "\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"nodeEditorPanel\" (localizedPanelLabel(\"Node Editor\")) `;\n\tif ($nodeEditorPanelVisible || $nodeEditorWorkspaceControlOpen) {\n\t\tif (\"\" == $panelName) {\n\t\t\tif ($useSceneConfig) {\n\t\t\t\t$panelName = `scriptedPanel -unParent  -type \"nodeEditorPanel\" -l (localizedPanelLabel(\"Node Editor\")) -mbv $menusOkayInPanels `;\n\n\t\t\t$editorName = ($panelName+\"NodeEditorEd\");\n            nodeEditor -e \n                -allAttributes 0\n                -allNodes 0\n                -autoSizeNodes 1\n                -consistentNameSize 1\n                -createNodeCommand \"nodeEdCreateNodeCommand\" \n                -connectNodeOnCreation 0\n                -connectOnDrop 0\n                -copyConnectionsOnPaste 0\n                -connectionStyle \"bezier\" \n                -defaultPinnedState 0\n                -additiveGraphingMode 0\n                -settingsChangedCallback \"nodeEdSyncControls\" \n                -traversalDepthLimit -1\n                -keyPressCommand \"nodeEdKeyPressCommand\" \n"
-		+ "                -nodeTitleMode \"name\" \n                -gridSnap 0\n                -gridVisibility 1\n                -crosshairOnEdgeDragging 0\n                -popupMenuScript \"nodeEdBuildPanelMenus\" \n                -showNamespace 1\n                -showShapes 1\n                -showSGShapes 0\n                -showTransforms 1\n                -useAssets 1\n                -syncedSelection 1\n                -extendToShapes 1\n                -editorMode \"default\" \n                -hasWatchpoint 0\n                $editorName;\n\t\t\t}\n\t\t} else {\n\t\t\t$label = `panel -q -label $panelName`;\n\t\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Node Editor\")) -mbv $menusOkayInPanels  $panelName;\n\n\t\t\t$editorName = ($panelName+\"NodeEditorEd\");\n            nodeEditor -e \n                -allAttributes 0\n                -allNodes 0\n                -autoSizeNodes 1\n                -consistentNameSize 1\n                -createNodeCommand \"nodeEdCreateNodeCommand\" \n                -connectNodeOnCreation 0\n                -connectOnDrop 0\n"
-		+ "                -copyConnectionsOnPaste 0\n                -connectionStyle \"bezier\" \n                -defaultPinnedState 0\n                -additiveGraphingMode 0\n                -settingsChangedCallback \"nodeEdSyncControls\" \n                -traversalDepthLimit -1\n                -keyPressCommand \"nodeEdKeyPressCommand\" \n                -nodeTitleMode \"name\" \n                -gridSnap 0\n                -gridVisibility 1\n                -crosshairOnEdgeDragging 0\n                -popupMenuScript \"nodeEdBuildPanelMenus\" \n                -showNamespace 1\n                -showShapes 1\n                -showSGShapes 0\n                -showTransforms 1\n                -useAssets 1\n                -syncedSelection 1\n                -extendToShapes 1\n                -editorMode \"default\" \n                -hasWatchpoint 0\n                $editorName;\n\t\t\tif (!$useSceneConfig) {\n\t\t\t\tpanel -e -l $label $panelName;\n\t\t\t}\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"createNodePanel\" (localizedPanelLabel(\"Create Node\")) `;\n"
-		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Create Node\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"polyTexturePlacementPanel\" (localizedPanelLabel(\"UV Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"UV Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"renderWindowPanel\" (localizedPanelLabel(\"Render View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Render View\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"shapePanel\" (localizedPanelLabel(\"Shape Editor\")) `;\n"
-		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tshapePanel -edit -l (localizedPanelLabel(\"Shape Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"posePanel\" (localizedPanelLabel(\"Pose Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tposePanel -edit -l (localizedPanelLabel(\"Pose Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynRelEdPanel\" (localizedPanelLabel(\"Dynamic Relationships\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Dynamic Relationships\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"relationshipPanel\" (localizedPanelLabel(\"Relationship Editor\")) `;\n"
-		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Relationship Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"referenceEditorPanel\" (localizedPanelLabel(\"Reference Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Reference Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"componentEditorPanel\" (localizedPanelLabel(\"Component Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Component Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynPaintScriptedPanelType\" (localizedPanelLabel(\"Paint Effects\")) `;\n"
-		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Paint Effects\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"scriptEditorPanel\" (localizedPanelLabel(\"Script Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Script Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"profilerPanel\" (localizedPanelLabel(\"Profiler Tool\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Profiler Tool\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"contentBrowserPanel\" (localizedPanelLabel(\"Content Browser\")) `;\n"
-		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Content Browser\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"Stereo\" (localizedPanelLabel(\"Stereo\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Stereo\")) -mbv $menusOkayInPanels  $panelName;\n{ string $editorName = ($panelName+\"Editor\");\n            stereoCameraView -e \n                -editorChanged \"updateModelPanelBar\" \n                -camera \"persp\" \n                -useInteractiveMode 0\n                -displayLights \"default\" \n                -displayAppearance \"smoothShaded\" \n                -activeOnly 0\n                -ignorePanZoom 0\n                -wireframeOnShaded 0\n                -headsUpDisplay 1\n                -holdOuts 1\n                -selectionHiliteDisplay 1\n                -useDefaultMaterial 0\n"
-		+ "                -bufferMode \"double\" \n                -twoSidedLighting 0\n                -backfaceCulling 0\n                -xray 0\n                -jointXray 0\n                -activeComponentsXray 0\n                -displayTextures 0\n                -smoothWireframe 0\n                -lineWidth 1\n                -textureAnisotropic 0\n                -textureHilight 1\n                -textureSampling 2\n                -textureDisplay \"modulate\" \n                -textureMaxSize 32768\n                -fogging 0\n                -fogSource \"fragment\" \n                -fogMode \"linear\" \n                -fogStart 0\n                -fogEnd 100\n                -fogDensity 0.1\n                -fogColor 0.5 0.5 0.5 1 \n                -depthOfFieldPreview 1\n                -maxConstantTransparency 1\n                -objectFilterShowInHUD 1\n                -isFiltered 0\n                -colorResolution 4 4 \n                -bumpResolution 4 4 \n                -textureCompression 0\n                -transparencyAlgorithm \"frontAndBackCull\" \n"
-		+ "                -transpInShadows 0\n                -cullingOverride \"none\" \n                -lowQualityLighting 0\n                -maximumNumHardwareLights 0\n                -occlusionCulling 0\n                -shadingModel 0\n                -useBaseRenderer 0\n                -useReducedRenderer 0\n                -smallObjectCulling 0\n                -smallObjectThreshold -1 \n                -interactiveDisableShadows 0\n                -interactiveBackFaceCull 0\n                -sortTransparent 1\n                -controllers 1\n                -nurbsCurves 1\n                -nurbsSurfaces 1\n                -polymeshes 1\n                -subdivSurfaces 1\n                -planes 1\n                -lights 1\n                -cameras 1\n                -controlVertices 1\n                -hulls 1\n                -grid 1\n                -imagePlane 1\n                -joints 1\n                -ikHandles 1\n                -deformers 1\n                -dynamics 1\n                -particleInstancers 1\n                -fluids 1\n"
-		+ "                -hairSystems 1\n                -follicles 1\n                -nCloths 1\n                -nParticles 1\n                -nRigids 1\n                -dynamicConstraints 1\n                -locators 1\n                -manipulators 1\n                -pluginShapes 1\n                -dimensions 1\n                -handles 1\n                -pivots 1\n                -textures 1\n                -strokes 1\n                -motionTrails 1\n                -clipGhosts 1\n                -greasePencils 1\n                -shadows 0\n                -captureSequenceNumber -1\n                -width 0\n                -height 0\n                -sceneRenderFilter 0\n                -displayMode \"centerEye\" \n                -viewColor 0 0 0 1 \n                -useCustomBackground 1\n                $editorName;\n            stereoCameraView -e -viewSelected 0 $editorName;\n            stereoCameraView -e \n                -pluginObjects \"gpuCacheDisplayFilter\" 1 \n                $editorName; };\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n"
-		+ "\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-userCreated false\n\t\t\t\t-defaultImage \"vacantCell.xP:/\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"single\\\" -ps 1 100 100 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
-		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 1\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 1\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 0\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1253\\n    -height 1053\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
-		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 1\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 1\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 0\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1253\\n    -height 1053\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
+		+ "\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"nodeEditorPanel\" (localizedPanelLabel(\"Node Editor\")) `;\n\tif ($nodeEditorPanelVisible || $nodeEditorWorkspaceControlOpen) {\n\t\tif (\"\" == $panelName) {\n\t\t\tif ($useSceneConfig) {\n\t\t\t\t$panelName = `scriptedPanel -unParent  -type \"nodeEditorPanel\" -l (localizedPanelLabel(\"Node Editor\")) -mbv $menusOkayInPanels `;\n\n\t\t\t$editorName = ($panelName+\"NodeEditorEd\");\n            nodeEditor -e \n                -allAttributes 0\n                -allNodes 0\n                -autoSizeNodes 1\n                -consistentNameSize 1\n                -createNodeCommand \"nodeEdCreateNodeCommand\" \n                -connectNodeOnCreation 0\n                -connectOnDrop 0\n                -copyConnectionsOnPaste 0\n                -connectionStyle \"bezier\" \n                -connectionMinSegment 0.03\n                -connectionOffset 0.03\n                -connectionRoundness 0.8\n                -connectionTension -100\n                -defaultPinnedState 0\n"
+		+ "                -additiveGraphingMode 0\n                -settingsChangedCallback \"nodeEdSyncControls\" \n                -traversalDepthLimit -1\n                -keyPressCommand \"nodeEdKeyPressCommand\" \n                -nodeTitleMode \"name\" \n                -gridSnap 0\n                -gridVisibility 1\n                -crosshairOnEdgeDragging 0\n                -popupMenuScript \"nodeEdBuildPanelMenus\" \n                -showNamespace 1\n                -showShapes 1\n                -showSGShapes 0\n                -showTransforms 1\n                -useAssets 1\n                -syncedSelection 1\n                -extendToShapes 1\n                -editorMode \"default\" \n                -hasWatchpoint 0\n                $editorName;\n\t\t\t}\n\t\t} else {\n\t\t\t$label = `panel -q -label $panelName`;\n\t\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Node Editor\")) -mbv $menusOkayInPanels  $panelName;\n\n\t\t\t$editorName = ($panelName+\"NodeEditorEd\");\n            nodeEditor -e \n                -allAttributes 0\n                -allNodes 0\n                -autoSizeNodes 1\n"
+		+ "                -consistentNameSize 1\n                -createNodeCommand \"nodeEdCreateNodeCommand\" \n                -connectNodeOnCreation 0\n                -connectOnDrop 0\n                -copyConnectionsOnPaste 0\n                -connectionStyle \"bezier\" \n                -connectionMinSegment 0.03\n                -connectionOffset 0.03\n                -connectionRoundness 0.8\n                -connectionTension -100\n                -defaultPinnedState 0\n                -additiveGraphingMode 0\n                -settingsChangedCallback \"nodeEdSyncControls\" \n                -traversalDepthLimit -1\n                -keyPressCommand \"nodeEdKeyPressCommand\" \n                -nodeTitleMode \"name\" \n                -gridSnap 0\n                -gridVisibility 1\n                -crosshairOnEdgeDragging 0\n                -popupMenuScript \"nodeEdBuildPanelMenus\" \n                -showNamespace 1\n                -showShapes 1\n                -showSGShapes 0\n                -showTransforms 1\n                -useAssets 1\n                -syncedSelection 1\n"
+		+ "                -extendToShapes 1\n                -editorMode \"default\" \n                -hasWatchpoint 0\n                $editorName;\n\t\t\tif (!$useSceneConfig) {\n\t\t\t\tpanel -e -l $label $panelName;\n\t\t\t}\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"createNodePanel\" (localizedPanelLabel(\"Create Node\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Create Node\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"polyTexturePlacementPanel\" (localizedPanelLabel(\"UV Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"UV Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"renderWindowPanel\" (localizedPanelLabel(\"Render View\")) `;\n"
+		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Render View\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"shapePanel\" (localizedPanelLabel(\"Shape Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tshapePanel -edit -l (localizedPanelLabel(\"Shape Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"posePanel\" (localizedPanelLabel(\"Pose Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tposePanel -edit -l (localizedPanelLabel(\"Pose Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynRelEdPanel\" (localizedPanelLabel(\"Dynamic Relationships\")) `;\n\tif (\"\" != $panelName) {\n"
+		+ "\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Dynamic Relationships\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"relationshipPanel\" (localizedPanelLabel(\"Relationship Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Relationship Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"referenceEditorPanel\" (localizedPanelLabel(\"Reference Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Reference Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"componentEditorPanel\" (localizedPanelLabel(\"Component Editor\")) `;\n"
+		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Component Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynPaintScriptedPanelType\" (localizedPanelLabel(\"Paint Effects\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Paint Effects\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"scriptEditorPanel\" (localizedPanelLabel(\"Script Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Script Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"profilerPanel\" (localizedPanelLabel(\"Profiler Tool\")) `;\n"
+		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Profiler Tool\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"contentBrowserPanel\" (localizedPanelLabel(\"Content Browser\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Content Browser\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"Stereo\" (localizedPanelLabel(\"Stereo\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Stereo\")) -mbv $menusOkayInPanels  $panelName;\n{ string $editorName = ($panelName+\"Editor\");\n            stereoCameraView -e \n                -editorChanged \"updateModelPanelBar\" \n                -camera \"persp\" \n                -useInteractiveMode 0\n"
+		+ "                -displayLights \"default\" \n                -displayAppearance \"smoothShaded\" \n                -activeOnly 0\n                -ignorePanZoom 0\n                -wireframeOnShaded 0\n                -headsUpDisplay 1\n                -holdOuts 1\n                -selectionHiliteDisplay 1\n                -useDefaultMaterial 0\n                -bufferMode \"double\" \n                -twoSidedLighting 0\n                -backfaceCulling 0\n                -xray 0\n                -jointXray 0\n                -activeComponentsXray 0\n                -displayTextures 0\n                -smoothWireframe 0\n                -lineWidth 1\n                -textureAnisotropic 0\n                -textureHilight 1\n                -textureSampling 2\n                -textureDisplay \"modulate\" \n                -textureMaxSize 32768\n                -fogging 0\n                -fogSource \"fragment\" \n                -fogMode \"linear\" \n                -fogStart 0\n                -fogEnd 100\n                -fogDensity 0.1\n                -fogColor 0.5 0.5 0.5 1 \n"
+		+ "                -depthOfFieldPreview 1\n                -maxConstantTransparency 1\n                -objectFilterShowInHUD 1\n                -isFiltered 0\n                -colorResolution 4 4 \n                -bumpResolution 4 4 \n                -textureCompression 0\n                -transparencyAlgorithm \"frontAndBackCull\" \n                -transpInShadows 0\n                -cullingOverride \"none\" \n                -lowQualityLighting 0\n                -maximumNumHardwareLights 0\n                -occlusionCulling 0\n                -shadingModel 0\n                -useBaseRenderer 0\n                -useReducedRenderer 0\n                -smallObjectCulling 0\n                -smallObjectThreshold -1 \n                -interactiveDisableShadows 0\n                -interactiveBackFaceCull 0\n                -sortTransparent 1\n                -controllers 1\n                -nurbsCurves 1\n                -nurbsSurfaces 1\n                -polymeshes 1\n                -subdivSurfaces 1\n                -planes 1\n                -lights 1\n"
+		+ "                -cameras 1\n                -controlVertices 1\n                -hulls 1\n                -grid 1\n                -imagePlane 1\n                -joints 1\n                -ikHandles 1\n                -deformers 1\n                -dynamics 1\n                -particleInstancers 1\n                -fluids 1\n                -hairSystems 1\n                -follicles 1\n                -nCloths 1\n                -nParticles 1\n                -nRigids 1\n                -dynamicConstraints 1\n                -locators 1\n                -manipulators 1\n                -pluginShapes 1\n                -dimensions 1\n                -handles 1\n                -pivots 1\n                -textures 1\n                -strokes 1\n                -motionTrails 1\n                -clipGhosts 1\n                -greasePencils 1\n                -shadows 0\n                -captureSequenceNumber -1\n                -width 0\n                -height 0\n                -sceneRenderFilter 0\n                -displayMode \"centerEye\" \n                -viewColor 0 0 0 1 \n"
+		+ "                -useCustomBackground 1\n                $editorName;\n            stereoCameraView -e -viewSelected 0 $editorName;\n            stereoCameraView -e \n                -pluginObjects \"gpuCacheDisplayFilter\" 1 \n                $editorName; };\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-userCreated false\n\t\t\t\t-defaultImage \"vacantCell.xP:/\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"single\\\" -ps 1 100 100 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
+		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 1\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 1\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 0\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1379\\n    -height 813\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
+		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 1\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 1\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 0\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1379\\n    -height 813\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
 		+ "\t\t\t\t$configName;\n\n            setNamedPanelLayout (localizedPanelLabel(\"Current Layout\"));\n        }\n\n        panelHistory -e -clear mainPanelHistory;\n        sceneUIReplacement -clear;\n\t}\n\n\ngrid -spacing 5 -size 120 -divisions 5 -displayAxes yes -displayGridLines yes -displayDivisionLines yes -displayPerspectiveLabels yes -displayOrthographicLabels no -displayAxesBold yes -perspectiveLabelPosition edge -orthographicLabelPosition axis;\nviewManip -drawCompass 0 -compassAngle 0 -frontParameters \"\" -homeParameters \"\" -selectionLockParameters \"\";\n}\n");
 	setAttr ".st" 3;
 createNode script -n "sceneConfigurationScriptNode";
@@ -16861,7 +16861,7 @@ createNode reference -n "NPC_Base_04RN";
 	setAttr ".fn[0]" -type "string" "C:/Users/winka/Documents/maya/projects/SeedQuest_NPC/assets/NPC_Base.ma";
 	setAttr ".fn[1]" -type "string" "C:/Users/winka/Documents/seedQuestAssets/WorkingArtFolder/_Animation/maya/projects/SeedQuest_NPC//assets/NPC_Base.ma";
 	setAttr ".fn[2]" -type "string" "C:/Users/winka/Documents/seedQuestAssets/WorkingArtFolder/_Animation/maya/projects/SeedQuest_NPC//scenes/WIP/NPC_Base_04.ma";
-	setAttr -s 1211 ".phl";
+	setAttr -s 1212 ".phl";
 	setAttr ".phl[1]" 0;
 	setAttr ".phl[2]" 0;
 	setAttr ".phl[3]" 0;
@@ -18073,10 +18073,11 @@ createNode reference -n "NPC_Base_04RN";
 	setAttr ".phl[1209]" 0;
 	setAttr ".phl[1210]" 0;
 	setAttr ".phl[1211]" 0;
+	setAttr ".phl[1212]" 0;
 	setAttr ".ed" -type "dataReferenceEdits" 
 		"NPC_Base_04RN"
 		"NPC_Base_04RN" 0
-		"NPC_Base_04RN" 1795
+		"NPC_Base_04RN" 1796
 		0 "|NPC_Base_04RNfosterParent1|L_Toe_joint_01_orientConstraint1" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:L_Leg_joint_01|NPC_Base:L_Knee_joint_01|NPC_Base:L_Ankle_joint_01|NPC_Base:L_Foot_joint_01|NPC_Base:L_Toe_joint_01" 
 		"-s -r "
 		0 "|NPC_Base_04RNfosterParent1|L_Toe_joint_01_pointConstraint1" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:L_Leg_joint_01|NPC_Base:L_Knee_joint_01|NPC_Base:L_Ankle_joint_01|NPC_Base:L_Foot_joint_01|NPC_Base:L_Toe_joint_01" 
@@ -19722,1980 +19723,1982 @@ createNode reference -n "NPC_Base_04RN";
 		"NPC_Base_04RN.placeHolderList[223]" ""
 		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[224]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.message" 
 		"NPC_Base_04RN.placeHolderList[225]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[226]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[227]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[228]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[229]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[230]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[231]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[232]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[233]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[234]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[235]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[236]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[237]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[238]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[239]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[240]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[241]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[242]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.translateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[243]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[244]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[245]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[246]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[247]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[248]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[249]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[250]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[251]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[252]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[253]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[254]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[255]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[256]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[257]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[258]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.scaleX" 
 		"NPC_Base_04RN.placeHolderList[259]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.scaleY" 
 		"NPC_Base_04RN.placeHolderList[260]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.translateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[261]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.translateX" 
 		"NPC_Base_04RN.placeHolderList[262]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.translateY" 
 		"NPC_Base_04RN.placeHolderList[263]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.translateZ" 
 		"NPC_Base_04RN.placeHolderList[264]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[265]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.rotateX" 
 		"NPC_Base_04RN.placeHolderList[266]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.rotateY" 
 		"NPC_Base_04RN.placeHolderList[267]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[268]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[269]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[270]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[271]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[272]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[273]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[274]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[275]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[276]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.translateX" 
 		"NPC_Base_04RN.placeHolderList[277]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.translateY" 
 		"NPC_Base_04RN.placeHolderList[278]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.translateZ" 
 		"NPC_Base_04RN.placeHolderList[279]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[280]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.rotateX" 
 		"NPC_Base_04RN.placeHolderList[281]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.rotateY" 
 		"NPC_Base_04RN.placeHolderList[282]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[283]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[284]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[285]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[286]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[287]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[288]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[289]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[290]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.scaleX" 
 		"NPC_Base_04RN.placeHolderList[291]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.scaleY" 
 		"NPC_Base_04RN.placeHolderList[292]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.inverseScale" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Thumb_01|NPC_Base:L_Thumb_02|NPC_Base:L_Thumb_03.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[293]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[294]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[295]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[296]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.translateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[297]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[298]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[299]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[300]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[301]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[302]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[303]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[304]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[305]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[306]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[307]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[308]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[309]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[310]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[311]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[312]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.scaleX" 
 		"NPC_Base_04RN.placeHolderList[313]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.scaleY" 
 		"NPC_Base_04RN.placeHolderList[314]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.translateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[315]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.translateX" 
 		"NPC_Base_04RN.placeHolderList[316]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.translateY" 
 		"NPC_Base_04RN.placeHolderList[317]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.translateZ" 
 		"NPC_Base_04RN.placeHolderList[318]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[319]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.rotateX" 
 		"NPC_Base_04RN.placeHolderList[320]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.rotateY" 
 		"NPC_Base_04RN.placeHolderList[321]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[322]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[323]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[324]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[325]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[326]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[327]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[328]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[329]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[330]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.translateX" 
 		"NPC_Base_04RN.placeHolderList[331]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.translateY" 
 		"NPC_Base_04RN.placeHolderList[332]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.translateZ" 
 		"NPC_Base_04RN.placeHolderList[333]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[334]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.rotateX" 
 		"NPC_Base_04RN.placeHolderList[335]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.rotateY" 
 		"NPC_Base_04RN.placeHolderList[336]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[337]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[338]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[339]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[340]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[341]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[342]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[343]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[344]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.scaleX" 
 		"NPC_Base_04RN.placeHolderList[345]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.scaleY" 
 		"NPC_Base_04RN.placeHolderList[346]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.inverseScale" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Index_01|NPC_Base:L_Index_02|NPC_Base:L_Index_03.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[347]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[348]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[349]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[350]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.translateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[351]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[352]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[353]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[354]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[355]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[356]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[357]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[358]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[359]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[360]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[361]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[362]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[363]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[364]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[365]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[366]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.scaleX" 
 		"NPC_Base_04RN.placeHolderList[367]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.scaleY" 
 		"NPC_Base_04RN.placeHolderList[368]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.translateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[369]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.translateX" 
 		"NPC_Base_04RN.placeHolderList[370]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.translateY" 
 		"NPC_Base_04RN.placeHolderList[371]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.translateZ" 
 		"NPC_Base_04RN.placeHolderList[372]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[373]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.rotateX" 
 		"NPC_Base_04RN.placeHolderList[374]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.rotateY" 
 		"NPC_Base_04RN.placeHolderList[375]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[376]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[377]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[378]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[379]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[380]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[381]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[382]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[383]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[384]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.translateX" 
 		"NPC_Base_04RN.placeHolderList[385]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.translateY" 
 		"NPC_Base_04RN.placeHolderList[386]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.translateZ" 
 		"NPC_Base_04RN.placeHolderList[387]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[388]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.rotateX" 
 		"NPC_Base_04RN.placeHolderList[389]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.rotateY" 
 		"NPC_Base_04RN.placeHolderList[390]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[391]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[392]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[393]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[394]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[395]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[396]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[397]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[398]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.scaleX" 
 		"NPC_Base_04RN.placeHolderList[399]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.scaleY" 
 		"NPC_Base_04RN.placeHolderList[400]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.inverseScale" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Middle_01|NPC_Base:L_Middle_02|NPC_Base:L_Middle_03.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[401]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[402]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[403]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[404]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.translateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[405]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[406]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[407]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[408]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[409]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[410]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[411]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[412]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[413]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[414]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[415]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[416]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[417]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[418]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[419]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[420]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.scaleX" 
 		"NPC_Base_04RN.placeHolderList[421]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.scaleY" 
 		"NPC_Base_04RN.placeHolderList[422]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.translateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[423]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.translateX" 
 		"NPC_Base_04RN.placeHolderList[424]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.translateY" 
 		"NPC_Base_04RN.placeHolderList[425]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.translateZ" 
 		"NPC_Base_04RN.placeHolderList[426]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[427]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.rotateX" 
 		"NPC_Base_04RN.placeHolderList[428]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.rotateY" 
 		"NPC_Base_04RN.placeHolderList[429]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[430]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[431]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[432]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[433]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[434]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[435]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[436]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[437]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[438]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.translateX" 
 		"NPC_Base_04RN.placeHolderList[439]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.translateY" 
 		"NPC_Base_04RN.placeHolderList[440]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.translateZ" 
 		"NPC_Base_04RN.placeHolderList[441]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[442]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.rotateX" 
 		"NPC_Base_04RN.placeHolderList[443]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.rotateY" 
 		"NPC_Base_04RN.placeHolderList[444]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[445]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[446]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[447]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[448]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[449]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[450]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[451]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[452]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.scaleX" 
 		"NPC_Base_04RN.placeHolderList[453]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.scaleY" 
 		"NPC_Base_04RN.placeHolderList[454]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.inverseScale" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:L_Clavical_joint_01|NPC_Base:L_Shoulder_joint_01|NPC_Base:L_Elbow_joint_01|NPC_Base:L_Wrist_joint_01|NPC_Base:L_Pinky_01|NPC_Base:L_Pinky_02|NPC_Base:L_Pinky_03.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[455]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[456]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[457]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[458]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[459]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[460]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[461]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[462]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.rotateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[463]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[464]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[465]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[466]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[467]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[468]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[469]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[470]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[471]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[472]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[473]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[474]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[475]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[476]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[477]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[478]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[479]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[480]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.rotateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[481]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[482]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[483]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[484]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[485]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[486]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[487]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[488]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[489]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[490]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[491]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[492]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[493]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[494]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.translateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[495]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[496]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[497]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[498]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[499]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[500]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[501]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[502]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[503]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[504]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[505]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[506]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[507]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[508]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[509]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[510]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[511]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[512]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.message" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[513]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.message" 
 		"NPC_Base_04RN.placeHolderList[514]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[515]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[516]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[517]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[518]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[519]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[520]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[521]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[522]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[523]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[524]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[525]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[526]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[527]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[528]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[529]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[530]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[531]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.translateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[532]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[533]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[534]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[535]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[536]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[537]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[538]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[539]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[540]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[541]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[542]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[543]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[544]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[545]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[546]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[547]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.scaleX" 
 		"NPC_Base_04RN.placeHolderList[548]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.scaleY" 
 		"NPC_Base_04RN.placeHolderList[549]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.translateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[550]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.translateX" 
 		"NPC_Base_04RN.placeHolderList[551]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.translateY" 
 		"NPC_Base_04RN.placeHolderList[552]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.translateZ" 
 		"NPC_Base_04RN.placeHolderList[553]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[554]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.rotateX" 
 		"NPC_Base_04RN.placeHolderList[555]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.rotateY" 
 		"NPC_Base_04RN.placeHolderList[556]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[557]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[558]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[559]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[560]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[561]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[562]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[563]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[564]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[565]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.translateX" 
 		"NPC_Base_04RN.placeHolderList[566]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.translateY" 
 		"NPC_Base_04RN.placeHolderList[567]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.translateZ" 
 		"NPC_Base_04RN.placeHolderList[568]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[569]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.rotateX" 
 		"NPC_Base_04RN.placeHolderList[570]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.rotateY" 
 		"NPC_Base_04RN.placeHolderList[571]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[572]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[573]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[574]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[575]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[576]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[577]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[578]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[579]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.scaleX" 
 		"NPC_Base_04RN.placeHolderList[580]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.scaleY" 
 		"NPC_Base_04RN.placeHolderList[581]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.inverseScale" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Thumb_01|NPC_Base:R_Thumb_02|NPC_Base:R_Thumb_03.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[582]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[583]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[584]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[585]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.translateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[586]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[587]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[588]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[589]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[590]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[591]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[592]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[593]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[594]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[595]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[596]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[597]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[598]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[599]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[600]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[601]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.scaleX" 
 		"NPC_Base_04RN.placeHolderList[602]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.scaleY" 
 		"NPC_Base_04RN.placeHolderList[603]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.translateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[604]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.translateX" 
 		"NPC_Base_04RN.placeHolderList[605]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.translateY" 
 		"NPC_Base_04RN.placeHolderList[606]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.translateZ" 
 		"NPC_Base_04RN.placeHolderList[607]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[608]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.rotateX" 
 		"NPC_Base_04RN.placeHolderList[609]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.rotateY" 
 		"NPC_Base_04RN.placeHolderList[610]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[611]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[612]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[613]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[614]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[615]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[616]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[617]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[618]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[619]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.translateX" 
 		"NPC_Base_04RN.placeHolderList[620]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.translateY" 
 		"NPC_Base_04RN.placeHolderList[621]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.translateZ" 
 		"NPC_Base_04RN.placeHolderList[622]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[623]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.rotateX" 
 		"NPC_Base_04RN.placeHolderList[624]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.rotateY" 
 		"NPC_Base_04RN.placeHolderList[625]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[626]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[627]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[628]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[629]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[630]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[631]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[632]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[633]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.scaleX" 
 		"NPC_Base_04RN.placeHolderList[634]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.scaleY" 
 		"NPC_Base_04RN.placeHolderList[635]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.inverseScale" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Index_01|NPC_Base:R_Index_02|NPC_Base:R_Index_03.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[636]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[637]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[638]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[639]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.translateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[640]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[641]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[642]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[643]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[644]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[645]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[646]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[647]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[648]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[649]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[650]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[651]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[652]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[653]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[654]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[655]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.scaleX" 
 		"NPC_Base_04RN.placeHolderList[656]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.scaleY" 
 		"NPC_Base_04RN.placeHolderList[657]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.translateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[658]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.translateX" 
 		"NPC_Base_04RN.placeHolderList[659]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.translateY" 
 		"NPC_Base_04RN.placeHolderList[660]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.translateZ" 
 		"NPC_Base_04RN.placeHolderList[661]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[662]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.rotateX" 
 		"NPC_Base_04RN.placeHolderList[663]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.rotateY" 
 		"NPC_Base_04RN.placeHolderList[664]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[665]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[666]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[667]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[668]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[669]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[670]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[671]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[672]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[673]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.translateX" 
 		"NPC_Base_04RN.placeHolderList[674]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.translateY" 
 		"NPC_Base_04RN.placeHolderList[675]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.translateZ" 
 		"NPC_Base_04RN.placeHolderList[676]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[677]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.rotateX" 
 		"NPC_Base_04RN.placeHolderList[678]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.rotateY" 
 		"NPC_Base_04RN.placeHolderList[679]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[680]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[681]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[682]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[683]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[684]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[685]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[686]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[687]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.scaleX" 
 		"NPC_Base_04RN.placeHolderList[688]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.scaleY" 
 		"NPC_Base_04RN.placeHolderList[689]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.inverseScale" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Middle_01|NPC_Base:R_Middle_02|NPC_Base:R_Middle_03.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[690]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[691]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[692]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[693]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.translateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[694]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[695]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[696]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[697]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[698]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[699]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[700]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[701]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[702]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[703]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[704]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[705]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[706]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[707]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[708]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[709]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.scaleX" 
 		"NPC_Base_04RN.placeHolderList[710]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.scaleY" 
 		"NPC_Base_04RN.placeHolderList[711]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.translateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[712]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.translateX" 
 		"NPC_Base_04RN.placeHolderList[713]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.translateY" 
 		"NPC_Base_04RN.placeHolderList[714]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.translateZ" 
 		"NPC_Base_04RN.placeHolderList[715]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[716]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.rotateX" 
 		"NPC_Base_04RN.placeHolderList[717]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.rotateY" 
 		"NPC_Base_04RN.placeHolderList[718]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[719]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[720]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[721]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[722]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[723]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[724]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[725]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[726]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[727]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.translateX" 
 		"NPC_Base_04RN.placeHolderList[728]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.translateY" 
 		"NPC_Base_04RN.placeHolderList[729]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.translateZ" 
 		"NPC_Base_04RN.placeHolderList[730]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[731]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.rotateX" 
 		"NPC_Base_04RN.placeHolderList[732]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.rotateY" 
 		"NPC_Base_04RN.placeHolderList[733]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[734]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[735]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[736]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[737]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[738]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[739]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[740]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[741]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.scaleX" 
 		"NPC_Base_04RN.placeHolderList[742]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.scaleY" 
 		"NPC_Base_04RN.placeHolderList[743]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.inverseScale" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:R_Clavical_joint_01|NPC_Base:R_Shoulder_joint_01|NPC_Base:R_Elbow_joint_01|NPC_Base:R_Wrist_joint_01|NPC_Base:R_Pinky_01|NPC_Base:R_Pinky_02|NPC_Base:R_Pinky_03.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[744]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[745]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[746]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[747]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[748]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[749]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[750]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[751]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.rotateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[752]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[753]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[754]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[755]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[756]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[757]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[758]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[759]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[760]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[761]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[762]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[763]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[764]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[765]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[766]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[767]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[768]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[769]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.rotateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[770]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[771]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[772]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[773]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[774]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[775]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[776]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[777]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[778]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[779]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[780]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[781]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[782]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[783]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[784]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[785]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[786]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[787]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.rotateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[788]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[789]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[790]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[791]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[792]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[793]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[794]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[795]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[796]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[797]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[798]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[799]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[800]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[801]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[802]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[803]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[804]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[805]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[806]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[807]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[808]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[809]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[810]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[811]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[812]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[813]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[814]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[815]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.inverseScale" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Jaw_Joint_01|NPC_Base:Lip_Lower_Mid_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[816]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[817]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[818]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[819]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[820]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[821]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[822]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[823]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[824]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[825]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[826]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[827]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[828]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[829]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[830]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[831]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[832]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[833]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.inverseScale" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_Upper_Mid_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[834]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.segmentScaleCompensate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[835]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[836]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[837]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[838]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.rotateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[839]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[840]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[841]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.scaleX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[842]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[843]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[844]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[845]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[846]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[847]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[848]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[849]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[850]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[851]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Nose_Joint_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[852]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[853]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[854]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[855]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[856]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[857]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[858]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[859]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.scaleX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[860]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[861]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[862]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[863]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[864]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[865]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[866]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[867]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[868]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[869]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Exterior_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[870]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[871]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[872]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[873]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[874]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[875]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[876]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[877]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.scaleX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[878]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[879]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[880]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[881]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[882]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[883]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[884]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[885]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[886]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[887]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eyebrow_Interior_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[888]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[889]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[890]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[891]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[892]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[893]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[894]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[895]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[896]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[897]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[898]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[899]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[900]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[901]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[902]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[903]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[904]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[905]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.inverseScale" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_L_Corner_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[906]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[907]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[908]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[909]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[910]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[911]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[912]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[913]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[914]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[915]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[916]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[917]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[918]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[919]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[920]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[921]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[922]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[923]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.inverseScale" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:Lip_R_Corner_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[924]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[925]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[926]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[927]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[928]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[929]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[930]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[931]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.scaleX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[932]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[933]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[934]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[935]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[936]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[937]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[938]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[939]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[940]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[941]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Ear_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[942]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[943]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[944]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[945]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[946]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[947]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[948]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[949]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.scaleX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[950]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[951]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[952]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[953]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[954]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[955]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[956]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[957]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[958]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[959]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Ear_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[960]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[961]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[962]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[963]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.translateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[964]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[965]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[966]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[967]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[968]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[969]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[970]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[971]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[972]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[973]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[974]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[975]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[976]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[977]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[978]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.segmentScaleCompensate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[979]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[980]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[981]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[982]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.rotateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[983]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[984]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[985]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.scaleX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[986]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[987]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[988]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[989]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[990]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[991]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[992]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[993]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[994]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[995]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Bottom_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[996]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.segmentScaleCompensate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[997]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[998]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[999]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[1000]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.rotateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[1001]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[1002]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[1003]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.scaleX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[1004]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[1005]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[1006]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[1007]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[1008]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1009]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1010]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1011]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[1012]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[1013]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:L_Eye_01|NPC_Base:L_Eye_Top_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[1014]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[1015]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[1016]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[1017]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.translateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[1018]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[1019]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[1020]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[1021]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[1022]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[1023]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[1024]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[1025]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[1026]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1027]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1028]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1029]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[1030]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[1031]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[1032]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[1033]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[1034]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[1035]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[1036]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[1037]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[1038]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[1039]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.scaleX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[1040]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[1041]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[1042]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[1043]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[1044]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1045]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1046]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1047]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[1048]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[1049]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Bottom_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[1050]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[1051]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[1052]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[1053]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[1054]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[1055]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[1056]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[1057]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.scaleX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[1058]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[1059]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[1060]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[1061]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[1062]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1063]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1064]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1065]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[1066]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[1067]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eye_01|NPC_Base:R_Eye_Top_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[1068]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[1069]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[1070]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[1071]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[1072]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[1073]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[1074]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[1075]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.scaleX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[1076]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[1077]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[1078]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[1079]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[1080]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1081]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1082]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1083]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[1084]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[1085]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Interior_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[1086]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[1087]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[1088]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[1089]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[1090]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[1091]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[1092]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[1093]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.scaleX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[1094]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[1095]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[1096]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[1097]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[1098]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1099]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1100]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1101]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[1102]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[1103]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Spine_joint_01|NPC_Base:Chest_joint_01|NPC_Base:Neck_joint_01|NPC_Base:Head_joint_01|NPC_Base:R_Eyebrow_Exterior_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[1104]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[1105]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[1106]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[1107]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[1108]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[1109]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[1110]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[1111]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.rotateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[1112]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[1113]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[1114]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.parentInverseMatrix" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[1115]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1116]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1117]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.rotateOrder" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1118]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[1119]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[1120]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[1121]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[1122]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[1123]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[1124]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[1125]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.rotateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[1126]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[1127]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[1128]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[1129]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[1130]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[1131]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[1132]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[1133]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[1134]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1135]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1136]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1137]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[1138]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[1139]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[1140]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[1141]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[1142]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[1143]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.translateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[1144]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[1145]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[1146]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.rotateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[1147]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[1148]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[1149]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[1150]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.rotateOrder" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[1151]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[1152]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1153]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1154]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1155]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[1156]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[1157]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[1158]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[1159]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[1160]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[1161]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.translateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[1162]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[1163]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[1164]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.rotateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[1165]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[1166]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[1167]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[1168]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.rotateOrder" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[1169]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[1170]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1171]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1172]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1173]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[1174]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[1175]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.inverseScale" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[1176]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[1177]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[1178]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[1179]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.rotateX" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[1180]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[1181]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[1182]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.segmentScaleCompensate" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[1183]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.rotateOrder" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[1184]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[1185]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1186]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1187]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1188]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.rotatePivot" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[1189]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[1190]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[1191]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[1192]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.scaleZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.scaleY" 
 		"NPC_Base_04RN.placeHolderList[1193]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.inverseScale" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:R_Leg_joint_01|NPC_Base:R_Knee_joint_01|NPC_Base:R_Ankle_joint_01|NPC_Base:R_Foot_joint_01|NPC_Base:R_Toe_joint_01.scaleZ" 
 		"NPC_Base_04RN.placeHolderList[1194]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.segmentScaleCompensate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.inverseScale" 
 		"NPC_Base_04RN.placeHolderList[1195]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.rotateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.segmentScaleCompensate" 
 		"NPC_Base_04RN.placeHolderList[1196]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.rotateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.rotateX" 
 		"NPC_Base_04RN.placeHolderList[1197]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.rotateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.rotateY" 
 		"NPC_Base_04RN.placeHolderList[1198]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.rotateOrder" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.rotateZ" 
 		"NPC_Base_04RN.placeHolderList[1199]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.parentInverseMatrix" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.rotateOrder" 
 		"NPC_Base_04RN.placeHolderList[1200]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1201]" ""
 		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1202]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.jointOrient" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.parentInverseMatrix" 
 		"NPC_Base_04RN.placeHolderList[1203]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.translateX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.jointOrient" 
 		"NPC_Base_04RN.placeHolderList[1204]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.translateY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.translateX" 
 		"NPC_Base_04RN.placeHolderList[1205]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.translateZ" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.translateY" 
 		"NPC_Base_04RN.placeHolderList[1206]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.rotatePivot" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.translateZ" 
 		"NPC_Base_04RN.placeHolderList[1207]" ""
-		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.rotatePivotTranslate" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.rotatePivot" 
 		"NPC_Base_04RN.placeHolderList[1208]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.scaleX" 
+		5 3 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.rotatePivotTranslate" 
 		"NPC_Base_04RN.placeHolderList[1209]" ""
-		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.scaleY" 
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.scaleX" 
 		"NPC_Base_04RN.placeHolderList[1210]" ""
+		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.scaleY" 
+		"NPC_Base_04RN.placeHolderList[1211]" ""
 		5 4 "NPC_Base_04RN" "|NPC_Base:Joint_Grp|NPC_Base:Master_Dock_joint_01|NPC_Base:Hip_Joint|NPC_Base:Tail_Joint_01.scaleZ" 
-		"NPC_Base_04RN.placeHolderList[1211]" "";
+		"NPC_Base_04RN.placeHolderList[1212]" "";
 	setAttr ".ptag" -type "string" "";
 lockNode -l 1 ;
 createNode ikSCsolver -n "ikSCsolver";
@@ -24078,287 +24081,369 @@ createNode condition -n "condition2";
 createNode condition -n "condition3";
 	rename -uid "CF664F75-4B87-54C3-9BA7-599265E07C53";
 	setAttr ".op" 2;
-createNode nodeGraphEditorInfo -n "MayaNodeEditorSavedTabsInfo";
-	rename -uid "7B75D374-4D5D-4FC4-FE35-0AA7E4884050";
-	setAttr -s 2 ".tgi";
-	setAttr ".tgi[0].tn" -type "string" "Untitled_2";
-	setAttr ".tgi[0].vl" -type "double2" 1475.5036043724178 -358.33331909444644 ;
-	setAttr ".tgi[0].vh" -type "double2" 2987.5914563753572 51.190474156349708 ;
-	setAttr -s 37 ".tgi[0].ni";
-	setAttr ".tgi[0].ni[0].x" 2567.142822265625;
-	setAttr ".tgi[0].ni[0].y" 272.85714721679688;
-	setAttr ".tgi[0].ni[0].nvs" 18304;
-	setAttr ".tgi[0].ni[1].x" 988.5714111328125;
-	setAttr ".tgi[0].ni[1].y" 261.42855834960938;
-	setAttr ".tgi[0].ni[1].nvs" 18304;
-	setAttr ".tgi[0].ni[2].x" 2082.857177734375;
-	setAttr ".tgi[0].ni[2].y" -117.14286041259766;
-	setAttr ".tgi[0].ni[2].nvs" 18304;
-	setAttr ".tgi[0].ni[3].x" 2934.28564453125;
-	setAttr ".tgi[0].ni[3].y" 344.28570556640625;
-	setAttr ".tgi[0].ni[3].nvs" 18304;
-	setAttr ".tgi[0].ni[4].x" 27.528438568115234;
-	setAttr ".tgi[0].ni[4].y" -664.74700927734375;
-	setAttr ".tgi[0].ni[4].nvs" 18304;
-	setAttr ".tgi[0].ni[5].x" 1925.7142333984375;
-	setAttr ".tgi[0].ni[5].y" -282.85714721679688;
-	setAttr ".tgi[0].ni[5].nvs" 18304;
-	setAttr ".tgi[0].ni[6].x" 38.370876312255859;
-	setAttr ".tgi[0].ni[6].y" 275.79656982421875;
-	setAttr ".tgi[0].ni[6].nvs" 18304;
-	setAttr ".tgi[0].ni[7].x" 2925.71435546875;
-	setAttr ".tgi[0].ni[7].y" -500;
-	setAttr ".tgi[0].ni[7].nvs" 18304;
-	setAttr ".tgi[0].ni[8].x" 96.813880920410156;
-	setAttr ".tgi[0].ni[8].y" -754.01019287109375;
-	setAttr ".tgi[0].ni[8].nvs" 18304;
-	setAttr ".tgi[0].ni[9].x" 2925.71435546875;
-	setAttr ".tgi[0].ni[9].y" 134.28572082519531;
-	setAttr ".tgi[0].ni[9].nvs" 18304;
-	setAttr ".tgi[0].ni[10].x" 2925.71435546875;
-	setAttr ".tgi[0].ni[10].y" 482.85714721679688;
-	setAttr ".tgi[0].ni[10].nvs" 18304;
-	setAttr ".tgi[0].ni[11].x" 1295.7142333984375;
-	setAttr ".tgi[0].ni[11].y" 148.57142639160156;
-	setAttr ".tgi[0].ni[11].nvs" 18305;
-	setAttr ".tgi[0].ni[12].x" 2618.571533203125;
-	setAttr ".tgi[0].ni[12].y" -31.428571701049805;
-	setAttr ".tgi[0].ni[12].nvs" 18305;
-	setAttr ".tgi[0].ni[13].x" 2618.571533203125;
-	setAttr ".tgi[0].ni[13].y" 405.71429443359375;
-	setAttr ".tgi[0].ni[13].nvs" 18304;
-	setAttr ".tgi[0].ni[14].x" 2925.71435546875;
-	setAttr ".tgi[0].ni[14].y" -765.71429443359375;
-	setAttr ".tgi[0].ni[14].nvs" 18304;
-	setAttr ".tgi[0].ni[15].x" 1295.7142333984375;
-	setAttr ".tgi[0].ni[15].y" -51.428569793701172;
-	setAttr ".tgi[0].ni[15].nvs" 18306;
-	setAttr ".tgi[0].ni[16].x" 1662.857177734375;
-	setAttr ".tgi[0].ni[16].y" 464.28570556640625;
-	setAttr ".tgi[0].ni[16].nvs" 18306;
-	setAttr ".tgi[0].ni[17].x" 988.5714111328125;
-	setAttr ".tgi[0].ni[17].y" 528.5714111328125;
-	setAttr ".tgi[0].ni[17].nvs" 18305;
-	setAttr ".tgi[0].ni[18].x" 1748.5714111328125;
-	setAttr ".tgi[0].ni[18].y" 298.57144165039063;
-	setAttr ".tgi[0].ni[18].nvs" 18304;
-	setAttr ".tgi[0].ni[19].x" 47.23419189453125;
-	setAttr ".tgi[0].ni[19].y" 347.55191040039063;
-	setAttr ".tgi[0].ni[19].nvs" 18304;
-	setAttr ".tgi[0].ni[20].x" 91.413742065429688;
-	setAttr ".tgi[0].ni[20].y" -816.30340576171875;
-	setAttr ".tgi[0].ni[20].nvs" 18304;
-	setAttr ".tgi[0].ni[21].x" 2925.71435546875;
-	setAttr ".tgi[0].ni[21].y" -161.42857360839844;
-	setAttr ".tgi[0].ni[21].nvs" 18304;
-	setAttr ".tgi[0].ni[22].x" -793.4005126953125;
-	setAttr ".tgi[0].ni[22].y" -496.86767578125;
-	setAttr ".tgi[0].ni[22].nvs" 18304;
-	setAttr ".tgi[0].ni[23].x" 988.5714111328125;
-	setAttr ".tgi[0].ni[23].y" 160;
-	setAttr ".tgi[0].ni[23].nvs" 18305;
-	setAttr ".tgi[0].ni[24].x" 73.180923461914063;
-	setAttr ".tgi[0].ni[24].y" -158.33645629882813;
-	setAttr ".tgi[0].ni[24].nvs" 18304;
-	setAttr ".tgi[0].ni[25].x" 3282.857177734375;
-	setAttr ".tgi[0].ni[25].y" 307.14285278320313;
-	setAttr ".tgi[0].ni[25].nvs" 18304;
-	setAttr ".tgi[0].ni[26].x" 2925.71435546875;
-	setAttr ".tgi[0].ni[26].y" 324.28570556640625;
-	setAttr ".tgi[0].ni[26].nvs" 18304;
-	setAttr ".tgi[0].ni[27].x" 2004.2857666015625;
-	setAttr ".tgi[0].ni[27].y" -85.714286804199219;
-	setAttr ".tgi[0].ni[27].nvs" 18306;
-	setAttr ".tgi[0].ni[28].x" 1662.857177734375;
-	setAttr ".tgi[0].ni[28].y" -302.85714721679688;
-	setAttr ".tgi[0].ni[28].nvs" 18305;
-	setAttr ".tgi[0].ni[29].x" 1932.857177734375;
-	setAttr ".tgi[0].ni[29].y" 17.142856597900391;
-	setAttr ".tgi[0].ni[29].nvs" 18304;
-	setAttr ".tgi[0].ni[30].x" 2311.428466796875;
-	setAttr ".tgi[0].ni[30].y" 102.85713958740234;
-	setAttr ".tgi[0].ni[30].nvs" 18306;
-	setAttr ".tgi[0].ni[31].x" 2618.571533203125;
-	setAttr ".tgi[0].ni[31].y" 304.28570556640625;
-	setAttr ".tgi[0].ni[31].nvs" 18305;
-	setAttr ".tgi[0].ni[32].x" 2257.142822265625;
-	setAttr ".tgi[0].ni[32].y" -710;
-	setAttr ".tgi[0].ni[32].nvs" 18304;
-	setAttr ".tgi[0].ni[33].x" 68.472267150878906;
-	setAttr ".tgi[0].ni[33].y" -1038.6705322265625;
-	setAttr ".tgi[0].ni[33].nvs" 18304;
-	setAttr ".tgi[0].ni[34].x" 2258.571533203125;
-	setAttr ".tgi[0].ni[34].y" -244.28572082519531;
-	setAttr ".tgi[0].ni[34].nvs" 18304;
-	setAttr ".tgi[0].ni[35].x" 92.30023193359375;
-	setAttr ".tgi[0].ni[35].y" -352.68136596679688;
-	setAttr ".tgi[0].ni[35].nvs" 18304;
-	setAttr ".tgi[0].ni[36].x" 50.815509796142578;
-	setAttr ".tgi[0].ni[36].y" 404.13485717773438;
-	setAttr ".tgi[0].ni[36].nvs" 18304;
-	setAttr ".tgi[1].tn" -type "string" "Untitled_3";
-	setAttr ".tgi[1].vl" -type "double2" -620.90628290572567 1321.1995252833026 ;
-	setAttr ".tgi[1].vh" -type "double2" 847.66514566570299 2059.770953854731 ;
-	setAttr -s 44 ".tgi[1].ni";
-	setAttr ".tgi[1].ni[0].x" 2222.857177734375;
-	setAttr ".tgi[1].ni[0].y" 2402.857177734375;
-	setAttr ".tgi[1].ni[0].nvs" 18304;
-	setAttr ".tgi[1].ni[1].x" 3314.28564453125;
-	setAttr ".tgi[1].ni[1].y" 274.28570556640625;
-	setAttr ".tgi[1].ni[1].nvs" 18304;
-	setAttr ".tgi[1].ni[2].x" 267.14285278320313;
-	setAttr ".tgi[1].ni[2].y" 2102.857177734375;
-	setAttr ".tgi[1].ni[2].nvs" 18304;
-	setAttr ".tgi[1].ni[3].x" 1878.5714111328125;
-	setAttr ".tgi[1].ni[3].y" 1700;
-	setAttr ".tgi[1].ni[3].nvs" 18306;
-	setAttr ".tgi[1].ni[4].x" 3314.28564453125;
-	setAttr ".tgi[1].ni[4].y" 404.28570556640625;
-	setAttr ".tgi[1].ni[4].nvs" 18304;
-	setAttr ".tgi[1].ni[5].x" 2615.71435546875;
-	setAttr ".tgi[1].ni[5].y" 1728.5714111328125;
-	setAttr ".tgi[1].ni[5].nvs" 18306;
-	setAttr ".tgi[1].ni[6].x" -687.9105224609375;
-	setAttr ".tgi[1].ni[6].y" 2069.6708984375;
-	setAttr ".tgi[1].ni[6].nvs" 18306;
-	setAttr ".tgi[1].ni[7].x" 294.28570556640625;
-	setAttr ".tgi[1].ni[7].y" 1007.1428833007813;
-	setAttr ".tgi[1].ni[7].nvs" 18306;
-	setAttr ".tgi[1].ni[8].x" 2615.71435546875;
-	setAttr ".tgi[1].ni[8].y" 2217.142822265625;
-	setAttr ".tgi[1].ni[8].nvs" 18304;
-	setAttr ".tgi[1].ni[9].x" 1878.5714111328125;
-	setAttr ".tgi[1].ni[9].y" 2247.142822265625;
-	setAttr ".tgi[1].ni[9].nvs" 18304;
-	setAttr ".tgi[1].ni[10].x" 1455.7142333984375;
-	setAttr ".tgi[1].ni[10].y" 1604.2857666015625;
-	setAttr ".tgi[1].ni[10].nvs" 18304;
-	setAttr ".tgi[1].ni[11].x" 2222.857177734375;
-	setAttr ".tgi[1].ni[11].y" 2200;
-	setAttr ".tgi[1].ni[11].nvs" 18304;
-	setAttr ".tgi[1].ni[12].x" 1878.5714111328125;
-	setAttr ".tgi[1].ni[12].y" 2062.857177734375;
-	setAttr ".tgi[1].ni[12].nvs" 18304;
-	setAttr ".tgi[1].ni[13].x" 1455.7142333984375;
-	setAttr ".tgi[1].ni[13].y" 2231.428466796875;
-	setAttr ".tgi[1].ni[13].nvs" 18304;
-	setAttr ".tgi[1].ni[14].x" 3314.28564453125;
-	setAttr ".tgi[1].ni[14].y" 534.28570556640625;
-	setAttr ".tgi[1].ni[14].nvs" 18304;
-	setAttr ".tgi[1].ni[15].x" 2954.28564453125;
-	setAttr ".tgi[1].ni[15].y" 1754.2857666015625;
-	setAttr ".tgi[1].ni[15].nvs" 18304;
-	setAttr ".tgi[1].ni[16].x" 2222.857177734375;
-	setAttr ".tgi[1].ni[16].y" 2301.428466796875;
-	setAttr ".tgi[1].ni[16].nvs" 18304;
-	setAttr ".tgi[1].ni[17].x" 3314.28564453125;
-	setAttr ".tgi[1].ni[17].y" 664.28570556640625;
-	setAttr ".tgi[1].ni[17].nvs" 18304;
-	setAttr ".tgi[1].ni[18].x" 2615.71435546875;
-	setAttr ".tgi[1].ni[18].y" 2058.571533203125;
-	setAttr ".tgi[1].ni[18].nvs" 18304;
-	setAttr ".tgi[1].ni[19].x" 2222.857177734375;
-	setAttr ".tgi[1].ni[19].y" 1690;
-	setAttr ".tgi[1].ni[19].nvs" 18304;
-	setAttr ".tgi[1].ni[20].x" 267.14285278320313;
-	setAttr ".tgi[1].ni[20].y" 2001.4285888671875;
-	setAttr ".tgi[1].ni[20].nvs" 18304;
-	setAttr ".tgi[1].ni[21].x" 764.28570556640625;
-	setAttr ".tgi[1].ni[21].y" 2022.857177734375;
-	setAttr ".tgi[1].ni[21].nvs" 18304;
-	setAttr ".tgi[1].ni[22].x" 2954.28564453125;
-	setAttr ".tgi[1].ni[22].y" 2100;
-	setAttr ".tgi[1].ni[22].nvs" 18305;
-	setAttr ".tgi[1].ni[23].x" 764.28570556640625;
-	setAttr ".tgi[1].ni[23].y" 1864.2857666015625;
-	setAttr ".tgi[1].ni[23].nvs" 18304;
-	setAttr ".tgi[1].ni[24].x" 1455.7142333984375;
-	setAttr ".tgi[1].ni[24].y" 2130;
-	setAttr ".tgi[1].ni[24].nvs" 18304;
-	setAttr ".tgi[1].ni[25].x" 267.14285278320313;
-	setAttr ".tgi[1].ni[25].y" 1741.4285888671875;
-	setAttr ".tgi[1].ni[25].nvs" 18304;
-	setAttr ".tgi[1].ni[26].x" 2954.28564453125;
-	setAttr ".tgi[1].ni[26].y" 1652.857177734375;
-	setAttr ".tgi[1].ni[26].nvs" 18304;
-	setAttr ".tgi[1].ni[27].x" 2954.28564453125;
-	setAttr ".tgi[1].ni[27].y" 1855.7142333984375;
-	setAttr ".tgi[1].ni[27].nvs" 18304;
-	setAttr ".tgi[1].ni[28].x" 2954.28564453125;
-	setAttr ".tgi[1].ni[28].y" 2201.428466796875;
-	setAttr ".tgi[1].ni[28].nvs" 18304;
-	setAttr ".tgi[1].ni[29].x" 267.14285278320313;
-	setAttr ".tgi[1].ni[29].y" 1842.857177734375;
-	setAttr ".tgi[1].ni[29].nvs" 18304;
-	setAttr ".tgi[1].ni[30].x" -26.682384490966797;
-	setAttr ".tgi[1].ni[30].y" 1040.2451171875;
-	setAttr ".tgi[1].ni[30].nvs" 18306;
-	setAttr ".tgi[1].ni[31].x" 57.142856597900391;
-	setAttr ".tgi[1].ni[31].y" 1822.857177734375;
-	setAttr ".tgi[1].ni[31].nvs" 18304;
-	setAttr ".tgi[1].ni[32].x" -6.6013236045837402;
-	setAttr ".tgi[1].ni[32].y" 1674.31982421875;
-	setAttr ".tgi[1].ni[32].nvs" 18306;
-	setAttr ".tgi[1].ni[33].x" 248.90562438964844;
-	setAttr ".tgi[1].ni[33].y" 1625.2855224609375;
-	setAttr ".tgi[1].ni[33].nvs" 18306;
-	setAttr ".tgi[1].ni[34].x" -343.58523559570313;
-	setAttr ".tgi[1].ni[34].y" 1920.4061279296875;
-	setAttr ".tgi[1].ni[34].nvs" 18306;
-	setAttr ".tgi[1].ni[35].x" 3314.28564453125;
-	setAttr ".tgi[1].ni[35].y" 2455.71435546875;
-	setAttr ".tgi[1].ni[35].nvs" 18304;
-	setAttr ".tgi[1].ni[36].x" 1455.7142333984375;
-	setAttr ".tgi[1].ni[36].y" 2028.5714111328125;
-	setAttr ".tgi[1].ni[36].nvs" 18304;
-	setAttr ".tgi[1].ni[37].x" 3314.28564453125;
-	setAttr ".tgi[1].ni[37].y" 2354.28564453125;
-	setAttr ".tgi[1].ni[37].nvs" 18304;
-	setAttr ".tgi[1].ni[38].x" 510;
-	setAttr ".tgi[1].ni[38].y" 1941.4285888671875;
-	setAttr ".tgi[1].ni[38].nvs" 18304;
-	setAttr ".tgi[1].ni[39].x" 3314.28564453125;
-	setAttr ".tgi[1].ni[39].y" 2252.857177734375;
-	setAttr ".tgi[1].ni[39].nvs" 18304;
-	setAttr ".tgi[1].ni[40].x" 2954.28564453125;
-	setAttr ".tgi[1].ni[40].y" 2302.857177734375;
-	setAttr ".tgi[1].ni[40].nvs" 18304;
-	setAttr ".tgi[1].ni[41].x" 3254.28564453125;
-	setAttr ".tgi[1].ni[41].y" 1184.2857666015625;
-	setAttr ".tgi[1].ni[41].nvs" 18304;
-	setAttr ".tgi[1].ni[42].x" -406.76437377929688;
-	setAttr ".tgi[1].ni[42].y" 1319.2965087890625;
-	setAttr ".tgi[1].ni[42].nvs" 18305;
-	setAttr ".tgi[1].ni[43].x" 3314.28564453125;
-	setAttr ".tgi[1].ni[43].y" 794.28570556640625;
-	setAttr ".tgi[1].ni[43].nvs" 18304;
 createNode animCurveUU -n "L_Free_Wrist_Grp_01_pointConstraint1_L_Free_Wrist_Hip_Dock_01W0";
 	rename -uid "82069004-4486-C0CA-E8EA-E5AB6EB07353";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  0 1 10 0;
+	setAttr -s 2 ".ktv[0:1]"  0 0 10 1;
 createNode animCurveUU -n "L_Free_Wrist_Grp_01_pointConstraint1_L_Free_Wrist_Free_Dock_01W1";
 	rename -uid "146CAF16-4E57-ED94-43CE-47839EDFCB50";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  0 0 10 1;
+	setAttr -s 2 ".ktv[0:1]"  0 1 10 0;
 createNode animCurveUU -n "L_Free_Wrist_Grp_01_orientConstraint1_L_Free_Wrist_Hip_Dock_01W0";
 	rename -uid "D6A7ABF6-4558-F7B2-3CE1-7BB4D09A07E2";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  0 1 10 0;
+	setAttr -s 2 ".ktv[0:1]"  0 0 10 1;
 createNode animCurveUU -n "L_Free_Wrist_Grp_01_orientConstraint1_L_Free_Wrist_Free_Dock_01W1";
 	rename -uid "CB89283A-4997-69AE-772B-EBA14884E2A8";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  0 0 10 1;
+	setAttr -s 2 ".ktv[0:1]"  0 1 10 0;
+createNode nodeGraphEditorInfo -n "MayaNodeEditorSavedTabsInfo";
+	rename -uid "A7720420-4847-94CF-6E65-66B3357977C8";
+	setAttr -s 3 ".tgi";
+	setAttr ".tgi[0].tn" -type "string" "Untitled_2";
+	setAttr ".tgi[0].vl" -type "double2" 1473.9010403335371 -547.37086895082257 ;
+	setAttr ".tgi[0].vh" -type "double2" 3006.1811992264143 223.24084520055621 ;
+	setAttr -s 37 ".tgi[0].ni";
+	setAttr ".tgi[0].ni[0].x" 3282.857177734375;
+	setAttr ".tgi[0].ni[0].y" 307.14285278320313;
+	setAttr ".tgi[0].ni[0].nvs" 18304;
+	setAttr ".tgi[0].ni[1].x" 1925.7142333984375;
+	setAttr ".tgi[0].ni[1].y" -282.85714721679688;
+	setAttr ".tgi[0].ni[1].nvs" 18304;
+	setAttr ".tgi[0].ni[2].x" 2004.2857666015625;
+	setAttr ".tgi[0].ni[2].y" -85.714286804199219;
+	setAttr ".tgi[0].ni[2].nvs" 18306;
+	setAttr ".tgi[0].ni[3].x" 1295.7142333984375;
+	setAttr ".tgi[0].ni[3].y" -51.428569793701172;
+	setAttr ".tgi[0].ni[3].nvs" 18306;
+	setAttr ".tgi[0].ni[4].x" 2257.142822265625;
+	setAttr ".tgi[0].ni[4].y" -710;
+	setAttr ".tgi[0].ni[4].nvs" 18304;
+	setAttr ".tgi[0].ni[5].x" 2311.428466796875;
+	setAttr ".tgi[0].ni[5].y" 102.85713958740234;
+	setAttr ".tgi[0].ni[5].nvs" 18306;
+	setAttr ".tgi[0].ni[6].x" 2618.571533203125;
+	setAttr ".tgi[0].ni[6].y" 405.71429443359375;
+	setAttr ".tgi[0].ni[6].nvs" 18304;
+	setAttr ".tgi[0].ni[7].x" 96.813880920410156;
+	setAttr ".tgi[0].ni[7].y" -754.01019287109375;
+	setAttr ".tgi[0].ni[7].nvs" 18304;
+	setAttr ".tgi[0].ni[8].x" 2925.71435546875;
+	setAttr ".tgi[0].ni[8].y" 324.28570556640625;
+	setAttr ".tgi[0].ni[8].nvs" 18304;
+	setAttr ".tgi[0].ni[9].x" 68.472267150878906;
+	setAttr ".tgi[0].ni[9].y" -1038.6705322265625;
+	setAttr ".tgi[0].ni[9].nvs" 18304;
+	setAttr ".tgi[0].ni[10].x" 47.23419189453125;
+	setAttr ".tgi[0].ni[10].y" 347.55191040039063;
+	setAttr ".tgi[0].ni[10].nvs" 18304;
+	setAttr ".tgi[0].ni[11].x" 2925.71435546875;
+	setAttr ".tgi[0].ni[11].y" -161.42857360839844;
+	setAttr ".tgi[0].ni[11].nvs" 18304;
+	setAttr ".tgi[0].ni[12].x" 2925.71435546875;
+	setAttr ".tgi[0].ni[12].y" -500;
+	setAttr ".tgi[0].ni[12].nvs" 18304;
+	setAttr ".tgi[0].ni[13].x" -793.4005126953125;
+	setAttr ".tgi[0].ni[13].y" -496.86767578125;
+	setAttr ".tgi[0].ni[13].nvs" 18304;
+	setAttr ".tgi[0].ni[14].x" 1662.857177734375;
+	setAttr ".tgi[0].ni[14].y" -302.85714721679688;
+	setAttr ".tgi[0].ni[14].nvs" 18305;
+	setAttr ".tgi[0].ni[15].x" 91.413742065429688;
+	setAttr ".tgi[0].ni[15].y" -816.30340576171875;
+	setAttr ".tgi[0].ni[15].nvs" 18304;
+	setAttr ".tgi[0].ni[16].x" 2618.571533203125;
+	setAttr ".tgi[0].ni[16].y" -31.428571701049805;
+	setAttr ".tgi[0].ni[16].nvs" 18305;
+	setAttr ".tgi[0].ni[17].x" 2567.142822265625;
+	setAttr ".tgi[0].ni[17].y" 272.85714721679688;
+	setAttr ".tgi[0].ni[17].nvs" 18304;
+	setAttr ".tgi[0].ni[18].x" 38.370876312255859;
+	setAttr ".tgi[0].ni[18].y" 275.79656982421875;
+	setAttr ".tgi[0].ni[18].nvs" 18304;
+	setAttr ".tgi[0].ni[19].x" 1748.5714111328125;
+	setAttr ".tgi[0].ni[19].y" 298.57144165039063;
+	setAttr ".tgi[0].ni[19].nvs" 18304;
+	setAttr ".tgi[0].ni[20].x" 988.5714111328125;
+	setAttr ".tgi[0].ni[20].y" 528.5714111328125;
+	setAttr ".tgi[0].ni[20].nvs" 18305;
+	setAttr ".tgi[0].ni[21].x" 1295.7142333984375;
+	setAttr ".tgi[0].ni[21].y" 148.57142639160156;
+	setAttr ".tgi[0].ni[21].nvs" 18305;
+	setAttr ".tgi[0].ni[22].x" 2925.71435546875;
+	setAttr ".tgi[0].ni[22].y" -765.71429443359375;
+	setAttr ".tgi[0].ni[22].nvs" 18304;
+	setAttr ".tgi[0].ni[23].x" 2082.857177734375;
+	setAttr ".tgi[0].ni[23].y" -117.14286041259766;
+	setAttr ".tgi[0].ni[23].nvs" 18304;
+	setAttr ".tgi[0].ni[24].x" 2258.571533203125;
+	setAttr ".tgi[0].ni[24].y" -244.28572082519531;
+	setAttr ".tgi[0].ni[24].nvs" 18304;
+	setAttr ".tgi[0].ni[25].x" 1932.857177734375;
+	setAttr ".tgi[0].ni[25].y" 17.142856597900391;
+	setAttr ".tgi[0].ni[25].nvs" 18304;
+	setAttr ".tgi[0].ni[26].x" 92.30023193359375;
+	setAttr ".tgi[0].ni[26].y" -352.68136596679688;
+	setAttr ".tgi[0].ni[26].nvs" 18304;
+	setAttr ".tgi[0].ni[27].x" 2925.71435546875;
+	setAttr ".tgi[0].ni[27].y" 482.85714721679688;
+	setAttr ".tgi[0].ni[27].nvs" 18304;
+	setAttr ".tgi[0].ni[28].x" 2925.71435546875;
+	setAttr ".tgi[0].ni[28].y" 134.28572082519531;
+	setAttr ".tgi[0].ni[28].nvs" 18304;
+	setAttr ".tgi[0].ni[29].x" 2618.571533203125;
+	setAttr ".tgi[0].ni[29].y" 304.28570556640625;
+	setAttr ".tgi[0].ni[29].nvs" 18305;
+	setAttr ".tgi[0].ni[30].x" 50.815509796142578;
+	setAttr ".tgi[0].ni[30].y" 404.13485717773438;
+	setAttr ".tgi[0].ni[30].nvs" 18304;
+	setAttr ".tgi[0].ni[31].x" 1662.857177734375;
+	setAttr ".tgi[0].ni[31].y" 464.28570556640625;
+	setAttr ".tgi[0].ni[31].nvs" 18306;
+	setAttr ".tgi[0].ni[32].x" 988.5714111328125;
+	setAttr ".tgi[0].ni[32].y" 261.42855834960938;
+	setAttr ".tgi[0].ni[32].nvs" 18304;
+	setAttr ".tgi[0].ni[33].x" 2934.28564453125;
+	setAttr ".tgi[0].ni[33].y" 344.28570556640625;
+	setAttr ".tgi[0].ni[33].nvs" 18304;
+	setAttr ".tgi[0].ni[34].x" 73.180923461914063;
+	setAttr ".tgi[0].ni[34].y" -158.33645629882813;
+	setAttr ".tgi[0].ni[34].nvs" 18304;
+	setAttr ".tgi[0].ni[35].x" 27.528438568115234;
+	setAttr ".tgi[0].ni[35].y" -664.74700927734375;
+	setAttr ".tgi[0].ni[35].nvs" 18304;
+	setAttr ".tgi[0].ni[36].x" 988.5714111328125;
+	setAttr ".tgi[0].ni[36].y" 160;
+	setAttr ".tgi[0].ni[36].nvs" 18305;
+	setAttr ".tgi[1].tn" -type "string" "Untitled_3";
+	setAttr ".tgi[1].vl" -type "double2" -621.4285467352197 1320.1760870628723 ;
+	setAttr ".tgi[1].vh" -type "double2" 848.8094900808652 2059.5856833993662 ;
+	setAttr -s 44 ".tgi[1].ni";
+	setAttr ".tgi[1].ni[0].x" 2954.28564453125;
+	setAttr ".tgi[1].ni[0].y" 1855.7142333984375;
+	setAttr ".tgi[1].ni[0].nvs" 18304;
+	setAttr ".tgi[1].ni[1].x" 267.14285278320313;
+	setAttr ".tgi[1].ni[1].y" 1741.4285888671875;
+	setAttr ".tgi[1].ni[1].nvs" 18304;
+	setAttr ".tgi[1].ni[2].x" 294.28570556640625;
+	setAttr ".tgi[1].ni[2].y" 1007.1428833007813;
+	setAttr ".tgi[1].ni[2].nvs" 18306;
+	setAttr ".tgi[1].ni[3].x" 267.14285278320313;
+	setAttr ".tgi[1].ni[3].y" 2001.4285888671875;
+	setAttr ".tgi[1].ni[3].nvs" 18304;
+	setAttr ".tgi[1].ni[4].x" 2222.857177734375;
+	setAttr ".tgi[1].ni[4].y" 1690;
+	setAttr ".tgi[1].ni[4].nvs" 18304;
+	setAttr ".tgi[1].ni[5].x" 3314.28564453125;
+	setAttr ".tgi[1].ni[5].y" 2455.71435546875;
+	setAttr ".tgi[1].ni[5].nvs" 18304;
+	setAttr ".tgi[1].ni[6].x" 267.14285278320313;
+	setAttr ".tgi[1].ni[6].y" 2102.857177734375;
+	setAttr ".tgi[1].ni[6].nvs" 18304;
+	setAttr ".tgi[1].ni[7].x" -26.682384490966797;
+	setAttr ".tgi[1].ni[7].y" 1040.2451171875;
+	setAttr ".tgi[1].ni[7].nvs" 18306;
+	setAttr ".tgi[1].ni[8].x" 3314.28564453125;
+	setAttr ".tgi[1].ni[8].y" 274.28570556640625;
+	setAttr ".tgi[1].ni[8].nvs" 18304;
+	setAttr ".tgi[1].ni[9].x" 2954.28564453125;
+	setAttr ".tgi[1].ni[9].y" 2201.428466796875;
+	setAttr ".tgi[1].ni[9].nvs" 18304;
+	setAttr ".tgi[1].ni[10].x" 2954.28564453125;
+	setAttr ".tgi[1].ni[10].y" 2302.857177734375;
+	setAttr ".tgi[1].ni[10].nvs" 18304;
+	setAttr ".tgi[1].ni[11].x" 2615.71435546875;
+	setAttr ".tgi[1].ni[11].y" 1728.5714111328125;
+	setAttr ".tgi[1].ni[11].nvs" 18306;
+	setAttr ".tgi[1].ni[12].x" 57.142856597900391;
+	setAttr ".tgi[1].ni[12].y" 1822.857177734375;
+	setAttr ".tgi[1].ni[12].nvs" 18304;
+	setAttr ".tgi[1].ni[13].x" 1878.5714111328125;
+	setAttr ".tgi[1].ni[13].y" 1700;
+	setAttr ".tgi[1].ni[13].nvs" 18306;
+	setAttr ".tgi[1].ni[14].x" 2615.71435546875;
+	setAttr ".tgi[1].ni[14].y" 2217.142822265625;
+	setAttr ".tgi[1].ni[14].nvs" 18304;
+	setAttr ".tgi[1].ni[15].x" 764.28570556640625;
+	setAttr ".tgi[1].ni[15].y" 2022.857177734375;
+	setAttr ".tgi[1].ni[15].nvs" 18304;
+	setAttr ".tgi[1].ni[16].x" -343.58523559570313;
+	setAttr ".tgi[1].ni[16].y" 1920.4061279296875;
+	setAttr ".tgi[1].ni[16].nvs" 18306;
+	setAttr ".tgi[1].ni[17].x" 1455.7142333984375;
+	setAttr ".tgi[1].ni[17].y" 2231.428466796875;
+	setAttr ".tgi[1].ni[17].nvs" 18304;
+	setAttr ".tgi[1].ni[18].x" 1878.5714111328125;
+	setAttr ".tgi[1].ni[18].y" 2062.857177734375;
+	setAttr ".tgi[1].ni[18].nvs" 18304;
+	setAttr ".tgi[1].ni[19].x" 764.28570556640625;
+	setAttr ".tgi[1].ni[19].y" 1864.2857666015625;
+	setAttr ".tgi[1].ni[19].nvs" 18304;
+	setAttr ".tgi[1].ni[20].x" 2222.857177734375;
+	setAttr ".tgi[1].ni[20].y" 2402.857177734375;
+	setAttr ".tgi[1].ni[20].nvs" 18304;
+	setAttr ".tgi[1].ni[21].x" 3314.28564453125;
+	setAttr ".tgi[1].ni[21].y" 2252.857177734375;
+	setAttr ".tgi[1].ni[21].nvs" 18304;
+	setAttr ".tgi[1].ni[22].x" 1455.7142333984375;
+	setAttr ".tgi[1].ni[22].y" 2130;
+	setAttr ".tgi[1].ni[22].nvs" 18304;
+	setAttr ".tgi[1].ni[23].x" 267.14285278320313;
+	setAttr ".tgi[1].ni[23].y" 1842.857177734375;
+	setAttr ".tgi[1].ni[23].nvs" 18304;
+	setAttr ".tgi[1].ni[24].x" 510;
+	setAttr ".tgi[1].ni[24].y" 1941.4285888671875;
+	setAttr ".tgi[1].ni[24].nvs" 18304;
+	setAttr ".tgi[1].ni[25].x" 2954.28564453125;
+	setAttr ".tgi[1].ni[25].y" 2100;
+	setAttr ".tgi[1].ni[25].nvs" 18305;
+	setAttr ".tgi[1].ni[26].x" 3314.28564453125;
+	setAttr ".tgi[1].ni[26].y" 664.28570556640625;
+	setAttr ".tgi[1].ni[26].nvs" 18304;
+	setAttr ".tgi[1].ni[27].x" 1455.7142333984375;
+	setAttr ".tgi[1].ni[27].y" 2028.5714111328125;
+	setAttr ".tgi[1].ni[27].nvs" 18304;
+	setAttr ".tgi[1].ni[28].x" 2222.857177734375;
+	setAttr ".tgi[1].ni[28].y" 2301.428466796875;
+	setAttr ".tgi[1].ni[28].nvs" 18304;
+	setAttr ".tgi[1].ni[29].x" 1455.7142333984375;
+	setAttr ".tgi[1].ni[29].y" 1604.2857666015625;
+	setAttr ".tgi[1].ni[29].nvs" 18304;
+	setAttr ".tgi[1].ni[30].x" 2954.28564453125;
+	setAttr ".tgi[1].ni[30].y" 1652.857177734375;
+	setAttr ".tgi[1].ni[30].nvs" 18304;
+	setAttr ".tgi[1].ni[31].x" -406.76437377929688;
+	setAttr ".tgi[1].ni[31].y" 1319.2965087890625;
+	setAttr ".tgi[1].ni[31].nvs" 18305;
+	setAttr ".tgi[1].ni[32].x" 3314.28564453125;
+	setAttr ".tgi[1].ni[32].y" 794.28570556640625;
+	setAttr ".tgi[1].ni[32].nvs" 18304;
+	setAttr ".tgi[1].ni[33].x" 3314.28564453125;
+	setAttr ".tgi[1].ni[33].y" 404.28570556640625;
+	setAttr ".tgi[1].ni[33].nvs" 18304;
+	setAttr ".tgi[1].ni[34].x" 3254.28564453125;
+	setAttr ".tgi[1].ni[34].y" 1184.2857666015625;
+	setAttr ".tgi[1].ni[34].nvs" 18304;
+	setAttr ".tgi[1].ni[35].x" 2954.28564453125;
+	setAttr ".tgi[1].ni[35].y" 1754.2857666015625;
+	setAttr ".tgi[1].ni[35].nvs" 18304;
+	setAttr ".tgi[1].ni[36].x" 3314.28564453125;
+	setAttr ".tgi[1].ni[36].y" 2354.28564453125;
+	setAttr ".tgi[1].ni[36].nvs" 18304;
+	setAttr ".tgi[1].ni[37].x" 3314.28564453125;
+	setAttr ".tgi[1].ni[37].y" 534.28570556640625;
+	setAttr ".tgi[1].ni[37].nvs" 18304;
+	setAttr ".tgi[1].ni[38].x" 248.90562438964844;
+	setAttr ".tgi[1].ni[38].y" 1625.2855224609375;
+	setAttr ".tgi[1].ni[38].nvs" 18306;
+	setAttr ".tgi[1].ni[39].x" 1878.5714111328125;
+	setAttr ".tgi[1].ni[39].y" 2247.142822265625;
+	setAttr ".tgi[1].ni[39].nvs" 18304;
+	setAttr ".tgi[1].ni[40].x" 2222.857177734375;
+	setAttr ".tgi[1].ni[40].y" 2200;
+	setAttr ".tgi[1].ni[40].nvs" 18304;
+	setAttr ".tgi[1].ni[41].x" 2615.71435546875;
+	setAttr ".tgi[1].ni[41].y" 2058.571533203125;
+	setAttr ".tgi[1].ni[41].nvs" 18304;
+	setAttr ".tgi[1].ni[42].x" -6.6013236045837402;
+	setAttr ".tgi[1].ni[42].y" 1674.31982421875;
+	setAttr ".tgi[1].ni[42].nvs" 18306;
+	setAttr ".tgi[1].ni[43].x" -687.9105224609375;
+	setAttr ".tgi[1].ni[43].y" 2069.6708984375;
+	setAttr ".tgi[1].ni[43].nvs" 18306;
+	setAttr ".tgi[2].tn" -type "string" "Untitled_4";
+	setAttr ".tgi[2].vl" -type "double2" -1774.108354691457 212.60382148982544 ;
+	setAttr ".tgi[2].vh" -type "double2" 348.962659428954 1280.3350610815107 ;
+	setAttr -s 26 ".tgi[2].ni";
+	setAttr ".tgi[2].ni[0].x" -368.57144165039063;
+	setAttr ".tgi[2].ni[0].y" 872.85711669921875;
+	setAttr ".tgi[2].ni[0].nvs" 18304;
+	setAttr ".tgi[2].ni[1].x" -368.57144165039063;
+	setAttr ".tgi[2].ni[1].y" 974.28570556640625;
+	setAttr ".tgi[2].ni[1].nvs" 18304;
+	setAttr ".tgi[2].ni[2].x" 21.428571701049805;
+	setAttr ".tgi[2].ni[2].y" 882.85711669921875;
+	setAttr ".tgi[2].ni[2].nvs" 18304;
+	setAttr ".tgi[2].ni[3].x" -1284.2857666015625;
+	setAttr ".tgi[2].ni[3].y" 608.5714111328125;
+	setAttr ".tgi[2].ni[3].nvs" 18304;
+	setAttr ".tgi[2].ni[4].x" -867.14288330078125;
+	setAttr ".tgi[2].ni[4].y" 1017.1428833007813;
+	setAttr ".tgi[2].ni[4].nvs" 18304;
+	setAttr ".tgi[2].ni[5].x" 520;
+	setAttr ".tgi[2].ni[5].y" 934.28570556640625;
+	setAttr ".tgi[2].ni[5].nvs" 18304;
+	setAttr ".tgi[2].ni[6].x" -867.14288330078125;
+	setAttr ".tgi[2].ni[6].y" 1118.5714111328125;
+	setAttr ".tgi[2].ni[6].nvs" 18304;
+	setAttr ".tgi[2].ni[7].x" -1591.4285888671875;
+	setAttr ".tgi[2].ni[7].y" 710;
+	setAttr ".tgi[2].ni[7].nvs" 18304;
+	setAttr ".tgi[2].ni[8].x" -867.14288330078125;
+	setAttr ".tgi[2].ni[8].y" 700;
+	setAttr ".tgi[2].ni[8].nvs" 18304;
+	setAttr ".tgi[2].ni[9].x" -1284.2857666015625;
+	setAttr ".tgi[2].ni[9].y" 507.14285278320313;
+	setAttr ".tgi[2].ni[9].nvs" 18304;
+	setAttr ".tgi[2].ni[10].x" 520;
+	setAttr ".tgi[2].ni[10].y" -111.42857360839844;
+	setAttr ".tgi[2].ni[10].nvs" 18304;
+	setAttr ".tgi[2].ni[11].x" 21.428571701049805;
+	setAttr ".tgi[2].ni[11].y" 781.4285888671875;
+	setAttr ".tgi[2].ni[11].nvs" 18304;
+	setAttr ".tgi[2].ni[12].x" 21.428571701049805;
+	setAttr ".tgi[2].ni[12].y" 578.5714111328125;
+	setAttr ".tgi[2].ni[12].nvs" 18304;
+	setAttr ".tgi[2].ni[13].x" -867.14288330078125;
+	setAttr ".tgi[2].ni[13].y" 915.71429443359375;
+	setAttr ".tgi[2].ni[13].nvs" 18304;
+	setAttr ".tgi[2].ni[14].x" -1284.2857666015625;
+	setAttr ".tgi[2].ni[14].y" 710;
+	setAttr ".tgi[2].ni[14].nvs" 18304;
+	setAttr ".tgi[2].ni[15].x" -867.14288330078125;
+	setAttr ".tgi[2].ni[15].y" 494.28570556640625;
+	setAttr ".tgi[2].ni[15].nvs" 18304;
+	setAttr ".tgi[2].ni[16].x" -867.14288330078125;
+	setAttr ".tgi[2].ni[16].y" 305.71429443359375;
+	setAttr ".tgi[2].ni[16].nvs" 18304;
+	setAttr ".tgi[2].ni[17].x" 21.428571701049805;
+	setAttr ".tgi[2].ni[17].y" -172.85714721679688;
+	setAttr ".tgi[2].ni[17].nvs" 18304;
+	setAttr ".tgi[2].ni[18].x" 520;
+	setAttr ".tgi[2].ni[18].y" -224.28572082519531;
+	setAttr ".tgi[2].ni[18].nvs" 18304;
+	setAttr ".tgi[2].ni[19].x" 520;
+	setAttr ".tgi[2].ni[19].y" 701.4285888671875;
+	setAttr ".tgi[2].ni[19].nvs" 18304;
+	setAttr ".tgi[2].ni[20].x" -1284.2857666015625;
+	setAttr ".tgi[2].ni[20].y" 870;
+	setAttr ".tgi[2].ni[20].nvs" 18304;
+	setAttr ".tgi[2].ni[21].x" -1284.2857666015625;
+	setAttr ".tgi[2].ni[21].y" 381.42855834960938;
+	setAttr ".tgi[2].ni[21].nvs" 18304;
+	setAttr ".tgi[2].ni[22].x" 520;
+	setAttr ".tgi[2].ni[22].y" 832.85711669921875;
+	setAttr ".tgi[2].ni[22].nvs" 18304;
+	setAttr ".tgi[2].ni[23].x" 21.428571701049805;
+	setAttr ".tgi[2].ni[23].y" 680;
+	setAttr ".tgi[2].ni[23].nvs" 18304;
+	setAttr ".tgi[2].ni[24].x" -1591.4285888671875;
+	setAttr ".tgi[2].ni[24].y" 444.28570556640625;
+	setAttr ".tgi[2].ni[24].nvs" 18304;
+	setAttr ".tgi[2].ni[25].x" 941.4285888671875;
+	setAttr ".tgi[2].ni[25].y" 882.85711669921875;
+	setAttr ".tgi[2].ni[25].nvs" 18304;
 select -ne :time1;
 	setAttr -av -k on ".cch";
 	setAttr -cb on ".ihi";
 	setAttr -av -k on ".nds";
 	setAttr -cb on ".bnm";
-	setAttr ".o" 94;
-	setAttr -av ".unw" 94;
+	setAttr ".o" 10;
+	setAttr -av ".unw" 10;
 select -ne :hardwareRenderingGlobals;
 	setAttr ".otfna" -type "stringArray" 22 "NURBS Curves" "NURBS Surfaces" "Polygons" "Subdiv Surface" "Particles" "Particle Instance" "Fluids" "Strokes" "Image Planes" "UI" "Lights" "Cameras" "Locators" "Joints" "IK Handles" "Deformers" "Motion Trails" "Components" "Hair Systems" "Follicles" "Misc. UI" "Ornaments"  ;
 	setAttr ".otfva" -type "Int32Array" 22 0 1 1 1 1 1
@@ -24547,7 +24632,7 @@ select -ne :hardwareRenderGlobals;
 	setAttr -k on ".hwql";
 	setAttr -k on ".hwfr";
 select -ne :ikSystem;
-	setAttr -s 4 ".sol";
+	setAttr -s 2 ".sol";
 connectAttr "NPC_Mesh.di" "NPC_Base_04RN.phl[1]";
 connectAttr "NPC_Mesh.di" "NPC_Base_04RN.phl[2]";
 connectAttr "NPC_Mesh.di" "NPC_Base_04RN.phl[3]";
@@ -24574,9 +24659,9 @@ connectAttr "Master_Dock_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[20]"
 connectAttr "NPC_SkinSkel.di" "NPC_Base_04RN.phl[21]";
 connectAttr "NPC_Base_04RN.phl[22]" "Master_Dock_joint_01_orientConstraint1.cro"
 		;
-connectAttr "NPC_Base_04RN.phl[23]" "Master_Dock_joint_01_pointConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[23]" "Master_Dock_joint_01_orientConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[24]" "Master_Dock_joint_01_orientConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[24]" "Master_Dock_joint_01_pointConstraint1.cpim"
 		;
 connectAttr "NPC_Base_04RN.phl[25]" "Master_Dock_joint_01_scaleConstraint1.cpim"
 		;
@@ -24600,8 +24685,8 @@ connectAttr "NPC_Base_04RN.phl[41]" "Hip_Joint_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[42]" "Hip_Joint_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[43]" "Hip_Joint_pointConstraint1.crp";
 connectAttr "NPC_Base_04RN.phl[44]" "Hip_Joint_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[45]" "Hip_Joint_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[46]" "Hip_Joint_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[45]" "Hip_Joint_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[46]" "Hip_Joint_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[47]" "Hip_Joint_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[48]" "L_Leg_joint_01_orientConstraint1.is";
 connectAttr "L_Leg_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[49]";
@@ -24615,8 +24700,8 @@ connectAttr "L_Leg_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[56]";
 connectAttr "L_Leg_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[57]";
 connectAttr "L_Leg_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[58]";
 connectAttr "NPC_Base_04RN.phl[59]" "L_Leg_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[60]" "L_Leg_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[61]" "L_Leg_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[60]" "L_Leg_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[61]" "L_Leg_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[62]" "L_Leg_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[63]" "L_Leg_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[64]" "L_Leg_joint_01_pointConstraint1.crp";
@@ -24633,8 +24718,8 @@ connectAttr "L_Knee_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[74]";
 connectAttr "L_Knee_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[75]";
 connectAttr "NPC_Base_04RN.phl[76]" "L_Knee_joint_01_scaleConstraint1.tsc";
 connectAttr "NPC_Base_04RN.phl[77]" "L_Knee_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[78]" "L_Knee_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[79]" "L_Knee_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[78]" "L_Knee_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[79]" "L_Knee_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[80]" "L_Knee_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[81]" "L_Knee_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[82]" "L_Knee_joint_01_pointConstraint1.crp";
@@ -24651,8 +24736,8 @@ connectAttr "L_Ankle_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[92]";
 connectAttr "L_Ankle_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[93]";
 connectAttr "NPC_Base_04RN.phl[94]" "L_Ankle_joint_01_scaleConstraint1.tsc";
 connectAttr "NPC_Base_04RN.phl[95]" "L_Ankle_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[96]" "L_Ankle_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[97]" "L_Ankle_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[96]" "L_Ankle_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[97]" "L_Ankle_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[98]" "L_Ankle_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[99]" "L_Ankle_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[100]" "L_Ankle_joint_01_pointConstraint1.crp";
@@ -24669,8 +24754,8 @@ connectAttr "L_Foot_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[110]";
 connectAttr "L_Foot_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[111]";
 connectAttr "NPC_Base_04RN.phl[112]" "L_Foot_joint_01_scaleConstraint1.tsc";
 connectAttr "NPC_Base_04RN.phl[113]" "L_Foot_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[114]" "L_Foot_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[115]" "L_Foot_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[114]" "L_Foot_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[115]" "L_Foot_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[116]" "L_Foot_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[117]" "L_Foot_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[118]" "L_Foot_joint_01_pointConstraint1.crp";
@@ -24684,8 +24769,8 @@ connectAttr "L_Toe_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[125]";
 connectAttr "L_Toe_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[126]";
 connectAttr "NPC_Base_04RN.phl[127]" "L_Toe_joint_01_scaleConstraint1.tsc";
 connectAttr "NPC_Base_04RN.phl[128]" "L_Toe_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[129]" "L_Toe_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[130]" "L_Toe_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[129]" "L_Toe_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[130]" "L_Toe_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[131]" "L_Toe_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[132]" "L_Toe_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[133]" "L_Toe_joint_01_pointConstraint1.crp";
@@ -24700,8 +24785,8 @@ connectAttr "NPC_Base_04RN.phl[141]" "Spine_joint_01_scaleConstraint1.tsc";
 connectAttr "Spine_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[142]";
 connectAttr "Spine_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[143]";
 connectAttr "Spine_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[144]";
-connectAttr "NPC_Base_04RN.phl[145]" "Spine_joint_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[146]" "Spine_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[145]" "Spine_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[146]" "Spine_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[147]" "Spine_joint_01_pointConstraint1.crp";
 connectAttr "NPC_Base_04RN.phl[148]" "Spine_joint_01_pointConstraint1.crt";
 connectAttr "NPC_Base_04RN.phl[149]" "Chest_joint_01_orientConstraint1.is";
@@ -24716,8 +24801,8 @@ connectAttr "Chest_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[157]";
 connectAttr "Chest_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[158]";
 connectAttr "Chest_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[159]";
 connectAttr "NPC_Base_04RN.phl[160]" "Chest_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[161]" "Chest_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[162]" "Chest_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[161]" "Chest_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[162]" "Chest_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[163]" "Chest_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[164]" "Chest_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[165]" "Chest_joint_01_pointConstraint1.crp";
@@ -24738,9 +24823,9 @@ connectAttr "L_Clavical_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[177]"
 		;
 connectAttr "NPC_Base_04RN.phl[178]" "L_Clavical_joint_01_orientConstraint1.cro"
 		;
-connectAttr "NPC_Base_04RN.phl[179]" "L_Clavical_joint_01_pointConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[179]" "L_Clavical_joint_01_orientConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[180]" "L_Clavical_joint_01_orientConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[180]" "L_Clavical_joint_01_pointConstraint1.cpim"
 		;
 connectAttr "NPC_Base_04RN.phl[181]" "L_Clavical_joint_01_scaleConstraint1.cpim"
 		;
@@ -24764,9 +24849,9 @@ connectAttr "L_Shoulder_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[195]"
 		;
 connectAttr "NPC_Base_04RN.phl[196]" "L_Shoulder_joint_01_orientConstraint1.cro"
 		;
-connectAttr "NPC_Base_04RN.phl[197]" "L_Shoulder_joint_01_pointConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[197]" "L_Shoulder_joint_01_orientConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[198]" "L_Shoulder_joint_01_orientConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[198]" "L_Shoulder_joint_01_pointConstraint1.cpim"
 		;
 connectAttr "NPC_Base_04RN.phl[199]" "L_Shoulder_joint_01_scaleConstraint1.cpim"
 		;
@@ -24786,8 +24871,8 @@ connectAttr "L_Elbow_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[211]";
 connectAttr "L_Elbow_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[212]";
 connectAttr "L_Elbow_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[213]";
 connectAttr "NPC_Base_04RN.phl[214]" "L_Elbow_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[215]" "L_Elbow_joint_01_pointConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[216]" "L_Elbow_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[215]" "L_Elbow_joint_01_orientConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[216]" "L_Elbow_joint_01_pointConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[217]" "L_Elbow_joint_01_scaleConstraint1.cpim";
 connectAttr "NPC_Base_04RN.phl[218]" "L_Elbow_joint_01_orientConstraint1.cjo";
 connectAttr "NPC_Base_04RN.phl[219]" "L_Elbow_joint_01_pointConstraint1.crp";
@@ -24796,1082 +24881,1084 @@ connectAttr "NPC_Base_04RN.phl[221]" "L_Wrist_joint_01_orientConstraint1.is";
 connectAttr "L_Wrist_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[222]";
 connectAttr "L_Wrist_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[223]";
 connectAttr "L_Wrist_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[224]";
-connectAttr "L_Wrist_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[225]";
-connectAttr "L_Wrist_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[226]";
-connectAttr "L_Wrist_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[227]";
-connectAttr "NPC_Base_04RN.phl[228]" "L_Wrist_joint_01_scaleConstraint1.tsc";
-connectAttr "L_Wrist_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[229]";
-connectAttr "L_Wrist_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[230]";
-connectAttr "L_Wrist_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[231]";
-connectAttr "NPC_Base_04RN.phl[232]" "L_Wrist_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[233]" "L_Wrist_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[225]" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[25].dn"
+		;
+connectAttr "L_Wrist_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[226]";
+connectAttr "L_Wrist_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[227]";
+connectAttr "L_Wrist_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[228]";
+connectAttr "NPC_Base_04RN.phl[229]" "L_Wrist_joint_01_scaleConstraint1.tsc";
+connectAttr "L_Wrist_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[230]";
+connectAttr "L_Wrist_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[231]";
+connectAttr "L_Wrist_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[232]";
+connectAttr "NPC_Base_04RN.phl[233]" "L_Wrist_joint_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[234]" "L_Wrist_joint_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[235]" "L_Wrist_joint_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[236]" "L_Wrist_joint_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[237]" "L_Wrist_joint_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[238]" "L_Wrist_joint_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[239]" "L_Thumb_01_orientConstraint1.is";
-connectAttr "L_Thumb_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[240]";
-connectAttr "L_Thumb_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[241]";
-connectAttr "L_Thumb_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[242]";
-connectAttr "L_Thumb_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[243]";
-connectAttr "L_Thumb_01_pointConstraint1.cty" "NPC_Base_04RN.phl[244]";
-connectAttr "L_Thumb_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[245]";
-connectAttr "NPC_Base_04RN.phl[246]" "L_Thumb_01_scaleConstraint1.tsc";
-connectAttr "L_Thumb_01_orientConstraint1.crx" "NPC_Base_04RN.phl[247]";
-connectAttr "L_Thumb_01_orientConstraint1.cry" "NPC_Base_04RN.phl[248]";
-connectAttr "L_Thumb_01_orientConstraint1.crz" "NPC_Base_04RN.phl[249]";
-connectAttr "NPC_Base_04RN.phl[250]" "L_Thumb_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[251]" "L_Thumb_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[235]" "L_Wrist_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[236]" "L_Wrist_joint_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[237]" "L_Wrist_joint_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[238]" "L_Wrist_joint_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[239]" "L_Wrist_joint_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[240]" "L_Thumb_01_orientConstraint1.is";
+connectAttr "L_Thumb_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[241]";
+connectAttr "L_Thumb_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[242]";
+connectAttr "L_Thumb_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[243]";
+connectAttr "L_Thumb_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[244]";
+connectAttr "L_Thumb_01_pointConstraint1.cty" "NPC_Base_04RN.phl[245]";
+connectAttr "L_Thumb_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[246]";
+connectAttr "NPC_Base_04RN.phl[247]" "L_Thumb_01_scaleConstraint1.tsc";
+connectAttr "L_Thumb_01_orientConstraint1.crx" "NPC_Base_04RN.phl[248]";
+connectAttr "L_Thumb_01_orientConstraint1.cry" "NPC_Base_04RN.phl[249]";
+connectAttr "L_Thumb_01_orientConstraint1.crz" "NPC_Base_04RN.phl[250]";
+connectAttr "NPC_Base_04RN.phl[251]" "L_Thumb_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[252]" "L_Thumb_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[253]" "L_Thumb_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[254]" "L_Thumb_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[255]" "L_Thumb_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[256]" "L_Thumb_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[257]" "L_Thumb_02_orientConstraint1.is";
-connectAttr "L_Thumb_02_scaleConstraint1.csx" "NPC_Base_04RN.phl[258]";
-connectAttr "L_Thumb_02_scaleConstraint1.csy" "NPC_Base_04RN.phl[259]";
-connectAttr "L_Thumb_02_scaleConstraint1.csz" "NPC_Base_04RN.phl[260]";
-connectAttr "L_Thumb_02_pointConstraint1.ctx" "NPC_Base_04RN.phl[261]";
-connectAttr "L_Thumb_02_pointConstraint1.cty" "NPC_Base_04RN.phl[262]";
-connectAttr "L_Thumb_02_pointConstraint1.ctz" "NPC_Base_04RN.phl[263]";
-connectAttr "NPC_Base_04RN.phl[264]" "L_Thumb_02_scaleConstraint1.tsc";
-connectAttr "L_Thumb_02_orientConstraint1.crx" "NPC_Base_04RN.phl[265]";
-connectAttr "L_Thumb_02_orientConstraint1.cry" "NPC_Base_04RN.phl[266]";
-connectAttr "L_Thumb_02_orientConstraint1.crz" "NPC_Base_04RN.phl[267]";
-connectAttr "NPC_Base_04RN.phl[268]" "L_Thumb_02_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[269]" "L_Thumb_02_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[253]" "L_Thumb_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[254]" "L_Thumb_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[255]" "L_Thumb_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[256]" "L_Thumb_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[257]" "L_Thumb_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[258]" "L_Thumb_02_orientConstraint1.is";
+connectAttr "L_Thumb_02_scaleConstraint1.csx" "NPC_Base_04RN.phl[259]";
+connectAttr "L_Thumb_02_scaleConstraint1.csy" "NPC_Base_04RN.phl[260]";
+connectAttr "L_Thumb_02_scaleConstraint1.csz" "NPC_Base_04RN.phl[261]";
+connectAttr "L_Thumb_02_pointConstraint1.ctx" "NPC_Base_04RN.phl[262]";
+connectAttr "L_Thumb_02_pointConstraint1.cty" "NPC_Base_04RN.phl[263]";
+connectAttr "L_Thumb_02_pointConstraint1.ctz" "NPC_Base_04RN.phl[264]";
+connectAttr "NPC_Base_04RN.phl[265]" "L_Thumb_02_scaleConstraint1.tsc";
+connectAttr "L_Thumb_02_orientConstraint1.crx" "NPC_Base_04RN.phl[266]";
+connectAttr "L_Thumb_02_orientConstraint1.cry" "NPC_Base_04RN.phl[267]";
+connectAttr "L_Thumb_02_orientConstraint1.crz" "NPC_Base_04RN.phl[268]";
+connectAttr "NPC_Base_04RN.phl[269]" "L_Thumb_02_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[270]" "L_Thumb_02_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[271]" "L_Thumb_02_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[272]" "L_Thumb_02_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[273]" "L_Thumb_02_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[274]" "L_Thumb_02_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[275]" "L_Thumb_03_orientConstraint1.is";
-connectAttr "L_Thumb_03_pointConstraint1.ctx" "NPC_Base_04RN.phl[276]";
-connectAttr "L_Thumb_03_pointConstraint1.cty" "NPC_Base_04RN.phl[277]";
-connectAttr "L_Thumb_03_pointConstraint1.ctz" "NPC_Base_04RN.phl[278]";
-connectAttr "NPC_Base_04RN.phl[279]" "L_Thumb_03_scaleConstraint1.tsc";
-connectAttr "L_Thumb_03_orientConstraint1.crx" "NPC_Base_04RN.phl[280]";
-connectAttr "L_Thumb_03_orientConstraint1.cry" "NPC_Base_04RN.phl[281]";
-connectAttr "L_Thumb_03_orientConstraint1.crz" "NPC_Base_04RN.phl[282]";
-connectAttr "NPC_Base_04RN.phl[283]" "L_Thumb_03_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[284]" "L_Thumb_03_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[271]" "L_Thumb_02_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[272]" "L_Thumb_02_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[273]" "L_Thumb_02_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[274]" "L_Thumb_02_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[275]" "L_Thumb_02_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[276]" "L_Thumb_03_orientConstraint1.is";
+connectAttr "L_Thumb_03_pointConstraint1.ctx" "NPC_Base_04RN.phl[277]";
+connectAttr "L_Thumb_03_pointConstraint1.cty" "NPC_Base_04RN.phl[278]";
+connectAttr "L_Thumb_03_pointConstraint1.ctz" "NPC_Base_04RN.phl[279]";
+connectAttr "NPC_Base_04RN.phl[280]" "L_Thumb_03_scaleConstraint1.tsc";
+connectAttr "L_Thumb_03_orientConstraint1.crx" "NPC_Base_04RN.phl[281]";
+connectAttr "L_Thumb_03_orientConstraint1.cry" "NPC_Base_04RN.phl[282]";
+connectAttr "L_Thumb_03_orientConstraint1.crz" "NPC_Base_04RN.phl[283]";
+connectAttr "NPC_Base_04RN.phl[284]" "L_Thumb_03_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[285]" "L_Thumb_03_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[286]" "L_Thumb_03_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[287]" "L_Thumb_03_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[288]" "L_Thumb_03_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[289]" "L_Thumb_03_pointConstraint1.crt";
-connectAttr "L_Thumb_03_scaleConstraint1.csx" "NPC_Base_04RN.phl[290]";
-connectAttr "L_Thumb_03_scaleConstraint1.csy" "NPC_Base_04RN.phl[291]";
-connectAttr "L_Thumb_03_scaleConstraint1.csz" "NPC_Base_04RN.phl[292]";
-connectAttr "NPC_Base_04RN.phl[293]" "L_Index_01_orientConstraint1.is";
-connectAttr "L_Index_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[294]";
-connectAttr "L_Index_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[295]";
-connectAttr "L_Index_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[296]";
-connectAttr "L_Index_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[297]";
-connectAttr "L_Index_01_pointConstraint1.cty" "NPC_Base_04RN.phl[298]";
-connectAttr "L_Index_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[299]";
-connectAttr "NPC_Base_04RN.phl[300]" "L_Index_01_scaleConstraint1.tsc";
-connectAttr "L_Index_01_orientConstraint1.crx" "NPC_Base_04RN.phl[301]";
-connectAttr "L_Index_01_orientConstraint1.cry" "NPC_Base_04RN.phl[302]";
-connectAttr "L_Index_01_orientConstraint1.crz" "NPC_Base_04RN.phl[303]";
-connectAttr "NPC_Base_04RN.phl[304]" "L_Index_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[305]" "L_Index_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[286]" "L_Thumb_03_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[287]" "L_Thumb_03_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[288]" "L_Thumb_03_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[289]" "L_Thumb_03_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[290]" "L_Thumb_03_pointConstraint1.crt";
+connectAttr "L_Thumb_03_scaleConstraint1.csx" "NPC_Base_04RN.phl[291]";
+connectAttr "L_Thumb_03_scaleConstraint1.csy" "NPC_Base_04RN.phl[292]";
+connectAttr "L_Thumb_03_scaleConstraint1.csz" "NPC_Base_04RN.phl[293]";
+connectAttr "NPC_Base_04RN.phl[294]" "L_Index_01_orientConstraint1.is";
+connectAttr "L_Index_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[295]";
+connectAttr "L_Index_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[296]";
+connectAttr "L_Index_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[297]";
+connectAttr "L_Index_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[298]";
+connectAttr "L_Index_01_pointConstraint1.cty" "NPC_Base_04RN.phl[299]";
+connectAttr "L_Index_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[300]";
+connectAttr "NPC_Base_04RN.phl[301]" "L_Index_01_scaleConstraint1.tsc";
+connectAttr "L_Index_01_orientConstraint1.crx" "NPC_Base_04RN.phl[302]";
+connectAttr "L_Index_01_orientConstraint1.cry" "NPC_Base_04RN.phl[303]";
+connectAttr "L_Index_01_orientConstraint1.crz" "NPC_Base_04RN.phl[304]";
+connectAttr "NPC_Base_04RN.phl[305]" "L_Index_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[306]" "L_Index_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[307]" "L_Index_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[308]" "L_Index_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[309]" "L_Index_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[310]" "L_Index_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[311]" "L_Index_02_orientConstraint1.is";
-connectAttr "L_Index_02_scaleConstraint1.csx" "NPC_Base_04RN.phl[312]";
-connectAttr "L_Index_02_scaleConstraint1.csy" "NPC_Base_04RN.phl[313]";
-connectAttr "L_Index_02_scaleConstraint1.csz" "NPC_Base_04RN.phl[314]";
-connectAttr "L_Index_02_pointConstraint1.ctx" "NPC_Base_04RN.phl[315]";
-connectAttr "L_Index_02_pointConstraint1.cty" "NPC_Base_04RN.phl[316]";
-connectAttr "L_Index_02_pointConstraint1.ctz" "NPC_Base_04RN.phl[317]";
-connectAttr "NPC_Base_04RN.phl[318]" "L_Index_02_scaleConstraint1.tsc";
-connectAttr "L_Index_02_orientConstraint1.crx" "NPC_Base_04RN.phl[319]";
-connectAttr "L_Index_02_orientConstraint1.cry" "NPC_Base_04RN.phl[320]";
-connectAttr "L_Index_02_orientConstraint1.crz" "NPC_Base_04RN.phl[321]";
-connectAttr "NPC_Base_04RN.phl[322]" "L_Index_02_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[323]" "L_Index_02_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[307]" "L_Index_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[308]" "L_Index_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[309]" "L_Index_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[310]" "L_Index_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[311]" "L_Index_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[312]" "L_Index_02_orientConstraint1.is";
+connectAttr "L_Index_02_scaleConstraint1.csx" "NPC_Base_04RN.phl[313]";
+connectAttr "L_Index_02_scaleConstraint1.csy" "NPC_Base_04RN.phl[314]";
+connectAttr "L_Index_02_scaleConstraint1.csz" "NPC_Base_04RN.phl[315]";
+connectAttr "L_Index_02_pointConstraint1.ctx" "NPC_Base_04RN.phl[316]";
+connectAttr "L_Index_02_pointConstraint1.cty" "NPC_Base_04RN.phl[317]";
+connectAttr "L_Index_02_pointConstraint1.ctz" "NPC_Base_04RN.phl[318]";
+connectAttr "NPC_Base_04RN.phl[319]" "L_Index_02_scaleConstraint1.tsc";
+connectAttr "L_Index_02_orientConstraint1.crx" "NPC_Base_04RN.phl[320]";
+connectAttr "L_Index_02_orientConstraint1.cry" "NPC_Base_04RN.phl[321]";
+connectAttr "L_Index_02_orientConstraint1.crz" "NPC_Base_04RN.phl[322]";
+connectAttr "NPC_Base_04RN.phl[323]" "L_Index_02_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[324]" "L_Index_02_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[325]" "L_Index_02_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[326]" "L_Index_02_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[327]" "L_Index_02_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[328]" "L_Index_02_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[329]" "L_Index_03_orientConstraint1.is";
-connectAttr "L_Index_03_pointConstraint1.ctx" "NPC_Base_04RN.phl[330]";
-connectAttr "L_Index_03_pointConstraint1.cty" "NPC_Base_04RN.phl[331]";
-connectAttr "L_Index_03_pointConstraint1.ctz" "NPC_Base_04RN.phl[332]";
-connectAttr "NPC_Base_04RN.phl[333]" "L_Index_03_scaleConstraint1.tsc";
-connectAttr "L_Index_03_orientConstraint1.crx" "NPC_Base_04RN.phl[334]";
-connectAttr "L_Index_03_orientConstraint1.cry" "NPC_Base_04RN.phl[335]";
-connectAttr "L_Index_03_orientConstraint1.crz" "NPC_Base_04RN.phl[336]";
-connectAttr "NPC_Base_04RN.phl[337]" "L_Index_03_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[338]" "L_Index_03_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[325]" "L_Index_02_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[326]" "L_Index_02_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[327]" "L_Index_02_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[328]" "L_Index_02_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[329]" "L_Index_02_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[330]" "L_Index_03_orientConstraint1.is";
+connectAttr "L_Index_03_pointConstraint1.ctx" "NPC_Base_04RN.phl[331]";
+connectAttr "L_Index_03_pointConstraint1.cty" "NPC_Base_04RN.phl[332]";
+connectAttr "L_Index_03_pointConstraint1.ctz" "NPC_Base_04RN.phl[333]";
+connectAttr "NPC_Base_04RN.phl[334]" "L_Index_03_scaleConstraint1.tsc";
+connectAttr "L_Index_03_orientConstraint1.crx" "NPC_Base_04RN.phl[335]";
+connectAttr "L_Index_03_orientConstraint1.cry" "NPC_Base_04RN.phl[336]";
+connectAttr "L_Index_03_orientConstraint1.crz" "NPC_Base_04RN.phl[337]";
+connectAttr "NPC_Base_04RN.phl[338]" "L_Index_03_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[339]" "L_Index_03_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[340]" "L_Index_03_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[341]" "L_Index_03_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[342]" "L_Index_03_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[343]" "L_Index_03_pointConstraint1.crt";
-connectAttr "L_Index_03_scaleConstraint1.csx" "NPC_Base_04RN.phl[344]";
-connectAttr "L_Index_03_scaleConstraint1.csy" "NPC_Base_04RN.phl[345]";
-connectAttr "L_Index_03_scaleConstraint1.csz" "NPC_Base_04RN.phl[346]";
-connectAttr "NPC_Base_04RN.phl[347]" "L_Middle_01_orientConstraint1.is";
-connectAttr "L_Middle_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[348]";
-connectAttr "L_Middle_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[349]";
-connectAttr "L_Middle_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[350]";
-connectAttr "L_Middle_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[351]";
-connectAttr "L_Middle_01_pointConstraint1.cty" "NPC_Base_04RN.phl[352]";
-connectAttr "L_Middle_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[353]";
-connectAttr "NPC_Base_04RN.phl[354]" "L_Middle_01_scaleConstraint1.tsc";
-connectAttr "L_Middle_01_orientConstraint1.crx" "NPC_Base_04RN.phl[355]";
-connectAttr "L_Middle_01_orientConstraint1.cry" "NPC_Base_04RN.phl[356]";
-connectAttr "L_Middle_01_orientConstraint1.crz" "NPC_Base_04RN.phl[357]";
-connectAttr "NPC_Base_04RN.phl[358]" "L_Middle_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[359]" "L_Middle_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[340]" "L_Index_03_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[341]" "L_Index_03_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[342]" "L_Index_03_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[343]" "L_Index_03_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[344]" "L_Index_03_pointConstraint1.crt";
+connectAttr "L_Index_03_scaleConstraint1.csx" "NPC_Base_04RN.phl[345]";
+connectAttr "L_Index_03_scaleConstraint1.csy" "NPC_Base_04RN.phl[346]";
+connectAttr "L_Index_03_scaleConstraint1.csz" "NPC_Base_04RN.phl[347]";
+connectAttr "NPC_Base_04RN.phl[348]" "L_Middle_01_orientConstraint1.is";
+connectAttr "L_Middle_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[349]";
+connectAttr "L_Middle_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[350]";
+connectAttr "L_Middle_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[351]";
+connectAttr "L_Middle_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[352]";
+connectAttr "L_Middle_01_pointConstraint1.cty" "NPC_Base_04RN.phl[353]";
+connectAttr "L_Middle_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[354]";
+connectAttr "NPC_Base_04RN.phl[355]" "L_Middle_01_scaleConstraint1.tsc";
+connectAttr "L_Middle_01_orientConstraint1.crx" "NPC_Base_04RN.phl[356]";
+connectAttr "L_Middle_01_orientConstraint1.cry" "NPC_Base_04RN.phl[357]";
+connectAttr "L_Middle_01_orientConstraint1.crz" "NPC_Base_04RN.phl[358]";
+connectAttr "NPC_Base_04RN.phl[359]" "L_Middle_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[360]" "L_Middle_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[361]" "L_Middle_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[362]" "L_Middle_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[363]" "L_Middle_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[364]" "L_Middle_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[365]" "L_Middle_02_orientConstraint1.is";
-connectAttr "L_Middle_02_scaleConstraint1.csx" "NPC_Base_04RN.phl[366]";
-connectAttr "L_Middle_02_scaleConstraint1.csy" "NPC_Base_04RN.phl[367]";
-connectAttr "L_Middle_02_scaleConstraint1.csz" "NPC_Base_04RN.phl[368]";
-connectAttr "L_Middle_02_pointConstraint1.ctx" "NPC_Base_04RN.phl[369]";
-connectAttr "L_Middle_02_pointConstraint1.cty" "NPC_Base_04RN.phl[370]";
-connectAttr "L_Middle_02_pointConstraint1.ctz" "NPC_Base_04RN.phl[371]";
-connectAttr "NPC_Base_04RN.phl[372]" "L_Middle_02_scaleConstraint1.tsc";
-connectAttr "L_Middle_02_orientConstraint1.crx" "NPC_Base_04RN.phl[373]";
-connectAttr "L_Middle_02_orientConstraint1.cry" "NPC_Base_04RN.phl[374]";
-connectAttr "L_Middle_02_orientConstraint1.crz" "NPC_Base_04RN.phl[375]";
-connectAttr "NPC_Base_04RN.phl[376]" "L_Middle_02_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[377]" "L_Middle_02_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[361]" "L_Middle_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[362]" "L_Middle_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[363]" "L_Middle_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[364]" "L_Middle_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[365]" "L_Middle_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[366]" "L_Middle_02_orientConstraint1.is";
+connectAttr "L_Middle_02_scaleConstraint1.csx" "NPC_Base_04RN.phl[367]";
+connectAttr "L_Middle_02_scaleConstraint1.csy" "NPC_Base_04RN.phl[368]";
+connectAttr "L_Middle_02_scaleConstraint1.csz" "NPC_Base_04RN.phl[369]";
+connectAttr "L_Middle_02_pointConstraint1.ctx" "NPC_Base_04RN.phl[370]";
+connectAttr "L_Middle_02_pointConstraint1.cty" "NPC_Base_04RN.phl[371]";
+connectAttr "L_Middle_02_pointConstraint1.ctz" "NPC_Base_04RN.phl[372]";
+connectAttr "NPC_Base_04RN.phl[373]" "L_Middle_02_scaleConstraint1.tsc";
+connectAttr "L_Middle_02_orientConstraint1.crx" "NPC_Base_04RN.phl[374]";
+connectAttr "L_Middle_02_orientConstraint1.cry" "NPC_Base_04RN.phl[375]";
+connectAttr "L_Middle_02_orientConstraint1.crz" "NPC_Base_04RN.phl[376]";
+connectAttr "NPC_Base_04RN.phl[377]" "L_Middle_02_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[378]" "L_Middle_02_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[379]" "L_Middle_02_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[380]" "L_Middle_02_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[381]" "L_Middle_02_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[382]" "L_Middle_02_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[383]" "L_Middle_03_orientConstraint1.is";
-connectAttr "L_Middle_03_pointConstraint1.ctx" "NPC_Base_04RN.phl[384]";
-connectAttr "L_Middle_03_pointConstraint1.cty" "NPC_Base_04RN.phl[385]";
-connectAttr "L_Middle_03_pointConstraint1.ctz" "NPC_Base_04RN.phl[386]";
-connectAttr "NPC_Base_04RN.phl[387]" "L_Middle_03_scaleConstraint1.tsc";
-connectAttr "L_Middle_03_orientConstraint1.crx" "NPC_Base_04RN.phl[388]";
-connectAttr "L_Middle_03_orientConstraint1.cry" "NPC_Base_04RN.phl[389]";
-connectAttr "L_Middle_03_orientConstraint1.crz" "NPC_Base_04RN.phl[390]";
-connectAttr "NPC_Base_04RN.phl[391]" "L_Middle_03_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[392]" "L_Middle_03_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[379]" "L_Middle_02_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[380]" "L_Middle_02_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[381]" "L_Middle_02_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[382]" "L_Middle_02_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[383]" "L_Middle_02_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[384]" "L_Middle_03_orientConstraint1.is";
+connectAttr "L_Middle_03_pointConstraint1.ctx" "NPC_Base_04RN.phl[385]";
+connectAttr "L_Middle_03_pointConstraint1.cty" "NPC_Base_04RN.phl[386]";
+connectAttr "L_Middle_03_pointConstraint1.ctz" "NPC_Base_04RN.phl[387]";
+connectAttr "NPC_Base_04RN.phl[388]" "L_Middle_03_scaleConstraint1.tsc";
+connectAttr "L_Middle_03_orientConstraint1.crx" "NPC_Base_04RN.phl[389]";
+connectAttr "L_Middle_03_orientConstraint1.cry" "NPC_Base_04RN.phl[390]";
+connectAttr "L_Middle_03_orientConstraint1.crz" "NPC_Base_04RN.phl[391]";
+connectAttr "NPC_Base_04RN.phl[392]" "L_Middle_03_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[393]" "L_Middle_03_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[394]" "L_Middle_03_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[395]" "L_Middle_03_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[396]" "L_Middle_03_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[397]" "L_Middle_03_pointConstraint1.crt";
-connectAttr "L_Middle_03_scaleConstraint1.csx" "NPC_Base_04RN.phl[398]";
-connectAttr "L_Middle_03_scaleConstraint1.csy" "NPC_Base_04RN.phl[399]";
-connectAttr "L_Middle_03_scaleConstraint1.csz" "NPC_Base_04RN.phl[400]";
-connectAttr "NPC_Base_04RN.phl[401]" "L_Pinky_01_orientConstraint1.is";
-connectAttr "L_Pinky_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[402]";
-connectAttr "L_Pinky_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[403]";
-connectAttr "L_Pinky_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[404]";
-connectAttr "L_Pinky_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[405]";
-connectAttr "L_Pinky_01_pointConstraint1.cty" "NPC_Base_04RN.phl[406]";
-connectAttr "L_Pinky_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[407]";
-connectAttr "NPC_Base_04RN.phl[408]" "L_Pinky_01_scaleConstraint1.tsc";
-connectAttr "L_Pinky_01_orientConstraint1.crx" "NPC_Base_04RN.phl[409]";
-connectAttr "L_Pinky_01_orientConstraint1.cry" "NPC_Base_04RN.phl[410]";
-connectAttr "L_Pinky_01_orientConstraint1.crz" "NPC_Base_04RN.phl[411]";
-connectAttr "NPC_Base_04RN.phl[412]" "L_Pinky_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[413]" "L_Pinky_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[394]" "L_Middle_03_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[395]" "L_Middle_03_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[396]" "L_Middle_03_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[397]" "L_Middle_03_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[398]" "L_Middle_03_pointConstraint1.crt";
+connectAttr "L_Middle_03_scaleConstraint1.csx" "NPC_Base_04RN.phl[399]";
+connectAttr "L_Middle_03_scaleConstraint1.csy" "NPC_Base_04RN.phl[400]";
+connectAttr "L_Middle_03_scaleConstraint1.csz" "NPC_Base_04RN.phl[401]";
+connectAttr "NPC_Base_04RN.phl[402]" "L_Pinky_01_orientConstraint1.is";
+connectAttr "L_Pinky_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[403]";
+connectAttr "L_Pinky_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[404]";
+connectAttr "L_Pinky_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[405]";
+connectAttr "L_Pinky_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[406]";
+connectAttr "L_Pinky_01_pointConstraint1.cty" "NPC_Base_04RN.phl[407]";
+connectAttr "L_Pinky_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[408]";
+connectAttr "NPC_Base_04RN.phl[409]" "L_Pinky_01_scaleConstraint1.tsc";
+connectAttr "L_Pinky_01_orientConstraint1.crx" "NPC_Base_04RN.phl[410]";
+connectAttr "L_Pinky_01_orientConstraint1.cry" "NPC_Base_04RN.phl[411]";
+connectAttr "L_Pinky_01_orientConstraint1.crz" "NPC_Base_04RN.phl[412]";
+connectAttr "NPC_Base_04RN.phl[413]" "L_Pinky_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[414]" "L_Pinky_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[415]" "L_Pinky_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[416]" "L_Pinky_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[417]" "L_Pinky_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[418]" "L_Pinky_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[419]" "L_Pinky_02_orientConstraint1.is";
-connectAttr "L_Pinky_02_scaleConstraint1.csx" "NPC_Base_04RN.phl[420]";
-connectAttr "L_Pinky_02_scaleConstraint1.csy" "NPC_Base_04RN.phl[421]";
-connectAttr "L_Pinky_02_scaleConstraint1.csz" "NPC_Base_04RN.phl[422]";
-connectAttr "L_Pinky_02_pointConstraint1.ctx" "NPC_Base_04RN.phl[423]";
-connectAttr "L_Pinky_02_pointConstraint1.cty" "NPC_Base_04RN.phl[424]";
-connectAttr "L_Pinky_02_pointConstraint1.ctz" "NPC_Base_04RN.phl[425]";
-connectAttr "NPC_Base_04RN.phl[426]" "L_Pinky_02_scaleConstraint1.tsc";
-connectAttr "L_Pinky_02_orientConstraint1.crx" "NPC_Base_04RN.phl[427]";
-connectAttr "L_Pinky_02_orientConstraint1.cry" "NPC_Base_04RN.phl[428]";
-connectAttr "L_Pinky_02_orientConstraint1.crz" "NPC_Base_04RN.phl[429]";
-connectAttr "NPC_Base_04RN.phl[430]" "L_Pinky_02_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[431]" "L_Pinky_02_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[415]" "L_Pinky_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[416]" "L_Pinky_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[417]" "L_Pinky_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[418]" "L_Pinky_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[419]" "L_Pinky_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[420]" "L_Pinky_02_orientConstraint1.is";
+connectAttr "L_Pinky_02_scaleConstraint1.csx" "NPC_Base_04RN.phl[421]";
+connectAttr "L_Pinky_02_scaleConstraint1.csy" "NPC_Base_04RN.phl[422]";
+connectAttr "L_Pinky_02_scaleConstraint1.csz" "NPC_Base_04RN.phl[423]";
+connectAttr "L_Pinky_02_pointConstraint1.ctx" "NPC_Base_04RN.phl[424]";
+connectAttr "L_Pinky_02_pointConstraint1.cty" "NPC_Base_04RN.phl[425]";
+connectAttr "L_Pinky_02_pointConstraint1.ctz" "NPC_Base_04RN.phl[426]";
+connectAttr "NPC_Base_04RN.phl[427]" "L_Pinky_02_scaleConstraint1.tsc";
+connectAttr "L_Pinky_02_orientConstraint1.crx" "NPC_Base_04RN.phl[428]";
+connectAttr "L_Pinky_02_orientConstraint1.cry" "NPC_Base_04RN.phl[429]";
+connectAttr "L_Pinky_02_orientConstraint1.crz" "NPC_Base_04RN.phl[430]";
+connectAttr "NPC_Base_04RN.phl[431]" "L_Pinky_02_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[432]" "L_Pinky_02_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[433]" "L_Pinky_02_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[434]" "L_Pinky_02_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[435]" "L_Pinky_02_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[436]" "L_Pinky_02_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[437]" "L_Pinky_03_orientConstraint1.is";
-connectAttr "L_Pinky_03_pointConstraint1.ctx" "NPC_Base_04RN.phl[438]";
-connectAttr "L_Pinky_03_pointConstraint1.cty" "NPC_Base_04RN.phl[439]";
-connectAttr "L_Pinky_03_pointConstraint1.ctz" "NPC_Base_04RN.phl[440]";
-connectAttr "NPC_Base_04RN.phl[441]" "L_Pinky_03_scaleConstraint1.tsc";
-connectAttr "L_Pinky_03_orientConstraint1.crx" "NPC_Base_04RN.phl[442]";
-connectAttr "L_Pinky_03_orientConstraint1.cry" "NPC_Base_04RN.phl[443]";
-connectAttr "L_Pinky_03_orientConstraint1.crz" "NPC_Base_04RN.phl[444]";
-connectAttr "NPC_Base_04RN.phl[445]" "L_Pinky_03_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[446]" "L_Pinky_03_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[433]" "L_Pinky_02_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[434]" "L_Pinky_02_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[435]" "L_Pinky_02_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[436]" "L_Pinky_02_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[437]" "L_Pinky_02_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[438]" "L_Pinky_03_orientConstraint1.is";
+connectAttr "L_Pinky_03_pointConstraint1.ctx" "NPC_Base_04RN.phl[439]";
+connectAttr "L_Pinky_03_pointConstraint1.cty" "NPC_Base_04RN.phl[440]";
+connectAttr "L_Pinky_03_pointConstraint1.ctz" "NPC_Base_04RN.phl[441]";
+connectAttr "NPC_Base_04RN.phl[442]" "L_Pinky_03_scaleConstraint1.tsc";
+connectAttr "L_Pinky_03_orientConstraint1.crx" "NPC_Base_04RN.phl[443]";
+connectAttr "L_Pinky_03_orientConstraint1.cry" "NPC_Base_04RN.phl[444]";
+connectAttr "L_Pinky_03_orientConstraint1.crz" "NPC_Base_04RN.phl[445]";
+connectAttr "NPC_Base_04RN.phl[446]" "L_Pinky_03_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[447]" "L_Pinky_03_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[448]" "L_Pinky_03_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[449]" "L_Pinky_03_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[450]" "L_Pinky_03_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[451]" "L_Pinky_03_pointConstraint1.crt";
-connectAttr "L_Pinky_03_scaleConstraint1.csx" "NPC_Base_04RN.phl[452]";
-connectAttr "L_Pinky_03_scaleConstraint1.csy" "NPC_Base_04RN.phl[453]";
-connectAttr "L_Pinky_03_scaleConstraint1.csz" "NPC_Base_04RN.phl[454]";
-connectAttr "NPC_Base_04RN.phl[455]" "R_Clavical_joint_01_orientConstraint1.is";
-connectAttr "R_Clavical_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[456]";
-connectAttr "R_Clavical_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[457]";
-connectAttr "R_Clavical_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[458]";
-connectAttr "NPC_Base_04RN.phl[459]" "R_Clavical_joint_01_scaleConstraint1.tsc";
-connectAttr "R_Clavical_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[460]";
-connectAttr "R_Clavical_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[461]";
-connectAttr "R_Clavical_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[462]";
-connectAttr "R_Clavical_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[463]"
+connectAttr "NPC_Base_04RN.phl[448]" "L_Pinky_03_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[449]" "L_Pinky_03_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[450]" "L_Pinky_03_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[451]" "L_Pinky_03_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[452]" "L_Pinky_03_pointConstraint1.crt";
+connectAttr "L_Pinky_03_scaleConstraint1.csx" "NPC_Base_04RN.phl[453]";
+connectAttr "L_Pinky_03_scaleConstraint1.csy" "NPC_Base_04RN.phl[454]";
+connectAttr "L_Pinky_03_scaleConstraint1.csz" "NPC_Base_04RN.phl[455]";
+connectAttr "NPC_Base_04RN.phl[456]" "R_Clavical_joint_01_orientConstraint1.is";
+connectAttr "R_Clavical_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[457]";
+connectAttr "R_Clavical_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[458]";
+connectAttr "R_Clavical_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[459]";
+connectAttr "NPC_Base_04RN.phl[460]" "R_Clavical_joint_01_scaleConstraint1.tsc";
+connectAttr "R_Clavical_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[461]";
+connectAttr "R_Clavical_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[462]";
+connectAttr "R_Clavical_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[463]";
+connectAttr "R_Clavical_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[464]"
 		;
-connectAttr "R_Clavical_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[464]"
+connectAttr "R_Clavical_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[465]"
 		;
-connectAttr "R_Clavical_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[465]"
+connectAttr "R_Clavical_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[466]"
 		;
-connectAttr "NPC_Base_04RN.phl[466]" "R_Clavical_joint_01_orientConstraint1.cro"
-		;
-connectAttr "NPC_Base_04RN.phl[467]" "R_Clavical_joint_01_pointConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[467]" "R_Clavical_joint_01_orientConstraint1.cro"
 		;
 connectAttr "NPC_Base_04RN.phl[468]" "R_Clavical_joint_01_orientConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[469]" "R_Clavical_joint_01_scaleConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[469]" "R_Clavical_joint_01_pointConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[470]" "R_Clavical_joint_01_orientConstraint1.cjo"
+connectAttr "NPC_Base_04RN.phl[470]" "R_Clavical_joint_01_scaleConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[471]" "R_Clavical_joint_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[472]" "R_Clavical_joint_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[473]" "R_Shoulder_joint_01_orientConstraint1.is";
-connectAttr "R_Shoulder_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[474]";
-connectAttr "R_Shoulder_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[475]";
-connectAttr "R_Shoulder_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[476]";
-connectAttr "NPC_Base_04RN.phl[477]" "R_Shoulder_joint_01_scaleConstraint1.tsc";
-connectAttr "R_Shoulder_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[478]";
-connectAttr "R_Shoulder_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[479]";
-connectAttr "R_Shoulder_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[480]";
-connectAttr "R_Shoulder_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[481]"
+connectAttr "NPC_Base_04RN.phl[471]" "R_Clavical_joint_01_orientConstraint1.cjo"
 		;
-connectAttr "R_Shoulder_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[482]"
+connectAttr "NPC_Base_04RN.phl[472]" "R_Clavical_joint_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[473]" "R_Clavical_joint_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[474]" "R_Shoulder_joint_01_orientConstraint1.is";
+connectAttr "R_Shoulder_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[475]";
+connectAttr "R_Shoulder_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[476]";
+connectAttr "R_Shoulder_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[477]";
+connectAttr "NPC_Base_04RN.phl[478]" "R_Shoulder_joint_01_scaleConstraint1.tsc";
+connectAttr "R_Shoulder_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[479]";
+connectAttr "R_Shoulder_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[480]";
+connectAttr "R_Shoulder_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[481]";
+connectAttr "R_Shoulder_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[482]"
 		;
-connectAttr "R_Shoulder_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[483]"
+connectAttr "R_Shoulder_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[483]"
 		;
-connectAttr "NPC_Base_04RN.phl[484]" "R_Shoulder_joint_01_orientConstraint1.cro"
+connectAttr "R_Shoulder_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[484]"
 		;
-connectAttr "NPC_Base_04RN.phl[485]" "R_Shoulder_joint_01_pointConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[485]" "R_Shoulder_joint_01_orientConstraint1.cro"
 		;
 connectAttr "NPC_Base_04RN.phl[486]" "R_Shoulder_joint_01_orientConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[487]" "R_Shoulder_joint_01_scaleConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[487]" "R_Shoulder_joint_01_pointConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[488]" "R_Shoulder_joint_01_orientConstraint1.cjo"
+connectAttr "NPC_Base_04RN.phl[488]" "R_Shoulder_joint_01_scaleConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[489]" "R_Shoulder_joint_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[490]" "R_Shoulder_joint_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[491]" "R_Elbow_joint_01_orientConstraint1.is";
-connectAttr "R_Elbow_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[492]";
-connectAttr "R_Elbow_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[493]";
-connectAttr "R_Elbow_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[494]";
-connectAttr "R_Elbow_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[495]";
-connectAttr "R_Elbow_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[496]";
-connectAttr "R_Elbow_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[497]";
-connectAttr "NPC_Base_04RN.phl[498]" "R_Elbow_joint_01_scaleConstraint1.tsc";
-connectAttr "R_Elbow_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[499]";
-connectAttr "R_Elbow_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[500]";
-connectAttr "R_Elbow_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[501]";
-connectAttr "NPC_Base_04RN.phl[502]" "R_Elbow_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[503]" "R_Elbow_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[489]" "R_Shoulder_joint_01_orientConstraint1.cjo"
+		;
+connectAttr "NPC_Base_04RN.phl[490]" "R_Shoulder_joint_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[491]" "R_Shoulder_joint_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[492]" "R_Elbow_joint_01_orientConstraint1.is";
+connectAttr "R_Elbow_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[493]";
+connectAttr "R_Elbow_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[494]";
+connectAttr "R_Elbow_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[495]";
+connectAttr "R_Elbow_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[496]";
+connectAttr "R_Elbow_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[497]";
+connectAttr "R_Elbow_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[498]";
+connectAttr "NPC_Base_04RN.phl[499]" "R_Elbow_joint_01_scaleConstraint1.tsc";
+connectAttr "R_Elbow_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[500]";
+connectAttr "R_Elbow_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[501]";
+connectAttr "R_Elbow_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[502]";
+connectAttr "NPC_Base_04RN.phl[503]" "R_Elbow_joint_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[504]" "R_Elbow_joint_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[505]" "R_Elbow_joint_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[506]" "R_Elbow_joint_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[507]" "R_Elbow_joint_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[508]" "R_Elbow_joint_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[509]" "R_Wrist_joint_01_orientConstraint1.is";
-connectAttr "R_Wrist_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[510]";
-connectAttr "R_Wrist_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[511]";
-connectAttr "R_Wrist_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[512]";
-connectAttr "NPC_Base_04RN.phl[513]" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[39].dn"
+connectAttr "NPC_Base_04RN.phl[505]" "R_Elbow_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[506]" "R_Elbow_joint_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[507]" "R_Elbow_joint_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[508]" "R_Elbow_joint_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[509]" "R_Elbow_joint_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[510]" "R_Wrist_joint_01_orientConstraint1.is";
+connectAttr "R_Wrist_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[511]";
+connectAttr "R_Wrist_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[512]";
+connectAttr "R_Wrist_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[513]";
+connectAttr "NPC_Base_04RN.phl[514]" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[21].dn"
 		;
-connectAttr "R_Wrist_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[514]";
-connectAttr "R_Wrist_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[515]";
-connectAttr "R_Wrist_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[516]";
-connectAttr "NPC_Base_04RN.phl[517]" "R_Wrist_joint_01_scaleConstraint1.tsc";
-connectAttr "R_Wrist_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[518]";
-connectAttr "R_Wrist_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[519]";
-connectAttr "R_Wrist_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[520]";
-connectAttr "NPC_Base_04RN.phl[521]" "R_Wrist_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[522]" "R_Wrist_joint_01_pointConstraint1.cpim";
+connectAttr "R_Wrist_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[515]";
+connectAttr "R_Wrist_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[516]";
+connectAttr "R_Wrist_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[517]";
+connectAttr "NPC_Base_04RN.phl[518]" "R_Wrist_joint_01_scaleConstraint1.tsc";
+connectAttr "R_Wrist_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[519]";
+connectAttr "R_Wrist_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[520]";
+connectAttr "R_Wrist_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[521]";
+connectAttr "NPC_Base_04RN.phl[522]" "R_Wrist_joint_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[523]" "R_Wrist_joint_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[524]" "R_Wrist_joint_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[525]" "R_Wrist_joint_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[526]" "R_Wrist_joint_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[527]" "R_Wrist_joint_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[528]" "R_Thumb_01_orientConstraint1.is";
-connectAttr "R_Thumb_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[529]";
-connectAttr "R_Thumb_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[530]";
-connectAttr "R_Thumb_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[531]";
-connectAttr "R_Thumb_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[532]";
-connectAttr "R_Thumb_01_pointConstraint1.cty" "NPC_Base_04RN.phl[533]";
-connectAttr "R_Thumb_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[534]";
-connectAttr "NPC_Base_04RN.phl[535]" "R_Thumb_01_scaleConstraint1.tsc";
-connectAttr "R_Thumb_01_orientConstraint1.crx" "NPC_Base_04RN.phl[536]";
-connectAttr "R_Thumb_01_orientConstraint1.cry" "NPC_Base_04RN.phl[537]";
-connectAttr "R_Thumb_01_orientConstraint1.crz" "NPC_Base_04RN.phl[538]";
-connectAttr "NPC_Base_04RN.phl[539]" "R_Thumb_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[540]" "R_Thumb_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[524]" "R_Wrist_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[525]" "R_Wrist_joint_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[526]" "R_Wrist_joint_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[527]" "R_Wrist_joint_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[528]" "R_Wrist_joint_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[529]" "R_Thumb_01_orientConstraint1.is";
+connectAttr "R_Thumb_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[530]";
+connectAttr "R_Thumb_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[531]";
+connectAttr "R_Thumb_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[532]";
+connectAttr "R_Thumb_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[533]";
+connectAttr "R_Thumb_01_pointConstraint1.cty" "NPC_Base_04RN.phl[534]";
+connectAttr "R_Thumb_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[535]";
+connectAttr "NPC_Base_04RN.phl[536]" "R_Thumb_01_scaleConstraint1.tsc";
+connectAttr "R_Thumb_01_orientConstraint1.crx" "NPC_Base_04RN.phl[537]";
+connectAttr "R_Thumb_01_orientConstraint1.cry" "NPC_Base_04RN.phl[538]";
+connectAttr "R_Thumb_01_orientConstraint1.crz" "NPC_Base_04RN.phl[539]";
+connectAttr "NPC_Base_04RN.phl[540]" "R_Thumb_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[541]" "R_Thumb_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[542]" "R_Thumb_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[543]" "R_Thumb_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[544]" "R_Thumb_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[545]" "R_Thumb_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[546]" "R_Thumb_02_orientConstraint1.is";
-connectAttr "R_Thumb_02_scaleConstraint1.csx" "NPC_Base_04RN.phl[547]";
-connectAttr "R_Thumb_02_scaleConstraint1.csy" "NPC_Base_04RN.phl[548]";
-connectAttr "R_Thumb_02_scaleConstraint1.csz" "NPC_Base_04RN.phl[549]";
-connectAttr "R_Thumb_02_pointConstraint1.ctx" "NPC_Base_04RN.phl[550]";
-connectAttr "R_Thumb_02_pointConstraint1.cty" "NPC_Base_04RN.phl[551]";
-connectAttr "R_Thumb_02_pointConstraint1.ctz" "NPC_Base_04RN.phl[552]";
-connectAttr "NPC_Base_04RN.phl[553]" "R_Thumb_02_scaleConstraint1.tsc";
-connectAttr "R_Thumb_02_orientConstraint1.crx" "NPC_Base_04RN.phl[554]";
-connectAttr "R_Thumb_02_orientConstraint1.cry" "NPC_Base_04RN.phl[555]";
-connectAttr "R_Thumb_02_orientConstraint1.crz" "NPC_Base_04RN.phl[556]";
-connectAttr "NPC_Base_04RN.phl[557]" "R_Thumb_02_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[558]" "R_Thumb_02_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[542]" "R_Thumb_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[543]" "R_Thumb_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[544]" "R_Thumb_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[545]" "R_Thumb_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[546]" "R_Thumb_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[547]" "R_Thumb_02_orientConstraint1.is";
+connectAttr "R_Thumb_02_scaleConstraint1.csx" "NPC_Base_04RN.phl[548]";
+connectAttr "R_Thumb_02_scaleConstraint1.csy" "NPC_Base_04RN.phl[549]";
+connectAttr "R_Thumb_02_scaleConstraint1.csz" "NPC_Base_04RN.phl[550]";
+connectAttr "R_Thumb_02_pointConstraint1.ctx" "NPC_Base_04RN.phl[551]";
+connectAttr "R_Thumb_02_pointConstraint1.cty" "NPC_Base_04RN.phl[552]";
+connectAttr "R_Thumb_02_pointConstraint1.ctz" "NPC_Base_04RN.phl[553]";
+connectAttr "NPC_Base_04RN.phl[554]" "R_Thumb_02_scaleConstraint1.tsc";
+connectAttr "R_Thumb_02_orientConstraint1.crx" "NPC_Base_04RN.phl[555]";
+connectAttr "R_Thumb_02_orientConstraint1.cry" "NPC_Base_04RN.phl[556]";
+connectAttr "R_Thumb_02_orientConstraint1.crz" "NPC_Base_04RN.phl[557]";
+connectAttr "NPC_Base_04RN.phl[558]" "R_Thumb_02_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[559]" "R_Thumb_02_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[560]" "R_Thumb_02_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[561]" "R_Thumb_02_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[562]" "R_Thumb_02_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[563]" "R_Thumb_02_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[564]" "R_Thumb_03_orientConstraint1.is";
-connectAttr "R_Thumb_03_pointConstraint1.ctx" "NPC_Base_04RN.phl[565]";
-connectAttr "R_Thumb_03_pointConstraint1.cty" "NPC_Base_04RN.phl[566]";
-connectAttr "R_Thumb_03_pointConstraint1.ctz" "NPC_Base_04RN.phl[567]";
-connectAttr "NPC_Base_04RN.phl[568]" "R_Thumb_03_scaleConstraint1.tsc";
-connectAttr "R_Thumb_03_orientConstraint1.crx" "NPC_Base_04RN.phl[569]";
-connectAttr "R_Thumb_03_orientConstraint1.cry" "NPC_Base_04RN.phl[570]";
-connectAttr "R_Thumb_03_orientConstraint1.crz" "NPC_Base_04RN.phl[571]";
-connectAttr "NPC_Base_04RN.phl[572]" "R_Thumb_03_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[573]" "R_Thumb_03_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[560]" "R_Thumb_02_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[561]" "R_Thumb_02_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[562]" "R_Thumb_02_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[563]" "R_Thumb_02_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[564]" "R_Thumb_02_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[565]" "R_Thumb_03_orientConstraint1.is";
+connectAttr "R_Thumb_03_pointConstraint1.ctx" "NPC_Base_04RN.phl[566]";
+connectAttr "R_Thumb_03_pointConstraint1.cty" "NPC_Base_04RN.phl[567]";
+connectAttr "R_Thumb_03_pointConstraint1.ctz" "NPC_Base_04RN.phl[568]";
+connectAttr "NPC_Base_04RN.phl[569]" "R_Thumb_03_scaleConstraint1.tsc";
+connectAttr "R_Thumb_03_orientConstraint1.crx" "NPC_Base_04RN.phl[570]";
+connectAttr "R_Thumb_03_orientConstraint1.cry" "NPC_Base_04RN.phl[571]";
+connectAttr "R_Thumb_03_orientConstraint1.crz" "NPC_Base_04RN.phl[572]";
+connectAttr "NPC_Base_04RN.phl[573]" "R_Thumb_03_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[574]" "R_Thumb_03_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[575]" "R_Thumb_03_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[576]" "R_Thumb_03_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[577]" "R_Thumb_03_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[578]" "R_Thumb_03_pointConstraint1.crt";
-connectAttr "R_Thumb_03_scaleConstraint1.csx" "NPC_Base_04RN.phl[579]";
-connectAttr "R_Thumb_03_scaleConstraint1.csy" "NPC_Base_04RN.phl[580]";
-connectAttr "R_Thumb_03_scaleConstraint1.csz" "NPC_Base_04RN.phl[581]";
-connectAttr "NPC_Base_04RN.phl[582]" "R_Index_01_orientConstraint1.is";
-connectAttr "R_Index_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[583]";
-connectAttr "R_Index_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[584]";
-connectAttr "R_Index_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[585]";
-connectAttr "R_Index_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[586]";
-connectAttr "R_Index_01_pointConstraint1.cty" "NPC_Base_04RN.phl[587]";
-connectAttr "R_Index_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[588]";
-connectAttr "NPC_Base_04RN.phl[589]" "R_Index_01_scaleConstraint1.tsc";
-connectAttr "R_Index_01_orientConstraint1.crx" "NPC_Base_04RN.phl[590]";
-connectAttr "R_Index_01_orientConstraint1.cry" "NPC_Base_04RN.phl[591]";
-connectAttr "R_Index_01_orientConstraint1.crz" "NPC_Base_04RN.phl[592]";
-connectAttr "NPC_Base_04RN.phl[593]" "R_Index_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[594]" "R_Index_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[575]" "R_Thumb_03_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[576]" "R_Thumb_03_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[577]" "R_Thumb_03_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[578]" "R_Thumb_03_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[579]" "R_Thumb_03_pointConstraint1.crt";
+connectAttr "R_Thumb_03_scaleConstraint1.csx" "NPC_Base_04RN.phl[580]";
+connectAttr "R_Thumb_03_scaleConstraint1.csy" "NPC_Base_04RN.phl[581]";
+connectAttr "R_Thumb_03_scaleConstraint1.csz" "NPC_Base_04RN.phl[582]";
+connectAttr "NPC_Base_04RN.phl[583]" "R_Index_01_orientConstraint1.is";
+connectAttr "R_Index_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[584]";
+connectAttr "R_Index_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[585]";
+connectAttr "R_Index_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[586]";
+connectAttr "R_Index_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[587]";
+connectAttr "R_Index_01_pointConstraint1.cty" "NPC_Base_04RN.phl[588]";
+connectAttr "R_Index_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[589]";
+connectAttr "NPC_Base_04RN.phl[590]" "R_Index_01_scaleConstraint1.tsc";
+connectAttr "R_Index_01_orientConstraint1.crx" "NPC_Base_04RN.phl[591]";
+connectAttr "R_Index_01_orientConstraint1.cry" "NPC_Base_04RN.phl[592]";
+connectAttr "R_Index_01_orientConstraint1.crz" "NPC_Base_04RN.phl[593]";
+connectAttr "NPC_Base_04RN.phl[594]" "R_Index_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[595]" "R_Index_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[596]" "R_Index_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[597]" "R_Index_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[598]" "R_Index_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[599]" "R_Index_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[600]" "R_Index_02_orientConstraint1.is";
-connectAttr "R_Index_02_scaleConstraint1.csx" "NPC_Base_04RN.phl[601]";
-connectAttr "R_Index_02_scaleConstraint1.csy" "NPC_Base_04RN.phl[602]";
-connectAttr "R_Index_02_scaleConstraint1.csz" "NPC_Base_04RN.phl[603]";
-connectAttr "R_Index_02_pointConstraint1.ctx" "NPC_Base_04RN.phl[604]";
-connectAttr "R_Index_02_pointConstraint1.cty" "NPC_Base_04RN.phl[605]";
-connectAttr "R_Index_02_pointConstraint1.ctz" "NPC_Base_04RN.phl[606]";
-connectAttr "NPC_Base_04RN.phl[607]" "R_Index_02_scaleConstraint1.tsc";
-connectAttr "R_Index_02_orientConstraint1.crx" "NPC_Base_04RN.phl[608]";
-connectAttr "R_Index_02_orientConstraint1.cry" "NPC_Base_04RN.phl[609]";
-connectAttr "R_Index_02_orientConstraint1.crz" "NPC_Base_04RN.phl[610]";
-connectAttr "NPC_Base_04RN.phl[611]" "R_Index_02_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[612]" "R_Index_02_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[596]" "R_Index_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[597]" "R_Index_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[598]" "R_Index_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[599]" "R_Index_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[600]" "R_Index_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[601]" "R_Index_02_orientConstraint1.is";
+connectAttr "R_Index_02_scaleConstraint1.csx" "NPC_Base_04RN.phl[602]";
+connectAttr "R_Index_02_scaleConstraint1.csy" "NPC_Base_04RN.phl[603]";
+connectAttr "R_Index_02_scaleConstraint1.csz" "NPC_Base_04RN.phl[604]";
+connectAttr "R_Index_02_pointConstraint1.ctx" "NPC_Base_04RN.phl[605]";
+connectAttr "R_Index_02_pointConstraint1.cty" "NPC_Base_04RN.phl[606]";
+connectAttr "R_Index_02_pointConstraint1.ctz" "NPC_Base_04RN.phl[607]";
+connectAttr "NPC_Base_04RN.phl[608]" "R_Index_02_scaleConstraint1.tsc";
+connectAttr "R_Index_02_orientConstraint1.crx" "NPC_Base_04RN.phl[609]";
+connectAttr "R_Index_02_orientConstraint1.cry" "NPC_Base_04RN.phl[610]";
+connectAttr "R_Index_02_orientConstraint1.crz" "NPC_Base_04RN.phl[611]";
+connectAttr "NPC_Base_04RN.phl[612]" "R_Index_02_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[613]" "R_Index_02_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[614]" "R_Index_02_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[615]" "R_Index_02_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[616]" "R_Index_02_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[617]" "R_Index_02_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[618]" "R_Index_03_orientConstraint1.is";
-connectAttr "R_Index_03_pointConstraint1.ctx" "NPC_Base_04RN.phl[619]";
-connectAttr "R_Index_03_pointConstraint1.cty" "NPC_Base_04RN.phl[620]";
-connectAttr "R_Index_03_pointConstraint1.ctz" "NPC_Base_04RN.phl[621]";
-connectAttr "NPC_Base_04RN.phl[622]" "R_Index_03_scaleConstraint1.tsc";
-connectAttr "R_Index_03_orientConstraint1.crx" "NPC_Base_04RN.phl[623]";
-connectAttr "R_Index_03_orientConstraint1.cry" "NPC_Base_04RN.phl[624]";
-connectAttr "R_Index_03_orientConstraint1.crz" "NPC_Base_04RN.phl[625]";
-connectAttr "NPC_Base_04RN.phl[626]" "R_Index_03_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[627]" "R_Index_03_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[614]" "R_Index_02_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[615]" "R_Index_02_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[616]" "R_Index_02_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[617]" "R_Index_02_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[618]" "R_Index_02_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[619]" "R_Index_03_orientConstraint1.is";
+connectAttr "R_Index_03_pointConstraint1.ctx" "NPC_Base_04RN.phl[620]";
+connectAttr "R_Index_03_pointConstraint1.cty" "NPC_Base_04RN.phl[621]";
+connectAttr "R_Index_03_pointConstraint1.ctz" "NPC_Base_04RN.phl[622]";
+connectAttr "NPC_Base_04RN.phl[623]" "R_Index_03_scaleConstraint1.tsc";
+connectAttr "R_Index_03_orientConstraint1.crx" "NPC_Base_04RN.phl[624]";
+connectAttr "R_Index_03_orientConstraint1.cry" "NPC_Base_04RN.phl[625]";
+connectAttr "R_Index_03_orientConstraint1.crz" "NPC_Base_04RN.phl[626]";
+connectAttr "NPC_Base_04RN.phl[627]" "R_Index_03_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[628]" "R_Index_03_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[629]" "R_Index_03_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[630]" "R_Index_03_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[631]" "R_Index_03_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[632]" "R_Index_03_pointConstraint1.crt";
-connectAttr "R_Index_03_scaleConstraint1.csx" "NPC_Base_04RN.phl[633]";
-connectAttr "R_Index_03_scaleConstraint1.csy" "NPC_Base_04RN.phl[634]";
-connectAttr "R_Index_03_scaleConstraint1.csz" "NPC_Base_04RN.phl[635]";
-connectAttr "NPC_Base_04RN.phl[636]" "R_Middle_01_orientConstraint1.is";
-connectAttr "R_Middle_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[637]";
-connectAttr "R_Middle_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[638]";
-connectAttr "R_Middle_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[639]";
-connectAttr "R_Middle_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[640]";
-connectAttr "R_Middle_01_pointConstraint1.cty" "NPC_Base_04RN.phl[641]";
-connectAttr "R_Middle_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[642]";
-connectAttr "NPC_Base_04RN.phl[643]" "R_Middle_01_scaleConstraint1.tsc";
-connectAttr "R_Middle_01_orientConstraint1.crx" "NPC_Base_04RN.phl[644]";
-connectAttr "R_Middle_01_orientConstraint1.cry" "NPC_Base_04RN.phl[645]";
-connectAttr "R_Middle_01_orientConstraint1.crz" "NPC_Base_04RN.phl[646]";
-connectAttr "NPC_Base_04RN.phl[647]" "R_Middle_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[648]" "R_Middle_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[629]" "R_Index_03_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[630]" "R_Index_03_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[631]" "R_Index_03_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[632]" "R_Index_03_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[633]" "R_Index_03_pointConstraint1.crt";
+connectAttr "R_Index_03_scaleConstraint1.csx" "NPC_Base_04RN.phl[634]";
+connectAttr "R_Index_03_scaleConstraint1.csy" "NPC_Base_04RN.phl[635]";
+connectAttr "R_Index_03_scaleConstraint1.csz" "NPC_Base_04RN.phl[636]";
+connectAttr "NPC_Base_04RN.phl[637]" "R_Middle_01_orientConstraint1.is";
+connectAttr "R_Middle_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[638]";
+connectAttr "R_Middle_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[639]";
+connectAttr "R_Middle_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[640]";
+connectAttr "R_Middle_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[641]";
+connectAttr "R_Middle_01_pointConstraint1.cty" "NPC_Base_04RN.phl[642]";
+connectAttr "R_Middle_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[643]";
+connectAttr "NPC_Base_04RN.phl[644]" "R_Middle_01_scaleConstraint1.tsc";
+connectAttr "R_Middle_01_orientConstraint1.crx" "NPC_Base_04RN.phl[645]";
+connectAttr "R_Middle_01_orientConstraint1.cry" "NPC_Base_04RN.phl[646]";
+connectAttr "R_Middle_01_orientConstraint1.crz" "NPC_Base_04RN.phl[647]";
+connectAttr "NPC_Base_04RN.phl[648]" "R_Middle_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[649]" "R_Middle_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[650]" "R_Middle_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[651]" "R_Middle_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[652]" "R_Middle_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[653]" "R_Middle_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[654]" "R_Middle_02_orientConstraint1.is";
-connectAttr "R_Middle_02_scaleConstraint1.csx" "NPC_Base_04RN.phl[655]";
-connectAttr "R_Middle_02_scaleConstraint1.csy" "NPC_Base_04RN.phl[656]";
-connectAttr "R_Middle_02_scaleConstraint1.csz" "NPC_Base_04RN.phl[657]";
-connectAttr "R_Middle_02_pointConstraint1.ctx" "NPC_Base_04RN.phl[658]";
-connectAttr "R_Middle_02_pointConstraint1.cty" "NPC_Base_04RN.phl[659]";
-connectAttr "R_Middle_02_pointConstraint1.ctz" "NPC_Base_04RN.phl[660]";
-connectAttr "NPC_Base_04RN.phl[661]" "R_Middle_02_scaleConstraint1.tsc";
-connectAttr "R_Middle_02_orientConstraint1.crx" "NPC_Base_04RN.phl[662]";
-connectAttr "R_Middle_02_orientConstraint1.cry" "NPC_Base_04RN.phl[663]";
-connectAttr "R_Middle_02_orientConstraint1.crz" "NPC_Base_04RN.phl[664]";
-connectAttr "NPC_Base_04RN.phl[665]" "R_Middle_02_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[666]" "R_Middle_02_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[650]" "R_Middle_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[651]" "R_Middle_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[652]" "R_Middle_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[653]" "R_Middle_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[654]" "R_Middle_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[655]" "R_Middle_02_orientConstraint1.is";
+connectAttr "R_Middle_02_scaleConstraint1.csx" "NPC_Base_04RN.phl[656]";
+connectAttr "R_Middle_02_scaleConstraint1.csy" "NPC_Base_04RN.phl[657]";
+connectAttr "R_Middle_02_scaleConstraint1.csz" "NPC_Base_04RN.phl[658]";
+connectAttr "R_Middle_02_pointConstraint1.ctx" "NPC_Base_04RN.phl[659]";
+connectAttr "R_Middle_02_pointConstraint1.cty" "NPC_Base_04RN.phl[660]";
+connectAttr "R_Middle_02_pointConstraint1.ctz" "NPC_Base_04RN.phl[661]";
+connectAttr "NPC_Base_04RN.phl[662]" "R_Middle_02_scaleConstraint1.tsc";
+connectAttr "R_Middle_02_orientConstraint1.crx" "NPC_Base_04RN.phl[663]";
+connectAttr "R_Middle_02_orientConstraint1.cry" "NPC_Base_04RN.phl[664]";
+connectAttr "R_Middle_02_orientConstraint1.crz" "NPC_Base_04RN.phl[665]";
+connectAttr "NPC_Base_04RN.phl[666]" "R_Middle_02_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[667]" "R_Middle_02_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[668]" "R_Middle_02_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[669]" "R_Middle_02_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[670]" "R_Middle_02_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[671]" "R_Middle_02_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[672]" "R_Middle_03_orientConstraint1.is";
-connectAttr "R_Middle_03_pointConstraint1.ctx" "NPC_Base_04RN.phl[673]";
-connectAttr "R_Middle_03_pointConstraint1.cty" "NPC_Base_04RN.phl[674]";
-connectAttr "R_Middle_03_pointConstraint1.ctz" "NPC_Base_04RN.phl[675]";
-connectAttr "NPC_Base_04RN.phl[676]" "R_Middle_03_scaleConstraint1.tsc";
-connectAttr "R_Middle_03_orientConstraint1.crx" "NPC_Base_04RN.phl[677]";
-connectAttr "R_Middle_03_orientConstraint1.cry" "NPC_Base_04RN.phl[678]";
-connectAttr "R_Middle_03_orientConstraint1.crz" "NPC_Base_04RN.phl[679]";
-connectAttr "NPC_Base_04RN.phl[680]" "R_Middle_03_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[681]" "R_Middle_03_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[668]" "R_Middle_02_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[669]" "R_Middle_02_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[670]" "R_Middle_02_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[671]" "R_Middle_02_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[672]" "R_Middle_02_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[673]" "R_Middle_03_orientConstraint1.is";
+connectAttr "R_Middle_03_pointConstraint1.ctx" "NPC_Base_04RN.phl[674]";
+connectAttr "R_Middle_03_pointConstraint1.cty" "NPC_Base_04RN.phl[675]";
+connectAttr "R_Middle_03_pointConstraint1.ctz" "NPC_Base_04RN.phl[676]";
+connectAttr "NPC_Base_04RN.phl[677]" "R_Middle_03_scaleConstraint1.tsc";
+connectAttr "R_Middle_03_orientConstraint1.crx" "NPC_Base_04RN.phl[678]";
+connectAttr "R_Middle_03_orientConstraint1.cry" "NPC_Base_04RN.phl[679]";
+connectAttr "R_Middle_03_orientConstraint1.crz" "NPC_Base_04RN.phl[680]";
+connectAttr "NPC_Base_04RN.phl[681]" "R_Middle_03_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[682]" "R_Middle_03_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[683]" "R_Middle_03_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[684]" "R_Middle_03_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[685]" "R_Middle_03_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[686]" "R_Middle_03_pointConstraint1.crt";
-connectAttr "R_Middle_03_scaleConstraint1.csx" "NPC_Base_04RN.phl[687]";
-connectAttr "R_Middle_03_scaleConstraint1.csy" "NPC_Base_04RN.phl[688]";
-connectAttr "R_Middle_03_scaleConstraint1.csz" "NPC_Base_04RN.phl[689]";
-connectAttr "NPC_Base_04RN.phl[690]" "R_Pinky_01_orientConstraint1.is";
-connectAttr "R_Pinky_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[691]";
-connectAttr "R_Pinky_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[692]";
-connectAttr "R_Pinky_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[693]";
-connectAttr "R_Pinky_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[694]";
-connectAttr "R_Pinky_01_pointConstraint1.cty" "NPC_Base_04RN.phl[695]";
-connectAttr "R_Pinky_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[696]";
-connectAttr "NPC_Base_04RN.phl[697]" "R_Pinky_01_scaleConstraint1.tsc";
-connectAttr "R_Pinky_01_orientConstraint1.crx" "NPC_Base_04RN.phl[698]";
-connectAttr "R_Pinky_01_orientConstraint1.cry" "NPC_Base_04RN.phl[699]";
-connectAttr "R_Pinky_01_orientConstraint1.crz" "NPC_Base_04RN.phl[700]";
-connectAttr "NPC_Base_04RN.phl[701]" "R_Pinky_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[702]" "R_Pinky_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[683]" "R_Middle_03_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[684]" "R_Middle_03_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[685]" "R_Middle_03_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[686]" "R_Middle_03_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[687]" "R_Middle_03_pointConstraint1.crt";
+connectAttr "R_Middle_03_scaleConstraint1.csx" "NPC_Base_04RN.phl[688]";
+connectAttr "R_Middle_03_scaleConstraint1.csy" "NPC_Base_04RN.phl[689]";
+connectAttr "R_Middle_03_scaleConstraint1.csz" "NPC_Base_04RN.phl[690]";
+connectAttr "NPC_Base_04RN.phl[691]" "R_Pinky_01_orientConstraint1.is";
+connectAttr "R_Pinky_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[692]";
+connectAttr "R_Pinky_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[693]";
+connectAttr "R_Pinky_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[694]";
+connectAttr "R_Pinky_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[695]";
+connectAttr "R_Pinky_01_pointConstraint1.cty" "NPC_Base_04RN.phl[696]";
+connectAttr "R_Pinky_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[697]";
+connectAttr "NPC_Base_04RN.phl[698]" "R_Pinky_01_scaleConstraint1.tsc";
+connectAttr "R_Pinky_01_orientConstraint1.crx" "NPC_Base_04RN.phl[699]";
+connectAttr "R_Pinky_01_orientConstraint1.cry" "NPC_Base_04RN.phl[700]";
+connectAttr "R_Pinky_01_orientConstraint1.crz" "NPC_Base_04RN.phl[701]";
+connectAttr "NPC_Base_04RN.phl[702]" "R_Pinky_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[703]" "R_Pinky_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[704]" "R_Pinky_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[705]" "R_Pinky_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[706]" "R_Pinky_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[707]" "R_Pinky_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[708]" "R_Pinky_02_orientConstraint1.is";
-connectAttr "R_Pinky_02_scaleConstraint1.csx" "NPC_Base_04RN.phl[709]";
-connectAttr "R_Pinky_02_scaleConstraint1.csy" "NPC_Base_04RN.phl[710]";
-connectAttr "R_Pinky_02_scaleConstraint1.csz" "NPC_Base_04RN.phl[711]";
-connectAttr "R_Pinky_02_pointConstraint1.ctx" "NPC_Base_04RN.phl[712]";
-connectAttr "R_Pinky_02_pointConstraint1.cty" "NPC_Base_04RN.phl[713]";
-connectAttr "R_Pinky_02_pointConstraint1.ctz" "NPC_Base_04RN.phl[714]";
-connectAttr "NPC_Base_04RN.phl[715]" "R_Pinky_02_scaleConstraint1.tsc";
-connectAttr "R_Pinky_02_orientConstraint1.crx" "NPC_Base_04RN.phl[716]";
-connectAttr "R_Pinky_02_orientConstraint1.cry" "NPC_Base_04RN.phl[717]";
-connectAttr "R_Pinky_02_orientConstraint1.crz" "NPC_Base_04RN.phl[718]";
-connectAttr "NPC_Base_04RN.phl[719]" "R_Pinky_02_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[720]" "R_Pinky_02_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[704]" "R_Pinky_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[705]" "R_Pinky_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[706]" "R_Pinky_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[707]" "R_Pinky_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[708]" "R_Pinky_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[709]" "R_Pinky_02_orientConstraint1.is";
+connectAttr "R_Pinky_02_scaleConstraint1.csx" "NPC_Base_04RN.phl[710]";
+connectAttr "R_Pinky_02_scaleConstraint1.csy" "NPC_Base_04RN.phl[711]";
+connectAttr "R_Pinky_02_scaleConstraint1.csz" "NPC_Base_04RN.phl[712]";
+connectAttr "R_Pinky_02_pointConstraint1.ctx" "NPC_Base_04RN.phl[713]";
+connectAttr "R_Pinky_02_pointConstraint1.cty" "NPC_Base_04RN.phl[714]";
+connectAttr "R_Pinky_02_pointConstraint1.ctz" "NPC_Base_04RN.phl[715]";
+connectAttr "NPC_Base_04RN.phl[716]" "R_Pinky_02_scaleConstraint1.tsc";
+connectAttr "R_Pinky_02_orientConstraint1.crx" "NPC_Base_04RN.phl[717]";
+connectAttr "R_Pinky_02_orientConstraint1.cry" "NPC_Base_04RN.phl[718]";
+connectAttr "R_Pinky_02_orientConstraint1.crz" "NPC_Base_04RN.phl[719]";
+connectAttr "NPC_Base_04RN.phl[720]" "R_Pinky_02_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[721]" "R_Pinky_02_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[722]" "R_Pinky_02_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[723]" "R_Pinky_02_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[724]" "R_Pinky_02_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[725]" "R_Pinky_02_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[726]" "R_Pinky_03_orientConstraint1.is";
-connectAttr "R_Pinky_03_pointConstraint1.ctx" "NPC_Base_04RN.phl[727]";
-connectAttr "R_Pinky_03_pointConstraint1.cty" "NPC_Base_04RN.phl[728]";
-connectAttr "R_Pinky_03_pointConstraint1.ctz" "NPC_Base_04RN.phl[729]";
-connectAttr "NPC_Base_04RN.phl[730]" "R_Pinky_03_scaleConstraint1.tsc";
-connectAttr "R_Pinky_03_orientConstraint1.crx" "NPC_Base_04RN.phl[731]";
-connectAttr "R_Pinky_03_orientConstraint1.cry" "NPC_Base_04RN.phl[732]";
-connectAttr "R_Pinky_03_orientConstraint1.crz" "NPC_Base_04RN.phl[733]";
-connectAttr "NPC_Base_04RN.phl[734]" "R_Pinky_03_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[735]" "R_Pinky_03_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[722]" "R_Pinky_02_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[723]" "R_Pinky_02_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[724]" "R_Pinky_02_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[725]" "R_Pinky_02_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[726]" "R_Pinky_02_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[727]" "R_Pinky_03_orientConstraint1.is";
+connectAttr "R_Pinky_03_pointConstraint1.ctx" "NPC_Base_04RN.phl[728]";
+connectAttr "R_Pinky_03_pointConstraint1.cty" "NPC_Base_04RN.phl[729]";
+connectAttr "R_Pinky_03_pointConstraint1.ctz" "NPC_Base_04RN.phl[730]";
+connectAttr "NPC_Base_04RN.phl[731]" "R_Pinky_03_scaleConstraint1.tsc";
+connectAttr "R_Pinky_03_orientConstraint1.crx" "NPC_Base_04RN.phl[732]";
+connectAttr "R_Pinky_03_orientConstraint1.cry" "NPC_Base_04RN.phl[733]";
+connectAttr "R_Pinky_03_orientConstraint1.crz" "NPC_Base_04RN.phl[734]";
+connectAttr "NPC_Base_04RN.phl[735]" "R_Pinky_03_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[736]" "R_Pinky_03_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[737]" "R_Pinky_03_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[738]" "R_Pinky_03_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[739]" "R_Pinky_03_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[740]" "R_Pinky_03_pointConstraint1.crt";
-connectAttr "R_Pinky_03_scaleConstraint1.csx" "NPC_Base_04RN.phl[741]";
-connectAttr "R_Pinky_03_scaleConstraint1.csy" "NPC_Base_04RN.phl[742]";
-connectAttr "R_Pinky_03_scaleConstraint1.csz" "NPC_Base_04RN.phl[743]";
-connectAttr "NPC_Base_04RN.phl[744]" "Neck_joint_01_orientConstraint1.is";
-connectAttr "Neck_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[745]";
-connectAttr "Neck_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[746]";
-connectAttr "Neck_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[747]";
-connectAttr "NPC_Base_04RN.phl[748]" "Neck_joint_01_scaleConstraint1.tsc";
-connectAttr "Neck_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[749]";
-connectAttr "Neck_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[750]";
-connectAttr "Neck_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[751]";
-connectAttr "Neck_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[752]";
-connectAttr "Neck_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[753]";
-connectAttr "Neck_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[754]";
-connectAttr "NPC_Base_04RN.phl[755]" "Neck_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[756]" "Neck_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[737]" "R_Pinky_03_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[738]" "R_Pinky_03_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[739]" "R_Pinky_03_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[740]" "R_Pinky_03_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[741]" "R_Pinky_03_pointConstraint1.crt";
+connectAttr "R_Pinky_03_scaleConstraint1.csx" "NPC_Base_04RN.phl[742]";
+connectAttr "R_Pinky_03_scaleConstraint1.csy" "NPC_Base_04RN.phl[743]";
+connectAttr "R_Pinky_03_scaleConstraint1.csz" "NPC_Base_04RN.phl[744]";
+connectAttr "NPC_Base_04RN.phl[745]" "Neck_joint_01_orientConstraint1.is";
+connectAttr "Neck_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[746]";
+connectAttr "Neck_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[747]";
+connectAttr "Neck_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[748]";
+connectAttr "NPC_Base_04RN.phl[749]" "Neck_joint_01_scaleConstraint1.tsc";
+connectAttr "Neck_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[750]";
+connectAttr "Neck_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[751]";
+connectAttr "Neck_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[752]";
+connectAttr "Neck_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[753]";
+connectAttr "Neck_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[754]";
+connectAttr "Neck_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[755]";
+connectAttr "NPC_Base_04RN.phl[756]" "Neck_joint_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[757]" "Neck_joint_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[758]" "Neck_joint_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[759]" "Neck_joint_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[760]" "Neck_joint_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[761]" "Neck_joint_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[762]" "Head_joint_01_orientConstraint1.is";
-connectAttr "Head_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[763]";
-connectAttr "Head_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[764]";
-connectAttr "Head_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[765]";
-connectAttr "NPC_Base_04RN.phl[766]" "Head_joint_01_scaleConstraint1.tsc";
-connectAttr "Head_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[767]";
-connectAttr "Head_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[768]";
-connectAttr "Head_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[769]";
-connectAttr "Head_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[770]";
-connectAttr "Head_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[771]";
-connectAttr "Head_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[772]";
-connectAttr "NPC_Base_04RN.phl[773]" "Head_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[774]" "Head_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[758]" "Neck_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[759]" "Neck_joint_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[760]" "Neck_joint_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[761]" "Neck_joint_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[762]" "Neck_joint_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[763]" "Head_joint_01_orientConstraint1.is";
+connectAttr "Head_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[764]";
+connectAttr "Head_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[765]";
+connectAttr "Head_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[766]";
+connectAttr "NPC_Base_04RN.phl[767]" "Head_joint_01_scaleConstraint1.tsc";
+connectAttr "Head_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[768]";
+connectAttr "Head_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[769]";
+connectAttr "Head_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[770]";
+connectAttr "Head_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[771]";
+connectAttr "Head_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[772]";
+connectAttr "Head_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[773]";
+connectAttr "NPC_Base_04RN.phl[774]" "Head_joint_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[775]" "Head_joint_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[776]" "Head_joint_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[777]" "Head_joint_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[778]" "Head_joint_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[779]" "Head_joint_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[780]" "Jaw_Joint_01_orientConstraint1.is";
-connectAttr "Jaw_Joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[781]";
-connectAttr "Jaw_Joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[782]";
-connectAttr "Jaw_Joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[783]";
-connectAttr "NPC_Base_04RN.phl[784]" "Jaw_Joint_01_scaleConstraint1.tsc";
-connectAttr "Jaw_Joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[785]";
-connectAttr "Jaw_Joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[786]";
-connectAttr "Jaw_Joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[787]";
-connectAttr "Jaw_Joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[788]";
-connectAttr "Jaw_Joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[789]";
-connectAttr "Jaw_Joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[790]";
-connectAttr "NPC_Base_04RN.phl[791]" "Jaw_Joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[792]" "Jaw_Joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[776]" "Head_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[777]" "Head_joint_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[778]" "Head_joint_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[779]" "Head_joint_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[780]" "Head_joint_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[781]" "Jaw_Joint_01_orientConstraint1.is";
+connectAttr "Jaw_Joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[782]";
+connectAttr "Jaw_Joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[783]";
+connectAttr "Jaw_Joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[784]";
+connectAttr "NPC_Base_04RN.phl[785]" "Jaw_Joint_01_scaleConstraint1.tsc";
+connectAttr "Jaw_Joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[786]";
+connectAttr "Jaw_Joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[787]";
+connectAttr "Jaw_Joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[788]";
+connectAttr "Jaw_Joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[789]";
+connectAttr "Jaw_Joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[790]";
+connectAttr "Jaw_Joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[791]";
+connectAttr "NPC_Base_04RN.phl[792]" "Jaw_Joint_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[793]" "Jaw_Joint_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[794]" "Jaw_Joint_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[795]" "Jaw_Joint_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[796]" "Jaw_Joint_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[797]" "Jaw_Joint_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[798]" "Lip_Lower_Mid_01_orientConstraint1.is";
-connectAttr "Lip_Lower_Mid_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[799]";
-connectAttr "Lip_Lower_Mid_01_pointConstraint1.cty" "NPC_Base_04RN.phl[800]";
-connectAttr "Lip_Lower_Mid_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[801]";
-connectAttr "NPC_Base_04RN.phl[802]" "Lip_Lower_Mid_01_scaleConstraint1.tsc";
-connectAttr "Lip_Lower_Mid_01_orientConstraint1.crx" "NPC_Base_04RN.phl[803]";
-connectAttr "Lip_Lower_Mid_01_orientConstraint1.cry" "NPC_Base_04RN.phl[804]";
-connectAttr "Lip_Lower_Mid_01_orientConstraint1.crz" "NPC_Base_04RN.phl[805]";
-connectAttr "NPC_Base_04RN.phl[806]" "Lip_Lower_Mid_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[807]" "Lip_Lower_Mid_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[794]" "Jaw_Joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[795]" "Jaw_Joint_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[796]" "Jaw_Joint_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[797]" "Jaw_Joint_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[798]" "Jaw_Joint_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[799]" "Lip_Lower_Mid_01_orientConstraint1.is";
+connectAttr "Lip_Lower_Mid_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[800]";
+connectAttr "Lip_Lower_Mid_01_pointConstraint1.cty" "NPC_Base_04RN.phl[801]";
+connectAttr "Lip_Lower_Mid_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[802]";
+connectAttr "NPC_Base_04RN.phl[803]" "Lip_Lower_Mid_01_scaleConstraint1.tsc";
+connectAttr "Lip_Lower_Mid_01_orientConstraint1.crx" "NPC_Base_04RN.phl[804]";
+connectAttr "Lip_Lower_Mid_01_orientConstraint1.cry" "NPC_Base_04RN.phl[805]";
+connectAttr "Lip_Lower_Mid_01_orientConstraint1.crz" "NPC_Base_04RN.phl[806]";
+connectAttr "NPC_Base_04RN.phl[807]" "Lip_Lower_Mid_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[808]" "Lip_Lower_Mid_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[809]" "Lip_Lower_Mid_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[810]" "Lip_Lower_Mid_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[811]" "Lip_Lower_Mid_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[812]" "Lip_Lower_Mid_01_pointConstraint1.crt";
-connectAttr "Lip_Lower_Mid_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[813]";
-connectAttr "Lip_Lower_Mid_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[814]";
-connectAttr "Lip_Lower_Mid_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[815]";
-connectAttr "NPC_Base_04RN.phl[816]" "Lip_Upper_Mid_01_orientConstraint1.is";
-connectAttr "Lip_Upper_Mid_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[817]";
-connectAttr "Lip_Upper_Mid_01_pointConstraint1.cty" "NPC_Base_04RN.phl[818]";
-connectAttr "Lip_Upper_Mid_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[819]";
-connectAttr "NPC_Base_04RN.phl[820]" "Lip_Upper_Mid_01_scaleConstraint1.tsc";
-connectAttr "Lip_Upper_Mid_01_orientConstraint1.crx" "NPC_Base_04RN.phl[821]";
-connectAttr "Lip_Upper_Mid_01_orientConstraint1.cry" "NPC_Base_04RN.phl[822]";
-connectAttr "Lip_Upper_Mid_01_orientConstraint1.crz" "NPC_Base_04RN.phl[823]";
-connectAttr "NPC_Base_04RN.phl[824]" "Lip_Upper_Mid_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[825]" "Lip_Upper_Mid_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[809]" "Lip_Lower_Mid_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[810]" "Lip_Lower_Mid_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[811]" "Lip_Lower_Mid_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[812]" "Lip_Lower_Mid_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[813]" "Lip_Lower_Mid_01_pointConstraint1.crt";
+connectAttr "Lip_Lower_Mid_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[814]";
+connectAttr "Lip_Lower_Mid_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[815]";
+connectAttr "Lip_Lower_Mid_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[816]";
+connectAttr "NPC_Base_04RN.phl[817]" "Lip_Upper_Mid_01_orientConstraint1.is";
+connectAttr "Lip_Upper_Mid_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[818]";
+connectAttr "Lip_Upper_Mid_01_pointConstraint1.cty" "NPC_Base_04RN.phl[819]";
+connectAttr "Lip_Upper_Mid_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[820]";
+connectAttr "NPC_Base_04RN.phl[821]" "Lip_Upper_Mid_01_scaleConstraint1.tsc";
+connectAttr "Lip_Upper_Mid_01_orientConstraint1.crx" "NPC_Base_04RN.phl[822]";
+connectAttr "Lip_Upper_Mid_01_orientConstraint1.cry" "NPC_Base_04RN.phl[823]";
+connectAttr "Lip_Upper_Mid_01_orientConstraint1.crz" "NPC_Base_04RN.phl[824]";
+connectAttr "NPC_Base_04RN.phl[825]" "Lip_Upper_Mid_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[826]" "Lip_Upper_Mid_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[827]" "Lip_Upper_Mid_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[828]" "Lip_Upper_Mid_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[829]" "Lip_Upper_Mid_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[830]" "Lip_Upper_Mid_01_pointConstraint1.crt";
-connectAttr "Lip_Upper_Mid_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[831]";
-connectAttr "Lip_Upper_Mid_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[832]";
-connectAttr "Lip_Upper_Mid_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[833]";
-connectAttr "NPC_Base_04RN.phl[834]" "Nose_Joint_01_orientConstraint1.is";
-connectAttr "NPC_Base_04RN.phl[835]" "Nose_Joint_01_scaleConstraint1.tsc";
-connectAttr "Nose_Joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[836]";
-connectAttr "Nose_Joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[837]";
-connectAttr "Nose_Joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[838]";
-connectAttr "Nose_Joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[839]";
-connectAttr "Nose_Joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[840]";
-connectAttr "Nose_Joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[841]";
-connectAttr "Nose_Joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[842]";
-connectAttr "Nose_Joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[843]";
-connectAttr "Nose_Joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[844]";
-connectAttr "NPC_Base_04RN.phl[845]" "Nose_Joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[846]" "Nose_Joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[827]" "Lip_Upper_Mid_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[828]" "Lip_Upper_Mid_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[829]" "Lip_Upper_Mid_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[830]" "Lip_Upper_Mid_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[831]" "Lip_Upper_Mid_01_pointConstraint1.crt";
+connectAttr "Lip_Upper_Mid_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[832]";
+connectAttr "Lip_Upper_Mid_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[833]";
+connectAttr "Lip_Upper_Mid_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[834]";
+connectAttr "NPC_Base_04RN.phl[835]" "Nose_Joint_01_orientConstraint1.is";
+connectAttr "NPC_Base_04RN.phl[836]" "Nose_Joint_01_scaleConstraint1.tsc";
+connectAttr "Nose_Joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[837]";
+connectAttr "Nose_Joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[838]";
+connectAttr "Nose_Joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[839]";
+connectAttr "Nose_Joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[840]";
+connectAttr "Nose_Joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[841]";
+connectAttr "Nose_Joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[842]";
+connectAttr "Nose_Joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[843]";
+connectAttr "Nose_Joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[844]";
+connectAttr "Nose_Joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[845]";
+connectAttr "NPC_Base_04RN.phl[846]" "Nose_Joint_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[847]" "Nose_Joint_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[848]" "Nose_Joint_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[849]" "Nose_Joint_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[850]" "Nose_Joint_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[851]" "Nose_Joint_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[852]" "L_Eyebrow_Exterior_01_orientConstraint1.is"
+connectAttr "NPC_Base_04RN.phl[848]" "Nose_Joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[849]" "Nose_Joint_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[850]" "Nose_Joint_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[851]" "Nose_Joint_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[852]" "Nose_Joint_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[853]" "L_Eyebrow_Exterior_01_orientConstraint1.is"
 		;
-connectAttr "L_Eyebrow_Exterior_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[853]"
+connectAttr "L_Eyebrow_Exterior_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[854]"
 		;
-connectAttr "L_Eyebrow_Exterior_01_pointConstraint1.cty" "NPC_Base_04RN.phl[854]"
+connectAttr "L_Eyebrow_Exterior_01_pointConstraint1.cty" "NPC_Base_04RN.phl[855]"
 		;
-connectAttr "L_Eyebrow_Exterior_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[855]"
+connectAttr "L_Eyebrow_Exterior_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[856]"
 		;
-connectAttr "NPC_Base_04RN.phl[856]" "L_Eyebrow_Exterior_01_scaleConstraint1.tsc"
+connectAttr "NPC_Base_04RN.phl[857]" "L_Eyebrow_Exterior_01_scaleConstraint1.tsc"
 		;
-connectAttr "L_Eyebrow_Exterior_01_orientConstraint1.crx" "NPC_Base_04RN.phl[857]"
+connectAttr "L_Eyebrow_Exterior_01_orientConstraint1.crx" "NPC_Base_04RN.phl[858]"
 		;
-connectAttr "L_Eyebrow_Exterior_01_orientConstraint1.cry" "NPC_Base_04RN.phl[858]"
+connectAttr "L_Eyebrow_Exterior_01_orientConstraint1.cry" "NPC_Base_04RN.phl[859]"
 		;
-connectAttr "L_Eyebrow_Exterior_01_orientConstraint1.crz" "NPC_Base_04RN.phl[859]"
+connectAttr "L_Eyebrow_Exterior_01_orientConstraint1.crz" "NPC_Base_04RN.phl[860]"
 		;
-connectAttr "L_Eyebrow_Exterior_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[860]"
+connectAttr "L_Eyebrow_Exterior_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[861]"
 		;
-connectAttr "L_Eyebrow_Exterior_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[861]"
+connectAttr "L_Eyebrow_Exterior_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[862]"
 		;
-connectAttr "L_Eyebrow_Exterior_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[862]"
+connectAttr "L_Eyebrow_Exterior_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[863]"
 		;
-connectAttr "NPC_Base_04RN.phl[863]" "L_Eyebrow_Exterior_01_orientConstraint1.cro"
-		;
-connectAttr "NPC_Base_04RN.phl[864]" "L_Eyebrow_Exterior_01_pointConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[864]" "L_Eyebrow_Exterior_01_orientConstraint1.cro"
 		;
 connectAttr "NPC_Base_04RN.phl[865]" "L_Eyebrow_Exterior_01_orientConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[866]" "L_Eyebrow_Exterior_01_scaleConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[866]" "L_Eyebrow_Exterior_01_pointConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[867]" "L_Eyebrow_Exterior_01_orientConstraint1.cjo"
+connectAttr "NPC_Base_04RN.phl[867]" "L_Eyebrow_Exterior_01_scaleConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[868]" "L_Eyebrow_Exterior_01_pointConstraint1.crp"
+connectAttr "NPC_Base_04RN.phl[868]" "L_Eyebrow_Exterior_01_orientConstraint1.cjo"
 		;
-connectAttr "NPC_Base_04RN.phl[869]" "L_Eyebrow_Exterior_01_pointConstraint1.crt"
+connectAttr "NPC_Base_04RN.phl[869]" "L_Eyebrow_Exterior_01_pointConstraint1.crp"
 		;
-connectAttr "NPC_Base_04RN.phl[870]" "L_Eyebrow_Interior_01_orientConstraint1.is"
+connectAttr "NPC_Base_04RN.phl[870]" "L_Eyebrow_Exterior_01_pointConstraint1.crt"
 		;
-connectAttr "L_Eyebrow_Interior_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[871]"
+connectAttr "NPC_Base_04RN.phl[871]" "L_Eyebrow_Interior_01_orientConstraint1.is"
 		;
-connectAttr "L_Eyebrow_Interior_01_pointConstraint1.cty" "NPC_Base_04RN.phl[872]"
+connectAttr "L_Eyebrow_Interior_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[872]"
 		;
-connectAttr "L_Eyebrow_Interior_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[873]"
+connectAttr "L_Eyebrow_Interior_01_pointConstraint1.cty" "NPC_Base_04RN.phl[873]"
 		;
-connectAttr "NPC_Base_04RN.phl[874]" "L_Eyebrow_Interior_01_scaleConstraint1.tsc"
+connectAttr "L_Eyebrow_Interior_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[874]"
 		;
-connectAttr "L_Eyebrow_Interior_01_orientConstraint1.crx" "NPC_Base_04RN.phl[875]"
+connectAttr "NPC_Base_04RN.phl[875]" "L_Eyebrow_Interior_01_scaleConstraint1.tsc"
 		;
-connectAttr "L_Eyebrow_Interior_01_orientConstraint1.cry" "NPC_Base_04RN.phl[876]"
+connectAttr "L_Eyebrow_Interior_01_orientConstraint1.crx" "NPC_Base_04RN.phl[876]"
 		;
-connectAttr "L_Eyebrow_Interior_01_orientConstraint1.crz" "NPC_Base_04RN.phl[877]"
+connectAttr "L_Eyebrow_Interior_01_orientConstraint1.cry" "NPC_Base_04RN.phl[877]"
 		;
-connectAttr "L_Eyebrow_Interior_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[878]"
+connectAttr "L_Eyebrow_Interior_01_orientConstraint1.crz" "NPC_Base_04RN.phl[878]"
 		;
-connectAttr "L_Eyebrow_Interior_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[879]"
+connectAttr "L_Eyebrow_Interior_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[879]"
 		;
-connectAttr "L_Eyebrow_Interior_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[880]"
+connectAttr "L_Eyebrow_Interior_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[880]"
 		;
-connectAttr "NPC_Base_04RN.phl[881]" "L_Eyebrow_Interior_01_orientConstraint1.cro"
+connectAttr "L_Eyebrow_Interior_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[881]"
 		;
-connectAttr "NPC_Base_04RN.phl[882]" "L_Eyebrow_Interior_01_pointConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[882]" "L_Eyebrow_Interior_01_orientConstraint1.cro"
 		;
 connectAttr "NPC_Base_04RN.phl[883]" "L_Eyebrow_Interior_01_orientConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[884]" "L_Eyebrow_Interior_01_scaleConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[884]" "L_Eyebrow_Interior_01_pointConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[885]" "L_Eyebrow_Interior_01_orientConstraint1.cjo"
+connectAttr "NPC_Base_04RN.phl[885]" "L_Eyebrow_Interior_01_scaleConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[886]" "L_Eyebrow_Interior_01_pointConstraint1.crp"
+connectAttr "NPC_Base_04RN.phl[886]" "L_Eyebrow_Interior_01_orientConstraint1.cjo"
 		;
-connectAttr "NPC_Base_04RN.phl[887]" "L_Eyebrow_Interior_01_pointConstraint1.crt"
+connectAttr "NPC_Base_04RN.phl[887]" "L_Eyebrow_Interior_01_pointConstraint1.crp"
 		;
-connectAttr "NPC_Base_04RN.phl[888]" "Lip_L_Corner_01_orientConstraint1.is";
-connectAttr "Lip_L_Corner_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[889]";
-connectAttr "Lip_L_Corner_01_pointConstraint1.cty" "NPC_Base_04RN.phl[890]";
-connectAttr "Lip_L_Corner_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[891]";
-connectAttr "NPC_Base_04RN.phl[892]" "Lip_L_Corner_01_scaleConstraint1.tsc";
-connectAttr "Lip_L_Corner_01_orientConstraint1.crx" "NPC_Base_04RN.phl[893]";
-connectAttr "Lip_L_Corner_01_orientConstraint1.cry" "NPC_Base_04RN.phl[894]";
-connectAttr "Lip_L_Corner_01_orientConstraint1.crz" "NPC_Base_04RN.phl[895]";
-connectAttr "NPC_Base_04RN.phl[896]" "Lip_L_Corner_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[897]" "Lip_L_Corner_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[888]" "L_Eyebrow_Interior_01_pointConstraint1.crt"
+		;
+connectAttr "NPC_Base_04RN.phl[889]" "Lip_L_Corner_01_orientConstraint1.is";
+connectAttr "Lip_L_Corner_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[890]";
+connectAttr "Lip_L_Corner_01_pointConstraint1.cty" "NPC_Base_04RN.phl[891]";
+connectAttr "Lip_L_Corner_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[892]";
+connectAttr "NPC_Base_04RN.phl[893]" "Lip_L_Corner_01_scaleConstraint1.tsc";
+connectAttr "Lip_L_Corner_01_orientConstraint1.crx" "NPC_Base_04RN.phl[894]";
+connectAttr "Lip_L_Corner_01_orientConstraint1.cry" "NPC_Base_04RN.phl[895]";
+connectAttr "Lip_L_Corner_01_orientConstraint1.crz" "NPC_Base_04RN.phl[896]";
+connectAttr "NPC_Base_04RN.phl[897]" "Lip_L_Corner_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[898]" "Lip_L_Corner_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[899]" "Lip_L_Corner_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[900]" "Lip_L_Corner_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[901]" "Lip_L_Corner_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[902]" "Lip_L_Corner_01_pointConstraint1.crt";
-connectAttr "Lip_L_Corner_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[903]";
-connectAttr "Lip_L_Corner_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[904]";
-connectAttr "Lip_L_Corner_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[905]";
-connectAttr "NPC_Base_04RN.phl[906]" "Lip_R_Corner_01_orientConstraint1.is";
-connectAttr "Lip_R_Corner_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[907]";
-connectAttr "Lip_R_Corner_01_pointConstraint1.cty" "NPC_Base_04RN.phl[908]";
-connectAttr "Lip_R_Corner_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[909]";
-connectAttr "NPC_Base_04RN.phl[910]" "Lip_R_Corner_01_scaleConstraint1.tsc";
-connectAttr "Lip_R_Corner_01_orientConstraint1.crx" "NPC_Base_04RN.phl[911]";
-connectAttr "Lip_R_Corner_01_orientConstraint1.cry" "NPC_Base_04RN.phl[912]";
-connectAttr "Lip_R_Corner_01_orientConstraint1.crz" "NPC_Base_04RN.phl[913]";
-connectAttr "NPC_Base_04RN.phl[914]" "Lip_R_Corner_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[915]" "Lip_R_Corner_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[899]" "Lip_L_Corner_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[900]" "Lip_L_Corner_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[901]" "Lip_L_Corner_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[902]" "Lip_L_Corner_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[903]" "Lip_L_Corner_01_pointConstraint1.crt";
+connectAttr "Lip_L_Corner_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[904]";
+connectAttr "Lip_L_Corner_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[905]";
+connectAttr "Lip_L_Corner_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[906]";
+connectAttr "NPC_Base_04RN.phl[907]" "Lip_R_Corner_01_orientConstraint1.is";
+connectAttr "Lip_R_Corner_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[908]";
+connectAttr "Lip_R_Corner_01_pointConstraint1.cty" "NPC_Base_04RN.phl[909]";
+connectAttr "Lip_R_Corner_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[910]";
+connectAttr "NPC_Base_04RN.phl[911]" "Lip_R_Corner_01_scaleConstraint1.tsc";
+connectAttr "Lip_R_Corner_01_orientConstraint1.crx" "NPC_Base_04RN.phl[912]";
+connectAttr "Lip_R_Corner_01_orientConstraint1.cry" "NPC_Base_04RN.phl[913]";
+connectAttr "Lip_R_Corner_01_orientConstraint1.crz" "NPC_Base_04RN.phl[914]";
+connectAttr "NPC_Base_04RN.phl[915]" "Lip_R_Corner_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[916]" "Lip_R_Corner_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[917]" "Lip_R_Corner_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[918]" "Lip_R_Corner_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[919]" "Lip_R_Corner_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[920]" "Lip_R_Corner_01_pointConstraint1.crt";
-connectAttr "Lip_R_Corner_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[921]";
-connectAttr "Lip_R_Corner_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[922]";
-connectAttr "Lip_R_Corner_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[923]";
-connectAttr "NPC_Base_04RN.phl[924]" "L_Ear_01_orientConstraint1.is";
-connectAttr "L_Ear_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[925]";
-connectAttr "L_Ear_01_pointConstraint1.cty" "NPC_Base_04RN.phl[926]";
-connectAttr "L_Ear_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[927]";
-connectAttr "NPC_Base_04RN.phl[928]" "L_Ear_01_scaleConstraint1.tsc";
-connectAttr "L_Ear_01_orientConstraint1.crx" "NPC_Base_04RN.phl[929]";
-connectAttr "L_Ear_01_orientConstraint1.cry" "NPC_Base_04RN.phl[930]";
-connectAttr "L_Ear_01_orientConstraint1.crz" "NPC_Base_04RN.phl[931]";
-connectAttr "L_Ear_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[932]";
-connectAttr "L_Ear_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[933]";
-connectAttr "L_Ear_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[934]";
-connectAttr "NPC_Base_04RN.phl[935]" "L_Ear_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[936]" "L_Ear_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[917]" "Lip_R_Corner_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[918]" "Lip_R_Corner_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[919]" "Lip_R_Corner_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[920]" "Lip_R_Corner_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[921]" "Lip_R_Corner_01_pointConstraint1.crt";
+connectAttr "Lip_R_Corner_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[922]";
+connectAttr "Lip_R_Corner_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[923]";
+connectAttr "Lip_R_Corner_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[924]";
+connectAttr "NPC_Base_04RN.phl[925]" "L_Ear_01_orientConstraint1.is";
+connectAttr "L_Ear_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[926]";
+connectAttr "L_Ear_01_pointConstraint1.cty" "NPC_Base_04RN.phl[927]";
+connectAttr "L_Ear_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[928]";
+connectAttr "NPC_Base_04RN.phl[929]" "L_Ear_01_scaleConstraint1.tsc";
+connectAttr "L_Ear_01_orientConstraint1.crx" "NPC_Base_04RN.phl[930]";
+connectAttr "L_Ear_01_orientConstraint1.cry" "NPC_Base_04RN.phl[931]";
+connectAttr "L_Ear_01_orientConstraint1.crz" "NPC_Base_04RN.phl[932]";
+connectAttr "L_Ear_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[933]";
+connectAttr "L_Ear_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[934]";
+connectAttr "L_Ear_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[935]";
+connectAttr "NPC_Base_04RN.phl[936]" "L_Ear_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[937]" "L_Ear_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[938]" "L_Ear_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[939]" "L_Ear_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[940]" "L_Ear_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[941]" "L_Ear_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[942]" "R_Ear_01_orientConstraint1.is";
-connectAttr "R_Ear_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[943]";
-connectAttr "R_Ear_01_pointConstraint1.cty" "NPC_Base_04RN.phl[944]";
-connectAttr "R_Ear_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[945]";
-connectAttr "NPC_Base_04RN.phl[946]" "R_Ear_01_scaleConstraint1.tsc";
-connectAttr "R_Ear_01_orientConstraint1.crx" "NPC_Base_04RN.phl[947]";
-connectAttr "R_Ear_01_orientConstraint1.cry" "NPC_Base_04RN.phl[948]";
-connectAttr "R_Ear_01_orientConstraint1.crz" "NPC_Base_04RN.phl[949]";
-connectAttr "R_Ear_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[950]";
-connectAttr "R_Ear_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[951]";
-connectAttr "R_Ear_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[952]";
-connectAttr "NPC_Base_04RN.phl[953]" "R_Ear_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[954]" "R_Ear_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[938]" "L_Ear_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[939]" "L_Ear_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[940]" "L_Ear_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[941]" "L_Ear_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[942]" "L_Ear_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[943]" "R_Ear_01_orientConstraint1.is";
+connectAttr "R_Ear_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[944]";
+connectAttr "R_Ear_01_pointConstraint1.cty" "NPC_Base_04RN.phl[945]";
+connectAttr "R_Ear_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[946]";
+connectAttr "NPC_Base_04RN.phl[947]" "R_Ear_01_scaleConstraint1.tsc";
+connectAttr "R_Ear_01_orientConstraint1.crx" "NPC_Base_04RN.phl[948]";
+connectAttr "R_Ear_01_orientConstraint1.cry" "NPC_Base_04RN.phl[949]";
+connectAttr "R_Ear_01_orientConstraint1.crz" "NPC_Base_04RN.phl[950]";
+connectAttr "R_Ear_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[951]";
+connectAttr "R_Ear_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[952]";
+connectAttr "R_Ear_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[953]";
+connectAttr "NPC_Base_04RN.phl[954]" "R_Ear_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[955]" "R_Ear_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[956]" "R_Ear_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[957]" "R_Ear_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[958]" "R_Ear_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[959]" "R_Ear_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[960]" "L_Eye_01_orientConstraint1.is";
-connectAttr "L_Eye_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[961]";
-connectAttr "L_Eye_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[962]";
-connectAttr "L_Eye_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[963]";
-connectAttr "L_Eye_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[964]";
-connectAttr "L_Eye_01_pointConstraint1.cty" "NPC_Base_04RN.phl[965]";
-connectAttr "L_Eye_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[966]";
-connectAttr "NPC_Base_04RN.phl[967]" "L_Eye_01_scaleConstraint1.tsc";
-connectAttr "L_Eye_01_orientConstraint1.crx" "NPC_Base_04RN.phl[968]";
-connectAttr "L_Eye_01_orientConstraint1.cry" "NPC_Base_04RN.phl[969]";
-connectAttr "L_Eye_01_orientConstraint1.crz" "NPC_Base_04RN.phl[970]";
-connectAttr "NPC_Base_04RN.phl[971]" "L_Eye_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[972]" "L_Eye_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[956]" "R_Ear_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[957]" "R_Ear_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[958]" "R_Ear_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[959]" "R_Ear_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[960]" "R_Ear_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[961]" "L_Eye_01_orientConstraint1.is";
+connectAttr "L_Eye_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[962]";
+connectAttr "L_Eye_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[963]";
+connectAttr "L_Eye_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[964]";
+connectAttr "L_Eye_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[965]";
+connectAttr "L_Eye_01_pointConstraint1.cty" "NPC_Base_04RN.phl[966]";
+connectAttr "L_Eye_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[967]";
+connectAttr "NPC_Base_04RN.phl[968]" "L_Eye_01_scaleConstraint1.tsc";
+connectAttr "L_Eye_01_orientConstraint1.crx" "NPC_Base_04RN.phl[969]";
+connectAttr "L_Eye_01_orientConstraint1.cry" "NPC_Base_04RN.phl[970]";
+connectAttr "L_Eye_01_orientConstraint1.crz" "NPC_Base_04RN.phl[971]";
+connectAttr "NPC_Base_04RN.phl[972]" "L_Eye_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[973]" "L_Eye_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[974]" "L_Eye_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[975]" "L_Eye_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[976]" "L_Eye_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[977]" "L_Eye_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[978]" "L_Eye_Bottom_01_orientConstraint1.is";
-connectAttr "NPC_Base_04RN.phl[979]" "L_Eye_Bottom_01_scaleConstraint1.tsc";
-connectAttr "L_Eye_Bottom_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[980]";
-connectAttr "L_Eye_Bottom_01_pointConstraint1.cty" "NPC_Base_04RN.phl[981]";
-connectAttr "L_Eye_Bottom_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[982]";
-connectAttr "L_Eye_Bottom_01_orientConstraint1.crx" "NPC_Base_04RN.phl[983]";
-connectAttr "L_Eye_Bottom_01_orientConstraint1.cry" "NPC_Base_04RN.phl[984]";
-connectAttr "L_Eye_Bottom_01_orientConstraint1.crz" "NPC_Base_04RN.phl[985]";
-connectAttr "L_Eye_Bottom_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[986]";
-connectAttr "L_Eye_Bottom_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[987]";
-connectAttr "L_Eye_Bottom_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[988]";
-connectAttr "NPC_Base_04RN.phl[989]" "L_Eye_Bottom_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[990]" "L_Eye_Bottom_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[974]" "L_Eye_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[975]" "L_Eye_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[976]" "L_Eye_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[977]" "L_Eye_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[978]" "L_Eye_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[979]" "L_Eye_Bottom_01_orientConstraint1.is";
+connectAttr "NPC_Base_04RN.phl[980]" "L_Eye_Bottom_01_scaleConstraint1.tsc";
+connectAttr "L_Eye_Bottom_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[981]";
+connectAttr "L_Eye_Bottom_01_pointConstraint1.cty" "NPC_Base_04RN.phl[982]";
+connectAttr "L_Eye_Bottom_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[983]";
+connectAttr "L_Eye_Bottom_01_orientConstraint1.crx" "NPC_Base_04RN.phl[984]";
+connectAttr "L_Eye_Bottom_01_orientConstraint1.cry" "NPC_Base_04RN.phl[985]";
+connectAttr "L_Eye_Bottom_01_orientConstraint1.crz" "NPC_Base_04RN.phl[986]";
+connectAttr "L_Eye_Bottom_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[987]";
+connectAttr "L_Eye_Bottom_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[988]";
+connectAttr "L_Eye_Bottom_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[989]";
+connectAttr "NPC_Base_04RN.phl[990]" "L_Eye_Bottom_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[991]" "L_Eye_Bottom_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[992]" "L_Eye_Bottom_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[993]" "L_Eye_Bottom_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[994]" "L_Eye_Bottom_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[995]" "L_Eye_Bottom_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[996]" "L_Eye_Top_01_orientConstraint1.is";
-connectAttr "NPC_Base_04RN.phl[997]" "L_Eye_Top_01_scaleConstraint1.tsc";
-connectAttr "L_Eye_Top_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[998]";
-connectAttr "L_Eye_Top_01_pointConstraint1.cty" "NPC_Base_04RN.phl[999]";
-connectAttr "L_Eye_Top_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1000]";
-connectAttr "L_Eye_Top_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1001]";
-connectAttr "L_Eye_Top_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1002]";
-connectAttr "L_Eye_Top_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1003]";
-connectAttr "L_Eye_Top_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1004]";
-connectAttr "L_Eye_Top_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1005]";
-connectAttr "L_Eye_Top_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1006]";
-connectAttr "NPC_Base_04RN.phl[1007]" "L_Eye_Top_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[1008]" "L_Eye_Top_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[992]" "L_Eye_Bottom_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[993]" "L_Eye_Bottom_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[994]" "L_Eye_Bottom_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[995]" "L_Eye_Bottom_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[996]" "L_Eye_Bottom_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[997]" "L_Eye_Top_01_orientConstraint1.is";
+connectAttr "NPC_Base_04RN.phl[998]" "L_Eye_Top_01_scaleConstraint1.tsc";
+connectAttr "L_Eye_Top_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[999]";
+connectAttr "L_Eye_Top_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1000]";
+connectAttr "L_Eye_Top_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1001]";
+connectAttr "L_Eye_Top_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1002]";
+connectAttr "L_Eye_Top_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1003]";
+connectAttr "L_Eye_Top_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1004]";
+connectAttr "L_Eye_Top_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1005]";
+connectAttr "L_Eye_Top_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1006]";
+connectAttr "L_Eye_Top_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1007]";
+connectAttr "NPC_Base_04RN.phl[1008]" "L_Eye_Top_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[1009]" "L_Eye_Top_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1010]" "L_Eye_Top_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1011]" "L_Eye_Top_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[1012]" "L_Eye_Top_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[1013]" "L_Eye_Top_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[1014]" "R_Eye_01_orientConstraint1.is";
-connectAttr "R_Eye_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1015]";
-connectAttr "R_Eye_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1016]";
-connectAttr "R_Eye_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1017]";
-connectAttr "R_Eye_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1018]";
-connectAttr "R_Eye_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1019]";
-connectAttr "R_Eye_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1020]";
-connectAttr "NPC_Base_04RN.phl[1021]" "R_Eye_01_scaleConstraint1.tsc";
-connectAttr "R_Eye_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1022]";
-connectAttr "R_Eye_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1023]";
-connectAttr "R_Eye_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1024]";
-connectAttr "NPC_Base_04RN.phl[1025]" "R_Eye_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[1026]" "R_Eye_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1010]" "L_Eye_Top_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1011]" "L_Eye_Top_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1012]" "L_Eye_Top_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[1013]" "L_Eye_Top_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[1014]" "L_Eye_Top_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[1015]" "R_Eye_01_orientConstraint1.is";
+connectAttr "R_Eye_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1016]";
+connectAttr "R_Eye_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1017]";
+connectAttr "R_Eye_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1018]";
+connectAttr "R_Eye_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1019]";
+connectAttr "R_Eye_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1020]";
+connectAttr "R_Eye_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1021]";
+connectAttr "NPC_Base_04RN.phl[1022]" "R_Eye_01_scaleConstraint1.tsc";
+connectAttr "R_Eye_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1023]";
+connectAttr "R_Eye_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1024]";
+connectAttr "R_Eye_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1025]";
+connectAttr "NPC_Base_04RN.phl[1026]" "R_Eye_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[1027]" "R_Eye_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1028]" "R_Eye_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1029]" "R_Eye_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[1030]" "R_Eye_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[1031]" "R_Eye_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[1032]" "R_Eye_Bottom_01_orientConstraint1.is";
-connectAttr "R_Eye_Bottom_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1033]";
-connectAttr "R_Eye_Bottom_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1034]";
-connectAttr "R_Eye_Bottom_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1035]";
-connectAttr "NPC_Base_04RN.phl[1036]" "R_Eye_Bottom_01_scaleConstraint1.tsc";
-connectAttr "R_Eye_Bottom_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1037]";
-connectAttr "R_Eye_Bottom_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1038]";
-connectAttr "R_Eye_Bottom_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1039]";
-connectAttr "R_Eye_Bottom_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1040]";
-connectAttr "R_Eye_Bottom_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1041]";
-connectAttr "R_Eye_Bottom_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1042]";
-connectAttr "NPC_Base_04RN.phl[1043]" "R_Eye_Bottom_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[1044]" "R_Eye_Bottom_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1028]" "R_Eye_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1029]" "R_Eye_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1030]" "R_Eye_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[1031]" "R_Eye_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[1032]" "R_Eye_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[1033]" "R_Eye_Bottom_01_orientConstraint1.is";
+connectAttr "R_Eye_Bottom_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1034]";
+connectAttr "R_Eye_Bottom_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1035]";
+connectAttr "R_Eye_Bottom_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1036]";
+connectAttr "NPC_Base_04RN.phl[1037]" "R_Eye_Bottom_01_scaleConstraint1.tsc";
+connectAttr "R_Eye_Bottom_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1038]";
+connectAttr "R_Eye_Bottom_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1039]";
+connectAttr "R_Eye_Bottom_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1040]";
+connectAttr "R_Eye_Bottom_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1041]";
+connectAttr "R_Eye_Bottom_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1042]";
+connectAttr "R_Eye_Bottom_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1043]";
+connectAttr "NPC_Base_04RN.phl[1044]" "R_Eye_Bottom_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[1045]" "R_Eye_Bottom_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1046]" "R_Eye_Bottom_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1047]" "R_Eye_Bottom_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[1048]" "R_Eye_Bottom_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[1049]" "R_Eye_Bottom_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[1050]" "R_Eye_Top_01_orientConstraint1.is";
-connectAttr "R_Eye_Top_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1051]";
-connectAttr "R_Eye_Top_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1052]";
-connectAttr "R_Eye_Top_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1053]";
-connectAttr "NPC_Base_04RN.phl[1054]" "R_Eye_Top_01_scaleConstraint1.tsc";
-connectAttr "R_Eye_Top_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1055]";
-connectAttr "R_Eye_Top_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1056]";
-connectAttr "R_Eye_Top_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1057]";
-connectAttr "R_Eye_Top_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1058]";
-connectAttr "R_Eye_Top_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1059]";
-connectAttr "R_Eye_Top_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1060]";
-connectAttr "NPC_Base_04RN.phl[1061]" "R_Eye_Top_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[1062]" "R_Eye_Top_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1046]" "R_Eye_Bottom_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1047]" "R_Eye_Bottom_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1048]" "R_Eye_Bottom_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[1049]" "R_Eye_Bottom_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[1050]" "R_Eye_Bottom_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[1051]" "R_Eye_Top_01_orientConstraint1.is";
+connectAttr "R_Eye_Top_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1052]";
+connectAttr "R_Eye_Top_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1053]";
+connectAttr "R_Eye_Top_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1054]";
+connectAttr "NPC_Base_04RN.phl[1055]" "R_Eye_Top_01_scaleConstraint1.tsc";
+connectAttr "R_Eye_Top_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1056]";
+connectAttr "R_Eye_Top_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1057]";
+connectAttr "R_Eye_Top_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1058]";
+connectAttr "R_Eye_Top_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1059]";
+connectAttr "R_Eye_Top_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1060]";
+connectAttr "R_Eye_Top_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1061]";
+connectAttr "NPC_Base_04RN.phl[1062]" "R_Eye_Top_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[1063]" "R_Eye_Top_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1064]" "R_Eye_Top_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1065]" "R_Eye_Top_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[1066]" "R_Eye_Top_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[1067]" "R_Eye_Top_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[1068]" "R_Eyebrow_Interior_01_orientConstraint1.is"
+connectAttr "NPC_Base_04RN.phl[1064]" "R_Eye_Top_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1065]" "R_Eye_Top_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1066]" "R_Eye_Top_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[1067]" "R_Eye_Top_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[1068]" "R_Eye_Top_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[1069]" "R_Eyebrow_Interior_01_orientConstraint1.is"
 		;
-connectAttr "R_Eyebrow_Interior_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1069]"
+connectAttr "R_Eyebrow_Interior_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1070]"
 		;
-connectAttr "R_Eyebrow_Interior_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1070]"
+connectAttr "R_Eyebrow_Interior_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1071]"
 		;
-connectAttr "R_Eyebrow_Interior_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1071]"
+connectAttr "R_Eyebrow_Interior_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1072]"
 		;
-connectAttr "NPC_Base_04RN.phl[1072]" "R_Eyebrow_Interior_01_scaleConstraint1.tsc"
+connectAttr "NPC_Base_04RN.phl[1073]" "R_Eyebrow_Interior_01_scaleConstraint1.tsc"
 		;
-connectAttr "R_Eyebrow_Interior_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1073]"
+connectAttr "R_Eyebrow_Interior_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1074]"
 		;
-connectAttr "R_Eyebrow_Interior_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1074]"
+connectAttr "R_Eyebrow_Interior_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1075]"
 		;
-connectAttr "R_Eyebrow_Interior_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1075]"
+connectAttr "R_Eyebrow_Interior_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1076]"
 		;
-connectAttr "R_Eyebrow_Interior_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1076]"
+connectAttr "R_Eyebrow_Interior_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1077]"
 		;
-connectAttr "R_Eyebrow_Interior_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1077]"
+connectAttr "R_Eyebrow_Interior_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1078]"
 		;
-connectAttr "R_Eyebrow_Interior_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1078]"
+connectAttr "R_Eyebrow_Interior_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1079]"
 		;
-connectAttr "NPC_Base_04RN.phl[1079]" "R_Eyebrow_Interior_01_orientConstraint1.cro"
-		;
-connectAttr "NPC_Base_04RN.phl[1080]" "R_Eyebrow_Interior_01_pointConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[1080]" "R_Eyebrow_Interior_01_orientConstraint1.cro"
 		;
 connectAttr "NPC_Base_04RN.phl[1081]" "R_Eyebrow_Interior_01_orientConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[1082]" "R_Eyebrow_Interior_01_scaleConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[1082]" "R_Eyebrow_Interior_01_pointConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[1083]" "R_Eyebrow_Interior_01_orientConstraint1.cjo"
+connectAttr "NPC_Base_04RN.phl[1083]" "R_Eyebrow_Interior_01_scaleConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[1084]" "R_Eyebrow_Interior_01_pointConstraint1.crp"
+connectAttr "NPC_Base_04RN.phl[1084]" "R_Eyebrow_Interior_01_orientConstraint1.cjo"
 		;
-connectAttr "NPC_Base_04RN.phl[1085]" "R_Eyebrow_Interior_01_pointConstraint1.crt"
+connectAttr "NPC_Base_04RN.phl[1085]" "R_Eyebrow_Interior_01_pointConstraint1.crp"
 		;
-connectAttr "NPC_Base_04RN.phl[1086]" "R_Eyebrow_Exterior_01_orientConstraint1.is"
+connectAttr "NPC_Base_04RN.phl[1086]" "R_Eyebrow_Interior_01_pointConstraint1.crt"
 		;
-connectAttr "R_Eyebrow_Exterior_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1087]"
+connectAttr "NPC_Base_04RN.phl[1087]" "R_Eyebrow_Exterior_01_orientConstraint1.is"
 		;
-connectAttr "R_Eyebrow_Exterior_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1088]"
+connectAttr "R_Eyebrow_Exterior_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1088]"
 		;
-connectAttr "R_Eyebrow_Exterior_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1089]"
+connectAttr "R_Eyebrow_Exterior_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1089]"
 		;
-connectAttr "NPC_Base_04RN.phl[1090]" "R_Eyebrow_Exterior_01_scaleConstraint1.tsc"
+connectAttr "R_Eyebrow_Exterior_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1090]"
 		;
-connectAttr "R_Eyebrow_Exterior_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1091]"
+connectAttr "NPC_Base_04RN.phl[1091]" "R_Eyebrow_Exterior_01_scaleConstraint1.tsc"
 		;
-connectAttr "R_Eyebrow_Exterior_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1092]"
+connectAttr "R_Eyebrow_Exterior_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1092]"
 		;
-connectAttr "R_Eyebrow_Exterior_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1093]"
+connectAttr "R_Eyebrow_Exterior_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1093]"
 		;
-connectAttr "R_Eyebrow_Exterior_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1094]"
+connectAttr "R_Eyebrow_Exterior_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1094]"
 		;
-connectAttr "R_Eyebrow_Exterior_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1095]"
+connectAttr "R_Eyebrow_Exterior_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1095]"
 		;
-connectAttr "R_Eyebrow_Exterior_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1096]"
+connectAttr "R_Eyebrow_Exterior_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1096]"
 		;
-connectAttr "NPC_Base_04RN.phl[1097]" "R_Eyebrow_Exterior_01_orientConstraint1.cro"
+connectAttr "R_Eyebrow_Exterior_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1097]"
 		;
-connectAttr "NPC_Base_04RN.phl[1098]" "R_Eyebrow_Exterior_01_pointConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[1098]" "R_Eyebrow_Exterior_01_orientConstraint1.cro"
 		;
 connectAttr "NPC_Base_04RN.phl[1099]" "R_Eyebrow_Exterior_01_orientConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[1100]" "R_Eyebrow_Exterior_01_scaleConstraint1.cpim"
+connectAttr "NPC_Base_04RN.phl[1100]" "R_Eyebrow_Exterior_01_pointConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[1101]" "R_Eyebrow_Exterior_01_orientConstraint1.cjo"
+connectAttr "NPC_Base_04RN.phl[1101]" "R_Eyebrow_Exterior_01_scaleConstraint1.cpim"
 		;
-connectAttr "NPC_Base_04RN.phl[1102]" "R_Eyebrow_Exterior_01_pointConstraint1.crp"
+connectAttr "NPC_Base_04RN.phl[1102]" "R_Eyebrow_Exterior_01_orientConstraint1.cjo"
 		;
-connectAttr "NPC_Base_04RN.phl[1103]" "R_Eyebrow_Exterior_01_pointConstraint1.crt"
+connectAttr "NPC_Base_04RN.phl[1103]" "R_Eyebrow_Exterior_01_pointConstraint1.crp"
 		;
-connectAttr "NPC_Base_04RN.phl[1104]" "R_Leg_joint_01_orientConstraint1.is";
-connectAttr "R_Leg_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1105]";
-connectAttr "R_Leg_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1106]";
-connectAttr "R_Leg_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1107]";
-connectAttr "NPC_Base_04RN.phl[1108]" "R_Leg_joint_01_scaleConstraint1.tsc";
-connectAttr "R_Leg_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1109]";
-connectAttr "R_Leg_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1110]";
-connectAttr "R_Leg_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1111]";
-connectAttr "R_Leg_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1112]";
-connectAttr "R_Leg_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1113]";
-connectAttr "R_Leg_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1114]";
-connectAttr "NPC_Base_04RN.phl[1115]" "R_Leg_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1104]" "R_Eyebrow_Exterior_01_pointConstraint1.crt"
+		;
+connectAttr "NPC_Base_04RN.phl[1105]" "R_Leg_joint_01_orientConstraint1.is";
+connectAttr "R_Leg_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1106]";
+connectAttr "R_Leg_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1107]";
+connectAttr "R_Leg_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1108]";
+connectAttr "NPC_Base_04RN.phl[1109]" "R_Leg_joint_01_scaleConstraint1.tsc";
+connectAttr "R_Leg_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1110]";
+connectAttr "R_Leg_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1111]";
+connectAttr "R_Leg_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1112]";
+connectAttr "R_Leg_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1113]";
+connectAttr "R_Leg_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1114]";
+connectAttr "R_Leg_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1115]";
 connectAttr "NPC_Base_04RN.phl[1116]" "R_Leg_joint_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1117]" "R_Leg_joint_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1118]" "R_Leg_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[1119]" "R_Leg_joint_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[1120]" "R_Leg_joint_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[1121]" "R_Leg_joint_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[1122]" "R_Knee_joint_01_orientConstraint1.is";
-connectAttr "R_Knee_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1123]";
-connectAttr "R_Knee_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1124]";
-connectAttr "R_Knee_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1125]";
-connectAttr "R_Knee_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1126]";
-connectAttr "R_Knee_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1127]";
-connectAttr "R_Knee_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1128]";
-connectAttr "NPC_Base_04RN.phl[1129]" "R_Knee_joint_01_scaleConstraint1.tsc";
-connectAttr "R_Knee_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1130]";
-connectAttr "R_Knee_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1131]";
-connectAttr "R_Knee_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1132]";
-connectAttr "NPC_Base_04RN.phl[1133]" "R_Knee_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[1134]" "R_Knee_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1117]" "R_Leg_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1118]" "R_Leg_joint_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1119]" "R_Leg_joint_01_orientConstraint1.cro";
+connectAttr "NPC_Base_04RN.phl[1120]" "R_Leg_joint_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[1121]" "R_Leg_joint_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[1122]" "R_Leg_joint_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[1123]" "R_Knee_joint_01_orientConstraint1.is";
+connectAttr "R_Knee_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1124]";
+connectAttr "R_Knee_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1125]";
+connectAttr "R_Knee_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1126]";
+connectAttr "R_Knee_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1127]";
+connectAttr "R_Knee_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1128]";
+connectAttr "R_Knee_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1129]";
+connectAttr "NPC_Base_04RN.phl[1130]" "R_Knee_joint_01_scaleConstraint1.tsc";
+connectAttr "R_Knee_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1131]";
+connectAttr "R_Knee_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1132]";
+connectAttr "R_Knee_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1133]";
+connectAttr "NPC_Base_04RN.phl[1134]" "R_Knee_joint_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[1135]" "R_Knee_joint_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1136]" "R_Knee_joint_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1137]" "R_Knee_joint_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[1138]" "R_Knee_joint_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[1139]" "R_Knee_joint_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[1140]" "R_Ankle_joint_01_orientConstraint1.is";
-connectAttr "R_Ankle_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1141]";
-connectAttr "R_Ankle_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1142]";
-connectAttr "R_Ankle_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1143]";
-connectAttr "R_Ankle_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1144]";
-connectAttr "R_Ankle_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1145]";
-connectAttr "R_Ankle_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1146]";
-connectAttr "R_Ankle_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1147]";
-connectAttr "R_Ankle_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1148]";
-connectAttr "R_Ankle_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1149]";
-connectAttr "NPC_Base_04RN.phl[1150]" "R_Ankle_joint_01_scaleConstraint1.tsc";
-connectAttr "NPC_Base_04RN.phl[1151]" "R_Ankle_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[1152]" "R_Ankle_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1136]" "R_Knee_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1137]" "R_Knee_joint_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1138]" "R_Knee_joint_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[1139]" "R_Knee_joint_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[1140]" "R_Knee_joint_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[1141]" "R_Ankle_joint_01_orientConstraint1.is";
+connectAttr "R_Ankle_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1142]";
+connectAttr "R_Ankle_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1143]";
+connectAttr "R_Ankle_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1144]";
+connectAttr "R_Ankle_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1145]";
+connectAttr "R_Ankle_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1146]";
+connectAttr "R_Ankle_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1147]";
+connectAttr "R_Ankle_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1148]";
+connectAttr "R_Ankle_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1149]";
+connectAttr "R_Ankle_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1150]";
+connectAttr "NPC_Base_04RN.phl[1151]" "R_Ankle_joint_01_scaleConstraint1.tsc";
+connectAttr "NPC_Base_04RN.phl[1152]" "R_Ankle_joint_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[1153]" "R_Ankle_joint_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1154]" "R_Ankle_joint_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1155]" "R_Ankle_joint_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[1156]" "R_Ankle_joint_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[1157]" "R_Ankle_joint_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[1158]" "R_Foot_joint_01_orientConstraint1.is";
-connectAttr "R_Foot_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1159]";
-connectAttr "R_Foot_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1160]";
-connectAttr "R_Foot_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1161]";
-connectAttr "R_Foot_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1162]";
-connectAttr "R_Foot_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1163]";
-connectAttr "R_Foot_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1164]";
-connectAttr "R_Foot_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1165]";
-connectAttr "R_Foot_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1166]";
-connectAttr "R_Foot_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1167]";
-connectAttr "NPC_Base_04RN.phl[1168]" "R_Foot_joint_01_scaleConstraint1.tsc";
-connectAttr "NPC_Base_04RN.phl[1169]" "R_Foot_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[1170]" "R_Foot_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1154]" "R_Ankle_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1155]" "R_Ankle_joint_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1156]" "R_Ankle_joint_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[1157]" "R_Ankle_joint_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[1158]" "R_Ankle_joint_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[1159]" "R_Foot_joint_01_orientConstraint1.is";
+connectAttr "R_Foot_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1160]";
+connectAttr "R_Foot_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1161]";
+connectAttr "R_Foot_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1162]";
+connectAttr "R_Foot_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1163]";
+connectAttr "R_Foot_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1164]";
+connectAttr "R_Foot_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1165]";
+connectAttr "R_Foot_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1166]";
+connectAttr "R_Foot_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1167]";
+connectAttr "R_Foot_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1168]";
+connectAttr "NPC_Base_04RN.phl[1169]" "R_Foot_joint_01_scaleConstraint1.tsc";
+connectAttr "NPC_Base_04RN.phl[1170]" "R_Foot_joint_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[1171]" "R_Foot_joint_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1172]" "R_Foot_joint_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1173]" "R_Foot_joint_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[1174]" "R_Foot_joint_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[1175]" "R_Foot_joint_01_pointConstraint1.crt";
-connectAttr "NPC_Base_04RN.phl[1176]" "R_Toe_joint_01_orientConstraint1.is";
-connectAttr "R_Toe_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1177]";
-connectAttr "R_Toe_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1178]";
-connectAttr "R_Toe_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1179]";
-connectAttr "R_Toe_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1180]";
-connectAttr "R_Toe_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1181]";
-connectAttr "R_Toe_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1182]";
-connectAttr "NPC_Base_04RN.phl[1183]" "R_Toe_joint_01_scaleConstraint1.tsc";
-connectAttr "NPC_Base_04RN.phl[1184]" "R_Toe_joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[1185]" "R_Toe_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1172]" "R_Foot_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1173]" "R_Foot_joint_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1174]" "R_Foot_joint_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[1175]" "R_Foot_joint_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[1176]" "R_Foot_joint_01_pointConstraint1.crt";
+connectAttr "NPC_Base_04RN.phl[1177]" "R_Toe_joint_01_orientConstraint1.is";
+connectAttr "R_Toe_joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1178]";
+connectAttr "R_Toe_joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1179]";
+connectAttr "R_Toe_joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1180]";
+connectAttr "R_Toe_joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1181]";
+connectAttr "R_Toe_joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1182]";
+connectAttr "R_Toe_joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1183]";
+connectAttr "NPC_Base_04RN.phl[1184]" "R_Toe_joint_01_scaleConstraint1.tsc";
+connectAttr "NPC_Base_04RN.phl[1185]" "R_Toe_joint_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[1186]" "R_Toe_joint_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1187]" "R_Toe_joint_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1188]" "R_Toe_joint_01_orientConstraint1.cjo";
-connectAttr "NPC_Base_04RN.phl[1189]" "R_Toe_joint_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[1190]" "R_Toe_joint_01_pointConstraint1.crt";
-connectAttr "R_Toe_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1191]";
-connectAttr "R_Toe_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1192]";
-connectAttr "R_Toe_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1193]";
-connectAttr "NPC_Base_04RN.phl[1194]" "Tail_Joint_01_orientConstraint1.is";
-connectAttr "NPC_Base_04RN.phl[1195]" "Tail_Joint_01_scaleConstraint1.tsc";
-connectAttr "Tail_Joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1196]";
-connectAttr "Tail_Joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1197]";
-connectAttr "Tail_Joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1198]";
-connectAttr "NPC_Base_04RN.phl[1199]" "Tail_Joint_01_orientConstraint1.cro";
-connectAttr "NPC_Base_04RN.phl[1200]" "Tail_Joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1187]" "R_Toe_joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1188]" "R_Toe_joint_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1189]" "R_Toe_joint_01_orientConstraint1.cjo";
+connectAttr "NPC_Base_04RN.phl[1190]" "R_Toe_joint_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[1191]" "R_Toe_joint_01_pointConstraint1.crt";
+connectAttr "R_Toe_joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1192]";
+connectAttr "R_Toe_joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1193]";
+connectAttr "R_Toe_joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1194]";
+connectAttr "NPC_Base_04RN.phl[1195]" "Tail_Joint_01_orientConstraint1.is";
+connectAttr "NPC_Base_04RN.phl[1196]" "Tail_Joint_01_scaleConstraint1.tsc";
+connectAttr "Tail_Joint_01_orientConstraint1.crx" "NPC_Base_04RN.phl[1197]";
+connectAttr "Tail_Joint_01_orientConstraint1.cry" "NPC_Base_04RN.phl[1198]";
+connectAttr "Tail_Joint_01_orientConstraint1.crz" "NPC_Base_04RN.phl[1199]";
+connectAttr "NPC_Base_04RN.phl[1200]" "Tail_Joint_01_orientConstraint1.cro";
 connectAttr "NPC_Base_04RN.phl[1201]" "Tail_Joint_01_orientConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1202]" "Tail_Joint_01_scaleConstraint1.cpim";
-connectAttr "NPC_Base_04RN.phl[1203]" "Tail_Joint_01_orientConstraint1.cjo";
-connectAttr "Tail_Joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1204]";
-connectAttr "Tail_Joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1205]";
-connectAttr "Tail_Joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1206]";
-connectAttr "NPC_Base_04RN.phl[1207]" "Tail_Joint_01_pointConstraint1.crp";
-connectAttr "NPC_Base_04RN.phl[1208]" "Tail_Joint_01_pointConstraint1.crt";
-connectAttr "Tail_Joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1209]";
-connectAttr "Tail_Joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1210]";
-connectAttr "Tail_Joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1211]";
+connectAttr "NPC_Base_04RN.phl[1202]" "Tail_Joint_01_pointConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1203]" "Tail_Joint_01_scaleConstraint1.cpim";
+connectAttr "NPC_Base_04RN.phl[1204]" "Tail_Joint_01_orientConstraint1.cjo";
+connectAttr "Tail_Joint_01_pointConstraint1.ctx" "NPC_Base_04RN.phl[1205]";
+connectAttr "Tail_Joint_01_pointConstraint1.cty" "NPC_Base_04RN.phl[1206]";
+connectAttr "Tail_Joint_01_pointConstraint1.ctz" "NPC_Base_04RN.phl[1207]";
+connectAttr "NPC_Base_04RN.phl[1208]" "Tail_Joint_01_pointConstraint1.crp";
+connectAttr "NPC_Base_04RN.phl[1209]" "Tail_Joint_01_pointConstraint1.crt";
+connectAttr "Tail_Joint_01_scaleConstraint1.csx" "NPC_Base_04RN.phl[1210]";
+connectAttr "Tail_Joint_01_scaleConstraint1.csy" "NPC_Base_04RN.phl[1211]";
+connectAttr "Tail_Joint_01_scaleConstraint1.csz" "NPC_Base_04RN.phl[1212]";
 connectAttr "NPC_Controls.di" "Master_NPC_Ctrl_01.do";
 connectAttr "FK_Dock_joint_01_orientConstraint1.crx" "FK_Dock_joint_01.rx";
 connectAttr "FK_Dock_joint_01_orientConstraint1.cry" "FK_Dock_joint_01.ry";
@@ -30513,152 +30600,6 @@ connectAttr "null3.t" "condition2.cf";
 connectAttr "R_Free_Wrist_Ctrl_01.t" "condition3.ct";
 connectAttr "R_Free_Wrist_Ctrl_01.FreeCtrl_HipCtrl" "condition3.ft";
 connectAttr "R_Free_Wrist_Hip_Dock_LOC_01.t" "condition3.cf";
-connectAttr "Spine_Grp_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[0].dn";
-connectAttr "Master_NPC_Ctrl_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[1].dn"
-		;
-connectAttr "FK_L_Eyebrow_Exterior_01_scaleConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[2].dn"
-		;
-connectAttr "Spine_Pivot_Grp_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[3].dn"
-		;
-connectAttr "polyToCurveShape42.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[4].dn"
-		;
-connectAttr "FK_L_Eyebrow_Interior_01_scaleConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[5].dn"
-		;
-connectAttr "SpineShape.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[6].dn";
-connectAttr "Chest_pointConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[7].dn"
-		;
-connectAttr "Spine_Ctrl_Shape1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[8].dn"
-		;
-connectAttr "Spine_joint_01_pointConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[9].dn"
-		;
-connectAttr "Spine_joint_01_scaleConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[10].dn"
-		;
-connectAttr "Stretchy_Rel_Scale_MultDiv_node_02.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[11].dn"
-		;
-connectAttr "Chest_Ctrl_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[12].dn";
-connectAttr "Spine_pointConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[13].dn"
-		;
-connectAttr "Hip_pointConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[14].dn"
-		;
-connectAttr "Spine_DistanceNode_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[15].dn"
-		;
-connectAttr "Spine_Ctrl_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[16].dn";
-connectAttr "Hip.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[17].dn";
-connectAttr "Chest_Buffer_Grp.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[18].dn"
-		;
-connectAttr "HipShape.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[19].dn";
-connectAttr "polyToCurveShape41.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[20].dn"
-		;
-connectAttr "FK_Chest_joint_01_scaleConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[21].dn"
-		;
-connectAttr "Master_NPC_Ctrl_Shape1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[22].dn"
-		;
-connectAttr "Chest.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[23].dn";
-connectAttr "Chest_Pivot_Buffer.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[24].dn"
-		;
-connectAttr "Spine_Pivot_Grp_03.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[25].dn"
-		;
-connectAttr "Spine.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[26].dn";
-connectAttr "srtetch_intensity.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[27].dn"
-		;
-connectAttr "Stretchy_Spine_MultDiv_node_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[28].dn"
-		;
-connectAttr "FK_R_Eyebrow_Exterior_01_scaleConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[29].dn"
-		;
-connectAttr "condition1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[30].dn";
-connectAttr "FK_Spine_joint_02.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[31].dn"
-		;
-connectAttr "Chest_Pivot_Grp_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[32].dn"
-		;
-connectAttr "Joint_buffer.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[33].dn";
-connectAttr "FK_R_Eyebrow_Interior_01_scaleConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[34].dn"
-		;
-connectAttr "Spine_Pivot_Grp_02.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[35].dn"
-		;
-connectAttr "ChestShape.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[36].dn";
-connectAttr "Base_R_Wrist_joint_01_pointConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[0].dn"
-		;
-connectAttr "|RIG_Master_NPC_01|Master_NPC_Ctrl_01|Controls|Dock_Grp|R_Free_Wrist_Grp_01|R_Free_Wrist_Ctrl_01|curveShape4.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[1].dn"
-		;
-connectAttr "R_Free_Wrist_Grp_01_pointConstraint1_R_Free_Wrist_Dock_01W0.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[2].dn"
-		;
-connectAttr "FreeDock_Rotate_Condition.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[3].dn"
-		;
-connectAttr "|RIG_Master_NPC_01|Master_NPC_Ctrl_01|Controls|Dock_Grp|R_Free_Wrist_Grp_01|R_Free_Wrist_Ctrl_01|curveShape3.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[4].dn"
-		;
-connectAttr "R_Free_Wrist_Free_Dock_LOC_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[5].dn"
-		;
-connectAttr "R_Free_Wrist_Grp_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[6].dn"
-		;
-connectAttr "R_Free_Wrist_Hip_Dock_LOC_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[7].dn"
-		;
-connectAttr "Base_R_Wrist_joint_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[8].dn"
-		;
-connectAttr "Freeform_R_Wrist_joint_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[9].dn"
-		;
-connectAttr "unitConversion24.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[10].dn"
-		;
-connectAttr "unitConversion23.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[11].dn"
-		;
-connectAttr "Free_Dock_Grp_Rotate_Condition.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[12].dn"
-		;
-connectAttr "Freeform_R_Wrist_joint_01_orientConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[13].dn"
-		;
-connectAttr "|RIG_Master_NPC_01|Master_NPC_Ctrl_01|Controls|Dock_Grp|R_Free_Wrist_Grp_01|R_Free_Wrist_Ctrl_01|CetnerShape.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[14].dn"
-		;
-connectAttr "unitConversion21.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[15].dn"
-		;
-connectAttr "Base_R_Wrist_joint_01_orientConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[16].dn"
-		;
-connectAttr "|RIG_Master_NPC_01|Master_NPC_Ctrl_01|Controls|Dock_Grp|R_Free_Wrist_Grp_01|R_Free_Wrist_Ctrl_01|curveShape2.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[17].dn"
-		;
-connectAttr "R_Free_Wrist_Free_Dock_Grp_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[18].dn"
-		;
-connectAttr "unitConversion25.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[19].dn"
-		;
-connectAttr "R_Free_Wrist_Grp_01_pointConstraint1_R_Free_Wrist_Free_Dock_01W1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[20].dn"
-		;
-connectAttr "R_Free_Wrist_Grp_01_pointConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[21].dn"
-		;
-connectAttr "FreeDock_Translate_Condition.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[22].dn"
-		;
-connectAttr "R_Free_Wrist_Grp_01_orientConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[23].dn"
-		;
-connectAttr "Freeform_R_Wrist_joint_01_pointConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[24].dn"
-		;
-connectAttr "R_Free_Wrist_Grp_01_orientConstraint1_R_Free_Wrist_Dock_01W0.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[25].dn"
-		;
-connectAttr "unitConversion19.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[26].dn"
-		;
-connectAttr "Free_Dock_Grp_Translate_Condition.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[27].dn"
-		;
-connectAttr "R_Wrist_joint_01_pointConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[28].dn"
-		;
-connectAttr "R_Free_Wrist_Grp_01_orientConstraint1_R_Free_Wrist_Free_Dock_01W1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[29].dn"
-		;
-connectAttr "condition3.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[30].dn";
-connectAttr "null3_orientConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[31].dn"
-		;
-connectAttr "condition2.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[32].dn";
-connectAttr "R_Free_Wrist_Hip_Dock_Grp_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[33].dn"
-		;
-connectAttr "null3.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[34].dn";
-connectAttr "unitConversion18.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[35].dn"
-		;
-connectAttr "unitConversion22.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[36].dn"
-		;
-connectAttr "unitConversion20.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[37].dn"
-		;
-connectAttr "null3_pointConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[38].dn"
-		;
-connectAttr "R_Wrist_joint_01_orientConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[40].dn"
-		;
-connectAttr "R_Free_Wrist_Hip_Dock_LOC_Shape1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[41].dn"
-		;
-connectAttr "R_Free_Wrist_Ctrl_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[42].dn"
-		;
-connectAttr "|RIG_Master_NPC_01|Master_NPC_Ctrl_01|Controls|Dock_Grp|R_Free_Wrist_Grp_01|R_Free_Wrist_Ctrl_01|curveShape1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[43].dn"
-		;
 connectAttr "L_Free_Wrist_Ctrl_01.FreeCtrl_HipCtrl" "L_Free_Wrist_Grp_01_pointConstraint1_L_Free_Wrist_Hip_Dock_01W0.i"
 		;
 connectAttr "L_Free_Wrist_Ctrl_01.FreeCtrl_HipCtrl" "L_Free_Wrist_Grp_01_pointConstraint1_L_Free_Wrist_Free_Dock_01W1.i"
@@ -30666,6 +30607,201 @@ connectAttr "L_Free_Wrist_Ctrl_01.FreeCtrl_HipCtrl" "L_Free_Wrist_Grp_01_pointCo
 connectAttr "L_Free_Wrist_Ctrl_01.FreeCtrl_HipCtrl" "L_Free_Wrist_Grp_01_orientConstraint1_L_Free_Wrist_Hip_Dock_01W0.i"
 		;
 connectAttr "L_Free_Wrist_Ctrl_01.FreeCtrl_HipCtrl" "L_Free_Wrist_Grp_01_orientConstraint1_L_Free_Wrist_Free_Dock_01W1.i"
+		;
+connectAttr "Spine_Pivot_Grp_03.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[0].dn"
+		;
+connectAttr "FK_L_Eyebrow_Interior_01_scaleConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[1].dn"
+		;
+connectAttr "srtetch_intensity.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[2].dn"
+		;
+connectAttr "Spine_DistanceNode_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[3].dn"
+		;
+connectAttr "Chest_Pivot_Grp_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[4].dn"
+		;
+connectAttr "condition1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[5].dn";
+connectAttr "Spine_pointConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[6].dn"
+		;
+connectAttr "Spine_Ctrl_Shape1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[7].dn"
+		;
+connectAttr "Spine.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[8].dn";
+connectAttr "Joint_buffer.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[9].dn";
+connectAttr "HipShape.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[10].dn";
+connectAttr "FK_Chest_joint_01_scaleConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[11].dn"
+		;
+connectAttr "Chest_pointConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[12].dn"
+		;
+connectAttr "Master_NPC_Ctrl_Shape1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[13].dn"
+		;
+connectAttr "Stretchy_Spine_MultDiv_node_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[14].dn"
+		;
+connectAttr "polyToCurveShape41.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[15].dn"
+		;
+connectAttr "Chest_Ctrl_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[16].dn";
+connectAttr "Spine_Grp_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[17].dn";
+connectAttr "SpineShape.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[18].dn";
+connectAttr "Chest_Buffer_Grp.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[19].dn"
+		;
+connectAttr "Hip.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[20].dn";
+connectAttr "Stretchy_Rel_Scale_MultDiv_node_02.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[21].dn"
+		;
+connectAttr "Hip_pointConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[22].dn"
+		;
+connectAttr "FK_L_Eyebrow_Exterior_01_scaleConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[23].dn"
+		;
+connectAttr "FK_R_Eyebrow_Interior_01_scaleConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[24].dn"
+		;
+connectAttr "FK_R_Eyebrow_Exterior_01_scaleConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[25].dn"
+		;
+connectAttr "Spine_Pivot_Grp_02.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[26].dn"
+		;
+connectAttr "Spine_joint_01_scaleConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[27].dn"
+		;
+connectAttr "Spine_joint_01_pointConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[28].dn"
+		;
+connectAttr "FK_Spine_joint_02.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[29].dn"
+		;
+connectAttr "ChestShape.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[30].dn";
+connectAttr "Spine_Ctrl_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[31].dn";
+connectAttr "Master_NPC_Ctrl_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[32].dn"
+		;
+connectAttr "Spine_Pivot_Grp_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[33].dn"
+		;
+connectAttr "Chest_Pivot_Buffer.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[34].dn"
+		;
+connectAttr "polyToCurveShape42.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[35].dn"
+		;
+connectAttr "Chest.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[36].dn";
+connectAttr "Free_Dock_Grp_Translate_Condition.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[0].dn"
+		;
+connectAttr "R_Free_Wrist_Grp_01_orientConstraint1_R_Free_Wrist_Dock_01W0.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[1].dn"
+		;
+connectAttr "R_Free_Wrist_Hip_Dock_LOC_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[2].dn"
+		;
+connectAttr "R_Free_Wrist_Grp_01_pointConstraint1_R_Free_Wrist_Free_Dock_01W1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[3].dn"
+		;
+connectAttr "unitConversion25.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[4].dn"
+		;
+connectAttr "unitConversion18.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[5].dn"
+		;
+connectAttr "R_Free_Wrist_Grp_01_pointConstraint1_R_Free_Wrist_Dock_01W0.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[6].dn"
+		;
+connectAttr "condition3.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[7].dn";
+connectAttr "|RIG_Master_NPC_01|Master_NPC_Ctrl_01|Controls|Dock_Grp|R_Free_Wrist_Grp_01|R_Free_Wrist_Ctrl_01|curveShape4.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[8].dn"
+		;
+connectAttr "R_Wrist_joint_01_pointConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[9].dn"
+		;
+connectAttr "R_Wrist_joint_01_orientConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[10].dn"
+		;
+connectAttr "R_Free_Wrist_Free_Dock_LOC_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[11].dn"
+		;
+connectAttr "null3_orientConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[12].dn"
+		;
+connectAttr "FreeDock_Rotate_Condition.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[13].dn"
+		;
+connectAttr "Base_R_Wrist_joint_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[14].dn"
+		;
+connectAttr "R_Free_Wrist_Grp_01_pointConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[15].dn"
+		;
+connectAttr "null3.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[16].dn";
+connectAttr "Freeform_R_Wrist_joint_01_orientConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[17].dn"
+		;
+connectAttr "Free_Dock_Grp_Rotate_Condition.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[18].dn"
+		;
+connectAttr "R_Free_Wrist_Grp_01_orientConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[19].dn"
+		;
+connectAttr "Base_R_Wrist_joint_01_pointConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[20].dn"
+		;
+connectAttr "Freeform_R_Wrist_joint_01_pointConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[22].dn"
+		;
+connectAttr "R_Free_Wrist_Grp_01_orientConstraint1_R_Free_Wrist_Free_Dock_01W1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[23].dn"
+		;
+connectAttr "null3_pointConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[24].dn"
+		;
+connectAttr "FreeDock_Translate_Condition.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[25].dn"
+		;
+connectAttr "|RIG_Master_NPC_01|Master_NPC_Ctrl_01|Controls|Dock_Grp|R_Free_Wrist_Grp_01|R_Free_Wrist_Ctrl_01|curveShape2.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[26].dn"
+		;
+connectAttr "unitConversion22.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[27].dn"
+		;
+connectAttr "Base_R_Wrist_joint_01_orientConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[28].dn"
+		;
+connectAttr "unitConversion24.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[29].dn"
+		;
+connectAttr "unitConversion19.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[30].dn"
+		;
+connectAttr "R_Free_Wrist_Ctrl_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[31].dn"
+		;
+connectAttr "|RIG_Master_NPC_01|Master_NPC_Ctrl_01|Controls|Dock_Grp|R_Free_Wrist_Grp_01|R_Free_Wrist_Ctrl_01|curveShape1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[32].dn"
+		;
+connectAttr "|RIG_Master_NPC_01|Master_NPC_Ctrl_01|Controls|Dock_Grp|R_Free_Wrist_Grp_01|R_Free_Wrist_Ctrl_01|curveShape3.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[33].dn"
+		;
+connectAttr "R_Free_Wrist_Hip_Dock_LOC_Shape1.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[34].dn"
+		;
+connectAttr "unitConversion21.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[35].dn"
+		;
+connectAttr "unitConversion20.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[36].dn"
+		;
+connectAttr "|RIG_Master_NPC_01|Master_NPC_Ctrl_01|Controls|Dock_Grp|R_Free_Wrist_Grp_01|R_Free_Wrist_Ctrl_01|CetnerShape.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[37].dn"
+		;
+connectAttr "R_Free_Wrist_Hip_Dock_Grp_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[38].dn"
+		;
+connectAttr "Freeform_R_Wrist_joint_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[39].dn"
+		;
+connectAttr "unitConversion23.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[40].dn"
+		;
+connectAttr "R_Free_Wrist_Free_Dock_Grp_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[41].dn"
+		;
+connectAttr "condition2.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[42].dn";
+connectAttr "R_Free_Wrist_Grp_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[1].ni[43].dn"
+		;
+connectAttr "Base_L_Wrist_joint_01_orientConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[0].dn"
+		;
+connectAttr "Base_L_Elbow_joint_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[1].dn"
+		;
+connectAttr "Base_L_Wrist_joint_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[2].dn"
+		;
+connectAttr "Freeform_L_Wrist_joint_01_pointConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[3].dn"
+		;
+connectAttr "Base_L_Wrist_joint_01_orientConstraint1_IK_L_Wrist_joint_01W1.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[4].dn"
+		;
+connectAttr "L_Wrist_joint_01_orientConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[5].dn"
+		;
+connectAttr "Base_L_Wrist_joint_01_orientConstraint1_FK_L_Wrist_joint_01W0.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[6].dn"
+		;
+connectAttr "L_IK_Wrist_Ctrl_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[7].dn"
+		;
+connectAttr "IK_L_Wrist_joint_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[8].dn"
+		;
+connectAttr "IK_L_Elbow_joint_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[9].dn"
+		;
+connectAttr "Freeform_L_Wrist_joint_01_orientConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[10].dn"
+		;
+connectAttr "Base_L_Wrist_joint_01_pointConstraint1_FK_L_Wrist_joint_01W2.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[11].dn"
+		;
+connectAttr "Base_L_Wrist_joint_01_pointConstraint1_Freeform_L_Wrist_joint_01W0.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[12].dn"
+		;
+connectAttr "Base_L_Wrist_joint_01_orientConstraint1_Freeform_L_Wrist_joint_01W2.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[13].dn"
+		;
+connectAttr "IK_L_Wrist_joint_01_orientConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[14].dn"
+		;
+connectAttr "Freeform_L_Wrist_joint_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[15].dn"
+		;
+connectAttr "FK_L_Wrist_joint_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[16].dn"
+		;
+connectAttr "L_FK_Wrist_Ctrl_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[17].dn"
+		;
+connectAttr "FK_L_Wrist_joint_01_orientConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[18].dn"
+		;
+connectAttr "Base_L_Wrist_joint_01_pointConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[19].dn"
+		;
+connectAttr "L_Hand_IKFK.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[20].dn";
+connectAttr "FK_L_Elbow_joint_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[21].dn"
+		;
+connectAttr "L_Wrist_joint_01_pointConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[22].dn"
+		;
+connectAttr "Base_L_Wrist_joint_01_pointConstraint1_IK_L_Wrist_joint_01W1.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[23].dn"
+		;
+connectAttr "L_Free_Wrist_Ctrl_01.msg" "MayaNodeEditorSavedTabsInfo.tgi[2].ni[24].dn"
 		;
 connectAttr "typeBlinnSG.pa" ":renderPartition.st" -na;
 connectAttr "flexiPlane:surfaceShader1SG.pa" ":renderPartition.st" -na;
