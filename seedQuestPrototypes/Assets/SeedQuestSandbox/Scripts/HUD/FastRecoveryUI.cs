@@ -429,8 +429,8 @@ public class FastRecoveryUI : MonoBehaviour
             else if (settings.useRenderTexture)
             {
 
-                Vector3 position = InteractablePath.NextInteractable.transform.localPosition + InteractablePath.NextInteractable.interactableUI.positionOffset;
-                pin.transform.localPosition = renderCamera.WorldToScreenPoint(position) * currentScale;
+                //Vector3 position = InteractablePath.NextInteractable.transform.localPosition + InteractablePath.NextInteractable.interactableUI.positionOffset;
+                pin.transform.localPosition = renderCamera.WorldToScreenPoint(InteractablePath.NextInteractable.LabelPosition) * currentScale;
             }
             else
                 pin.transform.localPosition = new Vector3(InteractablePath.NextInteractable.transform.localPosition.x * settings.scale, InteractablePath.NextInteractable.transform.localPosition.z * settings.scale, 0);
@@ -591,6 +591,7 @@ public class FastRecoveryUI : MonoBehaviour
         {
             GetButtonPosition(buttons[i].gameObject, interactables[i]);
         }
+        GetPinPosition();
     }
 
     //====================================================================================================//
