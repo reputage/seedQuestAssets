@@ -330,7 +330,8 @@ public class FastRecoveryUI : MonoBehaviour
         }
         else
         {
-            GameManager.State = GameState.Play;
+            if (!LevelClearUI.Instance.gameObject.activeSelf)
+                GameManager.State = GameState.Play;
             if (settings.useRenderTexture)
                 EventSystem.current.SetSelectedGameObject(rawMap.gameObject);
             else
