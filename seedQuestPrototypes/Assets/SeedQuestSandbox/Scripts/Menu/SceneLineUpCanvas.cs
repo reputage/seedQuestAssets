@@ -24,7 +24,8 @@ public class SceneLineUpCanvas : MonoBehaviour
     }
 
     public void Initialize() {
-        SeedQuest.Level.LevelManager.Instance.StopLevelMusic();
+        if(SeedQuest.Level.LevelManager.Instance != null)
+            SeedQuest.Level.LevelManager.Instance.StopLevelMusic();
         AudioManager.Play("Loading");
         int count = 0;
         foreach (Image outline in worldOutlines) {
@@ -51,9 +52,65 @@ public class SceneLineUpCanvas : MonoBehaviour
 
     public void SetImages() {
         for (int i = 0; i < InteractableConfig.SitesPerGame; i++) {
-            worldImages[i].sprite = WorldManager.CurrentSceneList[i].preview;
+            if (i > InteractableLog.CurrentLevelIndex)
+            {
+                worldImages[i].sprite = ConvertToGrayscale(SpriteToTexture2D(WorldManager.CurrentSceneList[i].preview));
+            }
+            else
+            {
+                worldImages[i].sprite = WorldManager.CurrentSceneList[i].preview;
+                if (i == InteractableLog.CurrentLevelIndex)
+                    worldImages[i].transform.parent.parent.GetChild(2).gameObject.SetActive(true);
+                else
+                    worldImages[i].transform.parent.parent.GetChild(2).gameObject.SetActive(false);
+            }
+
             worldText[i].text = WorldManager.CurrentSceneList[i].name;
         }
+    }
+
+    public static Texture2D SpriteToTexture2D(Sprite sprite)
+    {
+        if (!Mathf.Approximately(sprite.rect.width, sprite.texture.width))
+        {
+            Texture2D newTexture = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height);
+            Color[] newColors = sprite.texture.GetPixels((int)sprite.textureRect.x,
+                                                         (int)sprite.textureRect.y,
+                                                         (int)sprite.textureRect.width,
+                                                         (int)sprite.textureRect.height);
+            newTexture.SetPixels(newColors);
+            newTexture.Apply();
+            return newTexture;
+        }
+        else
+            return sprite.texture;
+    }
+
+    public Sprite ConvertToGrayscale(Texture2D image)
+    {
+        Texture2D texture = new Texture2D(image.width, image.height, image.format, false);
+        Graphics.CopyTexture(image, texture);
+        Color32[] pixels = image.GetPixels32();
+        for (int x = 0; x < texture.width; x++)
+        {
+            for (int y = 0; y < texture.height; y++)
+            {
+                Color32 pixel = pixels[x + y * texture.width];
+                int p = ((256 * 256 + pixel.r) * 256 + pixel.b) * 256 + pixel.g;
+                int b = p % 256;
+                p = Mathf.FloorToInt(p / 256);
+                int g = p % 256;
+                p = Mathf.FloorToInt(p / 256);
+                int r = p % 256;
+                float l = (0.2126f * r / 255f) + 0.7152f * (g / 255f) + 0.0722f * (b / 255f);
+                Color c = new Color(l, l, l, 1);
+                texture.SetPixel(x, y, c);
+            }
+        }
+        texture.Apply(false);
+        Rect spriteRect = new Rect(0, 0, texture.width, texture.height);
+        Vector2 pivot = new Vector2(0.5f, 0.5f);
+        return Sprite.Create(texture, spriteRect, pivot);
     }
 
     public void Continue() {
