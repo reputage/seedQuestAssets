@@ -579,9 +579,19 @@ public class FastRecoveryUI : MonoBehaviour
         double sinTheta = System.Math.Sin(System.Math.Round(rotator.value * System.Math.PI / 180, 2));
         double cosTheta = System.Math.Cos(System.Math.Round(rotator.value * System.Math.PI / 180, 2));
         double tanSigma = System.Math.Tan(System.Math.Round(Camera.main.transform.eulerAngles.y * System.Math.PI / 180, 2));
-        float x = (float)(height * tanSigma * cosTheta);
+        float x = 0;
+        float z = 0;
+        if (Camera.main.transform.localEulerAngles.y > 0 && Camera.main.transform.localEulerAngles.y < 300)
+        {
+            x = -(float)(height * tanSigma * cosTheta);
+            z = -(float)(height * cosTheta);
+        }
+        else
+        {
+            x = (float)(height * tanSigma * cosTheta);
+            z = (float)(height * cosTheta);
+        }
         float y = (float)(height * sinTheta);
-        float z = (float)(height * cosTheta);
         renderCamera.transform.localPosition = new Vector3((-x + settings.renderCameraOffsetX) * settings.renderRotationMultiplier, y, (-z + settings.renderCameraOffsetZ) * settings.renderRotationMultiplier);
 
         float newXOffset = (settings.xOffset * slider.value) / slider.minValue;
