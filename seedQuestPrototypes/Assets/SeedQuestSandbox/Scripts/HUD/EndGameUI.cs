@@ -219,12 +219,12 @@ public class EndGameUI : MonoBehaviour
     public static void setupCharacterMode()
     {
         var textList = Instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
-        textList[0].text = asciiSeed;
+        textList[0].text = hexSeed;
 
         Button[] buttons = Instance.GetComponentsInChildren<Button>();
         GameObject charButton = buttons[4].gameObject;
         GameObject wordButton = buttons[5].gameObject;
-        GameObject baseButton = buttons[6].gameObject;
+        GameObject asciiButton = buttons[6].gameObject;
 
         charButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 255, 255, 255);
         charButton.GetComponent<Image>().color = new Color32(55, 90, 122, 255);
@@ -295,9 +295,9 @@ public class EndGameUI : MonoBehaviour
     private void getButtonRefs()
     {
         Button[] buttons = Instance.GetComponentsInChildren<Button>();
-        characterButton = buttons[6].gameObject;
+        characterButton = buttons[4].gameObject;
         wordsButton = buttons[5].gameObject;
-        asciiButton = buttons[4].gameObject;
+        asciiButton = buttons[6].gameObject;
     }
 
     private void setButtonColors(GameObject selectedButton)
