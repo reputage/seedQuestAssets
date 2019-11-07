@@ -207,7 +207,7 @@ public class FastRecoveryUI : MonoBehaviour
         RenderTexture target = new RenderTexture(1024, 1024, 16, RenderTextureFormat.ARGB32);
         renderCamera.targetTexture = target;
         renderCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("Player"));
-        renderCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("FastRecoveryHide"));
+        //renderCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("FastRecoveryHide"));
         renderCamera.enabled = true;
         renderCamera.Render();
         rawMap.texture = renderCamera.targetTexture;
@@ -579,9 +579,19 @@ public class FastRecoveryUI : MonoBehaviour
         double sinTheta = System.Math.Sin(System.Math.Round(rotator.value * System.Math.PI / 180, 2));
         double cosTheta = System.Math.Cos(System.Math.Round(rotator.value * System.Math.PI / 180, 2));
         double tanSigma = System.Math.Tan(System.Math.Round(Camera.main.transform.eulerAngles.y * System.Math.PI / 180, 2));
-        float x = (float)(height * tanSigma * cosTheta);
+        float x = 0;
+        float z = 0;
+        if (Camera.main.transform.localEulerAngles.y > 0 && Camera.main.transform.localEulerAngles.y < 300)
+        {
+            x = -(float)(height * tanSigma * cosTheta);
+            z = -(float)(height * cosTheta);
+        }
+        else
+        {
+            x = (float)(height * tanSigma * cosTheta);
+            z = (float)(height * cosTheta);
+        }
         float y = (float)(height * sinTheta);
-        float z = (float)(height * cosTheta);
         renderCamera.transform.localPosition = new Vector3((-x + settings.renderCameraOffsetX) * settings.renderRotationMultiplier, y, (-z + settings.renderCameraOffsetZ) * settings.renderRotationMultiplier);
 
         float newXOffset = (settings.xOffset * slider.value) / slider.minValue;
@@ -593,6 +603,11 @@ public class FastRecoveryUI : MonoBehaviour
             GetButtonPosition(buttons[i].gameObject, interactables[i]);
         }
         GetPinPosition();
+
+        if (rotator.value > 45)
+            SetTransparencyOnHiddenLayer();
+        else
+            SetOpacityOnHiddenLayer();
     }
 
     //====================================================================================================//
@@ -746,6 +761,62 @@ public class FastRecoveryUI : MonoBehaviour
         trigger.triggers.Add(entry);
 
     }
+
+    //====================================================================================================//
+
+    private void SetTransparencyOnHiddenLayer()
+    {
+        Debug.Log("Transparent");
+        List<GameObject> layerList = FindGameObjectsWithLayer(10);
+        foreach (GameObject gObject in layerList)
+        {
+            foreach (Material material in gObject.GetComponent<Renderer>().materials)
+            {
+                material.SetInt("_Surface", 1);
+                Color color = new Color(1, 1, 1, 0.1f);
+                material.SetColor("_BaseColor", color);
+                material.renderQueue = 3100;
+            }
+        }
+    }
+
+    //====================================================================================================//
+
+    private void SetOpacityOnHiddenLayer()
+    {
+        Debug.Log("Opaque");
+        List<GameObject> layerList = FindGameObjectsWithLayer(10);
+        foreach (GameObject gObject in layerList)
+        {
+            foreach (Material material in gObject.GetComponent<Renderer>().materials)
+            {
+                material.SetInt("_Surface", 0);
+                Color color = new Color(1, 1, 1, 1);
+                material.SetColor("_BaseColor", color);
+                material.renderQueue = -1;
+            }
+        }
+    }
+
+    //====================================================================================================//
+
+    private List<GameObject> FindGameObjectsWithLayer(int layer)
+    {
+        Object[] array = FindObjectsOfType(typeof(GameObject)) as GameObject[];
+        List<GameObject> layerList = new List<GameObject>();
+        foreach (GameObject gObject in array)
+        {
+            if (gObject.layer == layer)
+            {
+                layerList.Add(gObject);
+            }
+        }
+
+        if (layerList.Count == 0) {
+             return null;
+         }
+         return layerList;
+     }
 
     //====================================================================================================//
 
