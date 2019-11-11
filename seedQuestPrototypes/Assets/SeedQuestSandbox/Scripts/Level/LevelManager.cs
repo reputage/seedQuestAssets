@@ -50,6 +50,12 @@ namespace SeedQuest.Level
         /// <summary> Fast Recovery Data for Fast Recovery feature </summary>
         static public FastRecoveryData FastRecoveryData { get => Instance.fastRecoveryData; }
 
+        /// <summary> Minimap Data for Minimap feature </summary>
+        public MinimapData minimapData = null;
+
+        /// <summary> Fast Recovery Data for Fast Recovery feature </summary>
+        static public MinimapData MinimapData { get => Instance.minimapData; }
+
         /// <summary>  List of Bounds to represent Sites/Zones in a GameLevel </summary>
         public List<BoundingBox> bounds = new List<BoundingBox>();
 

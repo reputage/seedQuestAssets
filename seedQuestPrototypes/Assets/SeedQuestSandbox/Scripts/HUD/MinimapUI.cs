@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using SeedQuest.Interactables;
+using SeedQuest.Level;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,14 +9,7 @@ namespace SeedQuest.HUD
 {
     public class MinimapUI : MonoBehaviour
     {
-        public Sprite source;
-        public float rotation;
-        public float mapZoom;
-        public float xScale;
-        public float yScale;
-        public float playerXOffset;
-        public float playerYOffset;
-
+        private MinimapData settings;
         private GameObject player;
         private Image mapContainer;
         private Image map;
@@ -27,6 +21,7 @@ namespace SeedQuest.HUD
 
         private void Start()
         {
+            settings = LevelManager.MinimapData;
             player = GameObject.FindGameObjectWithTag("Player");
             Image[] images = gameObject.GetComponentsInChildren<Image>();
             mapContainer = images[1];
@@ -37,13 +32,13 @@ namespace SeedQuest.HUD
             //largeMap = images[6];
             //overlay.gameObject.SetActive(false);
 
-            map.sprite = source;
+            map.sprite = settings.source;
             //largeMap.sprite = source;
             //map.transform.eulerAngles = new Vector3(0, 0, -rotation);
-            map.rectTransform.sizeDelta = source.bounds.size * mapZoom;
+            map.rectTransform.sizeDelta = settings.source.bounds.size * settings.mapZoom;
             //largeMap.rectTransform.sizeDelta = new Vector2(980 / source.bounds.size.y * source.bounds.size.x, 980);
             //map.transform.localPosition = new Vector3(0, playerYOffset, 0);
-            mapContainer.transform.eulerAngles = new Vector3(0, 0, rotation);
+            //mapContainer.transform.eulerAngles = new Vector3(0, 0, settings.rotation);
             if (GameManager.Mode != GameMode.Rehearsal)
             {
                 pinIcon.gameObject.SetActive(false);
@@ -53,11 +48,24 @@ namespace SeedQuest.HUD
 
         private void Update()
         {
-            playerIcon.transform.eulerAngles = new Vector3(0, -180, player.transform.eulerAngles.y-rotation);
-            map.transform.localPosition = new Vector3(-player.transform.localPosition.x * xScale + playerXOffset, -player.transform.localPosition.z * yScale + playerYOffset, 0);
+            playerIcon.transform.eulerAngles = new Vector3(0, -180, player.transform.eulerAngles.y - settings.playerRotation);
+            float x = 0.0f;
+            float y = 0.0f;
+            if (Mathf.Approximately(0.0f, settings.rotation))
+            {
+                x = -player.transform.localPosition.x * settings.xScale + settings.playerXOffset;
+                y = -player.transform.localPosition.z * settings.yScale + settings.playerYOffset;
+                map.transform.localPosition = new Vector3(x, y, 0);
+            }
+            else
+            {
+                x = ((-player.transform.localPosition.x * settings.xScale + settings.playerXOffset) * Mathf.Cos(settings.rotation)) - ((-player.transform.localPosition.z * settings.yScale + settings.playerYOffset) * Mathf.Sin(settings.rotation));
+                y = ((-player.transform.localPosition.z * settings.yScale + settings.playerYOffset) * Mathf.Cos(settings.rotation)) + ((-player.transform.localPosition.x * settings.xScale + settings.playerXOffset) * Mathf.Sin(settings.rotation));
+                map.transform.localPosition = new Vector3(x, y, 0);
+            }
             if (GameManager.Mode == GameMode.Rehearsal)
             {
-                pinIcon.transform.localPosition = new Vector3((InteractablePath.NextInteractable.LookAtPosition.x - player.transform.localPosition.x) * xScale, (InteractablePath.NextInteractable.LookAtPosition.z - player.transform.localPosition.z) * yScale, 0);
+                pinIcon.transform.localPosition = new Vector3((InteractablePath.NextInteractable.LookAtPosition.x - player.transform.localPosition.x) * settings.xScale, (InteractablePath.NextInteractable.LookAtPosition.z - player.transform.localPosition.z) * settings.yScale, 0);
             }
 
            else if (GameManager.Mode == GameMode.Recall || GameManager.Mode == GameMode.Sandbox)
