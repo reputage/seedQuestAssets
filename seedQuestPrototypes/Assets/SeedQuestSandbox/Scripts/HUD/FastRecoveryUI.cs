@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using SeedQuest.Interactables;
 using SeedQuest.Level;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class FastRecoveryUI : MonoBehaviour
@@ -144,6 +146,11 @@ public class FastRecoveryUI : MonoBehaviour
             {
                 slider.value += input;
             }
+        }
+
+        if (InputManager.GetKeyDown(KeyCode.C))
+        {
+            SaveRenderCameraImage();
         }
     }
 
@@ -766,16 +773,18 @@ public class FastRecoveryUI : MonoBehaviour
 
     private void SetTransparencyOnHiddenLayer()
     {
-        Debug.Log("Transparent");
         List<GameObject> layerList = FindGameObjectsWithLayer(10);
-        foreach (GameObject gObject in layerList)
+        if (layerList != null && layerList.Count > 0)
         {
-            foreach (Material material in gObject.GetComponent<Renderer>().materials)
+            foreach (GameObject gObject in layerList)
             {
-                material.SetInt("_Surface", 1);
-                Color color = new Color(1, 1, 1, 0.1f);
-                material.SetColor("_BaseColor", color);
-                material.renderQueue = 3100;
+                foreach (Material material in gObject.GetComponent<Renderer>().materials)
+                {
+                    material.SetInt("_Surface", 1);
+                    Color color = new Color(1, 1, 1, 0.1f);
+                    material.SetColor("_BaseColor", color);
+                    material.renderQueue = 3100;
+                }
             }
         }
     }
@@ -784,18 +793,45 @@ public class FastRecoveryUI : MonoBehaviour
 
     private void SetOpacityOnHiddenLayer()
     {
-        Debug.Log("Opaque");
         List<GameObject> layerList = FindGameObjectsWithLayer(10);
-        foreach (GameObject gObject in layerList)
+        if (layerList != null && layerList.Count > 0)
         {
-            foreach (Material material in gObject.GetComponent<Renderer>().materials)
+            foreach (GameObject gObject in layerList)
             {
-                material.SetInt("_Surface", 0);
-                Color color = new Color(1, 1, 1, 1);
-                material.SetColor("_BaseColor", color);
-                material.renderQueue = -1;
+                foreach (Material material in gObject.GetComponent<Renderer>().materials)
+                {
+                    material.SetInt("_Surface", 0);
+                    Color color = new Color(1, 1, 1, 1);
+                    material.SetColor("_BaseColor", color);
+                    material.renderQueue = -1;
+                }
             }
         }
+    }
+
+    //====================================================================================================//
+
+    void SaveRenderCameraImage()
+    {
+        /*if (GameManager.Mode != GameMode.Sandbox)
+            return;*/
+
+        Debug.Log("Render Captured");
+
+        RenderTexture currentRT = RenderTexture.active;
+        RenderTexture.active = renderCamera.targetTexture;
+
+        renderCamera.Render();
+
+        Texture2D Image = new Texture2D(renderCamera.targetTexture.width, renderCamera.targetTexture.height);
+        Image.ReadPixels(new Rect(0, 0, renderCamera.targetTexture.width, renderCamera.targetTexture.height), 0, 0);
+        Image.Apply();
+        RenderTexture.active = currentRT;
+
+        var Bytes = Image.EncodeToPNG();
+        Destroy(Image);
+
+        File.WriteAllBytes(Application.dataPath + "/SeedQuestSandbox/Images/MiniMap/CurrentMaps/" + SceneManager.GetActiveScene().name + ".png", Bytes);
     }
 
     //====================================================================================================//
