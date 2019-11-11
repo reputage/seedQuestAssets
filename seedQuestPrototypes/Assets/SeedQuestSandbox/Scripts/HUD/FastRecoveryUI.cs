@@ -813,10 +813,8 @@ public class FastRecoveryUI : MonoBehaviour
 
     void SaveRenderCameraImage()
     {
-        /*if (GameManager.Mode != GameMode.Sandbox)
-            return;*/
-
-        Debug.Log("Render Captured");
+        if (GameManager.Mode != GameMode.Sandbox)
+            return;
 
         RenderTexture currentRT = RenderTexture.active;
         RenderTexture.active = renderCamera.targetTexture;
@@ -832,6 +830,7 @@ public class FastRecoveryUI : MonoBehaviour
         Destroy(Image);
 
         File.WriteAllBytes(Application.dataPath + "/SeedQuestSandbox/Images/MiniMap/CurrentMaps/" + SceneManager.GetActiveScene().name + ".png", Bytes);
+        Debug.Log("Render Captured");
     }
 
     //====================================================================================================//
