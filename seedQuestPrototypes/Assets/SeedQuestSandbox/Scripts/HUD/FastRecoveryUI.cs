@@ -148,10 +148,10 @@ public class FastRecoveryUI : MonoBehaviour
             }
         }
 
-        if (InputManager.GetKeyDown(KeyCode.C))
+        /*if (InputManager.GetKeyDown(KeyCode.C))
         {
             SaveRenderCameraImage();
-        }
+        }*/
     }
 
     //====================================================================================================//
@@ -214,7 +214,7 @@ public class FastRecoveryUI : MonoBehaviour
         RenderTexture target = new RenderTexture(1024, 1024, 16, RenderTextureFormat.ARGB32);
         renderCamera.targetTexture = target;
         renderCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("Player"));
-        renderCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("FastRecoveryHide"));
+        //renderCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("FastRecoveryHide"));
         renderCamera.enabled = true;
         renderCamera.Render();
         rawMap.texture = renderCamera.targetTexture;
@@ -811,7 +811,7 @@ public class FastRecoveryUI : MonoBehaviour
 
     //====================================================================================================//
 
-    void SaveRenderCameraImage()
+    /*void SaveRenderCameraImage()
     {
         if (GameManager.Mode != GameMode.Sandbox)
             return;
@@ -829,9 +829,9 @@ public class FastRecoveryUI : MonoBehaviour
         var Bytes = Image.EncodeToPNG();
         Destroy(Image);
 
-        File.WriteAllBytes(Application.dataPath + "/SeedQuestSandbox/Images/MiniMap/CurrentMaps/" + SceneManager.GetActiveScene().name + ".png", Bytes);
+        File.WriteAllBytes(Application.dataPath + "/SeedQuestSandbox/Images/" + SceneManager.GetActiveScene().name + ".png", Bytes);
         Debug.Log("Render Captured");
-    }
+    }*/
 
     //====================================================================================================//
 
