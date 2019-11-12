@@ -38,7 +38,7 @@ namespace SeedQuest.HUD
             map.rectTransform.sizeDelta = settings.source.bounds.size * settings.mapZoom;
             //largeMap.rectTransform.sizeDelta = new Vector2(980 / source.bounds.size.y * source.bounds.size.x, 980);
             //map.transform.localPosition = new Vector3(0, playerYOffset, 0);
-            //mapContainer.transform.eulerAngles = new Vector3(0, 0, settings.rotation);
+            mapContainer.transform.eulerAngles = new Vector3(0, 0, settings.mapRotation);
             if (GameManager.Mode != GameMode.Rehearsal)
             {
                 pinIcon.gameObject.SetActive(false);

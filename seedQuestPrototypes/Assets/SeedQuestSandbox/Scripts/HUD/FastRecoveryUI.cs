@@ -214,7 +214,7 @@ public class FastRecoveryUI : MonoBehaviour
         RenderTexture target = new RenderTexture(1024, 1024, 16, RenderTextureFormat.ARGB32);
         renderCamera.targetTexture = target;
         renderCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("Player"));
-        //renderCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("FastRecoveryHide"));
+        renderCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("FastRecoveryHide"));
         renderCamera.enabled = true;
         renderCamera.Render();
         rawMap.texture = renderCamera.targetTexture;
