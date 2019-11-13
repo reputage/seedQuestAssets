@@ -56,19 +56,26 @@ namespace SeedQuest.HUD
                 x = -player.transform.localPosition.x * settings.xScale + settings.playerXOffset;
                 y = -player.transform.localPosition.z * settings.yScale + settings.playerYOffset;
                 map.transform.localPosition = new Vector3(x, y, 0);
+                if (GameManager.Mode == GameMode.Rehearsal)
+                {
+                    pinIcon.transform.localPosition = new Vector3((InteractablePath.NextInteractable.LookAtPosition.x - player.transform.localPosition.x) * settings.xScale, (InteractablePath.NextInteractable.LookAtPosition.z - player.transform.localPosition.z) * settings.yScale, 0);
+                }
             }
             else
             {
                 x = ((-player.transform.localPosition.x * settings.xScale + settings.playerXOffset) * Mathf.Cos(settings.rotation)) - ((-player.transform.localPosition.z * settings.yScale + settings.playerYOffset) * Mathf.Sin(settings.rotation));
                 y = ((-player.transform.localPosition.z * settings.yScale + settings.playerYOffset) * Mathf.Cos(settings.rotation)) + ((-player.transform.localPosition.x * settings.xScale + settings.playerXOffset) * Mathf.Sin(settings.rotation));
                 map.transform.localPosition = new Vector3(x, y, 0);
+                if (GameManager.Mode == GameMode.Rehearsal)
+                {
+                    float pinX = (((InteractablePath.NextInteractable.LabelPosition.x - player.transform.localPosition.x) * settings.xScale) * Mathf.Cos(settings.rotation)) - (((InteractablePath.NextInteractable.LabelPosition.z - player.transform.localPosition.z) * settings.yScale) * Mathf.Sin(settings.rotation));
+                    float pinY = (((InteractablePath.NextInteractable.LabelPosition.z - player.transform.localPosition.z) * settings.yScale) * Mathf.Cos(settings.rotation)) + (((InteractablePath.NextInteractable.LabelPosition.x - player.transform.localPosition.x) * settings.xScale) * Mathf.Sin(settings.rotation));
+                    pinIcon.transform.localPosition = new Vector3(pinX, pinY, 0);
+                }
             }
-            if (GameManager.Mode == GameMode.Rehearsal)
-            {
-                pinIcon.transform.localPosition = new Vector3((InteractablePath.NextInteractable.LookAtPosition.x - player.transform.localPosition.x) * settings.xScale, (InteractablePath.NextInteractable.LookAtPosition.z - player.transform.localPosition.z) * settings.yScale, 0);
-            }
+            
 
-           else if (GameManager.Mode == GameMode.Recall || GameManager.Mode == GameMode.Sandbox)
+            if (GameManager.Mode == GameMode.Recall || GameManager.Mode == GameMode.Sandbox)
             {
                 pinIcon.gameObject.SetActive(false);
             }
