@@ -608,6 +608,19 @@ public class FastRecoveryUI : MonoBehaviour
         for (int i = 0; i < buttons.Count; i++)
         {
             GetButtonPosition(buttons[i].gameObject, interactables[i]);
+            /*RaycastHit hit;
+            Ray ray = renderCamera.ScreenPointToRay(renderCamera.WorldToScreenPoint(interactables[i].LabelPosition));
+            if (Physics.Raycast(ray, out hit, 100.0f))
+            {
+                if (hit.transform.gameObject.layer == 10)
+                {
+                    SetTransparencyOnHiddenLayer(hit.transform.gameObject);
+                }
+                else
+                {
+                    Debug.Log(hit.transform.gameObject.name);
+                }
+            }*/
         }
         GetPinPosition();
 
@@ -771,8 +784,20 @@ public class FastRecoveryUI : MonoBehaviour
 
     //====================================================================================================//
 
-    private void SetTransparencyOnHiddenLayer()
+    private void SetTransparencyOnHiddenLayer(GameObject hit = null)
     {
+        if (hit)
+        {
+            foreach (Material material in hit.GetComponent<Renderer>().materials)
+            {
+                material.SetInt("_Surface", 1);
+                Color color = new Color(1, 1, 1, 0.1f);
+                material.SetColor("_BaseColor", color);
+                material.renderQueue = 3100;
+            }
+            return;
+        }
+
         List<GameObject> layerList = FindGameObjectsWithLayer(10);
         if (layerList != null && layerList.Count > 0)
         {
@@ -791,8 +816,20 @@ public class FastRecoveryUI : MonoBehaviour
 
     //====================================================================================================//
 
-    private void SetOpacityOnHiddenLayer()
+    private void SetOpacityOnHiddenLayer(GameObject hit = null)
     {
+        if (hit)
+        {
+            foreach (Material material in hit.GetComponent<Renderer>().materials)
+            {
+                material.SetInt("_Surface", 0);
+                Color color = new Color(1, 1, 1, 1);
+                material.SetColor("_BaseColor", color);
+                material.renderQueue = -1;
+            }
+            return;
+        }
+
         List<GameObject> layerList = FindGameObjectsWithLayer(10);
         if (layerList != null && layerList.Count > 0)
         {
