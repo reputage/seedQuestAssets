@@ -788,6 +788,7 @@ public class FastRecoveryUI : MonoBehaviour
     {
         if (hit)
         {
+            hit.GetComponent<Renderer>().rendererPriority = 50;
             foreach (Material material in hit.GetComponent<Renderer>().materials)
             {
                 material.SetInt("_Surface", 1);
@@ -803,6 +804,7 @@ public class FastRecoveryUI : MonoBehaviour
         {
             foreach (GameObject gObject in layerList)
             {
+                gObject.GetComponent<Renderer>().rendererPriority = 50;
                 foreach (Material material in gObject.GetComponent<Renderer>().materials)
                 {
                     material.SetInt("_Surface", 1);
