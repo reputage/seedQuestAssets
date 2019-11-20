@@ -53,4 +53,13 @@ public class SkinnedMeshSwapper : MonoBehaviour
             }
         }
     }
+
+    [SerializeField]
+    public Transform Get_Root(string name)
+    {
+        Transform rootJoint = gameObject.transform.Find(name);
+        Debug.Log("rootjoint ===    :  " + rootJoint);
+
+        return rootJoint;
+    }
 }

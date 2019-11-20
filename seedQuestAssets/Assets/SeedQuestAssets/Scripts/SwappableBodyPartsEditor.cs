@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections;
+using System.Collections.Generic;
 
 
 [CustomEditor(typeof(SkinnedMeshSwapper))]
@@ -41,14 +42,21 @@ public class SwappableBodyPartsEditor : Editor
         skinswap.oldMesh = (SkinnedMeshRenderer)EditorGUILayout.ObjectField("old Mesh", skinswap.oldMesh, typeof(SkinnedMeshRenderer), allowSceneObjects);
         skinswap.newMesh = (SkinnedMeshRenderer)EditorGUILayout.ObjectField("new Mesh", skinswap.newMesh, typeof(SkinnedMeshRenderer), allowSceneObjects);
 
+
         if (GUILayout.Button("Swap Skins"))
         {
-            ProcessBonedObject(skinswap.newMesh, skinswap.oldMesh, skinswap.jointHierarchy, skinswap.meshParent);
+
+            Transform rootJoint = skinswap.oldMesh.GetComponent<SkinnedMeshRenderer>().rootBone;
+            Debug.LogWarning("Root Joint:   "+ rootJoint);
+
+
+
+            ProcessBonedObject(skinswap.newMesh, skinswap.oldMesh, skinswap.jointHierarchy, skinswap.meshParent, rootJoint);
         }
 
     }
 
-    public void ProcessBonedObject(SkinnedMeshRenderer newMesh, SkinnedMeshRenderer oldMesh, GameObject RootObj, GameObject meshParent)
+    public void ProcessBonedObject(SkinnedMeshRenderer newMesh, SkinnedMeshRenderer oldMesh, GameObject RootObj, GameObject meshParent, Transform rootJoint)
     {
         /*      Create the SubObject        */
         GameObject NewObj = new GameObject(newMesh.gameObject.name);
@@ -66,10 +74,26 @@ public class SwappableBodyPartsEditor : Editor
         /*      Assemble Renderer       */
         NewRenderer.bones = MyBones;
         NewRenderer.sharedMesh = newMesh.sharedMesh;
-        NewRenderer.materials = newMesh.materials;
 
-        /*      Set Parent Joint        */
-        newMesh.GetComponent<SkinnedMeshRenderer>().rootBone = oldMesh.GetComponent<SkinnedMeshRenderer>().rootBone;
+        List<string> mat_name = new List<string>();
+
+        Material[] matref= NewRenderer.GetComponent<Renderer>().sharedMaterials;
+        Debug.LogWarning(matref);
+
+        foreach (Material mat in matref)
+        {
+            if(mat != null)
+                mat_name.Add(mat.ToString());
+        }
+
+        //need to find materials in object
+        Debug.LogWarning(mat_name);
+
+        Material material = new Material(Shader.Find());
+ 
+
+        /*      Set Root Joint        */
+        newMesh.GetComponent<SkinnedMeshRenderer>().rootBone = rootJoint.transform;
 
         /*      Disable Old Mesh        */
         oldMesh.gameObject.SetActive(false);
