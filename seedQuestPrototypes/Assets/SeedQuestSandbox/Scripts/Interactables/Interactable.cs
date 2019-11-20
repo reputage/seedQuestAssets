@@ -99,6 +99,9 @@ namespace SeedQuest.Interactables
         }
 
         public bool PlayerIsNear() {
+            if (IsometricCamera.instance == null) return true;
+            if (IsometricCamera.instance.playerTransform == null) return true;
+
             Vector3 playerPosition = IsometricCamera.instance.playerTransform.position;
             float dist = (transform.position - playerPosition).magnitude;
             if (dist < interactDistance)
