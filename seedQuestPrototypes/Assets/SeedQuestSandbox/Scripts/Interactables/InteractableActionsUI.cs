@@ -39,10 +39,12 @@ public class InteractableActionsUI : MonoBehaviour
         if (active) {
             GameManager.State = GameState.Menu;
             InteractableLabelUI.ToggleAll(false);
+            Instance.SetHint();
         }
         else {
             GameManager.State = GameState.Play;
             InteractableLabelUI.ToggleAll(true);
+            Instance.ClearHint();
         }
     }
 
@@ -64,6 +66,28 @@ public class InteractableActionsUI : MonoBehaviour
         actionButtons[1].gameObject.GetComponent<FastRecoveryButton>().ActionIndex = 1;
         actionButtons[2].gameObject.GetComponent<FastRecoveryButton>().ActionIndex = 2;
         actionButtons[3].gameObject.GetComponent<FastRecoveryButton>().ActionIndex = 3;
+    }
+
+    private void SetHint()
+    {
+        if (GameManager.Mode == GameMode.Rehearsal && GameManager.GraduatedFlags[InteractableLog.CurrentLevelIndex] != true)
+        {
+            if (InteractablePath.NextInteractable.ID == Instance.interactable.ID)
+            {
+                actionButtons[InteractablePath.NextAction].gameObject.GetComponent<Animation>().Play();
+            }
+        }
+    }
+
+    private void ClearHint()
+    {
+        if (GameManager.Mode == GameMode.Rehearsal && GameManager.GraduatedFlags[InteractableLog.CurrentLevelIndex] != true)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                actionButtons[i].gameObject.GetComponent<Animation>().Stop();
+            }
+        }
     }
 
     void SetInteractable() {
