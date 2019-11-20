@@ -11,12 +11,11 @@ public class StartScreenCanvas : MonoBehaviour
     private bool mobileMenuUp;
 
     public void Awake() {
-#if UNITY_IOS || UNITY_ANDROID || UNITY_WP_8_1
-            animator = gameObject.GetComponentInChildren<Animator>();
-#else
-        //animator = gameObject.GetComponent<Animator>();
-        animator = gameObject.GetComponentInChildren<Animator>();
-#endif
+        #if UNITY_IOS || UNITY_ANDROID || UNITY_WP_8_1
+                animator = gameObject.GetComponentInChildren<Animator>();
+        #else
+                animator = gameObject.GetComponent<Animator>();
+        #endif
         mobileMenuUp = false;
     }
 
