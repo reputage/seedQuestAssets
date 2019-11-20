@@ -86,6 +86,9 @@ public class InteractableActionsUI : MonoBehaviour
             for (int i = 0; i < 4; i++)
             {
                 actionButtons[i].gameObject.GetComponent<Animation>().Stop();
+                ColorBlock colors = actionButtons[i].colors;
+                colors.normalColor = new Color(0.13333f, 0.35294f, 0.50196f);
+                actionButtons[i].colors = colors;
             }
         }
     }
