@@ -85,6 +85,11 @@ namespace SeedQuest.Interactables
         /// </summary>
         /// <param name="actionIndex">Action index.</param>
         public void SelectAction(int actionIndex) {
+            if(GameManager.Mode == GameMode.Sandbox && RecallTestManager.Instance != null) {
+                Debug.Log("Select Action in DemoTest");
+                RecallTestManager.Next();
+            }
+
             if (GameManager.Mode == GameMode.Rehearsal) {
                 bool isNextAction = this.ID == InteractablePath.NextInteractable.ID && actionIndex == InteractablePath.NextAction;
 

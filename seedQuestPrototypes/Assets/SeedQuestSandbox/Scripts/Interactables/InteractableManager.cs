@@ -45,8 +45,10 @@ namespace SeedQuest.Interactables
         static public void SetActiveInteractable(Interactable interactable) {
             Instance.activeInteractable = interactable;
 
+            /* NOTE: Handle Interactable ActionIDs in InteractablePreviewUI */
             if ((GameManager.Mode == GameMode.Sandbox || GameManager.Mode == GameMode.Recall) && interactable != null)
-                InteractablePreviewUI.SetPreviewObject(interactable, InteractablePath.Instance.actionIds[InteractablePath.Instance.nextIndex]); 
+                if(InteractablePath.Instance.actionIds != null)
+                    InteractablePreviewUI.SetPreviewObject(interactable, InteractablePath.Instance.actionIds[InteractablePath.Instance.nextIndex]); 
         }
 
         private Interactable[,] interactableLUT;
