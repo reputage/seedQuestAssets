@@ -38,26 +38,32 @@ public class SwappableBodyPartsEditor : Editor
 
         bool allowSceneObjects = !EditorUtility.IsPersistent(target);
 
-        skinswap.jointHierarchy = (GameObject)EditorGUILayout.ObjectField("joint hierarchy", skinswap.jointHierarchy, typeof(GameObject), allowSceneObjects);
-        skinswap.meshParent = (GameObject)EditorGUILayout.ObjectField("mesh Parent", skinswap.meshParent, typeof(GameObject), allowSceneObjects);
-        skinswap.oldMesh = (SkinnedMeshRenderer)EditorGUILayout.ObjectField("old Mesh", skinswap.oldMesh, typeof(SkinnedMeshRenderer), allowSceneObjects);
-        skinswap.newMesh = (SkinnedMeshRenderer)EditorGUILayout.ObjectField("new Mesh", skinswap.newMesh, typeof(SkinnedMeshRenderer), allowSceneObjects);
-
+        skinswap.jointHierarchy = (GameObject)EditorGUILayout.ObjectField("Joint hierarchy", skinswap.jointHierarchy, typeof(GameObject), allowSceneObjects);
+        skinswap.meshParent = (GameObject)EditorGUILayout.ObjectField("Mesh Parent", skinswap.meshParent, typeof(GameObject), allowSceneObjects);
+        skinswap.oldMesh = (SkinnedMeshRenderer)EditorGUILayout.ObjectField("Old Mesh", skinswap.oldMesh, typeof(SkinnedMeshRenderer), allowSceneObjects);
+        skinswap.newMesh = (SkinnedMeshRenderer)EditorGUILayout.ObjectField("New Mesh", skinswap.newMesh, typeof(SkinnedMeshRenderer), allowSceneObjects);
+        skinswap.addOnObject = EditorGUILayout.Toggle("Add Object (Useful for capes, hats, etc.)", skinswap.addOnObject);
 
         if (GUILayout.Button("Swap Skins"))
         {
+            //Check for missing entries in script
+            bool pass = CheckNull(skinswap.newMesh, skinswap.oldMesh, skinswap.jointHierarchy, skinswap.meshParent);
 
-            Transform rootJoint = skinswap.oldMesh.GetComponent<SkinnedMeshRenderer>().rootBone;
-            Debug.LogWarning("Root Joint:   "+ rootJoint);
-
-
-
-            ProcessBonedObject(skinswap.newMesh, skinswap.oldMesh, skinswap.jointHierarchy, skinswap.meshParent, rootJoint);
+            if (pass)
+            {
+                Transform rootJoint = skinswap.oldMesh.GetComponent<SkinnedMeshRenderer>().rootBone;
+                //Debug.LogWarning("Root Joint:   " + rootJoint);
+                ProcessBonedObject(skinswap.newMesh, skinswap.oldMesh, skinswap.jointHierarchy, skinswap.meshParent, rootJoint, skinswap.addOnObject);
+            }
+            else
+            {
+                Debug.LogWarning("Missing entries in SkinSwapperScript. Make sure all of the object fields have an assignment");
+            }
         }
 
     }
 
-    public void ProcessBonedObject(SkinnedMeshRenderer newMesh, SkinnedMeshRenderer oldMesh, GameObject RootObj, GameObject meshParent, Transform rootJoint)
+    public void ProcessBonedObject(SkinnedMeshRenderer newMesh, SkinnedMeshRenderer oldMesh, GameObject RootObj, GameObject meshParent, Transform rootJoint, bool addOn)
     {
         /*      Create the SubObject        */
         GameObject NewObj = new GameObject(newMesh.gameObject.name);
@@ -76,30 +82,49 @@ public class SwappableBodyPartsEditor : Editor
         NewRenderer.bones = MyBones;
         NewRenderer.sharedMesh = newMesh.sharedMesh;
 
-        List<string> mat_name = new List<string>();
+        /*      Get Renderer from Object    */
+        /*  This is a WIP part of this script to auto-apply materials. In the meantime, each material will need to be applied manually.
+         * /
+        /*
+        string matref= newMesh.gameObject.GetComponent<SkinnedMeshRenderer>().sharedMaterial.name.ToString();
+        matref = matref.Replace("(Instance)", "").TrimEnd();
+        //Material material = new Material(Shader.Find());
+        List<Material> usedMaterials = new List<Material>();
 
-        Material[] matref= NewRenderer.GetComponent<Renderer>().sharedMaterials;
-        Debug.LogWarning(matref);
-
-        foreach (Material mat in matref)
+        //Create path to object
+        //string newString = ("Assets/SeedQuestAssets/Assets/Characters/Models/" + matref + ".mat").ToString();
+        string newString = (matref + ".mat").ToString();
+        Debug.LogWarning("newString      " + newString);
+        //Material materialName = (Material)AssetDatabase.LoadAssetAtPath(newString, typeof(Material));
+        string[] findPath;
+        findPath= AssetDatabase.FindAssets(newString.TrimEnd(), new[] { "Assets/SeedQuestAssets/Assets/Characters/Models" });
+        foreach (string x in findPath)
         {
-            if(mat != null)
-                mat_name.Add(mat.ToString());
+            Debug.Log("Find Path:    " + x);
         }
+        foreach (string guid in findPath)
+        {
+            Debug.Log("materials found:  " + AssetDatabase.GUIDToAssetPath(guid));
+        }
+        Material materialName = (Material)AssetDatabase.LoadAssetAtPath(newString, typeof(Material));
+        Debug.LogWarning("name to search for:     " + matref);
+        Debug.LogWarning("Material Found:    " + materialName);
+        NewObj.GetComponent<SkinnedMeshRenderer>().material = materialName;
+        */
 
-        //need to find materials in object
-        Debug.LogWarning(mat_name);
 
-        Material material = new Material(Shader.Find());
- 
+
 
         /*      Set Root Joint        */
-        newMesh.GetComponent<SkinnedMeshRenderer>().rootBone = rootJoint.transform;
+        NewObj.GetComponent<SkinnedMeshRenderer>().rootBone = rootJoint.transform;
 
         /*      Disable Old Mesh        */
-        oldMesh.gameObject.SetActive(false);
+        if (addOn == false)
+            oldMesh.gameObject.SetActive(false);
 
         //swapped = true;
+
+        Debug.Log("Skinned Meshes have been swapped! Continue swapping meshes or if you are done apply a material to the object and save as a prefab!", NewObj);
     }
 
     public Transform FindChildByName(string newMeshBones, Transform rootTransform)
@@ -115,5 +140,22 @@ public class SwappableBodyPartsEditor : Editor
                 return ReturnObj;
         }
         return null;
+    }
+
+    public bool CheckNull(SkinnedMeshRenderer newMesh, SkinnedMeshRenderer oldMesh, GameObject RootObj, GameObject meshParent)
+    {
+        //Debug.Log(newMesh);
+        //Debug.Log(oldMesh);
+        //Debug.Log(RootObj);
+        //Debug.Log(meshParent);
+
+        if (newMesh == null){ return false;}
+        if (oldMesh == null) { return false; }
+        if (RootObj == null) { return false; }
+        if (meshParent == null) { return false; }
+        else
+        {
+            return true;
+        }
     }
 }
