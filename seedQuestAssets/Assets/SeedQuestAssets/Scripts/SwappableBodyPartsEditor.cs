@@ -82,9 +82,10 @@ public class SwappableBodyPartsEditor : Editor
         NewRenderer.bones = MyBones;
         NewRenderer.sharedMesh = newMesh.sharedMesh;
 
-        /*      Get Renderer from Object    */
-        /*  This is a WIP part of this script to auto-apply materials. In the meantime, each material will need to be applied manually.
-         * /
+        /*      Get Material from Object    */
+        //
+        //  This is a WIP part of this script to auto-apply materials. In the meantime, each material will need to be applied manually.
+        //
         /*
         string matref= newMesh.gameObject.GetComponent<SkinnedMeshRenderer>().sharedMaterial.name.ToString();
         matref = matref.Replace("(Instance)", "").TrimEnd();
@@ -124,7 +125,7 @@ public class SwappableBodyPartsEditor : Editor
 
         //swapped = true;
 
-        Debug.Log("Skinned Meshes have been swapped! Continue swapping meshes or if you are done apply a material to the object and save as a prefab!", NewObj);
+        Debug.Log("Skinned Meshes have been swapped! Continue swapping meshes or if you are done apply a material to the object and save as a prefab!\n Be sure to remove script from object before saving as prefab.", NewObj);
     }
 
     public Transform FindChildByName(string newMeshBones, Transform rootTransform)
