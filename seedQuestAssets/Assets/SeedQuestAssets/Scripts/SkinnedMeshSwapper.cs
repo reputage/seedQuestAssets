@@ -18,7 +18,7 @@ public class SkinnedMeshSwapper : MonoBehaviour
     [HideInInspector] public GameObject meshParent;
     [HideInInspector] public SkinnedMeshRenderer oldMesh;
     [HideInInspector] public SkinnedMeshRenderer newMesh;
-    [HideInInspector] public bool swapped = false;
+    [HideInInspector] public bool addOnObject = false;
     [HideInInspector] string parent;
 
     public void Awake()

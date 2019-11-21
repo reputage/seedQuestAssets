@@ -12,7 +12,7 @@ public class SwappableBodyPartsEditor : Editor
     SerializedProperty meshParent;
     SerializedProperty oldMesh;
     SerializedProperty newMesh;
-
+    SerializedProperty addOnObject;
 
     void OnEnable()
     {
@@ -21,6 +21,7 @@ public class SwappableBodyPartsEditor : Editor
         meshParent = serializedObject.FindProperty("meshParent");
         oldMesh = serializedObject.FindProperty("oldMesh");
         newMesh = serializedObject.FindProperty("newMesh");
+        addOnObject = serializedObject.FindProperty("addOnObject");
     }
 
     public override void OnInspectorGUI()
