@@ -107,6 +107,15 @@ class UI_Functionality(object):
 
     def FindBaseJoint(self):
         return 'nothing found'
+    
+    def OpenAnimationWindow(self):
+        print 'opening animation window'
+        
+    def LocatePath(self):
+        print 'locating path'
+        
+    def AddNewRig(self):
+        print 'add new rig'
         
 class window_ui(QDialog):
     #class instance
@@ -134,8 +143,18 @@ class window_ui(QDialog):
         self.setLayout(self.main_layout)
         self.main_layout.addWidget(self.qtui)
 
-        btn = self.qtui.findChild(QPushButton, 'button_exportselected')
-
+        btn_exportsel = self.qtui.findChild(QPushButton, 'button_exportselected')
+        btn_exportall = self.qtui.findChild(QPushButton, 'button_exportall')
+        btn_locatepath = self.qtui.findChild(QPushButton, 'button_locatepath')
+        btn_editanim = self.qtui.findChild(QPushButton, 'button_editanimation')
+        btn_addnew = self.qtui.findChild(QPushButton, 'button_addnew')
+        
+        self.qtui.button_exportselected.clicked.connect(lambda *_: ui_funct.StartExport())
+        self.qtui.button_exportall.clicked.connect(lambda *_: ui_funct.StartExport())
+        self.qtui.button_locatepath.clicked.connect(lambda *_: ui_funct.LocatePath())
+        self.qtui.button_editanimation.clicked.connect(lambda *_: ui_funct.OpenAnimationWindow())
+        self.qtui.button_addnew.clicked.connect(lambda *_: ui_funct.AddNewRig())
+        
         #fill out rig list
         self.qtui.list_scenerigs.addItems(ui_funct.FindAllRigs())
         #fill out rig ref list
@@ -144,7 +163,6 @@ class window_ui(QDialog):
         self.qtui.list_animations.addItems(ui_funct.FindAnimationClipsinScene())
         #update animation list based on rig selection
         self.qtui.list_scenerigs.itemSelectionChanged.connect(self.UpdateAnimList)
-
 
     def UpdateAnimList(self):
         rigSelection = [item.text() for item in self.qtui.list_scenerigs.selectedItems()]
@@ -169,9 +187,7 @@ def main():
     ui_win.show()
     return ui_win
 
-    
-    
-    
+
 #mc.GamePipeline(sp = "Unity", sup = True)
 #setAttr("gameExporterPreset4.animClips[1].animClipStart") 25;                                
 #gameExp_AdjustTimeline("1", "StartClip", 16);
