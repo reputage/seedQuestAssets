@@ -20,38 +20,44 @@ public class SkinnedMeshSwapper : MonoBehaviour
     [HideInInspector] public SkinnedMeshRenderer newMesh;
     [HideInInspector] public bool addOnObject = false;
     [HideInInspector] string parent;
+    public bool NPC_autofill;
 
     public void Awake()
     {
-        if (parent == null)
+        if (NPC_autofill == true)
         {
-            parent = gameObject.name;
-        }
-        else
-        {
-            if (jointHierarchy == null)
+            if (parent == null)
             {
-                jointHierarchy = GameObject.Find(parent + "/Joint_Grp");
-
+                parent = gameObject.name;
+            }
+            else
+            {
                 if (jointHierarchy == null)
                 {
-                    print("unable to find mesh");
+                    jointHierarchy = GameObject.Find(parent + "/Joint_Grp/");
+
+                    if (jointHierarchy == null)
+                    {
+                        print("unable to find mesh");
+                    }
                 }
-            }
-
-            if (meshParent == null)
-            {
-                string name = gameObject.name;
-                GameObject parent = GameObject.Find(name + "/Mesh_Grp/");
-
-                meshParent = parent.transform.GetChild(0).gameObject;
 
                 if (meshParent == null)
                 {
-                    print("unable to find mesh");
+                    string name = gameObject.name;
+                    GameObject parent = GameObject.Find(name + "/Mesh_Grp/");
+
+                    meshParent = parent.transform.GetChild(0).gameObject;
+
+                    if (meshParent == null)
+                    {
+                        print("unable to find mesh");
+                    }
                 }
+
             }
         }
+
     }
 
     [SerializeField]
