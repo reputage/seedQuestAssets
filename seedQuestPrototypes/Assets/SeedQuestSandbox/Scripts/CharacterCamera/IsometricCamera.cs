@@ -5,6 +5,8 @@ using UnityEngine.Rendering.PostProcessing;
 
 using SeedQuest.Interactables;
 
+public enum ZoomTarget { Player, Interactable, LocationZoom } 
+
 [ExecuteInEditMode]
 public class IsometricCamera : MonoBehaviour
 {
@@ -19,7 +21,7 @@ public class IsometricCamera : MonoBehaviour
     public float startingDistance = 28;                         // Starting scene camera distance from player
     public float lookAtPeek = 4f;                               // Look Ahead peak distance 
 
-    private bool lookAtInteractable;
+    private ZoomTarget lookAtTarget = ZoomTarget.Player;
     private float nearInteractableDistance = 8.0f;
     private float nearDistance = 5.0f;
     private float farDistance = 40.0f;
@@ -62,9 +64,13 @@ public class IsometricCamera : MonoBehaviour
     }
 
     private void LateUpdate() {
-        if (lookAtInteractable) {
+        if (lookAtTarget == ZoomTarget.Interactable){
             CameraFollowInteractable();
             CameraLookAtInteractable();
+        }
+        else if (lookAtTarget == ZoomTarget.LocationZoom) {
+            CameraFollowLocationZoom();
+            CameraLookAtLocationZoom();
         }
         else {
             CameraFollowPlayer();
@@ -84,12 +90,19 @@ public class IsometricCamera : MonoBehaviour
 
     /// <summary> Follow interactable with camera with smoothing </summary>
     public void CameraFollowInteractable() {
-        if (playerTransform.position == Vector3.zero) return;
-
         Interactable interactable = InteractableManager.ActiveInteractable;
         Vector3 iOffset = interactable.GetComponent<BoxCollider>().center;
         Vector3 currentOffset = CameraZoom.GetCurrentZoomDistance(cameraDirection, interactable.interactableCamera.zoomDistance, distance);
         Vector3 desiredPosition = interactable.transform.position + interactable.interactableCamera.positionOffset + currentOffset;
+        Vector3 currentPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
+        transform.position = currentPosition;
+    }
+
+    /// <summary> Follow location zoom with camera with smoothing </summary>
+    public void CameraFollowLocationZoom() {
+        LocationZoom location = LocationZoom.ActiveLocation;
+        Vector3 currentOffset = CameraZoom.GetCurrentZoomDistance(cameraDirection, location.zoomDistance, distance);
+        Vector3 desiredPosition = location.transform.position + location.GetComponent<BoxCollider>().center + location.positionOffset + currentOffset;
         Vector3 currentPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
         transform.position = currentPosition;
     }
@@ -108,8 +121,27 @@ public class IsometricCamera : MonoBehaviour
         LookAt(lookAt + iOffset);
     }
 
+    public void CameraLookAtLocationZoom() {
+        LocationZoom location = LocationZoom.ActiveLocation;
+        Vector3 lookAt = location.transform.position + location.GetComponent<BoxCollider>().center + location.lookAtOffset;
+        LookAt(lookAt);
+    }
+
+    public void ToggleOnLookAtLocationZoom() {
+        lookAtTarget = ZoomTarget.LocationZoom;
+    }
+
+    public void ToggleOnLookAtPlayer() {
+        lookAtTarget = ZoomTarget.Player;
+    }
+
     public void ToggleLookAtInteractable(bool active) {
-        lookAtInteractable = active;
+        if(active) {
+            lookAtTarget = ZoomTarget.Interactable;
+        }
+        else {
+            lookAtTarget = ZoomTarget.Player;
+        }
     }
 
     public void LookAt(Vector3 target) {
@@ -118,5 +150,4 @@ public class IsometricCamera : MonoBehaviour
         Quaternion rotation = Quaternion.Lerp(transform.rotation, targetRotation, lookAtSpeed * Time.deltaTime);
         transform.rotation = rotation;
     }
-
 }

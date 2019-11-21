@@ -166,6 +166,9 @@ public class InteractableLabelUI
             if (FastRecoveryUI.Instance.gameObject.activeSelf) return;
         }
 
+        if (GameManager.State == GameState.Menu)
+            return;
+
         AudioManager.Play("UI_Click");
         InteractableManager.SetActiveInteractable(interactable);
         InteractableActionsUI.Toggle(true);

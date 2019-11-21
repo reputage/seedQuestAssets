@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using SeedQuest.Interactables;
 using SeedQuest.Level;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class FastRecoveryUI : MonoBehaviour
@@ -145,6 +147,11 @@ public class FastRecoveryUI : MonoBehaviour
                 slider.value += input;
             }
         }
+
+        /*if (InputManager.GetKeyDown(KeyCode.C))
+        {
+            SaveRenderCameraImage();
+        }*/
     }
 
     //====================================================================================================//
@@ -207,7 +214,7 @@ public class FastRecoveryUI : MonoBehaviour
         RenderTexture target = new RenderTexture(1024, 1024, 16, RenderTextureFormat.ARGB32);
         renderCamera.targetTexture = target;
         renderCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("Player"));
-        renderCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("FastRecoveryHide"));
+        //renderCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("FastRecoveryHide"));
         renderCamera.enabled = true;
         renderCamera.Render();
         rawMap.texture = renderCamera.targetTexture;
@@ -330,7 +337,8 @@ public class FastRecoveryUI : MonoBehaviour
         }
         else
         {
-            GameManager.State = GameState.Play;
+            if (!LevelClearUI.Instance.gameObject.activeSelf)
+                GameManager.State = GameState.Play;
             if (settings.useRenderTexture)
                 EventSystem.current.SetSelectedGameObject(rawMap.gameObject);
             else
@@ -429,8 +437,8 @@ public class FastRecoveryUI : MonoBehaviour
             else if (settings.useRenderTexture)
             {
 
-                Vector3 position = InteractablePath.NextInteractable.transform.localPosition + InteractablePath.NextInteractable.interactableUI.positionOffset;
-                pin.transform.localPosition = renderCamera.WorldToScreenPoint(position) * currentScale;
+                //Vector3 position = InteractablePath.NextInteractable.transform.localPosition + InteractablePath.NextInteractable.interactableUI.positionOffset;
+                pin.transform.localPosition = renderCamera.WorldToScreenPoint(InteractablePath.NextInteractable.LabelPosition) * currentScale;
             }
             else
                 pin.transform.localPosition = new Vector3(InteractablePath.NextInteractable.transform.localPosition.x * settings.scale, InteractablePath.NextInteractable.transform.localPosition.z * settings.scale, 0);
@@ -578,9 +586,19 @@ public class FastRecoveryUI : MonoBehaviour
         double sinTheta = System.Math.Sin(System.Math.Round(rotator.value * System.Math.PI / 180, 2));
         double cosTheta = System.Math.Cos(System.Math.Round(rotator.value * System.Math.PI / 180, 2));
         double tanSigma = System.Math.Tan(System.Math.Round(Camera.main.transform.eulerAngles.y * System.Math.PI / 180, 2));
-        float x = (float)(height * tanSigma * cosTheta);
+        float x = 0;
+        float z = 0;
+        if (Camera.main.transform.localEulerAngles.y > 0 && Camera.main.transform.localEulerAngles.y < 300)
+        {
+            x = -(float)(height * tanSigma * cosTheta);
+            z = -(float)(height * cosTheta);
+        }
+        else
+        {
+            x = (float)(height * tanSigma * cosTheta);
+            z = (float)(height * cosTheta);
+        }
         float y = (float)(height * sinTheta);
-        float z = (float)(height * cosTheta);
         renderCamera.transform.localPosition = new Vector3((-x + settings.renderCameraOffsetX) * settings.renderRotationMultiplier, y, (-z + settings.renderCameraOffsetZ) * settings.renderRotationMultiplier);
 
         float newXOffset = (settings.xOffset * slider.value) / slider.minValue;
@@ -590,7 +608,26 @@ public class FastRecoveryUI : MonoBehaviour
         for (int i = 0; i < buttons.Count; i++)
         {
             GetButtonPosition(buttons[i].gameObject, interactables[i]);
+            /*RaycastHit hit;
+            Ray ray = renderCamera.ScreenPointToRay(renderCamera.WorldToScreenPoint(interactables[i].LabelPosition));
+            if (Physics.Raycast(ray, out hit, 100.0f))
+            {
+                if (hit.transform.gameObject.layer == 10)
+                {
+                    SetTransparencyOnHiddenLayer(hit.transform.gameObject);
+                }
+                else
+                {
+                    Debug.Log(hit.transform.gameObject.name);
+                }
+            }*/
         }
+        GetPinPosition();
+
+        if (rotator.value > 45)
+            SetTransparencyOnHiddenLayer();
+        else
+            SetOpacityOnHiddenLayer();
     }
 
     //====================================================================================================//
@@ -744,6 +781,114 @@ public class FastRecoveryUI : MonoBehaviour
         trigger.triggers.Add(entry);
 
     }
+
+    //====================================================================================================//
+
+    private void SetTransparencyOnHiddenLayer(GameObject hit = null)
+    {
+        if (hit)
+        {
+            foreach (Material material in hit.GetComponent<Renderer>().materials)
+            {
+                material.SetInt("_Surface", 1);
+                Color color = new Color(1, 1, 1, 0.1f);
+                material.SetColor("_BaseColor", color);
+                material.renderQueue = 3100;
+            }
+            return;
+        }
+
+        List<GameObject> layerList = FindGameObjectsWithLayer(10);
+        if (layerList != null && layerList.Count > 0)
+        {
+            foreach (GameObject gObject in layerList)
+            {
+                foreach (Material material in gObject.GetComponent<Renderer>().materials)
+                {
+                    material.SetInt("_Surface", 1);
+                    Color color = new Color(1, 1, 1, 0.1f);
+                    material.SetColor("_BaseColor", color);
+                    material.renderQueue = 3100;
+                }
+            }
+        }
+    }
+
+    //====================================================================================================//
+
+    private void SetOpacityOnHiddenLayer(GameObject hit = null)
+    {
+        if (hit)
+        {
+            foreach (Material material in hit.GetComponent<Renderer>().materials)
+            {
+                material.SetInt("_Surface", 0);
+                Color color = new Color(1, 1, 1, 1);
+                material.SetColor("_BaseColor", color);
+                material.renderQueue = -1;
+            }
+            return;
+        }
+
+        List<GameObject> layerList = FindGameObjectsWithLayer(10);
+        if (layerList != null && layerList.Count > 0)
+        {
+            foreach (GameObject gObject in layerList)
+            {
+                foreach (Material material in gObject.GetComponent<Renderer>().materials)
+                {
+                    material.SetInt("_Surface", 0);
+                    Color color = new Color(1, 1, 1, 1);
+                    material.SetColor("_BaseColor", color);
+                    material.renderQueue = -1;
+                }
+            }
+        }
+    }
+
+    //====================================================================================================//
+
+    /*void SaveRenderCameraImage()
+    {
+        if (GameManager.Mode != GameMode.Sandbox)
+            return;
+
+        RenderTexture currentRT = RenderTexture.active;
+        RenderTexture.active = renderCamera.targetTexture;
+
+        renderCamera.Render();
+
+        Texture2D Image = new Texture2D(renderCamera.targetTexture.width, renderCamera.targetTexture.height);
+        Image.ReadPixels(new Rect(0, 0, renderCamera.targetTexture.width, renderCamera.targetTexture.height), 0, 0);
+        Image.Apply();
+        RenderTexture.active = currentRT;
+
+        var Bytes = Image.EncodeToPNG();
+        Destroy(Image);
+
+        File.WriteAllBytes(Application.dataPath + "/SeedQuestSandbox/Images/" + SceneManager.GetActiveScene().name + ".png", Bytes);
+        Debug.Log("Render Captured");
+    }*/
+
+    //====================================================================================================//
+
+    private List<GameObject> FindGameObjectsWithLayer(int layer)
+    {
+        Object[] array = FindObjectsOfType(typeof(GameObject)) as GameObject[];
+        List<GameObject> layerList = new List<GameObject>();
+        foreach (GameObject gObject in array)
+        {
+            if (gObject.layer == layer)
+            {
+                layerList.Add(gObject);
+            }
+        }
+
+        if (layerList.Count == 0) {
+             return null;
+         }
+         return layerList;
+     }
 
     //====================================================================================================//
 
