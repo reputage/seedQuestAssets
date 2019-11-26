@@ -5,13 +5,20 @@ using UnityEngine.UI;
 using SeedQuest.Interactables;
 using TMPro;
 
+[System.Serializable]
+public class RecallTest {
+    public List<InteractableStateData> testData = new List<InteractableStateData>();
+}
+
 public class RecallTestManager : MonoBehaviour
 {
     static private RecallTestManager instance = null;
     static private RecallTestManager setInstance() { instance = GameObject.FindObjectOfType<RecallTestManager>(); return instance; }
     static public RecallTestManager Instance { get { return instance == null ? setInstance() : instance; } }
 
-    public List<InteractableStateData> demoTest0 = new List<InteractableStateData>();
+    public int testId = 0;
+    public List<RecallTest> recallTest = new List<RecallTest>();
+    public List<InteractableStateData> currentTest = new List<InteractableStateData>();
 
     private TextMeshProUGUI progressText;
     private TextMeshProUGUI nextButtonText;
@@ -22,13 +29,17 @@ public class RecallTestManager : MonoBehaviour
         progressText = GetComponentsInChildren<TextMeshProUGUI>()[0];
         nextButtonText = GetComponentsInChildren<TextMeshProUGUI>()[1];
         nextButton = GetComponentInChildren<Button>();
+
+        InteractableManager.SetActiveInteractable(InteractableManager.InteractableList[0]);
     }
 
     void Start() {
+        GameManager.Mode = GameMode.Sandbox;
+
         nextButton.gameObject.SetActive(false);
 
-        GameManager.Mode = GameMode.Sandbox;
-        InteractableManager.SetActiveInteractable(InteractableManager.InteractableList[0]);
+        currentTest = recallTest[testId].testData;
+        InteractableManager.ActiveInteractable.stateData = Instance.currentTest[0];
         InteractableManager.ActiveInteractable.stateData.SetToDefaultState(InteractableManager.ActiveInteractable);
         InteractableActionsUI.Toggle(true);
     }
@@ -38,9 +49,9 @@ public class RecallTestManager : MonoBehaviour
     }
 
     public void UpdateProgress() {
-        progressText.text = InteractableLog.Count.ToString() + " / " + demoTest0.Count.ToString();
+        progressText.text = InteractableLog.Count.ToString() + " / " + currentTest.Count.ToString();
 
-        if (InteractableLog.Count >= Instance.demoTest0.Count) {
+        if (InteractableLog.Count >= Instance.currentTest.Count) {
             Instance.nextButtonText.text = "Exit";
         }
     }
@@ -50,12 +61,12 @@ public class RecallTestManager : MonoBehaviour
     }
 
     public void OnNext() {
-        if(InteractableLog.Count >= demoTest0.Count) {
+        if(InteractableLog.Count >= currentTest.Count) {
             if(ExperimentalDemoMenu.Instance != null)
                 ExperimentalDemoMenu.Instance.GoToSeedSetup();
         }
-        else {
-            InteractableManager.ActiveInteractable.stateData = Instance.demoTest0[1];
+        else { 
+            InteractableManager.ActiveInteractable.stateData = Instance.currentTest[InteractableLog.Count];
             InteractableManager.ActiveInteractable.stateData.SetToDefaultState(InteractableManager.ActiveInteractable);
 
             InteractableActionsUI.Toggle(true);
