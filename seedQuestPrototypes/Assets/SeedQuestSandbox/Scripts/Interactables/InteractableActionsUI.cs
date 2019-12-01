@@ -34,7 +34,8 @@ public class InteractableActionsUI : MonoBehaviour
         Instance.SetText();
         Instance.SetInteractable();
 
-        IsometricCamera.instance.ToggleLookAtInteractable(active);
+        if(IsometricCamera.instance != null)
+            IsometricCamera.instance.ToggleLookAtInteractable(active);
 
         if (active) {
             GameManager.State = GameState.Menu;
@@ -57,10 +58,11 @@ public class InteractableActionsUI : MonoBehaviour
             actionButtons[i] = buttons[i + 1];
 
         buttons[0].onClick.AddListener(() => { BackExit(); });
-        /*actionButtons[0].onClick.AddListener(() => { clickActionButton(0); });
+        /*
+        actionButtons[0].onClick.AddListener(() => { clickActionButton(0); });
         actionButtons[1].onClick.AddListener(() => { clickActionButton(1); });
         actionButtons[2].onClick.AddListener(() => { clickActionButton(2); });
-        actionButtons[3].onClick.AddListener(() => { clickActionButton(3); });*/
+        actionButtons[3].onClick.AddListener(() => { clickActionButton(3); }); */
 
         actionButtons[0].gameObject.GetComponent<FastRecoveryButton>().ActionIndex = 0;
         actionButtons[1].gameObject.GetComponent<FastRecoveryButton>().ActionIndex = 1;
@@ -113,9 +115,9 @@ public class InteractableActionsUI : MonoBehaviour
     }
 
     void clickActionButton(int actionIndex) {
-        /* InteractableActionsUI.Toggle(false); */
+        InteractableActionsUI.Toggle(false); 
+        interactable.SelectAction(actionIndex);
 
-        //interactable.PreviewAction(actionIndex);
         //AudioManager.Play("UI_Hover");
     }
 

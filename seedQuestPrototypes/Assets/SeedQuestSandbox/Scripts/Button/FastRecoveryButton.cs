@@ -22,18 +22,22 @@ public class FastRecoveryButton : MonoBehaviour, IPointerDownHandler, IPointerUp
     }
 
     public void Update() {
-        CheckForButtonDown();       
+        //CheckForButtonDown();       
     }
 
     public void OnPointerDown(PointerEventData eventData) {
-        buttonPressed = true;
+        interactable.SelectAction(actionIndex);
+
+        //buttonPressed = true;
     }
 
     public void OnPointerUp(PointerEventData eventData) {
+        /*
         buttonPressed = false;
         progressCompleted = false;
         time = 0.0f;
         progress.GetComponent<RectTransform>().offsetMax = new Vector2(-buttonLength, progress.GetComponent<RectTransform>().offsetMax.y);
+        */
     }
 
     public Interactable Interactable {

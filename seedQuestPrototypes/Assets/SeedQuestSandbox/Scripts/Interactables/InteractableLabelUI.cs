@@ -108,7 +108,7 @@ public class InteractableLabelUI
     }
 
     private void SetPosition() {
-        labelPosition = IsometricCamera.Camera.WorldToScreenPoint(LabelPosition);
+        labelPosition = Camera.main.WorldToScreenPoint(LabelPosition);
         labelCanvas.transform.position = labelPosition;
     }   
 
