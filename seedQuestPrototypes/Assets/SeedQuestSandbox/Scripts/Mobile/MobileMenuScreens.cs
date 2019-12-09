@@ -97,6 +97,7 @@ public class MobileMenuScreens : MonoBehaviour
         ResetCanvas();
         MobileBottomMenu.Instance.ResetBottomMenu();
         helpCanvas.gameObject.SetActive(true);
+        MobileHelp.Instance.SelectEmptyText();
         bottomMenuCanvas.gameObject.SetActive(true);
     }
 

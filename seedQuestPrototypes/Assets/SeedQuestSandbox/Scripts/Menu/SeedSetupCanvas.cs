@@ -21,7 +21,25 @@ public class SeedSetupCanvas : MonoBehaviour
 
     private void Update()
     {
-        bool doUpdate = GetComponentInChildren<SeedStrSelection>(true).updateFlag;
+        SeedStrSelection seedStr = GetComponentInChildren<SeedStrSelection>(true);
+
+        if (seedStr != null)
+        {
+            SeedStrUpdate(seedStr);
+        }
+        else
+        {
+            if (InteractableConfig.SitesPerGame != 6)
+                InteractableConfig.SitesPerGame = 6;
+            Debug.Log(InteractableConfig.SeedHexLength);
+            checkInputSeed();
+        }
+        
+    }
+
+    public void SeedStrUpdate(SeedStrSelection seedStr)
+    {
+        bool doUpdate = seedStr.updateFlag;
 
         if (doUpdate)
         {
@@ -38,6 +56,12 @@ public class SeedSetupCanvas : MonoBehaviour
     public void FindKey() {
         EncodeSeed();
         MenuScreenV2.Instance.GoToEncodeSeed();
+    }
+
+    public void FindKeyMobile()
+    {
+        EncodeSeed();
+        MobileMenuScreens.Instance.GoToSceneSelection();
     }
 
     public void SetRandomSeed() {
