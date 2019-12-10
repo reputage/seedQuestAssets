@@ -9,10 +9,13 @@ namespace SeedQuest.Interactables {
     {
         public InteractableID ID;
 
+        private Shader defaultShader;
+        private Shader highlightShader;
         private bool isOnHover = false;
 
         public void Start()
         {
+            getShaders();
             FitColliderToChildren(gameObject);
         }
 
@@ -20,6 +23,12 @@ namespace SeedQuest.Interactables {
         {
             HoverOnHandler();
             ClickOnHandler();
+        }
+
+        public void getShaders()
+        {
+            defaultShader = Shader.Find("Lightweight Render Pipeline/Lit");
+            highlightShader = Shader.Find("Shader Graphs/RimHighlights");
         }
 
         public void Select()
@@ -93,12 +102,14 @@ namespace SeedQuest.Interactables {
         {
             Debug.Log("Hover Enter: " + name);
             InteractableSimpleLabel.Instance.Show(this);
+            HighlightInteractable(true, true);
         }
 
         public void OnHoverExit()
         {
             Debug.Log("Hover Exit: " + name);
             InteractableSimpleLabel.Instance.Hide();
+            HighlightInteractable(false, false);
         }
 
         private void FitColliderToChildren(GameObject parent) {
@@ -123,6 +134,35 @@ namespace SeedQuest.Interactables {
 
             transform.localRotation = prevRot;
             transform.localScale = prevScale;
+        }
+
+        public void HighlightInteractable(bool useHighlight, bool useDynamicRim)
+        {
+            Renderer[] rendererList = transform.GetComponentsInChildren<Renderer>();
+
+            foreach (Renderer renderer in rendererList) {
+
+                foreach (Material material in renderer.materials){
+                    if (useHighlight) {
+                        material.shader = highlightShader;
+
+                        /*
+                        material.SetFloat("_HighlightPower", interactableHighlights.highlightPower);
+                        material.SetFloat("_RimExponent", interactableHighlights.rimExponent);
+                        material.SetFloat("_RimPower", interactableHighlights.rimPower);
+                        material.SetFloat("_OutlineWidth", interactableHighlights.outlineWidth);
+                        material.SetFloat("_OutlinePower", interactableHighlights.outlinePower);
+                        material.SetFloat("_DynamicColorSpeed", interactableHighlights.dynamicFlashSpeed);
+                        if(useDynamicRim)
+                            material.SetFloat("_UseDynamicColor", 1.0f);
+                        else
+                            material.SetFloat("_UseDynamicColor", 0.0f);
+                        */
+                    }
+                    else
+                        material.shader = defaultShader;
+                }
+            }
         }
     
     }

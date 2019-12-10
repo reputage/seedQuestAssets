@@ -23,12 +23,13 @@ public class RecallTestManager : MonoBehaviour
     private TextMeshProUGUI progressText;
     private TextMeshProUGUI nextButtonText;
     private Button nextButton;
+    private Button backButton;
 
-    private void Awake()
-    {
+    private void Awake() {
         progressText = GetComponentsInChildren<TextMeshProUGUI>()[0];
         nextButtonText = GetComponentsInChildren<TextMeshProUGUI>()[1];
-        nextButton = GetComponentInChildren<Button>();
+        nextButton = GetComponentsInChildren<Button>()[0];
+        backButton = GetComponentsInChildren<Button>()[1];
 
         InteractableManager.SetActiveInteractable(InteractableManager.InteractableList[0]);
     }
@@ -37,6 +38,7 @@ public class RecallTestManager : MonoBehaviour
         GameManager.Mode = GameMode.Sandbox;
 
         nextButton.gameObject.SetActive(false);
+        backButton.gameObject.SetActive(false);
 
         currentTest = recallTest[testId].testData;
         InteractableManager.ActiveInteractable.stateData = Instance.currentTest[0];
@@ -58,10 +60,13 @@ public class RecallTestManager : MonoBehaviour
 
     static public void Next() {
         Instance.nextButton.gameObject.SetActive(true);
+        Instance.backButton.gameObject.SetActive(true);
     }
 
     public void OnNext() {
         if(InteractableLog.Count >= currentTest.Count) {
+            InteractableLog.Clear();
+
             if(ExperimentalDemoMenu.Instance != null)
                 ExperimentalDemoMenu.Instance.GoToSeedSetup();
         }
@@ -72,6 +77,16 @@ public class RecallTestManager : MonoBehaviour
             InteractableActionsUI.Toggle(true);
             Instance.nextButton.gameObject.SetActive(false);            
         }
+    }
+
+    public void OnBack() {
+        InteractableLog.UndoLastAction();
+
+        InteractableManager.ActiveInteractable.stateData = Instance.currentTest[InteractableLog.Count];
+        InteractableManager.ActiveInteractable.stateData.SetToDefaultState(InteractableManager.ActiveInteractable);
+
+        InteractableActionsUI.Toggle(true);
+        Instance.nextButton.gameObject.SetActive(false);  
     }
 
 }

@@ -35,6 +35,10 @@ namespace SeedQuest.Experimental {
                 descriptionText.text = "Select Demo";
         }
 
+        public void OnClickBackButton() {
+            ExperimentalDemoMenu.Instance.GoToStart();
+        }
+
         public void OnClickNextButton() {
             StartCoroutine(LoadAsync(demoSceneName));
         }
