@@ -137,8 +137,7 @@ public class MobileMenuScreens : MonoBehaviour
         state = MenuScreenStates.EncodeSeed;
         ResetCanvas();
         sceneSelectionCanvas.gameObject.SetActive(true);
-        sceneSelectionCanvas.gameObject.GetComponent<EncodeSeedCanvas>().resetCanvas();
-        sceneSelectionCanvas.gameObject.GetComponent<EncodeSeedCanvas>().resetSeedStr();
+        sceneSelectionCanvas.gameObject.GetComponent<MobileSceneSelect>().resetCanvas();
         LevelSetManager.ResetCurrentLevels();
         WorldManager.Reset();
     }
@@ -149,7 +148,8 @@ public class MobileMenuScreens : MonoBehaviour
         GameManager.State = GameState.Menu;
         state = MenuScreenStates.SceneLineUp;
         ResetCanvas();
-        sceneLineUpCanvas.gameObject.SetActive(true);
+        sceneLineUpCanvas.GetComponent<MobileSceneLineUp>().ToggleOn();
+        sceneLineUpCanvas.GetComponent<MobileSceneLineUp>().StartScene();
     }
 
     public void ReturnToSceneLineUp()
@@ -167,6 +167,7 @@ public class MobileMenuScreens : MonoBehaviour
             state = MenuScreenStates.ActionLineUp;
             ResetCanvas();
             actionLineUpCanvas.gameObject.SetActive(true);
+            actionLineUpCanvas.GetComponent<ActionLineUpCanvas>().InitializeActionLineUp();
         }
         else
         {

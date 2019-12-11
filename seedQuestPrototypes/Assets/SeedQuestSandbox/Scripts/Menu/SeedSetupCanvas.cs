@@ -31,7 +31,6 @@ public class SeedSetupCanvas : MonoBehaviour
         {
             if (InteractableConfig.SitesPerGame != 6)
                 InteractableConfig.SitesPerGame = 6;
-            Debug.Log(InteractableConfig.SeedHexLength);
             checkInputSeed();
         }
         
@@ -185,6 +184,7 @@ public class SeedSetupCanvas : MonoBehaviour
 
         if (seedString == "" || seedString.Length < 1) {
             deactivateCheckSymbols();
+            deactivateHideKeyButton();
             warningTextTMP.text = "";
             validHex = false;
         }
