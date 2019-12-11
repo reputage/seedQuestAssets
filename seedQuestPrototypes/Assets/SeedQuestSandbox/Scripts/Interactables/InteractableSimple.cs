@@ -31,9 +31,8 @@ namespace SeedQuest.Interactables {
             highlightShader = Shader.Find("Shader Graphs/RimHighlights");
         }
 
-        public void Select()
-        {
-
+        public void Select() {
+            InteractableLog.Add(0,0,0);
         }
 
         public void HoverOnHandler()
@@ -96,6 +95,7 @@ namespace SeedQuest.Interactables {
         public void OnClick()
         {
             Debug.Log("Click: " + name);
+            Select();
         }
 
         public void OnHoverEnter()
