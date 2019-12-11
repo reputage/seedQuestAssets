@@ -36,6 +36,7 @@ public class MobileMenuScreens : MonoBehaviour
     private void Start()
     {
         GameManager.State = GameState.Menu;
+        GameManager.MobileMode = true;
         GoToStart();
     }
 
@@ -156,6 +157,7 @@ public class MobileMenuScreens : MonoBehaviour
     {
         ActiveCanvas();
         GoToSceneLineUp();
+        sceneLineUpCanvas.GetComponent<SceneLineUpCanvas>().Start();
     }
 
     public void GoToActionLineUp()
@@ -179,6 +181,8 @@ public class MobileMenuScreens : MonoBehaviour
     {
         CameraZoom.StartZoomIn();
         ResetCanvas();
+        bottomMenuCanvas.gameObject.SetActive(true);
+        MobileBottomMenu.Instance.SetInGameMenu();
         GameManager.State = GameState.Play;
     }
 

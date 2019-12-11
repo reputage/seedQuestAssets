@@ -54,6 +54,13 @@ public class GameManager : MonoBehaviour {
         set { tutorialMode = value; }
     }
 
+    private static bool mobilelMode = false;
+    public static bool MobileMode
+    {
+        get { return mobilelMode; }
+        set { mobilelMode = value; }
+    }
+
     public GameState state = GameState.Play;
     public GameState prevState = GameState.Play;
     public static GameState State {
