@@ -10,21 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d1c21d9ece6c4e229a7c25408d3063a, type: 3}
-  m_Name: InteractableDoodad
+  m_Name: InteractableMicroscope
   m_EditorClassIdentifier: 
-  interactableName: 
-  labelPosOffset: {x: 0, y: 0, z: 0}
   interactableUI:
-    name: Energy Orbs
-    positionOffset: {x: -0.02, y: 1.75, z: -0.65}
+    name: Microscope
+    positionOffset: {x: 0.85, y: 0.88, z: 0.76}
   interactableCamera:
-    lookAtOffset: {x: -0.5, y: 0.5, z: 0}
+    lookAtOffset: {x: 0, y: 1.3, z: 0}
     positionOffset: {x: 0, y: 0, z: 0}
-    zoomDistance: 5
+    zoomDistance: 4
   interactablePreview:
     scale: {x: 1, y: 1, z: 1}
-    position: {x: 0.36, y: -0.74, z: 0}
-    rotation: {x: 16.45, y: 195.27, z: 0}
+    position: {x: 0.11, y: -0.15, z: -3.57}
+    rotation: {x: 11.4, y: 129.44, z: -14.03}
     useOrthographic: 0
     fieldOfView: 60
     orthographicSize: 1
@@ -33,11 +31,29 @@ MonoBehaviour:
     rotateSpeed: 25
   ID:
     siteID: 7
-    spotID: 8
+    spotID: 10
     actionID: 0
+  defaultState:
+    actionName: 
+    prefab: {fileID: 0}
+    positionOffset: {x: 0, y: 0, z: 0}
+    mesh: {fileID: 0}
+    material: {fileID: 0}
+    materialIndex: 0
+    uvOffset: {x: 0, y: 0}
+    animatorController: {fileID: 0}
+    soundEffectName: 
+    soundEffect:
+      name: 
+      clip: {fileID: 0}
+      volume: 1
+      loop: 0
+      source: {fileID: 0}
+    particleEffectName: 
+    particleEffect: {fileID: 0}
   states:
-  - actionName: Hydrogen
-    prefab: {fileID: 1710467007365358, guid: 80586b6fc2231944d84696aaa4690b40, type: 3}
+  - actionName: Virus Slide
+    prefab: {fileID: 1739897659697482, guid: 4b091b1f565812b47bff3ab80ff65e85, type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
     material: {fileID: 0}
@@ -53,8 +69,8 @@ MonoBehaviour:
       source: {fileID: 0}
     particleEffectName: 
     particleEffect: {fileID: 0}
-  - actionName: Mercury
-    prefab: {fileID: 1797972406652052, guid: 0250f93cae8858c40991394905e47ffb, type: 3}
+  - actionName: Penicillin Slide
+    prefab: {fileID: 1276875009414870, guid: 5999a84ddc6f3f140bd7e1ebe4b76733, type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
     material: {fileID: 0}
@@ -70,8 +86,8 @@ MonoBehaviour:
       source: {fileID: 0}
     particleEffectName: 
     particleEffect: {fileID: 0}
-  - actionName: Helium
-    prefab: {fileID: 1376055802121506, guid: 0eb7d621df8d7494cb872b4d5bec49ba, type: 3}
+  - actionName: Artic Algae Slide
+    prefab: {fileID: 1571484210234294, guid: 1408c06628e91b54e850212db6fd53ab, type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
     material: {fileID: 0}
@@ -87,8 +103,8 @@ MonoBehaviour:
       source: {fileID: 0}
     particleEffectName: 
     particleEffect: {fileID: 0}
-  - actionName: Carbon Dioxide
-    prefab: {fileID: 1538060182191518, guid: e27ea1ec989b75640b23ce489fb6a04b, type: 3}
+  - actionName: All
+    prefab: {fileID: 1229608357885524, guid: 3ea7474565268514bb3c4671cbcc9b25, type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
     material: {fileID: 0}
@@ -104,4 +120,4 @@ MonoBehaviour:
       source: {fileID: 0}
     particleEffectName: 
     particleEffect: {fileID: 0}
-  effect: {fileID: 3589441540930374132, guid: 71afa81c53028c949876d5203f468837, type: 3}
+  effect: {fileID: 3589441540930374132, guid: c0d5d0c1d9437d14f96f05b7db572c46, type: 3}
