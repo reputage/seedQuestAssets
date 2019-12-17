@@ -19,20 +19,23 @@ public class InteractableViewer : MonoBehaviour
     }
 
     public void GetAssetList() {
-        string[] guids = AssetDatabase.FindAssets("t:InteractableStateData", null);
-        interactables = new List<InteractableStateData>();
 
-        var stopwatch = new System.Diagnostics.Stopwatch();
-        stopwatch.Start();
-        foreach (string guid in guids) {
-            string path = AssetDatabase.GUIDToAssetPath(guid);
-            interactables.Add((InteractableStateData)AssetDatabase.LoadAssetAtPath(path, typeof(InteractableStateData)));
-        }
+        #if UNITY_EDITOR
+            string[] guids = AssetDatabase.FindAssets("t:InteractableStateData", null);
+            interactables = new List<InteractableStateData>();
 
-        interactables = interactables.Where(x => x.interactableUI.name != "").ToList();
+            var stopwatch = new System.Diagnostics.Stopwatch();
+            stopwatch.Start();
+            foreach (string guid in guids) {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                interactables.Add((InteractableStateData)AssetDatabase.LoadAssetAtPath(path, typeof(InteractableStateData)));
+            }
 
-        stopwatch.Stop();
-        Debug.Log("Loaded " + interactables.Count + " interactables in " + stopwatch.ElapsedMilliseconds + " ms");
+            interactables = interactables.Where(x => x.interactableUI.name != "").ToList();
+
+            stopwatch.Stop();
+            Debug.Log("Loaded " + interactables.Count + " interactables in " + stopwatch.ElapsedMilliseconds + " ms");
+        #endif
     }
 
     static public void SetInteractable(InteractableStateData data) {

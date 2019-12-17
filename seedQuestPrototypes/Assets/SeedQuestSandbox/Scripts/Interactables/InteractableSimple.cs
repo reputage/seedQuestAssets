@@ -9,10 +9,13 @@ namespace SeedQuest.Interactables {
     {
         public InteractableID ID;
 
+        private Shader defaultShader;
+        private Shader highlightShader;
         private bool isOnHover = false;
 
         public void Start()
         {
+            getShaders();
             FitColliderToChildren(gameObject);
         }
 
@@ -22,9 +25,14 @@ namespace SeedQuest.Interactables {
             ClickOnHandler();
         }
 
-        public void Select()
+        public void getShaders()
         {
+            defaultShader = Shader.Find("Lightweight Render Pipeline/Lit");
+            highlightShader = Shader.Find("Shader Graphs/RimHighlights");
+        }
 
+        public void Select() {
+            InteractableLog.Add(0,0,0);
         }
 
         public void HoverOnHandler()
@@ -87,52 +95,73 @@ namespace SeedQuest.Interactables {
         public void OnClick()
         {
             Debug.Log("Click: " + name);
+            Select();
         }
 
         public void OnHoverEnter()
         {
             Debug.Log("Hover Enter: " + name);
             InteractableSimpleLabel.Instance.Show(this);
+            HighlightInteractable(true, true);
         }
 
         public void OnHoverExit()
         {
             Debug.Log("Hover Exit: " + name);
             InteractableSimpleLabel.Instance.Hide();
+            HighlightInteractable(false, false);
         }
 
-        private void FitColliderToChildren(GameObject parentObject) {
-            BoxCollider bc = parentObject.GetComponent<BoxCollider>();
-            if (bc == null) { bc = parentObject.AddComponent<BoxCollider>(); }
-            Bounds bounds = new Bounds(Vector3.zero, Vector3.zero);
-            bool hasBounds = false;
-            Renderer[] renderers = parentObject.GetComponentsInChildren<Renderer>();
-            foreach (Renderer render in renderers)
-            {
-                if (hasBounds)
-                {
-                    bounds.Encapsulate(render.bounds);
-                }
-                else
-                {
-                    bounds = render.bounds;
-                    hasBounds = true;
-                }
+        private void FitColliderToChildren(GameObject parent) {
+            BoxCollider bc = parent.GetComponent<BoxCollider>();
+            if (bc == null) { bc = parent.AddComponent<BoxCollider>(); }
+            Bounds bounds = new Bounds(transform.position, Vector3.zero);
+            
+            Quaternion prevRot = transform.localRotation;
+            Vector3 prevScale = transform.localScale;
+            transform.localRotation = Quaternion.identity;
+            transform.localScale = Vector3.one;
+
+            Renderer[] renderers = parent.GetComponentsInChildren<Renderer>();
+            foreach (Renderer render in renderers) {
+                bounds.Encapsulate(render.bounds);
             }
-            if (hasBounds)
-            {
-                Vector3 center = bounds.center - parentObject.transform.position;
-                bc.center = center;
-                Vector3 size = bounds.size;
-                Vector3 scale = parentObject.transform.localScale;
-                size = new Vector3(size.x / scale.x, size.y / scale.y, size.z / scale.z);
-                //size = transform.localRotation * size;
-                bc.size = size;
-            }
-            else
-            {
-                bc.size = bc.center = Vector3.zero;
-                bc.size = Vector3.zero;
+
+            Vector3 center = bounds.center - parent.transform.position;
+            bc.center = center;
+            Vector3 size = bounds.size;
+            bc.size = size;
+
+            transform.localRotation = prevRot;
+            transform.localScale = prevScale;
+        }
+
+        public void HighlightInteractable(bool useHighlight, bool useDynamicRim)
+        {
+            Renderer[] rendererList = transform.GetComponentsInChildren<Renderer>();
+
+            foreach (Renderer renderer in rendererList) {
+
+                foreach (Material material in renderer.materials){
+                    if (useHighlight) {
+                        material.shader = highlightShader;
+
+                        /*
+                        material.SetFloat("_HighlightPower", interactableHighlights.highlightPower);
+                        material.SetFloat("_RimExponent", interactableHighlights.rimExponent);
+                        material.SetFloat("_RimPower", interactableHighlights.rimPower);
+                        material.SetFloat("_OutlineWidth", interactableHighlights.outlineWidth);
+                        material.SetFloat("_OutlinePower", interactableHighlights.outlinePower);
+                        material.SetFloat("_DynamicColorSpeed", interactableHighlights.dynamicFlashSpeed);
+                        if(useDynamicRim)
+                            material.SetFloat("_UseDynamicColor", 1.0f);
+                        else
+                            material.SetFloat("_UseDynamicColor", 0.0f);
+                        */
+                    }
+                    else
+                        material.shader = defaultShader;
+                }
             }
         }
     

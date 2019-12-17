@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 
+#if UNITY_EDITOR
+
 [CustomEditor(typeof(SkinnedMeshSwapper))]
 [CanEditMultipleObjects]
 public class SwappableBodyPartsEditor : Editor
@@ -160,3 +162,5 @@ public class SwappableBodyPartsEditor : Editor
         }
     }
 }
+
+#endif

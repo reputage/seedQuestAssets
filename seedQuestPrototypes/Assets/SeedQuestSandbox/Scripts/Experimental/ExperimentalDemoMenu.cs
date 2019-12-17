@@ -51,7 +51,7 @@ public class ExperimentalDemoMenu : MonoBehaviour
         state = ExperimentalDemoStates.Start;
         ResetCanvas();
         startCanvas.gameObject.SetActive(true);
-        GetComponentInChildren<StartScreenCanvas>().StartIdleAnimation();
+        GetComponentInChildren<DemoStartScreen>().StartIdleAnimation();
     }
 
     public void GoToSeedSetup() {

@@ -12,18 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1c21d9ece6c4e229a7c25408d3063a, type: 3}
   m_Name: Lab_cryo
   m_EditorClassIdentifier: 
-  interactableName: 
-  labelPosOffset: {x: 0, y: 0, z: 0}
   interactableUI:
     name: Cryogenic Experiment
-    positionOffset: {x: 0.31, y: 3.04, z: -0.11}
+    positionOffset: {x: 0, y: 2.02, z: 0}
   interactableCamera:
-    lookAtOffset: {x: 3, y: 3.3, z: 0}
-    positionOffset: {x: 0, y: 0, z: 0}
-    zoomDistance: 22
+    lookAtOffset: {x: 0.32, y: 1.67, z: 0}
+    positionOffset: {x: -12.41, y: -10.3, z: 0}
+    zoomDistance: 43.91
   interactablePreview:
     scale: {x: 0.2, y: 0.2, z: 0.2}
-    position: {x: -0.31, y: -0.2, z: -3.27}
+    position: {x: 0.02, y: -0.39, z: -2.45}
     rotation: {x: 0, y: 172.35, z: 0}
     useOrthographic: 0
     fieldOfView: 60
@@ -35,9 +33,29 @@ MonoBehaviour:
     siteID: 7
     spotID: 2
     actionID: 0
+  defaultState:
+    actionName: 
+    prefab: {fileID: 1476871248364185827, guid: 2238b7385df952049bf5fb45882f2196,
+      type: 3}
+    positionOffset: {x: 0, y: 0, z: 0}
+    mesh: {fileID: 0}
+    material: {fileID: 0}
+    materialIndex: 0
+    uvOffset: {x: 0, y: 0}
+    animatorController: {fileID: 0}
+    soundEffectName: 
+    soundEffect:
+      name: 
+      clip: {fileID: 0}
+      volume: 1
+      loop: 0
+      source: {fileID: 0}
+    particleEffectName: 
+    particleEffect: {fileID: 0}
   states:
-  - actionName: Check time
-    prefab: {fileID: 299993321983915121, guid: 5dfed6062246e4ec8b80035a026db564, type: 3}
+  - actionName: Extend Timer
+    prefab: {fileID: 9088166627263439254, guid: d11529ea22c9c1744bd882a4e7fda62e,
+      type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
     material: {fileID: 0}
@@ -54,7 +72,7 @@ MonoBehaviour:
     particleEffectName: 
     particleEffect: {fileID: 0}
   - actionName: Open pods
-    prefab: {fileID: 6370735292384521087, guid: 571cacad0a301409fbe6d0dcb00ee483,
+    prefab: {fileID: 3866035814639050381, guid: 70c2ab75fd64d4c45ac34e514d0877eb,
       type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
@@ -72,7 +90,24 @@ MonoBehaviour:
     particleEffectName: 
     particleEffect: {fileID: 0}
   - actionName: Begin thawing
-    prefab: {fileID: 2936719565636282230, guid: 6112249fd7dc24afba8cf8b60bb9e6fd,
+    prefab: {fileID: 827288850223626582, guid: de4b4310eef6e534eb41e32fc741429c, type: 3}
+    positionOffset: {x: 0, y: 0, z: 0}
+    mesh: {fileID: 0}
+    material: {fileID: 0}
+    materialIndex: 0
+    uvOffset: {x: 0, y: 0}
+    animatorController: {fileID: 0}
+    soundEffectName: 
+    soundEffect:
+      name: 
+      clip: {fileID: 0}
+      volume: 0
+      loop: 0
+      source: {fileID: 0}
+    particleEffectName: 
+    particleEffect: {fileID: 0}
+  - actionName: Use Test Subject
+    prefab: {fileID: 5740439863008131623, guid: afc2931ce16632c43a6088343dee518b,
       type: 3}
     positionOffset: {x: 0, y: 0, z: 0}
     mesh: {fileID: 0}
@@ -89,22 +124,4 @@ MonoBehaviour:
       source: {fileID: 0}
     particleEffectName: 
     particleEffect: {fileID: 0}
-  - actionName: Extend freezing time
-    prefab: {fileID: 5619999494664575460, guid: 5bfa182f2d3ab45a1b1389c8046e95ec,
-      type: 3}
-    positionOffset: {x: 0, y: 0, z: 0}
-    mesh: {fileID: 0}
-    material: {fileID: 0}
-    materialIndex: 0
-    uvOffset: {x: 0, y: 0}
-    animatorController: {fileID: 0}
-    soundEffectName: 
-    soundEffect:
-      name: 
-      clip: {fileID: 0}
-      volume: 0
-      loop: 0
-      source: {fileID: 0}
-    particleEffectName: 
-    particleEffect: {fileID: 0}
-  effect: {fileID: 3589441540930374132, guid: 00ccde9367669a7428dae10bb63cdfcc, type: 3}
+  effect: {fileID: 3589441540930374132, guid: 17cd872619e32454988deb088cee490b, type: 3}

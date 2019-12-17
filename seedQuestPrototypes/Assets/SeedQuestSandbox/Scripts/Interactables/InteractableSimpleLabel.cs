@@ -21,9 +21,9 @@ public class InteractableSimpleLabel : MonoBehaviour
         if (activeItem != null)
             SetPosition(activeItem);
     }
-
+    
     private void SetPosition(InteractableSimple item) {
-        labelCanvas.transform.position = IsometricCamera.Camera.WorldToScreenPoint(item.transform.position + new Vector3(0,1,0));
+        //labelCanvas.transform.position = Camera.main.WorldToScreenPoint(item.transform.position + new Vector3(0,1,0));
     }
 
     public void Show(InteractableSimple item) {
