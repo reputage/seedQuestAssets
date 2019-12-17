@@ -81,11 +81,16 @@ public class MobileMenuScreens : MonoBehaviour
 
     public void GoToStart()
     {
+        if (SceneManager.GetActiveScene().name != "MobileStartMenu")
+        {
+            StartCoroutine(LoadAsync("MobileStartMenu"));
+        }
         ActiveCanvas();
         InteractablePathManager.Reset();
         MobileBottomMenu.MainMenu = true;
         state = MenuScreenStates.Start;
         ResetCanvas();
+        MobileBottomMenu.Instance.SetInMainMenu();
         MobileBottomMenu.Instance.ResetBottomMenu();
         startCanvas.gameObject.SetActive(true);
         bottomMenuCanvas.gameObject.SetActive(true);
@@ -93,6 +98,7 @@ public class MobileMenuScreens : MonoBehaviour
 
     public void GoToHelp()
     {
+        GameManager.State = GameState.Menu;
         ActiveCanvas();
         MobileBottomMenu.MainMenu = false;
         ResetCanvas();
@@ -104,6 +110,7 @@ public class MobileMenuScreens : MonoBehaviour
 
     public void GoToSettings()
     {
+        GameManager.State = GameState.Menu;
         ActiveCanvas();
         MobileBottomMenu.MainMenu = false;
         ResetCanvas();
@@ -157,7 +164,7 @@ public class MobileMenuScreens : MonoBehaviour
     {
         ActiveCanvas();
         GoToSceneLineUp();
-        sceneLineUpCanvas.GetComponent<SceneLineUpCanvas>().Start();
+        sceneLineUpCanvas.GetComponent<MobileSceneLineUp>().Start();
     }
 
     public void GoToActionLineUp()
@@ -183,11 +190,47 @@ public class MobileMenuScreens : MonoBehaviour
         ResetCanvas();
         bottomMenuCanvas.gameObject.SetActive(true);
         MobileBottomMenu.Instance.SetInGameMenu();
+        MobileBottomMenu.Instance.ResetBottomMenu();
         GameManager.State = GameState.Play;
+    }
+
+    IEnumerator LoadAsync(string sceneName)
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+        operation.allowSceneActivation = false;
+
+        while (!operation.isDone)
+        {
+            //sceneLoadProgressValue = Mathf.Clamp01(operation.progress / 0.9f);
+
+            if (operation.progress >= 0.9f)
+            {
+                operation.allowSceneActivation = true;
+            }
+
+            yield return null;
+        }
+
+        //sceneLoadProgress.gameObject.SetActive(false);
+        /*spinningLoadIcon.gameObject.SetActive(false);
+        spinningLoadIcon.transform.parent.GetComponent<TMP_Text>().text = "Continue";
+        int index = spinningLoadIcon.transform.parent.GetSiblingIndex();
+        spinningLoadIcon.transform.parent.parent.GetChild(index + 1).GetComponent<TMP_Text>().text = "Your world has finished loading.";*/
     }
 
     public void Back()
     {
+        if (SceneManager.GetActiveScene().name != "MobileStartMenu")
+        {
+            GameManager.State = GameState.Play;
+            ResetCanvas();
+            bottomMenuCanvas.gameObject.SetActive(true);
+            MobileBottomMenu.Instance.SetInGameMenu();
+            MobileBottomMenu.Instance.ResetBottomMenu();
+            return;
+        }
         Canvas temp = previousCanvas;
         if (temp == startCanvas)
             MobileBottomMenu.MainMenu = true;

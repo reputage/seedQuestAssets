@@ -54,19 +54,63 @@ public class MobileBottomMenu : MonoBehaviour
     public void SetInGameMenu()
     {
         inGame = true;
+        mainMenu = false;
         images[1].sprite = whiteLeafSprite;
         texts[0].color = Color.white;
         images[12].sprite = whiteButtonSprite;
     }
 
+    public void SetInMainMenu()
+    {
+        inGame = false;
+        mainMenu = true;
+        images[1].sprite = leafSprite;
+        texts[0].color = color1;
+        images[12].sprite = buttonSprite;
+    }
+
     public void OnClickMobileMenu()
+    {
+        CheckStatus();
+        if (!mobileMenuUp)
+        {
+            if (inGame)
+            {
+                images[1].sprite = leafSprite;
+                texts[0].color = color1;
+                images[12].sprite = alternateButtonSprite;
+            }
+            animator.Play("StartMenuMobileUp");
+            images[0].gameObject.SetActive(false);
+            images[13].gameObject.SetActive(true);
+            texts[6].gameObject.SetActive(true);
+            mobileMenuUp = !mobileMenuUp;
+        }
+
+
+        else
+        {
+            if (inGame)
+            {
+                images[1].sprite = whiteLeafSprite;
+                texts[0].color = Color.white;
+                images[12].sprite = whiteButtonSprite;
+            }
+            animator.Play("StartMenuMobileDown");
+            images[0].gameObject.SetActive(true);
+            images[13].gameObject.SetActive(false);
+            texts[6].gameObject.SetActive(false);
+            mobileMenuUp = !mobileMenuUp;
+        }
+    }
+
+    public void CheckStatus()
     {
         if (mainMenu)
         {
             images[2].color = color1;
             images[3].color = color2;
             images[12].sprite = alternateButtonSprite;
-
             images[10].gameObject.SetActive(false);
         }
 
@@ -84,38 +128,6 @@ public class MobileBottomMenu : MonoBehaviour
         {
             images[4].gameObject.SetActive(true);
         }
-
-
-        if (!mobileMenuUp)
-        {
-            if (inGame)
-            {
-                images[1].sprite = leafSprite;
-                texts[0].color = color1;
-                images[12].sprite = alternateButtonSprite;
-            }
-            animator.Play("StartMenuMobileUp");
-            images[0].gameObject.SetActive(false);
-            images[13].gameObject.SetActive(true);
-            images[12].transform.GetComponentInChildren<TMPro.TMP_Text>(true).gameObject.SetActive(true);
-            mobileMenuUp = !mobileMenuUp;
-        }
-
-
-        else
-        {
-            if (inGame)
-            {
-                images[1].sprite = whiteLeafSprite;
-                texts[0].color = Color.white;
-                images[12].sprite = whiteButtonSprite;
-            }
-            animator.Play("StartMenuMobileDown");
-            images[0].gameObject.SetActive(true);
-            images[13].gameObject.SetActive(false);
-            images[12].transform.parent.GetComponentInChildren<TMPro.TMP_Text>(true).gameObject.SetActive(false);
-            mobileMenuUp = !mobileMenuUp;
-        }
     }
 
     public void ResetBottomMenu()
@@ -123,7 +135,7 @@ public class MobileBottomMenu : MonoBehaviour
         animator.Play("StartMenuMobileHidden");
         images[0].gameObject.SetActive(true);
         images[13].gameObject.SetActive(false);
-        images[12].transform.parent.GetComponentInChildren<TMPro.TMP_Text>(true).gameObject.SetActive(false);
+        texts[6].gameObject.SetActive(false);
         mobileMenuUp = false;
     }
 }

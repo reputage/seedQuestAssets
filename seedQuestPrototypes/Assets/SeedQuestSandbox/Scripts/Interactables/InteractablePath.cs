@@ -145,7 +145,7 @@ namespace SeedQuest.Interactables
                         return;
                     }
 
-                    if (GameManager.ReviewMode == false ) {
+                    if (GameManager.ReviewMode == false && GameManager.MobileMode != true) {
                         GameManager.ReviewMode = true;
                         FastRecoveryUI.Instance.StartFastRehearsal();
                     }

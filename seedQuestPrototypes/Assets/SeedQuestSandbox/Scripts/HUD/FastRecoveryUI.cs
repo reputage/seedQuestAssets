@@ -38,7 +38,15 @@ public class FastRecoveryUI : MonoBehaviour
     private float currentScale;
 
     static private FastRecoveryUI instance = null;
-    static private FastRecoveryUI setInstance() { instance = HUDManager.Instance.GetComponentInChildren<FastRecoveryUI>(true); return instance; }
+    static private FastRecoveryUI setInstance()
+    {
+        if (GameManager.MobileMode)
+        {
+            return null;
+        }
+        instance = HUDManager.Instance.GetComponentInChildren<FastRecoveryUI>(true);
+        return instance;
+    }
     static public FastRecoveryUI Instance { get { return instance == null ? setInstance() : instance; } }
 
     //====================================================================================================//

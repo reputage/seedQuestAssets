@@ -38,14 +38,19 @@ public class HUDManager : MonoBehaviour {
     public HUDItemProps useFastRecovery;
     public HUDItemProps useScreenspaceActions;
     public HUDItemProps useInteractableActionUI;
-    public GameObject mobileHUD;
-    public GameObject mobileMap;
 
     static private HUDManager instance = null;
     static private HUDManager setInstance() { instance = GameObject.FindObjectOfType<HUDManager>(); return instance; }
     static public HUDManager Instance { get => instance == null ? setInstance() : instance; }
 
     public void Awake() {
+        if (GameManager.MobileMode)
+        {
+            gameObject.SetActive(false);
+            if (MobileHUDManager.Instance != null)
+                MobileHUDManager.Instance.gameObject.SetActive(true);
+            return;
+        }
         GenerateHUD();
         DestroyImmediateHUD();
     }
@@ -82,25 +87,7 @@ public class HUDManager : MonoBehaviour {
             DestroyImmediate((GetComponentInChildren<T>(true) as Component).gameObject);
     }
 
-    public void ForceDestroyHUDElement<T>()
-    {
-        if (GetComponentInChildren<T>(true) != null)
-            DestroyImmediate((GetComponentInChildren<T>(true) as Component).gameObject);
-    }
-
     public void GenerateHUD() {
-        if (GameManager.MobileMode)
-        {
-            #if UNITY_EDITOR
-                PrefabUtility.InstantiatePrefab(mobileHUD, Instance.transform);
-                PrefabUtility.InstantiatePrefab(mobileMap, Instance.transform);
-            #else
-                Instantiate(mobileHUD, Instance.transform);
-                Instantiate(mobileMap, Instance.transform);
-            #endif
-            return;
-        }
-
         InstantiateHUDElement<CommandLineInputUI>(useCLI);
         InstantiateHUDElement<CursorUI>(useCursor);
         InstantiateHUDElement<EndGameUI>(useEndGame);
@@ -127,33 +114,6 @@ public class HUDManager : MonoBehaviour {
     }
 
     public void DestroyImmediateHUD() {
-        if (GameManager.MobileMode)
-        {
-            ForceDestroyHUDElement<CommandLineInputUI>();
-            ForceDestroyHUDElement<CursorUI>();
-            ForceDestroyHUDElement<EndGameUI>();
-            ForceDestroyHUDElement<ESCMenuUI>();
-            ForceDestroyHUDElement<HelpMenuUI>();
-            ForceDestroyHUDElement<HomeSelectUI>();
-            ForceDestroyHUDElement<InteractableActionsUI>();
-            ForceDestroyHUDElement<InteractablePreviewUI>();
-            ForceDestroyHUDElement<InteractableTrackerUI>();
-            ForceDestroyHUDElement<LevelClearUI>();
-            ForceDestroyHUDElement<LevelNameUI>();
-            ForceDestroyHUDElement<MenuProgressTopBarUI>();
-            ForceDestroyHUDElement<LoadingScreenUI>();
-            ForceDestroyHUDElement<ScenePauseMenu>();
-            ForceDestroyHUDElement<PauseMenuUI>();
-            ForceDestroyHUDElement<ProgressTrackerUI>();
-            ForceDestroyHUDElement<TutorialManager>();
-            ForceDestroyHUDElement<UndoUI>();
-            ForceDestroyHUDElement<CameraSlider>();
-            ForceDestroyHUDElement<GraduatedRehearsal>();
-            ForceDestroyHUDElement<MinimapUI>();
-            ForceDestroyHUDElement<FastRecoveryUI>();
-            ForceDestroyHUDElement<ScreenspaceActionUI>();
-            return;
-        }
         DestroyHUDElement<CommandLineInputUI>(useCLI);
         DestroyHUDElement<CursorUI>(useCursor);
         DestroyHUDElement<EndGameUI>(useEndGame);
