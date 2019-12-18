@@ -27,7 +27,15 @@ namespace SeedQuest.Interactables
     public class InteractablePreviewUI : MonoBehaviour
     {
         static private InteractablePreviewUI instance = null;
-        static private InteractablePreviewUI setInstance() { instance = HUDManager.Instance.GetComponentInChildren<InteractablePreviewUI>(true); return instance; }
+        static private InteractablePreviewUI setInstance()
+        {
+            if (GameManager.MobileMode)
+            {
+                return null;
+            }
+            instance = HUDManager.Instance.GetComponentInChildren<InteractablePreviewUI>(true);
+            return instance;
+        }
         static public InteractablePreviewUI Instance { get { return instance == null ? setInstance() : instance; } }
 
         public float previewScale = 1f;

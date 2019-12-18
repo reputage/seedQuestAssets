@@ -113,6 +113,7 @@ public class EncodeSeedCanvas : MonoBehaviour {
             foreach(Button button in buttons) {
                 button.interactable = false;
                 button.GetComponentsInChildren<Image>(true)[3].gameObject.SetActive(true);
+                Debug.LogWarning(button.GetComponentsInChildren<Image>(true)[3]);
             }
         }
         else {

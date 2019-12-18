@@ -10,7 +10,13 @@ using SeedQuest.Interactables;
 public class InteractableActionsUI : MonoBehaviour
 {
     static private InteractableActionsUI instance = null;
-    static private InteractableActionsUI setInstance() { instance = HUDManager.Instance.GetComponentInChildren<InteractableActionsUI>(true); return instance; }
+    static private InteractableActionsUI setInstance() {
+        if (GameManager.MobileMode)
+            instance = MobileHUDManager.Instance.GetComponentInChildren<InteractableActionsUI>(true);
+        else
+            instance = HUDManager.Instance.GetComponentInChildren<InteractableActionsUI>(true);
+        return instance;
+    }
     static public InteractableActionsUI Instance { get { return instance == null ? setInstance() : instance; } }
 
     private TextMeshProUGUI interactableLabel;
@@ -58,6 +64,8 @@ public class InteractableActionsUI : MonoBehaviour
             actionButtons[i] = buttons[i + 1];
 
         buttons[0].onClick.AddListener(() => { BackExit(); });
+        /*if (GameManager.MobileMode)
+            buttons[5].onClick.AddListener(() => { BackExit(); });*/
         /*
         actionButtons[0].onClick.AddListener(() => { clickActionButton(0); });
         actionButtons[1].onClick.AddListener(() => { clickActionButton(1); });
@@ -89,7 +97,10 @@ public class InteractableActionsUI : MonoBehaviour
             {
                 actionButtons[i].gameObject.GetComponent<Animation>().Stop();
                 ColorBlock colors = actionButtons[i].colors;
-                colors.normalColor = new Color(0.13333f, 0.35294f, 0.50196f);
+                if (GameManager.MobileMode)
+                    colors.normalColor = Color.white;
+                else
+                    colors.normalColor = new Color(0.13333f, 0.35294f, 0.50196f);
                 actionButtons[i].colors = colors;
             }
         }

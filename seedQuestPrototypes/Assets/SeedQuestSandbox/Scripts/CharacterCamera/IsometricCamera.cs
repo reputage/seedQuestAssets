@@ -116,7 +116,11 @@ public class IsometricCamera : MonoBehaviour
     /// <summary> LookAt interactable with camera with smoothing </summary>
     public void CameraLookAtInteractable() {
         Interactable interactable = InteractableManager.ActiveInteractable;
-        Vector3 iOffset = interactable.GetComponent<BoxCollider>().center + interactable.interactableCamera.lookAtOffset;
+        Vector3 iOffset = Vector3.zero;
+        if (GameManager.MobileMode)
+            iOffset = interactable.GetComponent<BoxCollider>().center + interactable.interactableCamera.lookAtOffset + new Vector3(0, -5, 0);
+        else
+            iOffset = interactable.GetComponent<BoxCollider>().center + interactable.interactableCamera.lookAtOffset;
         Vector3 lookAt = interactable.transform.position;
         LookAt(lookAt + iOffset);
     }
