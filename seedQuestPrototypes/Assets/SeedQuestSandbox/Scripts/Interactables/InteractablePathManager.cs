@@ -64,7 +64,7 @@ namespace SeedQuest.Interactables {
                 if(InteractablePath.PathComplete) {
                     GameManager.State = GameState.End;
                     EndGameUI.ToggleOn();
-                    if (InteractablePreviewUI.Show)
+                    if (InteractablePreviewUI.Show && GameManager.MobileMode != true)
                         InteractablePreviewUI.ToggleShow();
                 }
                 else if(LevelManager.IsMultiLevelGame && ShowLevelComplete) {

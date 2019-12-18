@@ -26,7 +26,13 @@ public class EndGameUI : MonoBehaviour
     #endif
 
     static private EndGameUI instance = null;
-    static private EndGameUI setInstance() { instance = HUDManager.Instance.GetComponentInChildren<EndGameUI>(true); return instance; }
+    static private EndGameUI setInstance() {
+        if (GameManager.MobileMode)
+            instance = MobileHUDManager.Instance.GetComponentInChildren<EndGameUI>(true);
+        else
+            instance = HUDManager.Instance.GetComponentInChildren<EndGameUI>(true);
+        return instance;
+    }
     static public EndGameUI Instance { get { return instance == null ? setInstance() : instance; } }
 
     public string PrototypeSelectScene = "PrototypeSelect";
@@ -80,10 +86,14 @@ public class EndGameUI : MonoBehaviour
 
         if (GameManager.Mode == GameMode.Rehearsal)
         {
+            if (GameManager.MobileMode)
+                return;
             textList[3].text = "Practice Again";
         }
         else
         {
+            if (GameManager.MobileMode)
+                return;
             textList[3].text = "Back to Start Screen";
         }
 
@@ -111,7 +121,10 @@ public class EndGameUI : MonoBehaviour
     public void GoToStartScreen() {
         SeedQuest.Level.LevelManager.Instance.StopLevelMusic();
         if (GameManager.V2Menus)
-            MenuScreenV2.Instance.GoToStart();
+            if (GameManager.MobileMode)
+                MobileMenuScreens.Instance.GoToStart();
+            else
+                MenuScreenV2.Instance.GoToStart();
         else
             MenuScreenManager.ActivateStart();
         gameObject.SetActive(false);
@@ -121,7 +134,10 @@ public class EndGameUI : MonoBehaviour
     public void ResetPlaythrough()
     {
         InteractablePathManager.Reset();
-        MenuScreenManager.ActivateSceneLineUp();
+        if (GameManager.MobileMode)
+            MobileMenuScreens.Instance.GoToSceneLineUp();
+        else
+            MenuScreenManager.ActivateSceneLineUp();
         gameObject.SetActive(false);
     }
 

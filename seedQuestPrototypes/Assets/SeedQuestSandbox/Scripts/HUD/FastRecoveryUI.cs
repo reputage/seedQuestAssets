@@ -42,7 +42,7 @@ public class FastRecoveryUI : MonoBehaviour
     {
         if (GameManager.MobileMode)
         {
-            return null;
+            instance = MobileHUDManager.Instance.GetComponentInChildren<FastRecoveryUI>(true);
         }
         instance = HUDManager.Instance.GetComponentInChildren<FastRecoveryUI>(true);
         return instance;
@@ -88,7 +88,7 @@ public class FastRecoveryUI : MonoBehaviour
             buttons.Add(button);
         }
 
-        
+
         buttonGroup.localPosition = new Vector3(settings.xOffset, settings.yOffset, 0);
         buttonGroup.localEulerAngles = new Vector3(0, 0, settings.rotation);
         OnSlideValueChanged();
@@ -437,7 +437,7 @@ public class FastRecoveryUI : MonoBehaviour
             pin.gameObject.SetActive(false);
             return;
         }
-   
+
         if (pin.gameObject.activeSelf)
         {
             if (settings.useInteractableUIPositions && !settings.useRenderTexture)
@@ -571,7 +571,7 @@ public class FastRecoveryUI : MonoBehaviour
 
         GetPinPosition();
 
-       if (settings.useRenderTexture)
+        if (settings.useRenderTexture)
         {
             rawMap.transform.localPosition = new Vector3(0, 0, 0);
             rawMap.rectTransform.sizeDelta = new Vector2(slider.value, slider.value);
@@ -861,20 +861,15 @@ public class FastRecoveryUI : MonoBehaviour
     {
         if (GameManager.Mode != GameMode.Sandbox)
             return;
-
         RenderTexture currentRT = RenderTexture.active;
         RenderTexture.active = renderCamera.targetTexture;
-
         renderCamera.Render();
-
         Texture2D Image = new Texture2D(renderCamera.targetTexture.width, renderCamera.targetTexture.height);
         Image.ReadPixels(new Rect(0, 0, renderCamera.targetTexture.width, renderCamera.targetTexture.height), 0, 0);
         Image.Apply();
         RenderTexture.active = currentRT;
-
         var Bytes = Image.EncodeToPNG();
         Destroy(Image);
-
         File.WriteAllBytes(Application.dataPath + "/SeedQuestSandbox/Images/" + SceneManager.GetActiveScene().name + ".png", Bytes);
         Debug.Log("Render Captured");
     }*/
@@ -893,11 +888,12 @@ public class FastRecoveryUI : MonoBehaviour
             }
         }
 
-        if (layerList.Count == 0) {
-             return null;
-         }
-         return layerList;
-     }
+        if (layerList.Count == 0)
+        {
+            return null;
+        }
+        return layerList;
+    }
 
     //====================================================================================================//
 
@@ -921,4 +917,3 @@ public class FastRecoveryUI : MonoBehaviour
 
     //====================================================================================================//
 }
-
