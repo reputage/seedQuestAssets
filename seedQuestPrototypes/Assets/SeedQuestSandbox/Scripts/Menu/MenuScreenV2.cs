@@ -140,4 +140,10 @@ public class MenuScreenV2 : MonoBehaviour
     {
         topMenu.SetActive(false);
     }
+
+    public void setSeedSetupInput(string seed)
+    {
+        GoToSeedSetup();
+        seedSetupCanvas.GetComponent<SeedSetupCanvas>().seedInputField.text = seed;
+    }
 }
