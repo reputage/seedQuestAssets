@@ -44,8 +44,7 @@ public class FastRecoveryUI : MonoBehaviour
         {
             instance = MobileHUDManager.Instance.GetComponentInChildren<FastRecoveryUI>(true);
         }
-        else
-            instance = HUDManager.Instance.GetComponentInChildren<FastRecoveryUI>(true);
+        instance = HUDManager.Instance.GetComponentInChildren<FastRecoveryUI>(true);
         return instance;
     }
     static public FastRecoveryUI Instance { get { return instance == null ? setInstance() : instance; } }
@@ -80,7 +79,7 @@ public class FastRecoveryUI : MonoBehaviour
         foreach (Interactable interactable in interactables)
         {
             GameObject buttonObject = Instantiate(buttonPrefab);
-            Button button = buttonObject.GetComponentInChildren<Button>(true);
+            Button button = buttonObject.GetComponentInChildren<Button>();
             buttonObject.transform.SetParent(buttonGroup);
             GetButtonPosition(buttonObject, interactable);
             buttonObject.gameObject.SetActive(true);
@@ -89,7 +88,7 @@ public class FastRecoveryUI : MonoBehaviour
             buttons.Add(button);
         }
 
-        
+
         buttonGroup.localPosition = new Vector3(settings.xOffset, settings.yOffset, 0);
         buttonGroup.localEulerAngles = new Vector3(0, 0, settings.rotation);
         OnSlideValueChanged();
@@ -171,7 +170,7 @@ public class FastRecoveryUI : MonoBehaviour
         settings = LevelManager.FastRecoveryData;
         animator = gameObject.GetComponent<Animator>();
         buttons = new List<Button>();
-        Image[] images = gameObject.GetComponentsInChildren<Image>(true);
+        Image[] images = gameObject.GetComponentsInChildren<Image>();
         overlay = images[0];
         map = images[2];
         if (settings.useRenderTexture)
@@ -185,8 +184,8 @@ public class FastRecoveryUI : MonoBehaviour
         mapInstructions = images[23];
         skip = images[24];
         interactableGroup = gameObject.transform.GetChild(0).GetChild(0).GetChild(6).GetChild(2).gameObject;
-        interactableButtons = interactableGroup.GetComponentsInChildren<Button>(true);
-        TMPro.TMP_Text[] texts = gameObject.GetComponentsInChildren<TMPro.TMP_Text>(true);
+        interactableButtons = interactableGroup.GetComponentsInChildren<Button>();
+        TMPro.TMP_Text[] texts = gameObject.GetComponentsInChildren<TMPro.TMP_Text>();
         mainTitle = texts[0];
         instructions = texts[1];
         interactableTitle = texts[2];
@@ -438,7 +437,7 @@ public class FastRecoveryUI : MonoBehaviour
             pin.gameObject.SetActive(false);
             return;
         }
-   
+
         if (pin.gameObject.activeSelf)
         {
             if (settings.useInteractableUIPositions && !settings.useRenderTexture)
@@ -572,7 +571,7 @@ public class FastRecoveryUI : MonoBehaviour
 
         GetPinPosition();
 
-       if (settings.useRenderTexture)
+        if (settings.useRenderTexture)
         {
             rawMap.transform.localPosition = new Vector3(0, 0, 0);
             rawMap.rectTransform.sizeDelta = new Vector2(slider.value, slider.value);
@@ -862,20 +861,15 @@ public class FastRecoveryUI : MonoBehaviour
     {
         if (GameManager.Mode != GameMode.Sandbox)
             return;
-
         RenderTexture currentRT = RenderTexture.active;
         RenderTexture.active = renderCamera.targetTexture;
-
         renderCamera.Render();
-
         Texture2D Image = new Texture2D(renderCamera.targetTexture.width, renderCamera.targetTexture.height);
         Image.ReadPixels(new Rect(0, 0, renderCamera.targetTexture.width, renderCamera.targetTexture.height), 0, 0);
         Image.Apply();
         RenderTexture.active = currentRT;
-
         var Bytes = Image.EncodeToPNG();
         Destroy(Image);
-
         File.WriteAllBytes(Application.dataPath + "/SeedQuestSandbox/Images/" + SceneManager.GetActiveScene().name + ".png", Bytes);
         Debug.Log("Render Captured");
     }*/
@@ -894,11 +888,12 @@ public class FastRecoveryUI : MonoBehaviour
             }
         }
 
-        if (layerList.Count == 0) {
-             return null;
-         }
-         return layerList;
-     }
+        if (layerList.Count == 0)
+        {
+            return null;
+        }
+        return layerList;
+    }
 
     //====================================================================================================//
 
@@ -922,4 +917,3 @@ public class FastRecoveryUI : MonoBehaviour
 
     //====================================================================================================//
 }
-
