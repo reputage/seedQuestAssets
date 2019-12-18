@@ -42,9 +42,10 @@ public class FastRecoveryUI : MonoBehaviour
     {
         if (GameManager.MobileMode)
         {
-            return null;
+            instance = MobileHUDManager.Instance.GetComponentInChildren<FastRecoveryUI>(true);
         }
-        instance = HUDManager.Instance.GetComponentInChildren<FastRecoveryUI>(true);
+        else
+            instance = HUDManager.Instance.GetComponentInChildren<FastRecoveryUI>(true);
         return instance;
     }
     static public FastRecoveryUI Instance { get { return instance == null ? setInstance() : instance; } }
@@ -79,7 +80,7 @@ public class FastRecoveryUI : MonoBehaviour
         foreach (Interactable interactable in interactables)
         {
             GameObject buttonObject = Instantiate(buttonPrefab);
-            Button button = buttonObject.GetComponentInChildren<Button>();
+            Button button = buttonObject.GetComponentInChildren<Button>(true);
             buttonObject.transform.SetParent(buttonGroup);
             GetButtonPosition(buttonObject, interactable);
             buttonObject.gameObject.SetActive(true);
@@ -170,7 +171,7 @@ public class FastRecoveryUI : MonoBehaviour
         settings = LevelManager.FastRecoveryData;
         animator = gameObject.GetComponent<Animator>();
         buttons = new List<Button>();
-        Image[] images = gameObject.GetComponentsInChildren<Image>();
+        Image[] images = gameObject.GetComponentsInChildren<Image>(true);
         overlay = images[0];
         map = images[2];
         if (settings.useRenderTexture)
@@ -184,8 +185,8 @@ public class FastRecoveryUI : MonoBehaviour
         mapInstructions = images[23];
         skip = images[24];
         interactableGroup = gameObject.transform.GetChild(0).GetChild(0).GetChild(6).GetChild(2).gameObject;
-        interactableButtons = interactableGroup.GetComponentsInChildren<Button>();
-        TMPro.TMP_Text[] texts = gameObject.GetComponentsInChildren<TMPro.TMP_Text>();
+        interactableButtons = interactableGroup.GetComponentsInChildren<Button>(true);
+        TMPro.TMP_Text[] texts = gameObject.GetComponentsInChildren<TMPro.TMP_Text>(true);
         mainTitle = texts[0];
         instructions = texts[1];
         interactableTitle = texts[2];
