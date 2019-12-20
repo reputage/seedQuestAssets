@@ -31,6 +31,30 @@
       return buffer;
 
       return seed;
+  },
+
+
+  SetCookie: function(cookieName, cookieValue, exDays) {
+      var d = new Date();
+      d.setTime(d.getTime() + (exDays*24*60*60*1000));
+      var expires = "expires="+ d.toUTCString();
+      document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
+  },
+
+  GetCookie: function(cookieName) {
+      var name = cookieName + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var splitCookie = decodedCookie.split(';');
+      for(var i = 0; i < splitCookie.length; i++) {
+          var c = splitCookie[i];
+          while (c.charAt(0) == ' ') {
+              c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
+        }
+      }
+      return "";
   }
 
 });

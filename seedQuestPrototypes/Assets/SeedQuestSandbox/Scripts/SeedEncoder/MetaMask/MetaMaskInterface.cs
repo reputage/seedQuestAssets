@@ -27,6 +27,7 @@ public class MetaMaskInterface : MonoBehaviour
     public TextMeshProUGUI mmBalanceText;
     public TextMeshProUGUI mmEthereumText;
     public GameObject MMDegbugCanvas;
+    private CookieBakery Bakery;
 
     void Start()
     {
@@ -113,6 +114,15 @@ public class MetaMaskInterface : MonoBehaviour
         Debug.Log("Seed from JS checked: " + seed);
         MenuScreenV2.Instance.setSeedSetupInput(seed);
         MMDegbugCanvas.SetActive(false);
+    }
+
+    public void testCookies()
+    {
+        Bakery.setCookie("testCookieSeedq", "run milk cactus next exchange", 1);
+        string returnCookie = Bakery.getCookie("testCookieSeedq");
+        Debug.Log("Test cookie: " + returnCookie);
+        mmlockedText.text = returnCookie;
+        mmlockedText.color = new Color32(0, 171, 118, 255);
     }
 
 }
