@@ -29,8 +29,6 @@
       var buffer = _malloc(lengthBytesUTF8(seed) + 1);
       writeStringToMemory(seed, buffer);
       return buffer;
-
-      return seed;
   },
 
 
@@ -38,11 +36,11 @@
       var d = new Date();
       d.setTime(d.getTime() + (exDays*24*60*60*1000));
       var expires = "expires="+ d.toUTCString();
-      document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
+      document.cookie = Pointer_stringify(cookieName) + "=" + Pointer_stringify(cookieValue) + ";" + expires + ";path=/";
   },
 
   GetCookie: function(cookieName) {
-      var name = cookieName + "=";
+      var name = Pointer_stringify(cookieName) + "=";
       var decodedCookie = decodeURIComponent(document.cookie);
       var splitCookie = decodedCookie.split(';');
       for(var i = 0; i < splitCookie.length; i++) {
@@ -51,7 +49,10 @@
               c = c.substring(1);
           }
           if (c.indexOf(name) == 0) {
-              return c.substring(name.length, c.length);
+              var subC = c.substring(name.length, c.length);
+              var buffer = _malloc(lengthBytesUTF8(subC) + 1);
+              writeStringToMemory(subC, buffer);
+              return buffer;
         }
       }
       return "";

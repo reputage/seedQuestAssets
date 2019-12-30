@@ -23,9 +23,9 @@ public class MetaMaskInterface : MonoBehaviour
 
     public GameObject testButton;
     public TextMeshProUGUI mmInstalledText;
-    public TextMeshProUGUI mmlockedText;
-    public TextMeshProUGUI mmBalanceText;
     public TextMeshProUGUI mmEthereumText;
+    public TextMeshProUGUI bakeCookieText;
+    public TextMeshProUGUI getCookieText;
     public GameObject MMDegbugCanvas;
     private CookieBakery Bakery;
 
@@ -116,13 +116,20 @@ public class MetaMaskInterface : MonoBehaviour
         MMDegbugCanvas.SetActive(false);
     }
 
-    public void testCookies()
+    public void bakeCookie()
     {
         Bakery.setCookie("testCookieSeedq", "run milk cactus next exchange", 1);
+        Debug.Log("Cookie has been set.");
+        bakeCookieText.text = "Cookie has been set.";
+        bakeCookieText.color = new Color32(0, 171, 118, 255);
+    }
+
+    public void getCookie()
+    {
         string returnCookie = Bakery.getCookie("testCookieSeedq");
         Debug.Log("Test cookie: " + returnCookie);
-        mmlockedText.text = returnCookie;
-        mmlockedText.color = new Color32(0, 171, 118, 255);
+        getCookieText.text = returnCookie;
+        getCookieText.color = new Color32(0, 171, 118, 255);
     }
 
 }
