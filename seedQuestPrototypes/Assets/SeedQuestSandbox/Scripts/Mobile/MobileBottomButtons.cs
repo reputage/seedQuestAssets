@@ -26,6 +26,6 @@ public class MobileBottomButtons : MonoBehaviour
 
     public void OpenMap()
     {
-        FastRecoveryUI.ToggleActive();
+        MobileMap.ToggleActive();
     }
 }

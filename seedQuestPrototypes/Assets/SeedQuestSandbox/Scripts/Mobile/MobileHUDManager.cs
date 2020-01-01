@@ -72,7 +72,7 @@ public class MobileHUDManager : MonoBehaviour {
         InstantiateHUDElement<LevelClearUI>(useLevelClear);
         InstantiateHUDElement<EndGameUI>(useGameClear);
         InstantiateHUDElement<MobileBottomButtons>(useBottomButtons);
-        InstantiateHUDElement<FastRecoveryUI>(useMap);
+        InstantiateHUDElement<MobileMap>(useMap);
     }
 
     public void DestroyImmediateHUD() {
@@ -82,7 +82,7 @@ public class MobileHUDManager : MonoBehaviour {
         DestroyHUDElement<LevelClearUI>(useLevelClear);
         DestroyHUDElement<EndGameUI>(useGameClear);
         DestroyHUDElement<MobileBottomButtons>(useBottomButtons);
-        DestroyHUDElement<FastRecoveryUI>(useMap);
+        DestroyHUDElement<MobileMap>(useMap);
     }
 
     public HUDItemProps GetProps<T>() {
@@ -93,7 +93,7 @@ public class MobileHUDManager : MonoBehaviour {
         else if (listType == typeof(LevelClearUI)) { return useLevelClear; }
         else if (listType == typeof(EndGameUI)) { return useGameClear; }
         else if (listType == typeof(MobileBottomButtons)) { return useBottomButtons; }
-        else if (listType == typeof(FastRecoveryUI)) { return useMap; }
+        else if (listType == typeof(MobileMap)) { return useMap; }
         return null;
     }
 }
