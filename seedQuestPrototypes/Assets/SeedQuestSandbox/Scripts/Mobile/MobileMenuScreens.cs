@@ -207,6 +207,12 @@ public class MobileMenuScreens : MonoBehaviour
 
             if (operation.progress >= 0.9f)
             {
+                AudioListener.volume = PlayerPrefs.GetFloat("volume");
+                var texts = FindObjectsOfType(typeof(TMP_Text));
+                foreach (TMP_Text text in texts)
+                {
+                    text.fontSize += PlayerPrefs.GetFloat("textSize");
+                }
                 operation.allowSceneActivation = true;
             }
 

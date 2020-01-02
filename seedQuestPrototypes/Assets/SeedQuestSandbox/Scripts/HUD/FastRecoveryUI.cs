@@ -42,7 +42,7 @@ public class FastRecoveryUI : MonoBehaviour
     {
         if (GameManager.MobileMode)
         {
-            instance = MobileHUDManager.Instance.GetComponentInChildren<FastRecoveryUI>(true);
+            return null;
         }
         instance = HUDManager.Instance.GetComponentInChildren<FastRecoveryUI>(true);
         return instance;

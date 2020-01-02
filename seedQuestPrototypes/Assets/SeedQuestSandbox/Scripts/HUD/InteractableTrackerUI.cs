@@ -184,7 +184,8 @@ public class InteractableTrackerUI : MonoBehaviour
                 else if(isClampedBottom && !isClampedLeft && !isClampedRight)
                     screenPosition = new Vector3(MidScreenX, paddingY.y, screenPosition.z); 
             }
-            canvasGroup.alpha = 1.0f;
+            if (!GameManager.MobileMode)
+                canvasGroup.alpha = 1.0f;
         }
 
         // Set TrackerIcon Postion

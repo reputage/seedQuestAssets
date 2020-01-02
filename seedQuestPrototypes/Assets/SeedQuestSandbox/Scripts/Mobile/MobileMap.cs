@@ -567,12 +567,6 @@ public class MobileMap : MonoBehaviour
                     currentScale = ((settings.scale/2) * slider.value) / 1000;
 
                 GetPinPosition();
-
-                for (int i = 0; i < 4; i++)
-                {
-                    interactableButtons[i].gameObject.GetComponent<Animation>().Stop();
-                    interactableButtons[i].gameObject.GetComponent<Image>().color = Color.white;
-                }
             }
         }
 
