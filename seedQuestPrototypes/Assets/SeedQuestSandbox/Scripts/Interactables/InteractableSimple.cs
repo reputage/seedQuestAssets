@@ -113,6 +113,9 @@ namespace SeedQuest.Interactables {
         }
 
         private void FitColliderToChildren(GameObject parent) {
+            if (parent.GetComponent<MeshCollider>() != null)
+                return;
+
             BoxCollider bc = parent.GetComponent<BoxCollider>();
             if (bc == null) { bc = parent.AddComponent<BoxCollider>(); }
             Bounds bounds = new Bounds(transform.position, Vector3.zero);
