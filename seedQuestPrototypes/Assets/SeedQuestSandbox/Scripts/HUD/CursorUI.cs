@@ -19,5 +19,4 @@ public class CursorUI : MonoBehaviour {
         if (cursor != null)
             cursor.SetActive(showCursor);
     }
-
 }

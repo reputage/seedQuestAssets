@@ -18,6 +18,8 @@ public class InteractableSimpleLabel : MonoBehaviour
 
     public void Update()
     {
+        Raycaster();
+
         if (activeItem != null)
             SetPosition(activeItem);
     }
@@ -26,12 +28,39 @@ public class InteractableSimpleLabel : MonoBehaviour
         //labelCanvas.transform.position = Camera.main.WorldToScreenPoint(item.transform.position + new Vector3(0,1,0));
     }
 
-    public void Show(InteractableSimple item) {
+    public void GetInteractable(InteractableSimple item) {
         activeItem = item;
+    }
+
+    public void Show() {
+        //activeItem = item;
         labelCanvas.gameObject.SetActive(true);
+        CursorUI.ShowCursor = false;
     }
 
     public void Hide() {
         labelCanvas.gameObject.SetActive(false);
+        CursorUI.ShowCursor = true;
+    }
+
+    public void Raycaster()
+    {
+        if (PauseManager.isPaused == true)
+            return;
+        
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit, 100.0f))
+        {
+            bool hitInteractable = hit.transform.GetComponent<InteractableSimple>() != null;
+
+            if (hitInteractable) {
+                Show();
+            }
+            else {
+                Hide();
+            }
+        }
     }
 }

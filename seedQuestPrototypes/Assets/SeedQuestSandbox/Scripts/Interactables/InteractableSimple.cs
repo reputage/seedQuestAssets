@@ -101,14 +101,17 @@ namespace SeedQuest.Interactables {
         public void OnHoverEnter()
         {
             Debug.Log("Hover Enter: " + name);
-            InteractableSimpleLabel.Instance.Show(this);
+            //InteractableSimpleLabel.Instance.Show(this);
+            InteractableSimpleLabel.Instance.GetInteractable(this);
             HighlightInteractable(true, true);
         }
 
         public void OnHoverExit()
         {
             Debug.Log("Hover Exit: " + name);
-            InteractableSimpleLabel.Instance.Hide();
+
+
+            //InteractableSimpleLabel.Instance.Hide();
             HighlightInteractable(false, false);
         }
 
