@@ -7,15 +7,21 @@ public class InteractableSimpleLabel : MonoBehaviour
 {
     static public InteractableSimpleLabel Instance;
 
+    private Animator animator;
     private Canvas labelCanvas;
     public InteractableSimple activeItem;
 
+    public bool isActive = false;
+    public int currentInteractable = -1;
+    public int lastInteractable = -2;
+
     public void Start() {
         Instance = this;
+        animator = GetComponentInChildren<Animator>(true);
         labelCanvas = GetComponentsInChildren<Canvas>(true)[1];
         labelCanvas.gameObject.SetActive(false);
     }
-
+    
     public void Update()
     {
         Raycaster();
@@ -36,11 +42,26 @@ public class InteractableSimpleLabel : MonoBehaviour
         //activeItem = item;
         labelCanvas.gameObject.SetActive(true);
         CursorUI.ShowCursor = false;
+
+        Debug.Log("last:" + lastInteractable.ToString() + " - current:" + currentInteractable.ToString());
+
+        if (!isActive)
+            animator.Play("CursorStartActive");
+        else if(lastInteractable != currentInteractable)
+            animator.Play("CursorChangeActive");
+
+        isActive = true;
+
     }
 
     public void Hide() {
-        labelCanvas.gameObject.SetActive(false);
+        //labelCanvas.gameObject.SetActive(false);
         CursorUI.ShowCursor = true;
+
+        if(!isActive)
+            animator.Play("CursorEndActive");
+
+        isActive = false; 
     }
 
     public void Raycaster()
@@ -56,7 +77,9 @@ public class InteractableSimpleLabel : MonoBehaviour
             bool hitInteractable = hit.transform.GetComponent<InteractableSimple>() != null;
 
             if (hitInteractable) {
+                currentInteractable = hit.transform.GetInstanceID();
                 Show();
+                lastInteractable = hit.transform.GetInstanceID();
             }
             else {
                 Hide();
