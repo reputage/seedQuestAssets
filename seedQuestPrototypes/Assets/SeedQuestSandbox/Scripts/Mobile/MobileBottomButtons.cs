@@ -1,10 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using SeedQuest.HUD;
 
 public class MobileBottomButtons : MonoBehaviour
 {
     private Slider slider;
+
+    static private MobileBottomButtons instance = null;
+    static private MobileBottomButtons setInstance()
+    {
+        if (!GameManager.MobileMode)
+        {
+            return null;
+        }
+        instance = MobileHUDManager.Instance.GetComponentInChildren<MobileBottomButtons>(true);
+        return instance;
+    }
+    static public MobileBottomButtons Instance { get { return instance == null ? setInstance() : instance; } }
 
     public void Awake()
     {
@@ -21,11 +34,11 @@ public class MobileBottomButtons : MonoBehaviour
 
     public void OnSlideValueChange()
     {
-        IsometricCamera.instance.ToggleTopView();
+        MobileMap.ToggleActive();
     }
 
     public void OpenMap()
     {
-        MobileMap.ToggleActive();
+        MobileMinimap.Instance.Toggle();
     }
 }

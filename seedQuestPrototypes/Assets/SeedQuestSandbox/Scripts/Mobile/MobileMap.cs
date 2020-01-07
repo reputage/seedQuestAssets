@@ -351,7 +351,7 @@ public class MobileMap : MonoBehaviour
 
     public void BackButtonOnClick()
     {
-        ToggleActive();
+        MobileBottomButtons.Instance.ToggleTopview();
     }
 
     //====================================================================================================//
