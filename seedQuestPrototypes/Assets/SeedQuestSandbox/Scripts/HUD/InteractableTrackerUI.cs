@@ -49,6 +49,9 @@ public class InteractableTrackerUI : MonoBehaviour
             gameObject.SetActive(true);
         else 
             gameObject.SetActive(false);
+
+        if (!GameManager.MobileMode)
+            tracker.gameObject.SetActive(false);
     }
 
     void Update() {
@@ -91,6 +94,10 @@ public class InteractableTrackerUI : MonoBehaviour
         if (target == null) {
             tracker.gameObject.SetActive(false);
             arrow.gameObject.SetActive(false);
+        }
+        else if (GameManager.MobileMode)
+        {
+            tracker.gameObject.SetActive(false);
         }
         else {
             tracker.gameObject.SetActive(true);
@@ -185,7 +192,7 @@ public class InteractableTrackerUI : MonoBehaviour
                     screenPosition = new Vector3(MidScreenX, paddingY.y, screenPosition.z); 
             }
             if (!GameManager.MobileMode)
-                canvasGroup.alpha = 1.0f;
+                canvasGroup.alpha = 0.0f;
         }
 
         // Set TrackerIcon Postion
