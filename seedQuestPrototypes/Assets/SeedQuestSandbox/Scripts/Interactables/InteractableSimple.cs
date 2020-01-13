@@ -101,18 +101,24 @@ namespace SeedQuest.Interactables {
         public void OnHoverEnter()
         {
             Debug.Log("Hover Enter: " + name);
-            InteractableSimpleLabel.Instance.Show(this);
+            //InteractableSimpleLabel.Instance.Show(this);
+            InteractableSimpleLabel.Instance.GetInteractable(this);
             HighlightInteractable(true, true);
         }
 
         public void OnHoverExit()
         {
             Debug.Log("Hover Exit: " + name);
-            InteractableSimpleLabel.Instance.Hide();
+
+
+            //InteractableSimpleLabel.Instance.Hide();
             HighlightInteractable(false, false);
         }
 
         private void FitColliderToChildren(GameObject parent) {
+            if (parent.GetComponent<MeshCollider>() != null)
+                return;
+
             BoxCollider bc = parent.GetComponent<BoxCollider>();
             if (bc == null) { bc = parent.AddComponent<BoxCollider>(); }
             Bounds bounds = new Bounds(transform.position, Vector3.zero);
