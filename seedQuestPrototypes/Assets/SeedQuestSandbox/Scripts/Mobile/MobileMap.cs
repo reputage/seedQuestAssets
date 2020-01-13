@@ -221,8 +221,8 @@ public class MobileMap : MonoBehaviour
         rawMap.transform.localPosition = new Vector3(0, 0, 0);
         if (settings.restrictViewport)
         {
-            rawMap.rectTransform.sizeDelta = new Vector2(Screen.height - 100, Screen.height - 100);
-            slider.minValue = Screen.height - 100;
+            rawMap.rectTransform.sizeDelta = new Vector2(Screen.height, Screen.height);
+            slider.minValue = Screen.height;
             slider.value = slider.minValue;
         }
 
@@ -262,15 +262,15 @@ public class MobileMap : MonoBehaviour
         map.transform.localPosition = new Vector3(0, 0, 0);
         if (settings.restrictViewport)
         {
-            if (((Screen.height - 100) / settings.source.bounds.size.y * settings.source.bounds.size.x) < (Screen.width - 1040))
+            if (((Screen.height) / settings.source.bounds.size.y * settings.source.bounds.size.x) < (Screen.width))
             {
-                map.rectTransform.sizeDelta = new Vector2((Screen.width - 1040), (Screen.width - 1040) / settings.source.bounds.size.x * settings.source.bounds.size.y);
-                slider.minValue = (Screen.width - 1040) / settings.source.bounds.size.x * settings.source.bounds.size.y;
+                map.rectTransform.sizeDelta = new Vector2((Screen.width), (Screen.width) / settings.source.bounds.size.x * settings.source.bounds.size.y);
+                slider.minValue = (Screen.width) / settings.source.bounds.size.x * settings.source.bounds.size.y;
             }
             else
             {
-                map.rectTransform.sizeDelta = new Vector2((Screen.height - 100) / settings.source.bounds.size.y * settings.source.bounds.size.x, (Screen.height - 100));
-                slider.minValue = Screen.height - 100;
+                map.rectTransform.sizeDelta = new Vector2((Screen.height) / settings.source.bounds.size.y * settings.source.bounds.size.x, (Screen.height));
+                slider.minValue = Screen.height;
             }
             slider.value = slider.minValue;
         }
@@ -351,6 +351,7 @@ public class MobileMap : MonoBehaviour
 
     public void BackButtonOnClick()
     {
+        returnToMap = false;
         MobileBottomButtons.Instance.ToggleTopview();
     }
 

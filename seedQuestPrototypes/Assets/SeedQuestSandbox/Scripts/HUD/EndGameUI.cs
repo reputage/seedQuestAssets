@@ -74,14 +74,27 @@ public class EndGameUI : MonoBehaviour
 
             hexSeed = alteredSeedText;
             bipSeed = sentence;
-            textList[0].text = sentence;
+            if (GameManager.MobileMode)
+            {
+                textList[0].text = hexSeed;
+            }
+            else
+                textList[0].text = sentence;
         }
         else
         {
             hexSeed = converter.DecodeSeed();
             bipSeed = getSentence(hexSeed);
             asciiSeed = AsciiConverter.hexToAscii(hexSeed);
-            textList[0].text = bipSeed;
+            if (GameManager.MobileMode)
+            {
+                textList[0].text = hexSeed;
+            }
+            else
+            {
+                textList[0].text = bipSeed;
+            }
+
         }
 
         if (GameManager.Mode == GameMode.Rehearsal)
