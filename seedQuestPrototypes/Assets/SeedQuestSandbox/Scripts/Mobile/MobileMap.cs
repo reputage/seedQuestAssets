@@ -14,6 +14,7 @@ public class MobileMap : MonoBehaviour
     private Image map;
     private RawImage rawMap;
     private Image overlay;
+    private Image mask;
     private Image pin;
     private List<Button> buttons;
     private GameObject buttonPrefab;
@@ -61,7 +62,11 @@ public class MobileMap : MonoBehaviour
 
         // Add slider value change listner
         slider.onValueChanged.AddListener(delegate { OnSlideValueChanged(); });
+    }
 
+
+    public void Start()
+    {
         // Setup map
         Transform buttonGroup;
         if (settings.useRenderTexture)
@@ -98,7 +103,6 @@ public class MobileMap : MonoBehaviour
             pin.gameObject.SetActive(false);
         }
     }
-
     //====================================================================================================//
 
     private void Update()
@@ -107,7 +111,6 @@ public class MobileMap : MonoBehaviour
         ListenForKeyDown();
         CheckForProgress();
         CheckForLevelChange();
-        CheckForPreviewUI();
     }
 
     //====================================================================================================//
@@ -157,6 +160,7 @@ public class MobileMap : MonoBehaviour
         buttons = new List<Button>();
         Image[] images = gameObject.GetComponentsInChildren<Image>();
         overlay = images[0];
+        mask = images[1];
         map = images[2];
         if (settings.useRenderTexture)
             pin = images[4];
@@ -221,8 +225,8 @@ public class MobileMap : MonoBehaviour
         rawMap.transform.localPosition = new Vector3(0, 0, 0);
         if (settings.restrictViewport)
         {
-            rawMap.rectTransform.sizeDelta = new Vector2(Screen.height, Screen.height);
-            slider.minValue = Screen.height;
+            rawMap.rectTransform.sizeDelta = new Vector2(mask.rectTransform.rect.height, mask.rectTransform.rect.height);
+            slider.minValue = mask.rectTransform.rect.height;
             slider.value = slider.minValue;
         }
 
@@ -594,16 +598,6 @@ public class MobileMap : MonoBehaviour
         }
 
         else levelFlag |= InteractableLog.Count % 3 != 0;
-    }
-
-    //====================================================================================================//
-
-    public void CheckForPreviewUI()
-    {
-        if (overlay.gameObject.activeSelf && !InteractablePreviewUI.Show)
-        {
-            InteractablePreviewUI.ToggleShow();
-        }
     }
 
     //====================================================================================================//
