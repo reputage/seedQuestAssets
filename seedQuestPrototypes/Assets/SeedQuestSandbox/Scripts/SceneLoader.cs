@@ -36,4 +36,13 @@ public class SceneLoader : MonoBehaviour {
             yield return null;
         }  
     }
+
+    static public IEnumerator LoadMobileMainMenu()
+    {
+        AsyncOperation async = SceneManager.LoadSceneAsync("MobileMenuStart");
+        while (!async.isDone)
+        {
+            yield return null;
+        }
+    }
 }

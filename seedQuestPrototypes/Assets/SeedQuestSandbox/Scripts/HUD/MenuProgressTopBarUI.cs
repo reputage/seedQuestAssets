@@ -15,6 +15,10 @@ public class MenuProgressTopBarUI : MonoBehaviour
     private Button fastRecovery;
 
     public void Awake() {
+        if (GameManager.MobileMode)
+        {
+            return;
+        }
         sceneText = GetComponentsInChildren<TextMeshProUGUI>()[3];
         actionText = GetComponentsInChildren<TextMeshProUGUI>()[4];
         progress = GetComponentsInChildren<Image>()[7];
@@ -22,6 +26,10 @@ public class MenuProgressTopBarUI : MonoBehaviour
     }
 
     public void Update() {
+        if (GameManager.MobileMode)
+        {
+            return;
+        }
         UpdateText();
         UpdateProgress();
         UpdateMode();

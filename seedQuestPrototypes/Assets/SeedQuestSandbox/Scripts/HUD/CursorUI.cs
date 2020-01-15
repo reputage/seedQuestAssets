@@ -10,7 +10,7 @@ public class CursorUI : MonoBehaviour {
     static public bool ShowCursor
     {
         get { return showCursor; }
-        set { showCursor = value; cursor.SetActive(showCursor); }
+        set { if (cursor == null) return; showCursor = value; cursor.SetActive(showCursor); }
     }
 
     private void Start()
@@ -19,5 +19,4 @@ public class CursorUI : MonoBehaviour {
         if (cursor != null)
             cursor.SetActive(showCursor);
     }
-
 }

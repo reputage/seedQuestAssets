@@ -27,7 +27,15 @@ namespace SeedQuest.Interactables
     public class InteractablePreviewUI : MonoBehaviour
     {
         static private InteractablePreviewUI instance = null;
-        static private InteractablePreviewUI setInstance() { instance = HUDManager.Instance.GetComponentInChildren<InteractablePreviewUI>(true); return instance; }
+        static private InteractablePreviewUI setInstance()
+        {
+            if (GameManager.MobileMode)
+            {
+                return null;
+            }
+            instance = HUDManager.Instance.GetComponentInChildren<InteractablePreviewUI>(true);
+            return instance;
+        }
         static public InteractablePreviewUI Instance { get { return instance == null ? setInstance() : instance; } }
 
         public float previewScale = 1f;
@@ -151,12 +159,11 @@ namespace SeedQuest.Interactables
         /// <param name="interactable"> Interactable to set Preview with </param>
         static public void SetPreviewObject(Interactable interactable, int actionID, bool showActionState = false)  {
 
-            int hello = 0;
+            if (Instance == null) return;
 
             // Set Preview if interactablePreview has changed
-            if (Instance == null || interactable.interactablePreview == Instance.preview)
-                hello = 1;
-                //Debug.Log("Trying to exit setpreview function");
+            if (interactable.interactablePreview == Instance.preview)
+                Debug.Log("Trying to exit setpreview function");
                 //return;
             else
                 Instance.preview = interactable.interactablePreview;

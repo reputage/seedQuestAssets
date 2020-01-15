@@ -34,4 +34,9 @@ public class ActionLineUpCanvas : MonoBehaviour
     public void Continue() {
         MenuScreenV2.Instance.CloseSceneLineUp();
     }
+
+    public void ContinueMobile()
+    {
+        MobileMenuScreens.Instance.CloseSceneLineUp();
+    }
 }

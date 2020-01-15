@@ -44,6 +44,13 @@ public class HUDManager : MonoBehaviour {
     static public HUDManager Instance { get => instance == null ? setInstance() : instance; }
 
     public void Awake() {
+        if (GameManager.MobileMode)
+        {
+            gameObject.SetActive(false);
+            if (MobileHUDManager.Instance != null)
+                MobileHUDManager.Instance.gameObject.SetActive(true);
+            return;
+        }
         GenerateHUD();
         DestroyImmediateHUD();
     }

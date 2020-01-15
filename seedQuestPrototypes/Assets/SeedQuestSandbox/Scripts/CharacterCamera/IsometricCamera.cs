@@ -26,7 +26,8 @@ public class IsometricCamera : MonoBehaviour
     private float nearDistance = 5.0f;
     private float farDistance = 40.0f;
     private float currentDistance;                              // Current Distance from player
-    public static float StaticDistance 
+    private bool topview = false;
+    public static float StaticDistance
     {
         get { return IsometricCamera.instance.currentDistance; }
         set { IsometricCamera.instance.currentDistance = value; }
@@ -40,10 +41,17 @@ public class IsometricCamera : MonoBehaviour
         }
     }
 
+    public void ToggleTopView()
+    {
+        topview = !topview;
+    }
+
     private void Awake() {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         IsometricCamera.instance = this;
         IsometricCamera.Camera = gameObject.GetComponent<Camera>();
+        if (GameManager.MobileMode)
+            distance += 5;
         IsometricCamera.StaticDistance = distance;
     }
 
@@ -110,13 +118,21 @@ public class IsometricCamera : MonoBehaviour
     /// <summary> LookAt player with camera with smoothing </summary>
     public void CameraLookAtPlayer() {
         Vector3 lookAt = playerTransform.position + playerTransform.forward * lookAtPeek;
-        LookAt(lookAt); 
+        if (topview)
+            lookAt = playerTransform.position + new Vector3(0, -90, 0);
+        LookAt(lookAt);
+        if (topview)
+            transform.position = new Vector3(playerTransform.position.x, transform.position.y, playerTransform.position.z);
     }
 
     /// <summary> LookAt interactable with camera with smoothing </summary>
     public void CameraLookAtInteractable() {
         Interactable interactable = InteractableManager.ActiveInteractable;
-        Vector3 iOffset = interactable.GetComponent<BoxCollider>().center + interactable.interactableCamera.lookAtOffset;
+        Vector3 iOffset = Vector3.zero;
+        if (GameManager.MobileMode)
+            iOffset = interactable.GetComponent<BoxCollider>().center + interactable.interactableCamera.lookAtOffset + new Vector3(0, -5, 0);
+        else
+            iOffset = interactable.GetComponent<BoxCollider>().center + interactable.interactableCamera.lookAtOffset;
         Vector3 lookAt = interactable.transform.position;
         LookAt(lookAt + iOffset);
     }
