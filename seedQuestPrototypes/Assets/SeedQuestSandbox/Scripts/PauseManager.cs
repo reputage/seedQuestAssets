@@ -11,7 +11,12 @@ public class PauseManager : MonoBehaviour {
     /// Returns current pause state of game i.e. SeedQuest is paused when menus are open.
     /// </summary>
     static public bool isPaused {
-        get {  return GameManager.State == GameState.Pause || GameManager.State == GameState.Menu || GameManager.State == GameState.End; }
+        get { 
+            if (GameManager.Instance == null) 
+                return false; 
+            
+            return GameManager.State == GameState.Pause || GameManager.State == GameState.Menu || GameManager.State == GameState.End; 
+        }
         set {
             if (value)
                 GameManager.State = GameState.Pause;
