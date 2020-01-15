@@ -26,6 +26,15 @@ class StoreAnimSequences(object):
     
     def NewContainer(self):
         self.CreateContainer()
+        
+        rootGroup = mc.createNode('transform', n = "Rig_Root_Joint")
+        if rootGroup != None:
+            self.CreateSequenceRootJoint()
+            self.PublishRoot(rootGroup)
+            mc.setAttr(rootGroup + ".Joint_Grp", "Joint_Grp" , type = "string")
+            mc.setAttr(rootGroup + ".Mesh_Grp", "Mesh_Grp" , type = "string")
+            mc.setAttr(rootGroup + ".NPC_Rig", "RIG_Master_NPC_01" , type = "string")
+            
         seqGroup = self.CreateSeqGroup()
         if seqGroup != None:
             #Adds attributes
@@ -69,7 +78,12 @@ class StoreAnimSequences(object):
                     print newName
                     print "append new name to end"
                     return newName
-                    
+    
+    def CreateSequenceRootJoint(self):
+        mc.addAttr(ln = 'Joint_Grp', dt = 'string', s = True)
+        mc.addAttr(ln = 'NPC_Rig', dt = 'string', s = True)      
+        mc.addAttr(ln = 'Mesh_Grp', dt = 'string', s = True)   
+            
     def CreateSequenceAttributes(self):
         #Attributes need to have unique names, it would be easiest to simply append a number based on the sequence name (_1, _2, _3)
         mc.addAttr(ln = 'AnimationName', dt = 'string', s = True)
@@ -98,7 +112,17 @@ class StoreAnimSequences(object):
                     #Add to container
                     self.PublishNodes(seqGroup)
 
-
+    def PublishRoot(self, seq):
+        self.LockNode("Character_Sequence_Timing", False)
+        mc.container("Character_Sequence_Timing",edit = True, addNode=[seq])
+        mc.select("Character_Sequence_Timing")
+        
+        mc.container(edit = True, pb = (seq + ".Joint_Grp" , "Joint_Grp"))
+        mc.container(edit = True, pb = (seq + ".Mesh_Grp" , "Mesh_Grp"))
+        mc.container(edit = True, pb = (seq + ".NPC_Rig" , "NPC_Rig"))
+        
+        self.LockNode("Character_Sequence_Timing", True)
+        
     def PublishNodes(self, seq):
         self.LockNode("Character_Sequence_Timing", False)
         
