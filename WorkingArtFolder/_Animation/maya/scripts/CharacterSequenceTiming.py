@@ -25,15 +25,18 @@ class StoreAnimSequences(object):
 
     
     def NewContainer(self):
-        self.CreateContainer()
         
-        rootGroup = mc.createNode('transform', n = "Rig_Root_Joint")
-        if rootGroup != None:
-            self.CreateSequenceRootJoint()
-            self.PublishRoot(rootGroup)
-            mc.setAttr(rootGroup + ".Joint_Grp", "Joint_Grp" , type = "string")
-            mc.setAttr(rootGroup + ".Mesh_Grp", "Mesh_Grp" , type = "string")
-            mc.setAttr(rootGroup + ".NPC_Rig", "RIG_Master_NPC_01" , type = "string")
+        if (mc.objExists("Character_Sequence_Timing") == False):
+
+            self.CreateContainer()
+            
+            rootGroup = mc.createNode('transform', n = "Rig_Root_Joint")
+            if rootGroup != None:
+                self.CreateSequenceRootJoint()
+                self.PublishRoot(rootGroup)
+                mc.setAttr(rootGroup + ".Joint_Grp", "Joint_Grp" , type = "string")
+                mc.setAttr(rootGroup + ".Mesh_Grp", "Mesh_Grp" , type = "string")
+                mc.setAttr(rootGroup + ".NPC_Rig", "RIG_Master_NPC_01" , type = "string")
             
         seqGroup = self.CreateSeqGroup()
         if seqGroup != None:

@@ -95,10 +95,15 @@ class UI_Functionality(object):
 	#Export should be able to export fbx's that support automatically splitting the exported animations into clips
 	#Have option to fix FBX export settings
     #Ability to export skinned asset meshes that do not have animation
-    def StartExport(self, filename, exportPath, prefix, skinning, animation, blendshapes, smoothingGroups, multipleFiles, axis, fileType, fileversion, filescale, interpolation):
+    def StartExport(self, filename, exportPath, prefix, skinning, animation, blendshapes, smoothingGroups, multipleFiles, axis, fileType, fileversion, filescale, interpolation, smartbake):
         containerNode = mc.container("Character_Sequence_Timing",q = True, nl = True)
         #bake animation (based on timeline...for now)
-        self.BakeSkinJoints(containerNode)
+        
+        print smartbake
+
+        #if baked joints == True
+        if (animation == True):
+            self.BakeSkinJoints(containerNode, smartbake)
         
         rig = mc.getAttr(containerNode[0] + ".NPC_Rig")
         if(mc.objExists(rig) == True): 
@@ -108,7 +113,7 @@ class UI_Functionality(object):
         
         
         #export the darned file
-        self.ExportFile(containerNode, filename, exportPath, prefix, skinning, animation, blendshapes, smoothingGroups, multipleFiles, axis, fileType, fileversion, filescale, interpolation)
+        self.ExportFile(containerNode, filename, exportPath, prefix, skinning, animation, blendshapes, smoothingGroups, multipleFiles, axis, fileType, fileversion, filescale, interpolation, smartbake)
         
         print 'Started Export!'
         
@@ -124,7 +129,7 @@ class UI_Functionality(object):
         #open namespaceEditor
         mel.eval("namespaceEditor;")
         
-    def BakeSkinJoints(self, containerNode):
+    def BakeSkinJoints(self, containerNode, smartbake):
         #Find Base Joint
         baseJoint = self.FindBaseJoint(containerNode)
         mc.select(baseJoint, r = 1);
@@ -139,7 +144,7 @@ class UI_Functionality(object):
         #bake simulation
         start = mc.playbackOptions( q=True,min=True )
         end  = mc.playbackOptions( q=True,max=True )
-        mc.bakeResults(rigJoints, t = (start, end), sm = True)
+        mc.bakeResults(rigJoints, t = (start, end), sm = True, sr = [smartbake, .01])
         print 'baked skin joints'
         
     def RemoveAnimRig(self, containerNode):
@@ -153,7 +158,7 @@ class UI_Functionality(object):
         base = mc.getAttr(containerNode[0] + ".Joint_Grp")
         return base
         
-    def ExportFile(self, containerNode, filename, exportPath, prefix, skinning, animation, blendshapes, smoothingGroups, multipleFiles, axis, fileType, fileversion, filescale, interpolation):
+    def ExportFile(self, containerNode, filename, exportPath, prefix, skinning, animation, blendshapes, smoothingGroups, multipleFiles, axis, fileType, fileversion, filescale, interpolation, smartbake):
 
         meshGroup = mc.getAttr(containerNode[0] + ".Joint_Grp")
         jointGroup = mc.getAttr(containerNode[0] + ".Mesh_Grp")
@@ -180,7 +185,7 @@ class UI_Functionality(object):
             scalefactor = 10
         elif (filescale == "Meters"):
             scalefactor = 100
-            
+
         #Set FBX Parameters
         pm.mel.FBXExportUpAxis(axis)
         pm.mel.FBXExportBakeComplexAnimation(v = complexanimation)
@@ -190,6 +195,7 @@ class UI_Functionality(object):
         pm.mel.FBXExportScaleFactor(scalefactor)
         pm.mel.FBXExportSkeletonDefinitions(v = skinning)
         pm.mel.FBXExportSkins(v = skinning)
+        pm.mel.FBXExportShapes(v = blendshapes)
         pm.mel.FBXExportSmoothingGroups(v = smoothingGroups)
         
         pm.mel.FBXExport(f = outFilePath, s = True)
@@ -291,9 +297,10 @@ class window_ui(QDialog):
             
             filescale = self.qtui.dropdown_fileScale.currentText()
             interpolation = self.qtui.dropdown_interpolation.currentText()
+            smartbake = self.qtui.smartBake_checkBox.isChecked()
             
             
-            ui_funct.StartExport(filename, exportPath, prefix, skinning, animation, blendshapes, smoothingGroups, multipleFiles, axis, fileType, fileversion, filescale, interpolation)
+            ui_funct.StartExport(filename, exportPath, prefix, skinning, animation, blendshapes, smoothingGroups, multipleFiles, axis, fileType, fileversion, filescale, interpolation, smartbake)
             
     def UpdateAnimList(self):
         rigSelection = [item.text() for item in self.qtui.list_scenerigs.selectedItems()]
