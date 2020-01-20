@@ -11,6 +11,8 @@ using System.Runtime.InteropServices;
 using QRCoder;
 using QRCoder.Unity;
 using sharpPDF;
+using System.Collections;
+using System.Collections.Generic;
 
 public class EndGameUI : MonoBehaviour
 {
@@ -65,6 +67,19 @@ public class EndGameUI : MonoBehaviour
             string sentence = getSentence(alteredSeedText);
             string alteredHex = SeedUtility.hexToAsciiLengthCheck(alteredSeedText);
             asciiSeed = AsciiConverter.hexToAscii(alteredHex);
+            if (asciiSeed.Substring(asciiSeed.Length -1, 1) == "=")
+            {
+                char[] asciiArray = asciiSeed.ToCharArray();
+                Array.Reverse(asciiArray);
+                Queue<char> asciiQueue = new Queue<char>(asciiArray);
+                while (asciiQueue.Peek() == '=')
+                {
+                    asciiQueue.Dequeue();
+                }
+                asciiArray = asciiQueue.ToArray();
+                Array.Reverse(asciiArray);
+                asciiSeed = new string(asciiArray);
+            }
 
             char[] array = alteredSeedText.ToCharArray();
             array[array.Length - 2] = array[array.Length - 1];

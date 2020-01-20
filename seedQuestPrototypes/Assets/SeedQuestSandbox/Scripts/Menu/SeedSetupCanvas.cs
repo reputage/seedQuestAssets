@@ -10,11 +10,15 @@ public class SeedSetupCanvas : MonoBehaviour
 {
 
     private BIP39Converter bpc = new BIP39Converter();
+    private bool showPassword = true;
 
     public Image greenCheck;
     public Image redWarning;
     public Image greenOutline;
     public Image redOutline;
+    public Sprite hide;
+    public Sprite show;
+    public Button hidePasswordButton;
     public Button HideKeyButton;
     public TMP_InputField seedInputField;
     public TextMeshProUGUI warningTextTMP;
@@ -113,13 +117,24 @@ public class SeedSetupCanvas : MonoBehaviour
             warningTextTMP.color = new Color32(81, 150, 55, 255);
             setGreenCheck();
         }
-        else if (SeedUtility.validAscii(seedInputField.text))
+        else
         {
-            Debug.Log("Valid ascii seed: " + seed);
+            int encodingLength = InteractableConfig.BitEncodingCount / 8;
+            string paddedSeed = seed;
+            if (seed.Length < encodingLength)
+            {
+                int paddingLength = encodingLength - seedInputField.text.Length;
+                for (int i = 0; i < paddingLength; i++)
+                {
+                    paddedSeed += "=";
+                }
+            }
+            Debug.Log("Valid ascii seed: " + paddedSeed);
             warningTextTMP.text = "Character seed detected!";
             warningTextTMP.color = new Color32(81, 150, 55, 255);
             setGreenCheck();
         }
+
     }
 
     public void EncodeSeed()
@@ -128,6 +143,17 @@ public class SeedSetupCanvas : MonoBehaviour
         {
             string seedFromInput = seedInputField.text;
             string hexSeed = "";
+            int encodingLength = InteractableConfig.BitEncodingCount / 8;
+            string paddedSeed = seedFromInput;
+
+            if (seedFromInput.Length < encodingLength)
+            {
+                int paddingLength = encodingLength - seedInputField.text.Length;
+                for (int i = 0; i < paddingLength; i++)
+                {
+                    paddedSeed += "=";
+                }
+            }
 
             if (!SeedUtility.detectHex(seedFromInput) && !SeedUtility.validAscii(seedFromInput) && SeedUtility.validBip(seedFromInput) && InteractableConfig.SitesPerGame < 6)
             {
@@ -140,6 +166,11 @@ public class SeedSetupCanvas : MonoBehaviour
             else if (SeedUtility.validAscii(seedFromInput))
             {
                 hexSeed = AsciiConverter.asciiToHex(seedFromInput);
+                hexSeed = SeedUtility.asciiToHexLengthCheck(hexSeed);
+            }
+            else if (SeedUtility.validAscii(paddedSeed))
+            {
+                hexSeed = AsciiConverter.asciiToHex(paddedSeed);
                 hexSeed = SeedUtility.asciiToHexLengthCheck(hexSeed);
             }
             else
@@ -208,9 +239,9 @@ public class SeedSetupCanvas : MonoBehaviour
         }
         else if (detectAscii && seedString.Length < asciiLength && !validHex)
         {
-            warningTextTMP.text = "Not enough characters!";
+            /*warningTextTMP.text = "Not enough characters!";
             warningTextTMP.color = new Color32(255, 20, 20, 255);
-            setRedWarning();
+            setRedWarning();*/
         }
         else if (detectAscii && seedString.Length > asciiLength && !validHex)
         {
@@ -295,4 +326,22 @@ public class SeedSetupCanvas : MonoBehaviour
         greenOutline.gameObject.SetActive(false);
     }
 
+    public void hidePassword()
+    {
+        if (showPassword)
+        {
+            hidePasswordButton.GetComponent<Image>().sprite = hide;
+            seedInputField.contentType = TMP_InputField.ContentType.Password;
+            seedInputField.ForceLabelUpdate();
+        }
+
+        else
+        {
+            hidePasswordButton.GetComponent<Image>().sprite = show;
+            seedInputField.contentType = TMP_InputField.ContentType.Standard;
+            seedInputField.ForceLabelUpdate();
+        }
+
+        showPassword = !showPassword;
+    }
 } 
