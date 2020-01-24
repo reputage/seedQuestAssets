@@ -44,7 +44,7 @@ public class AsciiSeedTests : MonoBehaviour
         string ascii = AsciiConverter.hexToAscii(hex);
         hex = AsciiConverter.asciiToHex(ascii);
 
-        if (ascii == "0123456789abcdef")
+        if (ascii == "028o#w137gA=M1&6eu")
             passed[0] += 1;
         else
             Debug.Log("Hex to ascii test failed. Ascii: " + ascii);
@@ -75,33 +75,33 @@ public class AsciiSeedTests : MonoBehaviour
         string asciiD2 = AsciiConverter.hexToAscii(hexD);
         string asciiE2 = AsciiConverter.hexToAscii(hexE);
 
-        string lengthCheck = "000000000000000Z";
+        string lengthCheck = "00000000000000000Z";
         string lengthHex = AsciiConverter.asciiToHex(lengthCheck);
         lengthHex = SeedUtility.asciiToHexLengthCheck(lengthHex);
         string lengthHex2 = SeedUtility.hexToAsciiLengthCheck(lengthHex);
         lengthCheck = AsciiConverter.hexToAscii(lengthHex2);
 
-        if (hexA == "00010203040506070809")
+        if (hexA == "8080604028180E8804")
             passed[0] += 1;
         else
             Debug.Log("Ascii to hex number test failed. Hex: : " + hexA);
 
-        if (hexB == "0A0B0C0D0E0F101112131415161718191A1B1C1D1E1F20212223")
+        if (hexB == "8A05A3E17840229209A562B960329A0DA7E3F98042A211")
             passed[0] += 1;
         else
             Debug.Log("Ascii to hex lowercase test failed. Hex: : " + hexB);
 
-        if (hexC == "2425262728292A2B2C2D2E2F303132333435363738393A3B3C3D")
+        if (hexC == "A492E9844AA956AC96EB058BC966B49AED86CBE976BC1E")
             passed[0] += 1;
         else
             Debug.Log("Ascii to hex uppercase test failed. Hex: : " + hexC);
 
-        if (hexD == "494B4C444E545655595D3E5340414257434745464A5058484F51524D3F5A5C5B5D")
+        if (hexD == "C92593E8A45AABD9AE6F0A0C0AAFC363D1A8846291CFA8B4F9D372B75D")
             passed[0] += 1;
         else
             Debug.Log("Ascii to hex symbols test failed. Hex: : " + hexD);
 
-        if (hexE == "5E5E5D5D000024240B0B")
+        if (hexE == "5E6FB70B0090488B05")
             passed[0] += 1;
         else
             Debug.Log("Ascii to hex whitespace test failed. Hex: : " + hexE);
@@ -109,42 +109,42 @@ public class AsciiSeedTests : MonoBehaviour
         if (asciiA == asciiA2)
             passed[0] += 1;
         else
-            Debug.Log("Hex to ascii number test failed. Hex: : " + asciiA2);
+            Debug.Log("Hex to ascii number test failed. Ascii: : " + asciiA2);
 
         if (asciiB == asciiB2)
             passed[0] += 1;
         else
-            Debug.Log("Hex to ascii lowercase test failed. Hex: : " + asciiB2);
+            Debug.Log("Hex to ascii lowercase test failed. Ascii: : " + asciiB2);
 
         if (asciiC == asciiC2)
             passed[0] += 1;
         else
-            Debug.Log("Hex to ascii uppercase test failed. Hex: : " + asciiC2);
+            Debug.Log("Hex to ascii uppercase test failed. Ascii: : " + asciiC2);
 
         if (asciiD == asciiD2)
             passed[0] += 1;
         else
-            Debug.Log("Hex to ascii symbols test failed. Hex: : " + asciiD2);
+            Debug.Log("Hex to ascii symbols test failed. Ascii: : " + asciiD2);
 
         if (asciiE == asciiE2)
             passed[0] += 1;
         else
-            Debug.Log("Hex to ascii whitespace test failed. Hex: : " + asciiE2);
+            Debug.Log("Hex to ascii whitespace test failed. Ascii: : " + asciiE2);
 
-        if (lengthHex == "0000000000000000000000000000003D00")
+        if (lengthHex == "0000000000000000000000000000801E00")
             passed[0] += 1;
         else
             Debug.Log("Hex length test 1 failed. Hex: : " + lengthHex);
 
-        if (lengthHex2 == "0000000000000000000000000000003D")
+        if (lengthHex2 == "0000000000000000000000000000801E")
             passed[0] += 1;
         else
             Debug.Log("Hex length test 2 failed. Hex: : " + lengthHex2);
 
-        if (lengthCheck == "000000000000000Z")
+        if (lengthCheck == "00000000000000000Z")
             passed[0] += 1;
         else
-            Debug.Log("Hex length test 3 failed. Hex: : " + lengthCheck);
+            Debug.Log("Hex length test 3 failed. Ascii: : " + lengthCheck);
         
         return passed;
     }
@@ -153,7 +153,7 @@ public class AsciiSeedTests : MonoBehaviour
     {
         int[] passed = new int[2];
         string asciiChars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ ";
-        string validAscii = "0123456789abcdef";
+        string validAscii = "0123456789abcdefgh";
         string badTest = "\n01234abcd";
         passed[1] += 6;
 
@@ -204,7 +204,7 @@ public class AsciiSeedTests : MonoBehaviour
     public int[] testCustomTable()
     {
         int[] passed = new int[2];
-        passed[1] = 3;
+        passed[1] = 2;
 
         string asciiSeed = "123qwertyuiop?>:{}";
         byte[] seedBytes = AsciiConverter.asciiToByte(asciiSeed);
@@ -212,22 +212,16 @@ public class AsciiSeedTests : MonoBehaviour
 
         string hex = "0F010203040A";
         string asciiByte = AsciiConverter.hexToAscii(hex);
-        string recHex = AsciiConverter.asciiToHex(asciiByte);
 
         if (recSeed == asciiSeed)
             passed[0] += 1;
         else
             Debug.Log("Test for converting ascii seed into bytes and back failed.");
 
-        if (asciiByte == "f1234a")
+        if (asciiByte == "f28o##")
             passed[0] += 1;
         else
-            Debug.Log("Test for converting hex seed into ascii failed.");
-
-        if (hex == recHex)
-            passed[0] += 1;
-        else
-            Debug.Log("Test for converting ascii seed into hex failed.");
+            Debug.Log("Test for converting hex seed into ascii failed." + asciiByte);
 
         return passed;
     }
