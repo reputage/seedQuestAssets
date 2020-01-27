@@ -39,6 +39,15 @@ public class StartScreenCanvas : MonoBehaviour
 
     public void HideKey() {
         MenuScreenV2.Instance.SetModeLearnSeed();
+        MenuScreenV2.Instance.setPasswordMode(false);
+        SeedSetupCanvas.Instance.clearInput();
+    }
+
+    public void HidePassword()
+    {
+        MenuScreenV2.Instance.SetModeLearnSeed();
+        MenuScreenV2.Instance.setPasswordMode(true);
+        SeedSetupCanvas.Instance.clearInput();
     }
 
     public void FindKey() {

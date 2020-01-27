@@ -23,13 +23,33 @@ public class SeedSetupCanvas : MonoBehaviour
     public TextMeshProUGUI warningTextTMP;
     public PasswordEntropyUI passwordBar;
 
+    private SeedStrSelection seedStrSelection;
+    private GameObject randomGenerators;
+
+    static private SeedSetupCanvas instance = null;
+    static private SeedSetupCanvas setInstance() { instance = GameObject.FindObjectOfType<SeedSetupCanvas>(); return instance; }
+    static public SeedSetupCanvas Instance { get { return instance == null ? setInstance() : instance; } }
+
     private void Awake()
     {
         passwordBar = GetComponentInChildren<PasswordEntropyUI>();
+        seedStrSelection = GameObject.FindObjectOfType<SeedStrSelection>();
+        Button[] buttons = gameObject.GetComponentsInChildren<Button>(true);
+        randomGenerators = buttons[2].transform.parent.gameObject;
     }
 
     private void Update()
     {
+
+        if (!MenuScreenV2.Instance.getPasswordMode())
+        {
+            togglePassword(false);
+        }
+        else
+        {
+            togglePassword(true);
+        }
+
         SeedStrSelection seedStr = GetComponentInChildren<SeedStrSelection>(true);
 
         if (seedStr != null)
@@ -101,7 +121,7 @@ public class SeedSetupCanvas : MonoBehaviour
         string seed = SeedUtility.removeHexPrefix(seedInputField.text);
         bool validSeed = validSeedString(seed);
 
-        if (SeedUtility.validAscii(seedInputField.text))
+        if (SeedUtility.validAscii(seedInputField.text) && MenuScreenV2.Instance.getPasswordMode())
         {
             Debug.Log("Valid ascii seed: " + seed);
             warningTextTMP.text = "Character seed detected!";
@@ -109,26 +129,61 @@ public class SeedSetupCanvas : MonoBehaviour
             setGreenCheck();
             passwordBar.SetNonPassword(false);
         }
+        else if (SeedUtility.validAscii(seedInputField.text) && !MenuScreenV2.Instance.getPasswordMode())
+        {
+            Debug.Log("Invalid hex seed: " + seed);
+            warningTextTMP.text = "Go to password mode for passwords.";
+            warningTextTMP.color = new Color32(255, 20, 20, 255);
+            setRedWarning();
+            passwordBar.SetNonPassword(false);
+        }
         else if (validSeed)
         {
-            Debug.Log("Valid hex seed: " + seed);
-            warningTextTMP.text = "Hex seed detected!";
-            warningTextTMP.color = new Color32(81, 150, 55, 255);
-            setGreenCheck();
-            passwordBar.SetNonPassword(true);
+            if (MenuScreenV2.Instance.getPasswordMode())
+            {
+                warningTextTMP.text = "Go to key mode for hex seeds.";
+                warningTextTMP.color = new Color32(255, 20, 20, 255);
+                setRedWarning();
+            }
+            else
+            {
+                Debug.Log("Valid hex seed: " + seed);
+                warningTextTMP.text = "Hex seed detected!";
+                warningTextTMP.color = new Color32(81, 150, 55, 255);
+                setGreenCheck();
+                passwordBar.SetNonPassword(true);
+            }
         }
         else if (SeedUtility.validBip(seedInputField.text))
         {
-            Debug.Log("Valid bip39 seed: " + seed);
-            warningTextTMP.text = "Word seed detected!";
-            warningTextTMP.color = new Color32(81, 150, 55, 255);
-            setGreenCheck();
-            passwordBar.SetNonPassword(true);
+            if (MenuScreenV2.Instance.getPasswordMode())
+            {
+                warningTextTMP.text = "Go to key mode for bip-39 seeds.";
+                warningTextTMP.color = new Color32(255, 20, 20, 255);
+                setRedWarning();
+            }
+            else
+            {
+                Debug.Log("Valid bip39 seed: " + seed);
+                warningTextTMP.text = "Word seed detected!";
+                warningTextTMP.color = new Color32(81, 150, 55, 255);
+                setGreenCheck();
+                passwordBar.SetNonPassword(true);
+            }
         }
         else
         {
             if (seed.Length < 1)
             {
+                return;
+            }
+            else if (!MenuScreenV2.Instance.getPasswordMode())
+            {
+                Debug.Log("Invalid hex seed: " + seed);
+                warningTextTMP.text = "Go to password mode for passwords.";
+                warningTextTMP.color = new Color32(81, 150, 55, 255);
+                setRedWarning();
+                passwordBar.SetNonPassword(false);
                 return;
             }
             else if (seed.Length > InteractableConfig.BitEncodingCount / 8)
@@ -241,27 +296,60 @@ public class SeedSetupCanvas : MonoBehaviour
         }
         else if (!validHex && !detectAscii && wordArray.Length > 1 && wordArray.Length != ((InteractableConfig.SitesPerGame * 2 )) && InteractableConfig.SitesPerGame < 6)
         {
-            Debug.Log("array length: " + wordArray.Length + " word req: " + InteractableConfig.SitesPerGame * 2);
-            warningTextTMP.text = "Remember to add spaces between the words.";
-            warningTextTMP.color = new Color32(255, 20, 20, 255);
-            setRedWarning();
+            if (MenuScreenV2.Instance.getPasswordMode())
+            {
+                warningTextTMP.text = "Go to key mode for bip-39 seeds.";
+                warningTextTMP.color = new Color32(255, 20, 20, 255);
+                setRedWarning();
+            }
+            else
+            {
+                Debug.Log("array length: " + wordArray.Length + " word req: " + InteractableConfig.SitesPerGame * 2);
+                warningTextTMP.text = "Remember to add spaces between the words.";
+                warningTextTMP.color = new Color32(255, 20, 20, 255);
+                setRedWarning();
+            }
         }
         else if (!validHex && !detectAscii && wordArray.Length > 1 && wordArray.Length < 12 && InteractableConfig.SitesPerGame == 6) {
-            Debug.Log("array length: " + wordArray.Length);
-            warningTextTMP.text = "Remember to add spaces between the words.";
-            warningTextTMP.color = new Color32(255, 20, 20, 255);
-            setRedWarning();
+            if (MenuScreenV2.Instance.getPasswordMode())
+            {
+                warningTextTMP.text = "Go to key mode for bip-39 seeds.";
+                warningTextTMP.color = new Color32(255, 20, 20, 255);
+                setRedWarning();
+            }
+            else
+            {
+                Debug.Log("array length: " + wordArray.Length);
+                warningTextTMP.text = "Remember to add spaces between the words.";
+                warningTextTMP.color = new Color32(255, 20, 20, 255);
+                setRedWarning();
+            }
         }
         else if (!validHex && !detectAscii && wordArray.Length > 1 && !SeedUtility.validBip(seedString)) {
-            warningTextTMP.text = "Make sure the words are spelled correctly.";
-            warningTextTMP.color = new Color32(255, 20, 20, 255);
-            setRedWarning();
+            if (MenuScreenV2.Instance.getPasswordMode())
+            {
+                warningTextTMP.text = "Go to key mode for bip-39 seeds.";
+                warningTextTMP.color = new Color32(255, 20, 20, 255);
+                setRedWarning();
+            }
+            else
+            {
+                warningTextTMP.text = "Make sure the words are spelled correctly.";
+                warningTextTMP.color = new Color32(255, 20, 20, 255);
+                setRedWarning();
+            }
         }
         else if (detectAscii && seedString.Length < asciiLength && !validHex)
         {
             /*warningTextTMP.text = "Not enough characters!";
             warningTextTMP.color = new Color32(255, 20, 20, 255);
             setRedWarning();*/
+        }
+        else if (detectAscii && !MenuScreenV2.Instance.getPasswordMode())
+        {
+            warningTextTMP.text = "Go to password mode for passwords.";
+            warningTextTMP.color = new Color32(255, 20, 20, 255);
+            setRedWarning();
         }
         else if (detectAscii && seedString.Length > asciiLength && !validHex)
         {
@@ -270,28 +358,48 @@ public class SeedSetupCanvas : MonoBehaviour
             setRedWarning();
         }
         else if (!validHex) {
-            warningTextTMP.text = "Character seeds must only contain hex characters.";
-            warningTextTMP.color = new Color32(255, 20, 20, 255);
-            setRedWarning();
+            if (MenuScreenV2.Instance.getPasswordMode())
+            {
+                warningTextTMP.text = "Go to key mode for hex seeds.";
+                warningTextTMP.color = new Color32(255, 20, 20, 255);
+                setRedWarning();
+            }
+            else
+            {
+                warningTextTMP.text = "Character seeds must only contain hex characters.";
+                warningTextTMP.color = new Color32(255, 20, 20, 255);
+                setRedWarning();
+            }
         }
         else if (validHex && seedString.Length < InteractableConfig.SeedHexLength) {
-            validHex = false;
-            warningTextTMP.text = "Not enough characters!";
-            warningTextTMP.color = new Color32(255, 20, 20, 255);
-            setRedWarning();
+            if (MenuScreenV2.Instance.getPasswordMode())
+            {
+                warningTextTMP.text = "Go to hex mode for bip-39 seeds.";
+                warningTextTMP.color = new Color32(255, 20, 20, 255);
+                setRedWarning();
+            }
+            else
+            {
+                validHex = false;
+                warningTextTMP.text = "Not enough characters!";
+                warningTextTMP.color = new Color32(255, 20, 20, 255);
+                setRedWarning();
+            }
         }
         else if (validHex && seedString.Length > InteractableConfig.SeedHexLength + 1) {
-            validHex = false;
-            warningTextTMP.text = "Too many characters!";
-            warningTextTMP.color = new Color32(255, 20, 20, 255);
-            setRedWarning();
-        }
-        else if (validHex && seedString.Length > InteractableConfig.SeedHexLength + 1)
-        {
-            validHex = false;
-            warningTextTMP.text = "Too many characters!";
-            warningTextTMP.color = new Color32(255, 20, 20, 255);
-            setRedWarning();
+            if (MenuScreenV2.Instance.getPasswordMode())
+            {
+                warningTextTMP.text = "Go to key mode for hex seeds.";
+                warningTextTMP.color = new Color32(255, 20, 20, 255);
+                setRedWarning();
+            }
+            else
+            {
+                validHex = false;
+                warningTextTMP.text = "Too many characters!";
+                warningTextTMP.color = new Color32(255, 20, 20, 255);
+                setRedWarning();
+            }
         }
 
         return validHex;
@@ -346,6 +454,21 @@ public class SeedSetupCanvas : MonoBehaviour
         greenOutline.gameObject.SetActive(false);
     }
 
+    public void togglePassword(bool value)
+    {
+        passwordBar.gameObject.SetActive(value);
+        if (value == true)
+        {
+            seedStrSelection.gameObject.SetActive(false);
+            randomGenerators.SetActive(false);
+        }
+        else
+        {
+            seedStrSelection.gameObject.SetActive(true);
+            randomGenerators.SetActive(true);
+        }
+    }
+
     public void hidePassword()
     {
         if (showPassword)
@@ -363,5 +486,13 @@ public class SeedSetupCanvas : MonoBehaviour
         }
 
         showPassword = !showPassword;
+    }
+
+    public void clearInput()
+    {
+        seedInputField.text = "";
+        deactivateCheckSymbols();
+        warningTextTMP.text = "";
+
     }
 } 
