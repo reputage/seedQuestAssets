@@ -150,7 +150,10 @@ public class EndGameUI : MonoBehaviour
         SeedQuest.Level.LevelManager.Instance.StopLevelMusic();
         if (GameManager.V2Menus)
             if (GameManager.MobileMode)
+            {
+                InteractableLabelUI.ClearInteractableUI();
                 MobileMenuScreens.Instance.GoToStart();
+            }
             else
                 MenuScreenV2.Instance.GoToStart();
         else
@@ -237,6 +240,19 @@ public class EndGameUI : MonoBehaviour
                     outputFile.WriteLine(seed);
                 }
             }
+        #elif UNITY_IOS || UNITY_ANDROID
+            string realPath = Application.persistentDataPath + "/SeedQuest/seed.txt";
+            if (!System.IO.File.Exists(realPath))
+            {
+                if (!System.IO.Directory.Exists(Application.persistentDataPath + "/SeedQuest/"))
+                {
+                    System.IO.Directory.CreateDirectory(Application.persistentDataPath + "/SeedQuest/");
+                }
+                WWW reader = new WWW(Application.streamingAssetsPath + "/PATH/" + realPath);
+                while ( ! reader.isDone) {}
+                System.IO.File.WriteAllBytes(realPath, reader.bytes);
+            }
+            Application.OpenURL(realPath);
         #else
             string downloads = "";
             if (System.Environment.OSVersion.Platform == System.PlatformID.Unix)
@@ -255,7 +271,7 @@ public class EndGameUI : MonoBehaviour
             {
                 outputFile.WriteLine(seed);
             }
-        #endif
+#endif
         //textList[1].text = "Seed Downloaded";
         //textList[1].gameObject.SetActive(true);
     }

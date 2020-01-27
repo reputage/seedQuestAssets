@@ -18,6 +18,7 @@ public class PasswordEntropyUI : MonoBehaviour
     private Image strengthBar;
     private Image barScreen;
     private TMPro.TMP_Text text;
+    private bool nonPassword;
 
     public void Awake()
     {
@@ -30,6 +31,7 @@ public class PasswordEntropyUI : MonoBehaviour
         text.text = "";
         barScreen.rectTransform.offsetMin = new Vector2(0f, 0f);
         input.onValueChanged.AddListener(delegate { OnInputValueChange(); });
+        nonPassword = false;
     }
 
     public int GetIndex(string c)
@@ -105,12 +107,20 @@ public class PasswordEntropyUI : MonoBehaviour
 
     public void GetStrength(string pass)
     {
+        if (nonPassword)
+        {
+            text.text = "";
+            barScreen.rectTransform.offsetMin = new Vector2(0f, 0f);
+            return;
+        }
+
         string lowPass = pass.ToLower();
 
         if (pass.Length == 0)
         {
             text.text = "";
             barScreen.rectTransform.offsetMin = new Vector2(0f, 0f);
+            return;
         }
 
         for (int i = 0; i < commonWords.Length; i++)
@@ -180,6 +190,11 @@ public class PasswordEntropyUI : MonoBehaviour
                 barScreen.rectTransform.offsetMin = new Vector2(500f, 0f);
             }
         }
+    }
+
+    public void SetNonPassword(bool value)
+    {
+        nonPassword = value;
     }
 
     public void OnInputValueChange()

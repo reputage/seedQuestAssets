@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using TMPro;
 using SeedQuest.Interactables;
 
-
 public class SeedSetupCanvas : MonoBehaviour
 {
 
@@ -22,6 +21,12 @@ public class SeedSetupCanvas : MonoBehaviour
     public Button HideKeyButton;
     public TMP_InputField seedInputField;
     public TextMeshProUGUI warningTextTMP;
+    public PasswordEntropyUI passwordBar;
+
+    private void Awake()
+    {
+        passwordBar = GetComponentInChildren<PasswordEntropyUI>();
+    }
 
     private void Update()
     {
@@ -102,6 +107,7 @@ public class SeedSetupCanvas : MonoBehaviour
             warningTextTMP.text = "Character seed detected!";
             warningTextTMP.color = new Color32(81, 150, 55, 255);
             setGreenCheck();
+            passwordBar.SetNonPassword(false);
         }
         else if (validSeed)
         {
@@ -109,6 +115,7 @@ public class SeedSetupCanvas : MonoBehaviour
             warningTextTMP.text = "Hex seed detected!";
             warningTextTMP.color = new Color32(81, 150, 55, 255);
             setGreenCheck();
+            passwordBar.SetNonPassword(true);
         }
         else if (SeedUtility.validBip(seedInputField.text))
         {
@@ -116,9 +123,21 @@ public class SeedSetupCanvas : MonoBehaviour
             warningTextTMP.text = "Word seed detected!";
             warningTextTMP.color = new Color32(81, 150, 55, 255);
             setGreenCheck();
+            passwordBar.SetNonPassword(true);
         }
         else
         {
+            if (seed.Length < 1)
+            {
+                return;
+            }
+            else if (seed.Length > InteractableConfig.BitEncodingCount / 8)
+            {
+                warningTextTMP.text = "Too many characters!";
+                warningTextTMP.color = new Color32(255, 20, 20, 255);
+                setRedWarning();
+                return;
+            }
             int encodingLength = InteractableConfig.BitEncodingCount / 8;
             string paddedSeed = seed;
             if (seed.Length < encodingLength)
@@ -133,6 +152,7 @@ public class SeedSetupCanvas : MonoBehaviour
             warningTextTMP.text = "Character seed detected!";
             warningTextTMP.color = new Color32(81, 150, 55, 255);
             setGreenCheck();
+            passwordBar.SetNonPassword(false);
         }
 
     }
