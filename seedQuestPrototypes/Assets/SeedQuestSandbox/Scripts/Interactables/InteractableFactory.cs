@@ -6,7 +6,7 @@ using SeedQuest.Interactables;
 public class InteractableFactory : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start() {
+    void Awake() {
         CreateInteractableSimple();   
     }
 
@@ -14,7 +14,11 @@ public class InteractableFactory : MonoBehaviour
 
         foreach (Transform child in transform)
         {
-            child.gameObject.AddComponent<InteractableSimple>();
+            InteractableSimple interactable = child.gameObject.AddComponent<InteractableSimple>();
+
+            if(SimpleInteractableManager.Instance.targetList.Contains(interactable.id))
+                EffectsManager.PlayEffect("highlight", child.transform);
         }
+
     }
 }

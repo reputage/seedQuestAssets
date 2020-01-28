@@ -8,8 +8,11 @@ namespace SeedQuest.Interactables
     public class InteractableSimple : InteractableBase
     {
         public InteractableID ID;
+        public bool isSelected = false;
 
-        public void Start() {
+        public static List<InteractableSimple> selectedList = new List<InteractableSimple>();
+
+        public void Awake() {
             Init();
             FitColliderToChildren(gameObject);
         }
@@ -21,25 +24,38 @@ namespace SeedQuest.Interactables
 
         public void Select() {
             InteractableLog.Add(0,0,0);
+
+            if (isSelected) {
+                selectedList.Add(this);
+                HighlightInteractable(false, false);
+            } 
+            else {
+                selectedList.Remove(this);
+                HighlightInteractable(true, true);
+            }
+
+            isSelected = !isSelected;
+
         }
 
         public override void OnClick() {
-            Debug.Log("Click: " + name + " " + id.ToString());
+            //Debug.Log("Click: " + name + " " + id.ToString());
             Select();
         }
 
         public override void OnHoverEnter() {
-            Debug.Log("Hover Enter: " + name);
+            //Debug.Log("Hover Enter: " + name);
             //InteractableSimpleLabel.Instance.Show(this);
             InteractableSimpleLabel.Instance.GetInteractable(this);
-            HighlightInteractable(true, true);
+            //HighlightInteractable(true, true);
         }
 
         public override void OnHoverExit() {
-            Debug.Log("Hover Exit: " + name);
+            //Debug.Log("Hover Exit: " + name);
 
             //InteractableSimpleLabel.Instance.Hide();
-            HighlightInteractable(false, false);
+            //HighlightInteractable(false, false);
         }
     }
+
 }

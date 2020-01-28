@@ -93,28 +93,35 @@ namespace SeedQuest.Interactables
 
             foreach (Renderer renderer in rendererList) {
 
-                foreach (Material material in renderer.materials) {
-                    if (useHighlight) {
-                        material.shader = highlightShader;
+                if(renderer.gameObject.layer != LayerMask.NameToLayer("UI")) {
+                    foreach (Material material in renderer.materials) {
 
-                        /*
-                        material.SetFloat("_HighlightPower", interactableHighlights.highlightPower);
-                        material.SetFloat("_RimExponent", interactableHighlights.rimExponent);
-                        material.SetFloat("_RimPower", interactableHighlights.rimPower);
-                        material.SetFloat("_OutlineWidth", interactableHighlights.outlineWidth);
-                        material.SetFloat("_OutlinePower", interactableHighlights.outlinePower);
-                        material.SetFloat("_DynamicColorSpeed", interactableHighlights.dynamicFlashSpeed);
-                        if(useDynamicRim)
-                            material.SetFloat("_UseDynamicColor", 1.0f);
+                        if (useHighlight) {
+                            material.shader = highlightShader;
+
+                            /*
+                            material.SetFloat("_HighlightPower", interactableHighlights.highlightPower);
+                            material.SetFloat("_RimExponent", interactableHighlights.rimExponent);
+                            material.SetFloat("_RimPower", interactableHighlights.rimPower);
+                            material.SetFloat("_OutlineWidth", interactableHighlights.outlineWidth);
+                            material.SetFloat("_OutlinePower", interactableHighlights.outlinePower);
+                            material.SetFloat("_DynamicColorSpeed", interactableHighlights.dynamicFlashSpeed);
+                            if(useDynamicRim)
+                                material.SetFloat("_UseDynamicColor", 1.0f);
+                            else
+                                material.SetFloat("_UseDynamicColor", 0.0f);
+                            */
+
+                            //Debug.Log("Surface:" + material.GetFloat("_Surface"));
+                        }
                         else
-                            material.SetFloat("_UseDynamicColor", 0.0f);
-                        */
+                            material.shader = defaultShader;
                     }
-                    else
-                        material.shader = defaultShader;
                 }
             }
         }
+
+
 
         public void FitColliderToChildren(GameObject parent)
         {

@@ -9,6 +9,7 @@ public class MidasTouchSceneManager : MonoBehaviour
     {
         SceneManager.LoadScene("MidasTouch_Apartment", LoadSceneMode.Additive);
         SceneManager.LoadScene("MidasTouch_ShipWreck", LoadSceneMode.Additive);
+        SceneManager.LoadScene("MidasTouch_Cafe", LoadSceneMode.Additive);
+        SceneManager.LoadScene("MidasTouch_ArabianDay", LoadSceneMode.Additive);
     }
-
 }
