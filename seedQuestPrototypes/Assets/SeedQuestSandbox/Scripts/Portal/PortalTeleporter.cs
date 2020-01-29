@@ -24,12 +24,21 @@ public class PortalTeleporter : MonoBehaviour
             if (dotProduct < 0f && Time.time - time > 1.0f)
             {
                 // Teleport him!
+                /*
                 float rotationDiff = -Quaternion.Angle(transform.rotation, reciever.rotation);
                 rotationDiff += 180;
                 player.Rotate(Vector3.up, rotationDiff);
 
                 Vector3 positionOffset = Quaternion.Euler(0f, rotationDiff, 0f) * portalToPlayer;
                 player.position = reciever.position + positionOffset;
+                */
+
+                float scale = 2.0f;
+                Vector3 target = reciever.position + scale * reciever.forward;
+                player.position = portalToPlayer + target;
+
+                Vector3 eulerRotation = reciever.rotation.eulerAngles;
+                player.transform.rotation = Quaternion.Euler(0, eulerRotation.y, 0);
 
                 playerIsOverlapping = false;
                 time = Time.time;
