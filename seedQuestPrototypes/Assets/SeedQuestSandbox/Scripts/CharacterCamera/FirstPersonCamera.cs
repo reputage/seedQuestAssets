@@ -7,6 +7,7 @@ public class FirstPersonCamera : MonoBehaviour {
     public float mouseSpeed = 2f;
     public float walkSpeed = 5f;
     public float runSpeed = 10f;
+    public float jumpVelocity = 4f;
 
     private Transform characterTransform;
     private Transform cameraTransform;
@@ -15,6 +16,7 @@ public class FirstPersonCamera : MonoBehaviour {
         if(!PauseManager.isPaused) {
             UpdatePosition();
             UpdateRotation();
+            CheckForJump();
         }
     }
 
@@ -46,4 +48,10 @@ public class FirstPersonCamera : MonoBehaviour {
         Cursor.visible = false;
     } 
 
+    public void CheckForJump() {
+        if (Input.GetButtonDown("Jump")) {
+            GetComponent<Rigidbody>().velocity = Vector2.up * jumpVelocity;
+            //AudioManager.Play("Jump");
+        }
+    }
 }
