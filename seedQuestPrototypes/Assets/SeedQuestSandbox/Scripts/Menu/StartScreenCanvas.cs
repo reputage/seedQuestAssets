@@ -38,11 +38,17 @@ public class StartScreenCanvas : MonoBehaviour
     }
 
     public void HideKey() {
-        MenuScreenV2.Instance.SetModeLearnSeed();
+        if(MenuScreenV2.Instance != null)
+            MenuScreenV2.Instance.SetModeLearnSeed();
+        else if (MenuScreenV3.Instance != null)
+            MenuScreenV3.Instance.SetModeLearnSeed();
     }
 
     public void FindKey() {
-        MenuScreenV2.Instance.SetModeRecoverSeed();
+        if(MenuScreenV2.Instance != null)
+            MenuScreenV2.Instance.SetModeRecoverSeed();
+        else if (MenuScreenV3.Instance != null)
+            MenuScreenV3.Instance.SetModeRecoverSeed();
     }
 
     IEnumerator LoadAsync(string sceneName) {
