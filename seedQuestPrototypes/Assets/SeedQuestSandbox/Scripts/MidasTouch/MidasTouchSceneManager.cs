@@ -29,7 +29,8 @@ public class MidasTouchSceneManager : MonoBehaviour
             isSceneLoaded[1] = true;
         }
         else if(id == 1) {
-            StartCoroutine(UnLoadAsync("MidasTouch_Apartment"));
+            if (isSceneLoaded[0])
+                StartCoroutine(UnLoadAsync("MidasTouch_Apartment"));
             if (!isSceneLoaded[2])
                 StartCoroutine(LoadAsync("MidasTouch_Cafe"));
             
@@ -37,7 +38,8 @@ public class MidasTouchSceneManager : MonoBehaviour
             isSceneLoaded[2] = true;
         }
         else if(id == 2) {
-            StartCoroutine(UnLoadAsync("MidasTouch_ShipWreck"));
+            if (isSceneLoaded[2])
+                StartCoroutine(UnLoadAsync("MidasTouch_ShipWreck"));
             if (!isSceneLoaded[3])
                 StartCoroutine(LoadAsync("MidasTouch_ArabianDay"));
             
