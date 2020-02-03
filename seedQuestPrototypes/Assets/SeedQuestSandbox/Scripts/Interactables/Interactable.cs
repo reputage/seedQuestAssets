@@ -24,6 +24,7 @@ namespace SeedQuest.Interactables
         public bool IsOnHover { get => isOnHover; } 
 
         void Start() {
+            //Init();
             interactableLabel = new InteractableLabelUI();
             interactableLabel.Initialize(this);
         }

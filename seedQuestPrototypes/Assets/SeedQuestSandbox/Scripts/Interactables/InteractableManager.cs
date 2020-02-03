@@ -28,10 +28,6 @@ namespace SeedQuest.Interactables
             get { return Instance.activeInteractable; }
         }
 
-        private void Awake() {
-            //InitalizeLookUp();
-        }
-
         private void Update() {
             ListenForKey();
         }
@@ -50,8 +46,6 @@ namespace SeedQuest.Interactables
                 if(InteractablePath.Instance.actionIds != null)
                     InteractablePreviewUI.SetPreviewObject(interactable, InteractablePath.Instance.actionIds[InteractablePath.Instance.nextIndex]); 
         }
-
-        private Interactable[,] interactableLUT;
 
         static public Interactable[] InteractableList {
             get { return FindAllInteractables(); }
@@ -85,25 +79,6 @@ namespace SeedQuest.Interactables
             foreach (Interactable interactable in FindAllInteractables()) {
                 interactable.Delete();
             }
-        }
-
-        /// <summary> Initalize LookUp Table for querying interactable based on siteID and spotID  </summary>
-        static public void InitalizeLookUp()
-        {
-            Interactable[] interactables = InteractableManager.InteractableList;
-
-            Instance.interactableLUT = new Interactable[InteractableConfig.SiteCount, InteractableConfig.InteractableCount];
-            for (int i = 0; i < interactables.Length; i++)
-            {
-                int row = interactables[i].ID.siteID;
-                int col = interactables[i].ID.spotID;
-                Instance.interactableLUT[row, col] = interactables[i];
-            }
-        }
-
-        static public Interactable IDtoInteractable(InteractableID id)
-        { 
-            return Instance.interactableLUT[id.siteID, id.spotID];
         }
 
     }

@@ -43,7 +43,7 @@ public class InteractableSimpleLabel : MonoBehaviour
         labelCanvas.gameObject.SetActive(true);
         CursorUI.ShowCursor = false;
 
-        Debug.Log("last:" + lastInteractable.ToString() + " - current:" + currentInteractable.ToString());
+        //Debug.Log("last:" + lastInteractable.ToString() + " - current:" + currentInteractable.ToString());
 
         if (!isActive)
             animator.Play("CursorStartActive");

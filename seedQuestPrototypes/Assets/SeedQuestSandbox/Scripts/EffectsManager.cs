@@ -33,9 +33,13 @@ public class EffectsManager : MonoBehaviour {
         //else if(particleSystem != null)
         //   particleSystem.Play();
         else {
-            var effectSystem = Instantiate(effect.effectPrefab, parent);
+            var effectSystem = Instantiate(effect.effectPrefab);
+            effectSystem.transform.parent = parent;
+            effectSystem.transform.localPosition = Vector3.zero;
             effectSystem.GetComponentInChildren<ParticleSystem>().Play(true);
-        }
+            //effectSystem.transform.localScale = parent.InverseTransformVector(parent.transform.localScale);
+            //effectSystem.transform.localRotation = Quaternion.Inverse(parent.localRotation);
+        } 
     }
 
     static public void PlayEffect(GameObject effectPrefab, Transform parent) {
