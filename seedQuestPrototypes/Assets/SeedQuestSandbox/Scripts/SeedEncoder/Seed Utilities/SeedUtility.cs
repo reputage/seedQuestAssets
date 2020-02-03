@@ -70,7 +70,7 @@ public static class SeedUtility
 
     public static bool validAscii(string input)
     {
-        int AsciiLength = ((InteractableConfig.BitEncodingCount) / 8);
+        int AsciiLength = ((InteractableConfig.BitEncodingCount) / 7);
         byte[] bytes = AsciiConverter.asciiToByte(input);
         if (input.Length == AsciiLength && detectAscii(input))
             return true;
