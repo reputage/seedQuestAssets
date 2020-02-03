@@ -126,7 +126,11 @@ public class MobileBottomMenu : MonoBehaviour
             images[4].gameObject.SetActive(false);
         else
         {
-            images[4].gameObject.SetActive(true);
+            if (GameManager.Mode == GameMode.Rehearsal)
+                images[4].gameObject.SetActive(true);
+            else
+                images[4].gameObject.SetActive(false);
+
         }
     }
 

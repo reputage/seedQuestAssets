@@ -48,6 +48,10 @@ namespace SeedQuest.HUD
 
         private void Update()
         {
+            if (GameManager.State != GameState.Play)
+            {
+                return;
+            }
             playerIcon.transform.eulerAngles = new Vector3(0, -180, player.transform.eulerAngles.y - settings.playerRotation);
             float x = 0.0f;
             float y = 0.0f;

@@ -42,6 +42,15 @@ public class StartScreenCanvas : MonoBehaviour
             MenuScreenV2.Instance.SetModeLearnSeed();
         else if (MenuScreenV3.Instance != null)
             MenuScreenV3.Instance.SetModeLearnSeed();
+        SeedSetupCanvas.PasswordMode = false;
+        SeedSetupCanvas.Instance.clearInput();
+    }
+
+    public void HidePassword()
+    {
+        MenuScreenV2.Instance.SetModeLearnSeed();
+        SeedSetupCanvas.PasswordMode = true;
+        SeedSetupCanvas.Instance.clearInput();
     }
 
     public void FindKey() {

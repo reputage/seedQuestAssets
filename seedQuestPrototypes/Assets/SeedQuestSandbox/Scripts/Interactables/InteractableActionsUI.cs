@@ -53,6 +53,16 @@ public class InteractableActionsUI : MonoBehaviour
             InteractableLabelUI.ToggleAll(true);
             Instance.ClearHint();
         }
+
+        if (GameManager.MobileMode && active == false)
+        {
+            if (GameManager.State != GameState.End && !LevelClearUI.Instance.gameObject.activeSelf) {
+                if (MobileMap.ReturnToMap)
+                {
+                    MobileMap.ToggleActive();
+                }
+            }
+        }
     }
 
     void SetComponentRef() {

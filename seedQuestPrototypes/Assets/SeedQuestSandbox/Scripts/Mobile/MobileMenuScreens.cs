@@ -81,11 +81,11 @@ public class MobileMenuScreens : MonoBehaviour
 
     public void GoToStart()
     {
+        InteractableLabelUI.ClearInteractableUI();
         if (SceneManager.GetActiveScene().name != "MobileStartMenu")
         {
             StartCoroutine(LoadAsync("MobileStartMenu"));
         }
-        ActiveCanvas();
         InteractablePathManager.Reset();
         MobileBottomMenu.MainMenu = true;
         state = MenuScreenStates.Start;
@@ -122,6 +122,16 @@ public class MobileMenuScreens : MonoBehaviour
     public void SetModeLearnSeed()
     {
         GameManager.Mode = GameMode.Rehearsal;
+        SeedSetupCanvas.PasswordMode = false;
+        SeedSetupCanvas.Instance.clearInput();
+        GoToEncode();
+    }
+
+    public void SetModeLearnPassword()
+    {
+        GameManager.Mode = GameMode.Rehearsal;
+        SeedSetupCanvas.PasswordMode = true;
+        SeedSetupCanvas.Instance.clearInput();
         GoToEncode();
     }
 
@@ -207,6 +217,12 @@ public class MobileMenuScreens : MonoBehaviour
 
             if (operation.progress >= 0.9f)
             {
+                AudioListener.volume = PlayerPrefs.GetFloat("volume");
+                var texts = FindObjectsOfType(typeof(TMP_Text));
+                foreach (TMP_Text text in texts)
+                {
+                    text.fontSize += PlayerPrefs.GetFloat("textSize");
+                }
                 operation.allowSceneActivation = true;
             }
 
