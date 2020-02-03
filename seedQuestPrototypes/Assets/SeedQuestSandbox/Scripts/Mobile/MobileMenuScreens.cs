@@ -81,11 +81,11 @@ public class MobileMenuScreens : MonoBehaviour
 
     public void GoToStart()
     {
+        InteractableLabelUI.ClearInteractableUI();
         if (SceneManager.GetActiveScene().name != "MobileStartMenu")
         {
             StartCoroutine(LoadAsync("MobileStartMenu"));
         }
-        ActiveCanvas();
         InteractablePathManager.Reset();
         MobileBottomMenu.MainMenu = true;
         state = MenuScreenStates.Start;
@@ -122,6 +122,16 @@ public class MobileMenuScreens : MonoBehaviour
     public void SetModeLearnSeed()
     {
         GameManager.Mode = GameMode.Rehearsal;
+        SeedSetupCanvas.PasswordMode = false;
+        SeedSetupCanvas.Instance.clearInput();
+        GoToEncode();
+    }
+
+    public void SetModeLearnPassword()
+    {
+        GameManager.Mode = GameMode.Rehearsal;
+        SeedSetupCanvas.PasswordMode = true;
+        SeedSetupCanvas.Instance.clearInput();
         GoToEncode();
     }
 

@@ -23,7 +23,6 @@ public class MenuScreenV2 : MonoBehaviour
     private Canvas sceneLineUpCanvas;
     private Canvas actionLineUpCanvas;
     private Canvas debugCanvas;
-    private bool passwordMode = false;
 
     public GameObject topMenu;
 
@@ -140,15 +139,5 @@ public class MenuScreenV2 : MonoBehaviour
     public void DeactivateTopMenu()
     {
         topMenu.SetActive(false);
-    }
-
-    public void setPasswordMode(bool value)
-    {
-        passwordMode = value;
-    }
-
-    public bool getPasswordMode()
-    {
-        return passwordMode;
     }
 }

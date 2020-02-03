@@ -23,12 +23,19 @@ public class SeedSetupCanvas : MonoBehaviour
     public TextMeshProUGUI warningTextTMP;
     public PasswordEntropyUI passwordBar;
 
+    private bool passwordMode = false;
     private SeedStrSelection seedStrSelection;
     private GameObject randomGenerators;
 
     static private SeedSetupCanvas instance = null;
-    static private SeedSetupCanvas setInstance() { instance = GameObject.FindObjectOfType<SeedSetupCanvas>(); return instance; }
+    static private SeedSetupCanvas setInstance() {instance = Resources.FindObjectsOfTypeAll< SeedSetupCanvas >()[0]; return instance; }
     static public SeedSetupCanvas Instance { get { return instance == null ? setInstance() : instance; } }
+
+    static public bool PasswordMode
+    {
+        get { return Instance.passwordMode; }
+        set { Instance.passwordMode = value; }
+    }
 
     private void Awake()
     {
@@ -41,7 +48,7 @@ public class SeedSetupCanvas : MonoBehaviour
     private void Update()
     {
 
-        if (!MenuScreenV2.Instance.getPasswordMode())
+        if (!passwordMode)
         {
             togglePassword(false);
         }
@@ -121,7 +128,7 @@ public class SeedSetupCanvas : MonoBehaviour
         string seed = SeedUtility.removeHexPrefix(seedInputField.text);
         bool validSeed = validSeedString(seed);
 
-        if (SeedUtility.validAscii(seedInputField.text) && MenuScreenV2.Instance.getPasswordMode())
+        if (SeedUtility.validAscii(seedInputField.text) && passwordMode)
         {
             Debug.Log("Valid ascii seed: " + seed);
             warningTextTMP.text = "Character seed detected!";
@@ -129,7 +136,7 @@ public class SeedSetupCanvas : MonoBehaviour
             setGreenCheck();
             passwordBar.SetNonPassword(false);
         }
-        else if (SeedUtility.validAscii(seedInputField.text) && !MenuScreenV2.Instance.getPasswordMode())
+        else if (SeedUtility.validAscii(seedInputField.text) && !passwordMode)
         {
             Debug.Log("Invalid hex seed: " + seed);
             warningTextTMP.text = "Go to password mode for passwords.";
@@ -139,7 +146,7 @@ public class SeedSetupCanvas : MonoBehaviour
         }
         else if (validSeed)
         {
-            if (MenuScreenV2.Instance.getPasswordMode())
+            if (passwordMode)
             {
                 warningTextTMP.text = "Go to key mode for hex seeds.";
                 warningTextTMP.color = new Color32(255, 20, 20, 255);
@@ -156,7 +163,7 @@ public class SeedSetupCanvas : MonoBehaviour
         }
         else if (SeedUtility.validBip(seedInputField.text))
         {
-            if (MenuScreenV2.Instance.getPasswordMode())
+            if (passwordMode)
             {
                 warningTextTMP.text = "Go to key mode for bip-39 seeds.";
                 warningTextTMP.color = new Color32(255, 20, 20, 255);
@@ -177,7 +184,7 @@ public class SeedSetupCanvas : MonoBehaviour
             {
                 return;
             }
-            else if (!MenuScreenV2.Instance.getPasswordMode())
+            else if (!passwordMode)
             {
                 Debug.Log("Invalid hex seed: " + seed);
                 warningTextTMP.text = "Go to password mode for passwords.";
@@ -296,7 +303,7 @@ public class SeedSetupCanvas : MonoBehaviour
         }
         else if (!validHex && !detectAscii && wordArray.Length > 1 && wordArray.Length != ((InteractableConfig.SitesPerGame * 2 )) && InteractableConfig.SitesPerGame < 6)
         {
-            if (MenuScreenV2.Instance.getPasswordMode())
+            if (passwordMode)
             {
                 warningTextTMP.text = "Go to key mode for bip-39 seeds.";
                 warningTextTMP.color = new Color32(255, 20, 20, 255);
@@ -311,7 +318,7 @@ public class SeedSetupCanvas : MonoBehaviour
             }
         }
         else if (!validHex && !detectAscii && wordArray.Length > 1 && wordArray.Length < 12 && InteractableConfig.SitesPerGame == 6) {
-            if (MenuScreenV2.Instance.getPasswordMode())
+            if (passwordMode)
             {
                 warningTextTMP.text = "Go to key mode for bip-39 seeds.";
                 warningTextTMP.color = new Color32(255, 20, 20, 255);
@@ -326,7 +333,7 @@ public class SeedSetupCanvas : MonoBehaviour
             }
         }
         else if (!validHex && !detectAscii && wordArray.Length > 1 && !SeedUtility.validBip(seedString)) {
-            if (MenuScreenV2.Instance.getPasswordMode())
+            if (passwordMode)
             {
                 warningTextTMP.text = "Go to key mode for bip-39 seeds.";
                 warningTextTMP.color = new Color32(255, 20, 20, 255);
@@ -345,7 +352,7 @@ public class SeedSetupCanvas : MonoBehaviour
             warningTextTMP.color = new Color32(255, 20, 20, 255);
             setRedWarning();*/
         }
-        else if (detectAscii && !MenuScreenV2.Instance.getPasswordMode())
+        else if (detectAscii && !passwordMode)
         {
             warningTextTMP.text = "Go to password mode for passwords.";
             warningTextTMP.color = new Color32(255, 20, 20, 255);
@@ -358,7 +365,7 @@ public class SeedSetupCanvas : MonoBehaviour
             setRedWarning();
         }
         else if (!validHex) {
-            if (MenuScreenV2.Instance.getPasswordMode())
+            if (passwordMode)
             {
                 warningTextTMP.text = "Go to key mode for hex seeds.";
                 warningTextTMP.color = new Color32(255, 20, 20, 255);
@@ -372,7 +379,7 @@ public class SeedSetupCanvas : MonoBehaviour
             }
         }
         else if (validHex && seedString.Length < InteractableConfig.SeedHexLength) {
-            if (MenuScreenV2.Instance.getPasswordMode())
+            if (passwordMode)
             {
                 warningTextTMP.text = "Go to hex mode for bip-39 seeds.";
                 warningTextTMP.color = new Color32(255, 20, 20, 255);
@@ -387,7 +394,7 @@ public class SeedSetupCanvas : MonoBehaviour
             }
         }
         else if (validHex && seedString.Length > InteractableConfig.SeedHexLength + 1) {
-            if (MenuScreenV2.Instance.getPasswordMode())
+            if (passwordMode)
             {
                 warningTextTMP.text = "Go to key mode for hex seeds.";
                 warningTextTMP.color = new Color32(255, 20, 20, 255);
@@ -457,15 +464,18 @@ public class SeedSetupCanvas : MonoBehaviour
     public void togglePassword(bool value)
     {
         passwordBar.gameObject.SetActive(value);
-        if (value == true)
+        if (!GameManager.MobileMode)
         {
-            seedStrSelection.gameObject.SetActive(false);
-            randomGenerators.SetActive(false);
-        }
-        else
-        {
-            seedStrSelection.gameObject.SetActive(true);
-            randomGenerators.SetActive(true);
+            if (value == true)
+            {
+                seedStrSelection.gameObject.SetActive(false);
+                randomGenerators.SetActive(false);
+            }
+            else
+            {
+                seedStrSelection.gameObject.SetActive(true);
+                randomGenerators.SetActive(true);
+            }
         }
     }
 
