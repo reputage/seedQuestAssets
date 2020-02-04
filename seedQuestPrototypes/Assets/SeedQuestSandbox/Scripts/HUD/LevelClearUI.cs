@@ -24,6 +24,7 @@ public class LevelClearUI : MonoBehaviour {
         GameManager.GraduatedFlags[InteractableLog.CurrentLevelIndex - 1] = true;
         Instance.gameObject.SetActive(true);
         GameManager.State = GameState.Menu;
+        MarkerManager.DeleteMarker();
     }
 
     static public void ToggleOff()

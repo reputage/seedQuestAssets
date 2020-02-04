@@ -156,10 +156,10 @@ public class FastRecoveryUI : MonoBehaviour
             }
         }
 
-        /*if (InputManager.GetKeyDown(KeyCode.C))
+        if (InputManager.GetKeyDown(KeyCode.C))
         {
             SaveRenderCameraImage();
-        }*/
+        }
     }
 
     //====================================================================================================//
@@ -857,7 +857,7 @@ public class FastRecoveryUI : MonoBehaviour
 
     //====================================================================================================//
 
-    /*void SaveRenderCameraImage()
+    void SaveRenderCameraImage()
     {
         if (GameManager.Mode != GameMode.Sandbox)
             return;
@@ -872,7 +872,7 @@ public class FastRecoveryUI : MonoBehaviour
         Destroy(Image);
         File.WriteAllBytes(Application.dataPath + "/SeedQuestSandbox/Images/" + SceneManager.GetActiveScene().name + ".png", Bytes);
         Debug.Log("Render Captured");
-    }*/
+    }
 
     //====================================================================================================//
 
