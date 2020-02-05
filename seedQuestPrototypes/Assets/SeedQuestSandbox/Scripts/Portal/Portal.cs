@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
-using UnityEngine.Experimental.Rendering;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.LWRP;
 using RenderPipeline = UnityEngine.Experimental.Rendering.RenderPipeline;
 
 [ExecuteInEditMode]
