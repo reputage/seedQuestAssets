@@ -188,7 +188,7 @@ public class SeedSetupCanvas : MonoBehaviour
             {
                 Debug.Log("Invalid hex seed: " + seed);
                 warningTextTMP.text = "Go to password mode for passwords.";
-                warningTextTMP.color = new Color32(81, 150, 55, 255);
+                warningTextTMP.color = new Color32(255, 20, 20, 255);
                 setRedWarning();
                 passwordBar.SetNonPassword(false);
                 return;

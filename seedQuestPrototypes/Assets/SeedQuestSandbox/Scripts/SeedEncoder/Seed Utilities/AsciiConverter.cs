@@ -22,13 +22,14 @@ public static class AsciiConverter
                 bytes[i] = 94; // 94 is the value used for whitespace in the custom table
         }
 
-        return shortenByte(bytes);
+        return bytes;
+        //return shortenByte(bytes);
     }
 
     public static string byteToAscii(byte[] bytes)
     {
         string ascii = "";
-        bytes = lengthenByte(bytes);
+        //bytes = lengthenByte(bytes);
         for (int i = 0; i < bytes.Length; i++)
         {
             if (bytes[i] >= 94)
