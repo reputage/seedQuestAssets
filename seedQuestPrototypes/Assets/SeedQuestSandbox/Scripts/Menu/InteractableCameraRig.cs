@@ -16,7 +16,7 @@ public class InteractableCameraRig : MonoBehaviour
 
     void Awake() {
         previewCamera = GetComponentInChildren<Camera>();
-        previewObject = GetComponentsInChildren<Transform>()[10].gameObject;
+        previewObject = GetComponentsInChildren<Transform>()[11].gameObject;
     }
 
     private void Update() {
