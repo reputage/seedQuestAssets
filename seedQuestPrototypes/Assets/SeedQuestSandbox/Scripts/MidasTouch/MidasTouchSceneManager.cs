@@ -7,7 +7,7 @@ public class MidasTouchSceneManager : MonoBehaviour
 {
     public static MidasTouchSceneManager Instance;
 
-    public bool[] isSceneLoaded = new bool[4];
+    private bool[] isSceneLoaded = new bool[5];
 
     void Start() {
         Instance = this;
@@ -38,13 +38,23 @@ public class MidasTouchSceneManager : MonoBehaviour
             isSceneLoaded[2] = true;
         }
         else if(id == 2) {
-            if (isSceneLoaded[2])
+            if (isSceneLoaded[1])
                 StartCoroutine(UnLoadAsync("MidasTouch_ShipWreck"));
             if (!isSceneLoaded[3])
                 StartCoroutine(LoadAsync("MidasTouch_ArabianDay"));
             
             isSceneLoaded[1] = false;
             isSceneLoaded[3] = true;
+        } 
+        else if (id == 3) 
+        {
+            if (isSceneLoaded[2])
+                StartCoroutine(UnLoadAsync("MidasTouch_Cafe"));
+            if (!isSceneLoaded[4])
+                StartCoroutine(LoadAsync("MidasTouch_WizardsTower"));
+
+            isSceneLoaded[2] = false;
+            isSceneLoaded[4] = true;
         }
     }
 
