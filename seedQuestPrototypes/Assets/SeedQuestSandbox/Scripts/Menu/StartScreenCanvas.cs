@@ -37,6 +37,16 @@ public class StartScreenCanvas : MonoBehaviour
         StartCoroutine(LoadAsync("NonnaISO"));
     }
 
+    public void SelectKeyMode()
+    {
+        animator.Play("StartMenu_KeyMode");
+    }
+
+    public void SelectPasswordMode()
+    {
+        animator.Play("StartMenu_PasswordMode");
+    }
+
     public void HideKey() {
         if(MenuScreenV2.Instance != null)
             MenuScreenV2.Instance.SetModeLearnSeed();
