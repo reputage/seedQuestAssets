@@ -9,7 +9,7 @@ public class SeedSetup_WithPasswordCanvas : SeedSetupCanvas
         
     }
 
-    public void checkInputSeed()
+    public new void checkInputSeed()
     {
         string input = seedInputField.text;
 
