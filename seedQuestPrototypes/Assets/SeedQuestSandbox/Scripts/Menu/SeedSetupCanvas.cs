@@ -7,7 +7,6 @@ using SeedQuest.Interactables;
 
 public class SeedSetupCanvas : MonoBehaviour
 {
-
     private BIP39Converter bpc = new BIP39Converter();
     private bool showPassword = true;
 
@@ -31,40 +30,33 @@ public class SeedSetupCanvas : MonoBehaviour
     static private SeedSetupCanvas setInstance() {instance = Resources.FindObjectsOfTypeAll< SeedSetupCanvas >()[0]; return instance; }
     static public SeedSetupCanvas Instance { get { return instance == null ? setInstance() : instance; } }
 
-    static public bool PasswordMode
-    {
+    static public bool PasswordMode {
         get { return Instance.passwordMode; }
         set { Instance.passwordMode = value; }
     }
 
-    private void Awake()
-    {
+    private void Awake() {
         passwordBar = GetComponentInChildren<PasswordEntropyUI>();
         seedStrSelection = GameObject.FindObjectOfType<SeedStrSelection>();
         Button[] buttons = gameObject.GetComponentsInChildren<Button>(true);
         randomGenerators = buttons[2].transform.parent.gameObject;
     }
 
-    private void Update()
-    {
+    private void Update() {
 
-        if (!passwordMode)
-        {
+        if (!passwordMode) {
             togglePassword(false);
         }
-        else
-        {
+        else {
             togglePassword(true);
         }
 
         SeedStrSelection seedStr = GetComponentInChildren<SeedStrSelection>(true);
 
-        if (seedStr != null)
-        {
+        if (seedStr != null) {
             SeedStrUpdate(seedStr);
         }
-        else
-        {
+        else {
             if (InteractableConfig.SitesPerGame != 6)
                 InteractableConfig.SitesPerGame = 6;
             checkInputSeed();
@@ -72,12 +64,10 @@ public class SeedSetupCanvas : MonoBehaviour
         
     }
 
-    public void SeedStrUpdate(SeedStrSelection seedStr)
-    {
+    public void SeedStrUpdate(SeedStrSelection seedStr) {
         bool doUpdate = seedStr.updateFlag;
 
-        if (doUpdate)
-        {
+        if (doUpdate) {
             seedInputField.text = "";
             checkInputSeed();
             GetComponentInChildren<SeedStrSelection>().updateFlag = false;

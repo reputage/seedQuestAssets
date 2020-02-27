@@ -56,10 +56,10 @@ public class StartScreenCanvas : MonoBehaviour
         SeedSetupCanvas.Instance.clearInput();
     }
 
-    public void HidePassword()
-    {
-        MenuScreenV2.Instance.SetModeLearnSeed();
-        SeedSetupCanvas.PasswordMode = true;
+    public void HidePassword() {
+        MenuScreenV2.Instance.SetModeLearnSeed_WithPassword();
+        SeedSetup_WithPasswordCanvas.PasswordMode = true;
+        //SeedSetupCanvas.PasswordMode = true;
         SeedSetupCanvas.Instance.clearInput();
     }
 

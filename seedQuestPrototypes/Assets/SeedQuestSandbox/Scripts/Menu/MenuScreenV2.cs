@@ -19,6 +19,7 @@ public class MenuScreenV2 : MonoBehaviour
     private Canvas[] canvas;
     private Canvas startCanvas;
     private Canvas seedSetupCanvas;
+    private Canvas seedSetupCanvas_withPassword;
     private Canvas encodeSeedCanvas;
     private Canvas sceneLineUpCanvas;
     private Canvas actionLineUpCanvas;
@@ -49,10 +50,11 @@ public class MenuScreenV2 : MonoBehaviour
         canvas = GetComponentsInChildren<Canvas>(true);
         startCanvas = canvas[1];
         seedSetupCanvas = canvas[2];
-        encodeSeedCanvas = canvas[3];
-        sceneLineUpCanvas = canvas[4];
-        actionLineUpCanvas = canvas[5];
-        debugCanvas = canvas[6];
+        seedSetupCanvas_withPassword = canvas[3];
+        encodeSeedCanvas = canvas[4];
+        sceneLineUpCanvas = canvas[5];
+        actionLineUpCanvas = canvas[6];
+        debugCanvas = canvas[7];
     }
 
     public void ResetCanvas() {
@@ -77,6 +79,11 @@ public class MenuScreenV2 : MonoBehaviour
         GoToSeedSetup();
     }
 
+    public void SetModeLearnSeed_WithPassword() {
+        GameManager.Mode = GameMode.Rehearsal;
+        GoToSeedSetup_WithPassword();
+    }
+
     public void SetModeRecoverSeed() {
         GameManager.Mode = GameMode.Recall;
         GoToEncodeSeed();
@@ -86,6 +93,12 @@ public class MenuScreenV2 : MonoBehaviour
         state = MenuScreenStates.SeedSetup;
         ResetCanvas();
         seedSetupCanvas.gameObject.SetActive(true);
+    }
+
+    public void GoToSeedSetup_WithPassword() {
+        state = MenuScreenStates.SeedSetup_WithPassword;
+        ResetCanvas();
+        seedSetupCanvas_withPassword.gameObject.SetActive(true);
     }
 
     public void GoToEncodeSeed() {

@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 
 using SeedQuest.Interactables;
 
-public enum MenuScreenStates { Start, ModeSelect, SeedSetup, EncodeSeed, SceneLineUp, ActionLineUp, Debug }
+public enum MenuScreenStates { Start, ModeSelect, SeedSetup, SeedSetup_WithPassword, EncodeSeed, SceneLineUp, ActionLineUp, Debug }
 
 public class MenuScreenManager : MonoBehaviour
 {
