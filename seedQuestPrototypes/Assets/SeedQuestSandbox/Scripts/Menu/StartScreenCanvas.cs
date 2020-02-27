@@ -37,12 +37,37 @@ public class StartScreenCanvas : MonoBehaviour
         StartCoroutine(LoadAsync("NonnaISO"));
     }
 
+    public void SelectKeyMode()
+    {
+        animator.Play("StartMenu_KeyMode");
+    }
+
+    public void SelectPasswordMode()
+    {
+        animator.Play("StartMenu_PasswordMode");
+    }
+
     public void HideKey() {
-        MenuScreenV2.Instance.SetModeLearnSeed();
+        if(MenuScreenV2.Instance != null)
+            MenuScreenV2.Instance.SetModeLearnSeed();
+        else if (MenuScreenV3.Instance != null)
+            MenuScreenV3.Instance.SetModeLearnSeed();
+        SeedSetupCanvas.PasswordMode = false;
+        SeedSetupCanvas.Instance.clearInput();
+    }
+
+    public void HidePassword() {
+        MenuScreenV2.Instance.SetModeLearnSeed_WithPassword();
+        SeedSetup_WithPasswordCanvas.PasswordMode = true;
+        //SeedSetupCanvas.PasswordMode = true;
+        SeedSetupCanvas.Instance.clearInput();
     }
 
     public void FindKey() {
-        MenuScreenV2.Instance.SetModeRecoverSeed();
+        if(MenuScreenV2.Instance != null)
+            MenuScreenV2.Instance.SetModeRecoverSeed();
+        else if (MenuScreenV3.Instance != null)
+            MenuScreenV3.Instance.SetModeRecoverSeed();
     }
 
     IEnumerator LoadAsync(string sceneName) {

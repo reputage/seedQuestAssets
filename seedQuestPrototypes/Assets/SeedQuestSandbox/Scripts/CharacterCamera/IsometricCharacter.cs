@@ -92,8 +92,10 @@ public class IsometricCharacter : MonoBehaviour {
             return;
 
         if (Input.GetMouseButtonDown(0)) {
+
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
+
             Camera camera = IsometricCamera.Camera;
 
             RaycastHit hit;
@@ -102,7 +104,8 @@ public class IsometricCharacter : MonoBehaviour {
                     
                 NavMeshHit navHit;
                 int walkableMask = 1 << NavMesh.GetAreaFromName("Walkable");
-                if (NavMesh.SamplePosition(hit.point, out navHit, 1.0f, walkableMask)) {
+                if (NavMesh.SamplePosition(hit.point, out navHit, 1.0f, walkableMask))
+                {
                     agent = GetComponent<NavMeshAgent>();
                     agent.isStopped = false;
                     agent.SetDestination(hit.point);

@@ -16,6 +16,7 @@ public class MobileHUDManager : MonoBehaviour {
     public HUDItemProps useLevelClear;
     public HUDItemProps useGameClear;
     public HUDItemProps useInteractableTracker;
+    public HUDItemProps useMinimap;
 
     static private MobileHUDManager instance = null;
     static private MobileHUDManager setInstance() { instance = GameObject.FindObjectOfType<MobileHUDManager>(); return instance; }
@@ -72,7 +73,8 @@ public class MobileHUDManager : MonoBehaviour {
         InstantiateHUDElement<LevelClearUI>(useLevelClear);
         InstantiateHUDElement<EndGameUI>(useGameClear);
         InstantiateHUDElement<MobileBottomButtons>(useBottomButtons);
-        InstantiateHUDElement<FastRecoveryUI>(useMap);
+        InstantiateHUDElement<MobileMap>(useMap);
+        InstantiateHUDElement<MinimapUI>(useMinimap);
     }
 
     public void DestroyImmediateHUD() {
@@ -82,7 +84,8 @@ public class MobileHUDManager : MonoBehaviour {
         DestroyHUDElement<LevelClearUI>(useLevelClear);
         DestroyHUDElement<EndGameUI>(useGameClear);
         DestroyHUDElement<MobileBottomButtons>(useBottomButtons);
-        DestroyHUDElement<FastRecoveryUI>(useMap);
+        DestroyHUDElement<MobileMap>(useMap);
+        DestroyHUDElement<MinimapUI>(useMinimap);
     }
 
     public HUDItemProps GetProps<T>() {
@@ -93,7 +96,8 @@ public class MobileHUDManager : MonoBehaviour {
         else if (listType == typeof(LevelClearUI)) { return useLevelClear; }
         else if (listType == typeof(EndGameUI)) { return useGameClear; }
         else if (listType == typeof(MobileBottomButtons)) { return useBottomButtons; }
-        else if (listType == typeof(FastRecoveryUI)) { return useMap; }
+        else if (listType == typeof(MobileMap)) { return useMap; }
+        else if (listType == typeof(MinimapUI)) { return useMinimap; }
         return null;
     }
 }

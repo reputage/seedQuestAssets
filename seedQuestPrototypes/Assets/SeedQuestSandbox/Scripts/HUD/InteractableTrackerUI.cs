@@ -49,6 +49,9 @@ public class InteractableTrackerUI : MonoBehaviour
             gameObject.SetActive(true);
         else 
             gameObject.SetActive(false);
+
+        if (!GameManager.MobileMode)
+            tracker.gameObject.SetActive(false);
     }
 
     void Update() {
@@ -92,6 +95,10 @@ public class InteractableTrackerUI : MonoBehaviour
             tracker.gameObject.SetActive(false);
             arrow.gameObject.SetActive(false);
         }
+        else if (GameManager.MobileMode || InteractableActionsUI.Instance.gameObject.activeSelf || LevelClearUI.Instance.gameObject.activeSelf)
+        {
+            tracker.gameObject.SetActive(false);
+        }
         else {
             tracker.gameObject.SetActive(true);
             arrow.gameObject.SetActive(true);
@@ -118,9 +125,6 @@ public class InteractableTrackerUI : MonoBehaviour
     /// <summary> Checks if screen position is in Camera frame bounds </summary>
     private bool InBounds(Vector3 pos) {
         float screenPadding = 100;
-
-        if (GameManager.MobileMode)
-            screenPadding = 10;
 
         float x0 = 0 + screenPadding;
         float x1 = camera.scaledPixelWidth - screenPadding;
@@ -184,7 +188,8 @@ public class InteractableTrackerUI : MonoBehaviour
                 else if(isClampedBottom && !isClampedLeft && !isClampedRight)
                     screenPosition = new Vector3(MidScreenX, paddingY.y, screenPosition.z); 
             }
-            canvasGroup.alpha = 1.0f;
+            if (!GameManager.MobileMode)
+                canvasGroup.alpha = 0.0f;
         }
 
         // Set TrackerIcon Postion
