@@ -19,7 +19,7 @@ public class SeedSetup_WithPasswordCanvas : SeedSetupCanvas
             setRedWarning();
             return;
         }
-        else if (input.Length > InteractableConfig.BitEncodingCount / 8) {
+        else if (input.Length > InteractableConfig.BitEncodingCount / 7) {
             warningTextTMP.text = "Too many characters!";
             warningTextTMP.color = new Color32(255, 20, 20, 255);
             setRedWarning();

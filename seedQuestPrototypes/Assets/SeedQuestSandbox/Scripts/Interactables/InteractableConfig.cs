@@ -37,6 +37,9 @@ namespace SeedQuest.Interactables
         /// <summary> Number of Actions per Game </summary>
         static public float ActionsPerGame { get { return ActionsPerSite * SitesPerGame; } }
 
+        /// <summary>  Number of Bits used per scene to encode a seed with given config parameters  </summary>
+        static public int BitEncodingCountPerScene { get => (SiteBits + (InteractableBits + ActionBits) * ActionsPerSite); }
+
         /// <summary>  Number of Bits used to encode a seed with given config parameters  </summary>
         static public int BitEncodingCount { get => (SiteBits + (InteractableBits + ActionBits) * ActionsPerSite) * SitesPerGame; } 
 

@@ -8,7 +8,9 @@ using SeedQuest.SeedEncoder;
 
 public static class AsciiConverter 
 {
-    public static char[] asciiArray = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ ".ToCharArray();
+    public static readonly string asciiCharacters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ ";
+    public static readonly char[] asciiArray = asciiCharacters.ToCharArray();
+    public static readonly float BitsPerASCII = 7.0f;
 
     public static byte[] asciiToByte(string ascii)
     {
@@ -120,5 +122,21 @@ public static class AsciiConverter
         byte[] ret = new byte[(bits.Length - 1) / 8 + 1];
         bits.CopyTo(ret, 0);
         return ret;
+    }
+
+    /// <summary>
+    /// Checks if an input string contains an invalid string
+    /// </summary>
+    public static bool ContainInvalidChar(string input) {
+
+        bool isValid = true;
+        for (int i = 0; i < input.Length; i++) {
+            char c = input[i];
+
+            if (AsciiConverter.asciiCharacters.IndexOf(c) < 0) {
+                isValid = false;
+            }
+        }
+        return isValid;
     }
 }
