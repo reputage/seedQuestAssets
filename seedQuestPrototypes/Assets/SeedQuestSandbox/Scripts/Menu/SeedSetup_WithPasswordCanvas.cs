@@ -9,6 +9,9 @@ public class SeedSetup_WithPasswordCanvas : SeedSetupCanvas
         
     }
 
+    /// <summary>
+    /// Checks validity of input text for seed setup. Updated for Password version. 
+    /// </summary>
     public new void checkInputSeed()
     {
         string input = seedInputField.text;

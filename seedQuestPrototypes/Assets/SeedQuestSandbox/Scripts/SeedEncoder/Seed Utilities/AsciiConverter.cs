@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Text;
 using System.Linq;
-using UnityEngine;
 using SeedQuest.SeedEncoder;
 
 public static class AsciiConverter 
 {
+    /// <summary> All available ascii characters as a string </summary>
     public static readonly string asciiCharacters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ ";
+
+    /// <summary> All available ascii characters as an array  </summary>
     public static readonly char[] asciiArray = asciiCharacters.ToCharArray();
+
+    /// <summary>  Number of bits required for ASCII  </summary>
     public static readonly float BitsPerASCII = 7.0f;
 
-    public static byte[] asciiToByte(string ascii)
-    {
+    /// <summary>
+    /// Converts ascii string to byte array (Encoder)
+    /// </summary>
+    public static byte[] asciiToByte(string ascii) {
         byte[] bytes = new byte[ascii.Length];
         for (int i = 0; i < ascii.Length; i++)
         {
@@ -28,12 +32,13 @@ public static class AsciiConverter
         //return shortenByte(bytes);
     }
 
-    public static string byteToAscii(byte[] bytes)
-    {
+    /// <summary>
+    /// Converts byte array to ascii string (Decoder)
+    /// </summary>
+    public static string byteToAscii(byte[] bytes) {
         string ascii = "";
         //bytes = lengthenByte(bytes);
-        for (int i = 0; i < bytes.Length; i++)
-        {
+        for (int i = 0; i < bytes.Length; i++) {
             if (bytes[i] >= 94)
                 ascii += " ";
             else
@@ -43,37 +48,38 @@ public static class AsciiConverter
         return ascii;
     }
 
-    public static string hexToAscii(string hex)
-    {
+    /// <summary>
+    /// Converts hex string to ascii string
+    /// </summary>
+    public static string hexToAscii(string hex) {
         byte[] bytes = SeedToByte.HexStringToByteArray(hex);
         return byteToAscii(bytes);
     }
 
-    public static string asciiToHex(string ascii)
-    {
+    /// <summary>
+    /// Coverts ascii string to hex string
+    /// </summary>
+    public static string asciiToHex(string ascii) {
         byte[] bytes = asciiToByte(ascii);
         return SeedToByte.ByteArrayToHex(bytes);
     }
+
 
     public static byte[] shortenByte(byte[] largeBytes)
     {
         BitArray bits = new BitArray(largeBytes);
         int size = bits.Length * 7;
-        if (size % 8 > 0)
-        {
+        if (size % 8 > 0) {
             size = (size / 8) + 1;
         }
-        else
-        {
+        else  {
             size = (size / 8);
         }
 
         BitArray bits2 = new BitArray(size);
 
-        for (int i = 0; i < (bits2.Length / 7); i++)
-        {
-            for (int j = 0; j < 7; j++)
-            {
+        for (int i = 0; i < (bits2.Length / 7); i++) {
+            for (int j = 0; j < 7; j++) {
                 bits2[j + (i * 7)] = bits[j + (i * 8)];
             }
         }
@@ -87,29 +93,24 @@ public static class AsciiConverter
         BitArray bits = new BitArray(smallBytes);
         int size = bits.Length * 8;
         bool tooLong = false;
-        if (size % 7 > 0)
-        {
+        if (size % 7 > 0)  {
             tooLong = true;
             size = (size / 7) + 1;
         }
-        else
-        {
+        else {
             size = (size / 7);
         }
 
         BitArray bits2 = new BitArray(size);
 
-        for (int i = 0; i < (bits2.Length / 8); i++)
-        {
-            for (int j = 0; j < 7; j++)
-            {
+        for (int i = 0; i < (bits2.Length / 8); i++) {
+            for (int j = 0; j < 7; j++) {
                 bits2[j + (i * 8)] = bits[j + (i * 7)];
             }
         }
 
         byte[] bytes = BitsToBytes(bits2);
-        if (tooLong)
-        {
+        if (tooLong) {
             byte[] bytes2 = new byte[bytes.Length - 1];
             Buffer.BlockCopy(bytes, 0, bytes2, 0, bytes.Length - 1);
             return bytes2;
@@ -117,8 +118,10 @@ public static class AsciiConverter
         return bytes;
     }
 
-    public static byte[] BitsToBytes(BitArray bits)
-    {
+    /// <summary>
+    /// Converts bit array to byte array
+    /// </summary>
+    public static byte[] BitsToBytes(BitArray bits) {
         byte[] ret = new byte[(bits.Length - 1) / 8 + 1];
         bits.CopyTo(ret, 0);
         return ret;
