@@ -49,6 +49,14 @@ public class EndGameUI : MonoBehaviour
     private GameObject wordsButton;
     private GameObject asciiButton;
 
+    private void getButtonRefs()
+    {
+        Button[] buttons = Instance.GetComponentsInChildren<Button>();
+        characterButton = buttons[4].gameObject;
+        wordsButton = buttons[5].gameObject;
+        asciiButton = buttons[6].gameObject;
+    }
+
     /// <summary> Toggles On the EndGameUI </summary>
     static public void ToggleOn() {
         if (Instance.gameObject.activeSelf)
@@ -350,14 +358,6 @@ public class EndGameUI : MonoBehaviour
         myDoc.createPDF("qr_pdf_test.pdf");
         myPage = null;
         myDoc = null;
-    }
-
-    private void getButtonRefs()
-    {
-        Button[] buttons = Instance.GetComponentsInChildren<Button>();
-        characterButton = buttons[4].gameObject;
-        wordsButton = buttons[5].gameObject;
-        asciiButton = buttons[6].gameObject;
     }
 
     private void setButtonColors(GameObject selectedButton)
