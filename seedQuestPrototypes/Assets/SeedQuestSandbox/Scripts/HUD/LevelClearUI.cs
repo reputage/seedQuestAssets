@@ -6,7 +6,7 @@ using SeedQuest.Interactables;
 using SeedQuest.Level;
 
 public class LevelClearUI : MonoBehaviour {
-    
+
     static private LevelClearUI instance = null;
     static private LevelClearUI setInstance()
     {
@@ -17,6 +17,11 @@ public class LevelClearUI : MonoBehaviour {
         return instance;
     }
     static public LevelClearUI Instance { get { return instance == null ? setInstance() : instance; } }
+
+    static public bool isActive() {
+        if (Instance == null) return false;
+        return Instance.gameObject.activeSelf;
+    }
 
     static public void ToggleOn() {
         if (Instance.gameObject.activeSelf)

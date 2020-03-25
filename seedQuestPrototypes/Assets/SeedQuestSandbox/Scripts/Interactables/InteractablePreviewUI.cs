@@ -163,7 +163,7 @@ namespace SeedQuest.Interactables
 
             // Set Preview if interactablePreview has changed
             if (interactable.interactablePreview == Instance.preview)
-                Debug.Log("Trying to exit setpreview function");
+                Debug.Log("SetPreview but InteractablePreview hasn't changed");
                 //return;
             else
                 Instance.preview = interactable.interactablePreview;

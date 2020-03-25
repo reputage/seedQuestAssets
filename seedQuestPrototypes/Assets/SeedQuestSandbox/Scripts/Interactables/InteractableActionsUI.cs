@@ -19,6 +19,11 @@ public class InteractableActionsUI : MonoBehaviour
     }
     static public InteractableActionsUI Instance { get { return instance == null ? setInstance() : instance; } }
 
+    static public bool isActive() {
+        if (Instance == null) return false;
+        return Instance.gameObject.activeSelf;
+    }
+    
     private TextMeshProUGUI interactableLabel;
     private Button[] actionButtons;
     private Interactable interactable;

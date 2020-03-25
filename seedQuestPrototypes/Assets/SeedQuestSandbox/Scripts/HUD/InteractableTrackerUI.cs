@@ -95,8 +95,7 @@ public class InteractableTrackerUI : MonoBehaviour
             tracker.gameObject.SetActive(false);
             arrow.gameObject.SetActive(false);
         }
-        else if (GameManager.MobileMode || InteractableActionsUI.Instance.gameObject.activeSelf || LevelClearUI.Instance.gameObject.activeSelf)
-        {
+        else if (GameManager.MobileMode || InteractableActionsUI.isActive() || LevelClearUI.isActive()) {
             tracker.gameObject.SetActive(false);
         }
         else {

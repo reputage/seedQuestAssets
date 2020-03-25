@@ -23,7 +23,9 @@ public class NewTutorialManager : MonoBehaviour
 
     void Awake()
     {
-        MenuScreenV2.Instance.DeactivateTopMenu();
+        if(MenuScreenV2.Instance != null)
+            MenuScreenV2.Instance.DeactivateTopMenu();
+
         GameManager.Mode = GameMode.Rehearsal;
         GameManager.TutorialMode = true;
         canvas = GetComponentsInChildren<Canvas>(true);

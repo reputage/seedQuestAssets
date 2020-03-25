@@ -22,6 +22,9 @@ namespace SeedQuest.HUD
         private void Start()
         {
             settings = LevelManager.MinimapData;
+            if (settings == null)
+                Debug.Log("Warning: No Reference to Minimap Data!");
+
             player = GameObject.FindGameObjectWithTag("Player");
             Image[] images = gameObject.GetComponentsInChildren<Image>();
             mapContainer = images[1];
