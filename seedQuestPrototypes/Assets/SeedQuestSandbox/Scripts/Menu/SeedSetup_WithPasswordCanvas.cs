@@ -5,6 +5,8 @@ using SeedQuest.Interactables;
 
 public class SeedSetup_WithPasswordCanvas : SeedSetupCanvas
 {
+    public PasswordEntropyUI passwordBar;
+
     private void Update() {
         
     }
@@ -15,6 +17,7 @@ public class SeedSetup_WithPasswordCanvas : SeedSetupCanvas
     public new void checkInputSeed()
     {
         string input = seedInputField.text;
+        int asciiLength = InteractableConfig.BitEncodingCount / 7;
 
         if (input.Length < 1) {
             warningTextTMP.text = "Too few characters!";
@@ -22,7 +25,7 @@ public class SeedSetup_WithPasswordCanvas : SeedSetupCanvas
             setRedWarning();
             return;
         }
-        else if (input.Length > InteractableConfig.BitEncodingCount / 7) {
+        else if (input.Length > asciiLength) {
             warningTextTMP.text = "Too many characters!";
             warningTextTMP.color = new Color32(255, 20, 20, 255);
             setRedWarning();

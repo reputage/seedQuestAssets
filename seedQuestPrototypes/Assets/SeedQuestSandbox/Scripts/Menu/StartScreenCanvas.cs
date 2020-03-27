@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class StartScreenCanvas : MonoBehaviour
@@ -37,13 +35,11 @@ public class StartScreenCanvas : MonoBehaviour
         StartCoroutine(LoadAsync("NonnaISO"));
     }
 
-    public void SelectKeyMode()
-    {
+    public void SelectKeyMode() {
         animator.Play("StartMenu_KeyMode");
     }
 
-    public void SelectPasswordMode()
-    {
+    public void SelectPasswordMode() {
         animator.Play("StartMenu_PasswordMode");
     }
 
@@ -52,14 +48,11 @@ public class StartScreenCanvas : MonoBehaviour
             MenuScreenV2.Instance.SetModeLearnSeed();
         else if (MenuScreenV3.Instance != null)
             MenuScreenV3.Instance.SetModeLearnSeed();
-        SeedSetupCanvas.PasswordMode = false;
         SeedSetupCanvas.Instance.clearInput();
     }
 
     public void HidePassword() {
         MenuScreenV2.Instance.SetModeLearnSeed_WithPassword();
-        SeedSetup_WithPasswordCanvas.PasswordMode = true;
-        //SeedSetupCanvas.PasswordMode = true;
         SeedSetupCanvas.Instance.clearInput();
     }
 
@@ -81,11 +74,9 @@ public class StartScreenCanvas : MonoBehaviour
             if (operation.progress >= 0.9f) {
                 operation.allowSceneActivation = true;
             }
-
             yield return null;
         }
 
         gameObject.SetActive(false);
     }
-
 }

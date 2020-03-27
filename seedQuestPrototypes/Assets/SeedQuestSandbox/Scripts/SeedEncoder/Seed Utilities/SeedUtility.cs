@@ -114,17 +114,9 @@ public static class SeedUtility
     }
 
 
-    public static bool validHex(string input)
-    {
-        if (InteractableConfig.SeedHexLength % 2 == 1)
-        {
-            if (input.Length == InteractableConfig.SeedHexLength + 1 && input[input.Length - 2] != '0')
-                return false;
-        }
-
+    public static bool validHex(string input) {
         bool valid = true;
-        foreach (char c in input)
-        {
+        foreach (char c in input) {
             valid = (c == '0' || c == '1' || c == '2' || c == '3' || c == '4' ||
                         c == '5' || c == '6' || c == '7' || c == '8' || c == '9' ||
                         c == 'a' || c == 'A' || c == 'b' || c == 'B' || c == 'c' ||
