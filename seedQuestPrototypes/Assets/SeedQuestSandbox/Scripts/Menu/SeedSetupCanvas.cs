@@ -101,10 +101,6 @@ public class SeedSetupCanvas : MonoBehaviour
             return;
         }
 
-        Debug.Log(validHex);
-        Debug.Log(seed.Length);
-        Debug.Log(InteractableConfig.SeedHexLength);
-
         // Validation for a hex input
         if (validHex) {
             if (seed.Length < InteractableConfig.SeedHexLength) {
