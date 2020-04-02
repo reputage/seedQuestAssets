@@ -1,14 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using TMPro;
-using System.Runtime.InteropServices;
 
 using SeedQuest.Interactables;
 
-public class MenuScreenV2 : MonoBehaviour
+public class MonoWaitBehavior : MonoBehaviour {
+    /// <summary>
+    /// Runs an Action method after waiting the input number of seconds 
+    /// </summary>
+    /// <param name="seconds"> Seconds to wait </param>
+    /// <param name="action"> Action method to run after waiting </param>
+    public void Wait(float seconds, Action action) {
+        StartCoroutine(_wait(seconds, action));
+    }
+
+    /// <summary>
+    /// Helper function to run an Action method after waiting the input number of seconds 
+    /// </summary>
+    /// <param name="time"> Time to wait (seconds) </param>
+    /// <param name="callback"> Action method to run after waiting </param>
+    /// <returns></returns>
+    IEnumerator _wait(float time, Action callback) {
+        yield return new WaitForSeconds(time);
+        callback();
+    }
+}
+
+public class MenuScreenV2 : MonoWaitBehavior
 {
     static private MenuScreenV2 instance = null;
     static private MenuScreenV2 setInstance() { instance = GameObject.FindObjectOfType<MenuScreenV2>(); return instance; }
@@ -24,6 +42,7 @@ public class MenuScreenV2 : MonoBehaviour
     private Canvas sceneLineUpCanvas;
     private Canvas actionLineUpCanvas;
     private Canvas debugCanvas;
+    private Canvas faderCanvas;
 
     public GameObject topMenu;
 
@@ -55,11 +74,12 @@ public class MenuScreenV2 : MonoBehaviour
         sceneLineUpCanvas = canvas[5];
         actionLineUpCanvas = canvas[6];
         debugCanvas = canvas[7];
+        faderCanvas = canvas[8];
     }
 
     public void ResetCanvas() {
         foreach(Canvas _canvas in canvas) {
-            if(_canvas != canvas[0])
+            if(_canvas != canvas[0] && _canvas != faderCanvas)
                 _canvas.gameObject.SetActive(false);
         }
     }
@@ -126,8 +146,13 @@ public class MenuScreenV2 : MonoBehaviour
     }
 
     public void GoToActionLineUp() {
+        faderCanvas.GetComponent<Fader>().FadeOutIn(); 
+        Wait(0.5f, () => { ActionLineUp_Setup(); });
+    }
+
+    public void ActionLineUp_Setup() {
         GameManager.State = GameState.Menu;
-        if (GameManager.Mode == GameMode.Rehearsal){
+        if (GameManager.Mode == GameMode.Rehearsal) {
             state = MenuScreenStates.ActionLineUp;
             ResetCanvas();
             actionLineUpCanvas.gameObject.SetActive(true);

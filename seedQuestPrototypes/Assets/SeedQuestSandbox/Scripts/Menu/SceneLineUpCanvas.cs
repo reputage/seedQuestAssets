@@ -9,8 +9,6 @@ using SeedQuest.Interactables;
 
 public class SceneLineUpCanvas : MonoBehaviour
 {
-    public GameObject continueButton;
-    public GameObject spinningLoadIcon;
     public Image[] worldImages;
     public Image[] worldOutlines;
     public TextMeshProUGUI[] worldText;
@@ -18,11 +16,7 @@ public class SceneLineUpCanvas : MonoBehaviour
     public void Start() {
         Initialize();
     }
-
-    public void Update() {
-        
-    }
-
+    
     public void Initialize() {
         if(SeedQuest.Level.LevelManager.Instance != null)
             SeedQuest.Level.LevelManager.Instance.StopLevelMusic();
@@ -52,8 +46,7 @@ public class SceneLineUpCanvas : MonoBehaviour
 
     public void SetImages() {
         for (int i = 0; i < InteractableConfig.SitesPerGame; i++) {
-            if (i > InteractableLog.CurrentLevelIndex)
-            {
+            if (i > InteractableLog.CurrentLevelIndex) {
                 worldImages[i].sprite = ConvertToGrayscale(SpriteToTexture2D(WorldManager.CurrentSceneList[i].preview));
             }
             else
@@ -69,10 +62,8 @@ public class SceneLineUpCanvas : MonoBehaviour
         }
     }
 
-    public static Texture2D SpriteToTexture2D(Sprite sprite)
-    {
-        if (!Mathf.Approximately(sprite.rect.width, sprite.texture.width))
-        {
+    public static Texture2D SpriteToTexture2D(Sprite sprite) {
+        if (!Mathf.Approximately(sprite.rect.width, sprite.texture.width)) {
             Texture2D newTexture = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height);
             Color[] newColors = sprite.texture.GetPixels((int)sprite.textureRect.x,
                                                          (int)sprite.textureRect.y,
@@ -86,8 +77,7 @@ public class SceneLineUpCanvas : MonoBehaviour
             return sprite.texture;
     }
 
-    public Sprite ConvertToGrayscale(Texture2D image)
-    {
+    public Sprite ConvertToGrayscale(Texture2D image) {
         Texture2D texture = new Texture2D(image.width, image.height, image.format, false);
         Graphics.CopyTexture(image, texture);
         Color32[] pixels = image.GetPixels32();
@@ -117,16 +107,13 @@ public class SceneLineUpCanvas : MonoBehaviour
         MenuScreenV2.Instance.GoToActionLineUp();
     }
 
-    IEnumerator LoadAsync(string sceneName)
-    {
+    IEnumerator LoadAsync(string sceneName) {
         yield return new WaitForSeconds(0.5f);
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
         operation.allowSceneActivation = false;
 
         while (!operation.isDone) {
-            //sceneLoadProgressValue = Mathf.Clamp01(operation.progress / 0.9f);
-
             if (operation.progress >= 0.9f) {
                 operation.allowSceneActivation = true;
             }
@@ -134,16 +121,12 @@ public class SceneLineUpCanvas : MonoBehaviour
             yield return null;
         }
 
-        //sceneLoadProgress.gameObject.SetActive(false);
-        /*spinningLoadIcon.gameObject.SetActive(false);
-        spinningLoadIcon.transform.parent.GetComponent<TMP_Text>().text = "Continue";
-        int index = spinningLoadIcon.transform.parent.GetSiblingIndex();
-        spinningLoadIcon.transform.parent.parent.GetChild(index + 1).GetComponent<TMP_Text>().text = "Your world has finished loading.";*/
-        spinningLoadIcon.transform.parent.gameObject.SetActive(false);
+        AfterLoadAsync();
+    }
+
+    public void AfterLoadAsync() {
         AudioManager.Stop("Loading");
-        int index = spinningLoadIcon.transform.parent.GetSiblingIndex();
-        spinningLoadIcon.transform.parent.parent.GetChild(index + 1).gameObject.SetActive(false);
-        continueButton.gameObject.SetActive(true);
+        Continue();
     }
 
     public void StartScene() {
@@ -152,12 +135,6 @@ public class SceneLineUpCanvas : MonoBehaviour
         InteractableLabelUI.ClearInteractableUI();
         SetImages();
 
-        spinningLoadIcon.transform.parent.gameObject.SetActive(true);
-        //spinningLoadIcon.transform.parent.GetComponent<TMP_Text>().text = "Loading";
-        int index = spinningLoadIcon.transform.parent.GetSiblingIndex();
-        //spinningLoadIcon.transform.parent.parent.GetChild(index + 1).GetComponent<TMP_Text>().text = "While you wait, why don't you review the world sequence?";*/
-        spinningLoadIcon.transform.parent.parent.GetChild(index + 1).gameObject.SetActive(true);
-        continueButton.gameObject.SetActive(false);
         if(WorldManager.CurrentWorldScene != null)
             StartCoroutine(LoadAsync(WorldManager.CurrentWorldScene.sceneName));
     }
