@@ -1,6 +1,6 @@
 ﻿
 using UnityEngine;
-using RenderPipeline = UnityEngine.Experimental.Rendering.RenderPipeline;
+//using RenderPipeline = UnityEngine.Experimental.Rendering.RenderPipeline;
 
 [ExecuteInEditMode]
 public class Portal : MonoBehaviour
@@ -10,12 +10,16 @@ public class Portal : MonoBehaviour
     
     private void OnEnable()
     {
-        RenderPipeline.beginCameraRendering += UpdateCamera;
+        //RenderPipeline.beginCameraRendering += UpdateCamera;
     }
 
     private void OnDisable()
     {
-        RenderPipeline.beginCameraRendering -= UpdateCamera;
+        //RenderPipeline.beginCameraRendering -= UpdateCamera;
+    }
+
+    private void Update() {
+        UpdateCamera(portalCamera);
     }
 
     void UpdateCamera(Camera camera)
