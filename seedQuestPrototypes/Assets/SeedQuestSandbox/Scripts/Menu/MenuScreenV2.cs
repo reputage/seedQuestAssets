@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
-
+﻿using UnityEngine;
 using SeedQuest.Interactables;
 
 public class MenuScreenV2 : MonoWaitBehavior
@@ -13,20 +10,7 @@ public class MenuScreenV2 : MonoWaitBehavior
     public MenuScreenStates state = MenuScreenStates.Start;
 
     private Canvas[] canvas;
-    private Canvas startCanvas;
-    private Canvas seedSetupCanvas;
-    private Canvas seedSetupCanvas_withPassword;
-    private Canvas encodeSeedCanvas;
-    private Canvas sceneLineUpCanvas;
-    private Canvas actionLineUpCanvas;
-    private Canvas debugCanvas;
-    private Canvas faderCanvas;
-
     public GameObject topMenu;
-
-    void Awake() {
-        SetComponentReferences();
-    }
 
     private void Start() {
         if (MenuScreenV2.Instance.state == MenuScreenStates.Debug)
@@ -43,21 +27,12 @@ public class MenuScreenV2 : MonoWaitBehavior
         }
     }
 
-    private void SetComponentReferences() {
-        canvas = GetComponentsInChildren<Canvas>(true);
-        startCanvas = canvas[1];
-        seedSetupCanvas = canvas[2];
-        seedSetupCanvas_withPassword = canvas[3];
-        encodeSeedCanvas = canvas[4];
-        sceneLineUpCanvas = canvas[5];
-        actionLineUpCanvas = canvas[6];
-        debugCanvas = canvas[7];
-        faderCanvas = canvas[8];
-    }
-
     public void ResetCanvas() {
-        foreach(Canvas _canvas in canvas) {
-            if(_canvas != canvas[0] && _canvas != faderCanvas)
+        if(canvas == null)
+            canvas = canvas = GetComponentsInChildren<Canvas>(true);
+
+        foreach (Canvas _canvas in canvas) {
+            if(_canvas != canvas[0])
                 _canvas.gameObject.SetActive(false);
         }
     }
@@ -67,8 +42,7 @@ public class MenuScreenV2 : MonoWaitBehavior
 
         state = MenuScreenStates.Start;
         ResetCanvas();
-        startCanvas.gameObject.SetActive(true);
-        GetComponentInChildren<StartScreenCanvas>().StartIdleAnimation();
+        GetComponentInChildren<StartScreenCanvas>(true).ToggleOn();
         topMenu.SetActive(true);
     }
 
@@ -90,21 +64,19 @@ public class MenuScreenV2 : MonoWaitBehavior
     public void GoToSeedSetup() {
         state = MenuScreenStates.SeedSetup;
         ResetCanvas();
-        seedSetupCanvas.gameObject.SetActive(true);
+        GetComponentInChildren<SeedSetupCanvas>(true).ToggleOn();
     }
 
     public void GoToSeedSetup_WithPassword() {
         state = MenuScreenStates.SeedSetup_WithPassword;
         ResetCanvas();
-        seedSetupCanvas_withPassword.gameObject.SetActive(true);
+        GetComponentInChildren<SeedSetup_WithPasswordCanvas>(true).ToggleOn();
     }
 
     public void GoToEncodeSeed() {
         state = MenuScreenStates.EncodeSeed;
         ResetCanvas();
-        encodeSeedCanvas.gameObject.SetActive(true);
-        encodeSeedCanvas.gameObject.GetComponent<EncodeSeedCanvas>().resetCanvas();
-        encodeSeedCanvas.gameObject.GetComponent<EncodeSeedCanvas>().resetSeedStr();
+        GetComponentInChildren<EncodeSeedCanvas>(true).Reset();
         LevelSetManager.ResetCurrentLevels();
         WorldManager.Reset();
     }
@@ -114,34 +86,31 @@ public class MenuScreenV2 : MonoWaitBehavior
         state = MenuScreenStates.SceneLineUp;
         ResetCanvas();
         topMenu.SetActive(false);
-        sceneLineUpCanvas.GetComponent<SceneLineUpCanvas>().ToggleOn();
-        sceneLineUpCanvas.GetComponent<SceneLineUpCanvas>().StartScene();
+        GetComponentInChildren<SceneLineUpCanvas>(true).InitalizeSceneLineup();
     }
 
     public void ReturnToSceneLineUp() {
         GoToSceneLineUp();
-        sceneLineUpCanvas.GetComponent<SceneLineUpCanvas>().Start();
+        GetComponentInChildren<SceneLineUpCanvas>(true).Start();
     }
 
     public void GoToActionLineUp() {
-        faderCanvas.GetComponent<Fader>().FadeOutIn(); 
-        Wait(0.5f, () => { ActionLineUp_Setup(); });
-    }
-
-    public void ActionLineUp_Setup() {
-        GameManager.State = GameState.Menu;
-        if (GameManager.Mode == GameMode.Rehearsal) {
-            state = MenuScreenStates.ActionLineUp;
-            ResetCanvas();
-            actionLineUpCanvas.gameObject.SetActive(true);
-            actionLineUpCanvas.GetComponent<ActionLineUpCanvas>().InitializeActionLineUp();
+        if(GameManager.Mode == GameMode.Rehearsal) {
+            SceneTransitions.Play(TransitionStyle.Fade);
+            
+            Wait(0.5f, () => {
+                GameManager.State = GameState.Menu;
+                state = MenuScreenStates.ActionLineUp;
+                ResetCanvas();
+                GetComponentInChildren<ActionLineUpCanvas>(true).InitializeActionLineUp();
+            });
         }
         else {
-            CloseSceneLineUp();
+            CloseAndPlay();
         }
     }
 
-    public void CloseSceneLineUp() {
+    public void CloseAndPlay() {
         Wait(0.75f, () => {
             ResetCanvas();
             GameManager.State = GameState.Play;
@@ -151,16 +120,15 @@ public class MenuScreenV2 : MonoWaitBehavior
             CameraZoom.StartZoomIn();
         });
 
-        SceneTransitions.Play();
+        SceneTransitions.Play(TransitionStyle.Pinhole);
     }
 
     public void GoToDebugCanvas() {
         ResetCanvas();
-        debugCanvas.gameObject.SetActive(true);
+        GetComponentInChildren<DebugScreen>(true).ToggleOn();
     }
 
-    public void DeactivateTopMenu()
-    {
+    public void DeactivateTopMenu() {
         topMenu.SetActive(false);
     }
 }

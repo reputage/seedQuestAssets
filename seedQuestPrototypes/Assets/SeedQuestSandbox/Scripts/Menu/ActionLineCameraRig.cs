@@ -28,6 +28,6 @@ public class ActionLineCameraRig : MonoBehaviour
     }
 
     public void Continue() {
-        MenuScreenV2.Instance.CloseSceneLineUp();
+        MenuScreenV2.Instance.CloseAndPlay();
     }
 }

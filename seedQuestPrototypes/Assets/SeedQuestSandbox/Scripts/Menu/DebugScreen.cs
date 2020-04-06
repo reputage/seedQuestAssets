@@ -6,7 +6,6 @@ using TMPro;
 
 public class DebugScreen : MonoBehaviour
 {
-
     public bool debugRandom;
     public bool isDebug;
     public GameObject buttonCard;
@@ -15,19 +14,20 @@ public class DebugScreen : MonoBehaviour
 
     private bool counting;
 
-	private void Update()
-	{
-        if (counting)
-        {
-            if (autoCounter.finished)
-            {
+	private void Update() {
+        if (counting) {
+            if (autoCounter.finished) {
                 setCounterDebugText();
                 counting = false;
             }
         }
 	}
 
-	public void Back()
+    public void ToggleOn() {
+        gameObject.SetActive(true);
+    }
+
+    public void Back()
     {
         MenuScreenV2.Instance.GoToStart();
     }

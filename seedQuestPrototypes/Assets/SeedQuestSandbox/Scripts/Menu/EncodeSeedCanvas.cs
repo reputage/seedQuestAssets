@@ -56,6 +56,12 @@ public class EncodeSeedCanvas : MonoBehaviour {
         initialized = true;
     }
 
+    public void Reset() {
+        gameObject.SetActive(true);
+        resetCanvas();
+        resetSeedStr();
+    }
+
     public void InitalizeWorldPreviews() {
         currentList = new int[InteractableConfig.SitesPerGame];
         worldPreviews = GetComponentsInChildren<EncodeSeed_ScenePreview>(true);

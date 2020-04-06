@@ -15,6 +15,11 @@ public class StartScreenCanvas : MonoBehaviour
         AudioManager.Play("MenuStart");
     }
 
+    public void ToggleOn() {
+        gameObject.SetActive(true);
+        StartIdleAnimation();
+    }
+
     private void StartAnimation() {
         animator.Play("StartMenuAnimation");
     }

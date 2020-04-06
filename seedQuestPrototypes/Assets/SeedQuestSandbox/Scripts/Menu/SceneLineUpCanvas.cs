@@ -16,7 +16,7 @@ public class SceneLineUpCanvas : MonoBehaviour
     public void Start() {
         Initialize();
     }
-    
+
     public void Initialize() {
         if(SeedQuest.Level.LevelManager.Instance != null)
             SeedQuest.Level.LevelManager.Instance.StopLevelMusic();
@@ -31,6 +31,11 @@ public class SceneLineUpCanvas : MonoBehaviour
         }
 
         SetImages();
+    }
+
+    public void InitalizeSceneLineup() {
+        ToggleOn();
+        StartScene();
     }
 
     public void ToggleOn() {

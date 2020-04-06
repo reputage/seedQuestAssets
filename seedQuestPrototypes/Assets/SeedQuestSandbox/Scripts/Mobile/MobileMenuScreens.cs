@@ -188,11 +188,11 @@ public class MobileMenuScreens : MonoBehaviour
         }
         else
         {
-            CloseSceneLineUp();
+            CloseAndPlay();
         }
     }
 
-    public void CloseSceneLineUp()
+    public void CloseAndPlay()
     {
         CameraZoom.StartZoomIn();
         ResetCanvas();

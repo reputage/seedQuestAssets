@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum TransitionStyle { Pinhole, Fade };
+
 public class SceneTransitions : MonoBehaviour
 {
     static private SceneTransitions instance = null;
@@ -14,9 +16,16 @@ public class SceneTransitions : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    static public void Play() {
-        if(Instance != null)
-            Instance.animator.Play("TransitionPinhole");
+    static public void Play(TransitionStyle style) {
+        if(Instance != null) {
+            if(style == TransitionStyle.Pinhole) {
+                Instance.animator.Play("TransitionPinhole");
+            }
+            else if(style == TransitionStyle.Fade) {
+                Instance.GetComponentInChildren<Fader>(true).FadeOutIn();
+            }
+        }
     }
+
 
 }

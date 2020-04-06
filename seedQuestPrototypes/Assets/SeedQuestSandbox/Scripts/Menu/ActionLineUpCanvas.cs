@@ -9,7 +9,9 @@ using SeedQuest.Interactables;
 public class ActionLineUpCanvas : MonoBehaviour
 {
     public void InitializeActionLineUp() {
-        
+
+        gameObject.SetActive(true);
+
         TextMeshProUGUI text = GetComponentsInChildren<TextMeshProUGUI>()[1];
         text.text = WorldManager.CurrentWorldScene.name;
 
@@ -32,11 +34,11 @@ public class ActionLineUpCanvas : MonoBehaviour
     }
 
     public void Continue() {
-        MenuScreenV2.Instance.CloseSceneLineUp();
+        MenuScreenV2.Instance.CloseAndPlay();
     }
 
     public void ContinueMobile()
     {
-        MobileMenuScreens.Instance.CloseSceneLineUp();
+        MobileMenuScreens.Instance.CloseAndPlay();
     }
 }

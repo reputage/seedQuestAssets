@@ -41,6 +41,10 @@ public class SeedSetupCanvas : MonoBehaviour
         }
     }
 
+    public void ToggleOn() {
+        gameObject.SetActive(true);
+    }
+
     public void SeedStrUpdate(SeedStrSelection seedStr) {
         bool doUpdate = seedStr.updateFlag;
 
