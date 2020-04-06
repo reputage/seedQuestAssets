@@ -39,7 +39,6 @@ public class IsometricCharacter : MonoBehaviour {
         return (v1 - v2).magnitude;
     }
 
-    // Basically tank controls
     public void MoveAndRotateCharacterWithKeys() {
         bool isRunning = false;
         float runSpeed = walkSpeed * runSpeedMultiplier;
@@ -104,6 +103,7 @@ public class IsometricCharacter : MonoBehaviour {
                     
                 NavMeshHit navHit;
                 int walkableMask = 1 << NavMesh.GetAreaFromName("Walkable");
+                
                 if (NavMesh.SamplePosition(hit.point, out navHit, 1.0f, walkableMask))
                 {
                     agent = GetComponent<NavMeshAgent>();

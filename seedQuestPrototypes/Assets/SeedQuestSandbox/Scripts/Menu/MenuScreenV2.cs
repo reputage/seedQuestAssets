@@ -142,9 +142,16 @@ public class MenuScreenV2 : MonoWaitBehavior
     }
 
     public void CloseSceneLineUp() {
-        CameraZoom.StartZoomIn();
-        ResetCanvas();
-        GameManager.State = GameState.Play;
+        Wait(0.75f, () => {
+            ResetCanvas();
+            GameManager.State = GameState.Play;
+        });
+
+        Wait(1.5f, () => {
+            CameraZoom.StartZoomIn();
+        });
+
+        SceneTransitions.Play();
     }
 
     public void GoToDebugCanvas() {
