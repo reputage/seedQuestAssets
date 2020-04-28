@@ -48,7 +48,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 60
   avoidancePriority: 50
   m_AngularSpeed: 360
   m_StoppingDistance: 0
@@ -352,12 +352,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8329062096152176202, guid: f6cfe23359cdf094bb41315c9bd19430,
+    - target: {fileID: 1071341332362602953, guid: f6cfe23359cdf094bb41315c9bd19430,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1071341332362602953, guid: f6cfe23359cdf094bb41315c9bd19430,
+    - target: {fileID: 8329062096152176202, guid: f6cfe23359cdf094bb41315c9bd19430,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -377,11 +377,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3139519740757176712}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 79d8beb44ac497c498f2a2b92e4a80b9,
+    - target: {fileID: -6057140222963153312, guid: 79d8beb44ac497c498f2a2b92e4a80b9,
         type: 3}
-      propertyPath: m_Name
-      value: NPC_Base
-      objectReference: {fileID: 0}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 584a093279ce7824f9f44caa5948edce, type: 2}
+    - target: {fileID: -5114400657954591515, guid: 79d8beb44ac497c498f2a2b92e4a80b9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 55d517431ec69a24292555588a59877b, type: 2}
     - target: {fileID: -4216859302048453862, guid: 79d8beb44ac497c498f2a2b92e4a80b9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -437,6 +442,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4034070507903668138, guid: 79d8beb44ac497c498f2a2b92e4a80b9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 55d517431ec69a24292555588a59877b, type: 2}
+    - target: {fileID: -1323105793686265067, guid: 79d8beb44ac497c498f2a2b92e4a80b9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 55d517431ec69a24292555588a59877b, type: 2}
+    - target: {fileID: -927199367670048503, guid: 79d8beb44ac497c498f2a2b92e4a80b9,
+        type: 3}
+      propertyPath: m_Name
+      value: NPC_Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 540223208083516993, guid: 79d8beb44ac497c498f2a2b92e4a80b9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 55d517431ec69a24292555588a59877b, type: 2}
     - target: {fileID: 2423117289360667245, guid: 79d8beb44ac497c498f2a2b92e4a80b9,
         type: 3}
       propertyPath: m_IsActive
@@ -447,41 +472,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 55d517431ec69a24292555588a59877b, type: 2}
-    - target: {fileID: 6357219803211468344, guid: 79d8beb44ac497c498f2a2b92e4a80b9,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 55d517431ec69a24292555588a59877b, type: 2}
-    - target: {fileID: -4034070507903668138, guid: 79d8beb44ac497c498f2a2b92e4a80b9,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 55d517431ec69a24292555588a59877b, type: 2}
-    - target: {fileID: -5114400657954591515, guid: 79d8beb44ac497c498f2a2b92e4a80b9,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 55d517431ec69a24292555588a59877b, type: 2}
-    - target: {fileID: 540223208083516993, guid: 79d8beb44ac497c498f2a2b92e4a80b9,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 55d517431ec69a24292555588a59877b, type: 2}
-    - target: {fileID: -1323105793686265067, guid: 79d8beb44ac497c498f2a2b92e4a80b9,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 55d517431ec69a24292555588a59877b, type: 2}
     - target: {fileID: 6038561123165217313, guid: 79d8beb44ac497c498f2a2b92e4a80b9,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 55d517431ec69a24292555588a59877b, type: 2}
-    - target: {fileID: -6057140222963153312, guid: 79d8beb44ac497c498f2a2b92e4a80b9,
+    - target: {fileID: 6357219803211468344, guid: 79d8beb44ac497c498f2a2b92e4a80b9,
         type: 3}
-      propertyPath: m_Controller
+      propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 9100000, guid: 584a093279ce7824f9f44caa5948edce, type: 2}
+      objectReference: {fileID: 2100000, guid: 55d517431ec69a24292555588a59877b, type: 2}
     m_RemovedComponents:
     - {fileID: -6057140222963153312, guid: 79d8beb44ac497c498f2a2b92e4a80b9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 79d8beb44ac497c498f2a2b92e4a80b9, type: 3}
@@ -504,16 +504,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6617796230276747589}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: df951f8911e7610418f0617f2f4a18f3,
-        type: 3}
-      propertyPath: m_Name
-      value: NPC_Hair_Hawk
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: df951f8911e7610418f0617f2f4a18f3,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: df951f8911e7610418f0617f2f4a18f3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -574,6 +564,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2928dc091a8cd1d4c80b76fcc49ced85, type: 2}
+    - target: {fileID: -927199367670048503, guid: df951f8911e7610418f0617f2f4a18f3,
+        type: 3}
+      propertyPath: m_Name
+      value: NPC_Hair_Hawk
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: df951f8911e7610418f0617f2f4a18f3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df951f8911e7610418f0617f2f4a18f3, type: 3}
 --- !u!4 &8309381547397649303 stripped
@@ -589,21 +589,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6617796230276747589}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 4b086fcedd4822d4898db66fe4723d34,
-        type: 3}
-      propertyPath: m_Name
-      value: NPC_Hair_Bob
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 4b086fcedd4822d4898db66fe4723d34,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2520965143529378680, guid: 4b086fcedd4822d4898db66fe4723d34,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: -8245087135980827751, guid: 4b086fcedd4822d4898db66fe4723d34,
         type: 3}
       propertyPath: m_IsActive
@@ -662,6 +647,21 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 4b086fcedd4822d4898db66fe4723d34,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 4b086fcedd4822d4898db66fe4723d34,
+        type: 3}
+      propertyPath: m_Name
+      value: NPC_Hair_Bob
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 4b086fcedd4822d4898db66fe4723d34,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520965143529378680, guid: 4b086fcedd4822d4898db66fe4723d34,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

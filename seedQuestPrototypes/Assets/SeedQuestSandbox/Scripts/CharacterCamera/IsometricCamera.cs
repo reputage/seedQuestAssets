@@ -1,13 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
 
 using SeedQuest.Interactables;
 
 public enum ZoomTarget { Player, Interactable, LocationZoom } 
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class IsometricCamera : MonoBehaviour
 {
     static public IsometricCamera instance;
@@ -15,11 +14,11 @@ public class IsometricCamera : MonoBehaviour
 
     public Transform playerTransform;                           // Reference to player transform
     public float smoothSpeed = 2f;                              // Camera lerp smoothing speed parameter
-    public float lookAtSpeed = 2f;
+    public float lookAtSpeed = 1f;
     public Vector3 cameraDirection = new Vector3(1, 1, -1);     // Camera direction vector
     public float distance = 14;                                 // Default camera distance from player
     public float startingDistance = 28;                         // Starting scene camera distance from player
-    public float lookAtPeek = 4f;                               // Look Ahead peak distance 
+    public float lookAtPeek = 0f;                               // Look Ahead peak distance 
 
     private ZoomTarget lookAtTarget = ZoomTarget.Player;
     private float nearInteractableDistance = 8.0f;
@@ -62,12 +61,12 @@ public class IsometricCamera : MonoBehaviour
         CameraZoom.farDistance = farDistance;
 
         #if UNITY_WEBGL
-            PostProcessLayer layer = GetComponent<PostProcessLayer>();
-            layer.enabled = false;
+            //PostProcessLayer layer = GetComponent<PostProcessLayer>();
+            //layer.enabled = false;
         #else
-            PostProcessLayer layer = GetComponent<PostProcessLayer>();
-            if(layer != null)
-                layer.enabled = true;
+            //PostProcessLayer layer = GetComponent<PostProcessLayer>();
+            //if(layer != null)
+            //    layer.enabled = true;
         #endif
     }
 
