@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SeedQuest.Interactables;
 
 public enum GameMode { Sandbox, Rehearsal, Recall } 
 public enum GameState { Play, Pause, Interact, Menu, End }
@@ -71,6 +72,14 @@ public class GameManager : MonoBehaviour {
     }
     public static GameState PrevState {
         get { return Instance.prevState; }
+    }
+
+    public InteractableConfigData interactableConfig = null;
+
+    private void Start()
+    {
+        if (interactableConfig != null)
+            InteractableConfig.SetConfiguration(interactableConfig);
     }
 
     public void Update() {
