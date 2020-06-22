@@ -189,5 +189,28 @@ namespace SeedQuest.Interactables
             }
             */
         }
+
+
+        void SetDefaultState()
+        {
+            GameObject defaultStatePrefab;
+            if (transform.childCount > 1) {
+                defaultStatePrefab = new GameObject("InteractableContainer");
+
+                foreach (Transform childItem in transform) {
+                    Instantiate(childItem, childItem.position, childItem.rotation, defaultStatePrefab.transform);
+                }
+            }
+            else if(transform.childCount == 1){
+                defaultStatePrefab = transform.GetChild(0).gameObject;
+            }
+            else {
+                defaultStatePrefab = null;
+            }
+
+            InteractableState defaultState = new InteractableState();
+            defaultState.prefab = defaultStatePrefab;
+            stateData.defaultState = defaultState;
+        }
     }
 }
