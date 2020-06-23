@@ -356,7 +356,7 @@ public class FastRecoveryUI : MonoBehaviour
 
         if (GameManager.Mode == GameMode.Recall && active && InteractablePreviewUI.Show)
             InteractablePreviewUI.ToggleShow();
-        else if (GameManager.Mode == GameMode.Rehearsal && active && InteractableLog.Count % 3 != 0)
+        else if (GameManager.Mode == GameMode.Rehearsal && active && InteractableLog.Count % InteractableConfig.ActionsPerSite != 0)
         {
             InteractablePreviewUI.SetPreviewObject(InteractablePath.NextInteractable, InteractablePath.Instance.actionIds[InteractablePath.Instance.nextIndex]);
             InteractablePreviewUI.SetPreviewAction(InteractablePath.Instance.actionIds[InteractablePath.Instance.nextIndex]);
@@ -659,7 +659,7 @@ public class FastRecoveryUI : MonoBehaviour
                 }
             }
 
-            if (GameManager.Mode == GameMode.Rehearsal && InteractableLog.Count % 3 != 0)
+            if (GameManager.Mode == GameMode.Rehearsal && InteractableLog.Count % InteractableConfig.ActionsPerSite != 0)
             {
                 InteractablePreviewUI.ClearPreviewObject();
                 if (settings.restrictViewport)
@@ -687,7 +687,7 @@ public class FastRecoveryUI : MonoBehaviour
 
     public void CheckForLevelChange()
     {
-        if (InteractableLog.Count > 0 && InteractableLog.Count % 3 == 0 && levelFlag)
+        if (InteractableLog.Count > 0 && InteractableLog.Count % InteractableConfig.ActionsPerSite == 0 && levelFlag)
         {
             if (gameObject.activeSelf)
             {
@@ -699,7 +699,7 @@ public class FastRecoveryUI : MonoBehaviour
             levelFlag = false;
         }
 
-        else levelFlag |= InteractableLog.Count % 3 != 0;
+        else levelFlag |= InteractableLog.Count % InteractableConfig.ActionsPerSite != 0;
     }
 
     //====================================================================================================//
@@ -717,13 +717,14 @@ public class FastRecoveryUI : MonoBehaviour
     public void StartFastRehearsal()
     {
         backupLog = new List<InteractableLogItem>();
-        foreach (InteractableLogItem item in InteractableLog.Log)
-        {
+        foreach (InteractableLogItem item in InteractableLog.Log) {
             backupLog.Add(item);
         }
-        InteractablePath.UndoLastAction();
-        InteractablePath.UndoLastAction();
-        InteractablePath.UndoLastAction();
+
+        for(int i = 0; i < InteractableConfig.ActionsPerSite; i++) {
+            InteractablePath.UndoLastAction();
+        }
+        
         ToggleActive();
     }
 

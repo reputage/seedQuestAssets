@@ -80,7 +80,6 @@ namespace SeedQuest.HUD
                 }
             }
             
-
             if (GameManager.Mode == GameMode.Recall || GameManager.Mode == GameMode.Sandbox)
             {
                 pinIcon.gameObject.SetActive(false);
