@@ -159,7 +159,7 @@ namespace SeedQuest.Interactables
         /// <param name="interactable"> Interactable to set Preview with </param>
         static public void SetPreviewObject(Interactable interactable, int actionID, bool showActionState = false)  {
 
-            if (Instance == null) return;
+            if (Instance == null || interactable == null) return;
 
             // Set Preview if interactablePreview has changed
             if (interactable.interactablePreview == Instance.preview)

@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿using System.Text;
+using System.IO;
+using System;
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,10 +21,39 @@ public class InteractableAutoCounter : MonoBehaviour
     private int updateDelay;
     private int waitCheck;
 
+    public static Dictionary<int, string> sceneDict = new Dictionary<int, string>
+    {
+        {0, "Campground Iso"},
+        {1, "Cafe"},
+        {2, "CastleBeach"},
+        {3, "ArabianDay"},
+        {4, "DinoSafari"},
+        {5, "Farm"},
+        {6, "HauntedHouse"},
+        {7, "Sports"},
+        {8, "Apartment"},
+        {9, "Lab_ISO"},
+        {10, "SorcererTower"},
+        {11, "PirateShip_Wreck"},
+        {12, "NonnaBIG_ISO"},
+        {13, "SaloonBiggerISO"},
+        {14, "SnowLand"},
+        {15, "Space"}
+    };
+
+    private List<string[]> interactableRowData = new List<string[]>();
+    private bool writtenToCSV = false;
+
     void Start()
     {
-
-    }
+        string[] rowHeader = new string[5];
+        rowHeader[0] = "Interactable Name";
+        rowHeader[1] = "Object Name";
+        rowHeader[2] = "Scene Name";
+        rowHeader[3] = "Scene ID";
+        rowHeader[4] = "Interactable ID";
+        interactableRowData.Add(rowHeader);
+    } 
 
     void Update()
     {
@@ -42,7 +75,7 @@ public class InteractableAutoCounter : MonoBehaviour
         LevelSetManager.AddLevel(0);
         if (!GameManager.V2Menus)
             MenuScreenManager.Instance.state = MenuScreenStates.Debug;
-        SceneManager.LoadScene(DebugSeedUtility.sceneIndeces[0]);
+        SceneManager.LoadScene(sceneDict[0]);
     }
 
     public void countAllInteractables()
@@ -70,9 +103,9 @@ public class InteractableAutoCounter : MonoBehaviour
         }
         else if (sceneIndex < 16)
         {
-            Debug.Log("Unfortunately, could not find 16 interactables in scene: " + 
-                      DebugSeedUtility.sceneIndeces[sceneIndex] + " Interactable count: " + count);
-            problemScenes += "\n" + DebugSeedUtility.sceneIndeces[sceneIndex] + " Interactable count: " + count;
+            Debug.Log("Unfortunately, could not find 16 interactables in scene: " +
+                      sceneDict[sceneIndex] + " Interactable count: " + count);
+            problemScenes += "\n" + sceneDict[sceneIndex] + " Interactable count: " + count;
 
             failure++;
             waitCheck = 0;
@@ -91,6 +124,9 @@ public class InteractableAutoCounter : MonoBehaviour
             results = "Scenes with 16 interactables: " + success + "\nScenes without 16 interactables: " + failure + "\n";
             results += "Problematic scenes:" + problemScenes;
             finished = true;
+
+
+            writeToCSV();
         }
     }
 
@@ -99,9 +135,8 @@ public class InteractableAutoCounter : MonoBehaviour
         LevelSetManager.AddLevel(sceneIndex);
         if(!GameManager.V2Menus)
             MenuScreenManager.Instance.state = MenuScreenStates.Debug;
-        SceneManager.LoadScene(DebugSeedUtility.sceneIndeces[sceneIndex]);
+        SceneManager.LoadScene(sceneDict[sceneIndex]);
     }
-
 
     public int interactableCount()
     {
@@ -109,8 +144,51 @@ public class InteractableAutoCounter : MonoBehaviour
         Interactable[] items = FindObjectsOfType<Interactable>();
         counter = items.Length;
 
+        foreach(Interactable item in items)
+        {
+            string[] rowData = new string[5];
+            rowData[0] = item.Name;
+            rowData[1] = item.name;
+            rowData[2] = sceneDict[sceneIndex];
+            rowData[3] = sceneIndex.ToString();
+            rowData[4] = item.ID.spotID.ToString();
+            interactableRowData.Add(rowData);
+        }
+        
         return counter;
     }
 
+    public void writeToCSV()
+    {
+        if (writtenToCSV)
+            return;
 
+        writtenToCSV = true;
+
+        Debug.Log("Writing to CSV - " + interactableRowData.Count);
+        string[][] output = new string[interactableRowData.Count][];
+
+        for (int i = 0; i < output.Length; i++){
+            output[i] = interactableRowData[i];
+        }
+
+        int length = output.GetLength(0);
+        string delimiter = ",";
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int index = 0; index < length; index++)
+            sb.AppendLine(string.Join(delimiter, output[index]));
+
+
+        #if UNITY_EDITOR
+            string filePath = Application.dataPath + "/CSV/" + "Saved_data.csv";
+        #else
+            string filePath = "";
+        #endif
+
+        StreamWriter outStream = System.IO.File.CreateText(filePath);
+        outStream.WriteLine(sb);
+        outStream.Close();
+    }
 }
