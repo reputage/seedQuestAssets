@@ -46,12 +46,21 @@ public class InteractableAutoCounter : MonoBehaviour
 
     void Start()
     {
-        string[] rowHeader = new string[5];
+        string[] rowHeader = new string[14];
         rowHeader[0] = "Interactable Name";
         rowHeader[1] = "Object Name";
         rowHeader[2] = "Scene Name";
         rowHeader[3] = "Scene ID";
         rowHeader[4] = "Interactable ID";
+        rowHeader[5] = "Default State";
+        rowHeader[6] = "Action One";
+        rowHeader[7] = "Action One - Object Name";
+        rowHeader[8] = "Action Two";
+        rowHeader[9] = "Action Two - Object Name";
+        rowHeader[10] = "Action Three";
+        rowHeader[11] = "Action Three - Object Name";
+        rowHeader[12] = "Action Four";
+        rowHeader[13] = "Action Four - Object Name";
         interactableRowData.Add(rowHeader);
     } 
 
@@ -140,18 +149,30 @@ public class InteractableAutoCounter : MonoBehaviour
 
     public int interactableCount()
     {
+        if (sceneIndex >= 16) return 0;
+
         int counter = 0;
         Interactable[] items = FindObjectsOfType<Interactable>();
         counter = items.Length;
 
         foreach(Interactable item in items)
         {
-            string[] rowData = new string[5];
+            string[] rowData = new string[14];
             rowData[0] = item.Name;
             rowData[1] = item.name;
             rowData[2] = sceneDict[sceneIndex];
             rowData[3] = sceneIndex.ToString();
             rowData[4] = item.ID.spotID.ToString();
+            rowData[5] = (item.stateData.defaultState.prefab != null) ? item.stateData.defaultState.prefab.name : "null";
+            rowData[6] = (item.stateData.states[0] != null) ? item.stateData.states[0].actionName : "null";
+            rowData[7] = (item.stateData.states[0].prefab != null) ? item.stateData.states[0].prefab.name : "null";
+            rowData[8] = (item.stateData.states[1] != null) ? item.stateData.states[1].actionName : "null";
+            rowData[9] = (item.stateData.states[1].prefab != null) ? item.stateData.states[1].prefab.name : "null";
+            rowData[10] = (item.stateData.states[2] != null) ? item.stateData.states[2].actionName : "null";
+            rowData[11] = (item.stateData.states[2].prefab != null) ? item.stateData.states[2].prefab.name : "null";
+            rowData[12] = (item.stateData.states[3] != null) ? item.stateData.states[3].actionName : "null";
+            rowData[13] = (item.stateData.states[3].prefab != null) ? item.stateData.states[3].prefab.name : "null";
+
             interactableRowData.Add(rowData);
         }
         
